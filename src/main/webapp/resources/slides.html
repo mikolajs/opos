@@ -1,0 +1,96 @@
+<!doctype HTML>
+<html>
+    
+<div class="lift:surround?with=resource;at=content">
+    <head_merge> 
+      <link rel="stylesheet" type="text/css" href="/style/jquery.dataTables.css" />
+    <script src="/jquery/jquery.dataTables.min.js" ></script>
+       <script>
+           var oTable = $();
+           var oTablePrivate = $();
+           $(document).ready(function() {
+                oTable = $('#dataTable').dataTable({
+        			"sPaginationType": "two_button",
+        			"bFilter": true,
+        			"iDisplayLength": 20,
+        			"bLengthChange": true,
+        		    "oLanguage": {
+        		        "sSearch": "Filtruj wiersze: ",
+        		        "sZeroRecords": "Brak danych do wyświetlenia",
+        		        "sInfoEmpty": "Brak danych do wyświetlenia",
+        		        "sEmptyTable": "Brak danych do wyświetlenia",
+        		        "sInfo": "Widzisz wiersze od _START_ do _END_  z wszystkich _TOTAL_",
+        		        "oPaginate": {
+        		        	"sPrevious": "Poprzednie",
+        			        "sNext": "Następne",
+        			        "sFirst": "Początek",
+        			        "sLast": "Koniec",
+        		        },
+        		        "sInfoFiltered": " - odfiltrowano z _MAX_ wierszy",
+        		        "sLengthMenu": 'Pokaż <select>'+
+        		        '<option value="20">20</option>'+
+        		        '<option value="50">50</option>'+
+        		        '<option value="100">100</option>'+
+        		        '<option value="-1">całość</option>'+
+        		        '</select> wierszy'
+        		    }
+        		      });
+                
+                
+             });
+             
+             function selectSubject(elem){
+            	 var val = $(elem).children(':selected').val();
+            	 if (val != 'Wszystkie') oTable.fnFilter(val,2);
+            	 else oTable.fnFilter( '.+',2,true);
+             }
+             function selectLevel(elem){
+            	 var val = $(elem).children(':selected').val();
+            	 if (val != '0') oTable.fnFilter(val,3);
+            	 else oTable.fnFilter('.+',3,true);
+             }
+       </script>
+       <style>
+       .theSelects span { font-weight: bold; padding: 2px, 10px, 2px, 10px; font-size: 18px;  
+       	font-family: "Times New Roman", Times, serif; font-style: italic; }
+       	.theSelects img { vertical-align: middle;}
+       </style>
+    </head_merge>
+    
+ <div id="boxText">
+ <div class="well"> <h2>Twoje prezentacje</h2></div>
+  
+  <div class="lift:SlidesSn.selectors theSelects form-inline" >
+  <div class="input-group">
+  <div class="input-group-addon">Wybierz przedmiot:</div>
+   <select id="subjectSelect"  class="form-control"><option></option></select>
+   </div>
+      <div class="input-group"><button class="btn btn-success"   onclick="redirectTo()">Wybierz</button>
+  </div>
+  </div>
+  <br/><br/>
+   <div class="row"  style="margin-left:20px;"><a href="/resources/editslide/0"><button type="button" class="btn btn-success btn-lg"  id="addTrigger">
+  <span class="glyphicon glyphicon-plus-sign"></span> Stwórz prezentację</button></a>
+</div>
+  
+  <br/><br/>
+  <div id="themeList" class="lift:SlidesSn.slidesList dataTable_wrapper">
+            <table id="dataTable" class="display" >
+                <thead><tr><th>Tytuł</th><th>Dział</th><th>Przedmiot</th>
+                	<th>Poziom</th><th>Edytuj</th></tr></thead>
+                <tbody><tr><td><a href="">To jest tytuł</a></td><td></td><td></td></tr></tbody>
+                 <tfoot>
+                 	<tr><th>Tytuł</th><th>Dział</th><th>Przedmiot</th><th>Poziom</th>
+                 	<th>Edytuj</th></tr>
+                 </tfoot>
+            </table>
+        </div>
+        
+       
+   <br/>
+</div>
+
+<br/><br/>
+    </div>
+   
+</html>

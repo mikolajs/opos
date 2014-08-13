@@ -1,0 +1,10 @@
+set in /etc/default/jetty
+Jetty_host 0.0.0.0
+no_start 0
+jetty_port 8080
+
+/var/lib/jetty/webapps/ 
+root.war as page_school
+and others with original name
+
+how about user for war files?

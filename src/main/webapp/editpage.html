@@ -1,0 +1,91 @@
+<html>
+
+<body class="lift:content_id=main">
+<div id="main" class="lift:surround?with=default;at=content">
+<head_merge>
+<script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
+<script>
+function getImageURLfromIFrame(elem){
+	var innerDoc = elem.contentDocument || elem.contentWindow.document;
+	var url  = innerDoc.getElementById('linkpath').innerHTML;
+	$('.cke_dialog_ui_input_text').val(url);
+}
+
+$(document).ready(function(){
+
+    CKEDITOR.replace( 'editor',{
+        width : 700, 
+        height: 400,
+        extraPlugins : 'youTube,addImage,addFile,formula',
+        toolbar : [ [ 'Source' ],
+                    [ 'Link','Unlink','Anchor' ],[ 'Maximize', 'ShowBlocks','-','About' ] ,
+        [ 'Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo' ],
+        [ 'Find','Replace','-','SelectAll' ],
+        [ 'Bold','Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat' ],
+        [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','BidiLtr','BidiRtl' ],
+        [ 'AddImage',  'YouTube', 'AddFile', 'Formula', 'Table','HorizontalRule','SpecialChar','Iframe' ] ,
+        [ 'Styles','Format','FontSize','Font' ],
+        [ 'TextColor','BGColor' ] ]
+    });
+    
+});
+
+function isValid() {
+  var title = document.getElementById('title').value;
+  var valid = true;
+  var info = 'Uzupełnij najpierw:';
+  title = jQuery.trim(title);
+  if (title == '') {
+    valid = false;
+    info = info + ' tytuł.';
+  }
+  if (!valid) {
+    alert(info);
+    return false;
+  } else {
+    return true;
+  }
+}
+
+function isWhite(str) {
+	for (i = 0; i < str.length; i++) {
+		if (str.charAt(i) != ' ') return false;
+	}
+	return true;
+}
+
+function insertThumbnailPreviewSource(){
+	var src = document.getElementById("thumbnail").value;
+	if(src.length > 20) document.getElementById("thumbPreview").setAttribute("src",src);
+}
+
+</script>
+<style> form label {font-weight: bold; float:left; width:100px;}</style>
+</head_merge>
+<div id="alerts">
+		<noscript>
+			<p>
+				<strong>Aby korzystać ze strony musisz włączyć JavaScript</strong>
+			</p>
+		</noscript>
+	</div>
+<div class="container_12">	
+<form  class="lift:page.PageEditSn.editPage" method="POST">
+<h1>Edycja artykułów</h1>
+    <fieldset>
+        <input id="id" type="text" />
+        <p><label for="title">Tytuł:</label> <input id="title" type="text"/></p>
+        <p><label for="department">Dział:</label> <select id="department"></select></p>
+		<div><h2>Treść</h2><textarea id="editor"></textarea></div>
+		<p>
+			<input type="submit" id="save"/>
+			<input type="submit" id="delete" />
+			<input type="submit" id="discard" />
+		</p>
+    </fieldset>
+</form>
+
+</div>
+</div>
+</body>
+</html>

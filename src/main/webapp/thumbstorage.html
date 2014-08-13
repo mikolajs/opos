@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+      <head>
+      <script type="text/javascript" src="/jquery/jquery.js"></script>    
+        <script type="text/javascript">
+            function copyLink() {
+                var link = document.getElementById("linkpath").innerHTML;
+                if (link.length > 20){
+                	var topDoc = window.top.document;
+                    var urlElem = topDoc.getElementById('thumbnail');
+                    if (urlElem) urlElem.value = link;
+                    var imgPreview = topDoc.getElementById('thumbPreview');
+                    if(imgPreview) {
+                        
+                        imgPreview.setAttribute('src',link);
+                    }
+                }
+                
+            }
+        </script>
+    </head>
+<body onload="copyLink();">
+    <form class="lift:page.FilesSn.addThumbnail" method="POST" enctype="multipart/form-data" >
+    <input id="file" />
+    <input id="submit" />
+     <span id="linkpath"></span>
+    <lift:msgs/>
+    </form><br />
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+    <body class="lift:content_id=main">
+        <div id="main" class="lift:surround?with=secret;at=content">
+            <head_merge><link rel="stylesheet" type="text/css" href="/style/register.css" />
+                <script type="text/javascript" charset="utf-8" src="/jquery/datatableone.js"></script>
+                <script type="text/javascript" charset="utf-8" src="/jquery/editformdiv.js"></script>
+                <script type="text/javascript" charset="utf-8" src="/jquery/select_operations.js"></script>
+                <script type="text/javascript" charset="utf-8" src="/jquery/myvalidation.js"></script>
+                <script type="text/javascript" charset="utf-8">
+                
+                var editFrom = new Object();
+                
+                EditFormDiv.prototype.putDataToForm = function(array){
+            		document.getElementById('id').value = array[0];
+            		document.getElementById('lastname').value = array[1];
+            		document.getElementById('firstname').value = array[2];
+            		document.getElementById('email').value = array[3];
+            		document.getElementById('telephone').value = array[4];
+            	}
+            	
+                EditFormDiv.prototype.getData = function(){
+            		var array = new Array();
+            		array[0] = document.getElementById('id').value;
+            		array[1] = document.getElementById('lastname').value;
+            		array[2] = document.getElementById('firstname').value;
+            		array[3] = document.getElementById('email').value;
+            		array[4] = document.getElementById('telephone').value;
+            		return array;
+            	}
+                
+                EditFormDiv.prototype.addNewItemInfo = 'Dodawanie nauczyciela';
+                EditFormDiv.prototype.editItemInfo = 'Edycja nauczyciela';
+                
+                EditFormDiv.prototype.validate = function() {
+            		var isError = false;
+            		var firstName = jQuery.trim($('#firstname').val());
+            		if (!validateName(firstName)) {
+            			$('#firstnameinfo').text(info);
+            			isError = true;
+            		}
+            		var lastName = jQuery.trim($('#lastname').val());
+            		if (!validateName(lastName)) {
+            			$('#lastnameinfo').text(info);
+            			isError = true;
+            		}
+            		var email = jQuery.trim($('#email').val());
+            		if (!validateEmail(email)) {
+            			$('#emailinfo').text(info);
+            			isError = true;
+            		}
+            		var phone = jQuery.trim($('#telephone').val());
+            		if (!validatePhone(phone)) {
+            			$('#telephoneinfo').text(info);
+            			isError = true;
+            		}
+            		return !isError;
+            	}
+                       
+                $(document).ready(function(){
+                	                     		
+                	editForm = new EditFormDiv();
+                	editForm.init(300,500);                	
+                              	
+                });
+                
+                               
+                </script>
+                <style >
+                    #errorInfo { font-style: italic; font-weight: bold; color: red;}
+                    .scratched td {text-decoration: line-through;}
+                    label {width: 150px;}
+                </style>
+            </head_merge>
+<div class="submenu">
+</div>
+            <div class="container_12">              
+                
+                <div class="lift:secretariat.AddTeacherSn.editAjax" id="formAdd" style="display: none;" title="">
+                <form  method="POST">
+               <p><label for="id">Id:</label>
+                  <input id="id" type="text" />
+                </p> 
+               <p><label for="lastname">Nazwisko:</label>
+                  <input id="lastname" type="text" size="18" maxlength="32"/><br/>
+                  <span id="lastnameinfo" class="errorInfo"></span>
+                </p>
+                <p><label for="firstname">Imię:</label>
+                   <input id="firstname" type="text" size="18" maxlength="32"/><br/>
+                   <span id="firstnameinfo" class="errorInfo"></span>
+                </p>
+                <p><label for="email">Adres email:</label>
+                   <input id="email" type="text" size="18" maxlength="48" /><br/>
+                   <span id="emailinfo" class="errorInfo"></span>
+                </p>
+                <p><label for="telephone">Telefon:</label>
+                   <input id="telephone" type="text" size="9" maxlength="12"  /><br/>
+                   <span id="telephoneinfo" class="errorInfo"></span></p>   
+                <p>
+                    <input type="image"  src="/style/images/saveico.png"  id="save"/>
+                    <input type="image" src="/style/images/delico.png" id="delete"/>               
+                </p>
+                <p id="addInfo"></p>
+                </form>
+                </div>
+
+
+
+                <h3>Przegląd i edycja nauczycieli </h3><hr /><label for="newadd">Dodaj: </label>
+                <input id="newadd" type="image" src="/style/images/addico.png" />
+                <table id="fullList" class="display" border="0" cellpadding="2" cellspacing="2" >
+                    <thead>
+                        <tr><th>ID</th><th>Nazwisko</th><th>Imię</th><th>E-Mail</th>
+                            <th>Telefon</th>
+                        </tr>
+                    </thead>
+                    <tbody class="lift:secretariat.AddTeacherSn.teacherList">
+                        <tr >
+                            <td class="id"></td>
+                            <td  class="lastname"></td>
+                            <td  class="firstname"></td>
+                            <td class="email"></td>
+                            <td class="phone"></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr><th>ID</th><th>Nazwisko</th><th>Imię</th><th>E-Mail</th>
+                            <th>Telefon</th>
+                        </tr>
+                    </tfoot>
+                </table>
+
+          
+               <br/><br/>
+            </div>
+            </div>
+    </body>
+</html>
+

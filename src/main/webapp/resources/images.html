@@ -1,0 +1,52 @@
+<!doctype HTML>
+<html>
+    
+<div class="lift:surround?with=resource;at=body">
+    <head_merge> 
+    <script src="/jquery/dejavu.js"></script>
+       <script src="/jquery/departmentselect.js"></script>
+       <script>
+       $(document).ready(function(){
+    	   $('#addNewItem').dialog({
+    		   autoOpen:false,
+    		   modal:true,
+    		   width:550,
+    		   height:300
+    	   });
+    	   $('#videos').accordion();
+    	   $('#addTrigger').click(function(){
+    		  $('#addNewItem').dialog('open'); 
+    	   });
+       });
+        
+       </script>
+       <style>
+       #addNewItem form p {margin-bottom: 5px;}
+       #addNewItem form p input {width:300px}
+        #addNewItem form p label {float: left;width: 150px;}
+       #addNewItem form p select {width:300px}
+       </style>
+    </head_merge>
+  <h2>Grafika</h2>
+ <div><img id="addTrigger" src="/images/addico.png" /></div>
+
+<div id="videos">
+	 <h4></h4>
+  <div>
+    </div>
+
+</div>
+   
+   <div id="addNewItem" title="Dodaj nowy film">
+   <form method="POST">
+   <input id="ID" style="display:none;" />
+   <p><label for="title">Tytuł:</label> <input id="title" /></p>
+   <p><label for="subjects">Przedmiot: </label> <select id="subjects"></select></p>
+   <p><label for="departments">Dział: </label> <select id="departments"></select></p>
+   <p><label for="file">Plik:</label> <input id="file" /></p>
+   <p><input type="submit" id="save" /></p>
+   </form>
+   </div>
+   
+   </div>
+</html>

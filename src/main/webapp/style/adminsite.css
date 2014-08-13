@@ -1,0 +1,23 @@
+
+label { width: 100px; float:left; vertical-align: top;}
+legend {font-weight: bold;}
+textarea { border: 1px solid rgb(204, 204, 204); width: 325px;}
+input[type="submit"] {margin-left: 30px; width: 80px;}
+.tables table {
+	width: 100%; 
+	margin: 20px 0 50px 0; 
+	}
+.tables > table > thead > tr > th {
+	font-weight: bold; 
+	background-color: #aea;  
+	padding: 5px;
+	}
+.tables > table > tbody > tr > td	{
+	text-align:center;
+	}
+	
+	
+.tables > table {border-spacing: 2px ; border-collapse: separate; padding: 10px 0 10px 0;}
+.even_row {
+	background-color: #ded;
+}

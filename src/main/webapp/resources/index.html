@@ -1,0 +1,130 @@
+<!doctype HTML>
+<html>
+    
+<div class="lift:surround?with=resource;at=content">
+    <head_merge> 
+    <script src="/jquery/dejavu.js"></script>
+    <script type="text/javascript" src="/jquery/jquery.multiselect.min.js"></script>
+     <link rel="stylesheet" type="text/css" href="/style/jquery.multiselect.css" />
+       <script>
+       $(document).ready(function(){
+           $('#addNewItem').dialog({
+               autoOpen:false,
+               modal:true,
+               width:600,
+               height:600
+           });
+           
+           
+           $('#addTrigger').click(function(){
+              $('#addNewItem').dialog('open'); 
+           });
+           
+           $("#classesList").multiselect({
+               selectedText: "Wybrano # z # klas"
+            });
+           
+           //zamienić na ładowanie danych do kursu
+           $('.editCourseButton').each(function(){
+              $(this).click(function(){
+                  var $courseItem = $(this).parent().parent().parent();
+                  var id = $courseItem.children('div').children(' input.courseId').val();
+                  $('#courseId').val(id);
+                 alert("ID: "+ id);
+                 var title = $courseItem.children('div').children('input.courseId').val();
+                  $('#title').val(title);
+
+//                          $("#subjects option").each(function(){
+//                             if(this.innerHTML == subjectName) {
+//                                 $(this).attr('selected', 'selected');
+//                             }
+//                          });
+                      
+//                          $("#classInfo").val(classInfo);
+//                          $("#thumbnail").val(thumbPath)
+//                          $("thumbnailPreview").attr("src", thumbPath)
+//                          $('#descript').val(descript);
+                       
+                     $('#addNewItem').dialog('open');
+                  });                    
+       });
+           
+       });
+       
+       function makeDelete() {
+           var ok =  confirm('Na pewno usunąć? \n \
+Usunięcie zadziała tylko po usunięciu wszystkich lekcji w kursie.');
+           if(ok) $('#delete').trigger('click');
+           return false;
+       }
+        
+       </script>
+     
+    </head_merge>
+  <div class="well"><h2>Twoje kursy</h2></div>
+  <div ><button type="button" class="btn btn-success btn-lg"  id="addTrigger">
+  <span class="glyphicon glyphicon-plus-sign"></span> Dodaj kurs
+</button></div>
+
+<div id="coursesList"  data-lift="edu.CoursesSn.showMyCourses">
+     <div class="row courseItem">
+        <div class="col-md-7">
+        <input class="courseId" style="display:none"/>
+          <h2 >Brak </h2>
+          <p> Klasy: <span class="text-muted classInfo"> </span></p>
+          <p class="courseInfo"></p>
+          <p> <a class="btn btn-default editLessonButton" href="#"  role="button"  >Edycja lekcji</a>   
+          <span class="btn btn-default editCourseButton"   >Edycja  kursu</span></p>
+        </div>
+        <div class="col-md-5">
+          <img class="img-responsive"   width="400px" src="/images/logo.png"  alt="obraz kursu" />
+        </div>
+      </div>
+</div>
+   
+   <div id="addNewItem" title="Edycja kursu"  style="display:none;">
+   <form class="lift:edu.CoursesSn.add?form=POST form-horizontal" >
+   <input id="courseId" style="display:none;"/>
+   
+   <div class="form-group">
+        <label for="title" class="col-sm-3 control-label">Tytuł:</label>
+         <div   class="col-sm-9"><input id="title"  class="form-control"/></div>
+    </div>
+  <div class="form-group">
+        <label for="subjects" class="col-sm-3 control-label">Przedmiot: </label> 
+        <div   class="col-sm-9"><select id="subjects" class="form-control"></select></div>
+    </div>
+    <div class="form-group">
+        <label for="classesList" class="col-sm-3 control-label">Klasa: </label> 
+        <div   class="col-sm-9"><select  id="classesList"  class="form-control"></select></div>
+   </div>
+    <div class="form-group">
+   <label for="thumbnailPreview" class="col-sm-3 control-label">Podgląd obrazka: </label> 
+   <input  id="thumbnail"  class="form-control"  style="display:none;"/>
+   <div   class="col-sm-9"><img id="thumbnailPreview" src="/images/logo.png"  alt="Brak obrazka"/></div>
+   </div>
+   <div class="form-group">
+        <label for="img" class="col-sm-3 control-label">Obrazek: </label> 
+        <div   class="col-sm-9"><iframe src="/thumbstorage"  style="height:120px;width: 410px;"></iframe></div>
+   </div>
+  <div class="form-group">
+        <label for="descript" class="col-sm-3 control-label">Opis:</label> 
+        <div   class="col-sm-9"><textarea id="descript" class="form-control"></textarea></div>
+    </div>
+   <div class="form-group">
+        <label  class="col-sm-3 control-label"></label>
+        <div   class="col-sm-9">
+            <input type="submit" id="save"   class="btn btn-success btn-lg" />
+            <input type="submit" value="Usuń"   class="btn btn-danger btn-lg"  id="fakeDelete" onclick="return makeDelete();"/>
+            <input type="submit" id="delete"  style="display:none;"/>
+            
+      </div>
+    </div>
+   </form>
+   
+   </div> 
+   
+   
+   
+   </div>
+</html>

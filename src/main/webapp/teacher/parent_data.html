@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+    <body class="lift:content_id=main">
+        <div id="main" class="lift:surround?with=teacher;at=content">
+            <head_merge>
+                <script type="text/javascript" charset="utf-8" src="/jquery/datatableone.js"></script>
+                <script type="text/javascript" charset="utf-8" src="/jquery/editformdiv.js"></script>
+                <script type="text/javascript" charset="utf-8" src="/jquery/myvalidation.js"></script>
+                <script type="text/javascript" charset="utf-8">
+                
+                
+ var editFrom = new Object();
+                
+                EditFormDiv.prototype.putDataToForm = function(array){
+                	document.getElementById('id').value = array[0];
+                	 document.getElementById('number').value = array[1];
+                     document.getElementById('reversefullname').value = array[2];
+                     document.getElementById('lastnamefather').value = array[3];
+                     document.getElementById('firstnamefather').value = array[4];
+                     document.getElementById('emailfather').value = array[5] ;
+                     document.getElementById('phonefather').value = array[6];
+                     document.getElementById('addressfather').value = array[7] ;
+                     document.getElementById('lastnamemather').value = array[8];
+                     document.getElementById('firstnamemather').value = array[9];
+                     document.getElementById('emailmather').value = array[10] ;
+                     document.getElementById('phonemather').value = array[11];
+                     document.getElementById('addressmather').value = array[12] ;
+                	
+            	}
+            	
+                EditFormDiv.prototype.getData = function(){
+                	var array = new Array();
+                	array[0] = document.getElementById('id').value;
+                	array[1] = document.getElementById('number').value;
+                    array[2] = document.getElementById('reversefullname').value;
+                    array[3] = document.getElementById('lastnamefather').value;
+                    array[4] = document.getElementById('firstnamefather').value;
+                    array[5] = document.getElementById('emailfather').value;
+                    array[6] = document.getElementById('phonefather').value;
+                    array[7] = document.getElementById('addressfather').value;
+                    array[8] = document.getElementById('lastnamemather').value;
+                    array[9] = document.getElementById('firstnamemather').value;
+                    array[10] = document.getElementById('emailmather').value;
+                    array[11] = document.getElementById('phonemather').value;
+                    array[12] = document.getElementById('addressmather').value;
+                    return array;
+            	}
+                
+                EditFormDiv.prototype.editItemInfo = 'Edycja rodziców';
+                
+                EditFormDiv.prototype.validate = function() {
+            		var isError = false;
+            		return !isError;
+            	}
+                
+                
+                $(document).ready(function(){
+                	
+               	 $( "#radio" ).buttonset();
+               	                     		
+               	editForm = new EditFormDiv();
+               	editForm.init(600,600);  
+               	
+               	editForm.idInput = document.getElementById('id');
+               	
+               	editForm.showFather = function(){
+         
+                      editForm.dataTable.dTable.fnSetColumnVis( 3, true );
+                       editForm.dataTable.dTable.fnSetColumnVis( 4, true );
+                       editForm.dataTable.dTable.fnSetColumnVis( 5, true );
+                       editForm.dataTable.dTable.fnSetColumnVis( 6, true );
+                       editForm.dataTable.dTable.fnSetColumnVis( 7, true );
+                       editForm.dataTable.dTable.fnSetColumnVis( 8, false );
+                       editForm.dataTable.dTable.fnSetColumnVis( 9, false );
+                       editForm.dataTable.dTable.fnSetColumnVis( 10, false );
+                       editForm.dataTable.dTable.fnSetColumnVis( 11, false );
+                       editForm.dataTable.dTable.fnSetColumnVis( 12, false );
+                   }
+                   
+                   editForm.showMather = function(){
+                	 
+                		  editForm.dataTable.dTable.fnSetColumnVis( 3, false );
+                          editForm.dataTable.dTable.fnSetColumnVis( 4, false );
+                           editForm.dataTable.dTable.fnSetColumnVis( 5, false );
+                           editForm.dataTable.dTable.fnSetColumnVis( 6, false );
+                           editForm.dataTable.dTable.fnSetColumnVis( 7, false );
+                           editForm.dataTable.dTable.fnSetColumnVis( 8, true );
+                           editForm.dataTable.dTable.fnSetColumnVis( 9, true );
+                           editForm.dataTable.dTable.fnSetColumnVis( 10, true );
+                           editForm.dataTable.dTable.fnSetColumnVis( 11, true );
+                           editForm.dataTable.dTable.fnSetColumnVis( 12, true );
+                		  
+                   }
+                    
+                   editForm.showFather();
+               });
+               
+                </script>
+                <style >
+                    #errorInfo { font-style: italic; font-weight: bold; color: red;}
+                    .scratched td {text-decoration: line-through;}
+                    input[readonly] {background: buttonface;}
+                </style>
+            </head_merge>
+
+            <div class="container_12">              
+                <div class="lift:teacher.ParentDataSn.choosenClass choosenclass">
+                    <h1>Przeglądasz klasę: <span id="choosenclass">4C</span></h1>
+                </div>
+                <div class="lift:teacher.ParentDataSn.editAjax" id="formAdd" style="display: none;" title="Dane uczniów">
+                <form  method="POST">
+               <p><label for="id">Id:</label>
+                  <input id="id" type="text" />
+                </p> 
+               <p><label for="reversefullname">Nazwisko i imię:</label>
+                  <input id="reversefullname" type="text" readonly="readonly"/><br/>
+                </p>
+                 <p style="border-bottom:1px solid #555;padding-bottom: 10px;">
+                 <label for="number">Numer:</label>
+                   <input id="number" type="text" readonly="readonly"/><br/>
+                </p>
+                <p><label for="lastnamefather">Nazwisko Ojca:</label>
+                  <input id="lastnamefather" maxlength="30"/><br/>
+                  <span id="lastnamefatherinfo" class="errorInfo"></span>
+                </p>
+                <p><label for="firstnamefather">Imię Ojca:</label>
+                  <input id="firstnamefather" maxlength="30"/><br/>
+                  <span id="firstnamefatherinfo" class="errorInfo"></span>
+                </p>
+                 <p><label for="emailfather">E-mail Ojca:</label>
+                  <input id="emailfather" maxlength="50"/><br/>
+                  <span id="emailfatherinfo" class="errorInfo"></span>
+                </p>
+                <p><label for="phonefather">Telefon Ojca:</label>
+                   <input id="phonefather" type="text"  maxlength="12"/><br/>
+                   <span id="phonefatherinfo" class="errorInfo"></span>
+                </p>
+                <p style="border-bottom:1px solid #555;padding-bottom: 10px;">
+                <label for="addressfather">Adres Ojca:</label>
+                   <input id="addressfather" maxlength="120"/><br/>
+                   <span id="addressfatherinfo" class="errorInfo"></span>
+                </p>
+                 <p><label for="lastnamemather">Nazwisko Matki:</label>
+                  <input id="lastnamemather" maxlength="30"/><br/>
+                  <span id="lastnamematherinfo" class="errorInfo"></span>
+                </p>
+                <p><label for="firstnamemather">Imię Matki:</label>
+                  <input id="firstnamemather" maxlength="30"/><br/>
+                  <span id="firstnamematherinfo" class="errorInfo"></span>
+                </p>
+                 <p><label for="emailmather">E-mail Matki:</label>
+                  <input id="emailmather" maxlength="50"/><br/>
+                  <span id="emailmatherinfo" class="errorInfo"></span>
+                </p>
+                <p><label for="phonemather">Telefon Matki:</label>
+                   <input id="phonemather" type="text"  maxlength="12"/><br/>
+                   <span id="phonematherinfo" class="errorInfo"></span>
+                </p>
+                <p><label for="addressmather">Adres Matki:</label>
+                   <input id="addressmather" maxlength="120"/><br/>
+                   <span id="addressmatherinfo" class="errorInfo"></span>
+                </p>
+                <p><input type="image" src="/style/images/previco.png" onclick="editForm.getPrevious();" id="preview"/>
+                    <input type="image"  src="/style/images/saveico.png"  id="save"/>
+                    <input type="image" src="/style/images/nextico.png" onclick="editForm.getNext();" id="next"/>                
+                </p>
+                <p id="addInfo"></p>
+                </form>
+                </div>
+
+
+
+                <h3>Dane rodziców </h3><hr />
+     <div id="radio">
+        <input type="radio" id="radio1" name="radio" checked="checked" onclick="editForm.showFather();" /><label for="radio1">Dane Ojca</label>
+        <input type="radio" id="radio2" name="radio"  onclick="editForm.showMather();"/><label for="radio2">Dane Matki</label>
+    </div>
+              
+                
+                <table id="fullList" class="display" border="0" cellpadding="2" cellspacing="2" >
+                   
+                   <thead>
+                       <tr>
+                           <th>ID</th><th>Nr</th><th>Uczeń</th>
+                           <th>Nazwisko Ojca</th><th>Imię Ojca</th><th>E-mail Ojca</th>
+                           <th>Telefon Ojca</th><th>Adres Ojca</th>
+                           <th>Nazwisko Matki</th><th>Imię Matki</th><th>E-mail Matki</th>
+                           <th>Telefon Matki</th><th>Adres Matki</th>
+                       </tr>
+                   </thead>
+
+                    <tbody class="lift:teacher.ParentDataSn.dataTable">
+                        <tr >
+                            <td class="id"></td>
+                            <td class="number"></td>
+                            <td  class="reversefullname"></td>
+                            <td class="lastnamefather"></td>
+                            <td class="firstnamefather"></td>
+                            <td class="emailfather"></td>
+                            <td class="phonefather"></td>
+                            <td class="addressfather"></td>
+                            <td class="lastnamemather"></td>
+                            <td class="firstnamemather"></td>
+                            <td class="emailmather"></td>
+                            <td class="phonemather"></td>
+                            <td class="addressmather"></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+             <br/>
+            <div class="clear"></div>
+            </div>
+    </body>
+</html>
+
+
+
+

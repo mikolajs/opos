@@ -1,0 +1,101 @@
+ <!DOCTYPE html>
+<html lang="pl">
+<div class="lift:surround?with=mainedu;at=content" >
+<head_merge>
+   <link rel="stylesheet" href="/style/course.css">
+    <script type="text/javascript" src="/deckjs/extensions/status/deck.status.js"></script>
+     <script type="text/javascript" src="/syntaxhighlighter/shCore.js"></script>
+    <script type="text/javascript" src="/syntaxhighlighter/shBrushBash.js"></script>
+    <script type="text/javascript" src="/syntaxhighlighter/shBrushCpp.js"></script>
+    <script type="text/javascript" src="/syntaxhighlighter/shBrushCss.js"></script>
+    <script type="text/javascript" src="/syntaxhighlighter/shBrushJava.js"></script>
+    <script type="text/javascript" src="/syntaxhighlighter/shBrushJScript.js"></script>
+    <script type="text/javascript" src="/syntaxhighlighter/shBrushPhp.js"></script>
+    <script type="text/javascript" src="/syntaxhighlighter/shBrushPlain.js"></script>
+    <script type="text/javascript" src="/syntaxhighlighter/shBrushPython.js"></script>
+    <script type="text/javascript" src="/syntaxhighlighter/shBrushRuby.js"></script>
+    <script type="text/javascript" src="/syntaxhighlighter/shBrushScala.js"></script>
+    <script type="text/javascript" src="/syntaxhighlighter/shBrushSql.js"></script>
+    <script type="text/javascript" src="/syntaxhighlighter/shBrushXml.js"></script>
+    <link type="text/css" rel="stylesheet" href="/syntaxhighlighter/shCore.css"/>
+    <link type="text/css" rel="stylesheet" href="/syntaxhighlighter/shThemeDefault.css"/>
+    <script type="text/javascript">
+        SyntaxHighlighter.all();
+        
+        function checkAnswer(elem) {
+           var $section = $(elem).parent();
+           var correct = $section.children("input.correct").val();
+           var info = "";
+           var classInfo = "answer"+correct;
+           var $infoElem = $section.children(".alertWell");
+           if( $section.children("ul").children("li").children("input:checked").hasClass(classInfo)) {
+               info = "Bardzo dobrze!";
+               $infoElem.css("color", "green");
+           }
+           else {
+               info = "Błędna odpowiedź";
+               $infoElem.css("color", "red");
+           }
+           $section.children(".alertWell").text(info);
+       }
+    
+    var isHideSidebar = false;
+   function hideSidebar(){
+	   if(isHideSidebar) {
+		   $("#subjectList").show(300);
+		   isHideSidebar = false;
+		   $(".sidebar").width(300);
+	   } else {
+		   $("#subjectList").hide(300);
+		   isHideSidebar =  true;
+		   $(".sidebar").width(80);
+	   }
+   }
+    $(document).ready
+    </script>
+    <style>
+    .hideSidebar {width: 20px;;}
+    
+    </style>
+  </head_merge>
+
+    
+    
+    <div class="lift:edu.ShowCourseSn.show container-fluid " style="padding-top: 60px;background-image: url(/images/background.png)">
+      <div class="row">
+        <div class="sidebar">
+       <p> <button type="button" class="btn btn-info btn-lg"  onclick="hideSidebar()">
+  <span class="glyphicon glyphicon-list"></span> 
+</button></p>
+         <div class="panel panel-info"  id="subjectList">
+        <div class="panel-heading">
+            <h3 class="panel-title">Lista tematów:</h3>
+        </div>
+        <div class="panel-body list-group"  id="subjectListLinks"></div>    
+          </div>
+        </div>
+        <div class="main "  >
+              
+                <div class="content ">
+                  <div class ="row alert alert-info">
+                <div class="col-md-10">
+                <h1 class="page-header">Temat</h1>
+                </div>
+                <div class="col-md-2">
+                <a href=""  id="run-as-slides"><img src="/images/fullscreen.png" /></a>
+                </div>               
+                </div>
+                <div class="deck-container">
+                  <section id="sections"></section>
+                    <section id="extra-info"  class="slide"></section>
+                </div>
+                </div>         
+          
+        </div>
+      </div>
+    </div>
+
+  </div>
+    
+ </html>
+ 

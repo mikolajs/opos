@@ -1,0 +1,134 @@
+<!doctype HTML>
+<html>
+    
+<div class="lift:surround?with=resource-datatable;at=content">
+    <head_merge> 
+    <script src="/jquery/dejavu.js"></script>
+       <script>
+       $(document).ready(function(){
+    	   $('#addNewItem').dialog({
+    		   autoOpen:false,
+    		   modal:true,
+    		   width:600,
+    		   height:400
+    	   });
+    	   
+    	   $('#addTrigger').click(function(){
+    		  $('#addNewItem').dialog('open'); 
+    	   });
+    	   
+    	   $('tbody tr').each(function(){
+    		  $(this).click(function(){
+    			  var $this = $(this);
+    			  var id = $this.attr('id');
+    			  $('#courseId').val(id);
+    			  $this.children('td').each(function(index){
+    				 switch (index) {
+    				 case 0: 
+    					 $('#title').val(this.innerHTML);
+    				     break;
+    				 case 1: 
+    					 var subjectName = this.innerHTML;
+    					 $("#subjects option").each(function(){
+    						if(this.innerHTML == subjectName) {
+    							$(this).attr('selected', 'selected');
+    						}
+    					 });
+    					 break;
+    				 case 2:
+    					 var level = this.innerHTML;
+    					 $("#level option[value='" + level + "']").attr('selected', 'selected');
+    					 break;
+    				 case 3:
+    					 var classInfo = this.innerHTML;
+    					 $("#classInfo").val(classInfo);
+    				 case 4:
+    					 var isPublic = false;
+    					 if(this.innerHTML == "TAK") isPublic = true;
+    					  $("input[type='checkbox']").prop('checked', isPublic);
+    					 break;
+    				 case 5:
+    					 $('#descript').val(this.innerHTML);
+    					 break;
+    				 default:
+    					 break;
+    				 } 
+    			  });
+    			  $('#addNewItem').dialog('open');
+    			  
+    		  }) ;
+    	   });
+    	   
+    	   oTable = $('#dataTable').dataTable({
+   			"sPaginationType": "two_button",
+   			"bFilter": true,
+   			"iDisplayLength": 20,
+   			"bLengthChange": true,
+   		    "oLanguage": {
+   		        "sSearch": "Filtruj wiersze: ",
+   		        "sZeroRecords": "Brak danych do wyświetlenia",
+   		        "sInfoEmpty": "Brak danych do wyświetlenia",
+   		        "sEmptyTable": "Brak danych do wyświetlenia",
+   		        "sInfo": "Widzisz wiersze od _START_ do _END_  z wszystkich _TOTAL_",
+   		        "oPaginate": {
+   		        	"sPrevious": "Poprzednie",
+   			        "sNext": "Następne",
+   			        "sFirst": "Początek",
+   			        "sLast": "Koniec",
+   		        },
+   		        "sInfoFiltered": " - odfiltrowano z _MAX_ wierszy",
+   		        "sLengthMenu": 'Pokaż <select>'+
+   		        '<option value="20">20</option>'+
+   		        '<option value="50">50</option>'+
+   		        '<option value="100">100</option>'+
+   		        '<option value="-1">całość</option>'+
+   		        '</select> wierszy'
+   		    }
+   		      });
+    	   
+       });
+       
+       function makeDelete() {
+    	   var ok =  confirm('Na pewno usunąć? \n \
+Usunięcie zadziała tylko po usunięciu wszystkich lekcji w kursie.');
+    	   if(ok) $('#delete').trigger('click');
+    	   return false;
+       }
+        
+       </script>
+       <style>
+       #addNewItem form p {margin-bottom: 5px;}
+       #addNewItem form p input {width:300px}
+        #addNewItem form p label {float: left;width: 150px;}
+       #addNewItem form p select {width:300px}
+       </style>
+    </head_merge>
+  <h2>Kursy</h2>
+ <div><img id="addTrigger" src="/images/addico.png" /></div>
+
+<div >
+	 <table id="dataTable"><thead><tr><th>Tytuł</th><th>Przedmiot</th><th>Poziom</th><th>Klasa</th>
+	 		<th>Udostępniony?</th><th>Opis</th></tr></thead>
+	 <tbody class="lift:CoursesSn.showMyCourses"><tr><td></td><td></td><td></td><td></td><td></td></tr></tbody>
+	 <tfoot><tr><tr><th>Tytuł</th><th>Przedmiot</th><th>Poziom</th><th>Klasa</th>
+	 		<th>Udostępniony?</th><th>Opis</th></tr></tr></tfoot>
+	 </table>
+</div>
+   
+   <div id="addNewItem" title="Edycja kursu">
+   <form class="lift:CoursesSn.add?form=POST" >
+   <p> <input id="courseId" style="display:none;"/></p>
+   <p><label for="title">Tytuł:</label> <input id="title" /></p>
+   <p><label for="subjects">Przedmiot: </label> <select id="subjects"></select></p>
+   <p><label for="level">Poziom: </label> <select id="level"></select></p>
+    <p><label for="classInfo">Klasa: </label> <input  id="classInfo" /></p>
+   <p><label for="public">Udostępnij:</label><input type="checkbox" id="public"/></p>
+   <p><label for="descript">Opis:</label> <textarea id="descript"></textarea></p>
+   <p><input type="submit" id="save" />
+   <input type="submit" value="Usuń" id="fakeDelete" onclick="return makeDelete();"/>
+   <input type="submit" id="delete"  style="display:none;"/></p>
+   </form>
+   </div>
+   
+   </div>
+</html>

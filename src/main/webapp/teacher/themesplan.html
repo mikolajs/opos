@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+    <body class="lift:content_id=main">
+        <div id="main" class="lift:surround?with=teacher;at=content">
+            <head_merge>
+            
+            <link rel="stylesheet" type="text/css" href="/style/jquery.multiselect.css" />
+             <script type="text/javascript" charset="utf-8" src="/jquery/datatableone.js"></script>
+                <script type="text/javascript" charset="utf-8" src="/jquery/editformdiv.js"></script>
+                 <script type="text/javascript" charset="utf-8" src="/jquery/select_operations.js"></script>   
+                <script type="text/javascript" charset="utf-8" src="/jquery/myvalidation.js"></script>
+                <script type="text/javascript" src="/jquery/jquery.multiselect.min.js"></script>
+                <script type="text/javascript" charset="utf-8">
+                var editFrom = new Object();
+                
+                EditFormDiv.prototype.putDataToForm = function(array){
+                	//CKEDITOR.instances['contentData'].updateElement();
+                	document.getElementById('id').value = array[0];
+                	 var select = document.getElementById('classes');
+                     setMultiSelect(select, array[1]);
+                     select = document.getElementById('subject');
+                     setSelectedIndexWithInner(select,array[2]);
+             		document.getElementById('urlLink').value = array[3].split('"')[1];
+            	}
+            	
+                EditFormDiv.prototype.getData = function(){
+                	   var array = new Array();
+                       array[0] = document.getElementById('id').value;
+                       var select = document.getElementById('classes'); 
+                       array[1] = getArraySelectedInMulti(select);
+                       select = document.getElementById('subject'); 
+                       array[2] = select.options[select.selectedIndex].value;
+                       var urlLinkStr = document.getElementById('urlLink').value;
+                       array[3] =  '<a href="' + urlLinkStr + '">plik</a>';
+                       array[4] = document.getElementById('loggedTeacher').value;
+            		return array;
+            	}
+               
+                
+                EditFormDiv.prototype.addNewItemInfo = 'Dodawanie rozkładów materiału';
+                EditFormDiv.prototype.editItemInfo = 'Edycja rozkładów materiału';
+                
+                EditFormDiv.prototype.validate = function () { 
+                	clearFormsAddInfo(); 
+           	 		var errorText = "";
+        	 		var isError = false;
+             		var name = jQuery.trim($('#urlLink').val());
+             		if (name.length < 20) {
+                 		$('#urlLinkRow').addClass('errorInfo');
+                 		isError = true;
+                 		errorText += "Brak pliku. ";
+             		}
+             		$('#addInfo').text(errorText);
+             		return !isError;
+               }
+                       
+                $(document).ready(function(){         	                     		
+                	editForm = new EditFormDiv();
+                	editForm.init(500,480);
+                	
+                	$("#classes").multiselect({
+                		   selectedText: "Wybrano # z # klas"
+                		});
+                	
+                	 //problem with validate by ajaxSubmit!!!
+                     var addToSave = " if(!editForm.validate()) return false; "
+                         var oldSave = $('#save').attr('onclick');
+                         $('#save').attr('onclick', addToSave + oldSave);
+                });
+            
+               
+                </script>
+                <style >
+                	.errorInfo { background-color: #faa;}
+                    #errorInfo { font-style: italic; font-weight: bold; color: red;}
+                    input[readonly] {background: buttonface;}
+                    #formAdd label { float:left; width: 90px; vertical-align: top;}
+                    #formAdd  textarea { width: 325px; }
+                    #buttons  { text-align:center; }
+					#buttons span	{ 
+    display: -moz-inline-box;
+    width: 20%;
+    text-align: center;}
+ 
+                   
+                </style>
+            </head_merge>
+
+            <div class="container_12">              
+                
+                <div class="lift:teacher.ThemesPlanSn.saveAjaxDate" id="formAdd" style="display: none;" title="Dane uczniów">
+                <input id="loggedTeacher"  type="text" style="display:none;"/> 
+                <form   method="POST">
+               <p>
+                  <input id="id" type="text" />
+                </p> 
+                <p id="classStrRow">
+                	<label for="classes">Klasy:</label>
+                  <p id="tagContainer"> <select id="classes" ></select></p>
+                </p>
+                <p id="subjectRow">
+                	<label for="subject">Przedmiot:</label>
+                   <select id="subject" ></select>
+                </p>
+                 <p id="urlLinkRow">
+                  <label for="urlLink">Link:</label>
+                  <input id="urlLink" type="text" readonly="readonly"/>
+                </p>
+                <p><iframe src="/filestorage" width="100%" height="180px;"></iframe> </p>
+                
+                
+                <p id="buttons"> 
+                    <span><input type="image"  src="/style/images/saveico.png"  id="save"/></span>
+                    <span><input type="image" src="/style/images/delico.png"  id="delete"/></span>
+                </p>
+                <p id="addInfo"></p>
+                </form>
+                </div>
+
+
+
+                <h3>Rozkłady materiału</h3><hr />
+                <p><label for="newadd">Dodaj:</label>
+                <input src="/style/images/addico.png" type="image" id="newadd"></p>
+                <table id="fullList" class="display" border="0" cellpadding="2" cellspacing="2" >
+                   
+                   <thead>
+                       <tr>
+                       <th>ID</th><th>Klasa</th><th>Przedmiot</th>
+                       <th>Załącznik</th><th>Nauczyciel</th>
+                       </tr>
+                   </thead>
+
+                    <tbody class="lift:teacher.ThemesPlanSn.dataTable">
+                        <tr>
+                            <td class="id"></td>
+                            <td class="classes"></td>
+                            <td class="subject"></td>
+                            <td class="urlLink"></td>
+                            <td class="teacher"></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+             <br/>
+            <div class="clear"></div>
+            </div>
+    </body>
+</html>
+
+
+
+

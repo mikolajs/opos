@@ -1,0 +1,53 @@
+
+#add nr property to pagedepartment
+
+db.pagedepartment.update({},{$set: {"nr": 88}}, false, true);
+
+#update articleshead push department id insted name - nadać jeden dział, a potem poprawić
+
+db.articlehead.update({},{$set:{"departmentId":ObjectId("53b424ad44aef2e4d4064003")}}, false, true)
+
+
+#move newshead to articlehead
+
+var cursor = db.newshead.find()
+while(cursor.hasNext()) {
+    var ns = cursor.next();
+    db.articlehead.insert({ "title" : ns.title, "authorName" : ns.authorName, authorId: ns.authorId, "tags" : ns.tags, "thumbnailLink" : ns.thumbnailLink, "introduction" : ns.introduction, "news" : true, "content" : ns.content, "departmentId" : ObjectId("000000000000000000000000") });
+}
+
+#copy introduction to content article
+
+
+var cursor = db.articlehead.find();
+while(cursor.hasNext()) {
+    var ah = cursor.next();
+    var acCur = db.articlecontent.find({'_id' : ah.content});
+    if(acCur.hasNext()) {
+        var ac = acCur.next();
+        var newCont = ah.introduction + "<p></p>" + ac.content;
+        db.articlecontent.update({'_id' : ac._id}, {$set: {"content": newCont}}, false, false);
+    }   
+}
+
+#move pagehead to articlehead
+
+var cursor = db.pagehead.find()
+while(cursor.hasNext()) {
+    var ns = cursor.next();
+    var idDep = db.pagedepartment.find({'name' : ns.department}).next()._id;
+    db.articlehead.insert({ "title" : ns.title, "authorName" : ns.authorName, authorId: ns.authorId, "tags" : [], "thumbnailLink" : "", "introduction" : "", "news" : false, "content" : ns.content, "departmentId" : idDep });
+}
+
+#move GSF to articlehead and articlecontent
+
+var idGSF = ObjectId("53d950a5e4b084cc5aabf042");
+var cursor = db.gsfarticle.find();
+while(cursor.hasNext()) {
+    var gsfa = cursor.next();
+    db.articlecontent.insert({'content': gsfa.content })
+    db.articlehead.insert({ "title" : gsfa.title, "authorName" : ns.authorName, authorId: 1, "tags" : [], "thumbnailLink" : "", "introduction" : "", "news" : false, "content" : ns.content, "departmentId" : idDep });
+}
+
+
+

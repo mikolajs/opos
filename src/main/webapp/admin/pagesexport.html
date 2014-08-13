@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<body class="lift:content_id=main">
+<div id="main" class="lift:surround?with=default;at=content">	
+    <head_merge>
+     <link rel="stylesheet" href="/style/adminsite.css" />
+    </head_merge>
+    <div class="container_12">
+	<div class="grid_3 new-bullets">
+		<h3>Eksporty danych z dziennika do artykułów</h3>
+		
+                <div class="lift:Menu.builder?group=admin;i_item:id="> </div>
+		
+		<a href="/">Powrót</a>
+	</div>
+	
+	<div class="grid_9">
+
+		<form class="lift:admin.AdminExportPageSn.export" method="POST" id="frm1"><br />
+			<fieldset><legend>Eksportuj plan lekcji do artykułów</legend>
+			    <p><label for="what">Co chcesz eksportować:</label><select id="what"></select></p>
+				<p><label for="department">Do działu:</label><select id="department"></select></p>
+				<p><label for="title">Tytuł artykułu:</label><input id="title" /></p>
+				 <p><input id="save" /></p>
+				<p id="notice"> </p>
+	 		</fieldset>
+	   </form>
+		<br/><br/>
+		
+		
+		
+	</div>
+	<div class="clear"></div>
+	</div>
+	
+	
+</div>
+</body></html>

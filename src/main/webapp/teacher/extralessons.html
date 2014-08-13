@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+    <body class="lift:content_id=main">
+        <div id="main" class="lift:surround?with=teacher;at=content">
+            <head_merge>
+                <script type="text/javascript" charset="utf-8" src="/jquery/datatableone.js"></script>
+                <script type="text/javascript" charset="utf-8" src="/jquery/editformdiv.js"></script>
+                <script type="text/javascript" charset="utf-8" src="/jquery/myvalidation.js"></script>
+                <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
+                <script type="text/javascript" charset="utf-8">
+                
+
+                var editFrom = new Object();
+                                
+                                EditFormDiv.prototype.putDataToForm = function(array){
+                                	document.getElementById('id').value = array[0];
+                                	 document.getElementById('title').value = array[1];
+                                	 CKEDITOR.instances['description'].setData(array[3]);
+                                     document.getElementById('when').value = array[4] ;
+                            	}
+                            	
+                                EditFormDiv.prototype.getData = function(){
+                                	   var array = new Array();
+                                       array[0] = document.getElementById('id').value;
+                                       array[1] = document.getElementById('title').value;
+                                       array[2] = document.getElementById('loggedTeacher').value;
+                                       array[3] = document.getElementById('description').value;
+                                       array[4] = document.getElementById('when').value;
+                            		return array;
+                            	}
+                               
+                                
+                                EditFormDiv.prototype.addNewItemInfo = 'Dodawanie zajęć dodatkowych';
+                                EditFormDiv.prototype.editItemInfo = 'Edycja zajęć dodatkowych';
+                                
+                                EditFormDiv.prototype.validate = function () {
+                                	 var isError = false;
+                                	 var errorText = "";
+                                	 CKEDITOR.instances['description'].updateElement();
+                                     var name = jQuery.trim($('#title').val());
+                                     if (!validateText(name)) {
+                                         $('#titleRow').addClass('errorInfo');
+                                         isError = true;
+                                         errorText += "Brak tytułu. ";
+                                     }
+                                     name = jQuery.trim($('#description').val());
+                                     if (!validateText(name)) {
+                                         $('#descriptionRow').addClass('errorInfo');
+                                         isError = true;
+                                         errorText += "Brak opisu. "
+                                     }
+                                    name = jQuery.trim($('#when').val());
+                                     if (!validateText(name)) {
+                                         $('#whenRow').addClass('errorInfo');
+                                         isError = true;
+                                         errorText += "Kiedy?. "
+                                     }
+                                     $('#addInfo').text(errorText);
+                                     return !isError;
+                               }
+                                       
+                                $(document).ready(function(){         	                     		
+                                	editForm = new EditFormDiv();
+                                	editForm.init(400,470);
+                                	
+                                	 CKEDITOR.replace( 'description',{
+                                         width : 400, 
+                                         height: 100,
+                                         toolbar : [ 
+                                         [ 'Link','Unlink','Anchor' ] ,
+                                         [ 'Bold','Italic','Underline','Strike','Subscript','Superscript' ], 
+                                         [ 'TextColor'] ]
+                                     });
+                                	 
+                                	 //problem with validate by ajaxSubmit!!!
+                                     var addToSave = " if(!editForm.validate()) return false; "
+                                         var oldSave = $('#save').attr('onclick');
+                                         $('#save').attr('onclick', addToSave + oldSave);
+                                });
+                            
+                
+               
+                
+                
+                function validateForm() {
+                	
+                }
+               
+                </script>
+                <style >
+                	.errorInfo { background-color: #faa;}
+                    #errorInfo { font-style: italic; font-weight: bold; color: red;}
+                    input[readonly] {background: buttonface;}
+                    #formAdd label { float:left; width: 70px; vertical-align: top;}
+                    #formAdd  textarea { width: 325px; }
+                </style>
+            </head_merge>
+
+            <div class="container_12">              
+                
+                <div class="lift:teacher.ExtraLessonsSn.saveAjaxDate" id="formAdd" style="display: none;" title="Dane uczniów">
+                <input id="loggedTeacher"  type="text" style="display:none;"/> 
+                <form  method="POST">
+               <p>
+                  <input id="id" type="text" />
+                </p> 
+                 <p id="titleRow">
+                  <label for="title">Temat:</label>
+                  <input id="title" type="text" maxlength="60"/>
+                </p>
+                <p><input type="text" id="teacher" value="" style="display:none;"/></p>
+                <p id="descriptionRow">
+                	<label for="description">Opis:</label><br/>
+                   <textarea id="description" ></textarea>
+                </p>
+                <p id="whenRow"><label for="when">Kiedy:</label>
+                   <input id="when" maxlength="120"/>
+                </p>
+                
+                <p id="buttons">
+                    <input type="image"  onmousedown="return validateForm();" src="/style/images/saveico.png"  id="save"/>
+                    <input type="image" src="/style/images/delico.png"  id="delete"/>
+                </p>
+                <p id="addInfo"></p>
+                </form>
+                </div>
+
+
+
+                <h3>Zajęcia dodatkowe </h3><hr />
+                <p><label for="newadd">Dodaj:</label>
+                <input src="/style/images/addico.png" type="image" id="newadd"></p>
+                <table id="fullList" class="display" border="0" cellpadding="2" cellspacing="2" >
+                   
+                   <thead>
+                       <tr>
+                       <th>ID</th><th>Temat</th>
+                        <th>Nauczyciel</th><th>Opis</th><th>Dzień i godziny zajęć</th>
+                       </tr>
+                   </thead>
+
+                    <tbody class="lift:teacher.ExtraLessonsSn.dataTable">
+                        <tr>
+                            <td class="id"></td>
+                            <td class="title"></td>
+                            <td class="teacher"></td>
+                            <td class="description"></td>
+                            <td class="when"></td>
+                        </tr>
+                    </tbody>
+                     <tfoot>
+                       <tr>
+                       <th>ID</th><th>Temat</th>
+                        <th>Nauczyciel</th><th>Opis</th><th>Dzień i godziny zajęć</th>
+                       </tr>
+                   </tfoot>
+                </table>
+
+            </div>
+             <br/>
+            <div class="clear"></div>
+            </div>
+    </body>
+</html>
+
+
+
+

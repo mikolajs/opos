@@ -1,0 +1,155 @@
+<!doctype HTML>
+<html>
+    
+<div class="lift:surround?with=resource;at=content">
+    <head_merge> 
+    <script src="/jquery/dejavu.js"></script>
+     <link rel="stylesheet" type="text/css" href="/style/jquery.dataTables.css" />
+    <script src="/jquery/jquery.dataTables.min.js" ></script>
+       <script>
+       $(document).ready(function(){
+           $('#addNewItem').dialog({
+               autoOpen:false,
+               modal:true,
+               width:600,
+               height:450
+           });
+           
+           $('#addNewItemPlain').dialog({
+               autoOpen:false,
+               modal:true,
+               width:600,
+               height:450
+           });
+           
+           $('#addTrigger').click(function(){
+              $('#addNewItem').dialog('open'); 
+           });
+           
+           $('#addTriggerPlain').click(function(){
+               $('#addNewItemPlain').dialog('open'); 
+            });
+           
+           oTable = $('#dataTable').dataTable({
+            "sPaginationType": "two_button",
+            "bFilter": true,
+            "iDisplayLength": 20,
+            "bLengthChange": true,
+            "oLanguage": {
+                "sSearch": "Filtruj wiersze: ",
+                "sZeroRecords": "Brak danych do wyświetlenia",
+                "sInfoEmpty": "Brak danych do wyświetlenia",
+                "sEmptyTable": "Brak danych do wyświetlenia",
+                "sInfo": "Widzisz wiersze od _START_ do _END_  z wszystkich _TOTAL_",
+                "oPaginate": {
+                    "sPrevious": "Poprzednie",
+                    "sNext": "Następne",
+                    "sFirst": "Początek",
+                    "sLast": "Koniec",
+                },
+                "sInfoFiltered": " - odfiltrowano z _MAX_ wierszy",
+                "sLengthMenu": 'Pokaż <select>'+
+                '<option value="20">20</option>'+
+                '<option value="50">50</option>'+
+                '<option value="100">100</option>'+
+                '<option value="-1">całość</option>'+
+                '</select> wierszy'
+            }
+              });
+           
+           var dep = new DepartmentSelect();
+           
+       });
+       
+       function cutLink(){
+           var $this = $("#link");
+           var str = $this.val();
+           var array = str.split("/");
+           var toInsert = $this.val(array[array.length - 1]);
+       }
+        
+       </script>
+      
+    </head_merge>
+  <div class="well"></div><h2>Twoje filmy</h2>
+  
+  <div class="row"  style="margin-left:20px;"><button type="button" class="btn btn-success btn-lg"  id="addTrigger">
+  <span class="glyphicon glyphicon-plus-sign"></span> Dodaj nowy film z YouTube
+</button>
+<button type="button" class="btn btn-success btn-lg"  id="addTriggerPlain">
+  <span class="glyphicon glyphicon-plus-sign"></span> Dodaj nowy film z komputera
+</button>
+</div>
+<br/><br/>
+
+<div>
+     <table id="dataTable"><thead><tr><th>Tytuł</th><th>Przedmiot</th><th>Dział</th>
+            <th>Opis</th><th>Usuń?</th></tr></thead>
+     <tbody class="lift:VideoSn.showVideos"><tr><td></td><td></td><td></td><td></td><td></td></tr></tbody>
+     <tfoot><tr><th>Tytuł</th><th>Przedmiot</th><th>Dział</th>
+            <th>Opis</th><th>Usuń?</th></tr></tfoot>
+     </table>
+</div>
+   
+   <div id="addNewItem" title="Dodaj nowy film z YouTube"  style="display:none;">
+   <form class="lift:VideoSn.add?form=POST form-horizontal"   role="form" enctype="multipart/form-data">
+   <div class="form-group">
+        <label for="title"  class="col-sm-3 control-label">Tytuł:</label> 
+         <div   class="col-sm-9"><input id="title" class="form-control" /></div>
+   </div>
+    <div class="form-group">
+            <label for="link" class="col-sm-3 control-label">Link do YouTube:</label> 
+             <div   class="col-sm-9"><input id="link" onchange="cutLink()" class="form-control"/></div>
+    </div>
+   <div class="form-group">
+        <label for="subjects" class="col-sm-3 control-label">Przedmiot: </label> 
+         <div   class="col-sm-9"><select id="subjects" class="form-control"></select></div>
+   </div>
+   <input id="departmentHidden" type="text" style="display:none;"/>
+   <div class="form-group">
+        <label for="departments" class="col-sm-3 control-label">Dział: </label> 
+         <div   class="col-sm-9"><select id="departments" class="form-control"></select></div>
+    </div>
+   <div class="form-group">
+        <label for="descript" class="col-sm-3 control-label">Opis:</label> 
+         <div   class="col-sm-9"><textarea id="descript" class="form-control"></textarea></div>
+    </div>
+   <div class="form-group">
+        <label  class="col-sm-3 control-label"></label>
+         <div   class="col-sm-9"><input type="submit" id="save"  class="btn btn-success btn-lg" /></div>
+   </div>
+   </form>
+   </div>
+   
+   <div id="addNewItemPlain" title="Wczytaj nowy plik z komputera"  style="display:none;">
+   <form class="lift:VideoSn.add?form=POST form-horizontal"   role="form" enctype="multipart/form-data">
+   <div class="form-group">
+        <label for="titleP"  class="col-sm-3 control-label">Tytuł:</label> 
+         <div   class="col-sm-9"><input id="titleP" class="form-control" /></div>
+   </div>
+    <div class="form-group">
+            <label for="fileP" class="col-sm-3 control-label">Link do YouTube:</label> 
+             <div   class="col-sm-9"><input id="fileP" onchange="cutLink()" class="form-control"/></div>
+    </div>
+   <div class="form-group">
+        <label for="subjectsP" class="col-sm-3 control-label">Przedmiot: </label> 
+         <div   class="col-sm-9"><select id="subjectsP" class="form-control"></select></div>
+   </div>
+   <input id="departmentHidden" type="text" style="display:none;"/>
+   <div class="form-group">
+        <label for="departmentsP" class="col-sm-3 control-label">Dział: </label> 
+         <div   class="col-sm-9"><select id="departmentsP" class="form-control"></select></div>
+    </div>
+   <div class="form-group">
+        <label for="descriptP" class="col-sm-3 control-label">Opis:</label> 
+         <div   class="col-sm-9"><textarea id="descriptP" class="form-control"></textarea></div>
+    </div>
+   <div class="form-group">
+        <label  class="col-sm-3 control-label"></label>
+         <div   class="col-sm-9"><input type="submit"  id="saveP"  class="btn btn-success btn-lg" /></div>
+   </div>
+   </form>
+   </div>
+   
+   </div>
+</html>

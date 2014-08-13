@@ -1,0 +1,213 @@
+
+<!DOCTYPE html>
+<html>
+<body class="lift:content_id=main">
+<div id="main" class="lift:surround?with=default;at=content">
+    <head_merge>
+      <link rel="stylesheet" href="/style/adminsite.css" />
+        <script>
+            
+            var isEdited = false;
+            var $edited = $();
+
+            function addRow(elem) {
+                var $elem = $(elem);
+                var $name = $elem.parent('td').parent('tr').children('td').children('.addLinkNameInput');
+                var name = jQuery.trim($name.val());
+                $name.val('');
+                var $url = $elem.parent('td').parent('tr').children('td').children('.addLinkUrlInput');
+                var url = jQuery.trim($url.val());
+                $url.val('');
+                $elem.parent().parent().parent().parent().children('tbody').append(
+                '<tr class="linkTr" onclick="editLink(this)" ><td class="nameLink">' + name + '</td><td class="urlLink">' + url +
+                    '</td><td class="buttonLink"></td></tr>');
+            }
+
+            function editLink(elem) {
+                if (elem.id=='edited') return;
+                if (isEdited) closeEdit();              
+
+                isEdited = true;
+                $edited = $(elem);
+                $edited.attr('id','edited');
+                var name = $edited.children('.nameLink').text();
+                var url = $edited.children('.urlLink').text();
+                $edited.children('.nameLink').text('');
+                $edited.children('.urlLink').text('');
+                $edited.children('.nameLink').append('<input type="text" value="' + name +'" />');
+                $edited.children('.urlLink').append('<input type="text" value="' + url +'" />');
+                $edited.children('.buttonLink').append('<input type="image" src="/style/images/delico.png" onclick="deleteRow(this)"/>');
+
+
+            }
+
+            function closeEdit() {
+               var $name = $edited.children('.nameLink').children('input');
+               var name = $name.val();
+               var $url = $edited.children('.urlLink').children('input');
+               var url = $url.val();
+               $name.remove();
+               $url.remove();
+               $edited.children('.buttonLink').children('input').remove();
+               $edited.children('.nameLink').text(name);
+               $edited.children('.urlLink').text(url);
+               $edited.removeAttr('id');
+            }
+
+            function deleteRow(elem){
+                $(elem).parent().parent().remove();
+            }
+
+            function saveAll() {
+                if (saveAllHelper()) {
+                    var xml  = document.getElementById('xmlData').value;
+                    alert('OK: ' + xml);
+                    return true;
+                }
+                else {
+                    alert('Danych nie zapisano. Nieprawidłowe wpisy.');
+                    return false;
+                }
+            }
+
+            function saveAllHelper() {
+                if (isEdited) closeEdit();
+                var isError = false;
+                var xmlStr = "<root>";
+                //$('#linksCont').css('background-color','red');
+                $('#linksCont').children('fieldset').each(function() {
+                    var name = $(this).children('.nameDep').val();
+                    var value = "";
+                    name = jQuery.trim(name);
+                    if (name.length < 3) {
+                        $(this).children('.nameError').text('Za krótka nazwa');
+                        isError = true;
+                        return;
+                    }
+                    else $(this).children('.nameError').text('');
+                    xmlStr += '<links name="';
+                    xmlStr += name;
+                    xmlStr += '">';
+                    $(this).children('.tables').children('table').children('tbody').children('tr').each(function() {
+                        xmlStr += '<link ';
+                        var error = false;
+                        $(this).children('td').each(function(index) {                                
+                            switch(index){
+                                case 0:
+                                    xmlStr +=  'title="';
+                                    value = this.innerHTML;
+                                    value = jQuery.trim(value);
+                                    if (value.length < 3) {
+                                        error = true;
+                                    }
+                                    xmlStr += value;
+                                    xmlStr += '" ';
+                                    break;
+                                case 1:
+                                    xmlStr +=  'src="';
+                                    value = this.innerHTML;
+                                    value = jQuery.trim(value);
+                                    if (value.length < 10 ) {
+                                        error = true;
+                                    }
+                                    xmlStr += value;
+                                    xmlStr += '" ';
+                                    break;
+                                case 2:
+                                    if (error) {
+                                        this.innerHTML = "*Błąd";
+                                        isError = true;
+                                    }
+                                    else this.innerHTML = "";
+                                    break;
+                                default:
+                                    break;
+                            }
+                           
+                        });
+                        xmlStr += '/>\n';
+                    });
+                    xmlStr += '</links>';
+                });
+                xmlStr += '</root>';
+                $('#xmlData').val(xmlStr);
+                return !isError;
+            }
+
+            function deleteDepartment(elem) {
+                $(elem).parent().hide(400, function()  {
+                    $(this).remove();
+                });
+            }
+
+            function newDepartment() {
+                var divDep  = '<fieldset class="divDepartment"> \
+                    <strong class="nameDepartment">Nazwa działu: </strong><input type="text" class="nameDep" value="" /> \
+                <span class="nameError"></span> \
+                <img type="image" src="/style/images/delico.png" onclick="deleteDepartment(this)"  /> \
+                <div class="tables"> \
+                <table> \
+                    <thead><tr><th>Nazwa</th><th>Link</th><th></th></tr></thead> \
+                    <tfoot><tr><td><input type="text" class="addLinkNameInput" /></td> \
+                <td><input type="text" class="addLinkUrlInput" /></td> \
+                <td><input type="image" src="/style/images/addico.png" value="DODAJ" onclick="addRow(this)"/></td> \
+            </tr> \
+                       </tfoot> \
+                    <tbody ></tbody> \
+                </table>  \
+                </div> \
+                </fieldset>';
+            $("#linksCont").prepend(divDep);
+            }
+	</script>
+      
+    </head_merge>
+
+	<div class="container_12">
+  <div class="grid_3 new-bullets">
+		<h3>Administracja stronami:</h3>
+
+                <div class="lift:Menu.builder?group=admin;i_item:id="> </div>
+
+		<a href="/">Powrót</a>
+	</div>
+
+	<div class="grid_9">
+            <h2>Edycja linków</h2><br/>
+            <div class="lift:admin.AdminEditLinksSn.showLinks" id="linksCont">
+                <fieldset class="divDepartment">
+                <strong class="nameDepartment">Nazwa działu: </strong><input class="nameDep" />
+                <span class="nameError"></span>
+                <input  type="image" src="/style/images/delico.png" onclick="deleteDepartment(this)"  />
+                <div class="tables">
+                <table>
+                    <thead><tr><th>Nazwa</th><th>Link</th><th></th></tr></thead>
+                    <tfoot>
+                        <tr><td><input type="text" class="addLinkNameInput" /></td>
+                <td><input type="text" class="addLinkUrlInput" /></td>
+                <td><input type="image" src="/style/images/okico.png" onclick="addRow(this)"/></td>
+            </tr></tfoot>
+                    <tbody ><tr class="linkTr" onclick="editLink(this)"><td class="nameLink"></td>
+                            <td class="urlLink"></td><td class="buttonLink"></td></tr></tbody>
+                    
+                </table>
+                </div>
+                </fieldset>
+                <br/>
+                <label>Nowy dział </label><input type="image" src="/style/images/addico.png" onclick="newDepartment()" />
+            </div>
+        <hr/>
+        <iframe src='/filestorage' width='95%' height='250px'><p>Brak obsługi ifame!</p></iframe>
+        <hr />
+		<form class="lift:admin.AdminEditLinksSn.addLinks" method="POST" id="frm2">
+			<input id="xmlData" />
+			<input id="submit" /> 
+                </form>
+                
+                </div>
+                <div class="clear"></div>
+                </div>
+           
+</div>
+</body></html>
+

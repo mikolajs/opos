@@ -1,0 +1,10 @@
+classes to delete after change vregister page:
+
+AdminSetStartPageSn
+BipSn
+GsfEditSn
+GsfPageSn
+PageEditSn
+GsfArticle
+NewsHead
+PageHead

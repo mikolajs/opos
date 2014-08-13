@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<body class="lift:content_id=main">
+<div id="main" class="lift:surround?with=page_login;at=content">	
+<head_merge>
+<link rel="stylesheet" type="text/css" href="/style/forum.css" />
+<script type="text/javascript" src="/jquery/jquery.js" ></script>
+<script src="/jquery/jquery-ui-custom.min.js"></script>
+<link href="/style/jqueryui/jquery-ui.css" type="text/css" rel="stylesheet" />
+
+<script>
+$(document).ready(function(){
+	$("#tagsShow").hide();
+});
+function openTags(){
+	$("#tagsShow").toggle(300);
+}
+</script>
+<style>
+.tagsCont {
+	border: 1px solid #ccc;
+}
+.tagsHead {
+	background: #eee url('/style/images/fold.png') no-repeat right center;
+} 
+</style>
+</head_merge>
+	<!-- oczątek wnętrza strony -->	
+	
+	<div  class="row">
+	<div class="col-lg-1"></div>
+	<div data-lift="page.ForumSn.showThreadsTable"  class="col-lg-10 forum">
+	<div class="tagsCont" onclick="openTags()">
+	
+    <div class="tagsHead" >
+	<h1><img src="/style/images/search_32.png" /> 
+	Szukany tag: <span id="tagsInfo"></span></h1>
+	</div>
+	
+    <div id="tagsShow" class="forum">
+		<span class="tagsItem"></span>
+	</div>
+	
+	</div>
+                  <table>
+                  <thead>
+                    <tr class="header1">
+                     <th class="col1">Wątek</th>
+                      <th class="col2">Posty</th><th class="col3">Ostatni</th>
+                    </tr>
+                    </thead>
+                       <tbody><tr id="tbodytr"><td></td></tr></tbody>
+                  </table>
+                  
+    <div class="lift:page.ForumSn.linkAddNewThread">
+    <br/><br/>
+                  <a href="" id="linkaddnewthread"></a>
+    </div>
+    <br/>
+    </div>
+    <div class="col-lg-1"></div>
+  
+	</div>	
+	
+
+</div>
+    </body></html>
