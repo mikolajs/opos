@@ -1,0 +1,38 @@
+
+<lift:surround with="secretary" at="content">
+			
+			
+			
+			<div id="centrum">
+				<h3>Mapowanie ocen</h3>
+		<table><tr><td><b>Oczekuje na zmianę: &nbsp;&nbsp;</b></td><td>nowych</td><td><input id="editedRows" type="text" readonly="true" value="0" /></td><td>do usunięcia</td><td><input id="deletedRows"  type="text" readonly="true" value="0"/></td><td>
+            <lift:MarkMapSn.formItem form="POST">
+                <entry:dataN /><entry:dataD /><entry:submit />
+            </lift:MarkMapSn.formItem></td></tr></table>
+                <br  /><form>
+				<table  border="0" cellpadding="2" cellspacing="2">
+					<thead>
+						<tr><th>Ocena</th><th>Wartość</th></tr>
+					</thead>  
+					<tbody>    
+		<tr>
+		<td ><input name="mark" id="mark" /><br /></td><td ><input name="value" id="value" /><br /></td>
+		</tr>
+		<tr>	
+		<td ><button name="dodaj" onclick="addToList()" >Dodaj!</button></td>
+		<td><input type="reset" value="Wyczyść!" /></td>
+		</tr>
+					</tbody>
+				</table>
+	</form>
+	<br />
+	<hr />
+									<h4>Lista Ocen:</h4>
+			<table><thead>
+				<tr><th>Ocena</th><th>Wartość</th></tr>
+				</thead>  
+        		<liftMarkMapSn.markList />
+ 			</table>
+	</div> <!-- koniec dodawania -->
+								
+</lift:surround>

@@ -1,0 +1,125 @@
+<!doctype HTML>
+<html>
+    
+<div class="lift:surround?with=viewer;at=content">
+	<head_merge>
+	<link rel="stylesheet" href="/style/course.css">
+	 <script
+		type="text/javascript" src="/syntaxhighlighter/shCore.js"></script> <script
+		type="text/javascript" src="/syntaxhighlighter/shBrushBash.js"></script>
+	<script type="text/javascript" src="/syntaxhighlighter/shBrushCpp.js"></script>
+	<script type="text/javascript" src="/syntaxhighlighter/shBrushCss.js"></script>
+	<script type="text/javascript" src="/syntaxhighlighter/shBrushJava.js"></script>
+	<script type="text/javascript"
+		src="/syntaxhighlighter/shBrushJScript.js"></script> <script
+		type="text/javascript" src="/syntaxhighlighter/shBrushPhp.js"></script>
+	<script type="text/javascript" src="/syntaxhighlighter/shBrushPlain.js"></script>
+	<script type="text/javascript"
+		src="/syntaxhighlighter/shBrushPython.js"></script> <script
+		type="text/javascript" src="/syntaxhighlighter/shBrushRuby.js"></script>
+	<script type="text/javascript" src="/syntaxhighlighter/shBrushScala.js"></script>
+	<script type="text/javascript" src="/syntaxhighlighter/shBrushSql.js"></script>
+	<script type="text/javascript" src="/syntaxhighlighter/shBrushXml.js"></script>
+	<link type="text/css" rel="stylesheet"
+		href="/syntaxhighlighter/shCore.css" />
+	<link type="text/css" rel="stylesheet"
+		href="/syntaxhighlighter/shThemeDefault.css" />
+	<script src="/jquery/dejavu.js"></script>
+	<script type="text/javascript">
+	var ShowCourse = dejavu.Class.declare({
+		isHideSidebar : true,
+		initialize : function() {
+		},
+		
+		hideSidebar : function() {
+			if (this.isHideSidebar) {
+				$("#subjectsList").show();
+				this.isHideSidebar = false;
+
+			} else {
+				$("#subjectsList").hide();
+				this.isHideSidebar = true;
+			}
+		},
+		
+		checkAnswer : function(elem) {
+			var $section = $(elem).parent();
+			var correct = $section.children("input.correct").val();
+			var info = "";
+			var classInfo = "answer" + correct;
+			var $infoElem = $section.children(".alertWell");
+			if ($section.children("ul").children("li").children("input:checked")
+					.hasClass(classInfo)) {
+				info = "Bardzo dobrze!";
+				$infoElem.css("color", "green");
+			} else {
+				info = "Błędna odpowiedź";
+				$infoElem.css("color", "red");
+			}
+			$section.children(".alertWell").text(info);
+		}	
+		
+	});
+    var showCourse = new Object();
+
+    $(document).ready(function(){
+    	showCourse = new ShowCourse();	
+    });
+    
+
+    </script>
+	<style>
+.hideSidebar {
+	width: 20px;;
+}
+#courseInfo {
+	margin: 5px -15px;
+	padding: 5px 30px;
+}
+</style>
+	</head_merge>
+
+	<div class="lift:view.ShowCourseSn.show">
+		<div class="row">
+			<div class="sidebar">
+				<p>
+					<button type="button" class="btn btn-info btn-lg"
+						onclick="showCourse.hideSidebar()">
+						<span class="glyphicon glyphicon-list"></span>
+					</button>
+				</p>
+				<div id="subjectsList" style="display:none;">
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<h3 class="panel-title">Lista tematów:</h3>
+					</div>
+					<div class="panel-body list-group" id="subjectListLinks"><a></a></div>
+				</div>
+				</div>
+			</div>
+			<div class="main ">
+				<div id="courseInfo"></div>
+				<div class="content ">
+					<div class="row alert alert-info">
+						<div class="col-md-10">
+							<h1 class="page-header">Temat</h1>
+						</div>
+						<div class="col-md-2">
+				
+							<!--  <a href=""  id="run-as-slides"><img src="/images/fullscreen.png" /></a> -->
+						</div>
+					</div>
+					<div class="deck-container">
+						<section id="sections"></section>
+						<section id="extra-info" class="slide"></section>
+				
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+ </html>
+ 

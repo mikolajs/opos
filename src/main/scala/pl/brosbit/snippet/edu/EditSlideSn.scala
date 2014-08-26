@@ -68,22 +68,19 @@ class EditSlideSn extends BaseResourceSn  {
          case _ =>
       }
       
-      S.redirectTo("/resources/slides")
+      S.redirectTo("/educontent/slides")
     }
       
-    def cancelAction() {
-      S.redirectTo("/resources/slides")
-    }
-    
     val publicList = List(("TAK","TAK"),("NIE","NIE"))
     "#id" #> SHtml.text(ID, ID = _, "type"->"hidden") &
     "#titleTheme" #> SHtml.text(title, title= _,"class"->"Name") &
-    "#description" #> SHtml.text(description, description = _)&
+    "#description" #> SHtml.textarea(description, description = _)&
     "#slidesData" #> SHtml.text(slidesString, slidesString = _, "type"->"hidden") &
     "#detailsData" #> SHtml.text(detailsString, detailsString = _, "type"->"hidden") &
-    "#save" #> SHtml.button(<img src="/images/saveico.png"/>, saveData,"title"->"Zapisz") &
-    "#delete" #> SHtml.button(<img src="/images/delico.png"/>,  deleteData,"title"->"Usuń")  &
-    "#cancel" #> SHtml.button(<img src="/images/cancelico.png"/>, cancelAction,"title"->"Anuluj") 
+    "#save" #> SHtml.button(<span class="glyphicon glyphicon-plus-sign"></span> ++ Text(" Zapisz  prezentację!"), saveData,
+            "title"->"Zapisz") &
+    "#delete" #> SHtml.button(<span class="glyphicon glyphicon-remove-sign"></span> ++ Text(" Usuń prezentację!"),  deleteData,
+            "title"->"Usuń")  
   }
   
  

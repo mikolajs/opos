@@ -1,10 +1,10 @@
 name := "osp"
 
-version := "0.2.0"
+version := "0.3.0"
 
 organization := "pl.brosbit"
 
-scalaVersion := "2.10.3"
+scalaVersion := "2.10.4"
 
 resolvers ++= Seq("snapshots" at "http://oss.sonatype.org/content/repositories/snapshots",
 		  "staging" at "http://oss.sonatype.org/content/repositories/staging",

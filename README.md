@@ -31,6 +31,17 @@ w dzienniku.
  
  przeglądanie ocen, uwag, ogłoszeń i nieobecności
 
-## Część piąta
+## Część piąta, portal edukacyjny
    
 platforma edukacyjna do tworzenia i udostępniania kursów i materiałów
+ * lista kursów
+ * strona kursu dla uprawnionych + pokaz jako slajd
+ * rozwiązywanie sprawdzianu
+ * tworzenie kursu 
+ * przeglądanie i edycja lekcji 
+ * dodawanie haseł
+ * dodawanie artykułów
+ * dodawanie zadań
+ * dodawanie plików/załączników
+ * dodawanie i pokaz przezentacji
+ * tworzenie sprawdzianu

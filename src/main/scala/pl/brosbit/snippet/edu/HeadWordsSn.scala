@@ -29,11 +29,8 @@ class HeadWordsSn extends   BaseResourceSn {
    
     val headWords = HeadWord.findAll(("authorId"-> user.id.is)~("subjectLev"->levPar.toInt)~("subjectId"->subjectId))
     "tbody tr" #>headWords.map(headWord => {
-        val edit_? = (headWord.authorId == user.id.is || user.role == "a") 
-        <tr><td><a href={"/headword/"+headWord._id.toString} target="_blank">{headWord.title}</a></td>
-       	<td> </td>
-    	<td>{if(edit_?)
-    	<a href={"/resources/editheadword/"+headWord._id.toString}>edytuj</a> else <i></i>}</td></tr>
+        <tr><td>{headWord.title}</td>
+    	<td><a href={"/educontent/editheadword/"+headWord._id.toString}>edytuj</a></td></tr>
     })
   }
   

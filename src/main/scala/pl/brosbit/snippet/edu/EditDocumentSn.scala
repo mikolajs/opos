@@ -28,7 +28,7 @@ class EditDocumentSn extends BaseResourceSn {
     
     
     val isOwner = 
-        document.ownerID == 0L || document.ownerID == userId || User.currentUser.openOrThrowException("Niezalogowany nauczyciel").role == "a"
+        document.ownerID == 0L || document.ownerID == userId
 
     def editData() = {
     	
@@ -51,7 +51,7 @@ class EditDocumentSn extends BaseResourceSn {
                         document.ownerName = user.getFullName
                         document.content = docContent
                         document.save                       
-                        if (id == "0") S.redirectTo("/resources/editdocument/"+ document._id.toString)
+                        if (id == "0") S.redirectTo("/educontent/editdocument/"+ document._id.toString)
                         Alert("Zapisano")
                     
             } 

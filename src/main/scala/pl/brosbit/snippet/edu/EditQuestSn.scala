@@ -27,7 +27,7 @@ class EditQuestSn extends BaseResourceSn {
     def choiseQuest() = {
          val subjects = subjectTeach.map(s => (s.id.toString, s.name))
          def makeChoise() {
-             S.redirectTo("/resources/editquest?sub="+subjectId+"&lev="+level)
+             S.redirectTo("/educontent/editquest?sub="+subjectId+"&lev="+level)
          }
          
         "#subjects" #> SHtml.select(subjects, Full(subjectId.toString), subjectPar = _) &
@@ -41,9 +41,9 @@ class EditQuestSn extends BaseResourceSn {
         "tr" #> QuizQuestion.findAll(("authorId"->userId)~("subjectId"->subjectId)~
                ("level"->level.toInt)).map(quest => {
             <tr id={quest._id.toString}><td>{Unparsed(quest.question)}</td>
-            <td>{quest.answer}</td><td>{quest.department}</td><td>
-            {quest.fake.map(f => <span class="wrong">{f}</span>)}</td>
-            <td>{quest.dificult}</td></tr>
+            <td>{quest.answer}</td><td>{quest.fake.map(f => <span class="wrong">{f}</span>)}</td>
+            <td>{levMap(quest.level)}</td>
+            <td>{quest.dificult}</td><td>{quest.department}</td></tr>
         })
     }
     
@@ -52,12 +52,11 @@ class EditQuestSn extends BaseResourceSn {
         printParam
         var id = ""
         var question = ""
-        var public = false
         var answer = ""
         var wrongAnswers =""
         var subject = ""
         var dificult = "2"
-         var department = ""
+        var department = ""
                 
         def save():JsCmd = {
             
@@ -97,8 +96,8 @@ class EditQuestSn extends BaseResourceSn {
        "#questionQuest" #> SHtml.textarea(question, x => question = x.trim) &
        "#answerQuest" #> SHtml.text(answer, x => answer = x.trim) &
        "#wrongQuest" #> SHtml.text(wrongAnswers, x => wrongAnswers = x.trim) &
+       "#departmentQuest" #> SHtml.text(department, x => department = x.trim) &
        "#dificultQuest" #> SHtml.select(dificults, Full(dificult), dificult = _) &
-       "#publicQuest" #> SHtml.checkbox(public, public = _, "id"->"publicQuest") &
        "#saveQuest" #> SHtml.ajaxSubmit("Zapisz",save) &
        "#deleteQuest" #> SHtml.ajaxSubmit("Usuń",delete) andThen SHtml.makeFormsAjax
        

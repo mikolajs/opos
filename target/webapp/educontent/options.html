@@ -1,0 +1,112 @@
+<!doctype HTML>
+<html>
+    
+<div class="lift:surround?with=educontent;at=content">
+    <head_merge> 
+    <script src="/jquery/dejavu.js"></script>
+    <script>
+    var Subjects =  dejavu.Class.declare({
+    	subArr: new Array(),
+    	initialize : function() {
+    		 $( "#mysubjects" ).sortable();
+    		 $( "#mysubjects" ).disableSelection();
+    	},
+    	
+    	addSubject : function (elem){
+            var $span = $(elem).parent().children("span.subjectName");
+                var ID = $span.attr('id');
+                var name = $span.text();
+            	$span.parent().remove();
+               $('#mysubjects').append('<li class="list-group-item"><button  class="btn btn-danger"  onclick="subjects.removeSubject(this)"> ' +
+                           '<span class="glyphicon glyphicon-remove-sign"></span></button>' +
+                           '<span class="subjectName"  id="'  +   ID +   '"  >' + name + '</span></li>' );            	
+        },
+        
+        removeSubject : function (elem){
+        	var $span = $(elem).parent().children("span.subjectName");
+            var ID = $span.attr('id');
+            var name = $span.text();
+            $span.parent().remove();
+           $('#allsubjects').append('<li class="list-group-item"><button  class="btn btn-info"  onclick="subjects.addSubject(this)"> ' +
+                       '<span class="glyphicon glyphicon-remove-sign"></span></button>' +
+                       '<span class="subjectName"  id="'  +   ID +   '"  >' + name + '</span></li>' );              
+    },
+        
+        beforeSubmit : function(){
+        	var isEmpty = true;
+        	var i = 0;
+        	var str = "";
+        	$('#mysubjects li span.subjectName').each(function(){
+        		isEmpty  = false;
+        		var $span = $(this);
+        		 var ID = $span.attr('id').split('_')[1];
+                 var name = $span.text();
+                 i++;
+                 var line = ID + ";"  + i  + ";" + name + "|";
+                 str += line;
+        	});
+        	$('#dataContent').val(str);
+        	return !isEmpty;
+        },
+    
+        delDepart : function(elem) {
+        	
+        }
+    	
+    });
+    
+    var subjects = new Object();
+  
+    $("document").ready(function() {
+    	subjects = new Subjects();
+    });
+   
+    
+    </script>
+    
+    <style>
+    span.subjectName  {padding-left: 20px; font-weight: bold;}
+    </style>
+     
+    </head_merge>
+    
+  <div class="well"><h2>Twoje ustawienia</h2>
+  <p>Aby móc tworzyć materiały musisz wybrać swoje przedmioty</p>
+  </div>
+
+<div class="row">
+<div class="col-lg-6"  data-lift="edu.OptionsSn.showMySubjects">
+<h3>Wybrane przedmioty</h3>
+<ul class="list-group" id="mysubjects">
+ <li class="list-group-item"><span class="glyphicon glyphicon-remove-sign">Przedmiot</span></li> 
+ </ul>
+ <form data-lift="edu.OptionsSn.formEdit"  method="post"  role="form">
+ <input id="dataContent"  style="display:none"/>
+ <button id="save"  onclick="return subjects.beforeSubmit();">save</button>
+ </form>
+</div>
+<div class="col-lg-6"  data-lift="edu.OptionsSn.showAllSubjects">
+<h3>Przedmioty do wyboru</h3>
+ <ul class="list-group" id="allsubjects">
+ <li class="list-group-item"></li>
+ </ul>
+
+</div>
+</div>
+
+<!--   
+<div class="row" data-lift="edu.OptionsSn.showDepartments">
+	<div class="panel panel-primary" style="float:left;">
+<div class="panel-heading"></div>
+  <div class="panel-body">
+    <ul class="list-group"><li class="list-group-item"></li></ul>
+  </div>
+</div>
+
+</div>
+ -->
+   
+   
+   
+   </div>
+</html>

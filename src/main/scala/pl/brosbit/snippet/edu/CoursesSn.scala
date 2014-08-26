@@ -24,18 +24,20 @@ class CoursesSn extends BaseResourceSn {
 	def showMyCourses() = {
         ".courseItem" #> Course.findAll("authorId" -> user.id.is).map(course => {
             ".courseId" #> SHtml.text(course._id.toString, x => Unit) &
-            "h2" #> <h2>{ course.title }</h2> &
-            ".classInfo" #> <span class="text-muted classInfo">{ course.classInfo } </span> &
+            "h2" #> <h2>{ course.title } </h2> &
+            "h3" #> <h3>{course.subjectName}  <span class="subjectId"  style="display:none;">{course.subjectId.toString}</span>
+            				 <span class="text-muted classInfo">, Klasy: { course.classInfo } </span>
+            				 	<span class="classIds"  style="display:none;">{course.classList.mkString(";")}</span></h3> &
                 ".courseInfo *" #> course.descript &
-                ".editLessonButton [href]" #> ("/resources/course/" + course._id.toString) &
-                ".img-responsive [src]" #> course.img
+                ".editLessonButton [href]" #> ("/educontent/course/" + course._id.toString) //&
+               // ".img-responsive [src]" #> course.img
         })
 	}
 
     def add() = {
  
         var id = ""
-        var img = ""
+       // var img = ""
         var title = ""
         var descript = ""
         var subjectId = ""
@@ -53,7 +55,7 @@ class CoursesSn extends BaseResourceSn {
 
             val course = Course.find(id).getOrElse(Course.create)
             
-            course.img = img
+           // course.img = img
             course.title = title
             course.subjectId = tryo(subjectId.toLong).openOr(0L)
             course.subjectName = findSubjectName(course.subjectId)
@@ -80,9 +82,9 @@ class CoursesSn extends BaseResourceSn {
 	    
 	    "#courseId"  #> SHtml.text(id, id = _) &
 	    "#title" #> SHtml.text(title, x => title = x.trim) &
-	    "#subjects" #> SHtml.select(subjects, Full(subjects.head._1 ), subjectId = _) &
-	    "#thumbnail" #> SHtml.text(img,  img = _) &
-	    "#thumbnailPreview [src]" #> img & 
+	    "#subjects" #> SHtml.select(subjects, Full(subjects.head._1 ), subjectId = _, "autocomplete"->"off") &
+	   // "#thumbnail" #> SHtml.text(img,  img = _) &
+	   // "#thumbnailPreview [src]" #> img & 
 	    "#classesList" #>  SHtml.multiSelect(classes, classesList, classesList = _)  &
 	    "#descript" #> SHtml.textarea(descript, x => descript = x.trim) &
 	    "#save" #> SHtml.submit("Dodaj", save) & 

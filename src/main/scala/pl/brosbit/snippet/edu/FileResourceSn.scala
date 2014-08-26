@@ -38,9 +38,9 @@ class FileResourceSn extends BaseResourceSn {
 	    
 	    
 	     "tr" #> FileResource.findAll("authorId" -> user.id.is).map(file => {
-	        <tr><td><a href={"/file/" + file.fileId.toString}>{file.title}</a></td>
+	        <tr><td><a href={"/file/" + file.fileId.toString}>{file.title + file.mime}</a></td>
 	        <td>{file.subjectName}</td><td>{file.descript}</td>
-	        <td><a href={"/resources/files?del=" + file._id.toString}>Usuń</a></td></tr>
+	        <td><a href={"/educontent/files?del=" + file._id.toString} class="btn btn-danger">Usuń</a></td></tr>
 	    })
 	}
 	
@@ -51,12 +51,14 @@ class FileResourceSn extends BaseResourceSn {
 	    var descript = ""
 	    var subjectId = ""
 	    var mimeType = ""
+	    var fileName = ""
 	    var extension = ""
 	    var fileHold: Box[FileParamHolder] = Empty
 	    
 	    def isCorrect = fileHold match {
-          case Full(FileParamHolder(_, mime, _, data))  => {
+          case Full(FileParamHolder(_, mime, fileNameIn, data))  => {
             mimeType = mime.toString
+            fileName = fileNameIn
             true
           }
           case Full(_) => {
@@ -89,7 +91,8 @@ class FileResourceSn extends BaseResourceSn {
                 val fileRes = FileResource.create(new ObjectId(fileId))
                 fileRes.subjectId = sub
                 fileRes.subjectName = findSubjectName(sub)
-                fileRes.authorId = user.id
+                fileRes.authorId = user.id.is
+                fileRes.mime = "." + fileName.split('.').last
                 fileRes.title = title
                 fileRes.descript = descript
                 fileRes.save

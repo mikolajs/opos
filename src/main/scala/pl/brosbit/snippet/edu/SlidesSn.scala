@@ -24,9 +24,9 @@ class SlidesSn extends  BaseResourceSn  {
     val idUser =user.id.is 
     val slides = Slide.findAll(("authorId"-> idUser))
     "tbody tr" #> slides.map(slide => {
-        <tr><td><a href={"/edu/slide/"+slide._id.toString} target="_blank">{slide.title}</a></td>
+        <tr><td><a href={"/view/slide/"+slide._id.toString} target="_blank">{slide.title}</a></td>
     	<td>{slide.descript}</td>
-    	<td><a href={"/resources/editslide/"+slide._id.toString}>edytuj</a> </td></tr>
+    	<td><a href={"/educontent/editslide/"+slide._id.toString}>edytuj</a> </td></tr>
     })
   }  
   

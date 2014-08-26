@@ -1,0 +1,84 @@
+<!doctype HTML>
+<html>
+    
+<div class="lift:surround?with=educontent;at=content">
+    <head_merge> 
+      <script src="/jquery/jquery.dataTables.min.js" ></script>
+      <link rel="stylesheet" type="text/css" href="/style/jquery.dataTables.css" />
+    <script src="/jquery/redirecttoselect.js" ></script>
+       <script>
+           var oTable = $();
+           var oTablePrivate = $();
+           $(document).ready(function() {
+                oTable = $('#dataTable').dataTable({
+                    "sPaginationType": "two_button",
+                    "bFilter": true,
+                    "iDisplayLength": 50,
+                    "bLengthChange": true,
+                    "oLanguage": {
+                        "sSearch": "Filtruj wiersze: ",
+                        "sZeroRecords": "Brak danych do wyświetlenia",
+                        "sInfoEmpty": "Brak danych do wyświetlenia",
+                        "sEmptyTable": "Brak danych do wyświetlenia",
+                        "sInfo": "Widzisz wiersze od _START_ do _END_  z wszystkich _TOTAL_",
+                        "oPaginate": {
+                            "sPrevious": "Poprzednie",
+                            "sNext": "Następne",
+                            "sFirst": "Początek",
+                            "sLast": "Koniec",
+                        },
+                        "sInfoFiltered": " - odfiltrowano z _MAX_ wierszy",
+                        "sLengthMenu": 'Pokaż <select>'+
+                        '<option value="20">20</option>'+
+                        '<option value="50">50</option>'+
+                        '<option value="100">100</option>'+
+                        '<option value="-1">całość</option>'+
+                        '</select> wierszy'
+                    }
+                      });            
+             });           
+       </script>
+      
+    </head_merge>
+    
+ <div id="boxText">
+  <div class="well"><h2>Wybór przedmiotu i poziomu</h2></div>
+  
+  <div class="lift:edu.HeadWordsSn.selectors form-inline" >
+  <div class="input-group">
+  <div class="input-group-addon">Przedmiot</div>
+   <select id="subjectSelect"  class="form-control"><option></option></select>
+
+   </div>
+    <div class="input-group">
+  <div class="input-group-addon">Poziom edukacyjny:</div>
+   <select id="levelSelect"   class="form-control"><option></option> </select>
+   </div>
+   <div class="form-group"> <button onclick="redirectToWithLevel()"  class="btn btn-success">Wybierz</button></div>
+  </div>
+  <br/><br/>
+  <div><a href="/educontent/editheadword/0"> <span class="btn btn-success btn-lg"  id="mkAddDepartment"  onclick="mkAddDepartment();">
+  <span class="glyphicon glyphicon-plus-sign"></span> Dodaj nowe hasło
+</span></a></div>
+  
+  <br/><br/>
+  <div id="headWordsList" class="lift:edu.HeadWordsSn.headWordsList dataTable_wrapper">
+            <table id="dataTable" class="display"  >
+                <thead>
+                <tr><th>Hasło</th><th>Edytuj</th></tr>
+                </thead>
+                <tbody><tr><td><a href=""></a><td></td></tr></tbody>
+                 <tfoot>
+                    <tr><th>Hasło</th><th>Edytuj</th></tr>
+                 </tfoot>
+            </table>
+        </div>
+        <br/><br/>
+        
+   <br/>
+</div>
+
+<br/><br/>
+    </div>
+   
+</html>

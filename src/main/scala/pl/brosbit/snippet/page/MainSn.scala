@@ -1,5 +1,3 @@
-
-
 /*
  * Copyright (C) 2012   Mikołaj Sochacki mikolajsochacki AT gmail.com
  *   This file is part of VRegister (Virtual Register)
@@ -28,14 +26,16 @@ import http.js.JsCmds.SetHtml
 import net.liftweb.json.JsonAST
 //import com.mongodb.QueryBuilder
 
-class MainSn extends  {
+class MainSn   {
 
    val user = User.currentUser
     
 val  isTeacher = if(user.isEmpty) false else {
        user.openOrThrowException("Niemożliwe").role.is match  {
            case "a" => true
-           case "t" => true
+           case "n" => true
+           case "d" => true
+           case _ => false
        }
    }
 
@@ -167,7 +167,7 @@ val  isTeacher = if(user.isEmpty) false else {
         def mkLog() = {
             if(user.isEmpty) {
                 User.findAll(By(User.email, email.trim)) match {
-                case u :: other => {
+                case u ::other => {
                     User.logUserIn(u)
                 }
                 case _ =>
@@ -179,7 +179,7 @@ val  isTeacher = if(user.isEmpty) false else {
          user match {
             case Full(u) => {
                "form" #>  <a title="WYLOGUJ!" href="/user_mgt/logout">
-               				<button type="button" class="btn btn-info btn-lg">
+               				<button type="button" class="btn btn-info">
                					<span class="glyphicon glyphicon-log-out"></span> { u.getFullName }
                			</button></a>
             }

@@ -23,11 +23,11 @@ class DocumentsSn  extends BaseResourceSn {
     
  def docList() = {
     val documents = Document.findAll(("ownerID" -> user.id.is))
-    "tbody tr" #> documents.map(doc => ".titleTd *" #>  <h4>doc.title)  </h4> &
+    "tbody tr" #> documents.map(doc => ".titleTd *" #>  <h4>{doc.title}  </h4> &
       ".descriptTd *" #> Text( doc.descript ) &
       ".subjectTd *" #> Text(doc.subcjectName) &
       ".levelTd *" #> Text(doc.level.toString) &
-      ".editBookTd *" #> <a href={"/resources/editdocument/" + doc._id.toString}> Edytuj</a>
+      ".editTd *" #> <a href={"/educontent/editdocument/" + doc._id.toString}> Edytuj</a>
       )
   }
 

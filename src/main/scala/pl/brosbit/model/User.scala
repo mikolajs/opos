@@ -20,11 +20,8 @@ package pl.brosbit.model
       // define the order fields will appear in forms and output
       override def fieldOrder = List(id, firstName, lastName, email,
         locale, timezone, password, role)
-      override def screenWrap = Full(<lift:surround with="default" at="content">
-                                       <div id="main" class="main-section">
-    		  							<div class="container_12">
-    		  							<div class="container_9"><lift:bind/>
-    		  							</div></div></div>
+      override def screenWrap = Full(<lift:surround with="user_mgt" at="content">                                     
+    		  							<lift:bind/> 		  					
                                      </lift:surround>)
       // comment this line out to require email validations
      // override def skipEmailValidation = false

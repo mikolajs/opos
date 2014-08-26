@@ -14,7 +14,7 @@ class LogInfoSn {
         User.currentUser match {
             case Full(user) =>
                 "a" #> <a title="WYLOGUJ!" href="/user_mgt/logout">
-               	<button type="button" class="btn btn-default btn-lg">
+               	<button type="button" class="btn btn-info">
                	<span class="glyphicon glyphicon-log-out"></span> { user.getFullName }</button></a>
             case _ => S.redirectTo("/")
         }

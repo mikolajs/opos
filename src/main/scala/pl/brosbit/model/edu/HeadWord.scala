@@ -7,10 +7,10 @@ import org.bson.types.ObjectId
 object HeadWord extends MongoDocumentMeta[HeadWord] {
   override def collectionName = "HeadWords"
   override def formats = super.formats + new ObjectIdSerializer + new DateSerializer
-  def create = new HeadWord(ObjectId.get, 0L, "", 0L, "",  0, "")
+  def create = new HeadWord(ObjectId.get, 0L, "", "", 0L, "",  0, "")
 }
 
-case class HeadWord(var _id: ObjectId, var authorId:Long, 
+case class HeadWord(var _id: ObjectId, var authorId:Long, var department:String,
 				var title: String,   var  subjectId:Long, var subjectName: String,    var subjectLev:Int, var content: String) 
 				 extends MongoDocument[HeadWord] {
   def meta = HeadWord

@@ -1,0 +1,6 @@
+
+.ui-dialog .ui-dialog-content {
+	overflow-x : hidden;
+}
+
+input[type="file"] {z-index: 2; min-height: 50px;}

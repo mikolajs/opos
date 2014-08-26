@@ -34,7 +34,7 @@ class  EditHeadWordSn  extends BaseResourceSn with RoleChecker {
     
     var ID = if(id == "0") "0" else headWord._id.toString
     var title = headWord.title
-    var subjectId = if(headWord.subjectId != null) headWord.subjectId.toString else ""
+    var subjectId = if(headWord.subjectId != 0L) headWord.subjectId.toString else ""
      var subjectLev = headWord.subjectLev.toString
     var headWordsString = headWord.content
     //println("------------headWords data -----------------\n" +headWordsData)
@@ -57,7 +57,7 @@ class  EditHeadWordSn  extends BaseResourceSn with RoleChecker {
       }
        
       
-      S.redirectTo("/resources/editheadword/"+ headWord._id.toString) //!important must refresh page
+      S.redirectTo("/educontent/editheadword/"+ headWord._id.toString) //!important must refresh page
     }
     
     def deleteData() {
@@ -69,11 +69,11 @@ class  EditHeadWordSn  extends BaseResourceSn with RoleChecker {
          case _ =>
       }
       
-      S.redirectTo("/resources/headwords")
+      S.redirectTo("/educontent/headwords")
     }
       
     def cancelAction() {
-      S.redirectTo("/resources/headwords")
+      S.redirectTo("/educontent/headwords")
     }
     
    
@@ -83,9 +83,9 @@ class  EditHeadWordSn  extends BaseResourceSn with RoleChecker {
     "#subjects" #> SHtml.select(listSubject, Full(subjectId),subjectId = _) &
     "#subjectLevel" #> SHtml.select(levList,Full(subjectLev),subjectLev = _) &
     "#headWordsData" #> SHtml.text(headWordsString, headWordsString = _, "type"->"hidden") &
-    "#save" #> SHtml.button(Text("Zapisz") ++ <img src="/images/saveico.png"/>, saveData,"title"->"Zapisz") &
-    "#delete" #> SHtml.button(Text("Usuń ") ++ <img src="/images/delico.png"/>,  deleteData,"title"->"Usuń")  &
-    "#cancel" #> SHtml.button(Text("Anuluj ") ++ <img src="/images/cancelico.png"/>, cancelAction,"title"->"Anuluj") 
+    "#save" #> SHtml.button(<span class="glyphicon glyphicon-floppy-save"></span>  ++ Text(" Zapisz"), saveData,"title"->"Zapisz") &
+    "#delete" #> SHtml.button(<span class="glyphicon glyphicon-trash"></span>  ++ Text(" Usuń "),  deleteData,"title"->"Usuń")  &
+    "#cancel" #> SHtml.button(<span class="glyphicon glyphicon-share-alt"></span>  ++ Text(" Anuluj "), cancelAction,"title"->"Anuluj") 
   }
  
 }

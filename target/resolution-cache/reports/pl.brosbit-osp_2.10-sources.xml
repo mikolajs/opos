@@ -4,10 +4,10 @@
 	<info
 		organisation="pl.brosbit"
 		module="osp_2.10"
-		revision="0.2.0"
+		revision="0.3.0"
 		conf="sources"
 		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom, scala-tool, container"
-		date="20140813123035"/>
+		date="20140825221501"/>
 	<dependencies>
 	</dependencies>
 </ivy-report>
