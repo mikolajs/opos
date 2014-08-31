@@ -65,47 +65,18 @@ class VideoSn extends BaseResourceSn {
     var onserver = false
     var linkTube = ""
     var videoId = ""
-    var fileHold: Box[FileParamHolder] = Empty
     var mimeType = ""
     var fileName = ""
     var depart = ""
 
-    def isCorrect = fileHold match {
-      case Full(FileParamHolder(_, mime, fileNameIn, data)) => {
-        mimeType = mime.toString
-        fileName = fileNameIn
-        true
-      }
-      case Full(_) => {
-        S.error("Nieprawidłowy format pliku!")
-        false
-      }
-      case _ => {
-        S.error("Brak pliku?")
-        false
-      }
-    }
 
     def save(): Unit = {
 
       val sub = tryo(subjectId.toLong).openOr(subjectTeach.head.id)
       val video = if (videoId.length < 20) Video.create else Video.find(videoId).getOrElse(Video.create)
-      if (onserver && !fileHold.isEmpty && isCorrect) {
-        val io = fileHold.get.fileStream
-        val file = new File("/home/vregister/"+ video._id.toString() + "." + fileName.split('.').last);
-        val fos = new FileOutputStream(file)
-        val array:Array[Byte] = new Array(1024*1024)
-        while(io.available() > 0) {
-           io.read(array)
-           fos.write(array)
-        }
-        fos.flush()
-        fos.close()
-        io.close()
-        video.link = fileName
-        video.mime = mimeType
-      } else {
+      if(!onserver) {
         video.link = linkTube
+        video.oldPath = ""
       }
       video.onServer = onserver
       video.subjectId = sub
@@ -125,7 +96,6 @@ class VideoSn extends BaseResourceSn {
       "#department" #> SHtml.text(depart, depart = _) &
       "#onserver" #> SHtml.checkbox_id(onserver, (x: Boolean) => onserver = x, Full("onserver")) &
       "#descript" #> SHtml.textarea(descript, x => descript = x.trim) &
-      "#loadFile" #> SHtml.fileUpload(x => fileHold = Full(x)) &
       "#linkTube" #> SHtml.text(linkTube, x => linkTube = x.trim) &
       "#save" #> SHtml.submit("Dodaj", save)
 

@@ -7,13 +7,14 @@ var ShowCourse = dejavu.Class.declare({
 		//SyntaxHighlighter.all();
 		$('#addLessonForm').dialog({
 			  autoOpen: false,
-			  height: 400,
+			  height: 300,
 			  width: 400,
 			  modal: false,
 			  close: function() {
 				 self.isOpenForm = false;		  
 			  }
 		});
+
 		$('#addLessonButton').click(function(){
 			$('#addLessonForm').dialog('open');
 		});

@@ -65,7 +65,7 @@ class PupilDataSn extends BaseTeacher {
         case Full(pupil) => {
           pupil.address(address.trim).birthPlace(birthPlace.trim).
           secondName(secondName.trim).birthDisctrict(birthDistrict.trim).
-          email(email.trim).classNumber(tryo(number.toInt).openOr(0)).phone(phone.trim).save
+          email(email.trim).classNumber(tryo(number.toInt).openOr(0)).phone(phone.trim).validated(true).save
           id = pupil.id.toString
           JsFunc("editForm.editRow", id).cmd
         }

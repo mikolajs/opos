@@ -93,18 +93,29 @@
 
 </div>
 </div>
+<hr></hr>
 
-<!--   
-<div class="row" data-lift="edu.OptionsSn.showDepartments">
+<div class="row">
+<div class="col-lg-2"></div>
+<div class="col-lg-8">
 	<div class="panel panel-primary" style="float:left;">
-<div class="panel-heading"></div>
+<div class="panel-heading">Edycja działów</div>
   <div class="panel-body">
-    <ul class="list-group"><li class="list-group-item"></li></ul>
+   <form data-lift="edu.OptionsSn.showDepartments" role="form" class="form-horizontal">
+  	<div><label> Przedmiot edycji: <select id="selectEdit"></select></label></div>
+    
+    <div></div><label>Nowy: <input id="addInput" type="text" /></label>
+    <button type="button" class="btn btn-success btn-lg"  id="saveDep">
+  <span class="glyphicon glyphicon-plus-sign"></span> </button></div>
+  <ul class="list-group" id="departmentsList"><li class="list-group-item"></li></ul>
+  </form>
+
   </div>
 </div>
-
 </div>
- -->
+<div class="col-lg-2"></div>
+</div>
+
    
    
    

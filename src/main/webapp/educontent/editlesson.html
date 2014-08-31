@@ -136,8 +136,7 @@ span.depart {
 			<h2>Edycja lekcji</h2>
 		</div>
 
-		<form class="lift:edu.EditLesson.editLesson form-horizontal" id="send"
-			method="POST">
+		<form class="lift:edu.EditLesson.editLesson?form=POST form-horizontal" role="form" id="send">
 			<input id="ID" style="display: none;" /> <input id="extraText"
 				style="display: none;" value="" /> <input id="forDataTable"
 				style="display: none;" value="" /> <input id="json"
@@ -150,7 +149,7 @@ span.depart {
 							onkeypress="return (event.charCode >= 48 && event.charCode <= 57) || event.charCode == 0 " />
 					</div>
 					<div class="input-group">
-						<label for="department">Dział:</label><input id="department" />
+						<label for="department">Dział:</label><select id="department"></select>
 					</div>
 					<div class="input-group">
 						<label for="title">Temat:</label><input id="title" />

@@ -19,14 +19,11 @@ var EditVideo = dejavu.Class.declare({
 		
 		$("#onserver").change(function() {
         	if(this.checked) {
-        		  $("#fileOption").show();
-                  $("#serverOption").hide();
+        		 $("#linkTubeOption").hide();
         	}
         	else {
-        		  $("#fileOption").hide();
-                  $("#serverOption").show();
+        		 $("#linkTubeOption").show();
         	}
-        	
         });
 		
 		this.oTable = $('#dataTable').dataTable({
@@ -89,12 +86,10 @@ var EditVideo = dejavu.Class.declare({
     			document.getElementById('onserver').checked = isServer;
     			if(!isServer) {
     				document.getElementById('linkTube').value = link;
-    				$("#fileOption").hide();
-                    $("#serverOption").show();
+                    $("#linkTubeOption").show();
     			}
     			else {
-                    $("#fileOption").show();
-                    $("#serverOption").hide();
+    				 $("#linkTubeOption").hide();
     			}
     			break;
     		case 2: 

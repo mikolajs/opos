@@ -21,7 +21,7 @@ trait BaseResourceSn {
   val subjectTeach = SubjectTeach.findAll("authorId" -> user.id.is)
   if (subjectTeach.isEmpty && S.uri.split("/").last != "options") S.redirectTo("/educontent/options")
   //val subjId = S.param("s").openOr(subjectTeach.head._id.toString)
- // val subjectNow = subjectTeach.find(s => s._id.toString() == subjId).getOrElse(subjectTeach.head)
+  //val subjectNow = subjectTeach.find(s => s._id.toString() == subjId).getOrElse(subjectTeach.head)
   val levList = List(("1", "podstawowy"), ("2", "średni"), ("3", "rozszerzony"))
   val levMap = levList.toMap
   

@@ -4,15 +4,15 @@
 	<info
 		organisation="pl.brosbit"
 		module="osp_2.10"
-		revision="0.3.0"
+		revision="0.3.1"
 		conf="container"
 		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom, scala-tool, container"
-		date="20140825221501"/>
+		date="20140828181227"/>
 	<dependencies>
 		<module organisation="org.eclipse.jetty" name="jetty-plus">
 			<revision name="9.1.0.v20131115" status="release" pubdate="20131116011128" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.eclipse.org/jetty" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="9">
 				<metadata-artifact status="no" details="" size="13327" time="0" location="/home/ms/.ivy2/cache/org.eclipse.jetty/jetty-plus/ivy-9.1.0.v20131115.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/eclipse/jetty/jetty-plus/9.1.0.v20131115/jetty-plus-9.1.0.v20131115.pom"/>
-				<caller organisation="pl.brosbit" name="osp_2.10" conf="container" rev="9.1.0.v20131115" rev-constraint-default="9.1.0.v20131115" rev-constraint-dynamic="9.1.0.v20131115" callerrev="0.3.0"/>
+				<caller organisation="pl.brosbit" name="osp_2.10" conf="container" rev="9.1.0.v20131115" rev-constraint-default="9.1.0.v20131115" rev-constraint-dynamic="9.1.0.v20131115" callerrev="0.3.1"/>
 				<artifacts>
 					<artifact name="jetty-plus" type="jar" ext="jar" status="no" details="" size="51876" time="0" location="/home/ms/.ivy2/cache/org.eclipse.jetty/jetty-plus/jars/jetty-plus-9.1.0.v20131115.jar">
 						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/eclipse/jetty/jetty-plus/9.1.0.v20131115/jetty-plus-9.1.0.v20131115.jar"/>
@@ -35,7 +35,7 @@
 			<revision name="9.1.0.v20131115" status="release" pubdate="20131116011056" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.eclipse.org/jetty" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, master(*), compile(*), runtime, runtime(*), master" position="0">
 				<metadata-artifact status="no" details="" size="13200" time="0" location="/home/ms/.ivy2/cache/org.eclipse.jetty/jetty-webapp/ivy-9.1.0.v20131115.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/eclipse/jetty/jetty-webapp/9.1.0.v20131115/jetty-webapp-9.1.0.v20131115.pom"/>
 				<caller organisation="org.eclipse.jetty" name="jetty-plus" conf="default, compile, runtime, master" rev="9.1.0.v20131115" rev-constraint-default="9.1.0.v20131115" rev-constraint-dynamic="9.1.0.v20131115" callerrev="9.1.0.v20131115"/>
-				<caller organisation="pl.brosbit" name="osp_2.10" conf="container" rev="9.1.0.v20131115" rev-constraint-default="9.1.0.v20131115" rev-constraint-dynamic="9.1.0.v20131115" callerrev="0.3.0"/>
+				<caller organisation="pl.brosbit" name="osp_2.10" conf="container" rev="9.1.0.v20131115" rev-constraint-default="9.1.0.v20131115" rev-constraint-dynamic="9.1.0.v20131115" callerrev="0.3.1"/>
 				<artifacts>
 					<artifact name="jetty-webapp" type="jar" ext="jar" status="no" details="" size="110889" time="0" location="/home/ms/.ivy2/cache/org.eclipse.jetty/jetty-webapp/jars/jetty-webapp-9.1.0.v20131115.jar">
 						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/eclipse/jetty/jetty-webapp/9.1.0.v20131115/jetty-webapp-9.1.0.v20131115.jar"/>

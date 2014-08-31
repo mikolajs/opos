@@ -79,7 +79,7 @@ var LessonEditor = dejavu.Class.declare({
        				$('#json').val(jsonString);
        				$('#extraText').val($('#extraTextEdit').html().toString());
        				//alert($('#extraText').val() + " J: " + jsonString );
-       				return self.validate();
+       				return true;
        			});
        		},
        		

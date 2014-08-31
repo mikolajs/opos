@@ -1,28 +1,28 @@
 [0m[[0minfo[0m] [0mUpdating {file:/home/ms/Programy/osp/}osp...[0m
-[0m[[0mdebug[0m] [0m:: resolving dependencies :: pl.brosbit#osp_2.10;0.3.0[0m
+[0m[[0mdebug[0m] [0m:: resolving dependencies :: pl.brosbit#osp_2.10;0.3.1[0m
 [0m[[0mdebug[0m] [0m	confs: [compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom, scala-tool, container][0m
 [0m[[0mdebug[0m] [0m	validate = true[0m
 [0m[[0mdebug[0m] [0m	refresh = false[0m
 [0m[[0mdebug[0m] [0mresolving dependencies for configuration 'compile'[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.0 [compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->org.scala-lang#scala-library;2.10.4 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.1 [compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->org.scala-lang#scala-library;2.10.4 [compile->default(compile)][0m
 [0m[[0minfo[0m] [0mResolving org.scala-lang#scala-library;2.10.4 ...[0m
-[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: sbt.ivyint.MergedDescriptors@12da712a[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: sbt.ivyint.MergedDescriptors@61c21c42[0m
 [0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.scala-lang#scala-library;2.10.4[0m
 [0m[[0mdebug[0m] [0m	local: revision in cache: org.scala-lang#scala-library;2.10.4[0m
 [0m[[0mdebug[0m] [0m	found org.scala-lang#scala-library;2.10.4 in sbt-chain[0m
 [0m[[0mdebug[0m] [0m	[2.10.4] org.scala-lang#scala-library;2.10.4[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->org.scala-lang#scala-library;2.10.4 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->org.scala-lang#scala-library;2.10.4 [compile->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->org.scala-lang#scala-library;2.10.4 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-webkit_2.10;2.5.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->org.scala-lang#scala-library;2.10.4 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->org.scala-lang#scala-library;2.10.4 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->org.scala-lang#scala-library;2.10.4 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-webkit_2.10;2.5.1 [compile->default(compile)][0m
 [0m[[0minfo[0m] [0mResolving net.liftweb#lift-webkit_2.10;2.5.1 ...[0m
 [0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: net.liftweb#lift-webkit_2.10;2.5.1 {compile=[default(compile)]}[0m
 [0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: net.liftweb#lift-webkit_2.10;2.5.1[0m
 [0m[[0mdebug[0m] [0m	local: revision in cache: net.liftweb#lift-webkit_2.10;2.5.1[0m
 [0m[[0mdebug[0m] [0m	found net.liftweb#lift-webkit_2.10;2.5.1 in sbt-chain[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-webkit_2.10;2.5.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-webkit_2.10;2.5.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-webkit_2.10;2.5.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-webkit_2.10;2.5.1 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-webkit_2.10;2.5.1->net.liftweb#lift-util_2.10;2.5.1 [compile->master(*)][0m
 [0m[[0minfo[0m] [0mResolving net.liftweb#lift-util_2.10;2.5.1 ...[0m
 [0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: net.liftweb#lift-util_2.10;2.5.1 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
@@ -242,15 +242,15 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-webkit_2.10;2.5.1->commons-fileupload#commons-fileupload;1.2.2 [runtime->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-webkit_2.10;2.5.1->org.scala-lang#scala-actors;2.10.0 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-webkit_2.10;2.5.1->org.scala-lang#scala-actors;2.10.0 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-webkit_2.10;2.5.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-mapper_2.10;2.5.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-webkit_2.10;2.5.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-mapper_2.10;2.5.1 [compile->default(compile)][0m
 [0m[[0minfo[0m] [0mResolving net.liftweb#lift-mapper_2.10;2.5.1 ...[0m
 [0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: net.liftweb#lift-mapper_2.10;2.5.1 {compile=[default(compile)]}[0m
 [0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: net.liftweb#lift-mapper_2.10;2.5.1[0m
 [0m[[0mdebug[0m] [0m	local: revision in cache: net.liftweb#lift-mapper_2.10;2.5.1[0m
 [0m[[0mdebug[0m] [0m	found net.liftweb#lift-mapper_2.10;2.5.1 in sbt-chain[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-mapper_2.10;2.5.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-mapper_2.10;2.5.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-mapper_2.10;2.5.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-mapper_2.10;2.5.1 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mapper_2.10;2.5.1->net.liftweb#lift-db_2.10;2.5.1 [compile->master(*)][0m
 [0m[[0minfo[0m] [0mResolving net.liftweb#lift-db_2.10;2.5.1 ...[0m
 [0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: net.liftweb#lift-db_2.10;2.5.1 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
@@ -306,15 +306,15 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mapper_2.10;2.5.1->org.scala-lang#scala-library;2.10.0 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mapper_2.10;2.5.1->org.scala-lang#scala-library;2.10.4 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mapper_2.10;2.5.1->org.scala-lang#scala-library;2.10.4 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-mapper_2.10;2.5.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftmodules#lift-jquery-module_2.5_2.10;2.3 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-mapper_2.10;2.5.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftmodules#lift-jquery-module_2.5_2.10;2.3 [compile->default(compile)][0m
 [0m[[0minfo[0m] [0mResolving net.liftmodules#lift-jquery-module_2.5_2.10;2.3 ...[0m
 [0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: net.liftmodules#lift-jquery-module_2.5_2.10;2.3 {compile=[default(compile)]}[0m
 [0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: net.liftmodules#lift-jquery-module_2.5_2.10;2.3[0m
 [0m[[0mdebug[0m] [0m	local: revision in cache: net.liftmodules#lift-jquery-module_2.5_2.10;2.3[0m
 [0m[[0mdebug[0m] [0m	found net.liftmodules#lift-jquery-module_2.5_2.10;2.3 in sbt-chain[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftmodules#lift-jquery-module_2.5_2.10;2.3 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftmodules#lift-jquery-module_2.5_2.10;2.3 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftmodules#lift-jquery-module_2.5_2.10;2.3 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftmodules#lift-jquery-module_2.5_2.10;2.3 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftmodules#lift-jquery-module_2.5_2.10;2.3->org.scala-lang#scala-library;2.10.0 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftmodules#lift-jquery-module_2.5_2.10;2.3->org.scala-lang#scala-library;2.10.4 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftmodules#lift-jquery-module_2.5_2.10;2.3->org.scala-lang#scala-library;2.10.0 [compile->compile(*)][0m
@@ -322,15 +322,15 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftmodules#lift-jquery-module_2.5_2.10;2.3->org.scala-lang#scala-library;2.10.0 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftmodules#lift-jquery-module_2.5_2.10;2.3->org.scala-lang#scala-library;2.10.4 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftmodules#lift-jquery-module_2.5_2.10;2.3->org.scala-lang#scala-library;2.10.4 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftmodules#lift-jquery-module_2.5_2.10;2.3 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->ch.qos.logback#logback-classic;1.0.6 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftmodules#lift-jquery-module_2.5_2.10;2.3 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->ch.qos.logback#logback-classic;1.0.6 [compile->default(compile)][0m
 [0m[[0minfo[0m] [0mResolving ch.qos.logback#logback-classic;1.0.6 ...[0m
 [0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: ch.qos.logback#logback-classic;1.0.6 {compile=[default(compile)]}[0m
 [0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: ch.qos.logback#logback-classic;1.0.6[0m
 [0m[[0mdebug[0m] [0m	local: revision in cache: ch.qos.logback#logback-classic;1.0.6[0m
 [0m[[0mdebug[0m] [0m	found ch.qos.logback#logback-classic;1.0.6 in sbt-chain[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->ch.qos.logback#logback-classic;1.0.6 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->ch.qos.logback#logback-classic;1.0.6 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->ch.qos.logback#logback-classic;1.0.6 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->ch.qos.logback#logback-classic;1.0.6 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies ch.qos.logback#logback-classic;1.0.6->ch.qos.logback#logback-core;1.0.6 [compile->master(*)][0m
 [0m[[0minfo[0m] [0mResolving ch.qos.logback#logback-core;1.0.6 ...[0m
 [0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: ch.qos.logback#logback-core;1.0.6 {compile=[compile(*), master(*)], runtime=[runtime(*)], test=[runtime(*), master(*)]}[0m
@@ -347,15 +347,15 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies ch.qos.logback#logback-classic;1.0.6->org.slf4j#slf4j-api;1.6.5 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies ch.qos.logback#logback-classic;1.0.6->org.slf4j#slf4j-api;1.7.2 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies ch.qos.logback#logback-classic;1.0.6->org.slf4j#slf4j-api;1.7.2 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->ch.qos.logback#logback-classic;1.0.6 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-mongodb_2.10;2.5.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->ch.qos.logback#logback-classic;1.0.6 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-mongodb_2.10;2.5.1 [compile->default(compile)][0m
 [0m[[0minfo[0m] [0mResolving net.liftweb#lift-mongodb_2.10;2.5.1 ...[0m
 [0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: net.liftweb#lift-mongodb_2.10;2.5.1 {compile=[default(compile)]}[0m
 [0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: net.liftweb#lift-mongodb_2.10;2.5.1[0m
 [0m[[0mdebug[0m] [0m	local: revision in cache: net.liftweb#lift-mongodb_2.10;2.5.1[0m
 [0m[[0mdebug[0m] [0m	found net.liftweb#lift-mongodb_2.10;2.5.1 in sbt-chain[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-mongodb_2.10;2.5.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-mongodb_2.10;2.5.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-mongodb_2.10;2.5.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-mongodb_2.10;2.5.1 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mongodb_2.10;2.5.1->net.liftweb#lift-json-ext_2.10;2.5.1 [compile->master(*)][0m
 [0m[[0minfo[0m] [0mResolving net.liftweb#lift-json-ext_2.10;2.5.1 ...[0m
 [0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: net.liftweb#lift-json-ext_2.10;2.5.1 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
@@ -416,24 +416,24 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mongodb_2.10;2.5.1->org.scala-lang#scala-library;2.10.4 [runtime->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mongodb_2.10;2.5.1->org.mongodb#mongo-java-driver;2.10.1 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mongodb_2.10;2.5.1->org.mongodb#mongo-java-driver;2.10.1 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-mongodb_2.10;2.5.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->postgresql#postgresql;9.1-901.jdbc4 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-mongodb_2.10;2.5.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->postgresql#postgresql;9.1-901.jdbc4 [compile->default(compile)][0m
 [0m[[0minfo[0m] [0mResolving postgresql#postgresql;9.1-901.jdbc4 ...[0m
 [0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: postgresql#postgresql;9.1-901.jdbc4 {compile=[default(compile)]}[0m
 [0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: postgresql#postgresql;9.1-901.jdbc4[0m
 [0m[[0mdebug[0m] [0m	local: revision in cache: postgresql#postgresql;9.1-901.jdbc4[0m
 [0m[[0mdebug[0m] [0m	found postgresql#postgresql;9.1-901.jdbc4 in sbt-chain[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->postgresql#postgresql;9.1-901.jdbc4 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->postgresql#postgresql;9.1-901.jdbc4 [compile->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->postgresql#postgresql;9.1-901.jdbc4 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-core-1.0;1.41.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->postgresql#postgresql;9.1-901.jdbc4 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->postgresql#postgresql;9.1-901.jdbc4 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->postgresql#postgresql;9.1-901.jdbc4 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-core-1.0;1.41.1 [compile->default(compile)][0m
 [0m[[0minfo[0m] [0mResolving com.google.gdata#gdata-core-1.0;1.41.1 ...[0m
 [0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: com.google.gdata#gdata-core-1.0;1.41.1 {compile=[default(compile)]}[0m
 [0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: com.google.gdata#gdata-core-1.0;1.41.1[0m
 [0m[[0mdebug[0m] [0m	local: revision in cache: com.google.gdata#gdata-core-1.0;1.41.1[0m
 [0m[[0mdebug[0m] [0m	found com.google.gdata#gdata-core-1.0;1.41.1 in Google GData[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-core-1.0;1.41.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-core-1.0;1.41.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-core-1.0;1.41.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-core-1.0;1.41.1 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-core-1.0;1.41.1->com.google.collections#google-collections;1.0-rc1 [compile->master(*)][0m
 [0m[[0minfo[0m] [0mResolving com.google.collections#google-collections;1.0-rc1 ...[0m
 [0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: com.google.collections#google-collections;1.0-rc1 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
@@ -452,15 +452,15 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-core-1.0;1.41.1->com.google.collections#google-collections;1.0-rc1 [runtime->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-core-1.0;1.41.1->com.google.code.findbugs#jsr305;1.3.9 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-core-1.0;1.41.1->com.google.code.findbugs#jsr305;1.3.9 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-core-1.0;1.41.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-base-1.0;1.41.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-core-1.0;1.41.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-base-1.0;1.41.1 [compile->default(compile)][0m
 [0m[[0minfo[0m] [0mResolving com.google.gdata#gdata-base-1.0;1.41.1 ...[0m
 [0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: com.google.gdata#gdata-base-1.0;1.41.1 {compile=[default(compile)]}[0m
 [0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: com.google.gdata#gdata-base-1.0;1.41.1[0m
 [0m[[0mdebug[0m] [0m	local: revision in cache: com.google.gdata#gdata-base-1.0;1.41.1[0m
 [0m[[0mdebug[0m] [0m	found com.google.gdata#gdata-base-1.0;1.41.1 in Google GData[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-base-1.0;1.41.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-base-1.0;1.41.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-base-1.0;1.41.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-base-1.0;1.41.1 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-base-1.0;1.41.1->com.google.gdata#gdata-client-1.0;1.41.1 [compile->master(*)][0m
 [0m[[0minfo[0m] [0mResolving com.google.gdata#gdata-client-1.0;1.41.1 ...[0m
 [0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: com.google.gdata#gdata-client-1.0;1.41.1 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
@@ -509,15 +509,15 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-base-1.0;1.41.1->com.google.gdata#gdata-media-1.0;1.41.1 [runtime->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-base-1.0;1.41.1->com.google.collections#google-collections;1.0-rc1 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-base-1.0;1.41.1->com.google.collections#google-collections;1.0-rc1 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-base-1.0;1.41.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-photos-2.0;1.41.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-base-1.0;1.41.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-photos-2.0;1.41.1 [compile->default(compile)][0m
 [0m[[0minfo[0m] [0mResolving com.google.gdata#gdata-photos-2.0;1.41.1 ...[0m
 [0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: com.google.gdata#gdata-photos-2.0;1.41.1 {compile=[default(compile)]}[0m
 [0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: com.google.gdata#gdata-photos-2.0;1.41.1[0m
 [0m[[0mdebug[0m] [0m	local: revision in cache: com.google.gdata#gdata-photos-2.0;1.41.1[0m
 [0m[[0mdebug[0m] [0m	found com.google.gdata#gdata-photos-2.0;1.41.1 in Google GData[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-photos-2.0;1.41.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-photos-2.0;1.41.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-photos-2.0;1.41.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-photos-2.0;1.41.1 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-photos-2.0;1.41.1->com.google.gdata#gdata-core-1.0;1.41.1 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-photos-2.0;1.41.1->com.google.gdata#gdata-core-1.0;1.41.1 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-photos-2.0;1.41.1->com.google.gdata#gdata-media-1.0;1.41.1 [compile->master(*)][0m
@@ -526,43 +526,43 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-photos-2.0;1.41.1->com.google.gdata#gdata-core-1.0;1.41.1 [runtime->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-photos-2.0;1.41.1->com.google.gdata#gdata-media-1.0;1.41.1 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-photos-2.0;1.41.1->com.google.gdata#gdata-media-1.0;1.41.1 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-photos-2.0;1.41.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-client-1.0;1.41.1 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-client-1.0;1.41.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-client-1.0;1.41.1 [compile->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-client-1.0;1.41.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-media-1.0;1.41.1 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-media-1.0;1.41.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-media-1.0;1.41.1 [compile->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-media-1.0;1.41.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-client-meta-1.0;1.41.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-photos-2.0;1.41.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-client-1.0;1.41.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-client-1.0;1.41.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-client-1.0;1.41.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-client-1.0;1.41.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-media-1.0;1.41.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-media-1.0;1.41.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-media-1.0;1.41.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-media-1.0;1.41.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-client-meta-1.0;1.41.1 [compile->default(compile)][0m
 [0m[[0minfo[0m] [0mResolving com.google.gdata#gdata-client-meta-1.0;1.41.1 ...[0m
 [0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: com.google.gdata#gdata-client-meta-1.0;1.41.1 {compile=[default(compile)]}[0m
 [0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: com.google.gdata#gdata-client-meta-1.0;1.41.1[0m
 [0m[[0mdebug[0m] [0m	local: revision in cache: com.google.gdata#gdata-client-meta-1.0;1.41.1[0m
 [0m[[0mdebug[0m] [0m	found com.google.gdata#gdata-client-meta-1.0;1.41.1 in Google GData[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-client-meta-1.0;1.41.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-client-meta-1.0;1.41.1 [compile->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-client-meta-1.0;1.41.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-photos-meta-2.0;1.41.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-client-meta-1.0;1.41.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-client-meta-1.0;1.41.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-client-meta-1.0;1.41.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-photos-meta-2.0;1.41.1 [compile->default(compile)][0m
 [0m[[0minfo[0m] [0mResolving com.google.gdata#gdata-photos-meta-2.0;1.41.1 ...[0m
 [0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: com.google.gdata#gdata-photos-meta-2.0;1.41.1 {compile=[default(compile)]}[0m
 [0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: com.google.gdata#gdata-photos-meta-2.0;1.41.1[0m
 [0m[[0mdebug[0m] [0m	local: revision in cache: com.google.gdata#gdata-photos-meta-2.0;1.41.1[0m
 [0m[[0mdebug[0m] [0m	found com.google.gdata#gdata-photos-meta-2.0;1.41.1 in Google GData[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-photos-meta-2.0;1.41.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-photos-meta-2.0;1.41.1 [compile->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-photos-meta-2.0;1.41.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-photos-meta-2.0;1.41.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-photos-meta-2.0;1.41.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-photos-meta-2.0;1.41.1 [compile->master][0m
 [0m[[0mdebug[0m] [0mresolving dependencies for configuration 'runtime'[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.0 [runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.0 [compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->org.scala-lang#scala-library;2.10.4 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->org.scala-lang#scala-library;2.10.4 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->org.scala-lang#scala-library;2.10.4 [compile->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->org.scala-lang#scala-library;2.10.4 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-webkit_2.10;2.5.1 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-webkit_2.10;2.5.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-webkit_2.10;2.5.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.1 [runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.1 [compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->org.scala-lang#scala-library;2.10.4 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->org.scala-lang#scala-library;2.10.4 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->org.scala-lang#scala-library;2.10.4 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->org.scala-lang#scala-library;2.10.4 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-webkit_2.10;2.5.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-webkit_2.10;2.5.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-webkit_2.10;2.5.1 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-webkit_2.10;2.5.1->net.liftweb#lift-util_2.10;2.5.1 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-webkit_2.10;2.5.1->net.liftweb#lift-util_2.10;2.5.1 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-util_2.10;2.5.1->net.liftweb#lift-actor_2.10;2.5.1 [compile->master(*)][0m
@@ -691,10 +691,10 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-actors;2.10.0->org.scala-lang#scala-library;2.10.0 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-actors;2.10.0->org.scala-lang#scala-library;2.10.4 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-actors;2.10.0->org.scala-lang#scala-library;2.10.4 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-webkit_2.10;2.5.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-mapper_2.10;2.5.1 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-mapper_2.10;2.5.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-mapper_2.10;2.5.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-webkit_2.10;2.5.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-mapper_2.10;2.5.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-mapper_2.10;2.5.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-mapper_2.10;2.5.1 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mapper_2.10;2.5.1->net.liftweb#lift-db_2.10;2.5.1 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mapper_2.10;2.5.1->net.liftweb#lift-db_2.10;2.5.1 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-db_2.10;2.5.1->net.liftweb#lift-util_2.10;2.5.1 [compile->master(*)][0m
@@ -736,10 +736,10 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mapper_2.10;2.5.1->org.scala-lang#scala-library;2.10.0 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mapper_2.10;2.5.1->org.scala-lang#scala-library;2.10.4 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mapper_2.10;2.5.1->org.scala-lang#scala-library;2.10.4 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-mapper_2.10;2.5.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftmodules#lift-jquery-module_2.5_2.10;2.3 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftmodules#lift-jquery-module_2.5_2.10;2.3 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftmodules#lift-jquery-module_2.5_2.10;2.3 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-mapper_2.10;2.5.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftmodules#lift-jquery-module_2.5_2.10;2.3 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftmodules#lift-jquery-module_2.5_2.10;2.3 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftmodules#lift-jquery-module_2.5_2.10;2.3 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftmodules#lift-jquery-module_2.5_2.10;2.3->org.scala-lang#scala-library;2.10.0 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftmodules#lift-jquery-module_2.5_2.10;2.3->org.scala-lang#scala-library;2.10.4 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftmodules#lift-jquery-module_2.5_2.10;2.3->org.scala-lang#scala-library;2.10.0 [compile->compile(*)][0m
@@ -747,10 +747,10 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftmodules#lift-jquery-module_2.5_2.10;2.3->org.scala-lang#scala-library;2.10.0 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftmodules#lift-jquery-module_2.5_2.10;2.3->org.scala-lang#scala-library;2.10.4 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftmodules#lift-jquery-module_2.5_2.10;2.3->org.scala-lang#scala-library;2.10.4 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftmodules#lift-jquery-module_2.5_2.10;2.3 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->ch.qos.logback#logback-classic;1.0.6 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->ch.qos.logback#logback-classic;1.0.6 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->ch.qos.logback#logback-classic;1.0.6 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftmodules#lift-jquery-module_2.5_2.10;2.3 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->ch.qos.logback#logback-classic;1.0.6 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->ch.qos.logback#logback-classic;1.0.6 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->ch.qos.logback#logback-classic;1.0.6 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies ch.qos.logback#logback-classic;1.0.6->ch.qos.logback#logback-core;1.0.6 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies ch.qos.logback#logback-classic;1.0.6->ch.qos.logback#logback-core;1.0.6 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies ch.qos.logback#logback-classic;1.0.6->org.slf4j#slf4j-api;1.6.5 [compile->master(*)][0m
@@ -762,10 +762,10 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies ch.qos.logback#logback-classic;1.0.6->org.slf4j#slf4j-api;1.6.5 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies ch.qos.logback#logback-classic;1.0.6->org.slf4j#slf4j-api;1.7.2 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies ch.qos.logback#logback-classic;1.0.6->org.slf4j#slf4j-api;1.7.2 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->ch.qos.logback#logback-classic;1.0.6 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-mongodb_2.10;2.5.1 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-mongodb_2.10;2.5.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-mongodb_2.10;2.5.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->ch.qos.logback#logback-classic;1.0.6 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-mongodb_2.10;2.5.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-mongodb_2.10;2.5.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-mongodb_2.10;2.5.1 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mongodb_2.10;2.5.1->net.liftweb#lift-json-ext_2.10;2.5.1 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mongodb_2.10;2.5.1->net.liftweb#lift-json-ext_2.10;2.5.1 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-json-ext_2.10;2.5.1->net.liftweb#lift-common_2.10;2.5.1 [compile->master(*)][0m
@@ -812,14 +812,14 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mongodb_2.10;2.5.1->org.scala-lang#scala-library;2.10.4 [runtime->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mongodb_2.10;2.5.1->org.mongodb#mongo-java-driver;2.10.1 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mongodb_2.10;2.5.1->org.mongodb#mongo-java-driver;2.10.1 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-mongodb_2.10;2.5.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->postgresql#postgresql;9.1-901.jdbc4 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->postgresql#postgresql;9.1-901.jdbc4 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->postgresql#postgresql;9.1-901.jdbc4 [compile->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->postgresql#postgresql;9.1-901.jdbc4 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-core-1.0;1.41.1 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-core-1.0;1.41.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-core-1.0;1.41.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-mongodb_2.10;2.5.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->postgresql#postgresql;9.1-901.jdbc4 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->postgresql#postgresql;9.1-901.jdbc4 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->postgresql#postgresql;9.1-901.jdbc4 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->postgresql#postgresql;9.1-901.jdbc4 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-core-1.0;1.41.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-core-1.0;1.41.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-core-1.0;1.41.1 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-core-1.0;1.41.1->com.google.collections#google-collections;1.0-rc1 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-core-1.0;1.41.1->com.google.collections#google-collections;1.0-rc1 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-core-1.0;1.41.1->com.google.code.findbugs#jsr305;1.3.9 [compile->master(*)][0m
@@ -828,10 +828,10 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-core-1.0;1.41.1->com.google.collections#google-collections;1.0-rc1 [runtime->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-core-1.0;1.41.1->com.google.code.findbugs#jsr305;1.3.9 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-core-1.0;1.41.1->com.google.code.findbugs#jsr305;1.3.9 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-core-1.0;1.41.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-base-1.0;1.41.1 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-base-1.0;1.41.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-base-1.0;1.41.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-core-1.0;1.41.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-base-1.0;1.41.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-base-1.0;1.41.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-base-1.0;1.41.1 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-base-1.0;1.41.1->com.google.gdata#gdata-client-1.0;1.41.1 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-base-1.0;1.41.1->com.google.gdata#gdata-client-1.0;1.41.1 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-client-1.0;1.41.1->com.google.gdata#gdata-core-1.0;1.41.1 [compile->master(*)][0m
@@ -856,10 +856,10 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-media-1.0;1.41.1->com.google.gdata#gdata-core-1.0;1.41.1 [runtime->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-base-1.0;1.41.1->com.google.collections#google-collections;1.0-rc1 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-base-1.0;1.41.1->com.google.collections#google-collections;1.0-rc1 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-base-1.0;1.41.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-photos-2.0;1.41.1 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-photos-2.0;1.41.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-photos-2.0;1.41.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-base-1.0;1.41.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-photos-2.0;1.41.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-photos-2.0;1.41.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-photos-2.0;1.41.1 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-photos-2.0;1.41.1->com.google.gdata#gdata-core-1.0;1.41.1 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-photos-2.0;1.41.1->com.google.gdata#gdata-core-1.0;1.41.1 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-photos-2.0;1.41.1->com.google.gdata#gdata-media-1.0;1.41.1 [compile->master(*)][0m
@@ -868,34 +868,34 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-photos-2.0;1.41.1->com.google.gdata#gdata-core-1.0;1.41.1 [runtime->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-photos-2.0;1.41.1->com.google.gdata#gdata-media-1.0;1.41.1 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-photos-2.0;1.41.1->com.google.gdata#gdata-media-1.0;1.41.1 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-photos-2.0;1.41.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-client-1.0;1.41.1 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-client-1.0;1.41.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-client-1.0;1.41.1 [compile->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-client-1.0;1.41.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-media-1.0;1.41.1 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-media-1.0;1.41.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-media-1.0;1.41.1 [compile->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-media-1.0;1.41.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-client-meta-1.0;1.41.1 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-client-meta-1.0;1.41.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-client-meta-1.0;1.41.1 [compile->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-client-meta-1.0;1.41.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-photos-meta-2.0;1.41.1 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-photos-meta-2.0;1.41.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-photos-meta-2.0;1.41.1 [compile->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-photos-meta-2.0;1.41.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-photos-2.0;1.41.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-client-1.0;1.41.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-client-1.0;1.41.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-client-1.0;1.41.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-client-1.0;1.41.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-media-1.0;1.41.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-media-1.0;1.41.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-media-1.0;1.41.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-media-1.0;1.41.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-client-meta-1.0;1.41.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-client-meta-1.0;1.41.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-client-meta-1.0;1.41.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-client-meta-1.0;1.41.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-photos-meta-2.0;1.41.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-photos-meta-2.0;1.41.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-photos-meta-2.0;1.41.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-photos-meta-2.0;1.41.1 [compile->master][0m
 [0m[[0mdebug[0m] [0mresolving dependencies for configuration 'test'[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.0 [test][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.0 [runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.0 [compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->org.scala-lang#scala-library;2.10.4 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->org.scala-lang#scala-library;2.10.4 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->org.scala-lang#scala-library;2.10.4 [compile->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->org.scala-lang#scala-library;2.10.4 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-webkit_2.10;2.5.1 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-webkit_2.10;2.5.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-webkit_2.10;2.5.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.1 [test][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.1 [runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.1 [compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->org.scala-lang#scala-library;2.10.4 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->org.scala-lang#scala-library;2.10.4 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->org.scala-lang#scala-library;2.10.4 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->org.scala-lang#scala-library;2.10.4 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-webkit_2.10;2.5.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-webkit_2.10;2.5.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-webkit_2.10;2.5.1 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-webkit_2.10;2.5.1->net.liftweb#lift-util_2.10;2.5.1 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-webkit_2.10;2.5.1->net.liftweb#lift-util_2.10;2.5.1 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-util_2.10;2.5.1->net.liftweb#lift-actor_2.10;2.5.1 [compile->master(*)][0m
@@ -1024,10 +1024,10 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-actors;2.10.0->org.scala-lang#scala-library;2.10.0 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-actors;2.10.0->org.scala-lang#scala-library;2.10.4 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-actors;2.10.0->org.scala-lang#scala-library;2.10.4 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-webkit_2.10;2.5.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-mapper_2.10;2.5.1 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-mapper_2.10;2.5.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-mapper_2.10;2.5.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-webkit_2.10;2.5.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-mapper_2.10;2.5.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-mapper_2.10;2.5.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-mapper_2.10;2.5.1 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mapper_2.10;2.5.1->net.liftweb#lift-db_2.10;2.5.1 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mapper_2.10;2.5.1->net.liftweb#lift-db_2.10;2.5.1 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-db_2.10;2.5.1->net.liftweb#lift-util_2.10;2.5.1 [compile->master(*)][0m
@@ -1069,10 +1069,10 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mapper_2.10;2.5.1->org.scala-lang#scala-library;2.10.0 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mapper_2.10;2.5.1->org.scala-lang#scala-library;2.10.4 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mapper_2.10;2.5.1->org.scala-lang#scala-library;2.10.4 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-mapper_2.10;2.5.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftmodules#lift-jquery-module_2.5_2.10;2.3 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftmodules#lift-jquery-module_2.5_2.10;2.3 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftmodules#lift-jquery-module_2.5_2.10;2.3 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-mapper_2.10;2.5.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftmodules#lift-jquery-module_2.5_2.10;2.3 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftmodules#lift-jquery-module_2.5_2.10;2.3 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftmodules#lift-jquery-module_2.5_2.10;2.3 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftmodules#lift-jquery-module_2.5_2.10;2.3->org.scala-lang#scala-library;2.10.0 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftmodules#lift-jquery-module_2.5_2.10;2.3->org.scala-lang#scala-library;2.10.4 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftmodules#lift-jquery-module_2.5_2.10;2.3->org.scala-lang#scala-library;2.10.0 [compile->compile(*)][0m
@@ -1080,10 +1080,10 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftmodules#lift-jquery-module_2.5_2.10;2.3->org.scala-lang#scala-library;2.10.0 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftmodules#lift-jquery-module_2.5_2.10;2.3->org.scala-lang#scala-library;2.10.4 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftmodules#lift-jquery-module_2.5_2.10;2.3->org.scala-lang#scala-library;2.10.4 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftmodules#lift-jquery-module_2.5_2.10;2.3 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->ch.qos.logback#logback-classic;1.0.6 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->ch.qos.logback#logback-classic;1.0.6 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->ch.qos.logback#logback-classic;1.0.6 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftmodules#lift-jquery-module_2.5_2.10;2.3 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->ch.qos.logback#logback-classic;1.0.6 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->ch.qos.logback#logback-classic;1.0.6 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->ch.qos.logback#logback-classic;1.0.6 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies ch.qos.logback#logback-classic;1.0.6->ch.qos.logback#logback-core;1.0.6 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies ch.qos.logback#logback-classic;1.0.6->ch.qos.logback#logback-core;1.0.6 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies ch.qos.logback#logback-classic;1.0.6->org.slf4j#slf4j-api;1.6.5 [compile->master(*)][0m
@@ -1095,10 +1095,10 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies ch.qos.logback#logback-classic;1.0.6->org.slf4j#slf4j-api;1.6.5 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies ch.qos.logback#logback-classic;1.0.6->org.slf4j#slf4j-api;1.7.2 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies ch.qos.logback#logback-classic;1.0.6->org.slf4j#slf4j-api;1.7.2 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->ch.qos.logback#logback-classic;1.0.6 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-mongodb_2.10;2.5.1 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-mongodb_2.10;2.5.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-mongodb_2.10;2.5.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->ch.qos.logback#logback-classic;1.0.6 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-mongodb_2.10;2.5.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-mongodb_2.10;2.5.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-mongodb_2.10;2.5.1 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mongodb_2.10;2.5.1->net.liftweb#lift-json-ext_2.10;2.5.1 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mongodb_2.10;2.5.1->net.liftweb#lift-json-ext_2.10;2.5.1 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-json-ext_2.10;2.5.1->net.liftweb#lift-common_2.10;2.5.1 [compile->master(*)][0m
@@ -1145,14 +1145,14 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mongodb_2.10;2.5.1->org.scala-lang#scala-library;2.10.4 [runtime->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mongodb_2.10;2.5.1->org.mongodb#mongo-java-driver;2.10.1 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mongodb_2.10;2.5.1->org.mongodb#mongo-java-driver;2.10.1 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-mongodb_2.10;2.5.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->postgresql#postgresql;9.1-901.jdbc4 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->postgresql#postgresql;9.1-901.jdbc4 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->postgresql#postgresql;9.1-901.jdbc4 [compile->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->postgresql#postgresql;9.1-901.jdbc4 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-core-1.0;1.41.1 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-core-1.0;1.41.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-core-1.0;1.41.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-mongodb_2.10;2.5.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->postgresql#postgresql;9.1-901.jdbc4 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->postgresql#postgresql;9.1-901.jdbc4 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->postgresql#postgresql;9.1-901.jdbc4 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->postgresql#postgresql;9.1-901.jdbc4 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-core-1.0;1.41.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-core-1.0;1.41.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-core-1.0;1.41.1 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-core-1.0;1.41.1->com.google.collections#google-collections;1.0-rc1 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-core-1.0;1.41.1->com.google.collections#google-collections;1.0-rc1 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-core-1.0;1.41.1->com.google.code.findbugs#jsr305;1.3.9 [compile->master(*)][0m
@@ -1161,10 +1161,10 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-core-1.0;1.41.1->com.google.collections#google-collections;1.0-rc1 [runtime->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-core-1.0;1.41.1->com.google.code.findbugs#jsr305;1.3.9 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-core-1.0;1.41.1->com.google.code.findbugs#jsr305;1.3.9 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-core-1.0;1.41.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-base-1.0;1.41.1 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-base-1.0;1.41.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-base-1.0;1.41.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-core-1.0;1.41.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-base-1.0;1.41.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-base-1.0;1.41.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-base-1.0;1.41.1 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-base-1.0;1.41.1->com.google.gdata#gdata-client-1.0;1.41.1 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-base-1.0;1.41.1->com.google.gdata#gdata-client-1.0;1.41.1 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-client-1.0;1.41.1->com.google.gdata#gdata-core-1.0;1.41.1 [compile->master(*)][0m
@@ -1189,10 +1189,10 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-media-1.0;1.41.1->com.google.gdata#gdata-core-1.0;1.41.1 [runtime->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-base-1.0;1.41.1->com.google.collections#google-collections;1.0-rc1 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-base-1.0;1.41.1->com.google.collections#google-collections;1.0-rc1 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-base-1.0;1.41.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-photos-2.0;1.41.1 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-photos-2.0;1.41.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-photos-2.0;1.41.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-base-1.0;1.41.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-photos-2.0;1.41.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-photos-2.0;1.41.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-photos-2.0;1.41.1 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-photos-2.0;1.41.1->com.google.gdata#gdata-core-1.0;1.41.1 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-photos-2.0;1.41.1->com.google.gdata#gdata-core-1.0;1.41.1 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-photos-2.0;1.41.1->com.google.gdata#gdata-media-1.0;1.41.1 [compile->master(*)][0m
@@ -1201,31 +1201,31 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-photos-2.0;1.41.1->com.google.gdata#gdata-core-1.0;1.41.1 [runtime->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-photos-2.0;1.41.1->com.google.gdata#gdata-media-1.0;1.41.1 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-photos-2.0;1.41.1->com.google.gdata#gdata-media-1.0;1.41.1 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-photos-2.0;1.41.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-client-1.0;1.41.1 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-client-1.0;1.41.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-client-1.0;1.41.1 [compile->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-client-1.0;1.41.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-media-1.0;1.41.1 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-media-1.0;1.41.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-media-1.0;1.41.1 [compile->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-media-1.0;1.41.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-client-meta-1.0;1.41.1 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-client-meta-1.0;1.41.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-client-meta-1.0;1.41.1 [compile->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-client-meta-1.0;1.41.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-photos-meta-2.0;1.41.1 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-photos-meta-2.0;1.41.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-photos-meta-2.0;1.41.1 [compile->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-photos-meta-2.0;1.41.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->org.specs2#specs2_2.10;1.14 [test->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-photos-2.0;1.41.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-client-1.0;1.41.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-client-1.0;1.41.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-client-1.0;1.41.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-client-1.0;1.41.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-media-1.0;1.41.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-media-1.0;1.41.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-media-1.0;1.41.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-media-1.0;1.41.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-client-meta-1.0;1.41.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-client-meta-1.0;1.41.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-client-meta-1.0;1.41.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-client-meta-1.0;1.41.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-photos-meta-2.0;1.41.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-photos-meta-2.0;1.41.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-photos-meta-2.0;1.41.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-photos-meta-2.0;1.41.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->org.specs2#specs2_2.10;1.14 [test->default(compile)][0m
 [0m[[0minfo[0m] [0mResolving org.specs2#specs2_2.10;1.14 ...[0m
 [0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.specs2#specs2_2.10;1.14 {test=[default(compile)]}[0m
 [0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.specs2#specs2_2.10;1.14[0m
 [0m[[0mdebug[0m] [0m	local: revision in cache: org.specs2#specs2_2.10;1.14[0m
 [0m[[0mdebug[0m] [0m	found org.specs2#specs2_2.10;1.14 in sbt-chain[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->org.specs2#specs2_2.10;1.14 [test->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->org.specs2#specs2_2.10;1.14 [test->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->org.specs2#specs2_2.10;1.14 [test->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->org.specs2#specs2_2.10;1.14 [test->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2_2.10;1.14->org.specs2#specs2-scalaz-core_2.10;7.0.0 [compile->master(*)][0m
 [0m[[0minfo[0m] [0mResolving org.specs2#specs2-scalaz-core_2.10;7.0.0 ...[0m
 [0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.specs2#specs2-scalaz-core_2.10;7.0.0 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
@@ -1298,21 +1298,21 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2_2.10;1.14->org.specs2#specs2-scalaz-core_2.10;7.0.0 [runtime->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2_2.10;1.14->org.specs2#specs2-scalaz-concurrent_2.10;7.0.0 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2_2.10;1.14->org.specs2#specs2-scalaz-concurrent_2.10;7.0.0 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->org.specs2#specs2_2.10;1.14 [test->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->org.specs2#specs2_2.10;1.14 [test->master][0m
 [0m[[0mdebug[0m] [0mresolving dependencies for configuration 'provided'[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.0 [provided][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.1 [provided][0m
 [0m[[0mdebug[0m] [0mresolving dependencies for configuration 'optional'[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.0 [optional][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.1 [optional][0m
 [0m[[0mdebug[0m] [0mresolving dependencies for configuration 'compile-internal'[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.0 [compile-internal][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.0 [compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->org.scala-lang#scala-library;2.10.4 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->org.scala-lang#scala-library;2.10.4 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->org.scala-lang#scala-library;2.10.4 [compile->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->org.scala-lang#scala-library;2.10.4 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-webkit_2.10;2.5.1 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-webkit_2.10;2.5.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-webkit_2.10;2.5.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.1 [compile-internal][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.1 [compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->org.scala-lang#scala-library;2.10.4 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->org.scala-lang#scala-library;2.10.4 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->org.scala-lang#scala-library;2.10.4 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->org.scala-lang#scala-library;2.10.4 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-webkit_2.10;2.5.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-webkit_2.10;2.5.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-webkit_2.10;2.5.1 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-webkit_2.10;2.5.1->net.liftweb#lift-util_2.10;2.5.1 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-webkit_2.10;2.5.1->net.liftweb#lift-util_2.10;2.5.1 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-util_2.10;2.5.1->net.liftweb#lift-actor_2.10;2.5.1 [compile->master(*)][0m
@@ -1441,10 +1441,10 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-actors;2.10.0->org.scala-lang#scala-library;2.10.0 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-actors;2.10.0->org.scala-lang#scala-library;2.10.4 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-actors;2.10.0->org.scala-lang#scala-library;2.10.4 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-webkit_2.10;2.5.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-mapper_2.10;2.5.1 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-mapper_2.10;2.5.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-mapper_2.10;2.5.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-webkit_2.10;2.5.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-mapper_2.10;2.5.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-mapper_2.10;2.5.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-mapper_2.10;2.5.1 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mapper_2.10;2.5.1->net.liftweb#lift-db_2.10;2.5.1 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mapper_2.10;2.5.1->net.liftweb#lift-db_2.10;2.5.1 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-db_2.10;2.5.1->net.liftweb#lift-util_2.10;2.5.1 [compile->master(*)][0m
@@ -1486,10 +1486,10 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mapper_2.10;2.5.1->org.scala-lang#scala-library;2.10.0 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mapper_2.10;2.5.1->org.scala-lang#scala-library;2.10.4 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mapper_2.10;2.5.1->org.scala-lang#scala-library;2.10.4 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-mapper_2.10;2.5.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftmodules#lift-jquery-module_2.5_2.10;2.3 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftmodules#lift-jquery-module_2.5_2.10;2.3 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftmodules#lift-jquery-module_2.5_2.10;2.3 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-mapper_2.10;2.5.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftmodules#lift-jquery-module_2.5_2.10;2.3 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftmodules#lift-jquery-module_2.5_2.10;2.3 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftmodules#lift-jquery-module_2.5_2.10;2.3 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftmodules#lift-jquery-module_2.5_2.10;2.3->org.scala-lang#scala-library;2.10.0 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftmodules#lift-jquery-module_2.5_2.10;2.3->org.scala-lang#scala-library;2.10.4 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftmodules#lift-jquery-module_2.5_2.10;2.3->org.scala-lang#scala-library;2.10.0 [compile->compile(*)][0m
@@ -1497,10 +1497,10 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftmodules#lift-jquery-module_2.5_2.10;2.3->org.scala-lang#scala-library;2.10.0 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftmodules#lift-jquery-module_2.5_2.10;2.3->org.scala-lang#scala-library;2.10.4 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftmodules#lift-jquery-module_2.5_2.10;2.3->org.scala-lang#scala-library;2.10.4 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftmodules#lift-jquery-module_2.5_2.10;2.3 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->ch.qos.logback#logback-classic;1.0.6 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->ch.qos.logback#logback-classic;1.0.6 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->ch.qos.logback#logback-classic;1.0.6 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftmodules#lift-jquery-module_2.5_2.10;2.3 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->ch.qos.logback#logback-classic;1.0.6 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->ch.qos.logback#logback-classic;1.0.6 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->ch.qos.logback#logback-classic;1.0.6 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies ch.qos.logback#logback-classic;1.0.6->ch.qos.logback#logback-core;1.0.6 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies ch.qos.logback#logback-classic;1.0.6->ch.qos.logback#logback-core;1.0.6 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies ch.qos.logback#logback-classic;1.0.6->org.slf4j#slf4j-api;1.6.5 [compile->master(*)][0m
@@ -1512,10 +1512,10 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies ch.qos.logback#logback-classic;1.0.6->org.slf4j#slf4j-api;1.6.5 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies ch.qos.logback#logback-classic;1.0.6->org.slf4j#slf4j-api;1.7.2 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies ch.qos.logback#logback-classic;1.0.6->org.slf4j#slf4j-api;1.7.2 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->ch.qos.logback#logback-classic;1.0.6 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-mongodb_2.10;2.5.1 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-mongodb_2.10;2.5.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-mongodb_2.10;2.5.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->ch.qos.logback#logback-classic;1.0.6 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-mongodb_2.10;2.5.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-mongodb_2.10;2.5.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-mongodb_2.10;2.5.1 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mongodb_2.10;2.5.1->net.liftweb#lift-json-ext_2.10;2.5.1 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mongodb_2.10;2.5.1->net.liftweb#lift-json-ext_2.10;2.5.1 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-json-ext_2.10;2.5.1->net.liftweb#lift-common_2.10;2.5.1 [compile->master(*)][0m
@@ -1562,14 +1562,14 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mongodb_2.10;2.5.1->org.scala-lang#scala-library;2.10.4 [runtime->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mongodb_2.10;2.5.1->org.mongodb#mongo-java-driver;2.10.1 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mongodb_2.10;2.5.1->org.mongodb#mongo-java-driver;2.10.1 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-mongodb_2.10;2.5.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->postgresql#postgresql;9.1-901.jdbc4 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->postgresql#postgresql;9.1-901.jdbc4 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->postgresql#postgresql;9.1-901.jdbc4 [compile->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->postgresql#postgresql;9.1-901.jdbc4 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-core-1.0;1.41.1 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-core-1.0;1.41.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-core-1.0;1.41.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-mongodb_2.10;2.5.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->postgresql#postgresql;9.1-901.jdbc4 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->postgresql#postgresql;9.1-901.jdbc4 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->postgresql#postgresql;9.1-901.jdbc4 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->postgresql#postgresql;9.1-901.jdbc4 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-core-1.0;1.41.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-core-1.0;1.41.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-core-1.0;1.41.1 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-core-1.0;1.41.1->com.google.collections#google-collections;1.0-rc1 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-core-1.0;1.41.1->com.google.collections#google-collections;1.0-rc1 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-core-1.0;1.41.1->com.google.code.findbugs#jsr305;1.3.9 [compile->master(*)][0m
@@ -1578,10 +1578,10 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-core-1.0;1.41.1->com.google.collections#google-collections;1.0-rc1 [runtime->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-core-1.0;1.41.1->com.google.code.findbugs#jsr305;1.3.9 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-core-1.0;1.41.1->com.google.code.findbugs#jsr305;1.3.9 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-core-1.0;1.41.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-base-1.0;1.41.1 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-base-1.0;1.41.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-base-1.0;1.41.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-core-1.0;1.41.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-base-1.0;1.41.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-base-1.0;1.41.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-base-1.0;1.41.1 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-base-1.0;1.41.1->com.google.gdata#gdata-client-1.0;1.41.1 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-base-1.0;1.41.1->com.google.gdata#gdata-client-1.0;1.41.1 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-client-1.0;1.41.1->com.google.gdata#gdata-core-1.0;1.41.1 [compile->master(*)][0m
@@ -1606,10 +1606,10 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-media-1.0;1.41.1->com.google.gdata#gdata-core-1.0;1.41.1 [runtime->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-base-1.0;1.41.1->com.google.collections#google-collections;1.0-rc1 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-base-1.0;1.41.1->com.google.collections#google-collections;1.0-rc1 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-base-1.0;1.41.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-photos-2.0;1.41.1 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-photos-2.0;1.41.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-photos-2.0;1.41.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-base-1.0;1.41.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-photos-2.0;1.41.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-photos-2.0;1.41.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-photos-2.0;1.41.1 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-photos-2.0;1.41.1->com.google.gdata#gdata-core-1.0;1.41.1 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-photos-2.0;1.41.1->com.google.gdata#gdata-core-1.0;1.41.1 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-photos-2.0;1.41.1->com.google.gdata#gdata-media-1.0;1.41.1 [compile->master(*)][0m
@@ -1618,36 +1618,36 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-photos-2.0;1.41.1->com.google.gdata#gdata-core-1.0;1.41.1 [runtime->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-photos-2.0;1.41.1->com.google.gdata#gdata-media-1.0;1.41.1 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-photos-2.0;1.41.1->com.google.gdata#gdata-media-1.0;1.41.1 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-photos-2.0;1.41.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-client-1.0;1.41.1 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-client-1.0;1.41.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-client-1.0;1.41.1 [compile->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-client-1.0;1.41.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-media-1.0;1.41.1 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-media-1.0;1.41.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-media-1.0;1.41.1 [compile->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-media-1.0;1.41.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-client-meta-1.0;1.41.1 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-client-meta-1.0;1.41.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-client-meta-1.0;1.41.1 [compile->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-client-meta-1.0;1.41.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-photos-meta-2.0;1.41.1 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-photos-meta-2.0;1.41.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-photos-meta-2.0;1.41.1 [compile->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-photos-meta-2.0;1.41.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.0 [optional][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.0 [provided][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-photos-2.0;1.41.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-client-1.0;1.41.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-client-1.0;1.41.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-client-1.0;1.41.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-client-1.0;1.41.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-media-1.0;1.41.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-media-1.0;1.41.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-media-1.0;1.41.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-media-1.0;1.41.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-client-meta-1.0;1.41.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-client-meta-1.0;1.41.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-client-meta-1.0;1.41.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-client-meta-1.0;1.41.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-photos-meta-2.0;1.41.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-photos-meta-2.0;1.41.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-photos-meta-2.0;1.41.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-photos-meta-2.0;1.41.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.1 [optional][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.1 [provided][0m
 [0m[[0mdebug[0m] [0mresolving dependencies for configuration 'runtime-internal'[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.0 [runtime-internal][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.0 [runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.0 [compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->org.scala-lang#scala-library;2.10.4 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->org.scala-lang#scala-library;2.10.4 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->org.scala-lang#scala-library;2.10.4 [compile->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->org.scala-lang#scala-library;2.10.4 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-webkit_2.10;2.5.1 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-webkit_2.10;2.5.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-webkit_2.10;2.5.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.1 [runtime-internal][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.1 [runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.1 [compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->org.scala-lang#scala-library;2.10.4 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->org.scala-lang#scala-library;2.10.4 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->org.scala-lang#scala-library;2.10.4 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->org.scala-lang#scala-library;2.10.4 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-webkit_2.10;2.5.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-webkit_2.10;2.5.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-webkit_2.10;2.5.1 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-webkit_2.10;2.5.1->net.liftweb#lift-util_2.10;2.5.1 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-webkit_2.10;2.5.1->net.liftweb#lift-util_2.10;2.5.1 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-util_2.10;2.5.1->net.liftweb#lift-actor_2.10;2.5.1 [compile->master(*)][0m
@@ -1776,10 +1776,10 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-actors;2.10.0->org.scala-lang#scala-library;2.10.0 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-actors;2.10.0->org.scala-lang#scala-library;2.10.4 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-actors;2.10.0->org.scala-lang#scala-library;2.10.4 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-webkit_2.10;2.5.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-mapper_2.10;2.5.1 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-mapper_2.10;2.5.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-mapper_2.10;2.5.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-webkit_2.10;2.5.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-mapper_2.10;2.5.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-mapper_2.10;2.5.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-mapper_2.10;2.5.1 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mapper_2.10;2.5.1->net.liftweb#lift-db_2.10;2.5.1 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mapper_2.10;2.5.1->net.liftweb#lift-db_2.10;2.5.1 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-db_2.10;2.5.1->net.liftweb#lift-util_2.10;2.5.1 [compile->master(*)][0m
@@ -1821,10 +1821,10 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mapper_2.10;2.5.1->org.scala-lang#scala-library;2.10.0 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mapper_2.10;2.5.1->org.scala-lang#scala-library;2.10.4 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mapper_2.10;2.5.1->org.scala-lang#scala-library;2.10.4 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-mapper_2.10;2.5.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftmodules#lift-jquery-module_2.5_2.10;2.3 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftmodules#lift-jquery-module_2.5_2.10;2.3 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftmodules#lift-jquery-module_2.5_2.10;2.3 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-mapper_2.10;2.5.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftmodules#lift-jquery-module_2.5_2.10;2.3 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftmodules#lift-jquery-module_2.5_2.10;2.3 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftmodules#lift-jquery-module_2.5_2.10;2.3 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftmodules#lift-jquery-module_2.5_2.10;2.3->org.scala-lang#scala-library;2.10.0 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftmodules#lift-jquery-module_2.5_2.10;2.3->org.scala-lang#scala-library;2.10.4 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftmodules#lift-jquery-module_2.5_2.10;2.3->org.scala-lang#scala-library;2.10.0 [compile->compile(*)][0m
@@ -1832,10 +1832,10 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftmodules#lift-jquery-module_2.5_2.10;2.3->org.scala-lang#scala-library;2.10.0 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftmodules#lift-jquery-module_2.5_2.10;2.3->org.scala-lang#scala-library;2.10.4 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftmodules#lift-jquery-module_2.5_2.10;2.3->org.scala-lang#scala-library;2.10.4 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftmodules#lift-jquery-module_2.5_2.10;2.3 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->ch.qos.logback#logback-classic;1.0.6 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->ch.qos.logback#logback-classic;1.0.6 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->ch.qos.logback#logback-classic;1.0.6 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftmodules#lift-jquery-module_2.5_2.10;2.3 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->ch.qos.logback#logback-classic;1.0.6 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->ch.qos.logback#logback-classic;1.0.6 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->ch.qos.logback#logback-classic;1.0.6 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies ch.qos.logback#logback-classic;1.0.6->ch.qos.logback#logback-core;1.0.6 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies ch.qos.logback#logback-classic;1.0.6->ch.qos.logback#logback-core;1.0.6 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies ch.qos.logback#logback-classic;1.0.6->org.slf4j#slf4j-api;1.6.5 [compile->master(*)][0m
@@ -1847,10 +1847,10 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies ch.qos.logback#logback-classic;1.0.6->org.slf4j#slf4j-api;1.6.5 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies ch.qos.logback#logback-classic;1.0.6->org.slf4j#slf4j-api;1.7.2 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies ch.qos.logback#logback-classic;1.0.6->org.slf4j#slf4j-api;1.7.2 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->ch.qos.logback#logback-classic;1.0.6 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-mongodb_2.10;2.5.1 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-mongodb_2.10;2.5.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-mongodb_2.10;2.5.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->ch.qos.logback#logback-classic;1.0.6 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-mongodb_2.10;2.5.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-mongodb_2.10;2.5.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-mongodb_2.10;2.5.1 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mongodb_2.10;2.5.1->net.liftweb#lift-json-ext_2.10;2.5.1 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mongodb_2.10;2.5.1->net.liftweb#lift-json-ext_2.10;2.5.1 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-json-ext_2.10;2.5.1->net.liftweb#lift-common_2.10;2.5.1 [compile->master(*)][0m
@@ -1897,14 +1897,14 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mongodb_2.10;2.5.1->org.scala-lang#scala-library;2.10.4 [runtime->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mongodb_2.10;2.5.1->org.mongodb#mongo-java-driver;2.10.1 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mongodb_2.10;2.5.1->org.mongodb#mongo-java-driver;2.10.1 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-mongodb_2.10;2.5.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->postgresql#postgresql;9.1-901.jdbc4 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->postgresql#postgresql;9.1-901.jdbc4 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->postgresql#postgresql;9.1-901.jdbc4 [compile->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->postgresql#postgresql;9.1-901.jdbc4 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-core-1.0;1.41.1 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-core-1.0;1.41.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-core-1.0;1.41.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-mongodb_2.10;2.5.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->postgresql#postgresql;9.1-901.jdbc4 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->postgresql#postgresql;9.1-901.jdbc4 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->postgresql#postgresql;9.1-901.jdbc4 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->postgresql#postgresql;9.1-901.jdbc4 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-core-1.0;1.41.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-core-1.0;1.41.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-core-1.0;1.41.1 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-core-1.0;1.41.1->com.google.collections#google-collections;1.0-rc1 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-core-1.0;1.41.1->com.google.collections#google-collections;1.0-rc1 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-core-1.0;1.41.1->com.google.code.findbugs#jsr305;1.3.9 [compile->master(*)][0m
@@ -1913,10 +1913,10 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-core-1.0;1.41.1->com.google.collections#google-collections;1.0-rc1 [runtime->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-core-1.0;1.41.1->com.google.code.findbugs#jsr305;1.3.9 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-core-1.0;1.41.1->com.google.code.findbugs#jsr305;1.3.9 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-core-1.0;1.41.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-base-1.0;1.41.1 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-base-1.0;1.41.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-base-1.0;1.41.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-core-1.0;1.41.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-base-1.0;1.41.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-base-1.0;1.41.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-base-1.0;1.41.1 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-base-1.0;1.41.1->com.google.gdata#gdata-client-1.0;1.41.1 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-base-1.0;1.41.1->com.google.gdata#gdata-client-1.0;1.41.1 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-client-1.0;1.41.1->com.google.gdata#gdata-core-1.0;1.41.1 [compile->master(*)][0m
@@ -1941,10 +1941,10 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-media-1.0;1.41.1->com.google.gdata#gdata-core-1.0;1.41.1 [runtime->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-base-1.0;1.41.1->com.google.collections#google-collections;1.0-rc1 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-base-1.0;1.41.1->com.google.collections#google-collections;1.0-rc1 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-base-1.0;1.41.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-photos-2.0;1.41.1 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-photos-2.0;1.41.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-photos-2.0;1.41.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-base-1.0;1.41.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-photos-2.0;1.41.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-photos-2.0;1.41.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-photos-2.0;1.41.1 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-photos-2.0;1.41.1->com.google.gdata#gdata-core-1.0;1.41.1 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-photos-2.0;1.41.1->com.google.gdata#gdata-core-1.0;1.41.1 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-photos-2.0;1.41.1->com.google.gdata#gdata-media-1.0;1.41.1 [compile->master(*)][0m
@@ -1953,36 +1953,36 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-photos-2.0;1.41.1->com.google.gdata#gdata-core-1.0;1.41.1 [runtime->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-photos-2.0;1.41.1->com.google.gdata#gdata-media-1.0;1.41.1 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-photos-2.0;1.41.1->com.google.gdata#gdata-media-1.0;1.41.1 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-photos-2.0;1.41.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-client-1.0;1.41.1 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-client-1.0;1.41.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-client-1.0;1.41.1 [compile->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-client-1.0;1.41.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-media-1.0;1.41.1 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-media-1.0;1.41.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-media-1.0;1.41.1 [compile->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-media-1.0;1.41.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-client-meta-1.0;1.41.1 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-client-meta-1.0;1.41.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-client-meta-1.0;1.41.1 [compile->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-client-meta-1.0;1.41.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-photos-meta-2.0;1.41.1 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-photos-meta-2.0;1.41.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-photos-meta-2.0;1.41.1 [compile->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-photos-meta-2.0;1.41.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.0 [optional][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-photos-2.0;1.41.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-client-1.0;1.41.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-client-1.0;1.41.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-client-1.0;1.41.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-client-1.0;1.41.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-media-1.0;1.41.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-media-1.0;1.41.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-media-1.0;1.41.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-media-1.0;1.41.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-client-meta-1.0;1.41.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-client-meta-1.0;1.41.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-client-meta-1.0;1.41.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-client-meta-1.0;1.41.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-photos-meta-2.0;1.41.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-photos-meta-2.0;1.41.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-photos-meta-2.0;1.41.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-photos-meta-2.0;1.41.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.1 [optional][0m
 [0m[[0mdebug[0m] [0mresolving dependencies for configuration 'test-internal'[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.0 [test-internal][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.0 [test][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.0 [runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.0 [compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->org.scala-lang#scala-library;2.10.4 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->org.scala-lang#scala-library;2.10.4 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->org.scala-lang#scala-library;2.10.4 [compile->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->org.scala-lang#scala-library;2.10.4 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-webkit_2.10;2.5.1 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-webkit_2.10;2.5.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-webkit_2.10;2.5.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.1 [test-internal][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.1 [test][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.1 [runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.1 [compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->org.scala-lang#scala-library;2.10.4 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->org.scala-lang#scala-library;2.10.4 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->org.scala-lang#scala-library;2.10.4 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->org.scala-lang#scala-library;2.10.4 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-webkit_2.10;2.5.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-webkit_2.10;2.5.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-webkit_2.10;2.5.1 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-webkit_2.10;2.5.1->net.liftweb#lift-util_2.10;2.5.1 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-webkit_2.10;2.5.1->net.liftweb#lift-util_2.10;2.5.1 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-util_2.10;2.5.1->net.liftweb#lift-actor_2.10;2.5.1 [compile->master(*)][0m
@@ -2111,10 +2111,10 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-actors;2.10.0->org.scala-lang#scala-library;2.10.0 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-actors;2.10.0->org.scala-lang#scala-library;2.10.4 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-actors;2.10.0->org.scala-lang#scala-library;2.10.4 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-webkit_2.10;2.5.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-mapper_2.10;2.5.1 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-mapper_2.10;2.5.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-mapper_2.10;2.5.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-webkit_2.10;2.5.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-mapper_2.10;2.5.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-mapper_2.10;2.5.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-mapper_2.10;2.5.1 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mapper_2.10;2.5.1->net.liftweb#lift-db_2.10;2.5.1 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mapper_2.10;2.5.1->net.liftweb#lift-db_2.10;2.5.1 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-db_2.10;2.5.1->net.liftweb#lift-util_2.10;2.5.1 [compile->master(*)][0m
@@ -2156,10 +2156,10 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mapper_2.10;2.5.1->org.scala-lang#scala-library;2.10.0 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mapper_2.10;2.5.1->org.scala-lang#scala-library;2.10.4 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mapper_2.10;2.5.1->org.scala-lang#scala-library;2.10.4 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-mapper_2.10;2.5.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftmodules#lift-jquery-module_2.5_2.10;2.3 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftmodules#lift-jquery-module_2.5_2.10;2.3 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftmodules#lift-jquery-module_2.5_2.10;2.3 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-mapper_2.10;2.5.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftmodules#lift-jquery-module_2.5_2.10;2.3 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftmodules#lift-jquery-module_2.5_2.10;2.3 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftmodules#lift-jquery-module_2.5_2.10;2.3 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftmodules#lift-jquery-module_2.5_2.10;2.3->org.scala-lang#scala-library;2.10.0 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftmodules#lift-jquery-module_2.5_2.10;2.3->org.scala-lang#scala-library;2.10.4 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftmodules#lift-jquery-module_2.5_2.10;2.3->org.scala-lang#scala-library;2.10.0 [compile->compile(*)][0m
@@ -2167,10 +2167,10 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftmodules#lift-jquery-module_2.5_2.10;2.3->org.scala-lang#scala-library;2.10.0 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftmodules#lift-jquery-module_2.5_2.10;2.3->org.scala-lang#scala-library;2.10.4 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftmodules#lift-jquery-module_2.5_2.10;2.3->org.scala-lang#scala-library;2.10.4 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftmodules#lift-jquery-module_2.5_2.10;2.3 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->ch.qos.logback#logback-classic;1.0.6 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->ch.qos.logback#logback-classic;1.0.6 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->ch.qos.logback#logback-classic;1.0.6 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftmodules#lift-jquery-module_2.5_2.10;2.3 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->ch.qos.logback#logback-classic;1.0.6 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->ch.qos.logback#logback-classic;1.0.6 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->ch.qos.logback#logback-classic;1.0.6 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies ch.qos.logback#logback-classic;1.0.6->ch.qos.logback#logback-core;1.0.6 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies ch.qos.logback#logback-classic;1.0.6->ch.qos.logback#logback-core;1.0.6 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies ch.qos.logback#logback-classic;1.0.6->org.slf4j#slf4j-api;1.6.5 [compile->master(*)][0m
@@ -2182,10 +2182,10 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies ch.qos.logback#logback-classic;1.0.6->org.slf4j#slf4j-api;1.6.5 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies ch.qos.logback#logback-classic;1.0.6->org.slf4j#slf4j-api;1.7.2 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies ch.qos.logback#logback-classic;1.0.6->org.slf4j#slf4j-api;1.7.2 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->ch.qos.logback#logback-classic;1.0.6 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-mongodb_2.10;2.5.1 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-mongodb_2.10;2.5.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-mongodb_2.10;2.5.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->ch.qos.logback#logback-classic;1.0.6 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-mongodb_2.10;2.5.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-mongodb_2.10;2.5.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-mongodb_2.10;2.5.1 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mongodb_2.10;2.5.1->net.liftweb#lift-json-ext_2.10;2.5.1 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mongodb_2.10;2.5.1->net.liftweb#lift-json-ext_2.10;2.5.1 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-json-ext_2.10;2.5.1->net.liftweb#lift-common_2.10;2.5.1 [compile->master(*)][0m
@@ -2232,14 +2232,14 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mongodb_2.10;2.5.1->org.scala-lang#scala-library;2.10.4 [runtime->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mongodb_2.10;2.5.1->org.mongodb#mongo-java-driver;2.10.1 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies net.liftweb#lift-mongodb_2.10;2.5.1->org.mongodb#mongo-java-driver;2.10.1 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->net.liftweb#lift-mongodb_2.10;2.5.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->postgresql#postgresql;9.1-901.jdbc4 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->postgresql#postgresql;9.1-901.jdbc4 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->postgresql#postgresql;9.1-901.jdbc4 [compile->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->postgresql#postgresql;9.1-901.jdbc4 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-core-1.0;1.41.1 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-core-1.0;1.41.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-core-1.0;1.41.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->net.liftweb#lift-mongodb_2.10;2.5.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->postgresql#postgresql;9.1-901.jdbc4 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->postgresql#postgresql;9.1-901.jdbc4 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->postgresql#postgresql;9.1-901.jdbc4 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->postgresql#postgresql;9.1-901.jdbc4 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-core-1.0;1.41.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-core-1.0;1.41.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-core-1.0;1.41.1 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-core-1.0;1.41.1->com.google.collections#google-collections;1.0-rc1 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-core-1.0;1.41.1->com.google.collections#google-collections;1.0-rc1 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-core-1.0;1.41.1->com.google.code.findbugs#jsr305;1.3.9 [compile->master(*)][0m
@@ -2248,10 +2248,10 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-core-1.0;1.41.1->com.google.collections#google-collections;1.0-rc1 [runtime->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-core-1.0;1.41.1->com.google.code.findbugs#jsr305;1.3.9 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-core-1.0;1.41.1->com.google.code.findbugs#jsr305;1.3.9 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-core-1.0;1.41.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-base-1.0;1.41.1 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-base-1.0;1.41.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-base-1.0;1.41.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-core-1.0;1.41.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-base-1.0;1.41.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-base-1.0;1.41.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-base-1.0;1.41.1 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-base-1.0;1.41.1->com.google.gdata#gdata-client-1.0;1.41.1 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-base-1.0;1.41.1->com.google.gdata#gdata-client-1.0;1.41.1 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-client-1.0;1.41.1->com.google.gdata#gdata-core-1.0;1.41.1 [compile->master(*)][0m
@@ -2276,10 +2276,10 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-media-1.0;1.41.1->com.google.gdata#gdata-core-1.0;1.41.1 [runtime->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-base-1.0;1.41.1->com.google.collections#google-collections;1.0-rc1 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-base-1.0;1.41.1->com.google.collections#google-collections;1.0-rc1 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-base-1.0;1.41.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-photos-2.0;1.41.1 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-photos-2.0;1.41.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-photos-2.0;1.41.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-base-1.0;1.41.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-photos-2.0;1.41.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-photos-2.0;1.41.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-photos-2.0;1.41.1 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-photos-2.0;1.41.1->com.google.gdata#gdata-core-1.0;1.41.1 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-photos-2.0;1.41.1->com.google.gdata#gdata-core-1.0;1.41.1 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-photos-2.0;1.41.1->com.google.gdata#gdata-media-1.0;1.41.1 [compile->master(*)][0m
@@ -2288,26 +2288,26 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-photos-2.0;1.41.1->com.google.gdata#gdata-core-1.0;1.41.1 [runtime->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-photos-2.0;1.41.1->com.google.gdata#gdata-media-1.0;1.41.1 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.google.gdata#gdata-photos-2.0;1.41.1->com.google.gdata#gdata-media-1.0;1.41.1 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-photos-2.0;1.41.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-client-1.0;1.41.1 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-client-1.0;1.41.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-client-1.0;1.41.1 [compile->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-client-1.0;1.41.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-media-1.0;1.41.1 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-media-1.0;1.41.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-media-1.0;1.41.1 [compile->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-media-1.0;1.41.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-client-meta-1.0;1.41.1 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-client-meta-1.0;1.41.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-client-meta-1.0;1.41.1 [compile->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-client-meta-1.0;1.41.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-photos-meta-2.0;1.41.1 [compile->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-photos-meta-2.0;1.41.1 [compile->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-photos-meta-2.0;1.41.1 [compile->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->com.google.gdata#gdata-photos-meta-2.0;1.41.1 [compile->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->org.specs2#specs2_2.10;1.14 [test->default(compile)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->org.specs2#specs2_2.10;1.14 [test->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->org.specs2#specs2_2.10;1.14 [test->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-photos-2.0;1.41.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-client-1.0;1.41.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-client-1.0;1.41.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-client-1.0;1.41.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-client-1.0;1.41.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-media-1.0;1.41.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-media-1.0;1.41.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-media-1.0;1.41.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-media-1.0;1.41.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-client-meta-1.0;1.41.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-client-meta-1.0;1.41.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-client-meta-1.0;1.41.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-client-meta-1.0;1.41.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-photos-meta-2.0;1.41.1 [compile->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-photos-meta-2.0;1.41.1 [compile->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-photos-meta-2.0;1.41.1 [compile->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->com.google.gdata#gdata-photos-meta-2.0;1.41.1 [compile->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->org.specs2#specs2_2.10;1.14 [test->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->org.specs2#specs2_2.10;1.14 [test->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->org.specs2#specs2_2.10;1.14 [test->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2_2.10;1.14->org.specs2#specs2-scalaz-core_2.10;7.0.0 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2_2.10;1.14->org.specs2#specs2-scalaz-core_2.10;7.0.0 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2-scalaz-core_2.10;7.0.0->org.scala-lang#scala-library;2.10.0 [compile->master(*)][0m
@@ -2356,27 +2356,27 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2-scalaz-concurrent_2.10;7.0.0->org.scala-lang#scala-library;2.10.0 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2-scalaz-concurrent_2.10;7.0.0->org.scala-lang#scala-library;2.10.4 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.specs2#specs2-scalaz-concurrent_2.10;7.0.0->org.scala-lang#scala-library;2.10.4 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->org.specs2#specs2_2.10;1.14 [test->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.0 [optional][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.0 [provided][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->org.specs2#specs2_2.10;1.14 [test->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.1 [optional][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.1 [provided][0m
 [0m[[0mdebug[0m] [0mresolving dependencies for configuration 'plugin'[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.0 [plugin][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.1 [plugin][0m
 [0m[[0mdebug[0m] [0mresolving dependencies for configuration 'sources'[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.0 [sources][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.1 [sources][0m
 [0m[[0mdebug[0m] [0mresolving dependencies for configuration 'docs'[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.0 [docs][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.1 [docs][0m
 [0m[[0mdebug[0m] [0mresolving dependencies for configuration 'pom'[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.0 [pom][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.1 [pom][0m
 [0m[[0mdebug[0m] [0mresolving dependencies for configuration 'scala-tool'[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.0 [scala-tool][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->org.scala-lang#scala-compiler;2.10.4 [scala-tool->default][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.1 [scala-tool][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->org.scala-lang#scala-compiler;2.10.4 [scala-tool->default][0m
 [0m[[0minfo[0m] [0mResolving org.scala-lang#scala-compiler;2.10.4 ...[0m
 [0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.scala-lang#scala-compiler;2.10.4 {scala-tool=[default, optional(default)]}[0m
 [0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.scala-lang#scala-compiler;2.10.4[0m
 [0m[[0mdebug[0m] [0m	local: revision in cache: org.scala-lang#scala-compiler;2.10.4[0m
 [0m[[0mdebug[0m] [0m	found org.scala-lang#scala-compiler;2.10.4 in sbt-chain[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->org.scala-lang#scala-compiler;2.10.4 [scala-tool->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->org.scala-lang#scala-compiler;2.10.4 [scala-tool->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->org.scala-lang#scala-compiler;2.10.4 [scala-tool->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->org.scala-lang#scala-compiler;2.10.4 [scala-tool->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-compiler;2.10.4->org.scala-lang#scala-library;2.10.4 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-compiler;2.10.4->org.scala-lang#scala-library;2.10.4 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-compiler;2.10.4->org.scala-lang#scala-library;2.10.4 [compile->default][0m
@@ -2400,8 +2400,8 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-compiler;2.10.4->org.scala-lang#scala-reflect;2.10.4 [runtime->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-reflect;2.10.4->org.scala-lang#scala-library;2.10.4 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-reflect;2.10.4->org.scala-lang#scala-library;2.10.4 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->org.scala-lang#scala-compiler;2.10.4 [scala-tool->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->org.scala-lang#scala-compiler;2.10.4 [scala-tool->optional(default)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->org.scala-lang#scala-compiler;2.10.4 [scala-tool->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->org.scala-lang#scala-compiler;2.10.4 [scala-tool->optional(default)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#scala-compiler;2.10.4->org.scala-lang#jline;2.10.4 [optional->master(*)][0m
 [0m[[0minfo[0m] [0mResolving org.scala-lang#jline;2.10.4 ...[0m
 [0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.scala-lang#jline;2.10.4 {optional=[compile(*), master(*)]}[0m
@@ -2416,21 +2416,21 @@
 [0m[[0mdebug[0m] [0m	local: revision in cache: org.fusesource.jansi#jansi;1.4[0m
 [0m[[0mdebug[0m] [0m	found org.fusesource.jansi#jansi;1.4 in sbt-chain[0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.scala-lang#jline;2.10.4->org.fusesource.jansi#jansi;1.4 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->org.scala-lang#scala-library;2.10.4 [scala-tool->default][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->org.scala-lang#scala-library;2.10.4 [scala-tool->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->org.scala-lang#scala-library;2.10.4 [scala-tool->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->org.scala-lang#scala-library;2.10.4 [scala-tool->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->org.scala-lang#scala-library;2.10.4 [scala-tool->optional(default)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->org.scala-lang#scala-library;2.10.4 [scala-tool->default][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->org.scala-lang#scala-library;2.10.4 [scala-tool->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->org.scala-lang#scala-library;2.10.4 [scala-tool->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->org.scala-lang#scala-library;2.10.4 [scala-tool->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->org.scala-lang#scala-library;2.10.4 [scala-tool->optional(default)][0m
 [0m[[0mdebug[0m] [0mresolving dependencies for configuration 'container'[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.0 [container][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [container->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies for pl.brosbit#osp_2.10;0.3.1 [container][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [container->default(compile)][0m
 [0m[[0minfo[0m] [0mResolving org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 ...[0m
 [0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 {container=[default(compile)]}[0m
 [0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.eclipse.jetty#jetty-webapp;9.1.0.v20131115[0m
 [0m[[0mdebug[0m] [0m	local: revision in cache: org.eclipse.jetty#jetty-webapp;9.1.0.v20131115[0m
 [0m[[0mdebug[0m] [0m	found org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 in sbt-chain[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [container->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [container->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [container->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [container->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-webapp;9.1.0.v20131115->org.eclipse.jetty#jetty-xml;9.1.0.v20131115 [compile->master(*)][0m
 [0m[[0minfo[0m] [0mResolving org.eclipse.jetty#jetty-xml;9.1.0.v20131115 ...[0m
 [0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.eclipse.jetty#jetty-xml;9.1.0.v20131115 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
@@ -2515,15 +2515,15 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-webapp;9.1.0.v20131115->org.eclipse.jetty#jetty-xml;9.1.0.v20131115 [runtime->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-webapp;9.1.0.v20131115->org.eclipse.jetty#jetty-servlet;9.1.0.v20131115 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-webapp;9.1.0.v20131115->org.eclipse.jetty#jetty-servlet;9.1.0.v20131115 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [container->master][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->org.eclipse.jetty#jetty-plus;9.1.0.v20131115 [container->default(compile)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [container->master][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->org.eclipse.jetty#jetty-plus;9.1.0.v20131115 [container->default(compile)][0m
 [0m[[0minfo[0m] [0mResolving org.eclipse.jetty#jetty-plus;9.1.0.v20131115 ...[0m
 [0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.eclipse.jetty#jetty-plus;9.1.0.v20131115 {container=[default(compile)]}[0m
 [0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.eclipse.jetty#jetty-plus;9.1.0.v20131115[0m
 [0m[[0mdebug[0m] [0m	local: revision in cache: org.eclipse.jetty#jetty-plus;9.1.0.v20131115[0m
 [0m[[0mdebug[0m] [0m	found org.eclipse.jetty#jetty-plus;9.1.0.v20131115 in sbt-chain[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->org.eclipse.jetty#jetty-plus;9.1.0.v20131115 [container->runtime][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->org.eclipse.jetty#jetty-plus;9.1.0.v20131115 [container->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->org.eclipse.jetty#jetty-plus;9.1.0.v20131115 [container->runtime][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->org.eclipse.jetty#jetty-plus;9.1.0.v20131115 [container->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;9.1.0.v20131115->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;9.1.0.v20131115->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;9.1.0.v20131115->org.eclipse.jetty#jetty-jndi;9.1.0.v20131115 [compile->master(*)][0m
@@ -2537,8 +2537,8 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;9.1.0.v20131115->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [runtime->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;9.1.0.v20131115->org.eclipse.jetty#jetty-jndi;9.1.0.v20131115 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;9.1.0.v20131115->org.eclipse.jetty#jetty-jndi;9.1.0.v20131115 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.0->org.eclipse.jetty#jetty-plus;9.1.0.v20131115 [container->master][0m
-[0m[[0mdebug[0m] [0m	resolved ivy file produced in /home/ms/Programy/osp/target/resolution-cache/pl.brosbit/osp_2.10/0.3.0/resolved.xml.xml[0m
+[0m[[0mdebug[0m] [0m== resolving dependencies pl.brosbit#osp_2.10;0.3.1->org.eclipse.jetty#jetty-plus;9.1.0.v20131115 [container->master][0m
+[0m[[0mdebug[0m] [0m	resolved ivy file produced in /home/ms/Programy/osp/target/resolution-cache/pl.brosbit/osp_2.10/0.3.1/resolved.xml.xml[0m
 [0m[[0mdebug[0m] [0m:: downloading artifacts ::[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scala-lang#scala-library;2.10.4!scala-library.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] net.liftweb#lift-webkit_2.10;2.5.1!lift-webkit_2.10.jar[0m
@@ -2598,20 +2598,20 @@
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.eclipse.jetty#jetty-http;9.1.0.v20131115!jetty-http.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.eclipse.jetty#jetty-io;9.1.0.v20131115!jetty-io.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.eclipse.jetty#jetty-jndi;9.1.0.v20131115!jetty-jndi.jar[0m
-[0m[[0mdebug[0m] [0m:: resolution report :: resolve 2240ms :: artifacts dl 41ms[0m
-[0m[[0mdebug[0m] [0m	report for pl.brosbit#osp_2.10;0.3.0 compile produced in /home/ms/Programy/osp/target/resolution-cache/reports/pl.brosbit-osp_2.10-compile.xml[0m
-[0m[[0mdebug[0m] [0m	report for pl.brosbit#osp_2.10;0.3.0 runtime produced in /home/ms/Programy/osp/target/resolution-cache/reports/pl.brosbit-osp_2.10-runtime.xml[0m
-[0m[[0mdebug[0m] [0m	report for pl.brosbit#osp_2.10;0.3.0 test produced in /home/ms/Programy/osp/target/resolution-cache/reports/pl.brosbit-osp_2.10-test.xml[0m
-[0m[[0mdebug[0m] [0m	report for pl.brosbit#osp_2.10;0.3.0 provided produced in /home/ms/Programy/osp/target/resolution-cache/reports/pl.brosbit-osp_2.10-provided.xml[0m
-[0m[[0mdebug[0m] [0m	report for pl.brosbit#osp_2.10;0.3.0 optional produced in /home/ms/Programy/osp/target/resolution-cache/reports/pl.brosbit-osp_2.10-optional.xml[0m
-[0m[[0mdebug[0m] [0m	report for pl.brosbit#osp_2.10;0.3.0 compile-internal produced in /home/ms/Programy/osp/target/resolution-cache/reports/pl.brosbit-osp_2.10-compile-internal.xml[0m
-[0m[[0mdebug[0m] [0m	report for pl.brosbit#osp_2.10;0.3.0 runtime-internal produced in /home/ms/Programy/osp/target/resolution-cache/reports/pl.brosbit-osp_2.10-runtime-internal.xml[0m
-[0m[[0mdebug[0m] [0m	report for pl.brosbit#osp_2.10;0.3.0 test-internal produced in /home/ms/Programy/osp/target/resolution-cache/reports/pl.brosbit-osp_2.10-test-internal.xml[0m
-[0m[[0mdebug[0m] [0m	report for pl.brosbit#osp_2.10;0.3.0 plugin produced in /home/ms/Programy/osp/target/resolution-cache/reports/pl.brosbit-osp_2.10-plugin.xml[0m
-[0m[[0mdebug[0m] [0m	report for pl.brosbit#osp_2.10;0.3.0 sources produced in /home/ms/Programy/osp/target/resolution-cache/reports/pl.brosbit-osp_2.10-sources.xml[0m
-[0m[[0mdebug[0m] [0m	report for pl.brosbit#osp_2.10;0.3.0 docs produced in /home/ms/Programy/osp/target/resolution-cache/reports/pl.brosbit-osp_2.10-docs.xml[0m
-[0m[[0mdebug[0m] [0m	report for pl.brosbit#osp_2.10;0.3.0 pom produced in /home/ms/Programy/osp/target/resolution-cache/reports/pl.brosbit-osp_2.10-pom.xml[0m
-[0m[[0mdebug[0m] [0m	report for pl.brosbit#osp_2.10;0.3.0 scala-tool produced in /home/ms/Programy/osp/target/resolution-cache/reports/pl.brosbit-osp_2.10-scala-tool.xml[0m
-[0m[[0mdebug[0m] [0m	report for pl.brosbit#osp_2.10;0.3.0 container produced in /home/ms/Programy/osp/target/resolution-cache/reports/pl.brosbit-osp_2.10-container.xml[0m
-[0m[[0mdebug[0m] [0m	resolve done (2240ms resolve - 41ms download)[0m
+[0m[[0mdebug[0m] [0m:: resolution report :: resolve 2362ms :: artifacts dl 33ms[0m
+[0m[[0mdebug[0m] [0m	report for pl.brosbit#osp_2.10;0.3.1 compile produced in /home/ms/Programy/osp/target/resolution-cache/reports/pl.brosbit-osp_2.10-compile.xml[0m
+[0m[[0mdebug[0m] [0m	report for pl.brosbit#osp_2.10;0.3.1 runtime produced in /home/ms/Programy/osp/target/resolution-cache/reports/pl.brosbit-osp_2.10-runtime.xml[0m
+[0m[[0mdebug[0m] [0m	report for pl.brosbit#osp_2.10;0.3.1 test produced in /home/ms/Programy/osp/target/resolution-cache/reports/pl.brosbit-osp_2.10-test.xml[0m
+[0m[[0mdebug[0m] [0m	report for pl.brosbit#osp_2.10;0.3.1 provided produced in /home/ms/Programy/osp/target/resolution-cache/reports/pl.brosbit-osp_2.10-provided.xml[0m
+[0m[[0mdebug[0m] [0m	report for pl.brosbit#osp_2.10;0.3.1 optional produced in /home/ms/Programy/osp/target/resolution-cache/reports/pl.brosbit-osp_2.10-optional.xml[0m
+[0m[[0mdebug[0m] [0m	report for pl.brosbit#osp_2.10;0.3.1 compile-internal produced in /home/ms/Programy/osp/target/resolution-cache/reports/pl.brosbit-osp_2.10-compile-internal.xml[0m
+[0m[[0mdebug[0m] [0m	report for pl.brosbit#osp_2.10;0.3.1 runtime-internal produced in /home/ms/Programy/osp/target/resolution-cache/reports/pl.brosbit-osp_2.10-runtime-internal.xml[0m
+[0m[[0mdebug[0m] [0m	report for pl.brosbit#osp_2.10;0.3.1 test-internal produced in /home/ms/Programy/osp/target/resolution-cache/reports/pl.brosbit-osp_2.10-test-internal.xml[0m
+[0m[[0mdebug[0m] [0m	report for pl.brosbit#osp_2.10;0.3.1 plugin produced in /home/ms/Programy/osp/target/resolution-cache/reports/pl.brosbit-osp_2.10-plugin.xml[0m
+[0m[[0mdebug[0m] [0m	report for pl.brosbit#osp_2.10;0.3.1 sources produced in /home/ms/Programy/osp/target/resolution-cache/reports/pl.brosbit-osp_2.10-sources.xml[0m
+[0m[[0mdebug[0m] [0m	report for pl.brosbit#osp_2.10;0.3.1 docs produced in /home/ms/Programy/osp/target/resolution-cache/reports/pl.brosbit-osp_2.10-docs.xml[0m
+[0m[[0mdebug[0m] [0m	report for pl.brosbit#osp_2.10;0.3.1 pom produced in /home/ms/Programy/osp/target/resolution-cache/reports/pl.brosbit-osp_2.10-pom.xml[0m
+[0m[[0mdebug[0m] [0m	report for pl.brosbit#osp_2.10;0.3.1 scala-tool produced in /home/ms/Programy/osp/target/resolution-cache/reports/pl.brosbit-osp_2.10-scala-tool.xml[0m
+[0m[[0mdebug[0m] [0m	report for pl.brosbit#osp_2.10;0.3.1 container produced in /home/ms/Programy/osp/target/resolution-cache/reports/pl.brosbit-osp_2.10-container.xml[0m
+[0m[[0mdebug[0m] [0m	resolve done (2362ms resolve - 33ms download)[0m
 [0m[[0minfo[0m] [0mDone updating.[0m

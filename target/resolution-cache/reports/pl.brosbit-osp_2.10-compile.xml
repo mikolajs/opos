@@ -4,15 +4,15 @@
 	<info
 		organisation="pl.brosbit"
 		module="osp_2.10"
-		revision="0.3.0"
+		revision="0.3.1"
 		conf="compile"
 		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom, scala-tool, container"
-		date="20140825221501"/>
+		date="20140828181227"/>
 	<dependencies>
 		<module organisation="com.google.gdata" name="gdata-photos-meta-2.0">
 			<revision name="1.41.1" status="release" pubdate="20100328180833" resolver="Google GData" artresolver="Google GData" homepage="" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="37">
 				<metadata-artifact status="no" details="" size="2279" time="0" location="/home/ms/.ivy2/cache/com.google.gdata/gdata-photos-meta-2.0/ivy-1.41.1.xml" searched="false" origin-is-local="false" origin-location="http://mandubian-mvn.googlecode.com/svn/trunk/mandubian-mvn/repository/com/google/gdata/gdata-photos-meta-2.0/1.41.1/gdata-photos-meta-2.0-1.41.1.pom"/>
-				<caller organisation="pl.brosbit" name="osp_2.10" conf="compile" rev="1.41.1" rev-constraint-default="1.41.1" rev-constraint-dynamic="1.41.1" callerrev="0.3.0"/>
+				<caller organisation="pl.brosbit" name="osp_2.10" conf="compile" rev="1.41.1" rev-constraint-default="1.41.1" rev-constraint-dynamic="1.41.1" callerrev="0.3.1"/>
 				<artifacts>
 					<artifact name="gdata-photos-meta-2.0" type="jar" ext="jar" status="no" details="" size="1988" time="0" location="/home/ms/.ivy2/cache/com.google.gdata/gdata-photos-meta-2.0/jars/gdata-photos-meta-2.0-1.41.1.jar">
 						<origin-location is-local="false" location="http://mandubian-mvn.googlecode.com/svn/trunk/mandubian-mvn/repository/com/google/gdata/gdata-photos-meta-2.0/1.41.1/gdata-photos-meta-2.0-1.41.1.jar"/>
@@ -23,7 +23,7 @@
 		<module organisation="com.google.gdata" name="gdata-client-meta-1.0">
 			<revision name="1.41.1" status="release" pubdate="20100328180833" resolver="Google GData" artresolver="Google GData" homepage="" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="36">
 				<metadata-artifact status="no" details="" size="2279" time="0" location="/home/ms/.ivy2/cache/com.google.gdata/gdata-client-meta-1.0/ivy-1.41.1.xml" searched="false" origin-is-local="false" origin-location="http://mandubian-mvn.googlecode.com/svn/trunk/mandubian-mvn/repository/com/google/gdata/gdata-client-meta-1.0/1.41.1/gdata-client-meta-1.0-1.41.1.pom"/>
-				<caller organisation="pl.brosbit" name="osp_2.10" conf="compile" rev="1.41.1" rev-constraint-default="1.41.1" rev-constraint-dynamic="1.41.1" callerrev="0.3.0"/>
+				<caller organisation="pl.brosbit" name="osp_2.10" conf="compile" rev="1.41.1" rev-constraint-default="1.41.1" rev-constraint-dynamic="1.41.1" callerrev="0.3.1"/>
 				<artifacts>
 					<artifact name="gdata-client-meta-1.0" type="jar" ext="jar" status="no" details="" size="1419" time="0" location="/home/ms/.ivy2/cache/com.google.gdata/gdata-client-meta-1.0/jars/gdata-client-meta-1.0-1.41.1.jar">
 						<origin-location is-local="false" location="http://mandubian-mvn.googlecode.com/svn/trunk/mandubian-mvn/repository/com/google/gdata/gdata-client-meta-1.0/1.41.1/gdata-client-meta-1.0-1.41.1.jar"/>
@@ -35,7 +35,7 @@
 			<revision name="1.41.1" status="release" pubdate="20100610172118" resolver="Google GData" artresolver="Google GData" homepage="http://code.google.com/p/gdata-java-client/" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="35">
 				<license name="Apache 2" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
 				<metadata-artifact status="no" details="" size="2795" time="0" location="/home/ms/.ivy2/cache/com.google.gdata/gdata-photos-2.0/ivy-1.41.1.xml" searched="false" origin-is-local="false" origin-location="http://mandubian-mvn.googlecode.com/svn/trunk/mandubian-mvn/repository/com/google/gdata/gdata-photos-2.0/1.41.1/gdata-photos-2.0-1.41.1.pom"/>
-				<caller organisation="pl.brosbit" name="osp_2.10" conf="compile" rev="1.41.1" rev-constraint-default="1.41.1" rev-constraint-dynamic="1.41.1" callerrev="0.3.0"/>
+				<caller organisation="pl.brosbit" name="osp_2.10" conf="compile" rev="1.41.1" rev-constraint-default="1.41.1" rev-constraint-dynamic="1.41.1" callerrev="0.3.1"/>
 				<artifacts>
 					<artifact name="gdata-photos-2.0" type="jar" ext="jar" status="no" details="" size="139742" time="0" location="/home/ms/.ivy2/cache/com.google.gdata/gdata-photos-2.0/jars/gdata-photos-2.0-1.41.1.jar">
 						<origin-location is-local="false" location="http://mandubian-mvn.googlecode.com/svn/trunk/mandubian-mvn/repository/com/google/gdata/gdata-photos-2.0/1.41.1/gdata-photos-2.0-1.41.1.jar"/>
@@ -47,7 +47,7 @@
 			<revision name="1.41.1" status="release" pubdate="20100610172118" resolver="Google GData" artresolver="Google GData" homepage="http://code.google.com/p/gdata-java-client/" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="32">
 				<license name="Apache 2" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
 				<metadata-artifact status="no" details="" size="3090" time="0" location="/home/ms/.ivy2/cache/com.google.gdata/gdata-base-1.0/ivy-1.41.1.xml" searched="false" origin-is-local="false" origin-location="http://mandubian-mvn.googlecode.com/svn/trunk/mandubian-mvn/repository/com/google/gdata/gdata-base-1.0/1.41.1/gdata-base-1.0-1.41.1.pom"/>
-				<caller organisation="pl.brosbit" name="osp_2.10" conf="compile" rev="1.41.1" rev-constraint-default="1.41.1" rev-constraint-dynamic="1.41.1" callerrev="0.3.0"/>
+				<caller organisation="pl.brosbit" name="osp_2.10" conf="compile" rev="1.41.1" rev-constraint-default="1.41.1" rev-constraint-dynamic="1.41.1" callerrev="0.3.1"/>
 				<artifacts>
 					<artifact name="gdata-base-1.0" type="jar" ext="jar" status="no" details="" size="79087" time="0" location="/home/ms/.ivy2/cache/com.google.gdata/gdata-base-1.0/jars/gdata-base-1.0-1.41.1.jar">
 						<origin-location is-local="false" location="http://mandubian-mvn.googlecode.com/svn/trunk/mandubian-mvn/repository/com/google/gdata/gdata-base-1.0/1.41.1/gdata-base-1.0-1.41.1.jar"/>
@@ -61,7 +61,7 @@
 				<metadata-artifact status="no" details="" size="2647" time="0" location="/home/ms/.ivy2/cache/com.google.gdata/gdata-media-1.0/ivy-1.41.1.xml" searched="false" origin-is-local="false" origin-location="http://mandubian-mvn.googlecode.com/svn/trunk/mandubian-mvn/repository/com/google/gdata/gdata-media-1.0/1.41.1/gdata-media-1.0-1.41.1.pom"/>
 				<caller organisation="com.google.gdata" name="gdata-photos-2.0" conf="default, compile, runtime, master" rev="1.41.1" rev-constraint-default="1.41.1" rev-constraint-dynamic="1.41.1" callerrev="1.41.1"/>
 				<caller organisation="com.google.gdata" name="gdata-base-1.0" conf="default, compile, runtime, master" rev="1.41.1" rev-constraint-default="1.41.1" rev-constraint-dynamic="1.41.1" callerrev="1.41.1"/>
-				<caller organisation="pl.brosbit" name="osp_2.10" conf="compile" rev="1.41.1" rev-constraint-default="1.41.1" rev-constraint-dynamic="1.41.1" callerrev="0.3.0"/>
+				<caller organisation="pl.brosbit" name="osp_2.10" conf="compile" rev="1.41.1" rev-constraint-default="1.41.1" rev-constraint-dynamic="1.41.1" callerrev="0.3.1"/>
 				<artifacts>
 					<artifact name="gdata-media-1.0" type="jar" ext="jar" status="no" details="" size="68780" time="0" location="/home/ms/.ivy2/cache/com.google.gdata/gdata-media-1.0/jars/gdata-media-1.0-1.41.1.jar">
 						<origin-location is-local="false" location="http://mandubian-mvn.googlecode.com/svn/trunk/mandubian-mvn/repository/com/google/gdata/gdata-media-1.0/1.41.1/gdata-media-1.0-1.41.1.jar"/>
@@ -74,7 +74,7 @@
 				<license name="Apache 2" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
 				<metadata-artifact status="no" details="" size="2650" time="0" location="/home/ms/.ivy2/cache/com.google.gdata/gdata-client-1.0/ivy-1.41.1.xml" searched="false" origin-is-local="false" origin-location="http://mandubian-mvn.googlecode.com/svn/trunk/mandubian-mvn/repository/com/google/gdata/gdata-client-1.0/1.41.1/gdata-client-1.0-1.41.1.pom"/>
 				<caller organisation="com.google.gdata" name="gdata-base-1.0" conf="default, compile, runtime, master" rev="1.41.1" rev-constraint-default="1.41.1" rev-constraint-dynamic="1.41.1" callerrev="1.41.1"/>
-				<caller organisation="pl.brosbit" name="osp_2.10" conf="compile" rev="1.41.1" rev-constraint-default="1.41.1" rev-constraint-dynamic="1.41.1" callerrev="0.3.0"/>
+				<caller organisation="pl.brosbit" name="osp_2.10" conf="compile" rev="1.41.1" rev-constraint-default="1.41.1" rev-constraint-dynamic="1.41.1" callerrev="0.3.1"/>
 				<artifacts>
 					<artifact name="gdata-client-1.0" type="jar" ext="jar" status="no" details="" size="127036" time="0" location="/home/ms/.ivy2/cache/com.google.gdata/gdata-client-1.0/jars/gdata-client-1.0-1.41.1.jar">
 						<origin-location is-local="false" location="http://mandubian-mvn.googlecode.com/svn/trunk/mandubian-mvn/repository/com/google/gdata/gdata-client-1.0/1.41.1/gdata-client-1.0-1.41.1.jar"/>
@@ -88,9 +88,9 @@
 				<metadata-artifact status="no" details="" size="2798" time="0" location="/home/ms/.ivy2/cache/com.google.gdata/gdata-core-1.0/ivy-1.41.1.xml" searched="false" origin-is-local="false" origin-location="http://mandubian-mvn.googlecode.com/svn/trunk/mandubian-mvn/repository/com/google/gdata/gdata-core-1.0/1.41.1/gdata-core-1.0-1.41.1.pom"/>
 				<caller organisation="com.google.gdata" name="gdata-photos-2.0" conf="default, compile, runtime, master" rev="1.41.1" rev-constraint-default="1.41.1" rev-constraint-dynamic="1.41.1" callerrev="1.41.1"/>
 				<caller organisation="com.google.gdata" name="gdata-base-1.0" conf="default, compile, runtime, master" rev="1.41.1" rev-constraint-default="1.41.1" rev-constraint-dynamic="1.41.1" callerrev="1.41.1"/>
+				<caller organisation="pl.brosbit" name="osp_2.10" conf="compile" rev="1.41.1" rev-constraint-default="1.41.1" rev-constraint-dynamic="1.41.1" callerrev="0.3.1"/>
 				<caller organisation="com.google.gdata" name="gdata-media-1.0" conf="default, compile, runtime, master" rev="1.41.1" rev-constraint-default="1.41.1" rev-constraint-dynamic="1.41.1" callerrev="1.41.1"/>
 				<caller organisation="com.google.gdata" name="gdata-client-1.0" conf="default, compile, runtime, master" rev="1.41.1" rev-constraint-default="1.41.1" rev-constraint-dynamic="1.41.1" callerrev="1.41.1"/>
-				<caller organisation="pl.brosbit" name="osp_2.10" conf="compile" rev="1.41.1" rev-constraint-default="1.41.1" rev-constraint-dynamic="1.41.1" callerrev="0.3.0"/>
 				<artifacts>
 					<artifact name="gdata-core-1.0" type="jar" ext="jar" status="no" details="" size="1038594" time="0" location="/home/ms/.ivy2/cache/com.google.gdata/gdata-core-1.0/jars/gdata-core-1.0-1.41.1.jar">
 						<origin-location is-local="false" location="http://mandubian-mvn.googlecode.com/svn/trunk/mandubian-mvn/repository/com/google/gdata/gdata-core-1.0/1.41.1/gdata-core-1.0-1.41.1.jar"/>
@@ -127,7 +127,7 @@
 			<revision name="9.1-901.jdbc4" status="release" pubdate="20111123205802" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://jdbc.postgresql.org" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="28">
 				<license name="BSD License" url="http://jdbc.postgresql.org/license.html"/>
 				<metadata-artifact status="no" details="" size="2349" time="0" location="/home/ms/.ivy2/cache/postgresql/postgresql/ivy-9.1-901.jdbc4.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/postgresql/postgresql/9.1-901.jdbc4/postgresql-9.1-901.jdbc4.pom"/>
-				<caller organisation="pl.brosbit" name="osp_2.10" conf="compile" rev="9.1-901.jdbc4" rev-constraint-default="9.1-901.jdbc4" rev-constraint-dynamic="9.1-901.jdbc4" callerrev="0.3.0"/>
+				<caller organisation="pl.brosbit" name="osp_2.10" conf="compile" rev="9.1-901.jdbc4" rev-constraint-default="9.1-901.jdbc4" rev-constraint-dynamic="9.1-901.jdbc4" callerrev="0.3.1"/>
 				<artifacts>
 					<artifact name="postgresql" type="jar" ext="jar" status="no" details="" size="539705" time="0" location="/home/ms/.ivy2/cache/postgresql/postgresql/jars/postgresql-9.1-901.jdbc4.jar">
 						<origin-location is-local="false" location="http://repo1.maven.org/maven2/postgresql/postgresql/9.1-901.jdbc4/postgresql-9.1-901.jdbc4.jar"/>
@@ -139,7 +139,7 @@
 			<revision name="2.5.1" status="release" pubdate="20130626040519" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.liftweb.net" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="25">
 				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
 				<metadata-artifact status="no" details="" size="3188" time="0" location="/home/ms/.ivy2/cache/net.liftweb/lift-mongodb_2.10/ivy-2.5.1.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/net/liftweb/lift-mongodb_2.10/2.5.1/lift-mongodb_2.10-2.5.1.pom"/>
-				<caller organisation="pl.brosbit" name="osp_2.10" conf="compile" rev="2.5.1" rev-constraint-default="2.5.1" rev-constraint-dynamic="2.5.1" callerrev="0.3.0"/>
+				<caller organisation="pl.brosbit" name="osp_2.10" conf="compile" rev="2.5.1" rev-constraint-default="2.5.1" rev-constraint-dynamic="2.5.1" callerrev="0.3.1"/>
 				<artifacts>
 					<artifact name="lift-mongodb_2.10" type="jar" ext="jar" status="no" details="" size="152436" time="0" location="/home/ms/.ivy2/cache/net.liftweb/lift-mongodb_2.10/jars/lift-mongodb_2.10-2.5.1.jar">
 						<origin-location is-local="false" location="http://repo1.maven.org/maven2/net/liftweb/lift-mongodb_2.10/2.5.1/lift-mongodb_2.10-2.5.1.jar"/>
@@ -176,7 +176,7 @@
 				<license name="Eclipse Public License - v 1.0" url="http://www.eclipse.org/legal/epl-v10.html"/>
 				<license name="GNU Lesser General Public License" url="http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html"/>
 				<metadata-artifact status="no" details="" size="10137" time="0" location="/home/ms/.ivy2/cache/ch.qos.logback/logback-classic/ivy-1.0.6.xml" searched="false" origin-is-local="false" origin-location="http://oss.sonatype.org/content/repositories/staging/ch/qos/logback/logback-classic/1.0.6/logback-classic-1.0.6.pom"/>
-				<caller organisation="pl.brosbit" name="osp_2.10" conf="compile" rev="1.0.6" rev-constraint-default="1.0.6" rev-constraint-dynamic="1.0.6" callerrev="0.3.0"/>
+				<caller organisation="pl.brosbit" name="osp_2.10" conf="compile" rev="1.0.6" rev-constraint-default="1.0.6" rev-constraint-dynamic="1.0.6" callerrev="0.3.1"/>
 				<artifacts>
 					<artifact name="logback-classic" type="jar" ext="jar" status="no" details="" size="251784" time="0" location="/home/ms/.ivy2/cache/ch.qos.logback/logback-classic/jars/logback-classic-1.0.6.jar">
 						<origin-location is-local="false" location="http://oss.sonatype.org/content/repositories/staging/ch/qos/logback/logback-classic/1.0.6/logback-classic-1.0.6.jar"/>
@@ -201,7 +201,7 @@
 			<revision name="2.3" status="release" pubdate="20130406122522" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/karma4u101/lift-jquery-module" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="22">
 				<license name="The Apache Software License, Version 2.0" url="http://maven.apache.org/ref/2.1.0/maven-profile/license.html"/>
 				<metadata-artifact status="no" details="" size="3418" time="0" location="/home/ms/.ivy2/cache/net.liftmodules/lift-jquery-module_2.5_2.10/ivy-2.3.xml" searched="false" origin-is-local="false" origin-location="http://oss.sonatype.org/content/repositories/staging/net/liftmodules/lift-jquery-module_2.5_2.10/2.3/lift-jquery-module_2.5_2.10-2.3.pom"/>
-				<caller organisation="pl.brosbit" name="osp_2.10" conf="compile" rev="2.3" rev-constraint-default="2.3" rev-constraint-dynamic="2.3" callerrev="0.3.0"/>
+				<caller organisation="pl.brosbit" name="osp_2.10" conf="compile" rev="2.3" rev-constraint-default="2.3" rev-constraint-dynamic="2.3" callerrev="0.3.1"/>
 				<artifacts>
 					<artifact name="lift-jquery-module_2.5_2.10" type="jar" ext="jar" status="no" details="" size="461728" time="0" location="/home/ms/.ivy2/cache/net.liftmodules/lift-jquery-module_2.5_2.10/jars/lift-jquery-module_2.5_2.10-2.3.jar">
 						<origin-location is-local="false" location="http://oss.sonatype.org/content/repositories/staging/net/liftmodules/lift-jquery-module_2.5_2.10/2.3/lift-jquery-module_2.5_2.10-2.3.jar"/>
@@ -213,7 +213,7 @@
 			<revision name="2.5.1" status="release" pubdate="20130626040827" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.liftweb.net" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="19">
 				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
 				<metadata-artifact status="no" details="" size="3263" time="0" location="/home/ms/.ivy2/cache/net.liftweb/lift-mapper_2.10/ivy-2.5.1.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/net/liftweb/lift-mapper_2.10/2.5.1/lift-mapper_2.10-2.5.1.pom"/>
-				<caller organisation="pl.brosbit" name="osp_2.10" conf="compile" rev="2.5.1" rev-constraint-default="2.5.1" rev-constraint-dynamic="2.5.1" callerrev="0.3.0"/>
+				<caller organisation="pl.brosbit" name="osp_2.10" conf="compile" rev="2.5.1" rev-constraint-default="2.5.1" rev-constraint-dynamic="2.5.1" callerrev="0.3.1"/>
 				<artifacts>
 					<artifact name="lift-mapper_2.10" type="jar" ext="jar" status="no" details="" size="1438047" time="0" location="/home/ms/.ivy2/cache/net.liftweb/lift-mapper_2.10/jars/lift-mapper_2.10-2.5.1.jar">
 						<origin-location is-local="false" location="http://repo1.maven.org/maven2/net/liftweb/lift-mapper_2.10/2.5.1/lift-mapper_2.10-2.5.1.jar"/>
@@ -251,7 +251,7 @@
 				<metadata-artifact status="no" details="" size="3726" time="0" location="/home/ms/.ivy2/cache/net.liftweb/lift-webkit_2.10/ivy-2.5.1.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/net/liftweb/lift-webkit_2.10/2.5.1/lift-webkit_2.10-2.5.1.pom"/>
 				<caller organisation="net.liftweb" name="lift-proto_2.10" conf="compile, runtime" rev="2.5.1" rev-constraint-default="2.5.1" rev-constraint-dynamic="2.5.1" callerrev="2.5.1"/>
 				<caller organisation="net.liftweb" name="lift-db_2.10" conf="compile, runtime" rev="2.5.1" rev-constraint-default="2.5.1" rev-constraint-dynamic="2.5.1" callerrev="2.5.1"/>
-				<caller organisation="pl.brosbit" name="osp_2.10" conf="compile" rev="2.5.1" rev-constraint-default="2.5.1" rev-constraint-dynamic="2.5.1" callerrev="0.3.0"/>
+				<caller organisation="pl.brosbit" name="osp_2.10" conf="compile" rev="2.5.1" rev-constraint-default="2.5.1" rev-constraint-dynamic="2.5.1" callerrev="0.3.1"/>
 				<artifacts>
 					<artifact name="lift-webkit_2.10" type="jar" ext="jar" status="no" details="" size="5939349" time="0" location="/home/ms/.ivy2/cache/net.liftweb/lift-webkit_2.10/jars/lift-webkit_2.10-2.5.1.jar">
 						<origin-location is-local="false" location="http://repo1.maven.org/maven2/net/liftweb/lift-webkit_2.10/2.5.1/lift-webkit_2.10-2.5.1.jar"/>
@@ -484,12 +484,12 @@
 				<caller organisation="net.liftweb" name="lift-json_2.10" conf="compile, runtime" rev="2.10.0" rev-constraint-default="2.10.0" rev-constraint-dynamic="2.10.0" callerrev="2.5.1"/>
 				<caller organisation="net.liftweb" name="lift-json-ext_2.10" conf="compile, runtime" rev="2.10.0" rev-constraint-default="2.10.0" rev-constraint-dynamic="2.10.0" callerrev="2.5.1"/>
 				<caller organisation="net.liftweb" name="lift-util_2.10" conf="compile, runtime" rev="2.10.0" rev-constraint-default="2.10.0" rev-constraint-dynamic="2.10.0" callerrev="2.5.1"/>
-				<caller organisation="pl.brosbit" name="osp_2.10" conf="compile" rev="2.10.4" rev-constraint-default="2.10.4" rev-constraint-dynamic="2.10.4" callerrev="0.3.0"/>
 				<caller organisation="net.liftweb" name="lift-mongodb_2.10" conf="default, compile, runtime, master" rev="2.10.0" rev-constraint-default="2.10.0" rev-constraint-dynamic="2.10.0" callerrev="2.5.1"/>
 				<caller organisation="net.liftweb" name="lift-webkit_2.10" conf="default, compile, runtime, master" rev="2.10.0" rev-constraint-default="2.10.0" rev-constraint-dynamic="2.10.0" callerrev="2.5.1"/>
 				<caller organisation="org.scala-lang" name="scala-actors" conf="compile, runtime" rev="2.10.0" rev-constraint-default="2.10.0" rev-constraint-dynamic="2.10.0" callerrev="2.10.0"/>
 				<caller organisation="org.scala-lang" name="scala-reflect" conf="compile, runtime" rev="2.10.0" rev-constraint-default="2.10.0" rev-constraint-dynamic="2.10.0" callerrev="2.10.0"/>
 				<caller organisation="net.liftweb" name="lift-actor_2.10" conf="compile, runtime" rev="2.10.0" rev-constraint-default="2.10.0" rev-constraint-dynamic="2.10.0" callerrev="2.5.1"/>
+				<caller organisation="pl.brosbit" name="osp_2.10" conf="compile" rev="2.10.4" rev-constraint-default="2.10.4" rev-constraint-dynamic="2.10.4" callerrev="0.3.1"/>
 				<caller organisation="net.liftweb" name="lift-mapper_2.10" conf="default, compile, runtime, master" rev="2.10.0" rev-constraint-default="2.10.0" rev-constraint-dynamic="2.10.0" callerrev="2.5.1"/>
 				<caller organisation="org.scala-lang" name="scala-compiler" conf="compile, runtime" rev="2.10.0" rev-constraint-default="2.10.0" rev-constraint-dynamic="2.10.0" callerrev="2.10.0"/>
 				<caller organisation="net.liftmodules" name="lift-jquery-module_2.5_2.10" conf="default, compile, runtime, master" rev="2.10.0" rev-constraint-default="2.10.0" rev-constraint-dynamic="2.10.0" callerrev="2.3"/>
@@ -507,12 +507,12 @@
 				<caller organisation="net.liftweb" name="lift-json_2.10" conf="compile, runtime" rev="2.10.0" rev-constraint-default="2.10.0" rev-constraint-dynamic="2.10.0" callerrev="2.5.1"/>
 				<caller organisation="net.liftweb" name="lift-json-ext_2.10" conf="compile, runtime" rev="2.10.0" rev-constraint-default="2.10.0" rev-constraint-dynamic="2.10.0" callerrev="2.5.1"/>
 				<caller organisation="net.liftweb" name="lift-util_2.10" conf="compile, runtime" rev="2.10.0" rev-constraint-default="2.10.0" rev-constraint-dynamic="2.10.0" callerrev="2.5.1"/>
-				<caller organisation="pl.brosbit" name="osp_2.10" conf="compile" rev="2.10.4" rev-constraint-default="2.10.4" rev-constraint-dynamic="2.10.4" callerrev="0.3.0"/>
 				<caller organisation="net.liftweb" name="lift-mongodb_2.10" conf="default, compile, runtime, master" rev="2.10.0" rev-constraint-default="2.10.0" rev-constraint-dynamic="2.10.0" callerrev="2.5.1"/>
 				<caller organisation="net.liftweb" name="lift-webkit_2.10" conf="default, compile, runtime, master" rev="2.10.0" rev-constraint-default="2.10.0" rev-constraint-dynamic="2.10.0" callerrev="2.5.1"/>
 				<caller organisation="org.scala-lang" name="scala-actors" conf="compile, runtime" rev="2.10.0" rev-constraint-default="2.10.0" rev-constraint-dynamic="2.10.0" callerrev="2.10.0"/>
 				<caller organisation="org.scala-lang" name="scala-reflect" conf="compile, runtime" rev="2.10.0" rev-constraint-default="2.10.0" rev-constraint-dynamic="2.10.0" callerrev="2.10.0"/>
 				<caller organisation="net.liftweb" name="lift-actor_2.10" conf="compile, runtime" rev="2.10.0" rev-constraint-default="2.10.0" rev-constraint-dynamic="2.10.0" callerrev="2.5.1"/>
+				<caller organisation="pl.brosbit" name="osp_2.10" conf="compile" rev="2.10.4" rev-constraint-default="2.10.4" rev-constraint-dynamic="2.10.4" callerrev="0.3.1"/>
 				<caller organisation="net.liftweb" name="lift-mapper_2.10" conf="default, compile, runtime, master" rev="2.10.0" rev-constraint-default="2.10.0" rev-constraint-dynamic="2.10.0" callerrev="2.5.1"/>
 				<caller organisation="org.scala-lang" name="scala-compiler" conf="compile, runtime" rev="2.10.0" rev-constraint-default="2.10.0" rev-constraint-dynamic="2.10.0" callerrev="2.10.0"/>
 				<caller organisation="net.liftmodules" name="lift-jquery-module_2.5_2.10" conf="default, compile, runtime, master" rev="2.10.0" rev-constraint-default="2.10.0" rev-constraint-dynamic="2.10.0" callerrev="2.3"/>

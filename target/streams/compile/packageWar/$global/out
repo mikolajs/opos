@@ -1,5 +1,21 @@
 [0m[[0mdebug[0m] [0m Copying the contents of directory /home/ms/Programy/osp/target/scala-2.10/classes to /home/ms/Programy/osp/target/webapp/WEB-INF/classes[0m
-[0m[[0minfo[0m] [0mPackaging /home/ms/Programy/osp/target/scala-2.10/osp_2.10-0.3.0.war ...[0m
+[0m[[0mdebug[0m] [0mPruning file /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$showDepartments$1$$anonfun$apply$9$$anonfun$apply$12.class[0m
+[0m[[0mdebug[0m] [0mPruning file /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$editLesson$6$$anonfun$apply$7.class[0m
+[0m[[0mdebug[0m] [0mPruning file /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$5$$anonfun$apply$2.class[0m
+[0m[[0mdebug[0m] [0mPruning file /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$editLesson$8$$anonfun$apply$9.class[0m
+[0m[[0mdebug[0m] [0mPruning file /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$editLesson$7$$anonfun$apply$8.class[0m
+[0m[[0mdebug[0m] [0mPruning file /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/ShowCourseSn$$anonfun$addLesson$3$$anonfun$apply$1.class[0m
+[0m[[0mdebug[0m] [0mPruning file /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$editLesson$2$$anonfun$apply$3.class[0m
+[0m[[0mdebug[0m] [0mPruning file /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$showDepartments$1$$anonfun$apply$9.class[0m
+[0m[[0mdebug[0m] [0mPruning file /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$showDepartments$1$$anonfun$apply$9$$anonfun$apply$11.class[0m
+[0m[[0mdebug[0m] [0mPruning file /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$editLesson$5$$anonfun$apply$6.class[0m
+[0m[[0mdebug[0m] [0mPruning file /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$showDepartments$1$$anonfun$apply$9$$anonfun$apply$12$$anonfun$apply$13$$anonfun$apply$14.class[0m
+[0m[[0mdebug[0m] [0mPruning file /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$editLesson$4$$anonfun$apply$5.class[0m
+[0m[[0mdebug[0m] [0mPruning file /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$ajaxText$1$$anonfun$apply$10.class[0m
+[0m[[0mdebug[0m] [0mPruning file /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$editLesson$3$$anonfun$apply$4.class[0m
+[0m[[0mdebug[0m] [0mPruning file /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$showDepartments$1$$anonfun$apply$9$$anonfun$apply$10.class[0m
+[0m[[0mdebug[0m] [0mPruning file /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$showDepartments$1$$anonfun$apply$9$$anonfun$apply$12$$anonfun$apply$13.class[0m
+[0m[[0minfo[0m] [0mPackaging /home/ms/Programy/osp/target/scala-2.10/osp_2.10-0.3.1.war ...[0m
 [0m[[0mdebug[0m] [0mInput file mappings:[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/secretariat/SubjectSn$$anonfun$10$$anonfun$apply$11.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/secretariat/SubjectSn$$anonfun$10$$anonfun$apply$11.class[0m
@@ -33,6 +49,8 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/EditDocumentSn$$anonfun$3.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/ShowCourseSn$$anonfun$16.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/ShowCourseSn$$anonfun$16.class[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$showDepartments$1$$anonfun$apply$16.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$showDepartments$1$$anonfun$apply$16.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/page/Test.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/page/Test.class[0m
 [0m[[0mdebug[0m] [0m	jqueryui/images/ui-bg_glass_55_fbf9ee_1x400.png[0m
@@ -177,8 +195,6 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/CoursesSn$$anonfun$add$7.class[0m
 [0m[[0mdebug[0m] [0m	ckeditor/plugins/specialchar/dialogs/lang/es.js[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/ckeditor/plugins/specialchar/dialogs/lang/es.js[0m
-[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$showDepartments$1$$anonfun$apply$9$$anonfun$apply$10.class[0m
-[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$showDepartments$1$$anonfun$apply$9$$anonfun$apply$10.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/page/ArticleEditSn$$anonfun$editPage$2$$anonfun$apply$5.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/page/ArticleEditSn$$anonfun$editPage$2$$anonfun$apply$5.class[0m
 [0m[[0mdebug[0m] [0m	ckeditor/plugins/templates/dialogs/templates.css[0m
@@ -311,14 +327,10 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/secretariat/AddTeacherSn$$anonfun$teacherList$1$$anonfun$apply$1$$anonfun$apply$5.class[0m
 [0m[[0mdebug[0m] [0m	educontent/quizes.html[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/educontent/quizes.html[0m
-[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/VideoSn$$anonfun$add$9$$anonfun$apply$1.class[0m
-[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/VideoSn$$anonfun$add$9$$anonfun$apply$1.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/register/PlanSn$$anonfun$saveData$1.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/register/PlanSn$$anonfun$saveData$1.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/view/CoursesSn$$anonfun$showMyCourses$1$$anonfun$apply$1$$anonfun$apply$2.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/view/CoursesSn$$anonfun$showMyCourses$1$$anonfun$apply$1$$anonfun$apply$2.class[0m
-[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$ajaxText$1$$anonfun$apply$10.class[0m
-[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$ajaxText$1$$anonfun$apply$10.class[0m
 [0m[[0mdebug[0m] [0m	jquery/jquery.js[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/jquery/jquery.js[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/model/doc/CreateTemplateSn$$anonfun$edit$1.class[0m
@@ -397,8 +409,6 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/editthread.html[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/bootstrap/liftweb/Boot$$anonfun$10.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/bootstrap/liftweb/Boot$$anonfun$10.class[0m
-[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/VideoReaderSn$$anonfun$indexed$1$$anonfun$apply$2.class[0m
-[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/VideoReaderSn$$anonfun$indexed$1$$anonfun$apply$2.class[0m
 [0m[[0mdebug[0m] [0m	deckjs[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/deckjs[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/model/UserChangeList$lastName$.class[0m
@@ -469,8 +479,6 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/style/images/acrobat.png[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/bootstrap/liftweb/Boot$$anonfun$12.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/bootstrap/liftweb/Boot$$anonfun$12.class[0m
-[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/ShowCourseSn$$anonfun$addLesson$3$$anonfun$apply$1.class[0m
-[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/ShowCourseSn$$anonfun$addLesson$3$$anonfun$apply$1.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/ShowSlideSn$$anonfun$slideData$2.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/ShowSlideSn$$anonfun$slideData$2.class[0m
 [0m[[0mdebug[0m] [0m	ckeditor/plugins/a11yhelp/dialogs/lang/hr.js[0m
@@ -507,6 +515,8 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/style/images/overlay.png[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/ShowSlideSn$$anonfun$2.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/ShowSlideSn$$anonfun$2.class[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/VideoReaderSn$$anonfun$add$1$$anonfun$apply$7.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/VideoReaderSn$$anonfun$add$1$$anonfun$apply$7.class[0m
 [0m[[0mdebug[0m] [0m	ckeditor/plugins/smiley/images/tongue_smile.png[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/ckeditor/plugins/smiley/images/tongue_smile.png[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/EditQuestSn$$anonfun$1.class[0m
@@ -537,6 +547,8 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/secretariat/ClassSn$$anonfun$3.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/ShowQuizSn$$anonfun$4.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/ShowQuizSn$$anonfun$4.class[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/VideoReaderSn$$anonfun$add$1$$anonfun$apply$6.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/VideoReaderSn$$anonfun$add$1$$anonfun$apply$6.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/register/PupilDataSn$$anonfun$dataTable$1$$anonfun$apply$1$$anonfun$apply$12.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/register/PupilDataSn$$anonfun$dataTable$1$$anonfun$apply$1$$anonfun$apply$12.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/bootstrap/liftweb/Boot$$anonfun$5.class[0m
@@ -553,6 +565,8 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/ckeditor/plugins/specialchar/dialogs/lang[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/EditQuizSn$$anonfun$9.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/EditQuizSn$$anonfun$9.class[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$11.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$11.class[0m
 [0m[[0mdebug[0m] [0m	style/images/arrow-next-mini.png[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/style/images/arrow-next-mini.png[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/model/doc/ThemesPlanSn$$anonfun$11.class[0m
@@ -639,6 +653,8 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/ckeditor/plugins/a11yhelp/dialogs/lang/ar.js[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/model/doc/ExtraLessonsSn$$anonfun$saveAjaxDate$2$$anonfun$apply$13.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/model/doc/ExtraLessonsSn$$anonfun$saveAjaxDate$2$$anonfun$apply$13.class[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/VideoReaderSn$$anonfun$5$$anonfun$apply$5.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/VideoReaderSn$$anonfun$5$$anonfun$apply$5.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/lib/TestData$$anonfun$createNewses$1$$anonfun$apply$mcVI$sp$2.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/lib/TestData$$anonfun$createNewses$1$$anonfun$apply$mcVI$sp$2.class[0m
 [0m[[0mdebug[0m] [0m	jqueryui/jquery-ui.min-b.js[0m
@@ -715,12 +731,12 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/admin/AdminMailsSn$$anonfun$addMailConfig$2$$anonfun$apply$9.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/view/ShowCourseSn$$anonfun$4.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/view/ShowCourseSn$$anonfun$4.class[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$editLesson$6$$anonfun$apply$8.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$editLesson$6$$anonfun$apply$8.class[0m
 [0m[[0mdebug[0m] [0m	deckjs/themes/style/swiss_ckeditor.css[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/deckjs/themes/style/swiss_ckeditor.css[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/admin/AdminExportPageSn$$anonfun$createPageContentForPlan$1.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/admin/AdminExportPageSn$$anonfun$createPageContentForPlan$1.class[0m
-[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$editLesson$4$$anonfun$apply$5.class[0m
-[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$editLesson$4$$anonfun$apply$5.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/secretariat/SubjectSn$$anonfun$2.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/secretariat/SubjectSn$$anonfun$2.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/register/MarksSn$$anonfun$pl$brosbit$snippet$register$MarksSn$$save$1$2.class[0m
@@ -743,8 +759,6 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/ckeditor/plugins/addThumb/plugin.js[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/correct$$anonfun$$init$$1.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/correct$$anonfun$$init$$1.class[0m
-[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/VideoReaderSn$$anonfun$add$3$$anonfun$apply$1.class[0m
-[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/VideoReaderSn$$anonfun$add$3$$anonfun$apply$1.class[0m
 [0m[[0mdebug[0m] [0m	style/prevlabel.gif[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/style/prevlabel.gif[0m
 [0m[[0mdebug[0m] [0m	ckeditor/plugins/youTube/plugin.js[0m
@@ -763,8 +777,6 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/CoursesSn$$anonfun$add$5.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/model/edu/LessonCourse$.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/model/edu/LessonCourse$.class[0m
-[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$5$$anonfun$apply$2.class[0m
-[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$5$$anonfun$apply$2.class[0m
 [0m[[0mdebug[0m] [0m	ckeditor/plugins/table/dialogs[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/ckeditor/plugins/table/dialogs[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/BaseResourceSn$$anonfun$1.class[0m
@@ -785,6 +797,10 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/page/ArticleEditSn.class[0m
 [0m[[0mdebug[0m] [0m	secretariat/bells.html[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/secretariat/bells.html[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$10.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$10.class[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$15.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$15.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/secretariat/AddTeacherSn$$anonfun$teacherList$1$$anonfun$apply$1$$anonfun$apply$6.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/secretariat/AddTeacherSn$$anonfun$teacherList$1$$anonfun$apply$1$$anonfun$apply$6.class[0m
 [0m[[0mdebug[0m] [0m	jqueryui/images/ui-bg_glass_75_ffffff_1x400.png[0m
@@ -875,8 +891,10 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/CoursesSn$$anonfun$4.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$deleteDepartment$2.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$deleteDepartment$2.class[0m
-[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$editLesson$5$$anonfun$apply$6.class[0m
-[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$editLesson$5$$anonfun$apply$6.class[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/VideoReaderSn$$anonfun$pl$brosbit$snippet$edu$VideoReaderSn$$copy$1$1$$anonfun$apply$2.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/VideoReaderSn$$anonfun$pl$brosbit$snippet$edu$VideoReaderSn$$copy$1$1$$anonfun$apply$2.class[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$3$$anonfun$apply$3.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$3$$anonfun$apply$3.class[0m
 [0m[[0mdebug[0m] [0m	deckjs/themes/transition/fade.scss[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/deckjs/themes/transition/fade.scss[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/secretariat/AddTeacherSn$$anonfun$6$$anonfun$apply$12.class[0m
@@ -911,8 +929,6 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/ckeditor/plugins/smiley/images/confused_smile.png[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/model/doc/DocTemplateSn$$anonfun$pl$brosbit$model$doc$DocTemplateSn$$save$1$2.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/model/doc/DocTemplateSn$$anonfun$pl$brosbit$model$doc$DocTemplateSn$$save$1$2.class[0m
-[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/VideoReaderSn$$anonfun$add$2$$anonfun$apply$5.class[0m
-[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/VideoReaderSn$$anonfun$add$2$$anonfun$apply$5.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet[0m
 [0m[[0mdebug[0m] [0m	ckeditor/plugins/specialchar/dialogs/lang/_translationstatus.txt[0m
@@ -1107,6 +1123,8 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/admin/AdminEditAdminsSn$$anonfun$editAdmin$3.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/ShowCourseSn$$anonfun$15$$anonfun$apply$4.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/ShowCourseSn$$anonfun$15$$anonfun$apply$4.class[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$9.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$9.class[0m
 [0m[[0mdebug[0m] [0m	style/images/left_line.gif[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/style/images/left_line.gif[0m
 [0m[[0mdebug[0m] [0m	ckeditor/plugins/smiley/images/envelope.png[0m
@@ -1117,6 +1135,8 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/model/User$address$.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/model/page/Gallery.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/model/page/Gallery.class[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/VideoSn$$anonfun$add$8$$anonfun$apply$1.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/VideoSn$$anonfun$add$8$$anonfun$apply$1.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/model/DocTemplateContent$.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/model/DocTemplateContent$.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/ShowQuizSn$$anonfun$2.class[0m
@@ -1213,6 +1233,8 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson.class[0m
 [0m[[0mdebug[0m] [0m	ckeditor/skins/moono/editor_ie.css[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/ckeditor/skins/moono/editor_ie.css[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$8.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$8.class[0m
 [0m[[0mdebug[0m] [0m	ckeditor/plugins/magicline/images/icon.png[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/ckeditor/plugins/magicline/images/icon.png[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/EditQuestSn$$anonfun$choiseQuest$3$$anonfun$apply$1.class[0m
@@ -1353,6 +1375,8 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/ckeditor/plugins/a11yhelp/dialogs/lang/no.js[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/register/MarksSn$$anonfun$pl$brosbit$snippet$register$MarksSn$$save$1$4$$anonfun$apply$6$$anonfun$apply$7.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/register/MarksSn$$anonfun$pl$brosbit$snippet$register$MarksSn$$save$1$4$$anonfun$apply$6$$anonfun$apply$7.class[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/VideoReaderSn$$anonfun$pl$brosbit$snippet$edu$VideoReaderSn$$copy$1$2.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/VideoReaderSn$$anonfun$pl$brosbit$snippet$edu$VideoReaderSn$$copy$1$2.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/page/Test$$anonfun$test2$1.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/page/Test$$anonfun$test2$1.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/model/page/MainPageNewInfo.class[0m
@@ -1413,6 +1437,8 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/syntaxhighlighter/page_white_code.png[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/page/ForumPostSn$$anonfun$showThread$4$$anonfun$apply$2$$anonfun$apply$4.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/page/ForumPostSn$$anonfun$showThread$4$$anonfun$apply$2$$anonfun$apply$4.class[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$7.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$7.class[0m
 [0m[[0mdebug[0m] [0m	style/course.css[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/style/course.css[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/EditSlideSn$$anonfun$formEdit$6.class[0m
@@ -1439,6 +1465,8 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/ckeditor/plugins/showblocks/images/block_pre.png[0m
 [0m[[0mdebug[0m] [0m	ckeditor/plugins/specialchar/dialogs/lang/id.js[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/ckeditor/plugins/specialchar/dialogs/lang/id.js[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$17.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$17.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/lib/DataTableOption$SortingOption$$anonfun$7.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/lib/DataTableOption$SortingOption$$anonfun$7.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/page/ArticleEditSn$$anonfun$2.class[0m
@@ -1563,6 +1591,8 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/FileResourceSn$$anonfun$add$4$$anonfun$apply$7.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/secretariat/AddTeacherSn.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/secretariat/AddTeacherSn.class[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$editLesson$8$$anonfun$apply$10.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$editLesson$8$$anonfun$apply$10.class[0m
 [0m[[0mdebug[0m] [0m	bootstrap/css/bootstrap-theme.min.css[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/bootstrap/css/bootstrap-theme.min.css[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/register/ParentDataSn$$anonfun$13$$anonfun$apply$24.class[0m
@@ -1677,6 +1707,8 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/view/ShowCourseSn$$anonfun$12.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/model/doc/CreateTemplateSn$$anonfun$edit$4$$anonfun$apply$7.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/model/doc/CreateTemplateSn$$anonfun$edit$4$$anonfun$apply$7.class[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$10.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$10.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/model/edu/SlideContent$.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/model/edu/SlideContent$.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/VideoReaderSn$$anonfun$getUserNames$1.class[0m
@@ -1793,10 +1825,14 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/ckeditor/plugins/a11yhelp/dialogs/lang/mn.js[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/register/MarksSn$$anonfun$9$$anonfun$apply$15.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/register/MarksSn$$anonfun$9$$anonfun$apply$15.class[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$pl$brosbit$snippet$edu$OptionsSn$$redirect$1$2.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$pl$brosbit$snippet$edu$OptionsSn$$redirect$1$2.class[0m
 [0m[[0mdebug[0m] [0m	style/jcarousel/prev-vertical.png[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/style/jcarousel/prev-vertical.png[0m
 [0m[[0mdebug[0m] [0m	deckjs/themes/transition/horizontal-slide.scss[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/deckjs/themes/transition/horizontal-slide.scss[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$12$$anonfun$apply$10.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$12$$anonfun$apply$10.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/page/MainSn$$anonfun$pageContent$2.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/page/MainSn$$anonfun$pageContent$2.class[0m
 [0m[[0mdebug[0m] [0m	ckeditor/plugins/a11yhelp/dialogs/lang/he.js[0m
@@ -1823,6 +1859,8 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/ckeditor/plugins/formula[0m
 [0m[[0mdebug[0m] [0m	ckeditor/plugins/iframe/dialogs/iframe.js[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/ckeditor/plugins/iframe/dialogs/iframe.js[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/VideoReaderSn$$anonfun$pl$brosbit$snippet$edu$VideoReaderSn$$copy$1$1.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/VideoReaderSn$$anonfun$pl$brosbit$snippet$edu$VideoReaderSn$$copy$1$1.class[0m
 [0m[[0mdebug[0m] [0m	style/images/nextico.png[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/style/images/nextico.png[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/lib/DataTableOption$DisplayLengthOption$.class[0m
@@ -1851,6 +1889,8 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/CoursesSn$$anonfun$add$4$$anonfun$apply$17.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/model/MarkMap$.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/model/MarkMap$.class[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/VideoReaderSn$$anonfun$toASCIICharAndLower$1.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/VideoReaderSn$$anonfun$toASCIICharAndLower$1.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/questNow$$anonfun$$init$$2.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/questNow$$anonfun$$init$$2.class[0m
 [0m[[0mdebug[0m] [0m	ckeditor/lang/en-gb.js[0m
@@ -1865,8 +1905,6 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/deckjs/themes/style/neon.scss[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/ShowCourseSn$$anonfun$4.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/ShowCourseSn$$anonfun$4.class[0m
-[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/VideoSn$$anonfun$add$9.class[0m
-[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/VideoSn$$anonfun$add$9.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/model/edu/QuizQuestion.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/model/edu/QuizQuestion.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/register/ParentDataSn$$anonfun$9.class[0m
@@ -1923,6 +1961,8 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/ckeditor/plugins/flash/images/placeholder.png[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/ShowCourseSn$$anonfun$12.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/ShowCourseSn$$anonfun$12.class[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/ShowCourseSn$$anonfun$26.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/ShowCourseSn$$anonfun$26.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/secretariat/AddTeacherSn$$anonfun$teacherList$1$$anonfun$apply$1$$anonfun$apply$2.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/secretariat/AddTeacherSn$$anonfun$teacherList$1$$anonfun$apply$1$$anonfun$apply$2.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/SlidesSn$$anonfun$slidesList$1$$anonfun$apply$1.class[0m
@@ -2025,6 +2065,8 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/EditHeadWordSn.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/model/page/MainPageLinks.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/model/page/MainPageLinks.class[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/view[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/view[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/admin/AdminDepartmentsSn$$anonfun$addDepartment$2.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/admin/AdminDepartmentsSn$$anonfun$addDepartment$2.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/view/ShowCourseSn$$anonfun$9.class[0m
@@ -2043,6 +2085,8 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/view/BaseSnippet.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/model/doc/ThemesPlanSn$$anonfun$dataTable$1$$anonfun$apply$1$$anonfun$apply$5.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/model/doc/ThemesPlanSn$$anonfun$dataTable$1$$anonfun$apply$1$$anonfun$apply$5.class[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$17$$anonfun$apply$14.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$17$$anonfun$apply$14.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/register/PupilDataSn$$anonfun$dataTable$1$$anonfun$apply$1$$anonfun$apply$13.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/register/PupilDataSn$$anonfun$dataTable$1$$anonfun$apply$1$$anonfun$apply$13.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/secretariat/ClassSn$$anonfun$classList$1$$anonfun$apply$1.class[0m
@@ -2119,6 +2163,8 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/ShowQuestionSn$$anonfun$showAllUserQuestions$1.class[0m
 [0m[[0mdebug[0m] [0m	ckeditor/samples/replacebyclass.html[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/ckeditor/samples/replacebyclass.html[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$18.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$18.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/register/MarksSn$$anonfun$pl$brosbit$snippet$register$MarksSn$$save$1$2$$anonfun$apply$4.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/register/MarksSn$$anonfun$pl$brosbit$snippet$register$MarksSn$$save$1$2$$anonfun$apply$4.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/page/ForumPostSn$$anonfun$addComment$4.class[0m
@@ -2129,8 +2175,6 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/secretariat/AddTeacherSn$$anonfun$7$$anonfun$apply$13.class[0m
 [0m[[0mdebug[0m] [0m	jquery/editquest.js[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/jquery/editquest.js[0m
-[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$showDepartments$1$$anonfun$apply$9$$anonfun$apply$12.class[0m
-[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$showDepartments$1$$anonfun$apply$9$$anonfun$apply$12.class[0m
 [0m[[0mdebug[0m] [0m	style/images/search_32.png[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/style/images/search_32.png[0m
 [0m[[0mdebug[0m] [0m	deckjs/themes/transition/vertical-slide.css[0m
@@ -2167,6 +2211,8 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/ckeditor/plugins/showblocks[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/page/RegisterSwitcherSn.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/page/RegisterSwitcherSn.class[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/ShowCourseSn$$anonfun$addLesson$4$$anonfun$apply$1.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/ShowCourseSn$$anonfun$addLesson$4$$anonfun$apply$1.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/lib/lift-json_2.10-2.5.1.jar[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/lib/lift-json_2.10-2.5.1.jar[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/register/ParentDataSn$$anonfun$dataTable$1.class[0m
@@ -2237,12 +2283,12 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/bootstrap/liftweb/Boot$$anonfun$52.class[0m
 [0m[[0mdebug[0m] [0m	style/previous.png[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/style/previous.png[0m
-[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$editLesson$3$$anonfun$apply$4.class[0m
-[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$editLesson$3$$anonfun$apply$4.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/questNow.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/questNow.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/EditQuizSn$$anonfun$choiseQuest$2.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/EditQuizSn$$anonfun$choiseQuest$2.class[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$ajaxText$1$$anonfun$apply$11.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$ajaxText$1$$anonfun$apply$11.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/DocumentsSn$$anonfun$docList$1$$anonfun$apply$1.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/DocumentsSn$$anonfun$docList$1$$anonfun$apply$1.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/admin/SubjectAndClass.class[0m
@@ -2265,6 +2311,8 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/ckeditor/plugins/iframe[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/EditQuizSn$$anonfun$choiseQuest$3$$anonfun$apply$1.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/EditQuizSn$$anonfun$choiseQuest$3$$anonfun$apply$1.class[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$19.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$19.class[0m
 [0m[[0mdebug[0m] [0m	deckjs/extensions/menu/deck.menu.scss[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/deckjs/extensions/menu/deck.menu.scss[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/model/doc/ExtraLessonsSn$$anonfun$saveAjaxDate$1.class[0m
@@ -2283,6 +2331,8 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/ckeditor/plugins/a11yhelp/dialogs/lang/lv.js[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/view/CoursesSn$$anonfun$showMyCourses$1$$anonfun$apply$1.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/view/CoursesSn$$anonfun$showMyCourses$1$$anonfun$apply$1.class[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$16$$anonfun$apply$13.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$16$$anonfun$apply$13.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$editLesson$6.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$editLesson$6.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/admin/AdminMailsSn$$anonfun$addContactMail$6.class[0m
@@ -2301,6 +2351,8 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/bootstrap/liftweb/Boot$$anonfun$22.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/ShowCourseSn$$anonfun$pl$brosbit$snippet$edu$ShowCourseSn$$showAsDocument$4.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/ShowCourseSn$$anonfun$pl$brosbit$snippet$edu$ShowCourseSn$$showAsDocument$4.class[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$pl$brosbit$snippet$edu$OptionsSn$$redirect$1$1.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$pl$brosbit$snippet$edu$OptionsSn$$redirect$1$1.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/model/User.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/model/User.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/model/page/Comment.class[0m
@@ -2333,6 +2385,8 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/admin/AdminEditLinksSn$$anonfun$showLinks$1$$anonfun$apply$4$$anonfun$apply$6$$anonfun$apply$7$$anonfun$apply$9.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/CoursesSn$$anonfun$add$6$$anonfun$apply$4.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/CoursesSn$$anonfun$add$6$$anonfun$apply$4.class[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$editLesson$4$$anonfun$apply$6.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$editLesson$4$$anonfun$apply$6.class[0m
 [0m[[0mdebug[0m] [0m	templates-hidden/viewer.html[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/templates-hidden/viewer.html[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/lib/DataTableOption$ExtraOptions$$anonfun$4.class[0m
@@ -2475,6 +2529,8 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/page/ForumEditSn$$anonfun$editThread$5.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/page/ArticleEditSn$$anonfun$editPage$1$$anonfun$apply$4.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/page/ArticleEditSn$$anonfun$editPage$1$$anonfun$apply$4.class[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$editLesson$3$$anonfun$apply$5.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$editLesson$3$$anonfun$apply$5.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/EditQuizSn.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/EditQuizSn.class[0m
 [0m[[0mdebug[0m] [0m	secretariat/calendar.html[0m
@@ -2677,6 +2733,8 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/bootstrap/liftweb/Boot$$anonfun$14.class[0m
 [0m[[0mdebug[0m] [0m	deckjs/extensions/menu/deck.menu.js[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/deckjs/extensions/menu/deck.menu.js[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$7.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$7.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/register/MarksSn$$anonfun$1.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/register/MarksSn$$anonfun$1.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/register/PlanSn$$anonfun$insertSelectSubject$1$$anonfun$apply$4.class[0m
@@ -2695,6 +2753,8 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/admin/AdminEditAdminsSn$$anonfun$editSecretariat$5$$anonfun$apply$3.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/EditQuizSn$$anonfun$pl$brosbit$snippet$edu$EditQuizSn$$save$1$1.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/EditQuizSn$$anonfun$pl$brosbit$snippet$edu$EditQuizSn$$save$1$1.class[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/ShowCourseSn$$anonfun$addLesson$4.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/ShowCourseSn$$anonfun$addLesson$4.class[0m
 [0m[[0mdebug[0m] [0m	admin/links.html[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/admin/links.html[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/EditQuestSn$$anonfun$showQuests$1$$anonfun$apply$7$$anonfun$apply$8.class[0m
@@ -2721,8 +2781,6 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/ckeditor/plugins/tabletools/dialogs[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/register/AnouncesSn$$anonfun$dataTable$1$$anonfun$apply$1$$anonfun$apply$2.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/register/AnouncesSn$$anonfun$dataTable$1$$anonfun$apply$1$$anonfun$apply$2.class[0m
-[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$showDepartments$1$$anonfun$apply$9.class[0m
-[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$showDepartments$1$$anonfun$apply$9.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/secretariat/ClassSn$$anonfun$5.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/secretariat/ClassSn$$anonfun$5.class[0m
 [0m[[0mdebug[0m] [0m	ckeditor/plugins/templates/templates/default.js[0m
@@ -2733,6 +2791,8 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/CoursesSn$$anonfun$pl$brosbit$snippet$edu$CoursesSn$$save$1$3$$anonfun$apply$2.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/page/ForumEditSn$$anonfun$performUpdateTagsData$2.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/page/ForumEditSn$$anonfun$performUpdateTagsData$2.class[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$14.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$14.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/bootstrap/liftweb/Boot$$anonfun$74.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/bootstrap/liftweb/Boot$$anonfun$74.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/page/UpdateMainPageInfo$$anonfun$updateForumInfo$1.class[0m
@@ -2781,6 +2841,8 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/ckeditor/plugins/a11yhelp/dialogs/a11yhelp.js[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$showDepartments$1.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$showDepartments$1.class[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/ShowCourseSn$$anonfun$24.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/ShowCourseSn$$anonfun$24.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/model/doc/DocTemplateSn$$anonfun$docTemplates$1$$anonfun$apply$11.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/model/doc/DocTemplateSn$$anonfun$docTemplates$1$$anonfun$apply$11.class[0m
 [0m[[0mdebug[0m] [0m	style/jcarousel/skin.css[0m
@@ -2869,6 +2931,8 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/model/User$father$$anonfun$$init$$2.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/model/UserChangeList$user$$anonfun$$init$$1.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/model/UserChangeList$user$$anonfun$$init$$1.class[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$13$$anonfun$apply$11.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$13$$anonfun$apply$11.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/model/page/MainPageData$.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/model/page/MainPageData$.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/EditQuizSn$$anonfun$9$$anonfun$apply$6.class[0m
@@ -2933,6 +2997,8 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/model/MarkMap$value$.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/page/PicasaSn$$anonfun$forms$1$$anonfun$apply$3.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/page/PicasaSn$$anonfun$forms$1$$anonfun$apply$3.class[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$13.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$13.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/admin/AdminAddSlidesSn$$anonfun$slideList$1$$anonfun$apply$7.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/admin/AdminAddSlidesSn$$anonfun$slideList$1$$anonfun$apply$7.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/register/PlanSn$$anonfun$pl$brosbit$snippet$register$PlanSn$$save$1$1$$anonfun$1.class[0m
@@ -3035,6 +3101,8 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/bootstrap/liftweb/Boot$$anonfun$73.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$editLesson$7.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$editLesson$7.class[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$editLesson$7$$anonfun$apply$9.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$editLesson$7$$anonfun$apply$9.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/model/doc/DocTemplateSn$$anonfun$addEntry$2$$anonfun$apply$1.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/model/doc/DocTemplateSn$$anonfun$addEntry$2$$anonfun$apply$1.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/lib/GCFiles$$anonfun$1.class[0m
@@ -3139,6 +3207,8 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/style/images/fold.png[0m
 [0m[[0mdebug[0m] [0m	secretariat[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/secretariat[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/VideoReaderSn$$anonfun$6.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/VideoReaderSn$$anonfun$6.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/LoginSn$$anonfun$mkLogIn$2$$anonfun$apply$2.class[0m
@@ -3443,6 +3513,8 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/lib/lift-webkit_2.10-2.5.1.jar[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/model/page/ExtraData$.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/model/page/ExtraData$.class[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$12.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$12.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/HeadWordsSn$$anonfun$selectors$1$$anonfun$apply$2.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/HeadWordsSn$$anonfun$selectors$1$$anonfun$apply$2.class[0m
 [0m[[0mdebug[0m] [0m	jquery/jquery.jeditable.js[0m
@@ -3489,6 +3561,8 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/ckeditor/plugins/smiley/images/tounge_smile.gif[0m
 [0m[[0mdebug[0m] [0m	ckeditor/plugins/specialchar/dialogs/lang/en.js[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/ckeditor/plugins/specialchar/dialogs/lang/en.js[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$editLesson$5$$anonfun$apply$7.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$editLesson$5$$anonfun$apply$7.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/secretariat/SubjectSn$$anonfun$subjectList$1$$anonfun$apply$1$$anonfun$apply$3.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/secretariat/SubjectSn$$anonfun$subjectList$1$$anonfun$apply$1$$anonfun$apply$3.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/EditSlideSn$$anonfun$formEdit$7$$anonfun$apply$2.class[0m
@@ -3563,8 +3637,6 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/admin/AdminAddSlidesSn$$anonfun$addSlide$1.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/admin/AdminAddTagsSn$$anonfun$pl$brosbit$snippet$admin$AdminAddTagsSn$$mkIndex$1$2$$anonfun$apply$6.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/admin/AdminAddTagsSn$$anonfun$pl$brosbit$snippet$admin$AdminAddTagsSn$$mkIndex$1$2$$anonfun$apply$6.class[0m
-[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$editLesson$7$$anonfun$apply$8.class[0m
-[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$editLesson$7$$anonfun$apply$8.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/admin/AdminEditAdminsSn$$anonfun$editSecretariat$5.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/admin/AdminEditAdminsSn$$anonfun$editSecretariat$5.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/admin/AdminAddTagsSn$$anonfun$pl$brosbit$snippet$admin$AdminAddTagsSn$$mkIndex$1$3$$anonfun$apply$7.class[0m
@@ -3593,16 +3665,12 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/bootstrap/liftweb/Boot$$anonfun$67.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/model/edu/LessonContent$.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/model/edu/LessonContent$.class[0m
-[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/VideoSn$$anonfun$add$8$$anonfun$apply$11.class[0m
-[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/VideoSn$$anonfun$add$8$$anonfun$apply$11.class[0m
 [0m[[0mdebug[0m] [0m	deckjs/themes[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/deckjs/themes[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/model/doc/ThemesPlanSn.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/model/doc/ThemesPlanSn.class[0m
 [0m[[0mdebug[0m] [0m	templates-hidden/admin.html[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/templates-hidden/admin.html[0m
-[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$editLesson$2$$anonfun$apply$3.class[0m
-[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$editLesson$2$$anonfun$apply$3.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/ShowHeadWordSn$$anonfun$1.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/ShowHeadWordSn$$anonfun$1.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/FileResourceSn$$anonfun$add$5$$anonfun$apply$1.class[0m
@@ -3613,6 +3681,8 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/bootstrap/liftweb/Boot$$anonfun$25.class[0m
 [0m[[0mdebug[0m] [0m	jquery/mytables.js[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/jquery/mytables.js[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$7$$anonfun$apply$2.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$7$$anonfun$apply$2.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/register/OpinionsSn$$anonfun$dataTable$1.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/register/OpinionsSn$$anonfun$dataTable$1.class[0m
 [0m[[0mdebug[0m] [0m	style/images/help-mini.png[0m
@@ -3649,8 +3719,6 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/secretariat/AddTeacherSn$$anonfun$editAjax$1.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/register/ClassString.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/register/ClassString.class[0m
-[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$showDepartments$1$$anonfun$apply$9$$anonfun$apply$12$$anonfun$apply$13.class[0m
-[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$showDepartments$1$$anonfun$apply$9$$anonfun$apply$12$$anonfun$apply$13.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/page/ForumEditSn$$anonfun$editThread$6$$anonfun$apply$1.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/page/ForumEditSn$$anonfun$editThread$6$$anonfun$apply$1.class[0m
 [0m[[0mdebug[0m] [0m	ckeditor/plugins/specialchar/dialogs/lang/nl.js[0m
@@ -3675,6 +3743,8 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/model/Anounces.class[0m
 [0m[[0mdebug[0m] [0m	ckeditor/plugins/scayt/LICENSE.md[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/ckeditor/plugins/scayt/LICENSE.md[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$13.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$13.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/CoursesSn$$anonfun$3.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/CoursesSn$$anonfun$3.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/EditSlideSn$$anonfun$formEdit$4.class[0m
@@ -3703,6 +3773,8 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/page/ForumBaseMenu$$anonfun$performDownTagsData$1$$anonfun$apply$2.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/secretariat/SubjectSn$$anonfun$6$$anonfun$apply$8.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/secretariat/SubjectSn$$anonfun$6$$anonfun$apply$8.class[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$19$$anonfun$apply$15.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$19$$anonfun$apply$15.class[0m
 [0m[[0mdebug[0m] [0m	ckeditor/lang/bn.js[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/ckeditor/lang/bn.js[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/page/FilesSn$$anonfun$uploadFile$1$$anonfun$apply$7.class[0m
@@ -3815,6 +3887,8 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/register/OpinionsSn$$anonfun$dataTable$1$$anonfun$apply$1$$anonfun$apply$5.class[0m
 [0m[[0mdebug[0m] [0m	jqueryui/images/ui-bg_flat_0_aaaaaa_40x100.png[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/jqueryui/images/ui-bg_flat_0_aaaaaa_40x100.png[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/VideoReaderSn$$anonfun$5.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/VideoReaderSn$$anonfun$5.class[0m
 [0m[[0mdebug[0m] [0m	ckeditor/plugins/icons.png[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/ckeditor/plugins/icons.png[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/model/edu/EduLevels.class[0m
@@ -3841,6 +3915,8 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/model/doc/DocTemplateSn.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/model/doc/CreateTemplateSn$$anonfun$edit$5.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/model/doc/CreateTemplateSn$$anonfun$edit$5.class[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/VideoReaderSn$$anonfun$add$2$$anonfun$apply$3.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/VideoReaderSn$$anonfun$add$2$$anonfun$apply$3.class[0m
 [0m[[0mdebug[0m] [0m	style/images/login_bg.gif[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/style/images/login_bg.gif[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/page/ForumPostSn.class[0m
@@ -3885,8 +3961,8 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/page/ArticleEditSn$$anonfun$editPage$7$$anonfun$apply$9.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/ShowCourseSn$$anonfun$18$$anonfun$19.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/ShowCourseSn$$anonfun$18$$anonfun$19.class[0m
-[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/VideoReaderSn$$anonfun$add$3.class[0m
-[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/VideoReaderSn$$anonfun$add$3.class[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/comet[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/comet[0m
 [0m[[0mdebug[0m] [0m	ckeditor/skins/moono/images/hidpi/refresh.png[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/ckeditor/skins/moono/images/hidpi/refresh.png[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/secretariat/AddTeacherSn$$anonfun$2.class[0m
@@ -4007,6 +4083,8 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/jqueryui/images/ui-icons_2e83ff_256x240.png[0m
 [0m[[0mdebug[0m] [0m	ckeditor/plugins/icons_hidpi.png[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/ckeditor/plugins/icons_hidpi.png[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/VideoReaderSn$$anonfun$pl$brosbit$snippet$edu$VideoReaderSn$$copy$1$1$$anonfun$apply$1.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/VideoReaderSn$$anonfun$pl$brosbit$snippet$edu$VideoReaderSn$$copy$1$1$$anonfun$apply$1.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/admin/AdminAddTagsSn$$anonfun$indexTags$1$$anonfun$apply$3.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/admin/AdminAddTagsSn$$anonfun$indexTags$1$$anonfun$apply$3.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$showAllSubjects$1$$anonfun$apply$3.class[0m
@@ -4077,6 +4155,8 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/model/edu/HeadWord.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/BaseResourceSn$$anonfun$techerSubjects$1.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/BaseResourceSn$$anonfun$techerSubjects$1.class[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$editLesson$2$$anonfun$apply$4.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$editLesson$2$$anonfun$apply$4.class[0m
 [0m[[0mdebug[0m] [0m	ckeditor/plugins/templates/templates/images/template3.gif[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/ckeditor/plugins/templates/templates/images/template3.gif[0m
 [0m[[0mdebug[0m] [0m	style/text.css[0m
@@ -4179,6 +4259,8 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/EditSlideSn$$anonfun$formEdit$5.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/secretariat/SubjectSn$$anonfun$8.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/secretariat/SubjectSn$$anonfun$8.class[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/ShowCourseSn$$anonfun$25.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/ShowCourseSn$$anonfun$25.class[0m
 [0m[[0mdebug[0m] [0m	syntaxhighlighter/shBrushPhp.js[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/syntaxhighlighter/shBrushPhp.js[0m
 [0m[[0mdebug[0m] [0m	ckeditor/samples/tabindex.html[0m
@@ -4245,6 +4327,8 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/page/ForumPostSn$$anonfun$showThread$1.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/model/edu/LessonCourse.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/model/edu/LessonCourse.class[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$15$$anonfun$apply$12.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$15$$anonfun$apply$12.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/secretariat/SubjectSn$$anonfun$3.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/secretariat/SubjectSn$$anonfun$3.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/EditQuizSn$$anonfun$pl$brosbit$snippet$edu$EditQuizSn$$save$1$4.class[0m
@@ -4325,8 +4409,6 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/style/style.css[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/page/FilesSn$$anonfun$addSlide$1$$anonfun$apply$8.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/page/FilesSn$$anonfun$addSlide$1$$anonfun$apply$8.class[0m
-[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$showDepartments$1$$anonfun$apply$9$$anonfun$apply$12$$anonfun$apply$13$$anonfun$apply$14.class[0m
-[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$showDepartments$1$$anonfun$apply$9$$anonfun$apply$12$$anonfun$apply$13$$anonfun$apply$14.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/register/MarksSn$$anonfun$saveOneMark$1$$anonfun$apply$12.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/register/MarksSn$$anonfun$saveOneMark$1$$anonfun$apply$12.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/bootstrap/liftweb/Boot$$anonfun$48.class[0m
@@ -4393,8 +4475,6 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/VideoReaderSn$$anonfun$add$1.class[0m
 [0m[[0mdebug[0m] [0m	admin/gc.html[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/admin/gc.html[0m
-[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$editLesson$6$$anonfun$apply$7.class[0m
-[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$editLesson$6$$anonfun$apply$7.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/page/ArticleEditSn$$anonfun$editPage$11$$anonfun$apply$3.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/page/ArticleEditSn$$anonfun$editPage$11$$anonfun$apply$3.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/admin/AdminEditLinksSn$$anonfun$addLinks$1$$anonfun$apply$3.class[0m
@@ -4419,8 +4499,6 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/EditQuestSn$$anonfun$7.class[0m
 [0m[[0mdebug[0m] [0m	view/courses.html[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/view/courses.html[0m
-[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/VideoReaderSn$$anonfun$add$1$$anonfun$apply$3.class[0m
-[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/VideoReaderSn$$anonfun$add$1$$anonfun$apply$3.class[0m
 [0m[[0mdebug[0m] [0m	jquery/jquery.jcarousel.min.js[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/jquery/jquery.jcarousel.min.js[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/lib/google-collections-1.0-rc1.jar[0m
@@ -4557,6 +4635,8 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/EditDocumentSn$$anonfun$editData$7$$anonfun$apply$1.class[0m
 [0m[[0mdebug[0m] [0m	ckeditor/plugins/smiley/images/angel_smile.gif[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/ckeditor/plugins/smiley/images/angel_smile.gif[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/testing[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/testing[0m
 [0m[[0mdebug[0m] [0m	ckeditor/plugins/a11yhelp/dialogs/lang/it.js[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/ckeditor/plugins/a11yhelp/dialogs/lang/it.js[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/register/MarksSn$$anonfun$pl$brosbit$snippet$register$MarksSn$$save$1$3.class[0m
@@ -4607,6 +4687,8 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/ckeditor/plugins/smiley/dialogs[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/secretariat/ClassSn$$anonfun$6$$anonfun$apply$8.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/secretariat/ClassSn$$anonfun$6$$anonfun$apply$8.class[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$showDepartments$2.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$showDepartments$2.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/view/ShowCourseSn$$anonfun$6.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/view/ShowCourseSn$$anonfun$6.class[0m
 [0m[[0mdebug[0m] [0m	ckeditor/plugins/a11yhelp/dialogs/lang/sv.js[0m
@@ -4663,12 +4745,16 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/ShowCourseSn$$anonfun$17$$anonfun$apply$8.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/EditSlideSn.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/EditSlideSn.class[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/ShowCourseSn$$anonfun$addLesson$3$$anonfun$apply$14.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/ShowCourseSn$$anonfun$addLesson$3$$anonfun$apply$14.class[0m
 [0m[[0mdebug[0m] [0m	ckeditor/plugins/find/dialogs[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/ckeditor/plugins/find/dialogs[0m
 [0m[[0mdebug[0m] [0m	ckeditor/adapters/jquery.js[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/ckeditor/adapters/jquery.js[0m
 [0m[[0mdebug[0m] [0m	ckeditor/plugins/a11yhelp/dialogs/lang/en.js[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/ckeditor/plugins/a11yhelp/dialogs/lang/en.js[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$12.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$12.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/ShowCourseSn$$anonfun$addLesson$1.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/ShowCourseSn$$anonfun$addLesson$1.class[0m
 [0m[[0mdebug[0m] [0m	deckjs/extensions/status[0m
@@ -4773,6 +4859,8 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/ckeditor/plugins/showblocks/images/block_address.png[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/model/ClassModel$level$.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/model/ClassModel$level$.class[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/VideoReaderSn$$anonfun$pl$brosbit$snippet$edu$VideoReaderSn$$copy$1$3.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/VideoReaderSn$$anonfun$pl$brosbit$snippet$edu$VideoReaderSn$$copy$1$3.class[0m
 [0m[[0mdebug[0m] [0m	ckeditor/plugins/about/dialogs[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/ckeditor/plugins/about/dialogs[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/register/PupilDataSn$$anonfun$9.class[0m
@@ -4789,6 +4877,8 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/ShowHeadWordSn$$anonfun$showHeadWord$5.class[0m
 [0m[[0mdebug[0m] [0m	ckeditor/lang/sv.js[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/ckeditor/lang/sv.js[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$11$$anonfun$apply$9.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$11$$anonfun$apply$9.class[0m
 [0m[[0mdebug[0m] [0m	ckeditor/plugins/wsc/README.md[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/ckeditor/plugins/wsc/README.md[0m
 [0m[[0mdebug[0m] [0m	ckeditor/plugins/a11yhelp/dialogs/lang/th.js[0m
@@ -4897,6 +4987,8 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/page/ContactSn$$anonfun$getData$4$$anonfun$apply$5.class[0m
 [0m[[0mdebug[0m] [0m	ckeditor/plugins/templates/templates[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/ckeditor/plugins/templates/templates[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$8.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$8.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/props[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/props[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/model/page/ContactMail$.class[0m
@@ -5015,6 +5107,10 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/page/PicasaSn$$anonfun$2.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/admin/AdminAddTagsSn$$anonfun$pl$brosbit$snippet$admin$AdminAddTagsSn$$mkIndex$1$4.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/admin/AdminAddTagsSn$$anonfun$pl$brosbit$snippet$admin$AdminAddTagsSn$$mkIndex$1$4.class[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$9.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$9.class[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$pl$brosbit$snippet$edu$OptionsSn$$deleteDep$1$1.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$pl$brosbit$snippet$edu$OptionsSn$$deleteDep$1$1.class[0m
 [0m[[0mdebug[0m] [0m	templates-hidden/default-other.html[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/templates-hidden/default-other.html[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/ShowCourseSn$$anonfun$17$$anonfun$apply$8$$anonfun$apply$9.class[0m
@@ -5027,6 +5123,8 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/page/ForumEditSn$$anonfun$5.class[0m
 [0m[[0mdebug[0m] [0m	secretariat/marksmap.html[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/secretariat/marksmap.html[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/VideoReaderSn$$anonfun$7.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/VideoReaderSn$$anonfun$7.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/page/ForumPostSn$$anonfun$addComment$1.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/page/ForumPostSn$$anonfun$addComment$1.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/model/doc/ThemesPlanSn$$anonfun$2.class[0m
@@ -5055,14 +5153,14 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/page/PicasaSn$$anonfun$forms$2$$anonfun$apply$4.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/view/ShowCourseSn$$anonfun$10.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/view/ShowCourseSn$$anonfun$10.class[0m
-[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/VideoReaderSn$$anonfun$add$1$$anonfun$apply$4.class[0m
-[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/VideoReaderSn$$anonfun$add$1$$anonfun$apply$4.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/admin/AdminAddSlidesSn$$anonfun$addSlide$2.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/admin/AdminAddSlidesSn$$anonfun$addSlide$2.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/lib/TestData$$anonfun$createClasses$1.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/lib/TestData$$anonfun$createClasses$1.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/admin/AdminAddTagsSn$$anonfun$tags$1.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/admin/AdminAddTagsSn$$anonfun$tags$1.class[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$16.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$16.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/lib/Formater$.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/lib/Formater$.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/EditQuestSn$$anonfun$showQuests$1$$anonfun$apply$4.class[0m
@@ -5073,8 +5171,6 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/ckeditor/plugins/specialchar/dialogs/lang/si.js[0m
 [0m[[0mdebug[0m] [0m	ckeditor/plugins/smiley/images/thumbs_down.gif[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/ckeditor/plugins/smiley/images/thumbs_down.gif[0m
-[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$showDepartments$1$$anonfun$apply$9$$anonfun$apply$11.class[0m
-[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/OptionsSn$$anonfun$showDepartments$1$$anonfun$apply$9$$anonfun$apply$11.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/model/page/PageDepartment.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/model/page/PageDepartment.class[0m
 [0m[[0mdebug[0m] [0m	style/images/randomico.png[0m
@@ -5083,12 +5179,16 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/model/doc/ExtraLessonsSn.class[0m
 [0m[[0mdebug[0m] [0m	ckeditor/plugins/link/images/hidpi/anchor.png[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/ckeditor/plugins/link/images/hidpi/anchor.png[0m
+[0m[[0mdebug[0m] [0m	static/testvideo.html[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/static/testvideo.html[0m
 [0m[[0mdebug[0m] [0m	ckeditor/plugins/liststyle/dialogs/liststyle.js[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/ckeditor/plugins/liststyle/dialogs/liststyle.js[0m
 [0m[[0mdebug[0m] [0m	view/marks.html[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/view/marks.html[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/lib/logback-classic-1.0.6.jar[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/lib/logback-classic-1.0.6.jar[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/VideoReaderSn$$anonfun$8.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/VideoReaderSn$$anonfun$8.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/EditQuestSn$$anonfun$editQuest$1$$anonfun$apply$18.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/EditQuestSn$$anonfun$editQuest$1$$anonfun$apply$18.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/lib/DataTableOption$DataOption.class[0m
@@ -5139,8 +5239,12 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/style/jquery.multiselect.css[0m
 [0m[[0mdebug[0m] [0m	ckeditor/plugins/smiley/images/regular_smile.gif[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/ckeditor/plugins/smiley/images/regular_smile.gif[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$11.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$11.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/register/PupilDataSn$$anonfun$dataTable$1$$anonfun$apply$1$$anonfun$apply$4.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/register/PupilDataSn$$anonfun$dataTable$1$$anonfun$apply$1$$anonfun$apply$4.class[0m
+[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/VideoReaderSn$$anonfun$indexed$1$$anonfun$apply$4.class[0m
+[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/VideoReaderSn$$anonfun$indexed$1$$anonfun$apply$4.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/page/FilesSn$$anonfun$uploadFile$2$$anonfun$apply$3.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/page/FilesSn$$anonfun$uploadFile$2$$anonfun$apply$3.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/secretariat/AddTeacherSn$$anonfun$6.class[0m
@@ -5163,8 +5267,6 @@
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/ShowCourseSn$$anonfun$18$$anonfun$apply$11.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/admin/AdminAddTagsSn$$anonfun$addTag$2$$anonfun$apply$5.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/admin/AdminAddTagsSn$$anonfun$addTag$2$$anonfun$apply$5.class[0m
-[0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$editLesson$8$$anonfun$apply$9.class[0m
-[0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/edu/EditLesson$$anonfun$editLesson$8$$anonfun$apply$9.class[0m
 [0m[[0mdebug[0m] [0m	WEB-INF/classes/pl/brosbit/snippet/page/ArticleEditSn$$anonfun$editPage$9$$anonfun$apply$1.class[0m
 [0m[[0mdebug[0m] [0m	  /home/ms/Programy/osp/target/webapp/WEB-INF/classes/pl/brosbit/snippet/page/ArticleEditSn$$anonfun$editPage$9$$anonfun$apply$1.class[0m
 [0m[[0mdebug[0m] [0m	ckeditor/plugins/specialchar/dialogs/lang/hu.js[0m

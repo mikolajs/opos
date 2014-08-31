@@ -55,7 +55,7 @@ package pl.brosbit.snippet.secretariat
     def save() =  {
       val user = User.find(userId).openOr(User.create)
       user.lastName(lastName).firstName(firstName).phone(telephone).email(email).
-      role("n").scratched(false).save
+      role("n").scratched(false).validated(true).save
       if (userId == ""){
         userId = user.id.toString
         JsFunc("editForm.insertRowAndClear", userId).cmd

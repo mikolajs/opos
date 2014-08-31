@@ -79,16 +79,18 @@ class EditLesson extends BaseResourceSn {
 
     def delete() {
       if (isLessonOwner(lesson)) lesson.delete
+      println("Usunięcie lekcji: " + lesson.title + " user: " + lesson.authorId ) 
       S.redirectTo("/educontent/course/" + lesson.courseId.toString)
     }
 
     val publics = List(("TAK", "TAK"), ("NIE", "NIE"))
-    
+     val subj = subjectTeach.find(s => courseOption.getOrElse(Course.create).subjectId == s.id).getOrElse(subjectTeach.head)
+     val departs = subj.departments.map(d => (d, d))
     "#ID" #> SHtml.text(id, id = _) &
       "#title" #> SHtml.text(title, x => title = x.trim) &
       "#nr" #> SHtml.text(nr, nr = _) &
       "#extraText" #> SHtml.text(extraText, extraText = _) &
-      "#department" #> SHtml.text(department, department = _) &
+      "#department" #> SHtml.select(departs, Full(department), department = _) &
       "#description" #> SHtml.textarea(descript, descript = _) &
       "#json" #> SHtml.text(json, json = _) &
       "#save" #> SHtml.button(<span class="glyphicon glyphicon-plus-sign"></span> ++ Text("Zapisz"), save) &
@@ -99,29 +101,29 @@ class EditLesson extends BaseResourceSn {
   def ajaxText = {
     def getData(what: String) = what match {
       case "quest" => {
-        val str = QuizQuestion.findAll.map(h => "[ '" + h._id.toString + "',  '" + h.question + "', '" + h.department + "']").
+        val str = QuizQuestion.findAll("authorId" ->user.id.is).map(h => "[ '" + h._id.toString + "',  '" + h.question + "', '" + h.department + "']").
           mkString(",")
         "[" + str + "]"
       }
       case "word" => {
-        val str = HeadWord.findAll.map(h => "[ '" + h._id.toString + "',  '" + h.title +  "', '" + "']").
+        val str = HeadWord.findAll("authorId" ->user.id.is).map(h => "[ '" + h._id.toString + "',  '" + h.title +  "', '" + "']").
           mkString(",")
         "[" + str + "]"
       }
       case "video" => {
-        val str = Video.findAll.map(h => "[ '" + h._id.toString + "',  '" + h.title +  "', '" + h.descript + "']").
+        val str = Video.findAll("authorId" ->user.id.is).map(h => "[ '" + h._id.toString + "',  '" + h.title +  "', '" + h.descript + "']").
           mkString(",")
         "[" + str + "]"
       }
       case "doc" => {
-        val str = Document.findAll.map(d => "['" + d._id.toString + "', '" + d.title + "', '" + d.descript + "']").
+        val str = Document.findAll("authorId" ->user.id.is).map(d => "['" + d._id.toString + "', '" + d.title + "', '" + d.descript + "']").
           mkString(",")
         "[" + str + "]"
       }
       case _ => "error"
     }
     "#hiddenAjaxText" #> SHtml.ajaxText("", what => {
-      println("Ajax Hidden text refresh")
+      println("[AppINFO]:: Ajax Hidden text refresh, what: " + what)
       Run("refreshTab(\"" + getData(what) + "\");")
     })
   }
