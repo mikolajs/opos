@@ -112,7 +112,7 @@
  <div id="boxText">
   <h2>Edycja slajdów</h2>
   <hr/>
-  <form class="lift:edu.EditSlideSn.formEdit?form=POST form-inline">
+  <form class="lift:edu.EditSlideSn.formEdit?form=POST">
     <input id="id" type="hidden" />     <input id="detailsData" type="hidden" /><input id="slidesData" type="hidden" />
    <div class="form-inline">
     <div class="input-group">
@@ -121,9 +121,10 @@
     <input id="save" class="btn btn-success btn-lg"/>
     <input id="delete" class="btn btn-danger btn-lg"/></div>
     </div>
-    <div class="form-horizontal">
-         <div class="form-group">
-     <label class="col-sm-3 control-label">Opis</label><textarea rows="3"  id="description"></textarea>
+    <div class="form-inline">
+         <div class="input-group" >
+     <label class="control-label">Opis:</label>
+     	<textarea class="form-control" rows="3" cols="90" id="description"></textarea>
      </div>
      </div>
   </form>
@@ -174,8 +175,4 @@
    </div> 
    
   </div>
-  
-  <button type="button" class="btn btn-success btn-lg"  id="testAct" >
-  <span class="glyphicon glyphicon-plus-sign"></span> DTest
-</button>
 </div>

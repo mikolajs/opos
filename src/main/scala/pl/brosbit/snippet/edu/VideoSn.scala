@@ -81,7 +81,7 @@ class VideoSn extends BaseResourceSn {
       video.onServer = onserver
       video.subjectId = sub
       video.subjectName = findSubjectName(sub)
-      video.title = title
+      video.title = title.replace(''','`')
       video.department = depart
       video.descript = descript
       video.authorId = user.id.is

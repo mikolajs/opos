@@ -15,13 +15,13 @@ class LoginSn {
   def show() = {
     userBox match {
       case Full(user) =>
-        "a" #> <a href="/user_mgt/logout" class="btn btn-info" role="button">
-                 <span class="glyphicon glyphicon-log-out"></span>{ user.getFullName }
+        "a" #> <a href="/user_mgt/logout" class="btn btn-info" role="button" title="Wyloguj" style="padding:10px">
+                 <span class="glyphicon glyphicon-log-out"></span> { user.getFullName }
                </a>
       case _ =>
-        "a" #> <a href="/login" role="button" class="btn btn-default">
+        "a" #> <a href="/login" role="button" class="btn btn-default" title="Zaloguj" style="padding:10px">
                  <span class="glyphicon glyphicon-user"></span>
-                 Niezalogowno
+                  Niezalogowno
                </a>
     }
   }

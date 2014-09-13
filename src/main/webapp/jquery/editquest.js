@@ -50,8 +50,9 @@ var EditQuest =  dejavu.Class.declare({
     	var fake = $('#fakeAdd').val();
     	fake = jQuery.trim(fake);
     	if(fake.length > 0) {
-    		$('#fakeAnswerList').append('<li>'+ fake + 
-    				'<img src="/images/delico_min.png" onclick="editQuest.delFakeAnswer(this)"/></li>');
+    		$('#fakeAnswerList').append('<li>'+ 
+    				'<button class="btn btn-danger" onclick="editQuest.delFakeAnswer(this)">'+ 
+    				'<span class="glyphicon glyphicon-remove-sign"></span></button>' + fake + '</li>');
     		$('#fakeAdd').val("");
     	}
     	

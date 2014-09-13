@@ -1,17 +1,18 @@
 <!doctype HTML>
 <html>
-    
-<div class="lift:surround?with=educontent;at=content">
-<head_merge>
-<script type="text/javascript" src="/jquery/ASCIIMathML.js"></script>
-<script type="text/javascript" src="/jquery/dejavu.js"></script>
-<script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
-<script type="text/javascript" src="/jquery/ckeditorresource.js"></script>
-<script type="text/javascript" src="/jquery/editdoc.js"></script>
-   <script src="/jquery/myvalidator.js" ></script>
-   <link href="/deckjs/themes/style/swiss_ckeditor.css" id="style-theme-link" type="text/css" rel="stylesheet">
 
-<script>
+<div class="lift:surround?with=educontent;at=content">
+	<head_merge> <script type="text/javascript"
+		src="/jquery/ASCIIMathML.js"></script> <script type="text/javascript"
+		src="/jquery/dejavu.js"></script> <script type="text/javascript"
+		src="/ckeditor/ckeditor.js"></script> <script type="text/javascript"
+		src="/jquery/ckeditorresource.js"></script> <script
+		type="text/javascript" src="/jquery/editdoc.js"></script> <script
+		src="/jquery/myvalidator.js"></script>
+	<link href="/deckjs/themes/style/swiss_ckeditor.css"
+		id="style-theme-link" type="text/css" rel="stylesheet">
+
+	<script>
 var editDoc = new Object();
 $(document).ready(function(){
 	editDoc = new Document();
@@ -59,56 +60,99 @@ $(document).ready(function(){
 	});
 
 </script>
-<style>
-.jumbotron, form {width: 950px; margin: auto;}
+	<style>
+.jumbotron,form {
+	width: 950px;
+	margin: auto;
+}
+
 #articleWrapper {
 	margin-top: 100px;
 }
-#docEdit {width:950px; min-height:400px; padding: 20px;
-            border: 2px solid #ccc;}
 
-select {padding-right:10px;}
+#docEdit {
+	width: 950px;
+	min-height: 400px;
+	padding: 20px;
+	border: 2px solid #ccc;
+}
+
+select {
+	padding-right: 10px;
+}
 </style>
-</head_merge>
+	</head_merge>
 
-		<div class="jumbotron">   <h2>Edycja dokumentu</h2></div>
-		<br/>
-		
-				<form  class="lift:edu.EditDocumentSn.editData form-horizontal" method="POST">
-			             <input id="docContent" type="text" style="display:none;"/>
-						<input id="docID" style="display:none;"/>
-				
-						<div class="form-group"><label for="docTitle" class="col-lg-3 control-label">Tytuł:</label>
-						  <div   class="col-lg-9"><input type="text" id="docTitle"  class="form-control" /></div>
-						  </div>
-	
-						  <div class="form-group">
-						  <label for="subjects"  class="col-lg-3 control-label">Przedmiot:</label>
-						  <div   class="col-lg-3"><select id="subjects" class="form-control"></select></div>
-						
-						   <label class="col-lg-3 control-label">Poziom:</label>
-						   <div   class="col-lg-3"><select id="docLevel" class="form-control"></select></div>
-						   </div>
-			
-						  <div class="form-group">
-						 <label  class="col-lg-3 control-label">Opis:</label>
-						  <div class="col-lg-9"><textarea id="docDescription" style="width:350px;height:100px;" class="form-control"></textarea>
-						  </div>
-						</div>
-	
-					
-						<div class="form-group;">
-						<div class="col-lg-3"></div>
-						<div class="col-lg-9">				
-						<input id="docSave" class="saveButton btn btn-success btn-lg"  onclick="return editDoc.saveDoc()"/> 
-						<input id="docDelete" class="deleteButton btn btn-danger btn-lg" onclick="return editDoc.deleteDoc()"/>
-						</div></div>
-								<br/><br/><hr/><br/><br/><br/>
-						<div id="docEdit" class="slide" contenteditable="true" > </div>				
-				</form>
-			<br/><br/>
+	<div class="jumbotron">
+		<h2>Edycja dokumentu</h2>
+	</div>
+	<br />
+
+	<form class="lift:edu.EditDocumentSn.editData form-horizontal"
+		method="POST">
+		<input id="docContent" type="text" style="display: none;" /> <input
+			id="docID" style="display: none;" />
+
+		<div class="form-group">
+			<label for="docTitle" class="col-lg-2 control-label">Tytuł:</label>
+			<div class="col-lg-9">
+				<input type="text" id="docTitle" class="form-control" />
+			</div>
 		</div>
-		
-	
+
+		<div class="form-group">
+			<label for="subjects" class="col-lg-2 control-label">Przedmiot:</label>
+			<div class="col-lg-3">
+				<input id="subjects" class="form-control" readonly="readonly" />
+			</div>
+
+			<label class="col-lg-2 control-label">Poziom:</label>
+			<div class="col-lg-3">
+				<input id="docLevel" class="form-control" readonly="readonly" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-2 control-label">Dział:</label>
+			<div class="col-lg-4">
+				<select id="department" class="form-control"></select>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-2 control-label">Opis:</label>
+			<div class="col-lg-9">
+				<textarea id="docDescription" cols="3" style="width: 100%;"
+					class="form-control"></textarea>
+			</div>
+		</div>
+
+
+		<div class="form-group;">
+			<div class="col-lg-2"></div>
+			<div class="col-lg-3">
+				<input id="docSave" class="saveButton btn btn-success btn-lg"
+					onclick="return editDoc.saveDoc()" />
+			</div>
+			<div class="col-lg-3">
+				<input  value="Anuluj" type="button" class="btn btn-default btn-lg"
+					onclick="if(confirm('Porzucić niezapisany dokument?')) window.history.back()" />
+			</div>
+			<div class="col-lg-3">
+				<input id="docDelete" class="deleteButton btn btn-danger btn-lg"
+					onclick="return editDoc.deleteDoc()" />
+			</div>
+		</div>
+		<br />
+		<br />
+		<hr />
+		<br />
+		<br />
+		<br />
+		<div id="docEdit" class="slide" contenteditable="true"></div>
+	</form>
+	<br />
+	<br />
+</div>
+
+
 
 </html>

@@ -67,6 +67,7 @@ class VideoReaderSn extends BaseResourceSn {
 	var subjectId = ""
 	var data = ""
     def copy() {
+	 val subjectNow = subjectTeach.find(s => s.id.toString() == subjectId).getOrElse(subjectTeach.head)
 	 val videosOnPath = findAllVideoInUserPath
      val videosOnDB = Video.findAll(("authorId" -> user.id.is)~("onServer" -> true)).map(vDB => vDB.oldPath)
 	 val videosNotAdded = videosOnPath.filterNot(vOP => videosOnDB.exists(vODB => vODB == (vOP._1 + "/" + vOP._2)))
@@ -74,7 +75,9 @@ class VideoReaderSn extends BaseResourceSn {
 	   val video = Video.create
 	   video.authorId = user.id.is
 	   video.department = v._1
-	   video.title = v._2.split('.').head
+	   addDepartment(v._1, subjectNow)
+	   val filenameList = v._2.split('.')
+	   video.title = filenameList.take(filenameList.length -1).mkString(".").replace(''','`')
 	   video.link = v._2
 	   video.oldPath = v._1 + "/" + v._2
 	   video.onServer = true
@@ -89,9 +92,10 @@ class VideoReaderSn extends BaseResourceSn {
 	   }
 
 	 })
-     println("\nWIDEOPATH:::: \n" + videosOnPath.map(v => v._1 + "/" +  v._2).mkString("\n"))
-     println("\nVIDEODB:::::  \n" + videosOnDB.mkString("\n"))
-     println("\nVIDEONOTADDED:::::: \n" + videosOnPath.map(v => v._1 + "/" +  v._2).mkString("\n"))
+//     println("\nWIDEOPATH:::: \n" + videosOnPath.map(v => v._1 + "/" +  v._2).mkString("\n"))
+//     println("\nVIDEODB:::::  \n" + videosOnDB.mkString("\n"))
+//     println("\nVIDEONOTADDED:::::: \n" + videosOnPath.map(v => v._1 + "/" +  v._2).mkString("\n"))
+     subjectNow.save
 	  S.redirectTo("/educontent/video")
 	}
 
@@ -109,6 +113,10 @@ class VideoReaderSn extends BaseResourceSn {
       case "ogg" => true
       case _ => false
     }
+  }
+  
+  private def addDepartment(dep:String, subject:SubjectTeach) {
+    if(!subject.departments.contains(dep)) subject.departments = dep::subject.departments
   }
   
   private def toASCIICharAndLower(str:String) = {

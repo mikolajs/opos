@@ -23,27 +23,35 @@
     </head_merge>
   <div class="well"><h2>Twoje filmy</h2></div>
   
-  <!-- <div class="row">
-  <div class="lift:edu.VideoSn.selectSubject form-inline" >
-  <div class="input-group">
-  <div class="input-group-addon">Przedmiot</div>
-   <select id="subjectSelect"  class="form-control"><option></option></select>
-   </div>
-   <div class="form-group"> <button onclick="redirectTo()"  class="btn btn-success">Wybierz</button></div>
-  </div>
-  </div>
-   -->
-  
-  <div class="row"><div class="col-lg-4"><button type="button" class="btn btn-success btn-lg"  id="addTrigger">
+ <div class="row">
+		<div class="col-lg-6">
+			<form class="lift:edu.EditQuestSn.choiseQuest form-inline"
+				method="POST">
+				<div class="input-group">
+					<div class="input-group-addon">Przedmiot:</div>
+					<select id="subjects" class="form-control"></select>
+				</div>
+				<div class="input-group">
+					<div class="input-group-addon">Poziom edukacyjny:</div>
+					<select id="levels" class="form-control"></select>
+				</div>
+				<div class="input-group">
+					<input class="btn btn-success" id="choise" type="submit" />
+				</div>
+			</form>
+		</div>
+		<div class="col-lg-3">
+			<button type="button" class="btn btn-success btn-lg"  id="addTrigger">
   <span class="glyphicon glyphicon-plus-sign"></span> Dodaj nowy film
-</button> </div>
-<div class="col-lg-4"></div>
-<div class="col-lg-4">
-<a type="button" class="btn btn-success btn-lg"  href="/educontent/indexvideo">
+</button>
+		</div>
+<div class="col-lg-3">
+<a type="button" class="btn btn-primary btn-lg"  href="/educontent/indexvideo">
   <span class="glyphicon glyphicon-plus-sign"></span> Indeksuj swój katalog domowy serwera
 </a></div>
-</div>
-<br/><br/>
+	</div>
+  
+<br/><hr/>
 
 <div>
      <table id="dataTable"><thead><tr><th>Tytuł</th><th>Gdzie</th><th>Opis</th>
@@ -58,16 +66,20 @@
    <form class="lift:edu.VideoSn.add?form=POST form-horizontal"   role="form" enctype="multipart/form-data">
    <input type="text" style="display:none" id="videoId" />
    <div class="form-group">
-        <label for="title"  class="col-sm-3 control-label">Tytuł:</label> 
-         <div   class="col-sm-9"><input id="title" class="form-control" /></div>
+        <label for="titleAdd"  class="col-sm-3 control-label">Tytuł:</label> 
+         <div   class="col-sm-9"><input id="titleAdd" class="form-control" /></div>
    </div>  
    <div class="form-group">
-        <label for="subjects" class="col-sm-3 control-label">Przedmiot: </label> 
-         <div   class="col-sm-9"><select id="subjects" class="form-control"></select></div>
+        <label for="subjectAdd" class="col-sm-3 control-label">Przedmiot: </label> 
+         <div   class="col-sm-9"><input id="subjectAdd" class="form-control" readonly="readonly"/></div>
+   </div>
+   <div class="form-group">
+        <label for="levelAdd" class="col-sm-3 control-label">Poziom: </label> 
+         <div   class="col-sm-9"><input id="levelAdd" class="form-control"  readonly="readonly"/></div>
    </div>
     <div class="form-group">
-        <label for="department" class="col-sm-3 control-label">Dział: </label> 
-         <div   class="col-sm-9"><select id="department" class="form-control"></select></div>
+        <label for="departmentsAdd" class="col-sm-3 control-label">Dział: </label> 
+         <div   class="col-sm-9"><select id="departmentsAdd" class="form-control"></select></div>
    </div>
    <div class="form-group">
         <label for="onserver" class="col-sm-3 control-label">Umiejscowienie: </label> 
@@ -81,12 +93,12 @@
      
    
    <div class="form-group">
-        <label for="descript" class="col-sm-3 control-label">Opis:</label> 
-         <div   class="col-sm-9"><textarea id="descript" class="form-control"></textarea></div>
+        <label for="descriptAdd" class="col-sm-3 control-label">Opis:</label> 
+         <div   class="col-sm-9"><textarea id="descriptAdd" class="form-control"></textarea></div>
     </div>
    <div class="form-group">
         <label  class="col-sm-3 control-label"></label>
-         <div   class="col-sm-9"><input type="submit" id="save"  class="btn btn-success btn-lg" /></div>
+         <div   class="col-sm-9"><input type="submit" id="saveAdd"  class="btn btn-success btn-lg" /></div>
    </div>
    </form>
    </div>

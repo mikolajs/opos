@@ -12,7 +12,7 @@
     		   autoOpen:false,
     		   modal:true,
     		   width:600,
-    		   height:440
+    		   height:500
     	   });
     	   
     	   $('#addTrigger').click(function(){
@@ -52,10 +52,33 @@
       
     </head_merge>
   <div class="well"><h2>Twoje pliki</h2></div>
-   <div class="row" style="margin-left:20px;"><button type="button" class="btn btn-success btn-lg"  id="addTrigger">
+  
+  <div class="row">
+		<div class="col-lg-9">
+			<form class="lift:edu.EditQuestSn.choiseQuest form-inline"
+				method="POST">
+				<div class="input-group">
+					<div class="input-group-addon">Przedmiot:</div>
+					<select id="subjects" class="form-control"></select>
+				</div>
+				<div class="input-group">
+					<div class="input-group-addon">Poziom edukacyjny:</div>
+					<select id="levels" class="form-control"></select>
+				</div>
+				<div class="input-group">
+					<input class="btn btn-success" id="choise" type="submit" />
+				</div>
+			</form>
+		</div>
+		<div class="col-lg-3">
+			<button type="button" class="btn btn-success btn-lg"  id="addTrigger">
   <span class="glyphicon glyphicon-plus-sign"></span>Wczytaj nowy plik
-</button></div>
-<br/><br/>
+</button>
+		</div>
+
+	</div>
+
+<br/><hr/>
 
 <div >
 	 <table id="dataTable"><thead><tr><th>Tytuł</th><th>Przedmiot</th>
@@ -69,24 +92,32 @@
    <div id="addNewItem" title="Dodaj nowy plik"  style="display:none;">
    <form class="lift:edu.FileResourceSn.add?form=POST  form-horizontal"   role="form"  enctype="multipart/form-data">
    <div class="form-group">
-        <label for="title"  class="col-sm-3 control-label">Tytuł:</label> 
+        <label for="titleAdd"  class="col-sm-3 control-label">Tytuł:</label> 
         <div   class="col-sm-9"><input id="title"   class="form-control"/></div>
      </div>
    <div class="form-group">
-        <label for="subjects"  class="col-sm-3 control-label">Przedmiot: </label> 
-        <div   class="col-sm-9"><select id="subjects"  class="form-control"></select></div>
+        <label for="subjectAdd"  class="col-sm-3 control-label">Przedmiot: </label> 
+        <div   class="col-sm-9"><input id="subjectAdd"  class="form-control" readonly="readonly"/></div>
    </div>
    <div class="form-group">
-        <label for="descript" class="col-sm-3 control-label">Opis:</label>
-         <div   class="col-sm-9"><textarea id="descript" class="form-control"></textarea></div>
+        <label for="levelAdd"  class="col-sm-3 control-label">Poziom: </label> 
+        <div   class="col-sm-9"><input id="levelAdd"  class="form-control" readonly="readonly"/></div>
+   </div>
+   <div class="form-group">
+        <label for="departmentsAdd"  class="col-sm-3 control-label">Dział: </label> 
+        <div   class="col-sm-9"><select id="departmentsAdd"  class="form-control"></select></div>
+   </div>
+   <div class="form-group">
+        <label for="descriptAdd" class="col-sm-3 control-label">Opis:</label>
+         <div   class="col-sm-9"><textarea id="descriptAdd" class="form-control"></textarea></div>
     </div>
    <div class="form-group">
-            <label for="file" class="col-sm-3 control-label">Plik:</label>
-             <div   class="col-sm-9"><input id="file"  class="form-control"/></div>
+            <label for="fileAdd" class="col-sm-3 control-label">Plik:</label>
+             <div   class="col-sm-9"><input id="fileAdd"  class="form-control"/></div>
       </div>
    <div class="form-group">
          <label  class="col-sm-3 control-label"></label>
-         <div class="col-sm-9"> <input type="submit" id="save"   class="btn btn-success btn-lg"/></div></div>
+         <div class="col-sm-9"> <input type="submit" id="saveAdd"   class="btn btn-success btn-lg"/></div></div>
    </form>
    </div>
    

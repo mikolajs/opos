@@ -24,7 +24,7 @@ class PlanSn extends BaseTeacher {
   val idClass = ClassChoose.is
   val classModel = ClassModel.find(idClass) match {
 	  case Full(theClass) => theClass
-	  case _ => S.redirectTo("/teacher/index")
+	  case _ => S.redirectTo("/register/index")
   }
   
   val plansOfClass = PlansOfClass.findAll(("classId"->idClass)) match {
@@ -95,8 +95,8 @@ class PlanSn extends BaseTeacher {
      
      
      val bells = BellsData.getOrCreate
-      
-     
+     if(bells.beginLesson.length < 10) "tr" #> <tr><td>brak ustawionych dzwonków</td></tr>
+     else
      "tr" #> (0 to 10).toList.map(i => {
        <tr>
     	 <td>{i.toString}</td>

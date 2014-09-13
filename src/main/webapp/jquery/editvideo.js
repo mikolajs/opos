@@ -9,7 +9,7 @@ var EditVideo = dejavu.Class.declare({
             autoOpen:false,
             modal:true,
             width:600,
-            height:450
+            height:500
         });
 		
 		$('#addTrigger').click(function(){

@@ -107,6 +107,7 @@ class OptionsSn extends BaseResourceSn {
     def saveDep():JsCmd = {
       subjectNow.departments = depart::subjectNow.departments
       subjectNow.save
+      depart = ""
       val departs = subjectNow.departments.map(d => 
         <li class="list-group-item">{d}
         <span>{SHtml.a(() => deleteDep(d), <span class="glyphicon glyphicon-remove-sign"></span>)}</span></li>)
