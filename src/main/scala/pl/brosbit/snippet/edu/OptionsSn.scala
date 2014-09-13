@@ -16,6 +16,7 @@ import http.js.JsCmds.{SetHtml, Alert}
 import http.js.JsCmd
 import org.bson.types.ObjectId
 import Helpers._
+import pl.brosbit.snippet._
 
 class OptionsSn extends BaseResourceSn {
 
@@ -59,6 +60,7 @@ class OptionsSn extends BaseResourceSn {
           }
         }
       })
+      initializeSubjectAndLevelChoice
     }
     "#dataContent" #> SHtml.text("", data = _, "display" -> "none") &
       "#save" #> SHtml.button(<span class="glyphicon glyphicon-floppy-save"> Zapisz zmiany!</span>, save, "class" -> "btn btn-success btn-lg")
@@ -128,6 +130,41 @@ class OptionsSn extends BaseResourceSn {
       "form" #> (in => form(in))
     } 
     else "form" #> <span></span>
+  }
+  
+  def showSubjetsLev() = {
+    "li" #> subjectTeach.map(s => <li class="list-group-item">{s.name + " - " + levMap(s.lev.toString)}</li>)
+  }
+  
+  def editLevels() = {
+    var subject = ""
+    var level = ""
+    def save(){
+      val levInt = tryo(level.toInt).openOr(0)
+      val subjectId = tryo(subject.toLong).openOr(0L)
+      subjectTeach.find(s => s.id == subjectId ) match {
+        case Some(sub) => {
+          sub.lev = levInt
+          sub.save
+        }
+        case _ =>
+      }
+      
+    }
+    val subj = subjectTeach.map(s => (s.id.toString, s.name))
+    
+    "#subjectsLevel" #> SHtml.select(subj, Full(subject), subject = _ ) &
+    "#levelEdit" #> SHtml.select(levList, Full("1"), level = _) &
+    "#saveLevel" #> SHtml.submit("Zapisz", save)
+    
+  }
+  
+   private def initializeSubjectAndLevelChoice() {
+    if(subjectTeach.length > 0) {
+      SubjectChoose.set(subjectTeach.head.id)
+      LevelChoose.set(subjectTeach.head.lev)
+    }
+   
   }
 
 }

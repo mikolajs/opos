@@ -50,4 +50,8 @@ while(cursor.hasNext()) {
 }
 
 
+#update after change subjectTech level add:
+db.subjectsTeach.update({},{$set: {lev: 1}} , true, true, true);
+
+
 

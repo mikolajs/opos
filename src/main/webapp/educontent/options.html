@@ -80,7 +80,7 @@ span.subjectName {
 
 	<div class="well">
 		<h2>Twoje ustawienia</h2>
-		<p>Aby móc tworzyć materiały musisz wybrać swoje przedmioty</p>
+		<p>Aby móc tworzyć materiały musisz wybrać swoje przedmioty, dodać działy oraz wybrać domyślny poziom</p>
 	</div>
 
 	<div class="row">
@@ -111,8 +111,7 @@ span.subjectName {
 			<div class="panel panel-primary"">
 				<div class="panel-heading">Edycja działów</div>
 				<div class="panel-body">
-					<form data-lift="edu.OptionsSn.showDepartments" role="form"
-						>
+					<form data-lift="edu.OptionsSn.showDepartments" role="form">
 						<div class="form-inline">
 							<label> Przedmiot edycji: <select id="selectEdit" class="form-control"></select></label>
 						</div>
@@ -134,17 +133,26 @@ span.subjectName {
 		<div class="col-lg-2"></div>
 		<div class="col-lg-4">
 			<div class="panel panel-info"">
-				<div class="panel-heading">Domyślny poziom</div>
+				<div class="panel-heading">Domyślne poziomy przedmiotów</div>
 				<div class="panel-body">
-					<form role="form" class="form-inline">
-						<div class="col-sm-8">
-							<label>Poziom: <select id="selectEdit" class="form-control"></select></label>
+					<ul class="list-group" data-lift="edu.OptionsSn.showSubjetsLev"><li class="list-group-item"></li></ul>
+					<form role="form" class="form-horizontal" data-lift="edu.OptionsSn.editLevels" method="post">	
+						<div class="form-group">
+							<label class="col-sm-4">Przedmiot:</label> 
+							<div class="col-sm-6"><select id="subjectsLevel" class="form-control"></select></div>
 						</div>
-						<div class="col-sm-4">
+						<div class="form-group">
+							<label class="col-sm-4">Poziom: </label>
+							<div class="col-sm-6"><select id="levelEdit" class="form-control"></select></div>
+						</div>
+						<div class="form-group">
+						<div class="col-sm-4"></div>
+						<div class="col-sm-6">
 							<button type="button" class="btn btn-success btn-lg"
 								id="saveLevel">
 								<span class="glyphicon glyphicon-plus-sign"> Zapisz</span>
 							</button>
+							</div>
 						</div>
 					</form>
 				</div>

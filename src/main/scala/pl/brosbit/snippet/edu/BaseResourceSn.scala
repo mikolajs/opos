@@ -13,12 +13,11 @@ import json.JsonAST.JObject
 import json.JsonParser
 import org.bson.types.ObjectId
 import Helpers._
-import Helpers._
 
 trait BaseResourceSn {
 
   val user = User.currentUser.openOrThrowException("Niezalogowany nauczyciel")
-  val subjectTeach = SubjectTeach.findAll("authorId" -> user.id.is)
+  val subjectTeach = SubjectTeach.findAll(("authorId" -> user.id.is),("$orderby"->("prior"->1)))
   if (subjectTeach.isEmpty && S.uri.split("/").last != "options") S.redirectTo("/educontent/options")
   //val subjId = S.param("s").openOr(subjectTeach.head._id.toString)
   //val subjectNow = subjectTeach.find(s => s._id.toString() == subjId).getOrElse(subjectTeach.head)

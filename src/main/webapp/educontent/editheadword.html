@@ -1,14 +1,14 @@
 <div class="lift:surround?with=educontent;at=content">
-    <head_merge>
-    <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
-    <script type="text/javascript" src="/jquery/ckeditorresource.js"></script>
-    <script type="text/javascript" src="/jquery/dejavu.js"></script>
-    <script type="text/javascript" src="/jquery/editheadword.js"></script>
-    
-    <script type="text/javascript" src="/jquery/ASCIIMathML.js"></script>
-     <link href="/deckjs/core/deck.core.css" rel="stylesheet">
-     <link href="/deckjs/themes/style/swiss_ckeditor.css" id="style-theme-link" type="text/css" rel="stylesheet">
-    <script>
+	<head_merge> <script type="text/javascript"
+		src="/ckeditor/ckeditor.js"></script> <script type="text/javascript"
+		src="/jquery/ckeditorresource.js"></script> <script
+		type="text/javascript" src="/jquery/dejavu.js"></script> <script
+		type="text/javascript" src="/jquery/editheadword.js"></script> <script
+		type="text/javascript" src="/jquery/ASCIIMathML.js"></script>
+	<link href="/deckjs/core/deck.core.css" rel="stylesheet">
+	<link href="/deckjs/themes/style/swiss_ckeditor.css"
+		id="style-theme-link" type="text/css" rel="stylesheet">
+	<script>
       
     $(document).ready(function(){
     	
@@ -66,116 +66,172 @@
     }
     
     </script>
-        <style>
-        div#cffm {
-   background-color:#fff;
-   font:12px sans-serif;
-   color:#000;
-   width: 100%;
-   height: 400;
-   overflow: none;
+	<style>
+div#cffm {
+	background-color: #fff;
+	font: 12px sans-serif;
+	color: #000;
+	width: 100%;
+	height: 400;
+	overflow: none;
 }
-        #titleTheme {width: 300px;}
-        body {background: #f7f7f7;}
-        .highlightLi {  background-color: red !important; color:white;}
-        #validationMassage { color: red; }
-        #headwordsHTML { width: 4000px; height: 700px;}
-        #imageLoaderFrame {width: 100%;}
-        .lista {display:inline-flex; padding: 8px !important; font-weight: bold; font-size: 15px; 
-                        border: solid 1px black; background-image: none !important;}          
-        .slide{ 
-        padding-top: 10px; 
-    min-height: 600px;
-    margin:0 auto;
-    border: solid 1px #eee;
-    box-shadow: 1px 2px 4px #aaa;
-    background-color:white;
-    }
-    #editContent  {width: 950px; margin:auto;}
-    label { width: 100px; float: left;}
-select {width: 150px;}
-input[type=submit] { width: 200px;}
 
-.form-group {padding: 15px 0;}
-        </style>
-    
-   
-    </head_merge>
- 
- <div id="editContent">
-  <div class="jumbotron">
-    <h2>Edycja haseł</h2>
-    </div>
-    <div class="row">
-    <div class="col-lg-2"></div>
-     <div class="col-lg-8">
-     <div class="row">
-  <form class="lift:edu.EditHeadWordSn.formEdit?form=POST ">
-     <input id="id" type="hidden" />    <input id="headWordsData" type="hidden" />
-     <div class="form-vertical">
-     <div class="form-group"> 
-     <label for="headWord" class="col-sm-3 control-label">Hasło:</label>
-      <div   class="col-sm-9"><input id="headWord" class="form-control"/></div>
-     </div>
-      <div class="form-group"> 
-     <label for="subjects"  class="col-sm-3 control-label">Przedmiot:</label>
-      <div   class="col-sm-9"><select id="subjects" class="form-control"></select></div>
-     </div>
-     <div class="form-group"> 
-    <label for="subjectLevel" class="col-sm-3 control-label">Poziom:</label>
-     <div   class="col-sm-9"><select id="subjectLevel" class="form-control"></select>    </div>
-    </div>
-    <div class="form-group">   
-    
-    <div class="col-lg-3"></div>
-     <div class="col-lg-3">
-      <input id="save"   class="btn btn-success btn-lg" /> 
-      </div>
-      <div class="col-lg-3">
-      <input   class="btn btn-default btn-lg"  id="cancel"/> 
-      </div>
-      <div class="col-lg-3">
-      <input class="btn btn-danger btn-lg"  id="delete"/>
-      </div>
-    </div>
-    </div>
-    
-  </form>
-  </div>
-  </div>
-   <div class="col-lg-2"></div>
-    </div>
-    
-    
-    <br/>   <br/>   <br/>   <br/>
-        <div id="slideEditor">
-     
-          <br/>
-          <div contenteditable="true"   id="section_1"   class="slide"></div>
-            <br/>
-          <br/>
-          <div contenteditable="true"   id="section_2"   class="slide"> </div>
-            <br/>
-          <br/>
-          <div contenteditable="true"   id="section_3"   class="slide"></div>
-            <br/>
-         <br/>
-          <div contenteditable="true"   id="section_4"   class="slide"> </div>
-          
-        
-         <div>     
-            <button type="button" class="btn btn-danger btn-lg"    id="delSlideAction"  style="float:left;">
-  <span class="glyphicon glyphicon-remove"></span> Usuń slajd
-</button>
-         <button type="button" class="btn btn-success btn-lg"    id="addSlideAction"  style="float:right;">
-  <span class="glyphicon glyphicon-plus"></span> Dodaj slajd
-</button>
-         
-         </div>
-       
-        </div>
-     <br /> <br /> <br /> 
-  </div>
-  
-  
+#titleTheme {
+	width: 300px;
+}
+
+body {
+	background: #f7f7f7;
+}
+
+.highlightLi {
+	background-color: red !important;
+	color: white;
+}
+
+#validationMassage {
+	color: red;
+}
+
+#headwordsHTML {
+	width: 4000px;
+	height: 700px;
+}
+
+#imageLoaderFrame {
+	width: 100%;
+}
+
+.lista {
+	display: inline-flex;
+	padding: 8px !important;
+	font-weight: bold;
+	font-size: 15px;
+	border: solid 1px black;
+	background-image: none !important;
+}
+
+.slide {
+	padding-top: 10px;
+	min-height: 600px;
+	margin: 0 auto;
+	border: solid 1px #eee;
+	box-shadow: 1px 2px 4px #aaa;
+	background-color: white;
+}
+
+#editContent {
+	width: 950px;
+	margin: auto;
+}
+
+label {
+	width: 100px;
+	float: left;
+}
+
+select {
+	width: 150px;
+}
+
+input[type=submit] {
+	width: 200px;
+}
+
+.form-group {
+	padding: 15px 0;
+}
+</style>
+
+
+	</head_merge>
+
+	<div id="editContent">
+		<div class="jumbotron">
+			<h2>Edycja haseł</h2>
+		</div>
+		<div class="row">
+			<div class="col-lg-2"></div>
+			<div class="col-lg-8">
+				<div class="row">
+					<form class="lift:edu.EditHeadWordSn.formEdit?form=POST ">
+						<input id="id" type="hidden" /> <input id="headWordsData"
+							type="hidden" />
+						<div class="form-vertical">
+							<div class="form-group">
+								<label for="headWord" class="col-sm-3 control-label">Hasło:</label>
+								<div class="col-sm-9">
+									<input id="headWord" class="form-control" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="subjects" class="col-sm-3 control-label">Przedmiot:</label>
+								<div class="col-sm-9">
+									<input id="subjects" class="form-control" readonly="readonly"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="subjectLevel" class="col-sm-3 control-label">Poziom:</label>
+								<div class="col-sm-9">
+									<input id="subjectLevel" class="form-control" readonly="readonly" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="department" class="col-sm-3 control-label">Dział:</label>
+								<div class="col-sm-9">
+									<select id="department" class="form-control"></select>
+								</div>
+							</div>
+							<div class="form-group">
+
+								<div class="col-lg-3"></div>
+								<div class="col-lg-3">
+									<input id="save" class="btn btn-success btn-lg" />
+								</div>
+								<div class="col-lg-3">
+									<input class="btn btn-default btn-lg" id="cancel" />
+								</div>
+								<div class="col-lg-3">
+									<input class="btn btn-danger btn-lg" id="delete" />
+								</div>
+							</div>
+						</div>
+
+					</form>
+				</div>
+			</div>
+			<div class="col-lg-2"></div>
+		</div>
+
+
+		<br /> <br /> <br /> <br />
+		<div id="slideEditor">
+
+			<br />
+			<div contenteditable="true" id="section_1" class="slide"></div>
+			<br /> <br />
+			<div contenteditable="true" id="section_2" class="slide"></div>
+			<br /> <br />
+			<div contenteditable="true" id="section_3" class="slide"></div>
+			<br /> <br />
+			<div contenteditable="true" id="section_4" class="slide"></div>
+
+
+			<div>
+				<button type="button" class="btn btn-danger btn-lg"
+					id="delSlideAction" style="float: left;">
+					<span class="glyphicon glyphicon-remove"></span> Usuń slajd
+				</button>
+				<button type="button" class="btn btn-success btn-lg"
+					id="addSlideAction" style="float: right;">
+					<span class="glyphicon glyphicon-plus"></span> Dodaj slajd
+				</button>
+
+			</div>
+
+		</div>
+		<br /> <br /> <br />
+	</div>
+
+
 </div>

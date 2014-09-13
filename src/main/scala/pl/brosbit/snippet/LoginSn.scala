@@ -4,10 +4,18 @@ import scala.xml.Unparsed
 import _root_.net.liftweb.util._
 import _root_.net.liftweb.common._
 import net.liftweb._
-import http.{ S, SHtml }
+import http.{ S, SHtml, SessionVar }
 import mapper.By
 import _root_.pl.brosbit.model._
+import json.JsonDSL._
+import json.JsonAST.JObject
+import json.JsonParser
+import org.bson.types.ObjectId
 import Helpers._
+import pl.brosbit.model.edu.SubjectTeach
+
+object SubjectChoose extends SessionVar[Long](0L)
+object LevelChoose extends SessionVar[Int](1)
 
 class LoginSn {
 
@@ -36,6 +44,7 @@ class LoginSn {
         case user :: other => {
           if (user.role == "t" || user.role == "a" || user.role == "d") {
             if (user.password.match_?(pass.trim)) User.logUserIn(user)
+            intalizeSubjectAndLevelChoice(user)
           } else {
             if (user.password.match_?(pass.trim) && pesel == user.pesel.is)
               User.logUserIn(user)
@@ -97,6 +106,15 @@ class LoginSn {
       "#docA [href]" #> docH &
       "#docA [class]" #> docC
 
+  }
+  
+  private def intalizeSubjectAndLevelChoice(user:User) {
+    val subjs = SubjectTeach.findAll(("authorId" -> user.id.is),("$orderby"->("prior"->1)))
+    if(subjs.length > 0) {
+      SubjectChoose.set(subjs.head.id)
+      LevelChoose.set(subjs.head.lev)
+    }
+   
   }
 
 }

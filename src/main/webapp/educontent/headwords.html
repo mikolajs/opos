@@ -44,7 +44,11 @@
  <div id="boxText">
   <div class="well"><h2>Wybór przedmiotu i poziomu</h2></div>
   
-  <div class="lift:edu.HeadWordsSn.selectors form-inline" >
+  
+  
+  <div class="row">
+		<div class="col-lg-9">
+  <form class="lift:edu.HeadWordsSn.selectors form-inline" >
   <div class="input-group">
   <div class="input-group-addon">Przedmiot</div>
    <select id="subjectSelect"  class="form-control"><option></option></select>
@@ -55,13 +59,16 @@
    <select id="levelSelect"   class="form-control"><option></option> </select>
    </div>
    <div class="form-group"> <button onclick="redirectToWithLevel()"  class="btn btn-success">Wybierz</button></div>
+  </form>
   </div>
-  <br/><br/>
-  <div><a href="/educontent/editheadword/0"> <span class="btn btn-success btn-lg"  id="mkAddDepartment"  onclick="mkAddDepartment();">
+		<div class="col-lg-3">
+		<a href="/educontent/editheadword/0"> <span class="btn btn-success btn-lg"  id="mkAddDepartment"  onclick="mkAddDepartment();">
   <span class="glyphicon glyphicon-plus-sign"></span> Dodaj nowe hasło
-</span></a></div>
+</span></a>
+  </div></div>
   
-  <br/><br/>
+  <br/><hr/>
+ 
   <div id="headWordsList" class="lift:edu.HeadWordsSn.headWordsList dataTable_wrapper">
             <table id="dataTable" class="display"  >
                 <thead>
