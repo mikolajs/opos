@@ -42,7 +42,7 @@ class EditQuestSn extends BaseResourceSn {
                ("level"->level.toInt)).map(quest => {
             <tr id={quest._id.toString}><td>{Unparsed(quest.question)}</td>
             <td>{quest.answer}</td><td>{quest.fake.map(f => <span class="wrong">{f}</span>)}</td>
-            <td>{levMap(quest.level)}</td>
+            <td>{levMap(quest.lev)}</td>
             <td>{quest.dificult}</td><td>{quest.department}</td></tr>
         })
     }
@@ -70,7 +70,7 @@ class EditQuestSn extends BaseResourceSn {
             quest.subjectId = tryo(subject.toLong).openOr(subjectTeach.head.id)
             quest.department = department
             quest.dificult = tryo(dificult.toInt).openOr(9)
-            quest.level = level.toInt
+            quest.lev = level.toInt
             quest.save
             JsFunc("editQuest.insertQuestion",quest._id.toString).cmd
         }

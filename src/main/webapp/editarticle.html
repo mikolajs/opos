@@ -1,20 +1,16 @@
+<!doctype HTML>
 <html>
 
-<body class="lift:content_id=main">
-	<div id="main" class="lift:surround?with=page;at=content">
-		<head_merge> <script type="text/javascript"
-			src="/ckeditor/ckeditor.js"></script> 
-        <script src="/jquery/dejavu.js" /></script>
-        <script src="/jquery/editarticle.js"></script> 
-        <script src="/jquery/jquery-ui.custom.min.js"></script>
-		<link rel="stylesheet" type="text/css"
-			href="/style/jqueryui/jquery-ui.custom.min.css" />
-		<script type="text/javascript" src="/jquery/jquery.multitobuttons.js"></script>
-		<script>
+<div id="main" class="lift:surround?with=page;at=content">
+	<head_merge> <script type="text/javascript"
+		src="/ckeditor/ckeditor.js"></script> <script src="/jquery/dejavu.js" /></script>
+	<script src="/jquery/editarticle.js"></script> 
+	<script type="text/javascript" src="/jquery/jquery.multitobuttons.js"></script>
+	<script>
 		    var editArticle = null;
             $(document).ready(function(){ editArticle = new EditArticle(); });
 		</script>
-		<style>
+	<style>
 form label.leftText {
 	font-weight: bold;
 	float: left;
@@ -49,82 +45,98 @@ form input[type=submit] {
 	width: 100%;
 }
 </style>
-		</head_merge>
-		<div id="alerts">
-			<noscript>
+	</head_merge>
+	<div id="alerts">
+		<noscript>
+			<p>
+				<strong>Aby korzystać ze strony musisz włączyć JavaScript</strong>
+			</p>
+		</noscript>
+	</div>
+	<div class="row">
+	<div class="col-lg-2"></div>
+	<div class="col-lg-8">
+		<form class="lift:page.ArticleEditSn.editPage" method="POST">
+		<div class="row">
+			<div class="col-md-3">
 				<p>
-					<strong>Aby korzystać ze strony musisz włączyć JavaScript</strong>
-				</p>
-			</noscript>
-		</div>
-		<div class="container_12">
-			<form class="lift:page.ArticleEditSn.editPage" method="POST">
-				<div class="grid_3">
-					<p>
-						<input type="submit" id="save" /><br /> <input type="submit"
-							id="delete" /><br /> <input type="submit" id="discard" />
+					<input type="submit" id="save" /><br /> <input type="submit"
+						id="delete" /><br /> <input type="submit" id="discard" />
 
-					</p>
-					<div>
-						<div id="typePage"></div>
-						<br />
-						<div id="newsContainer">
-						<img id="thumbPreview"  style="width:214px;" src=""   />
-						<input   id="refreshButton" value="Odśwież obrazek wpisu"  type="button" />
+				</p>
+				<div>
+					<div id="typePage"></div>
+					<br />
+					<div id="newsContainer">
+						<img id="thumbPreview" style="width: 214px;" src="" /> <input
+							id="refreshButton" value="Odśwież obrazek wpisu" type="button" />
 						<p id="tagContainer">
 							<strong>Tagi:</strong><select id="tags"></select>
 						</p>
-						</div>
-						<p id="departContainer">
-							<strong>Dział:</strong><select id="departs"></select>
+					</div>
+					<p id="departContainer">
+						<strong>Dział:</strong><select id="departs"></select>
+					</p>
+
+				</div>
+			</div>
+
+			<div class="col-md-9">
+
+				<h1>Edycja artykułów</h1>
+				<span style="float: right;" id="helpButton"><img
+					src="/style/images/help-mini.png" /></span>
+				<fieldset>
+					<input id="id" type="text" />
+					<p>
+						<label for="title" class="leftText">Tytuł:</label> <input
+							id="title" type="text" style="width: 500px;" />
+					</p>
+					<input id="introduction" type="text" style="display: none;" /> <input
+						id="thumbnail" type="text" style="display: none;" />
+					<hr />
+
+					<div style="margin: auto;">
+						<p>
+						<h2>Treść:</h2>
+						<textarea id="editor"></textarea>
 						</p>
 
 					</div>
-				</div>
+				</fieldset>
 
-				<div class="grid_9">
-
-					<h1>Edycja artykułów</h1>
-					<span style="float:right;"  id="helpButton" ><img src="/style/images/help-mini.png"/></span>
-					<fieldset>
-						<input id="id" type="text" /> 
-						<p>
-							<label for="title" class="leftText">Tytuł:</label> <input
-								id="title" type="text" style="width: 500px;" />
-						</p>
-						<input id="introduction" type="text" style="display: none;" />
-						 <input id="thumbnail" type="text" style="display: none;" />
-						<hr />
-
-						<div style="margin: auto;">
-							<p>
-							<h2>Treść:</h2>
-							<textarea id="editor"></textarea>
-							</p>
-
-						</div>
-					</fieldset>
-
-				</div>
-			</form>
-			<div class="clear"></div>
-		</div>
-		<div id="helpBox"  title="Pomoc">
-		<p>Możesz edytować i dodawać <strong>Artykuły</strong> i <strong>Aktualności</strong></p>
-   <p> <strong>Artykuł </strong>służy do publikacji informacji, o szkole w stałych działach i nie pojawia się na stronie startowej 
-    oraz nie posiada wyświetlnia skrótu wraz z mini obrazkiem Po wybraniu opcji Artykuł, 
-    wybierz jeden dział do którego zostanie przypisany link do artykułu.
-    </p>
-    <p>Aby wpis pojawił się na pierwszej stronie posegregowany według daty, dodaj go jako 
-    <strong> Aktualność </strong>(wybierając z lewej strony opcję o tej nazwie). 
-    Musisz wybrać od jednego do dwóch tagów do których przypiszesz newsa.  
-    Aktualności posiadają skrót i  mały obrazek, które są wyświetlane na stronie startowej. 
-    Jeśli chcesz oddzielic treść, która znajdzie się w skróce od pozostałej treści, zostaw pomiędzy nimi pustą linię.
-     Obrazek wpisu zawsze jest tworzony z pierwszej grafiki wstawionej do dokumentu. 
-     Jeśli raz został już utworzony, a zmieniłeś/aś pierwszy obrazek,  musisz nacisnąć przycisk odśwież obrazek, aby na nowo został utworzony. 
-    W razie kłopotów kontaktuj się z administratorem.</p>
-    </div>
+			</div>
+			</div>
+		</form>
+	</div>
+	<div class="col-lg-2"></div>
 	</div>
 	
-</body>
+	<div id="helpBox" title="Pomoc">
+		<p>
+			Możesz edytować i dodawać <strong>Artykuły</strong> i <strong>Aktualności</strong>
+		</p>
+		<p>
+			<strong>Artykuł </strong>służy do publikacji informacji, o szkole w
+			stałych działach i nie pojawia się na stronie startowej oraz nie
+			posiada wyświetlnia skrótu wraz z mini obrazkiem Po wybraniu opcji
+			Artykuł, wybierz jeden dział do którego zostanie przypisany link do
+			artykułu.
+		</p>
+		<p>
+			Aby wpis pojawił się na pierwszej stronie posegregowany według daty,
+			dodaj go jako <strong> Aktualność </strong>(wybierając z lewej strony
+			opcję o tej nazwie). Musisz wybrać od jednego do dwóch tagów do
+			których przypiszesz newsa. Aktualności posiadają skrót i mały
+			obrazek, które są wyświetlane na stronie startowej. Jeśli chcesz
+			oddzielic treść, która znajdzie się w skróce od pozostałej treści,
+			zostaw pomiędzy nimi pustą linię. Obrazek wpisu zawsze jest tworzony
+			z pierwszej grafiki wstawionej do dokumentu. Jeśli raz został już
+			utworzony, a zmieniłeś/aś pierwszy obrazek, musisz nacisnąć przycisk
+			odśwież obrazek, aby na nowo został utworzony. W razie kłopotów
+			kontaktuj się z administratorem.
+		</p>
+	</div>
+</div>
+
 </html>

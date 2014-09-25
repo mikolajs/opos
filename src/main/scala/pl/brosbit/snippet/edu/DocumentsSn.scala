@@ -22,13 +22,19 @@ class DocumentsSn  extends BaseResourceSn {
     
     
  def docList() = {
-    val documents = Document.findAll(("ownerID" -> user.id.is))
-    "tbody tr" #> documents.map(doc => ".titleTd *" #>  <h4>{doc.title}  </h4> &
+   
+    val documents = Document.findAll(("authorId" -> user.id.is)~("subjectId" -> subjectNow.id)
+        ~("lev" -> tryo(levStr.toInt).openOr(1)))
+    "tbody tr" #> documents.map(doc => ".titleTd *" #>  <strong>{doc.title}  </strong> &
       ".descriptTd *" #> Text( doc.descript ) &
-      ".subjectTd *" #> Text(doc.subcjectName) &
-      ".levelTd *" #> Text(doc.level.toString) &
-      ".editTd *" #> <a href={"/educontent/editdocument/" + doc._id.toString}> Edytuj</a>
+      ".departmentTd *" #> Text(doc.department) &
+      ".editTd *" #> <a class="btn btn-success" href={"/educontent/editdocument/" + doc._id.toString}> Edytuj</a>
       )
+  }
+
+
+def choiceSubjectAndLevel() = {
+    super.choiceSubjectAndLevel("/educontent/documents")
   }
 
 }

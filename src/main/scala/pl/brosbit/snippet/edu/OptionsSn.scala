@@ -44,14 +44,19 @@ class OptionsSn extends BaseResourceSn {
     var data = ""
     def save() {
       var notdeleted = true
+      var subjectsT = SubjectTeach.findAll(("authorId" -> user.id.is))
       data.split('|').map(d => {
         val sub = d.split(";")
         if (sub.length == 3) {
           val id = tryo(sub.head.toLong).openOr(0L)
           val nr = tryo(sub(1).toInt).openOr(0)
           if (id != 0L && nr != 0) {
-            if (notdeleted) { SubjectTeach.delete("authorId" -> user.id.is); notdeleted = false }
-            val subT = SubjectTeach.create
+            val (subHead, rest) = subjectsT.partition(s => s.id == id)
+            val subT = if(subHead.isEmpty) SubjectTeach.create else {
+              subHead.tail.foreach(s => s.delete)
+              subjectsT = rest
+              subHead.head
+            }
             subT.authorId = user.id.is
             subT.name = sub.last
             subT.id = id
@@ -60,6 +65,7 @@ class OptionsSn extends BaseResourceSn {
           }
         }
       })
+      subjectsT.foreach(s => s.delete)
       initializeSubjectAndLevelChoice
     }
     "#dataContent" #> SHtml.text("", data = _, "display" -> "none") &

@@ -35,7 +35,7 @@ class  EditHeadWordSn  extends BaseResourceSn with RoleChecker {
     var ID = if(id == "0") "0" else headWord._id.toString
     var title = headWord.title
     var subjectId = if(headWord.subjectId != 0L) headWord.subjectId.toString else ""
-     var subjectLev = headWord.subjectLev.toString
+     var subjectLev = headWord.lev.toString
     var headWordsString = headWord.content
     //println("------------headWords data -----------------\n" +headWordsData)
      
@@ -47,16 +47,14 @@ class  EditHeadWordSn  extends BaseResourceSn with RoleChecker {
       if(headWord.authorId == 0L || headWord.authorId == userId) {
           val headWordsContentHtml = Unparsed(headWordsString)
           
-           headWord.title = title
-           headWord.subjectId = tryo(subjectId.toLong).openOr(0L)
+          headWord.title = title
+          headWord.subjectId = tryo(subjectId.toLong).openOr(0L)
           headWord.subjectName = findSubjectName(headWord.subjectId)
-          headWord.subjectLev = subjectLev.toInt
+          headWord.lev = subjectLev.toInt
           headWord.authorId = userId
           headWord.content = headWordsString      
           headWord.save 
       }
-       
-      
       S.redirectTo("/educontent/editheadword/"+ headWord._id.toString) //!important must refresh page
     }
     
@@ -68,15 +66,13 @@ class  EditHeadWordSn  extends BaseResourceSn with RoleChecker {
         } 
          case _ =>
       }
-      
       S.redirectTo("/educontent/headwords")
     }
-      
+
     def cancelAction() {
       S.redirectTo("/educontent/headwords")
     }
-    
-   
+
     val publicList = List(("TAK","TAK"),("NIE","NIE"))
     "#id" #> SHtml.text(ID, ID = _, "type"->"hidden") &
     "#headWord" #> SHtml.text(title, title= _,"class"->"Name") &

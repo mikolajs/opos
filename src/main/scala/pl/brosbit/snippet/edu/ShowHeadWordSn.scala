@@ -26,9 +26,8 @@ class ShowHeadWordSn  {
          case Some(headWord) => {
              "#title *" #> headWord.title &
              "#subject *" #> headWord.subjectName &
-             "#level *" #> headWord.subjectLev.toString &
+             "#level *" #> headWord.lev.toString &
              ".container *" #>  Unparsed("""<h1>%s</h1>""".format(headWord.title) + headWord.content)
-             
          }
          case _ => ".container" #> <h1>Nie znaleziono dokumentu!</h1>
      }     

@@ -40,7 +40,7 @@ class ShowQuestionSn {
         val userId = user.id.is
          QuizQuestion.findAll("authorId"->userId).map(quest => {
              <tr><td>{quest.question}</td><td>{quest.answer}</td><td>{quest.fake.mkString(" :: ")}</td>
-             <td>{quest.level.toString}</td><td>{quest.dificult.toString}</td></tr>
+             <td>{quest.lev.toString}</td><td>{quest.dificult.toString}</td></tr>
          })
     }
     

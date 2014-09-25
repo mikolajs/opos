@@ -37,7 +37,8 @@ class VideoSn extends BaseResourceSn {
       }
     }
 
-    "tr" #> Video.findAll("authorId" -> user.id.is).map(video => {
+    "tr" #> Video.findAll(("authorId" -> user.id.is)~("subjectId" -> subjectNow.id)
+        ~("lev" -> tryo(levStr.toInt).openOr(1))).map(video => {
       <tr id={ video._id.toString }>
         <td><a href={ if (video.onServer) 
         	"http://video.epodrecznik.edu.pl/" + video._id.toString + "." + video.link.split('.').last 
@@ -46,7 +47,7 @@ class VideoSn extends BaseResourceSn {
           if (video.onServer) <img src="/style/images/video.png"/>
           else <img src="/style/images/youtube.png"/>
         }</td>
-        <td>{ video.descript }</td><td>{ video.subjectName }</td>
+        <td>{video.descript}</td>
         <td>{video.department}</td>
         <td>
           <a href={ "/educontent/video?del=" + video._id.toString } 
@@ -56,31 +57,38 @@ class VideoSn extends BaseResourceSn {
       </tr>
     })
   }
+  
+  
+  def choiceSubjectAndLevel() = {
+    super.choiceSubjectAndLevel("/educontent/video")
+  }
 
   def add = {
 
     var title = ""
     var descript = ""
-    var subjectId = ""
+    var subjectName = ""
     var onserver = false
     var linkTube = ""
     var videoId = ""
     var mimeType = ""
     var fileName = ""
     var depart = ""
+    var level = ""
 
 
     def save(): Unit = {
 
-      val sub = tryo(subjectId.toLong).openOr(subjectTeach.head.id)
       val video = if (videoId.length < 20) Video.create else Video.find(videoId).getOrElse(Video.create)
       if(!onserver) {
         video.link = linkTube
         video.oldPath = ""
       }
       video.onServer = onserver
-      video.subjectId = sub
-      video.subjectName = findSubjectName(sub)
+      video.subjectId = findSubjectId(subjectName)
+      video.subjectName = subjectName
+      val levId = levList.find(l => l._2 == level).getOrElse(levList.head)._1
+      video.lev = tryo(levId.toInt).openOr(1)
       video.title = title.replace(''','`')
       video.department = depart
       video.descript = descript
@@ -88,16 +96,17 @@ class VideoSn extends BaseResourceSn {
       video.save
     }
 
-    val subjects = subjectTeach.map(sub => (sub.id.toString, sub.name))
+    val departs = subjectNow.departments.map(d => (d, d))
 
       "#videoId" #> SHtml.text(videoId, videoId = _) &
-      "#title" #> SHtml.text(title, x => title = x.trim) &
-      "#subjects" #> SHtml.select(subjects, Full(subjects.head._1), subjectId = _) &
-      "#department" #> SHtml.text(depart, depart = _) &
+      "#titleAdd" #> SHtml.text(title, x => title = x.trim) &
+      "#subjectAdd" #> SHtml.text(subjectNow.name, subjectName = _, "readonly"->"readonly" ) &
+      "#levelAdd" #> SHtml.text(levMap(levStr), level = _, "readonly"->"readonly") &
+      "#departmentsAdd" #> SHtml.select(departs, Full(depart), depart = _) &
       "#onserver" #> SHtml.checkbox_id(onserver, (x: Boolean) => onserver = x, Full("onserver")) &
-      "#descript" #> SHtml.textarea(descript, x => descript = x.trim) &
+      "#descriptAdd" #> SHtml.textarea(descript, x => descript = x.trim) &
       "#linkTube" #> SHtml.text(linkTube, x => linkTube = x.trim) &
-      "#save" #> SHtml.submit("Dodaj", save)
+      "#saveAdd" #> SHtml.submit("Dodaj", save)
 
   }
   

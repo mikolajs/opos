@@ -90,6 +90,12 @@ class LoginSn {
         docH = "/documents/index"
         docC = "btn btn-info btn-lg"
       }
+      else {
+        if(user == "u" || user == "r") {
+          viewH = "/educontent/view"
+          viewC = "btn btn-info btn-lg"
+        }
+      }
        if (user.role == "s" || user.role == "a" || user.role == "d") {
          secretariatH = "/secretariat/index"
          secretariatC = "btn btn-info btn-lg"

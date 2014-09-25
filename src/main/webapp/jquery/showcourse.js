@@ -4,7 +4,7 @@ var ShowCourse = dejavu.Class.declare({
 	isOpenForm : false,
 	initialize : function() {
 		var self = this;
-		//SyntaxHighlighter.all();
+		SyntaxHighlighter.all();
 		$('#addLessonForm').dialog({
 			  autoOpen: false,
 			  height: 300,
