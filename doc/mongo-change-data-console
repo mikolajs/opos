@@ -54,4 +54,26 @@ while(cursor.hasNext()) {
 db.subjectsTeach.update({},{$set: {lev: 1}} , true, true, true);
 
 
+#change map in courses;
+db.courses.update({},{$set: {chapters: {}}} , true, true, true); 
+
+#add chapterId to lessons
+db.lessons.update({},{$set: {chapter: ""}} , true, true, true);
+
+#change what member in lessons 
+
+var maped = {"doc":"d", "video":"v", "word":"w", "quest":"q"}
+var cursor = db.lessons.find();
+while(cursor.hasNext()) {
+    var less = cursor.next();
+    
+    var newCont = less.contents;  
+    print(less.title); 
+    for(i in newCont) {
+        newCont[i].what = maped[newCont[i].what];
+    } 
+    db.lessons.update({'_id' : less._id}, {$set: {"contents": newCont}}, false, false);   
+}
+
+
 

@@ -5,19 +5,7 @@ var ShowCourse = dejavu.Class.declare({
 	initialize : function() {
 		var self = this;
 		SyntaxHighlighter.all();
-		$('#addLessonForm').dialog({
-			  autoOpen: false,
-			  height: 300,
-			  width: 400,
-			  modal: false,
-			  close: function() {
-				 self.isOpenForm = false;		  
-			  }
-		});
 
-		$('#addLessonButton').click(function(){
-			$('#addLessonForm').dialog('open');
-		});
 	},
 	
 	hideSidebar : function() {

@@ -91,8 +91,8 @@ class LoginSn {
         docC = "btn btn-info btn-lg"
       }
       else {
-        if(user == "u" || user == "r") {
-          viewH = "/educontent/view"
+        if(user.role == "u" || user.role == "r") {
+          viewH = "/view"
           viewC = "btn btn-info btn-lg"
         }
       }

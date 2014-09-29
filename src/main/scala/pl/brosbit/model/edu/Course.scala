@@ -16,10 +16,10 @@ object EduLevels extends Enumeration(1)  {
 object Course extends MongoDocumentMeta[Course] {
   override def collectionName = "courses"
   override def formats = super.formats + new ObjectIdSerializer + new DateSerializer
-  def create = new Course(ObjectId.get,  "", 0L, Map(),  "", "", "", "", Nil, 0L)
+  def create = new Course(ObjectId.get,  "", 0L, Nil,  "", "", "", "", Nil, 0L)
 }
 
-case class Course(var _id: ObjectId, var title: String, var subjectId:Long, var departments: Map[Int, String],
+case class Course(var _id: ObjectId, var title: String, var subjectId:Long, var chapters: List[String],
         			var subjectName: String,  var descript: String, var img:String,  var classInfo:String,
         			var classList: List[Long], var authorId: Long) extends  MongoDocument[Course] {
   def meta = Course

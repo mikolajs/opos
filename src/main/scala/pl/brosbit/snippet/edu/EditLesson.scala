@@ -16,20 +16,21 @@ import json.DefaultFormats
 import json.JsonDSL._
 import json.JsonAST.JObject
 import json.JsonParser._
-import http.js.JsCmds.Run
+import  _root_.net.liftweb.http.js.JsCmds._
+import  _root_.net.liftweb.http.js.JsCmd
+import  _root_.net.liftweb.http.js.JE._
 import org.bson.types.ObjectId
 import Helpers._
 
 case class TestJ(l: String, t: String)
 
-class EditLesson extends BaseResourceSn {
-
-  var idPar = S.param("id").openOr("0")
-  //parametr id jest _id lekcji gdy już była utworzona. Gdy mamy nową lekcję parametr ten jest id kursu
-  val lesson = LessonCourse.find(idPar).getOrElse(LessonCourse.create)
-  val notFoundLesson = (lesson.courseId.toString == "000000000000000000000000" || lesson.courseId.toString.length() < 20 ) 
-  val courseOption = if(notFoundLesson) None else Course.find(lesson.courseId.toString());
-  //println(">>>>>>>>>>>> lessonID + " + lesson._id.toString + " idPar = " + idPar + "  courseId = " + lesson.courseId.toString );
+class EditLesson extends BaseLesson {
+  
+  val subjectTeach = SubjectTeach.findAll(("authorId" -> user.id.is),("$orderby"->("prior"->1)))
+  val subjectNow = subjectTeach.find(s =>  s.id == subjectId).getOrElse(subjectTeach.head)
+ 
+  val departList = subjectNow.departments.map(d => (d.name,  d.name))
+  
   
   def showCourseInfo() = {
     if(courseOption.isEmpty) {
@@ -38,28 +39,24 @@ class EditLesson extends BaseResourceSn {
     } else  {
       var course = courseOption.get
       "h2" #> 
-     (<h2>{course.title} + <span class="mutted"> - klasy: {course.classInfo}</span></h2> ++ <p>{course.descript}</p>)
+     (<h2>{course.title} <span class="mutted"> - klasy: {course.classInfo}</span></h2> ++ <p>{course.descript} 
+    		 <br/><span class="mutted">Przedmiot: </span> {course.subjectName}</p>)
     }
 
   }
 
   def editLesson() = {
-    var id = ""
-    var json = ""
-    var title = ""
-    var extraText = ""
-    var descript = ""
-    var nr = ""
-    var department = ""
 
-    id = idPar
+    var id = idPar
 
-    title = lesson.title
-    nr = lesson.nr.toString
-    descript = lesson.descript
-    extraText = lesson.extraText
-    department = lesson.department
-    json = "[" + lesson.contents.map(cont => cont.forJSONStr).mkString(", ") + "]"
+    var title = lesson.title
+    var nr = lesson.nr
+    var descript = lesson.descript
+    var extraText = lesson.extraText
+    var chapter = lesson.chapter
+    var newChapter = ""
+    var newElem = false
+    var json = "[" + lesson.contents.map(cont => cont.forJSONStr).mkString(", ") + "]"
 
     val userId = user.id.is
 
@@ -67,10 +64,26 @@ class EditLesson extends BaseResourceSn {
       if (!notFoundLesson && (lesson.authorId == 0L || lesson.authorId == userId)) {
         lesson.title = title
         lesson.authorId = userId
-        lesson.nr = tryo(nr.toInt).openOr(0)
+        lesson.nr = nr
         lesson.extraText = extraText
         lesson.descript = descript
-        lesson.department = department
+        if(newElem) {
+          newChapter = newChapter.trim
+          if(newChapter.length > 1) {
+            chapters.find(ch => ch == newChapter) match {
+              case Some(chap) => Unit
+              case _ => {
+                if(!courseOption.isEmpty) {
+                  val cour = courseOption.get
+                  cour.chapters = cour.chapters ++ List(newChapter)
+                  cour.save
+                }
+              }
+            }
+            lesson.chapter = newChapter
+          }
+          else lesson.chapter = newChapter
+        } else  lesson.chapter = chapter
         lesson.contents = createLessonContentsList(json)
         lesson.save
       }
@@ -88,9 +101,11 @@ class EditLesson extends BaseResourceSn {
      val departs = subj.departments.map(d => (d, d))
     "#ID" #> SHtml.text(id, id = _) &
       "#title" #> SHtml.text(title, x => title = x.trim) &
-      "#nr" #> SHtml.text(nr, nr = _) &
+      "#nr" #> SHtml.number(nr,nr = _, 1,200) &
       "#extraText" #> SHtml.text(extraText, extraText = _) &
-      "#department" #> SHtml.select(departs, Full(department), department = _) &
+      "#chapterNameIsNew" #> SHtml.checkbox_id(newElem, (x: Boolean) => newElem = x, Full("chapterNameIsNew")) &
+      "#chapterNameExists" #> SHtml.select(chaptersList, Full(chapter), chapter = _) &
+      "#chapterNameNew" #> SHtml.text(newChapter, newChapter = _) &
       "#description" #> SHtml.textarea(descript, descript = _) &
       "#json" #> SHtml.text(json, json = _) &
       "#save" #> SHtml.button(<span class="glyphicon glyphicon-plus-sign"></span> ++ Text("Zapisz"), save) &
@@ -99,33 +114,63 @@ class EditLesson extends BaseResourceSn {
   }
 
   def ajaxText = {
-    def getData(what: String) = what match {
-      case "quest" => {
-        val str = QuizQuestion.findAll("authorId" ->user.id.is).map(h => "[ '" + h._id.toString + "',  '" + h.question + "', '" + h.department + "']").
-          mkString(",")
+    
+    var itemCh = ""
+    var level = ""
+    var department = ""
+      
+    def getData = {
+      val levInt = tryo(level.toInt).getOrElse(1)
+      val lookingQuest = ("authorId" -> user.id.is)~("lev" -> levInt)~("department" -> department)
+      itemCh match {
+      case "q" => {
+        val str = QuizQuestion.findAll(lookingQuest)
+          .map(h => "[ '" + h._id.toString + "',  '" + h.question + "', '" + h.department + "']")
+          .mkString(",")
         "[" + str + "]"
       }
-      case "word" => {
-        val str = HeadWord.findAll("authorId" ->user.id.is).map(h => "[ '" + h._id.toString + "',  '" + h.title +  "', '" + "']").
-          mkString(",")
+      case "w" => {
+        val str = HeadWord.findAll(lookingQuest)
+        .map(h => "[ '" + h._id.toString + "',  '" + h.title +  "', '" + "']")
+          .mkString(",")
         "[" + str + "]"
       }
-      case "video" => {
-        val str = Video.findAll("authorId" ->user.id.is).map(h => "[ '" + h._id.toString + "',  '" + h.title +  "', '" + h.descript + "']").
-          mkString(",")
+      case "v" => {
+        val str = Video.findAll(lookingQuest)
+        .map(h => "[ '" + h._id.toString + "',  '" + h.title +  "', '" + h.descript + "']")
+        .mkString(",")
         "[" + str + "]"
       }
-      case "doc" => {
-        val str = Document.findAll("authorId" ->user.id.is).map(d => "['" + d._id.toString + "', '" + d.title + "', '" + d.descript + "']").
-          mkString(",")
+      case "d" => {
+        val str = Document.findAll(lookingQuest)
+        .map(d => "['" + d._id.toString + "', '" + d.title + "', '" + d.descript + "']")
+        .mkString(",")
+        "[" + str + "]"
+      }
+      case "f" => {
+        val str = FileResource.findAll(lookingQuest)
+        .map(f => "['" + f._id.toString + "', '" + f.title + "', '" + f.descript + "']")
+        .mkString(",")
         "[" + str + "]"
       }
       case _ => "error"
     }
-    "#hiddenAjaxText" #> SHtml.ajaxText("", what => {
-      println("[AppINFO]:: Ajax Hidden text refresh, what: " + what)
-      Run("refreshTab(\"" + getData(what) + "\");")
-    })
+    }
+    
+    def refreshData():JsCmd = {
+      println("[AppINFO]:: Ajax Hidden text refresh; itemType= " + itemCh + " level= " + level + " depart= " + department )
+      Run("refreshTab(\"" + getData + "\");")
+    }
+    
+   val  itemTypes = List(("w" -> "Hasła"), ("d" -> "Artykuły"), ("q" -> "Zadania"), ("v" -> "Filmy"), ("f"-> "Pliki"))
+    
+    val form = "#getItemType" #> SHtml.select(itemTypes, Full(itemCh), itemCh = _) &
+    	"#getLevel" #> SHtml.select(levList, Full(level), level = _) &
+    	"#getDepartment" #> SHtml.select(departList, Full(department), department = _) &
+    	"#getItems" #> SHtml.ajaxButton(<span class="glyphicon glyphicon-ok-circle"></span> ++ Text("Wybierz"), 
+    	   () => refreshData, "class" -> "btn btn-lg btn-success") andThen SHtml.makeFormsAjax
+    
+    "form" #> (in => form(in))
   }
 
   def renderLinkAndScript(html: NodeSeq) = DataTable.mergeSources(html)
@@ -139,6 +184,19 @@ class EditLesson extends BaseResourceSn {
       SortingOption(Map(1 -> Sorting.ASC)),
       DisplayLengthOption(4, List(4, 10, 20)),
       ColumnNotSearchAndHidden(List(0), List(0)))
+  }
+  
+  
+  def editChapters() = {
+  
+    
+  }
+  
+  def showChapters() = {
+     //?????????????????????????????????
+    "li" #> (if (!courseOption.isEmpty) courseOption.get.chapters.map( ch => {
+    <li class="list-group-item">{ch}</li>
+         }) else <span></span>)
   }
   
  // override def autocompliteScript(in:NodeSeq) = super.autocompliteScript(in)

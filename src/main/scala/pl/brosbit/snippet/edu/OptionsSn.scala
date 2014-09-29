@@ -18,8 +18,14 @@ import org.bson.types.ObjectId
 import Helpers._
 import pl.brosbit.snippet._
 
-class OptionsSn extends BaseResourceSn {
+class OptionsSn  {
 
+  val user = User.currentUser.openOrThrowException("Niezalogowany nauczyciel")
+  val subjectTeach = SubjectTeach.findAll(("authorId" -> user.id.is),("prior"-> 1))
+  val levStr = S.param("l").openOr("1")
+  val levList = List(("1", "podstawowy"), ("2", "rozszerzony"))
+  val levMap = levList.toMap
+  
   def showAllSubjects() = {
     val subjectsAll = SubjectName.findAll(OrderBy(SubjectName.nr, Ascending))
       .filter(s => !subjectTeach.exists(t => t.id == s.id.is))
@@ -172,5 +178,4 @@ class OptionsSn extends BaseResourceSn {
     }
    
   }
-
 }

@@ -10,18 +10,19 @@ case class LessonContent(what:String, id:String, title:String, descript:String) 
 }
 // what: headword - h,  quest - q
 
+
 case class LessonItem(what:String, id:String, title:String, descript:String)
 
 object LessonCourse extends MongoDocumentMeta[LessonCourse] {
   override def collectionName = "lessons"
   override def formats = super.formats + new ObjectIdSerializer + new DateSerializer
-  def create = new LessonCourse(ObjectId.get, 0, 0L,  "",  "", "", "",
+  def create = new LessonCourse(ObjectId.get, 0, 0L, "", "", "", "",
           		new ObjectId("000000000000000000000000"),  Nil)
 }
 
 case class LessonCourse(var _id: ObjectId,  var nr: Int, var authorId:Long,
-        		 var department:String, var title: String,  var extraText:String, var descript: String,
-				 var courseId:ObjectId, var contents: List[LessonContent]) 
+        		 var chapter:String, var title: String,  var extraText:String, 
+				 var descript: String, var courseId:ObjectId, var contents: List[LessonContent]) 
 				 extends MongoDocument[LessonCourse] {
   def meta = LessonCourse
 }

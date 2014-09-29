@@ -29,9 +29,22 @@
 	 <script type="text/javascript" src="/jwplayer/jwplayer.js"></script>
 	<script type="text/javascript">
     var showCourse = new Object();
-
+    
     $(document).ready(function(){
     	showCourse = new ShowCourse();
+    	$('#sortChapters').dialog({
+            autoOpen: false,
+            height: 500,
+            width: 300,
+            modal: false,
+            close: function() {
+               self.isOpenForm = false;
+            }
+      });
+    	
+    	$('#sortChaptersButton').click(function(){
+            $('#sortChapters').dialog('open');
+        });
     	
     });
 
@@ -66,9 +79,13 @@
 					<div class="list-group">
 						<div class="list-group-item" style="text-align:center;">
 						
-						<button  id="addLessonButton" type="button" class="btn btn-success">
+						<a  id="addLessonButton" href="/educontent/editlesson" class="btn btn-success">
 							<span class="glyphicon glyphicon-plus-sign"></span> Dodaj lekcję
-						</button>
+						</a>
+						<button id="sortChaptersButton"  class="btn btn-info">
+                            <span class="glyphicon glyphicon-th-list"></span> Uporządkuj działy
+                        </button>
+						
 						</div>
 					</div>
 				</div>
@@ -80,6 +97,7 @@
 					<div class="row alert alert-info">
 						<div class="col-md-10">
 							<h1 class="page-header">Temat</h1>
+							<h2 class="chapterInfo"></h2>
 						</div>
 						<div class="col-md-2">
 							<span id="editLink"></span>
@@ -96,27 +114,21 @@
 		</div>
 	</div>
 	
-	
-	<div id="addLessonForm" title="Dodaj nową lekcję"  style="display:none;">
-   <form class="lift:edu.ShowCourseSn.addLesson?form=POST  form-horizontal"   role="form">
+	<div style="display:none;" title="Uporządkuj działy" id="sortChapters">
+   <form data-lift="edu.ShowCourseSn.sortChapters" method="post"  role="form">
+   <ul class="list-group">
+   <li class="list-group-item"></li>
+   </ul>
    <div class="form-group">
-        <label for="themeAdd"  class="col-sm-3 control-label">Temat:</label> 
-        <div   class="col-sm-9"><input id="themeAdd"   class="form-control"/></div>
-     </div>
-   <div class="form-group">
-        <label for="nrAdd"  class="col-sm-3 control-label">Nr lekcji: </label> 
-        <div   class="col-sm-9"> <input id="nrAdd" maxlength="3" class="form-control"
-  onkeypress="return (event.charCode >= 48 && event.charCode <= 57) || event.charCode == 0 " /></div>
-   </div>
-   <div class="form-group">
-        <label for="departmentChoose"  class="col-sm-3 control-label">Dział: </label> 
-        <div  class="col-sm-9"> <select id="departmentChoose" class="form-control"></select></div>
-   </div>
-   <div class="form-group">
-         <label  class="col-sm-3 control-label"></label>
-         <div class="col-sm-9"> <input type="submit" id="saveAdd"   class="btn btn-success btn-lg"/></div></div>
+         <input style="display:none;" id="sortedChaptersData"  type="text"/>
+         <label class="col-sm-3 control-label"></label>
+         <div class="col-sm-9"> <button id="saveSort" 
+         class="btn btn-success btn-lg"  type="submit">
+         <span class="glyphicon glyphicon-plus-sign"></span>Dodaj</button>
+         </div></div>
    </form>
    </div>
+	
 
 </div>
 

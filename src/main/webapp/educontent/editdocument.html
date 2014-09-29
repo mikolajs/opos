@@ -16,47 +16,6 @@
 var editDoc = new Object();
 $(document).ready(function(){
 	editDoc = new Document();
-	 
-	CKEDITOR.on( 'instanceCreated', function( event ) {
-            var editor = event.editor;
-                element = editor.element;
-                 editor. config.format_tags = 'p;h2;h3;h4;h5;h6;pre;address';
-                //editor.dataProcessor.writer.selfClosingEnd = '/>';
-                editor.config.disableNativeSpellChecker = false;
-                editor.config.language = 'pl';
-                editor.config.extraPlugins =  'youTube,addImage,syntaxhighlight,formula,symbol';
-                editor.config.toolbar = [
-                                  { name: 'document', groups: [ 'mode', 'document'], items: [ 'Source', '-', 'Save', 'NewPage', 'Preview', 'Print' ] },
-                                  { name: 'clipboard', groups: [ 'clipboard', 'undo' ], items: [ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ] },
-                                  { name: 'editing', groups: [ 'find', 'selection', 'spellchecker' ], items: [ 'Find', 'Replace', '-', 'SelectAll', '-', 'Scayt' ] },
-                                  { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ] },
-                                  { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align' ], items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'] },
-                                  '/',
-                                  { name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ] },
-                                  { name: 'insert', items: [ 'AddImage', 'Table', 'Syntaxhighlight',  'Formula',  'Symbol' ] },
-                                  { name: 'styles', items: [ 'Styles', 'Format', 'Font', 'FontSize' ] },
-                                  { name: 'colors', items: [ 'TextColor', 'BGColor' ] },
-                                  { name: 'tools', items: [ 'Maximize', 'ShowBlocks' ] },
-                                  { name: 'others', items: [ '-' ] }
-                              ];
-
-                editor.config.toolbarGroups = [
-                                               { name: 'document', groups: [ 'mode', 'document' ] },
-                                               { name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
-                                               { name: 'editing', groups: [ 'find', 'selection', 'spellchecker' ] },
-                                               { name: 'forms' },
-                                               '/',
-                                               { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
-                                               { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
-                                               { name: 'links' },
-                                               { name: 'insert' },
-                                               '/',
-                                               { name: 'styles' },
-                                               { name: 'colors' },
-                                               { name: 'tools' },
-                                               { name: 'others' }
-                                           ];
-        });
 	});
 
 </script>
@@ -103,12 +62,12 @@ select {
 		<div class="form-group">
 			<label for="subject" class="col-lg-2 control-label">Przedmiot:</label>
 			<div class="col-lg-3">
-				<input id="subjects" class="form-control" readonly="readonly" />
+				<input id="subject" class="form-control" readonly="readonly" />
 			</div>
 
 			<label class="col-lg-2 control-label">Poziom:</label>
 			<div class="col-lg-3">
-				<input id="docLevel" class="form-control" readonly="readonly" />
+				<input id="docLevel" class="form-control" />
 			</div>
 		</div>
 		<div class="form-group">

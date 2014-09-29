@@ -31,6 +31,10 @@ class DocumentsSn  extends BaseResourceSn {
       ".editTd *" #> <a class="btn btn-success" href={"/educontent/editdocument/" + doc._id.toString}> Edytuj</a>
       )
   }
+ 
+ def subjectAndLevelForNew() = {
+   "a [href]" #> ("/educontent/editdocument/0?s=" + subjectNow.id.toString + "&l=" + levStr)
+ }
 
 
 def choiceSubjectAndLevel() = {

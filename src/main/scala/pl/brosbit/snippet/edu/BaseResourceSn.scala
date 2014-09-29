@@ -17,7 +17,7 @@ import Helpers._
 trait BaseResourceSn {
 
   val user = User.currentUser.openOrThrowException("Niezalogowany nauczyciel")
-  val subjectTeach = SubjectTeach.findAll(("authorId" -> user.id.is),("$orderby"->("prior"->1)))
+  val subjectTeach = SubjectTeach.findAll(("authorId" -> user.id.is),("prior"-> 1))
   if (subjectTeach.isEmpty && S.uri.split("/").last != "options") S.redirectTo("/educontent/options")
   val subjId = S.param("s").openOr(subjectTeach.head.id.toString)
   val subjectNow = subjectTeach.find(s => s.id.toString() == subjId).getOrElse(subjectTeach.head)
