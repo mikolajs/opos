@@ -20,6 +20,7 @@ import pl.brosbit.snippet.BaseShowCourseSn
 
 class ShowCourseSn extends BaseShowCourseSn {
 
+  override val basePath = "/educontent/course/"
 
   def show() = {
     if (course.authorId != user.id.is) S.redirectTo("/educontent/index")

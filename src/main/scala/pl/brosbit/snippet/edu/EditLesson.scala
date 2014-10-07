@@ -61,36 +61,35 @@ class EditLesson extends BaseLesson {
     val userId = user.id.is
 
     def save() {
-      if (!notFoundLesson && (lesson.authorId == 0L || lesson.authorId == userId)) {
+      if ((!courseOption.isEmpty) && (lesson.authorId == 0L || lesson.authorId == userId)) {
         lesson.title = title
         lesson.authorId = userId
         lesson.nr = nr
         lesson.extraText = extraText
         lesson.descript = descript
+        val cour = courseOption.get
         if(newElem) {
           newChapter = newChapter.trim
           if(newChapter.length > 1) {
             chapters.find(ch => ch == newChapter) match {
               case Some(chap) => Unit
               case _ => {
-                if(!courseOption.isEmpty) {
-                  val cour = courseOption.get
                   cour.chapters = cour.chapters ++ List(newChapter)
                   cour.save
-                }
               }
             }
             lesson.chapter = newChapter
           }
-          else lesson.chapter = newChapter
         } else  lesson.chapter = chapter
         lesson.contents = createLessonContentsList(json)
+        lesson.courseId = cour._id
         lesson.save
       }
-      S.redirectTo("/educontent/course/" + lesson.courseId.toString)
+      S.redirectTo("/educontent/course/" + lesson.courseId.toString + "?l=" + lesson._id.toString())
     }
 
     def delete() {
+      deleteChapterIfLast
       if (isLessonOwner(lesson)) lesson.delete
       println("Usunięcie lekcji: " + lesson.title + " user: " + lesson.authorId ) 
       S.redirectTo("/educontent/course/" + lesson.courseId.toString)
@@ -147,12 +146,6 @@ class EditLesson extends BaseLesson {
         .mkString(",")
         "[" + str + "]"
       }
-      case "f" => {
-        val str = FileResource.findAll(lookingQuest)
-        .map(f => "['" + f._id.toString + "', '" + f.title + "', '" + f.descript + "']")
-        .mkString(",")
-        "[" + str + "]"
-      }
       case _ => "error"
     }
     }
@@ -162,13 +155,13 @@ class EditLesson extends BaseLesson {
       Run("refreshTab(\"" + getData + "\");")
     }
     
-   val  itemTypes = List(("w" -> "Hasła"), ("d" -> "Artykuły"), ("q" -> "Zadania"), ("v" -> "Filmy"), ("f"-> "Pliki"))
+   val  itemTypes = List(("w" -> "Hasła"), ("d" -> "Artykuły"), ("q" -> "Zadania"), ("v" -> "Filmy"))
     
     val form = "#getItemType" #> SHtml.select(itemTypes, Full(itemCh), itemCh = _) &
     	"#getLevel" #> SHtml.select(levList, Full(level), level = _) &
     	"#getDepartment" #> SHtml.select(departList, Full(department), department = _) &
-    	"#getItems" #> SHtml.ajaxButton(<span class="glyphicon glyphicon-ok-circle"></span> ++ Text("Wybierz"), 
-    	   () => refreshData, "class" -> "btn btn-lg btn-success") andThen SHtml.makeFormsAjax
+    	"#getItems" #> SHtml.ajaxSubmit("Pokaż",() => refreshData, 
+    	    "class" -> "btn btn-lg btn-success", "type" -> "submit") andThen SHtml.makeFormsAjax
     
     "form" #> (in => form(in))
   }
@@ -209,4 +202,16 @@ class EditLesson extends BaseLesson {
     json.extract[List[LessonContent]]
   }
 
+private def deleteChapterIfLast() = {
+  if(!courseOption.isEmpty) {
+    val course = courseOption.get
+    val lessons = LessonCourse.findAll(("courseId"->course._id.toStringMongod()))
+    if(lessons.isEmpty)
+    	course.chapters = course.chapters.filterNot(ch => ch == lesson.chapter)
+    	println("[AppINFO:::::: on delete lesson dlelet chapters if last == " + lessons.length.toString )
+    	//course.save
+  }
 }
+
+}
+

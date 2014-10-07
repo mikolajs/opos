@@ -46,12 +46,14 @@ class LoginSn {
             if (user.password.match_?(pass.trim)) User.logUserIn(user)
             intalizeSubjectAndLevelChoice(user)
           } else {
-            if (user.password.match_?(pass.trim) && pesel == user.pesel.is)
-              User.logUserIn(user)
+            if (user.password.match_?(pass.trim)){
+              if(pesel == user.pesel.is) User.logUserIn(user)
+              else S.notice(" Błędny pesel ")
+            }
+            else S.notice(" Błędne hasło. ")
           }
-
         }
-        case _ =>
+        case _ => S.notice(" Nie znaleziono adresu email. ")
       }
     }
     userBox match {

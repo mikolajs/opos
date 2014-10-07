@@ -53,12 +53,28 @@ while(cursor.hasNext()) {
 #update after change subjectTech level add:
 db.subjectsTeach.update({},{$set: {lev: 1}} , true, true, true);
 
+#update level to video
+db.videos.update({},{$set: {lev: 1}} , true, true, true);
+#update lavel to article
+db.documents.update({},{$set: {lev: 1}} , true, true, true);
 
 #change map in courses;
-db.courses.update({},{$set: {chapters: {}}} , true, true, true); 
+db.courses.update({},{$set: {chapters: []}} , true, true, true); 
 
 #add chapterId to lessons
 db.lessons.update({},{$set: {chapter: ""}} , true, true, true);
+
+#change ownerID na authorId:
+
+var cursor = db.documents.find();
+while(cursor.hasNext()) {
+    var doc = cursor.next();   
+    var ownId = doc.ownerID;
+    var ownName = doc.ownerName;
+    print(doc._id + ": " +ownId + " " + ownName);  
+    db.documents.update({'_id' : doc._id}, {$set: {"authorId": ownId}}, true, true, true);  
+    db.documents.update({'_id' : doc._id}, {$set: {"authorName": ownName}}, true, true, true); 
+}
 
 #change what member in lessons 
 

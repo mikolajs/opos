@@ -21,24 +21,9 @@ import com.mongodb.gridfs._
 class VideoSn extends BaseResourceSn {
 
   def showVideos = {
-    val idToDel = S.param("del").openOr("")
-    if (idToDel.length > 20) {
-      Video.find(idToDel) match {
-        case Some(video) if (video.authorId == user.id.is) => {
-          if(video.onServer) {
-            val file = new File("/home/vregister/" + video._id.toString + "." + video.link.split('.').last)
-            if(file.exists() && file.isFile()) try {
-              file.delete()
-            } catch {case _:Throwable => S.notice("Brak pliku do usunięcia") }
-          }
-          video.delete
-        }
-        case _ =>
-      }
-    }
 
     "tr" #> Video.findAll(("authorId" -> user.id.is)~("subjectId" -> subjectNow.id)
-        ~("lev" -> tryo(levStr.toInt).openOr(1))).map(video => {
+        ).map(video => {
       <tr id={ video._id.toString }>
         <td><a href={ if (video.onServer) 
         	"http://video.epodrecznik.edu.pl/" + video._id.toString + "." + video.link.split('.').last 
@@ -49,9 +34,8 @@ class VideoSn extends BaseResourceSn {
         }</td>
         <td>{video.descript}</td>
         <td>{video.department}</td>
+        <td>{levMap(video.lev.toString)}</td>
         <td>
-          <a href={ "/educontent/video?del=" + video._id.toString } 
-          	onclick="return editVideo.sureDel();" class="btn btn-danger">Usuń</a>
           <span class="btn btn-info" onclick="editVideo.edit(this);">Edytuj</span>
         </td>
       </tr>
@@ -59,9 +43,6 @@ class VideoSn extends BaseResourceSn {
   }
   
   
-  def choiceSubjectAndLevel() = {
-    super.choiceSubjectAndLevel("/educontent/video")
-  }
 
   def add = {
 
@@ -80,6 +61,9 @@ class VideoSn extends BaseResourceSn {
     def save(): Unit = {
 
       val video = if (videoId.length < 20) Video.create else Video.find(videoId).getOrElse(Video.create)
+      
+      if(video.authorId != 0L &&  video.authorId != user.id.is) return
+      
       if(!onserver) {
         video.link = linkTube
         video.oldPath = ""
@@ -87,13 +71,28 @@ class VideoSn extends BaseResourceSn {
       video.onServer = onserver
       video.subjectId = findSubjectId(subjectName)
       video.subjectName = subjectName
-      val levId = levList.find(l => l._2 == level).getOrElse(levList.head)._1
-      video.lev = tryo(levId.toInt).openOr(1)
+      //val levId = levList.find(l => l._2 == level).getOrElse(levList.head)._1
+      video.lev = tryo(level.toInt).openOr(1)
       video.title = title.replace(''','`')
       video.department = depart
       video.descript = descript
       video.authorId = user.id.is
       video.save
+    }
+    
+    def delete() {
+      Video.find(videoId) match {
+        case Some(video) if (video.authorId == user.id.is) => {
+          if(video.onServer) {
+            val file = new File("/home/vregister/" + video._id.toString + "." + video.link.split('.').last)
+            if(file.exists() && file.isFile()) try {
+              file.delete()
+            } catch {case _:Throwable => S.notice("Brak pliku do usunięcia") }
+          }
+          video.delete
+        }
+        case _ =>
+      }
     }
 
     val departs = subjectNow.departments.map(d => (d, d))
@@ -101,13 +100,18 @@ class VideoSn extends BaseResourceSn {
       "#videoId" #> SHtml.text(videoId, videoId = _) &
       "#titleAdd" #> SHtml.text(title, x => title = x.trim) &
       "#subjectAdd" #> SHtml.text(subjectNow.name, subjectName = _, "readonly"->"readonly" ) &
-      "#levelAdd" #> SHtml.text(levMap(levStr), level = _, "readonly"->"readonly") &
+      "#levelAdd" #> SHtml.select(levList, Full("1"), level = _) &
       "#departmentsAdd" #> SHtml.select(departs, Full(depart), depart = _) &
       "#onserver" #> SHtml.checkbox_id(onserver, (x: Boolean) => onserver = x, Full("onserver")) &
       "#descriptAdd" #> SHtml.textarea(descript, x => descript = x.trim) &
       "#linkTube" #> SHtml.text(linkTube, x => linkTube = x.trim) &
-      "#saveAdd" #> SHtml.submit("Dodaj", save)
+      "#deleteAdd" #> SHtml.submit("Usuń", delete) &
+      "#saveAdd" #> SHtml.submit("Zapisz", save)
 
+  }
+  
+  def subjectChoice() = {
+    super.subjectChoice("/educontent/video")
   }
   
  //override  def autocompliteScript(in:NodeSeq) = super.autocompliteScript(in)

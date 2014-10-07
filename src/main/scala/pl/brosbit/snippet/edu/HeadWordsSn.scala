@@ -41,4 +41,8 @@ class HeadWordsSn extends   BaseResourceSn {
     
   }
   
+  def subjectChoice() = {
+    super.subjectChoice("/educontent/headers")
+  }
+  
 }

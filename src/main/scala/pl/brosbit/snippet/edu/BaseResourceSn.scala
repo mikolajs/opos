@@ -11,6 +11,8 @@ import http.{ S, SHtml }
 import json.JsonDSL._
 import json.JsonAST.JObject
 import json.JsonParser
+import  _root_.net.liftweb.http.js.JsCmds._
+import  _root_.net.liftweb.http.js.JsCmd
 import org.bson.types.ObjectId
 import Helpers._
 
@@ -21,8 +23,8 @@ trait BaseResourceSn {
   if (subjectTeach.isEmpty && S.uri.split("/").last != "options") S.redirectTo("/educontent/options")
   val subjId = S.param("s").openOr(subjectTeach.head.id.toString)
   val subjectNow = subjectTeach.find(s => s.id.toString() == subjId).getOrElse(subjectTeach.head)
-  val levStr = S.param("l").openOr(subjectNow.lev.toString)
-  val levList = List(("1", "podstawowy"), ("2", "rozszerzony"))
+  //val levStr = S.param("l").openOr(subjectNow.lev.toString)
+  val levList = List(("1", "podstawowy"), ("2", "średni"), ("3", "rozszerzony"))
   val levMap = levList.toMap
 
 
@@ -44,7 +46,14 @@ trait BaseResourceSn {
     if(matched.isEmpty) subjectNow.id else matched.head.id
   }
   
-  
+  def subjectChoice(basePath:String) = {
+    def redirect(str:String):JsCmd = {
+      S.redirectTo( basePath + "?s=" + str)
+    }
+    val subjects = subjectTeach.map(s => (s.id.toString(), s.name))
+    "#subjectChoice" #> SHtml.ajaxSelect(subjects, Full(subjectNow.id.toString), (str) => redirect(str))
+  }
+ /* 
   def choiceSubjectAndLevel(basePath:String) = {
     val subjects = subjectTeach.map(s => (s.id.toString, s.name))
     var subjectChoice = ""
@@ -56,6 +65,8 @@ trait BaseResourceSn {
         "#levels" #> SHtml.select(levList, Full(levStr), levelChoice = _) &
         "#choise" #> SHtml.submit("Wybierz", makeChoise)
   }
+  * 
+  */
 /*
   def autocompliteScript(in: NodeSeq) = {
     var dataStart = "$(function() {\n" + "var availableTags = ["

@@ -64,22 +64,14 @@
 	</div>
 	<div class="row">
 		<div class="col-lg-9">
-			<form class="lift:edu.DocumentsSn.choiceSubjectAndLevel form-inline"
-				method="POST">
+			<div class="lift:edu.DocumentsSn.subjectChoice form-inline">
 				<div class="input-group">
-					<div class="input-group-addon">Przedmiot:</div>
-					<select id="subjects" class="form-control"></select>
+					<div class="input-group-addon">Wybierz przedmiot:</div>
+					<select id="subjectChoice" class="form-control"></select>
 				</div>
-				<div class="input-group">
-					<div class="input-group-addon">Poziom edukacyjny:</div>
-					<select id="levels" class="form-control"></select>
-				</div>
-				<div class="input-group">
-					<input class="btn btn-success" id="choise" type="submit" />
-				</div>
-			</form>
+			</div>
 		</div>
-		<div class="col-lg-3" data-lift="edu.DocumentsSn.subjectAndLevelForNew">
+		<div class="col-lg-3" data-lift="edu.DocumentsSn.subjectForNew">
 			<a href="/educontent/editdocument/0"> <span
 				class="btn btn-success btn-lg" id="iconAddBook"> <span
 					class="glyphicon glyphicon-plus-sign"></span> Dodaj nowy artykuł
@@ -101,6 +93,7 @@
 						<th>Tytuł</th>
 						<th>Opis</th>
 						<th>Dział</th>
+						<th>Poziom</th>
 						<th>Edycja</th>
 					</tr>
 				</thead>
@@ -109,6 +102,7 @@
 						<td class="titleTd"></td>
 						<td class="descriptTd"></td>
 						<td class="departmentTd"></td>
+						<td class="levelTd"></td>
 						<td class="editTd"></td>
 					</tr>
 				</tbody>
@@ -117,6 +111,7 @@
 						<th>Tytuł</th>
                         <th>Opis</th>
                         <th>Dział</th>
+                        <th>Poziom</th>
                         <th>Edycja</th>
 					</tr>
 				</tfoot>

@@ -6,46 +6,11 @@
     <script src="/jquery/dejavu.js"></script>
        <script src="/jquery/jquery.dataTables.min.js" ></script>
       <link rel="stylesheet" type="text/css" href="/style/jquery.dataTables.css" />
+      <script src="/jquery/editfiles.js"></script>
        <script>
+       var editFile = new Object();
        $(document).ready(function(){
-    	   $('#addNewItem').dialog({
-    		   autoOpen:false,
-    		   modal:true,
-    		   width:600,
-    		   height:500
-    	   });
-    	   
-    	   $('#addTrigger').click(function(){
-    		  $('#addNewItem').dialog('open'); 
-    	   });
-    	   
-    	   oTable = $('#dataTable').dataTable({
-   			"sPaginationType": "two_button",
-   			"bFilter": true,
-   			"iDisplayLength": 20,
-   			"bLengthChange": true,
-   		    "oLanguage": {
-   		        "sSearch": "Filtruj wiersze: ",
-   		        "sZeroRecords": "Brak danych do wyświetlenia",
-   		        "sInfoEmpty": "Brak danych do wyświetlenia",
-   		        "sEmptyTable": "Brak danych do wyświetlenia",
-   		        "sInfo": "Widzisz wiersze od _START_ do _END_  z wszystkich _TOTAL_",
-   		        "oPaginate": {
-   		        	"sPrevious": "Poprzednie",
-   			        "sNext": "Następne",
-   			        "sFirst": "Początek",
-   			        "sLast": "Koniec",
-   		        },
-   		        "sInfoFiltered": " - odfiltrowano z _MAX_ wierszy",
-   		        "sLengthMenu": 'Pokaż <select>'+
-   		        '<option value="20">20</option>'+
-   		        '<option value="50">50</option>'+
-   		        '<option value="100">100</option>'+
-   		        '<option value="-1">całość</option>'+
-   		        '</select> wierszy'
-   		    }
-   		      });
-    	   
+    	   editFile = new EditFile();
        });
         
        </script>
@@ -55,20 +20,13 @@
   
   <div class="row">
 		<div class="col-lg-9">
-			<form class="lift:edu.EditQuestSn.choiseQuest form-inline"
+			<div class="lift:edu.FileResourceSn.subjectChoice form-inline"
 				method="POST">
 				<div class="input-group">
-					<div class="input-group-addon">Przedmiot:</div>
-					<select id="subjects" class="form-control"></select>
-				</div>
-				<div class="input-group">
-					<div class="input-group-addon">Poziom edukacyjny:</div>
-					<select id="levels" class="form-control"></select>
-				</div>
-				<div class="input-group">
-					<input class="btn btn-success" id="choise" type="submit" />
-				</div>
-			</form>
+					<div class="input-group-addon">Wybierz przedmiot:</div>
+					<select id="subjectChoice" class="form-control"></select>
+				</div>	
+			</div>
 		</div>
 		<div class="col-lg-3">
 			<button type="button" class="btn btn-success btn-lg"  id="addTrigger">
@@ -81,19 +39,20 @@
 <br/><hr/>
 
 <div >
-	 <table id="dataTable"><thead><tr><th>Tytuł</th><th>Przedmiot</th>
-	 		<th>Opis</th><th>Usuń?</th></tr></thead>
+	 <table id="dataTable"><thead><tr><th>Tytuł</th><th>Opis</th>
+	 		<th>Dział</th><th>Poziom</th><th>Edycja</th></tr></thead>
 	 <tbody class="lift:edu.FileResourceSn.showMyFiles"><tr><td></td><td></td><td></td><td></td><td></td></tr></tbody>
-	 <tfoot><tr><th>Tytuł</th><th>Przedmiot</th>
-	 		<th>Opis</th><th>Usuń?</th></tr></tfoot>
+	 <tfoot><tr><th>Tytuł</th><th>Opis</th>
+	 		<th>Dział</th><th>Poziom</th><th>Edycja</th></tr></tfoot>
 	 </table>
 </div>
    
    <div id="addNewItem" title="Dodaj nowy plik"  style="display:none;">
    <form class="lift:edu.FileResourceSn.add?form=POST  form-horizontal"   role="form"  enctype="multipart/form-data">
+   <input id="resourceId" style="display:none;"/>
    <div class="form-group">
         <label for="titleAdd"  class="col-sm-3 control-label">Tytuł:</label> 
-        <div   class="col-sm-9"><input id="title"   class="form-control"/></div>
+        <div   class="col-sm-9"><input id="titleAdd"   class="form-control"/></div>
      </div>
    <div class="form-group">
         <label for="subjectAdd"  class="col-sm-3 control-label">Przedmiot: </label> 
@@ -101,7 +60,7 @@
    </div>
    <div class="form-group">
         <label for="levelAdd"  class="col-sm-3 control-label">Poziom: </label> 
-        <div   class="col-sm-9"><input id="levelAdd"  class="form-control" readonly="readonly"/></div>
+        <div   class="col-sm-9"><input id="levelAdd"  class="form-control" /></div>
    </div>
    <div class="form-group">
         <label for="departmentsAdd"  class="col-sm-3 control-label">Dział: </label> 
@@ -117,7 +76,10 @@
       </div>
    <div class="form-group">
          <label  class="col-sm-3 control-label"></label>
-         <div class="col-sm-9"> <input type="submit" id="saveAdd"   class="btn btn-success btn-lg"/></div></div>
+         <div class="col-sm-6"> <input type="submit" id="saveAdd"   class="btn btn-success btn-lg"/></div>
+         <div class="col-sm-3"> <input type="submit" onclick="return confirm('Na pewno chcesz usunąć plik?');"
+         id="deleteAdd"   class="btn btn-danger btn-lg"/></div>
+         </div>
    </form>
    </div>
    

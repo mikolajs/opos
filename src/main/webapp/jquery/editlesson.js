@@ -167,8 +167,7 @@ var LessonEditor = dejavu.Class
 					q : "quiz.png",
 					w : "presentation.png",
 					v : "video.png",
-					d : "document.png",
-					f : "files.png"
+					d : "document.png"
 				};
 				var title = '<span class="title" name="' + item.id + '">'
 						+ item.title + '</span>';

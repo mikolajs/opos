@@ -57,6 +57,9 @@
 	margin: 5px -15px;
 	padding: 5px 30px;
 }
+.chapter {
+ background-color: #DFF0D8;
+}
 </style>
 	</head_merge>
 
@@ -112,6 +115,16 @@
 				</div>
 			</div>
 		</div>
+	</div>
+	
+	<div id="lessonComments" style="display:none;">
+	<div id="listOfComments"  data-lift="edu.EditLesson.comments">
+	
+	</div>
+	<form  data-lift="edu.EditLesson.comments" method="post">
+	<textarea id="commentEditor"></textarea>
+    <input type="text" id="addComment" value="Dodaj"/>	
+	</form>
 	</div>
 	
 	<div style="display:none;" title="Uporządkuj działy" id="sortChapters">

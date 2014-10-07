@@ -21,10 +21,11 @@ trait BaseLesson {
   val levMap = levList.toMap
 
   var idPar = S.param("id").openOr("0")
+  var courseId = S.param("c").openOr("0") 
   //parametr id jest _id lekcji gdy już była utworzona. Gdy mamy nową lekcję parametr ten jest id kursu
-  val lesson = LessonCourse.find(idPar).getOrElse(LessonCourse.create)
+  val lesson = if(idPar == "0") LessonCourse.create else LessonCourse.find(idPar).getOrElse(LessonCourse.create)
   val notFoundLesson = (lesson.courseId.toString == "000000000000000000000000" || lesson.courseId.toString.length() < 20 ) 
-  val courseOption = if(notFoundLesson) None else Course.find(lesson.courseId.toString());
+  val courseOption = if(idPar == "0") Course.find(courseId) else {if(notFoundLesson) None else Course.find(lesson.courseId.toString()) }
   val subjectId = if(courseOption.isEmpty) 0L else courseOption.get.subjectId
   val chapters = if(courseOption.isEmpty) Nil else courseOption.get.chapters
   val chaptersList = chapters.map(ch => (ch, ch))

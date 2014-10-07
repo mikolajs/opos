@@ -35,7 +35,7 @@ class EditDocumentSn extends BaseResourceSn {
     var title = document.title
     var descript = document.descript
     var subject = if(document.subjectId == 0L) subjectNow.name else document.subcjectName
-    var level = if(document.subjectId == 0L) levStr else document.lev.toString
+    var level = document.lev.toString
     var department = document.department
     var docContent = document.content
 

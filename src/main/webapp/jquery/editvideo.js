@@ -76,7 +76,7 @@ var EditVideo = dejavu.Class.declare({
     	$tr.children('td').each(function(index){
     		switch(index){
     		case 0:
-    			document.getElementById('title').value = $(this).text();
+    			document.getElementById('titleAdd').value = $(this).text();
     			link = self._getIdFromHref($(this).children('a').attr('href'));
     			break;
     		case 1: 
@@ -93,13 +93,13 @@ var EditVideo = dejavu.Class.declare({
     			}
     			break;
     		case 2: 
-    			document.getElementById('descript').value = $(this).text();
+    			document.getElementById('descriptAdd').value = $(this).text();
     			break;
     		case 3: 
-    			self._setSelectOption(this.innerHTML);
+    			self._setSelectOptionDepart(this.innerHTML);
     			break;
     		case 4: 
-    			document.getElementById('department').value = this.innerHTML;
+    			self._setSelectOptionLevel(this.innerHTML);
     		default: 
     			break;
     		}
@@ -112,8 +112,15 @@ var EditVideo = dejavu.Class.declare({
     	return confirm("Na pewno usunąć film?");
     },
     
-    _setSelectOption :  function(innerOption) {
-		$('#subjects option').each(function() {
+    _setSelectOptionDepart : function(innerOption){
+    	$('#departmentsAdd option').each(function() {
+			if(innerOption != this.innerHTML) this.removeAttribute('selected');
+			else {this.setAttribute('selected', true);}
+		});
+    }, 
+    
+    _setSelectOptionLevel :  function(innerOption) {
+		$('#levelAdd option').each(function() {
 			if(innerOption != this.innerHTML) this.removeAttribute('selected');
 			else {this.setAttribute('selected', true);}
 		});

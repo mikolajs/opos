@@ -25,20 +25,12 @@
   
  <div class="row">
 		<div class="col-lg-6">
-			<form class="lift:edu.VideoSn.choiceSubjectAndLevel form-inline"
-				method="POST">
-				<div class="input-group">
-					<div class="input-group-addon">Przedmiot:</div>
-					<select id="subjects" class="form-control"></select>
-				</div>
-				<div class="input-group">
-					<div class="input-group-addon">Poziom edukacyjny:</div>
-					<select id="levels" class="form-control"></select>
-				</div>
-				<div class="input-group">
-					<input class="btn btn-success" id="choise" type="submit" />
-				</div>
-			</form>
+			<div class="form-inline">
+			<div class="input-group" data-lift="edu.VideoSn.subjectChoice">
+                    <div class="input-group-addon">Wybierz przedmiot:</div>
+                    <select id="subjectChoice" class="form-control"></select>
+             </div>
+             </div>
 		</div>
 		<div class="col-lg-3">
 			<button type="button" class="btn btn-success btn-lg"  id="addTrigger">
@@ -55,10 +47,10 @@
 
 <div>
      <table id="dataTable"><thead><tr><th>Tytuł</th><th>Gdzie</th><th>Opis</th>
-            <th>Dział</th><th>Akcje</th></tr></thead>
+            <th>Dział</th><th>Poziom</th><th>Akcje</th></tr></thead>
      <tbody class="lift:edu.VideoSn.showVideos"><tr><td></td><td></td><td></td><td></td><td></td></tr></tbody>
      <tfoot><tr><th>Tytuł</th><th>Gdzie</th><th>Opis</th>
-            <th>Dział</th><th>Akcje</th></tr></tfoot>
+            <th>Dział</th><th>Poziom</th><th>Akcje</th></tr></tfoot>
      </table>
 </div>
    
@@ -75,7 +67,7 @@
    </div>
    <div class="form-group">
         <label for="levelAdd" class="col-sm-3 control-label">Poziom: </label> 
-         <div   class="col-sm-9"><input id="levelAdd" class="form-control"  readonly="readonly"/></div>
+         <div   class="col-sm-9"><input id="levelAdd" class="form-control" /></div>
    </div>
     <div class="form-group">
         <label for="departmentsAdd" class="col-sm-3 control-label">Dział: </label> 
@@ -98,7 +90,9 @@
     </div>
    <div class="form-group">
         <label  class="col-sm-3 control-label"></label>
-         <div   class="col-sm-9"><input type="submit" id="saveAdd"  class="btn btn-success btn-lg" /></div>
+         <div   class="col-sm-6"><input type="submit" id="saveAdd"  class="btn btn-success btn-lg" /></div>
+         <div   class="col-sm-3"><input type="submit" id="deleteAdd" 
+         onclick="return confirm('Na pewno chcesz usunąć film?');" class="btn btn-danger btn-lg" /></div>
    </div>
    </form>
    </div>

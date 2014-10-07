@@ -18,6 +18,8 @@ import org.bson.types.ObjectId
 import Helpers._
 
 class BaseShowCourseSn {
+  
+  val basePath = "/view/course/"
 
   val user = User.currentUser match {
     case Full(user) => user
@@ -30,7 +32,7 @@ class BaseShowCourseSn {
     case Some(course) => course
     case _ => Course.create
   }
-  val lessons = LessonCourse.findAll(("courseId" -> course._id.toString), ("chapterId" -> 1) ~ ("nr" -> 1));
+  val lessons = LessonCourse.findAll(("courseId" -> course._id.toString), ("nr" -> 1));
   var currentLesson = lessons.find(les => les._id.toString == lessonId) match {
     case Some(foundLesson) => foundLesson
     case _ => if (!lessons.isEmpty) lessons.head else LessonCourse.create
@@ -98,11 +100,6 @@ class BaseShowCourseSn {
         val docModel = docs.find(i => i._id.toString == item.id.drop(1)).getOrElse(Document.create)
         "<section class=\"document\"> <h3>" + docModel.title + "</h3>\n " + docModel.content + "</section>"
       }
-      case "f" => {
-        val fileMod = fs.find(f => f._id.toString == item.id.drop(1)).getOrElse(FileResource.create(ObjectId.get))
-        "<section class=\"file\"> <h3>" + fileMod.title + "</h3>\n <a href=\"/file/" + fileMod.fileId.toString() +
-          "\">" + fileMod.descript + "</a></section>"
-      }
       case _ => <h4>Błąd - nie ma takiego typu zawartości</h4>
     }).mkString("\n")
 
@@ -154,23 +151,42 @@ class BaseShowCourseSn {
 
   protected def createLessonList() = {
     var chapterFiltred:List[LessonCourse] = lessons
-    course.chapters.map(ch => {
+    
+    println("[AppINFO:::::: ]" + lessons.length.toString)
+    val toReturn =  course.chapters.map(ch => {
       val (lessonChapter, restChap) = chapterFiltred.partition(l => l.chapter == ch)
        chapterFiltred = restChap
        <span class="list-group-item chapter">{ ch }</span> ++
-      chapterFiltred.map(less => {
+      lessonChapter.map(less => {
         if (less._id.toString() == currentLesson._id.toString())
         <a href={ "#" } class={ "list-group-item active" }>
                         { less.title }
                         <span class="badge">{ less.nr.toString }</span>
              </a>
       else
-        <a href={ "/view/course/" + course._id.toString + "?l=" + less._id.toString } class="list-group-item" >
+        <a href={ basePath + course._id.toString + "?l=" + less._id.toString } class="list-group-item" >
                         { less.title }
                         <span class="badge">{ less.nr.toString }</span>
                       </a>
       })
     })
+    val rest = if(chapterFiltred.isEmpty) Nil else {
+      <span class="list-group-item chapter" > Nieprzydzielone do działów </span> ++ chapterFiltred.map(less => {
+        if (less._id.toString() == currentLesson._id.toString())
+        <a href={ "#" } class={ "list-group-item active" }>
+                        { less.title }
+                        <span class="badge">{ less.nr.toString }</span>
+             </a>
+      else
+        <a href={ basePath + course._id.toString + "?l=" + less._id.toString } class="list-group-item" >
+                        { less.title }
+                        <span class="badge">{ less.nr.toString }</span>
+                      </a>
+      }) 
+    }
+    
+    println("[AppINFO:::::: ]" + toReturn.flatten.toString +  "\n" + rest.toString)
+    toReturn.flatten ++ rest
   }
 
   protected def printInfo { println("idCourse = " + course._id.toString + " course title = " + course.title) }

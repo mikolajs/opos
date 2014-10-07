@@ -16,7 +16,7 @@ case class LessonItem(what:String, id:String, title:String, descript:String)
 object LessonCourse extends MongoDocumentMeta[LessonCourse] {
   override def collectionName = "lessons"
   override def formats = super.formats + new ObjectIdSerializer + new DateSerializer
-  def create = new LessonCourse(ObjectId.get, 0, 0L, "", "", "", "",
+  def create = new LessonCourse(ObjectId.get, 99, 0L, "", "", "", "",
           		new ObjectId("000000000000000000000000"),  Nil)
 }
 
