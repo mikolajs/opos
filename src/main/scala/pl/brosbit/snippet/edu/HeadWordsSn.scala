@@ -17,32 +17,26 @@ import org.bson.types.ObjectId
 import Helpers._
 
 
-class HeadWordsSn extends   BaseResourceSn {
+class HeadWordsSn extends BaseResourceSn {
   
-    val subjPar = S.param("s").openOr("")
-    val levPar = S.param("l").openOr("3")
-    val subjectId = if(subjPar != "") tryo(subjPar.toLong).openOr(subjectTeach.head.id)
-    								else subjectTeach.head.id
-  
-    println("============== " + subjPar + " ========= " + levPar)
+
+    val subjectId = subjectNow.id
+
   def headWordsList() = {
    
-    val headWords = HeadWord.findAll(("authorId"-> user.id.is)~("subjectLev"->levPar.toInt)~("subjectId"->subjectId))
+    val headWords = HeadWord.findAll(("authorId"-> user.id.is)~("subjectId"->subjectId))
     "tbody tr" #>headWords.map(headWord => {
-        <tr><td>{headWord.title}</td>
-    	<td><a href={"/educontent/editheadword/"+headWord._id.toString}>edytuj</a></td></tr>
+        <tr><td>{headWord.title}</td><td>{headWord.department}</td><td>{levMap(headWord.lev.toString)}</td>
+    	<td><a  class="btn btn-success" href={"/educontent/editheadword/"+headWord._id.toString}>edytuj</a></td></tr>
     })
   }
   
-  def selectors() = {
-    val subj = subjectTeach.map(s => (s.id.toString,  s.name))
-    "#subjectSelect" #>SHtml.select(subj, Full(subjPar) , x => Unit) &
-    "#levelSelect" #> SHtml.select(levList, Full(levPar) , x => Unit)
-    
+  def newLink() = {
+     "a [href]" #> ("/educontent/editheadword/0?s=" + subjectId.toString)
   }
   
   def subjectChoice() = {
-    super.subjectChoice("/educontent/headers")
+    super.subjectChoice("/educontent/headwords")
   }
   
 }

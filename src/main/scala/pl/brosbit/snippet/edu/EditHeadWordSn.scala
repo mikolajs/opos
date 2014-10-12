@@ -16,10 +16,17 @@ import json.JsonParser
 import org.bson.types.ObjectId
 import Helpers._
 
-class  EditHeadWordSn  extends BaseResourceSn with RoleChecker {
+class  EditHeadWordSn  {
   
+ val user = User.currentUser.openOrThrowException("Niezalogowany nauczyciel")
  val id = S.param("id").openOr("0")
- var headWord = if (id != "0") HeadWord.find(id).getOrElse(HeadWord.create) else HeadWord.create
+ val subId = S.param("s").openOr("0");
+ var headWord = if(id == "0") HeadWord.create else HeadWord.find(id).getOrElse(HeadWord.create)
+ val subIdLong = if(headWord.subjectId == 0L) subId.toLong else headWord.subjectId
+ var subjectNow = SubjectTeach.findAll(("id" -> subIdLong)~("authorId" -> user.id.is)) match {
+   case sub::list => sub
+   case _ => S.redirectTo("/educontent/headwords")
+ }
  
  //for showheadWords - viewer 
   def headWordData() = {
@@ -31,15 +38,17 @@ class  EditHeadWordSn  extends BaseResourceSn with RoleChecker {
   
   //edit headWords 
   def formEdit() = {
-    
-    var ID = if(id == "0") "0" else headWord._id.toString
+
+    var ID =  headWord._id.toString
     var title = headWord.title
-    var subjectId = if(headWord.subjectId != 0L) headWord.subjectId.toString else ""
+    var subjectName = ""
      var subjectLev = headWord.lev.toString
     var headWordsString = headWord.content
+    var department = headWord.department
     //println("------------headWords data -----------------\n" +headWordsData)
      
-    val listSubject = subjectTeach.map(s => {(s.id.toString ,s.name)})
+    val departments = subjectNow.departments.map(s => {(s ,s)})
+    val levList = List(("1", "podstawowy"), ("2", "średni"), ("3", "rozszerzony"))
     
     //poprawić - uwzględnić fak, że new HeadWord już istnieje - chyba, że potrzebujemy kopi
     def saveData() {
@@ -48,11 +57,12 @@ class  EditHeadWordSn  extends BaseResourceSn with RoleChecker {
           val headWordsContentHtml = Unparsed(headWordsString)
           
           headWord.title = title
-          headWord.subjectId = tryo(subjectId.toLong).openOr(0L)
-          headWord.subjectName = findSubjectName(headWord.subjectId)
+          headWord.subjectId = subjectNow.id
+          headWord.subjectName = subjectNow.name
           headWord.lev = subjectLev.toInt
+          headWord.department = department
           headWord.authorId = userId
-          headWord.content = headWordsString      
+          headWord.content = headWordsString
           headWord.save 
       }
       S.redirectTo("/educontent/editheadword/"+ headWord._id.toString) //!important must refresh page
@@ -73,11 +83,12 @@ class  EditHeadWordSn  extends BaseResourceSn with RoleChecker {
       S.redirectTo("/educontent/headwords")
     }
 
-    val publicList = List(("TAK","TAK"),("NIE","NIE"))
+    
     "#id" #> SHtml.text(ID, ID = _, "type"->"hidden") &
     "#headWord" #> SHtml.text(title, title= _,"class"->"Name") &
-    "#subjects" #> SHtml.select(listSubject, Full(subjectId),subjectId = _) &
+    "#subject" #> SHtml.text(subjectNow.name, subjectName = _, "readonly" -> "readonly") &
     "#subjectLevel" #> SHtml.select(levList,Full(subjectLev),subjectLev = _) &
+    "#department" #> SHtml.select(departments, Full(department), department = _) &
     "#headWordsData" #> SHtml.text(headWordsString, headWordsString = _, "type"->"hidden") &
     "#save" #> SHtml.button(<span class="glyphicon glyphicon-floppy-save"></span>  ++ Text(" Zapisz"), saveData,"title"->"Zapisz") &
     "#delete" #> SHtml.button(<span class="glyphicon glyphicon-trash"></span>  ++ Text(" Usuń "),  deleteData,"title"->"Usuń")  &

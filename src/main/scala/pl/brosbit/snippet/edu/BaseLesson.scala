@@ -17,7 +17,7 @@ import Helpers._
 trait BaseLesson {
   
   val user = User.currentUser.openOrThrowException("Niezalogowany nauczyciel")
-  val levList = List(("1", "podstawowy"), ("2", "rozszerzony"))
+      val levList = List(("1", "podstawowy"), ("2", "średni"), ("3", "rozszerzony"))
   val levMap = levList.toMap
 
   var idPar = S.param("id").openOr("0")

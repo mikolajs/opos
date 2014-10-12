@@ -110,6 +110,10 @@ class VideoSn extends BaseResourceSn {
 
   }
   
+  def fromServer() = {
+    "a [href]" #> ("/educontent/indexvideo?s=" + subjectNow.id.toString)
+  }
+  
   def subjectChoice() = {
     super.subjectChoice("/educontent/video")
   }

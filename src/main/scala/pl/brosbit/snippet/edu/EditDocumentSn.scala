@@ -75,8 +75,10 @@ class EditDocumentSn extends BaseResourceSn {
       "#docLevel" #> SHtml.select(levList, Full(level), level = _) &
       "#department" #> SHtml.select(departs, Full(department), department = _) & 
       "#docContent" #> SHtml.textarea(docContent, d => docContent = d.trim) &
-      "#docSave" #> SHtml.submit("Zapisz", save) &
-      "#docDelete" #> SHtml.submit("Usuń", delete)
+      "#docSave" #> SHtml.button(<span class="glyphicon glyphicon-floppy-save"></span>  
+          ++ Text(" Zapisz"), save,"title"->"Zapisz") &
+      "#docDelete" #> SHtml.button(<span class="glyphicon glyphicon-trash"></span>  
+          ++ Text(" Usuń "),  delete,"title"->"Usuń") 
   }
 
 }

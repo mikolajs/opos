@@ -11,13 +11,17 @@ body {
     top: 60px;
     left: 0;
     bottom: 0;
-    width: 350px;
     z-index: 1000;
     padding: 10px;
     overflow-x: hidden;
     overflow-y:  auto;
   }
 }
+
+#subjectsList {
+	width: 350px;
+}
+
 
 .main {
  min-height: 600px;

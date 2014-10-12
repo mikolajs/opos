@@ -54,6 +54,7 @@ class EditLesson extends BaseLesson {
     var descript = lesson.descript
     var extraText = lesson.extraText
     var chapter = lesson.chapter
+    val chapterOld = lesson.chapter
     var newChapter = ""
     var newElem = false
     var json = "[" + lesson.contents.map(cont => cont.forJSONStr).mkString(", ") + "]"
@@ -85,17 +86,18 @@ class EditLesson extends BaseLesson {
         lesson.courseId = cour._id
         lesson.save
       }
+      
+      deleteChapterIfLast(chapterOld)
       S.redirectTo("/educontent/course/" + lesson.courseId.toString + "?l=" + lesson._id.toString())
     }
 
     def delete() {
-      deleteChapterIfLast
       if (isLessonOwner(lesson)) lesson.delete
+      deleteChapterIfLast(chapterOld)
       println("Usunięcie lekcji: " + lesson.title + " user: " + lesson.authorId ) 
       S.redirectTo("/educontent/course/" + lesson.courseId.toString)
     }
 
-    val publics = List(("TAK", "TAK"), ("NIE", "NIE"))
      val subj = subjectTeach.find(s => courseOption.getOrElse(Course.create).subjectId == s.id).getOrElse(subjectTeach.head)
      val departs = subj.departments.map(d => (d, d))
     "#ID" #> SHtml.text(id, id = _) &
@@ -180,18 +182,6 @@ class EditLesson extends BaseLesson {
   }
   
   
-  def editChapters() = {
-  
-    
-  }
-  
-  def showChapters() = {
-     //?????????????????????????????????
-    "li" #> (if (!courseOption.isEmpty) courseOption.get.chapters.map( ch => {
-    <li class="list-group-item">{ch}</li>
-         }) else <span></span>)
-  }
-  
  // override def autocompliteScript(in:NodeSeq) = super.autocompliteScript(in)
 
   private def isLessonOwner(lesson: LessonCourse) = user.id.is == lesson.authorId
@@ -202,14 +192,14 @@ class EditLesson extends BaseLesson {
     json.extract[List[LessonContent]]
   }
 
-private def deleteChapterIfLast() = {
+private def deleteChapterIfLast(chapter:String) = {
   if(!courseOption.isEmpty) {
     val course = courseOption.get
-    val lessons = LessonCourse.findAll(("courseId"->course._id.toStringMongod()))
+    val lessons = LessonCourse.findAll(("courseId"->course._id.toStringMongod())~("chapter" -> chapter))
     if(lessons.isEmpty)
-    	course.chapters = course.chapters.filterNot(ch => ch == lesson.chapter)
-    	println("[AppINFO:::::: on delete lesson dlelet chapters if last == " + lessons.length.toString )
-    	//course.save
+    	course.chapters = course.chapters.filterNot(ch => ch == chapter)
+    	println("[AppINFO:::::: on delete lesson delete chapters if last == " + lessons.length.toString )
+    	course.save
   }
 }
 

@@ -18,17 +18,43 @@ UWAGA! Pliki bez katalogów nie zostaną zindeksowane</p>
 <div class="row">
 <div class="col-lg-2"></div>
 <div class="col-lg-8">
-<form class="lift:edu.VideoReaderSn.add?form=POST form-inline"   role="form">
+<form class="lift:edu.VideoReaderSn.add?form=POST"   role="form">
+ <div class="form-inline">
    <div class="input-group">
         <div for="subject"  class="input-group-addon">Przedmiot:</div>
          <input id="subject" class="form-control" /> 
     </div>
     <div class="input-group">
-         <button id="move" role="button" class="btn btn-success btn-lg">
-         <span class="glyphicon glyphicon-export"></span>Eksportuj</button>
-         <a href="/educontent/video" role="button" class="btn btn-danger btn-lg">
-		<span class="glyphicon glyphicon-repeat"></span> Anuluj i wróć</a>
+        <div for="title" style="width: 300px;" class="input-group-addon">Tytuł:</div>
+         <input id="title" class="form-control" /> 
+    </div>
+     <div class="input-group">
+        <div for="level"  class="input-group-addon">Poziom:</div>
+         <select id="level" class="form-control" ></select> 
+    </div>
+    <div class="input-group">
+        <div for="department"  class="input-group-addon">Dział:</div>
+         <select id="department" class="form-control" ></select>
+    </div>
    </div>  
+   <div class="form-horizontal">
+   <div class="input-group">
+   <label class="col-md-2">Opis: </label><div class="col-md-10">
+    <textarea id="description" rows=2"" cols="50"></textarea></div>
+    </div>
+    <div class="input-group">
+    <div class="col-md-2"></div>
+     <div class="col-md-6">
+         <button id="move" role="button" class="btn btn-success btn-lg">
+         <span class="glyphicon glyphicon-export"></span>Dodaj</button>
+         <a href="/educontent/video" role="button" class="btn btn-danger btn-lg">
+        <span class="glyphicon glyphicon-repeat"></span> Anuluj i wróć</a>
+        </div>
+        <div class="col-md-4"></div>
+        </div>
+        </div>
+        
+         
    </form>
 <ul data-lift="edu.VideoReaderSn.indexed" class="list-group">
 <li></li>

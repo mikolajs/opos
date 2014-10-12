@@ -35,11 +35,35 @@ class ShowCourseSn extends BaseShowCourseSn {
 
 
   def sortedChapters() = {
-    course.chapters.map(ch => "li" #> <li class="list-group-item">{ch}</li>)
+    "li" #> course.chapters.map(ch => <li class="list-group-item">{ch}</li>)
   }
   
   def sortChapters() = {
-    "#n" #> ""
+    var sorted = ""
+    def delete() {
+      val allChapters = lessons.map(l => l.chapter).removeDuplicates
+      course.chapters = course.chapters.filter(ch => allChapters.exists(all => all == ch))
+      course.save
+    }
+    def save() {
+      val chaps = sorted.split("\\|\\|").map(s => s.trim).filter(s => s.length < 1).toList
+      //println("[AppInfo:::: " + chaps.length + " : " + chaps.mkString("||"))
+      if(chaps.length == course.chapters.length){
+        course.chapters = chaps 
+        course.save
+      }
+    }
+    "#sortedChaptersData" #> SHtml.text(sorted, sorted = _, "style"-> "display:none;") &
+    "#saveSort" #> SHtml.submit("Zapisz", save) &
+    "#deleteNotUsed" #> SHtml.submit("Czyść puste", delete)
+  }
+  
+  def showComments() = {
+    
+  }
+  
+  def addComment() = {
+    
   }
   
   def slideData = {

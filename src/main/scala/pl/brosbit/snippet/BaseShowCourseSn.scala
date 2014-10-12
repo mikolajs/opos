@@ -160,13 +160,12 @@ class BaseShowCourseSn {
       lessonChapter.map(less => {
         if (less._id.toString() == currentLesson._id.toString())
         <a href={ "#" } class={ "list-group-item active" }>
-                        { less.title }
                         <span class="badge">{ less.nr.toString }</span>
+                        <span class="lesson-title">{ less.title }</span>
              </a>
       else
         <a href={ basePath + course._id.toString + "?l=" + less._id.toString } class="list-group-item" >
-                        { less.title }
-                        <span class="badge">{ less.nr.toString }</span>
+                       <span class="badge">{ less.nr.toString }</span> <span class="lesson-title">{ less.title }</span>
                       </a>
       })
     })
@@ -174,13 +173,11 @@ class BaseShowCourseSn {
       <span class="list-group-item chapter" > Nieprzydzielone do działów </span> ++ chapterFiltred.map(less => {
         if (less._id.toString() == currentLesson._id.toString())
         <a href={ "#" } class={ "list-group-item active" }>
-                        { less.title }
-                        <span class="badge">{ less.nr.toString }</span>
+                        <span class="badge">{ less.nr.toString }</span><span class="lesson-title">{ less.title }</span>
              </a>
       else
         <a href={ basePath + course._id.toString + "?l=" + less._id.toString } class="list-group-item" >
-                        { less.title }
-                        <span class="badge">{ less.nr.toString }</span>
+                        <span class="badge">{ less.nr.toString }</span><span class="lesson-title">{ less.title }</span>
                       </a>
       }) 
     }

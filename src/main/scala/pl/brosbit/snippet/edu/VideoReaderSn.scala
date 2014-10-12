@@ -28,13 +28,13 @@ class VideoReaderSn extends BaseResourceSn {
 
   val parentPath = "/home/"
   val parentDir = new File(parentPath)
+   val userDirPath = parentPath + toASCIICharAndLower(user.firstName.is) + user.id.toString
   // parentDir.listFiles()
 
   def getUserNames() = parentDir.listFiles().filter(f => f.isDirectory()).map(f => f.getName())
 
-  def getPaths(userName: String) = {
-
-    val userDirPath = parentPath + userName + "/Video"
+  def getPaths() = {
+   
     val userDir = new File(userDirPath)
     var paths: List[File] = findFiles(userDir, Nil)
     paths.map(f => {
@@ -43,6 +43,7 @@ class VideoReaderSn extends BaseResourceSn {
       (full, mime)
       })
   }
+  
   
   def findFiles(dir: File, list: List[File]): List[File] = {
 
@@ -59,58 +60,57 @@ class VideoReaderSn extends BaseResourceSn {
   }
   
   def indexed = {
-    val videos = findAllVideoInUserPath
-    "li" #> videos.map(v => <li class="list-group-item"><strong>{v._2}</strong> - <em>{v._1}</em></li>)
+    //add filter not added
+    val videos = getPaths().map(p => (p._1.replace(userDirPath, ""), p._2))
+    "li" #> videos.map(v => <li onclick="insertToAdd(this)" class="list-group-item">
+    			<strong>{v._1}</strong> - <em>{v._2}</em></li>)
   }
 
   def add() = {
 	var subjectId = ""
-	var data = ""
+	var path = ""
+    var level = ""
+    var department = ""
+    var title = ""
+    var mime = ""
     def copy() {
-	 val subjectNow = subjectTeach.find(s => s.id.toString() == subjectId).getOrElse(subjectTeach.head)
-	 val videosOnPath = findAllVideoInUserPath
-     val videosOnDB = Video.findAll(("authorId" -> user.id.is)~("onServer" -> true)).map(vDB => vDB.oldPath)
-	 val videosNotAdded = videosOnPath.filterNot(vOP => videosOnDB.exists(vODB => vODB == (vOP._1 + "/" + vOP._2)))
-	 videosNotAdded.foreach(v => {
+     val videosOnDB = Video.findAll(("authorId" -> user.id.is)~("onServer" -> true)~("oldPath" -> path))
+	 if(videosOnDB.isEmpty) {
 	   val video = Video.create
 	   video.authorId = user.id.is
-	   video.department = v._1
-	   addDepartment(v._1, subjectNow)
-	   val filenameList = v._2.split('.')
-	   video.title = filenameList.take(filenameList.length -1).mkString(".").replace(''','`')
-	   video.link = v._2
-	   video.oldPath = v._1 + "/" + v._2
+	   video.department = department
+	   video.title = title
+	   video.link = path.split("/").last
+	   video.oldPath = path
 	   video.onServer = true
-	   video.mime = v._3
+	   video.mime = mime
 	   video.subjectId = tryo(subjectId.toLong).openOr(subjectTeach.head.id)
 	   video.subjectName = findSubjectName(video.subjectId)
-	   val file = new File(v._4)
+	   val file = new File(path)
 	   if(file.isFile()){
 	     val newFile = new File("/home/vregister/" + video._id.toString + "." + video.link.split('.').last)
 	     Files.copy(file.toPath(), newFile.toPath())
 	     video.save
 	   }
-
-	 })
-//     println("\nWIDEOPATH:::: \n" + videosOnPath.map(v => v._1 + "/" +  v._2).mkString("\n"))
-//     println("\nVIDEODB:::::  \n" + videosOnDB.mkString("\n"))
-//     println("\nVIDEONOTADDED:::::: \n" + videosOnPath.map(v => v._1 + "/" +  v._2).mkString("\n"))
-     subjectNow.save
-	  S.redirectTo("/educontent/video")
+	 }
 	}
+	
+	val departments = subjectNow.departments.map( d => (d, d))
 
-    
-    "#subject" #> SHtml.select(subjectTeach.map(s => (s._id.toString(), s.name )), 
-        Full(subjectTeach.head.id.toString), subjectId = _) &
-    "#move" #>  SHtml.button(<span class="glyphicon glyphicon-export"></span>++ Text(" Eksportuj"), copy)
+    "#title" #> SHtml.text(title, title = _) &
+    "#mime" #> SHtml.text(mime, mime = _ , "readonly" -> "readonly") &
+    "#subject" #> SHtml.text(subjectNow.name, x => Unit, "readonly" -> "readonly") &
+    "#level" #> SHtml.select(levList, Full(subjectNow.lev.toString), level = _) &
+    "#department" #> SHtml.select(departments, Full(department), department = _) &
+    "#move" #>  SHtml.button(<span class="glyphicon glyphicon-export"></span>++ Text(" Dodaj plik"), copy)
   }
 
   private def isVideo(name: String) = {
     name.split('.').last.toLowerCase() match {
-      case "avi" => true
+      //case "avi" => true
       case "mp4" => true
-      case "mpg" => true
-      case "ogg" => true
+      //case "mpg" => true
+      //case "ogg" => true
       case _ => false
     }
   }
@@ -128,10 +128,10 @@ class VideoReaderSn extends BaseResourceSn {
           ).mkString
   }
   
+  
   private def findAllVideoInUserPath = {
     var name = toASCIICharAndLower(user.firstName.is) + user.id.toString
-    val paths = getPaths(name)
-    val userDirPath = parentPath + name + "/Video/"
+    val paths = getPaths()
     val videos = paths.map(p => (p._1.replace(userDirPath, ""), p._2, p._1)).map(p => {
       val pathArray = p._1.split("/")
       if (pathArray.length > 1) (pathArray.head, pathArray.last, p._2, p._3)

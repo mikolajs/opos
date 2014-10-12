@@ -30,6 +30,16 @@
 	<script type="text/javascript">
     var showCourse = new Object();
     
+    function saveSorted(){
+    	var sortedChapters = "";
+    	$("#sortable").children("li").each(function(){
+    		sortedChapters += this.innerHTML + "||";
+    	});
+    	if(sortedChapters.length > 3) sortedChapters = sortedChapters.slice(0, sortedChapters.length - 2);
+    	document.getElementById("sortedChaptersData").value = sortedChapters;
+    	return true;
+    }
+    
     $(document).ready(function(){
     	showCourse = new ShowCourse();
     	$('#sortChapters').dialog({
@@ -41,6 +51,8 @@
                self.isOpenForm = false;
             }
       });
+    	
+    	$( "#sortable" ).sortable();
     	
     	$('#sortChaptersButton').click(function(){
             $('#sortChapters').dialog('open');
@@ -118,27 +130,39 @@
 	</div>
 	
 	<div id="lessonComments" style="display:none;">
-	<div id="listOfComments"  data-lift="edu.EditLesson.comments">
+	<div id="listOfComments"  data-lift="edu.ShowCourseSn.comments">
 	
 	</div>
-	<form  data-lift="edu.EditLesson.comments" method="post">
+	<form  data-lift="edu.ShowCourseSn.comments" method="post">
 	<textarea id="commentEditor"></textarea>
     <input type="text" id="addComment" value="Dodaj"/>	
 	</form>
 	</div>
 	
 	<div style="display:none;" title="Uporządkuj działy" id="sortChapters">
-   <form data-lift="edu.ShowCourseSn.sortChapters" method="post"  role="form">
-   <ul class="list-group">
+	<ul class="list-group" id="sortable" data-lift="edu.ShowCourseSn.sortedChapters">
    <li class="list-group-item"></li>
    </ul>
+   <form data-lift="edu.ShowCourseSn.sortChapters" method="post"  role="form">
+   
    <div class="form-group">
          <input style="display:none;" id="sortedChaptersData"  type="text"/>
          <label class="col-sm-3 control-label"></label>
-         <div class="col-sm-9"> <button id="saveSort" 
-         class="btn btn-success btn-lg"  type="submit">
-         <span class="glyphicon glyphicon-plus-sign"></span>Dodaj</button>
+         <div class="col-sm-9"> <input id="saveSort" onclick="return saveSorted();" 
+         class="btn btn-success btn-lg"  type="submit" />
+         
          </div></div>
+         <br />
+         <hr />
+         <br />
+         <div class="form-group">
+         <label class="col-sm-2 control-label"></label>
+         <div class="col-sm-10"> <input id="deleteNotUsed"
+         class="btn btn-danger btn-lg"  type="submit" />
+         </div></div>
+         
+         
+         
    </form>
    </div>
 	
