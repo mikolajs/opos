@@ -1,18 +1,13 @@
-package pl.brosbit.model.doc
+package pl.brosbit.snippet.doc
+
 import _root_.net.liftweb.util._
-import _root_.net.liftweb.common._
-import _root_.pl.brosbit.model.page._
 import _root_.pl.brosbit.model._
 import _root_.net.liftweb.http.{ S, SHtml }
-import net.liftweb.util.Helpers._
-import _root_.net.liftweb.json.JsonDSL._
-import  _root_.net.liftweb.http.js.JsCmds._
-import  _root_.net.liftweb.http.js.JE._
-import net.liftweb.common.Box.box2Option
-import pl.brosbit.snippet.register.BaseTeacher
+import Helpers._
+import pl.brosbit.snippet.teacher.BaseTeacher
 
 
-class CreateTemplateSn extends BaseDocSn {
+class CreateTemplateSn extends BaseTeacher {
   
   var id = S.param("id").getOrElse("0")
   var title = ""
@@ -25,19 +20,18 @@ class CreateTemplateSn extends BaseDocSn {
       comment = templateHead.comment
       template = templateHead.template
     }
-    case _ => {
-    }
+    case _ =>
   }
   
   
   def edit() = {
     
     def save(){
-        var docHead = DocTemplateHead.find(id) match {
+        val docHead = DocTemplateHead.find(id) match {
         	case Some(templateHead) => templateHead
         	case _ => DocTemplateHead.create
         }
-    	var docContent = DocTemplateContent.find(docHead.content) match {
+    	val docContent = DocTemplateContent.find(docHead.content) match {
     		case Some(templateContent) => templateContent
     		case _ => DocTemplateContent.create
     	}

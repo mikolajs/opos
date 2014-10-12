@@ -1,70 +1,85 @@
 <!doctype HTML>
 <html>
-    
-<div class="lift:surround?with=educontent;at=content">
-    <head_merge> 
-    <script src="/jquery/dejavu.js"></script>
 
+<div class="lift:surround?with=educontent;at=content">
+    <head_merge>
+        <script src="/jquery/dejavu.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#indexedVideos").children("li").click(function() {
+                var $li = $(this);
+                var path = $li.children("strong").text();
+                var mimeType = $li.children("em").text();
+                document.getElementById("mime").value = mimeType;
+                document.getElementById("path").value = path;
+            });
+        });
+    </script>
     </head_merge>
 
-<div class="well">
-<h3>Indeksowanie plków wideo</h3>
-<p>Wyszukiwanie plików wgranych fizycznie do katalogu domowego na serwerze. <br/> 
-Pliki należy dodać do katalogu Video w folerach, których nazwa równa się nazwie działu.
-UWAGA! Pliki bez katalogów nie zostaną zindeksowane</p>
-</div>
+    <div class="well">
+        <h3>Indeksowanie plków wideo</h3>
+        <p>Wyszukiwanie plików wgranych fizycznie do katalogu domowego na serwerze. <br/>
+            Pliki należy dodać do katalogu Video w folerach, których nazwa równa się nazwie działu.
+            UWAGA! Pliki bez katalogów nie zostaną zindeksowane</p>
+    </div>
 
 
-<div class="row">
-<div class="col-lg-2"></div>
-<div class="col-lg-8">
-<form class="lift:edu.VideoReaderSn.add?form=POST"   role="form">
- <div class="form-inline">
-   <div class="input-group">
-        <div for="subject"  class="input-group-addon">Przedmiot:</div>
-         <input id="subject" class="form-control" /> 
-    </div>
-    <div class="input-group">
-        <div for="title" style="width: 300px;" class="input-group-addon">Tytuł:</div>
-         <input id="title" class="form-control" /> 
-    </div>
-     <div class="input-group">
-        <div for="level"  class="input-group-addon">Poziom:</div>
-         <select id="level" class="form-control" ></select> 
-    </div>
-    <div class="input-group">
-        <div for="department"  class="input-group-addon">Dział:</div>
-         <select id="department" class="form-control" ></select>
-    </div>
-   </div>  
-   <div class="form-horizontal">
-   <div class="input-group">
-   <label class="col-md-2">Opis: </label><div class="col-md-10">
-    <textarea id="description" rows=2"" cols="50"></textarea></div>
-    </div>
-    <div class="input-group">
-    <div class="col-md-2"></div>
-     <div class="col-md-6">
-         <button id="move" role="button" class="btn btn-success btn-lg">
-         <span class="glyphicon glyphicon-export"></span>Dodaj</button>
-         <a href="/educontent/video" role="button" class="btn btn-danger btn-lg">
-        <span class="glyphicon glyphicon-repeat"></span> Anuluj i wróć</a>
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
+            <form class="lift:edu.VideoReaderSn.add?form=POST"   role="form">
+                <input id="mime" class="form-control" style="display:none;" />
+                <div class="form-horizontal">
+                    <div class ="form-group">
+                        <label for="subject"  class="col-md-3">Przedmiot:</label>
+                        <div class="col-md-9"><input id="subject" class="form-control" /></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="title"  class="col-md-3">Tytuł:</label>
+                        <div class="col-md-9"><input id="title" class="form-control"/></div>
+                    </div>
+
+                    <div class ="form-group">
+                        <label for="path"  class="col-md-3">Orginalna ścieżka:</label>
+                        <div class="col-md-9"><input id="path" class="form-control" /></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="level"  class="col-md-3">Poziom:</label>
+                        <div class="col-md-9"><select id="level" class="form-control" ></select></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="department"  class="col-md-3">Dział:</label>
+                        <div class="col-md-9"><select id="department" class="form-control" ></select></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3">Opis: </label><div class="col-md-9">
+                        <textarea id="description" rows="2" style="width:100%"></textarea></div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-5">
+                            <button id="move" role="button" class="btn btn-success btn-lg">
+                                <span class="glyphicon glyphicon-export"></span>Dodaj</button>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="/educontent/video" role="button" class="btn btn-danger btn-lg">
+                                <span class="glyphicon glyphicon-repeat"></span> Anuluj i wróć</a>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+            <hr/>
+            <h2>Znaleziono niedodane jeszcze filmy:</h2>
+            <ul data-lift="edu.VideoReaderSn.indexed" class="list-group" id="indexedVideos">
+                <li></li>
+            </ul>
         </div>
-        <div class="col-md-4"></div>
-        </div>
-        </div>
-        
-         
-   </form>
-<ul data-lift="edu.VideoReaderSn.indexed" class="list-group">
-<li></li>
-</ul>
+        <div class="col-lg-2"></div>
+    </div>
+
+
 </div>
-<div class="col-lg-2"></div>
-</div>
-   
-   <div id="addNewItem" title="Dodaj nowy film"">
-   
-   </div>
-   </div>
 </html>

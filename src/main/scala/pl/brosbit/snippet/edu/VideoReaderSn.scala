@@ -28,23 +28,24 @@ class VideoReaderSn extends BaseResourceSn {
 
   val parentPath = "/home/"
   val parentDir = new File(parentPath)
-   val userDirPath = parentPath + toASCIICharAndLower(user.firstName.is) + user.id.toString
+  val userDirPath = parentPath + toASCIICharAndLower(user.firstName.is) + user.id.toString
   // parentDir.listFiles()
 
   def getUserNames() = parentDir.listFiles().filter(f => f.isDirectory()).map(f => f.getName())
 
   def getPaths() = {
-   
+
     val userDir = new File(userDirPath)
     var paths: List[File] = findFiles(userDir, Nil)
     paths.map(f => {
       val full = f.getAbsolutePath()
       val mime = Files.probeContentType(Paths.get(full))
+      println(full)
       (full, mime)
-      })
+    })
   }
-  
-  
+
+
   def findFiles(dir: File, list: List[File]): List[File] = {
 
     if (dir.isDirectory()) {
@@ -58,51 +59,60 @@ class VideoReaderSn extends BaseResourceSn {
     }
 
   }
-  
+
   def indexed = {
     //add filter not added
-    val videos = getPaths().map(p => (p._1.replace(userDirPath, ""), p._2))
+    val existPath = Video.findAll(("authorId" -> user.id.is)~("onServer" -> true))
+      .map(v =>  userDirPath + v.oldPath)
+    val videos = getPaths().filterNot(p => existPath.exists(e => e == p._1))
+      .map(p => (p._1.replace(userDirPath, ""), p._2))
     "li" #> videos.map(v => <li onclick="insertToAdd(this)" class="list-group-item">
-    			<strong>{v._1}</strong> - <em>{v._2}</em></li>)
+      <strong>{v._1}</strong> - <em>{v._2}</em></li>)
   }
 
   def add() = {
-	var subjectId = ""
-	var path = ""
-    var level = ""
+    var path = ""
+    var level = "1"
     var department = ""
     var title = ""
+    var descript = ""
     var mime = ""
     def copy() {
-     val videosOnDB = Video.findAll(("authorId" -> user.id.is)~("onServer" -> true)~("oldPath" -> path))
-	 if(videosOnDB.isEmpty) {
-	   val video = Video.create
-	   video.authorId = user.id.is
-	   video.department = department
-	   video.title = title
-	   video.link = path.split("/").last
-	   video.oldPath = path
-	   video.onServer = true
-	   video.mime = mime
-	   video.subjectId = tryo(subjectId.toLong).openOr(subjectTeach.head.id)
-	   video.subjectName = findSubjectName(video.subjectId)
-	   val file = new File(path)
-	   if(file.isFile()){
-	     val newFile = new File("/home/vregister/" + video._id.toString + "." + video.link.split('.').last)
-	     Files.copy(file.toPath(), newFile.toPath())
-	     video.save
-	   }
-	 }
-	}
-	
-	val departments = subjectNow.departments.map( d => (d, d))
+      val videosOnDB = Video.findAll(("authorId" -> user.id.is)~("onServer" -> true)~("oldPath" -> path))
+      if(videosOnDB.isEmpty) {
+       println("IS EMPTY")
+
+        val video = Video.create
+        video.authorId = user.id.is
+        video.department = department
+        video.title = title
+        video.link = path.split("/").last
+        video.oldPath = path
+        video.lev = tryo(level.toInt).openOr(1)
+        video.onServer = true
+        video.mime = mime
+        video.descript = descript
+        video.subjectId = subjectNow.id
+        video.subjectName = subjectNow.name
+        val file = new File(userDirPath + path)
+        if(file.isFile()){
+          val newFile = new File("/home/osp/" + video._id.toString + "." + video.link.split('.').last)
+          Files.copy(file.toPath(), newFile.toPath())
+          video.save
+        }
+      }
+    }
+
+    val departments = subjectNow.departments.map( d => (d, d))
 
     "#title" #> SHtml.text(title, title = _) &
-    "#mime" #> SHtml.text(mime, mime = _ , "readonly" -> "readonly") &
-    "#subject" #> SHtml.text(subjectNow.name, x => Unit, "readonly" -> "readonly") &
-    "#level" #> SHtml.select(levList, Full(subjectNow.lev.toString), level = _) &
-    "#department" #> SHtml.select(departments, Full(department), department = _) &
-    "#move" #>  SHtml.button(<span class="glyphicon glyphicon-export"></span>++ Text(" Dodaj plik"), copy)
+      "#mime" #> SHtml.text(mime, mime = _ , "readonly" -> "readonly") &
+      "#path" #> SHtml.text(path, path = _ , "readonly" -> "readonly") &
+      "#subject" #> SHtml.text(subjectNow.name, x => Unit, "readonly" -> "readonly") &
+      "#level" #> SHtml.select(levList, Full(subjectNow.lev.toString), level = _) &
+      "#description" #> SHtml.textarea(descript, descript = _) &
+      "#department" #> SHtml.select(departments, Full(department), department = _) &
+      "#move" #>  SHtml.button(<span class="glyphicon glyphicon-export"></span>++ Text(" Dodaj plik"), copy)
   }
 
   private def isVideo(name: String) = {
@@ -114,21 +124,21 @@ class VideoReaderSn extends BaseResourceSn {
       case _ => false
     }
   }
-  
+
   private def addDepartment(dep:String, subject:SubjectTeach) {
     if(!subject.departments.contains(dep)) subject.departments = dep::subject.departments
   }
-  
+
   private def toASCIICharAndLower(str:String) = {
     val m = Map(( 'Ą', 'A' ), ( 'Ć', 'C' ), ( 'Ę', 'E' ), ( 'Ł', 'L' ), ( 'Ń', 'N' ), ( 'Ó', 'O' ), ( 'Ś', 'S' ), ( 'Ź', 'Z' ), ( 'Ż', 'Z' ),
-        ( 'ą', 'a' ), ( 'ć', 'c' ), ( 'ę', 'e' ), ( 'ł', 'l' ), ( 'ń', 'n' ), ( 'ó', 'o' ), ( 'ś', 's' ), ( 'ź', 'z' ), ( 'ż', 'z' ),
-        ( ' ', '-' ))
-        str.toLowerCase.toCharArray().map(n => 
-          if(m.contains(n)) m(n) else n
-          ).mkString
+      ( 'ą', 'a' ), ( 'ć', 'c' ), ( 'ę', 'e' ), ( 'ł', 'l' ), ( 'ń', 'n' ), ( 'ó', 'o' ), ( 'ś', 's' ), ( 'ź', 'z' ), ( 'ż', 'z' ),
+      ( ' ', '-' ))
+    str.toLowerCase.toCharArray().map(n =>
+      if(m.contains(n)) m(n) else n
+    ).mkString
   }
-  
-  
+
+
   private def findAllVideoInUserPath = {
     var name = toASCIICharAndLower(user.firstName.is) + user.id.toString
     val paths = getPaths()

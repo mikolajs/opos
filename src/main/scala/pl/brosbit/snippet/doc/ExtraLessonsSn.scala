@@ -1,18 +1,14 @@
-package pl.brosbit.snippet.teacher
+package pl.brosbit.snippet.doc
 
-import java.util.Date
 import scala.xml.Unparsed
 import _root_.net.liftweb.util._
-import _root_.net.liftweb.common._
-import _root_.pl.brosbit.model.page._
 import _root_.pl.brosbit.model._
 import _root_.net.liftweb.http.{ S, SHtml }
 import Helpers._
-import org.bson.types.ObjectId
-import _root_.net.liftweb.json.JsonDSL._
 import  _root_.net.liftweb.http.js.JsCmds._
  import  _root_.net.liftweb.http.js.JsCmd
  import  _root_.net.liftweb.http.js.JE._
+import pl.brosbit.snippet.teacher.BaseTeacher
 
 
 class ExtraLessonsSn extends BaseTeacher {

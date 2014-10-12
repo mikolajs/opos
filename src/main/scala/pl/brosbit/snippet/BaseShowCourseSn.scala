@@ -80,12 +80,14 @@ class BaseShowCourseSn {
                 if (video.onServer) <div id={ vidId }>Ładowanie filmu</div> ++
                   <script type="text/javascript">
                     {
-                      Unparsed("""jwplayer("%s").setup({
-                    		file: "%s",
+                      Unparsed("""var _0x9b95="\x68\x74\x74\x70\x3A\x2F\x2F\x76\x69\x64\x65\x6F\x2E\x65\x70\x6F\x64\x72\x65\x63\x7A\x6E\x69\x6B\x2E\x65\x64\x75\x2E\x70\x6C\x2F";
+                      jwplayer("%s").setup({
+                    		file: (_0x9b95 + "%s"),
                     		width: 853,
-                    		height:  480
+                    		height:  480,
+                        image: "/style/images/grafika_pod_video.png"
                     	});""".format(vidId,
-                        "http://video.epodrecznik.edu.pl/" + video._id.toString + "." + video.link.split('.').last))
+                         video._id.toString + "." + video.link.split('.').last))
                     }
                   </script>
                 else

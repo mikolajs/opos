@@ -44,7 +44,7 @@ class LoginSn {
         case user :: other => {
           if (user.role == "t" || user.role == "a" || user.role == "d") {
             if (user.password.match_?(pass.trim)) User.logUserIn(user)
-            intalizeSubjectAndLevelChoice(user)
+            else S.notice(" Błędne hasło. ")
           } else {
             if (user.password.match_?(pass.trim)){
               if(pesel == user.pesel.is) User.logUserIn(user)

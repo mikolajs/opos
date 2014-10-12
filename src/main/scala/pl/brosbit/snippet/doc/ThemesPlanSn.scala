@@ -1,22 +1,19 @@
-package pl.brosbit.model.doc
+package pl.brosbit.snippet.doc
+
+
 import scala.xml.Unparsed
 import _root_.net.liftweb.util._
 import _root_.net.liftweb.common._
-import _root_.pl.brosbit.model.page._
 import _root_.pl.brosbit.model._
-import net.liftweb.http.SHtml
-import net.liftweb.util.Helpers._
-import _root_.net.liftweb.json.JsonDSL._
+import _root_.net.liftweb.http.{ S, SHtml }
+import Helpers._
 import  _root_.net.liftweb.http.js.JsCmds._
 import  _root_.net.liftweb.http.js.JsCmd
 import  _root_.net.liftweb.http.js.JE._
-import net.liftweb.common.Box.box2Option
-import net.liftweb.http.SHtml.ElemAttr.pairToBasic
-import net.liftweb.http.js.JsExp.strToJsExp
-import pl.brosbit.snippet.register.BaseTeacher
+import pl.brosbit.snippet.teacher.BaseTeacher
 
 
-class ThemesPlanSn extends BaseDocSn {
+class ThemesPlanSn extends BaseTeacher {
 	
   def dataTable() = {
     val themesPlans = ThemesPlan.findAll
