@@ -19,39 +19,31 @@ import  _root_.net.liftweb.http.js.JE._
 
 class EditQuestSn extends BaseResourceSn {
     
-    var subjectPar = S.param("sub").openOr("0")
-    var level = S.param("lev").openOr("3")
-   val subjectId = tryo(subjectPar.toLong).openOr(subjectTeach.head.id)
+   val subjectId = subjectNow.id
         
     
-    def choiseQuest() = {
-         val subjects = subjectTeach.map(s => (s.id.toString, s.name))
-         def makeChoise() {
-             S.redirectTo("/educontent/editquest?sub="+subjectId+"&lev="+level)
-         }
-         
-        "#subjects" #> SHtml.select(subjects, Full(subjectId.toString), subjectPar = _) &
-        "#levels" #> SHtml.select(levList, Full(level), level = _) &
-        "#choise" #> SHtml.submit("Wybierz", makeChoise)
+    def subjectChoice() = {
+        super.subjectChoice("/educontent/questions")
     }
     
     def showQuests() = {
         val userId = user.id.is
         
-        "tr" #> QuizQuestion.findAll(("authorId"->userId)~("subjectId"->subjectId)~
-               ("level"->level.toInt)).map(quest => {
+        "tr" #> QuizQuestion.findAll(("authorId"->userId)~("subjectId"->subjectId)).map(quest => {
             <tr id={quest._id.toString}><td>{Unparsed(quest.question)}</td>
-            <td>{quest.answer}</td><td>{quest.fake.map(f => <span class="wrong">{f}</span>)}</td>
-            <td>{levMap(quest.lev)}</td>
-            <td>{quest.dificult}</td><td>{quest.department}</td></tr>
+            <td>{quest.answers.mkString(";")}</td><td>{quest.fake.map(f => <span class="wrong">{f}</span>)}</td>
+            <td>{levMap(quest.lev.toString)}</td>
+            <td>{quest.dificult}</td><td>{quest.department}</td>
+            <td><button class="btn btn-success" onciick="editQuest.editQuestion(this);">
+            	<span class="glyphicon glyphicon-edit"></span></button></td></tr>
         })
     }
     
     //working ....
     def editQuest() = {
-        printParam
         var id = ""
         var question = ""
+        var level = ""
         var answer = ""
         var wrongAnswers =""
         var subject = ""
@@ -64,13 +56,14 @@ class EditQuestSn extends BaseResourceSn {
             val quest = QuizQuestion.find(id).getOrElse(QuizQuestion.create)
             if(quest.authorId != 0L && quest.authorId != userId) return Alert("To nie twoje pytanie!")
             quest.authorId = userId
-            quest.answer = answer
+            quest.answers = answer.split(";").toList
             quest.fake = wrongAnswers.split(";").toList
             quest.question = question
-            quest.subjectId = tryo(subject.toLong).openOr(subjectTeach.head.id)
+            quest.subjectId = subjectNow.id
+            quest.subjectName = subjectNow.name
             quest.department = department
             quest.dificult = tryo(dificult.toInt).openOr(9)
-            quest.lev = level.toInt
+            quest.lev = tryo(level.toInt).openOr(1)
             quest.save
             JsFunc("editQuest.insertQuestion",quest._id.toString).cmd
         }
@@ -90,13 +83,16 @@ class EditQuestSn extends BaseResourceSn {
             }
         }
 
-        val dificults = 2 to 6 map( i => {val iS = i.toString;(iS, iS)})        
+        val dificults = 1 to 9 map( i => {val iS = i.toString;(iS, iS)})
+        val departments = subjectNow.departments.map(d => (d, d))
         
        val form = "#idQuest" #> SHtml.text(id, id = _) &
        "#questionQuest" #> SHtml.textarea(question, x => question = x.trim) &
        "#answerQuest" #> SHtml.text(answer, x => answer = x.trim) &
+       "#subjectQuest" #> SHtml.text(subjectNow.name, x => Unit, "readonly"-> "readOonly") &
+       "#levelQuest" #> SHtml.select(levList, Full(subjectNow.lev.toString), level = _) &
        "#wrongQuest" #> SHtml.text(wrongAnswers, x => wrongAnswers = x.trim) &
-       "#departmentQuest" #> SHtml.text(department, x => department = x.trim) &
+       "#departmentQuest" #> SHtml.select(departments, Full(subjectNow.departments.head), x => department = x.trim) &
        "#dificultQuest" #> SHtml.select(dificults, Full(dificult), dificult = _) &
        "#saveQuest" #> SHtml.ajaxSubmit("Zapisz",save) &
        "#deleteQuest" #> SHtml.ajaxSubmit("Usuń",delete) andThen SHtml.makeFormsAjax
@@ -106,6 +102,6 @@ class EditQuestSn extends BaseResourceSn {
     }
  
     
-    private def printParam = println("subjectId="+ subjectId + " level=" + level)
+    //private def printParam = println("subjectId="+ subjectId + " level=" + level)
 
 }

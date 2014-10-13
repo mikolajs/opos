@@ -44,7 +44,7 @@ class EditQuizSn extends BaseResourceSn {
 
         ".questLiAll" #> questions.map(quest => <li id={ quest._id.toString }>
                                                     <span class="question">{ Unparsed(quest.question) }</span>
-                                                    <span class="rightAnswer">{ quest.answer }</span>
+                                                    <span class="rightAnswer">{ quest.answers.mkString("; ") }</span>
                                                     { quest.fake.map(f => <span class="wrong">{ f }</span>) }
                                                     <span class="department">{quest.department}</span>
                                                     <strong title="poziom trudności">{ quest.dificult }</strong>

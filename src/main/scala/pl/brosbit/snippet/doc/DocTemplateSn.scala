@@ -6,10 +6,9 @@ import _root_.pl.brosbit.model._
 import _root_.net.liftweb.http.{ S, SHtml }
 import Helpers._
 import _root_.net.liftweb.json.JsonDSL._
-import pl.brosbit.snippet.teacher.BaseTeacher
 
 
-class DocTemplateSn extends BaseTeacher {
+class DocTemplateSn extends BaseDoc {
 	
   var id = S.param("id").getOrElse("0")
   var docHead = DocTemplateHead.find(id) match {

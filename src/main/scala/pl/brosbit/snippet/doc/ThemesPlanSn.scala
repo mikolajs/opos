@@ -10,10 +10,9 @@ import Helpers._
 import  _root_.net.liftweb.http.js.JsCmds._
 import  _root_.net.liftweb.http.js.JsCmd
 import  _root_.net.liftweb.http.js.JE._
-import pl.brosbit.snippet.teacher.BaseTeacher
 
 
-class ThemesPlanSn extends BaseTeacher {
+class ThemesPlanSn extends BaseDoc {
 	
   def dataTable() = {
     val themesPlans = ThemesPlan.findAll

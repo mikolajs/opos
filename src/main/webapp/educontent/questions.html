@@ -9,122 +9,22 @@
 	<script type="text/javascript" src="/jquery/editquest.js"></script> <script
 		src="/jquery/jquery.dataTables.min.js"></script> <script
 		src="/jquery/redirecttoselect.js"></script> <script>
-			var oTable = $();
-			var department = Object();
 			var editQuest = Object();
 
-			$(document)
-					.ready(
-							function() {
-
-								$('#questEditor').dialog({
-									autoOpen : false,
-									height : 550,
-									width : 950,
-									modal : false,
-									close : function() {
-										editQuest.isOpen = false;
-									}
-								});
-
-								CKEDITOR.replace('questionQuest', {
-									width : 500,
-									height : 240,
-									extraPlugins : 'addThumb,formula,symbol',
-									toolbar : [
-											{
-												name : 'clipboard',
-												items : [ 'PasteText',
-														'PasteFromWord',
-														'Undo', 'Redo' ]
-											},
-											{
-												name : 'links',
-												items : [ 'Link', 'Unlink',
-														'Anchor' ]
-											},
-											{
-												name : 'paragraph',
-												items : [ 'NumberedList',
-														'BulletedList',
-														'Outdent', 'Indent',
-														'Blockquote',
-														'JustifyLeft',
-														'JustifyCenter',
-														'JustifyRight',
-														'JustifyBlock' ]
-											},
-											{
-												name : 'insert',
-												items : [ 'AddThumb',
-														'Formula', 'YouTube',
-														'Table',
-														'HorizontalRule',
-														'Smiley', 'Symbol' ]
-											},
-											{
-												name : 'basicstyles',
-												items : [ 'Bold', 'Italic',
-														'Underline', 'Strike',
-														'Subscript',
-														'Superscript',
-														'RemoveFormat' ]
-											},
-											{
-												name : 'colors',
-												items : [ 'TextColor',
-														'BGColor' ]
-											} ]
-								});
-								CKEDITOR.config.disableNativeSpellChecker = false;
-
-								//$( "#quizList" ).sortable();
-								//$( "#quizList" ).disableSelection();
-
-								oTable = $('#datatable')
-										.dataTable(
-												{
-													"sPaginationType" : "two_button",
-													"bFilter" : true,
-													"iDisplayLength" : 20,
-													"bLengthChange" : true,
-													"oLanguage" : {
-														"sSearch" : "Filtruj wiersze: ",
-														"sZeroRecords" : "Brak danych do wyświetlenia",
-														"sInfoEmpty" : "Brak danych do wyświetlenia",
-														"sEmptyTable" : "Brak danych do wyświetlenia",
-														"sInfo" : "Widzisz wiersze od _START_ do _END_  z wszystkich _TOTAL_",
-														"oPaginate" : {
-															"sPrevious" : "Poprzednie",
-															"sNext" : "Następne",
-															"sFirst" : "Początek",
-															"sLast" : "Koniec",
-														},
-														"sInfoFiltered" : " - odfiltrowano z _MAX_ wierszy",
-														"sLengthMenu" : 'Pokaż <select>'
-																+ '<option value="20">20</option>'
-																+ '<option value="50">50</option>'
-																+ '<option value="100">100</option>'
-																+ '<option value="-1">całość</option>'
-																+ '</select> wierszy'
-													}
-												});
-
+			$(document).ready(function() {
 								editQuest = new EditQuest();
-								editQuest.oTable = oTable;
-
-							});
+			});
 		</script>
 	<style>
-#fakeAnswerList li button {
+#fakeAnswerList li button, #goodAnswerList li button {
 	margin-right: 10px;
 }
 
-#fakeAnswerList li {
+#fakeAnswerList li, #goodAnswerList li {
 	list-style-type: none;
 }
 
-#fakeAnswerList {
+#fakeAnswerList, #goodAnswerList {
 	padding: 5px;
 }
 
@@ -141,19 +41,12 @@
 
 	<div class="row">
 		<div class="col-lg-9">
-			<form class="lift:edu.EditQuestSn.choiseQuest form-inline"
+			<form class="lift:edu.EditQuestSn.subjectChoice form-inline"
 				method="POST">
 				<div class="input-group">
 					<div class="input-group-addon">Przedmiot:</div>
-					<select id="subjects" class="form-control"></select>
+					<select id="subjectChoice" class="form-control"></select>
 				</div>
-				<div class="input-group">
-					<div class="input-group-addon">Poziom:</div>
-					<select id="levels" class="form-control"></select>
-				</div>
-				<div class="input-group">
-					<input class="btn btn-success" id="choise" type="submit" />
-					</div>
 			</form>
 		</div>
 		<div class="col-lg-3">
@@ -191,7 +84,7 @@
 				</div>
 				<div class="input-group">
 					<div class="input-group-addon">Poziom:</div>
-					<input id="levelQuest" class="form-control" readonly="readonly"/>
+					<select id="levelQuest" class="form-control" ></select>
 				</div>
 				<div class="input-group">
 					<div class="input-group-addon">Dział:</div>
@@ -202,9 +95,22 @@
 					<select id="dificultQuest" class="form-control"></select>
 				</div>
 				<div class="input-group">
-					<label class="control-label">Odpowiedź prawidłowa:</label><input
-						type="text" id="answerQuest" class="form-control" />
+					<label class="control-label">Odpowiedź prawidłowa:</label>
+					<ul id="goodAnswerList"></ul>
+					<input
+						type="text" id="answerQuest" class="form-control" style="display: none;"/>
 				</div>
+				<div class="row">
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="goodAdd" value="" />
+                        </div>
+                        <div class="col-sm-2">
+                        <button class="btn btn-success btn-sm"
+                            onclick="editQuest.addGoodAnswer()">
+                            <span class="glyphicon glyphicon-plus-sign"></span>
+                        </button>
+                    </div>
+                </div>
 				<div class="input-group">
 					<label class="control-label">Odpowiedzi fałszywe:</label>
 					<ul id="fakeAnswerList"></ul>
@@ -237,10 +143,12 @@
 					<th>Trudność</th>
 					<th>Poziom</th>
 					<th>Dział</th>
+					<th>Edycja</th>
 				</tr>
 			</thead>
 			<tbody class="lift:edu.EditQuestSn.showQuests">
 				<tr>
+					<td></td>
 					<td></td>
 					<td></td>
 					<td></td>
@@ -256,6 +164,7 @@
 					<th>Trudność</th>
 					<th>Poziom</th>
 					<th>Dział</th>
+					<th>Edycja</th>
 				</tr>
 			</tfoot>
 		</table>

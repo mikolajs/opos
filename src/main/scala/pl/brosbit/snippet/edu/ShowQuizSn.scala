@@ -44,7 +44,7 @@ class ShowQuizSn {
        quiz.questions.map(id => {
           QuizQuestion.find(id) match {
               case Some(quest) => {
-                   answers = quest.answer::answers
+                   answers = quest.answers:::answers //bez sensu!!
                    answers = quest.fake:::answers
               }
               case _ =>
@@ -64,7 +64,7 @@ class ShowQuizSn {
              
             val questOld = QuizQuestion.find(quiz.questions(questNow.is))
             val wasCorrect = if(!questOld.isEmpty) {
-                if(answer.trim == questOld.get.answer) true;
+                if(answer.trim == questOld.get.answers.mkString("")) true; //bez sensu!!!
                 else false
             } else true
  

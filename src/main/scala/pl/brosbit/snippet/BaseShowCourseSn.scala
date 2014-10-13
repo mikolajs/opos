@@ -133,7 +133,7 @@ class BaseShowCourseSn {
   protected def createQuest(quest: QuizQuestion) = {
     val rand = new Random
     val witch = rand.nextInt(quest.fake.length + 1)
-    val all = quest.fake.take(witch) ++ (quest.answer :: quest.fake.drop(witch))
+    val all = quest.fake.take(witch) ++ (quest.answers.mkString :: quest.fake.drop(witch)) ///bez sensu!!!
     var n = -1
     var qId = quest._id.toString
     <section class="question">

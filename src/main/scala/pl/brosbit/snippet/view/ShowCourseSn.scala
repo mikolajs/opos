@@ -31,6 +31,18 @@ class ShowCourseSn extends BaseShowCourseSn {
         } else ".main *" #> <h1>Nie ma takiego kursu lub brak lekcji</h1>
     }
 
+    def sendMessage() = {
+      
+      var messege = ""
+      def send() {
+        if(canView) {
+          
+        }
+      }
+      
+      "#writeMessage" #> SHtml.textarea(messege, messege = _) &
+      "#sendMessege" #> SHtml.button(<span class="glyphicon glyphicon-send"></span> ++ Text("Wyślij"), send)
+    }
      
      private def canView = (course.authorId == user.id.is || course.classList.exists(x => x == user.classId.is))
 

@@ -4,12 +4,96 @@ var EditQuest =  dejavu.Class.declare({
 	oTable : $(),
 	
 	initialize : function() {
+		
 		var self = this;
-		$('#questList tbody tr').each(function(){
-			$(this).click(function(){
-				self.editQuestion(this);
-			});
+		
+		$('#questEditor').dialog({
+			autoOpen : false,
+			height : 550,
+			width : 950,
+			modal : false,
+			close : function() {
+				self.isOpen = false;
+			}
 		});
+
+		CKEDITOR.replace('questionQuest', {
+			width : 500,
+			height : 240,
+			extraPlugins : 'addThumb,formula,symbol',
+			toolbar : [
+					{
+						name : 'clipboard',
+						items : [ 'PasteText',
+								'PasteFromWord',
+								'Undo', 'Redo' ]
+					},
+					{
+						name : 'links',
+						items : [ 'Link', 'Unlink',
+								'Anchor' ]
+					},
+					{
+						name : 'paragraph',
+						items : [ 'NumberedList',
+								'BulletedList',
+								'Outdent', 'Indent',
+								'Blockquote',
+								'JustifyLeft',
+								'JustifyCenter',
+								'JustifyRight',
+								'JustifyBlock' ]
+					},
+					{
+						name : 'insert',
+						items : [ 'AddThumb',
+								'Formula', 'YouTube',
+								'Table',
+								'HorizontalRule',
+								'Smiley', 'Symbol' ]
+					},
+					{
+						name : 'basicstyles',
+						items : [ 'Bold', 'Italic',
+								'Underline', 'Strike',
+								'Subscript',
+								'Superscript',
+								'RemoveFormat' ]
+					},
+					{
+						name : 'colors',
+						items : [ 'TextColor',
+								'BGColor' ]
+					} ]
+		});
+		CKEDITOR.config.disableNativeSpellChecker = false;
+
+		this.oTable = $('#datatable').dataTable({
+							"sPaginationType" : "two_button",
+							"bFilter" : true,
+							"iDisplayLength" : 20,
+							"bLengthChange" : true,
+							"oLanguage" : {
+								"sSearch" : "Filtruj wiersze: ",
+								"sZeroRecords" : "Brak danych do wyświetlenia",
+								"sInfoEmpty" : "Brak danych do wyświetlenia",
+								"sEmptyTable" : "Brak danych do wyświetlenia",
+								"sInfo" : "Widzisz wiersze od _START_ do _END_  z wszystkich _TOTAL_",
+								"oPaginate" : {
+									"sPrevious" : "Poprzednie",
+									"sNext" : "Następne",
+									"sFirst" : "Początek",
+									"sLast" : "Koniec",
+								},
+								"sInfoFiltered" : " - odfiltrowano z _MAX_ wierszy",
+								"sLengthMenu" : 'Pokaż <select>'
+										+ '<option value="20">20</option>'
+										+ '<option value="50">50</option>'
+										+ '<option value="100">100</option>'
+										+ '<option value="-1">całość</option>'
+										+ '</select> wierszy'
+							}
+						});
 	},
 	
 	deleteQuestion : function(id) {
@@ -19,7 +103,8 @@ var EditQuest =  dejavu.Class.declare({
 	}, 
 	
 	insertQuestion : function(id) {
-		
+		alert("insertQuestion:" + id);
+		//przepisać nie działa
 		var array = this._getArrayFromForm();
 		var idForm = $('#idQuest').val();
 		
@@ -58,6 +143,17 @@ var EditQuest =  dejavu.Class.declare({
     	
     },
     
+    addGoodAnswer : function(){
+    	var good = $('#goodAdd').val();
+    	good = jQuery.trim(good);
+    	if(good.length > 0) {
+    		$('#goodAnswerList').append('<li>'+ 
+    				'<button class="btn btn-danger" onclick="editQuest.delFakeAnswer(this)">'+ 
+    				'<span class="glyphicon glyphicon-remove-sign"></span></button>' + good + '</li>');
+    		$('#goodAdd').val("");
+    	}
+    },
+    
     delFakeAnswer : function(elem) {
     	$(elem).parent('li').remove();
     },
@@ -71,10 +167,11 @@ var EditQuest =  dejavu.Class.declare({
     },
     
     editQuestion : function(elem) {
+    	//przepisać !!!!!
     	if(this.isOpen) return;
     	this.isOpen = true;
     	this._resetFormEdit();
-    	var $tr = $(elem);
+    	var $tr = $(elem).parent('td').parent('tr');
     	var id = $tr.attr('id');
     	$('#idQuest').val(id);
     	$tr.children('td').each(function(index){

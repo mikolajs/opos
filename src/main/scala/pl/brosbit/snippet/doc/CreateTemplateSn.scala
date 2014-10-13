@@ -4,10 +4,9 @@ import _root_.net.liftweb.util._
 import _root_.pl.brosbit.model._
 import _root_.net.liftweb.http.{ S, SHtml }
 import Helpers._
-import pl.brosbit.snippet.teacher.BaseTeacher
 
 
-class CreateTemplateSn extends BaseTeacher {
+class CreateTemplateSn extends BaseDoc {
   
   var id = S.param("id").getOrElse("0")
   var title = ""
