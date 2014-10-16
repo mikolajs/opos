@@ -35,8 +35,8 @@ class VideoSn extends BaseResourceSn {
         <td>{video.descript}</td>
         <td>{video.department}</td>
         <td>{levMap(video.lev.toString)}</td>
-        <td>
-          <span class="btn btn-info" onclick="editVideo.edit(this);">Edytuj</span>
+        <td><button class="btn btn-success" onclick="editVideo.edit(this);">
+            	<span class="glyphicon glyphicon-edit"></span></button>
         </td>
       </tr>
     })

@@ -103,8 +103,7 @@ var EditQuest =  dejavu.Class.declare({
 	}, 
 	
 	insertQuestion : function(id) {
-		alert("insertQuestion:" + id);
-		//przepisać nie działa
+		//alert("insertQuestion:" + id);
 		var array = this._getArrayFromForm();
 		var idForm = $('#idQuest').val();
 		
@@ -125,7 +124,9 @@ var EditQuest =  dejavu.Class.declare({
 	
 	prepareToSave : function() {
 		this._insertDataFromCKEditorToTextarea();
-		var fakeStr = this._getFakeAnswerStringFromInputs();		
+		var goodStr = this._getGoodAnswerStringFromInputs();
+		$("#answerQuest").val(goodStr);
+		var fakeStr = this._getFakeAnswerStringFromInputs();	
 		$('#wrongQuest').val(fakeStr);
 		$('#saveQuest').trigger('click');
 		return false;
@@ -167,42 +168,55 @@ var EditQuest =  dejavu.Class.declare({
     },
     
     editQuestion : function(elem) {
-    	//przepisać !!!!!
     	if(this.isOpen) return;
     	this.isOpen = true;
     	this._resetFormEdit();
     	var $tr = $(elem).parent('td').parent('tr');
     	var id = $tr.attr('id');
     	$('#idQuest').val(id);
+    	
     	$tr.children('td').each(function(index){
     		var $td = $(this);
     		switch (index) {
     		case 0:
-    			//$("#questionQuest").val($td.text());
     			CKEDITOR.instances.questionQuest.setData($td.text());
     			break;
     		case 1:
-    			$('#answerQuest').val($td.text());
+    			var array = new Array();
+    			$ul = $('#goodAnswerList');
+    			$td.children('span.good').each(function(){
+    				array.push($(this).text());
+    			});
+    			for(i in array){
+    				$ul.append('<li>'+ 
+    	    				'<button class="btn btn-danger" onclick="editQuest.delFakeAnswer(this)">' + 
+    	    				'<span class="glyphicon glyphicon-remove-sign"></span></button>' + array[i] + '</li>');
+    			}
+    			$('#answerQuest').val("");
     			break;
     		case 2:
-    			var array = new Array();
+    			array = new Array();
     			$ul = $('#fakeAnswerList');
     			$td.children('span.wrong').each(function(){
     				array.push($(this).text());
     			});
     			for(i in array){
-    				$ul.append('<li>'+ array[i] +
-    						'<img src="/images/delico_min.png" onclick="editQuest.delFakeAnswer(this)"/></li>');
+    				$ul.append('<li>' + 
+    				'<button class="btn btn-danger" onclick="editQuest.delFakeAnswer(this)">' + 
+    				'<span class="glyphicon glyphicon-remove-sign"></span></button>' + array[i] + '</li>');
     			}
+    			$("#fakeQuest").val("");
     			break;
-    		case 3:
-    			$('#dificultQuest option[value="'+$td.text()+'"]').attr("selected","selected");
-    			//var ind = parseInt($td.text()) - 2;
-    			//document.getElementById('dificultQuest').selectedIndex = ind;
+    		case 3:	
+    			$('#levelQuest option').each(function(index){
+    				if(this.innerHTML == $td.text() ) document.getElementById('levelQuest').value = (index + 1).toString();
+    			});
     			break;
-    		case 4:
-    			if($td.text() == 'TAK') document.getElementById('publicQuest').checked = true;
-    			else document.getElementById('publicQuest').checked = false;
+    		case 4: 
+    			document.getElementById('dificultQuest').value = $td.text();
+    			break;
+    		case 5:
+    			document.getElementById('departmentQuest').value =$td.text();
     			break;
     		default:
     			break;
@@ -229,24 +243,42 @@ var EditQuest =  dejavu.Class.declare({
 		return fakeStr;
     },
     
+    _getGoodAnswerStringFromInputs : function() {
+    	var goodList = [];
+		var goods = $('#goodAnswerList').children('li').each(function(){
+			goodList.push($(this).text());
+		});
+		
+		var inInput = $('#goodAdd').val();
+		inInput = jQuery.trim(inInput);
+		if(inInput.length > 0) goodList.push(inInput);
+		
+		var goodStr = goodList.join(';');
+		return goodStr;
+    },
+    
     _getArrayFromForm : function() {
     	var array = new Array();
     	array.push($('#questionQuest').val());
-    	array.push($('#answerQuest').val());
+    	var goodHTML = "";
+    	var goods = this._getGoodAnswerStringFromInputs().split(';');
+    	for(i in goods) goodHTML += '<span class="good">' + goods[i] + '</span>'; 
+    	array.push(goodHTML);
     	var fakeHTML = "";
     	var fakes = this._getFakeAnswerStringFromInputs().split(';');
     	for(i in fakes) fakeHTML += '<span class="wrong">' + fakes[i] + '</span>'; 
     	array.push(fakeHTML);
+    	array.push($('#levelQuest option:selected').text());
     	array.push($('#dificultQuest option:selected').val());
-    	var check = "NIE"
-    	if( document.getElementById('publicQuest').checked)  check = "TAK";
-    	array.push(check);
+    	array.push($('#departmentQuest option:selected').val());
+    	array.push('<button class="btn btn-success" onclick="editQuest.editQuestion(this);"><span class="glyphicon glyphicon-edit"></span></button>');
     	return array;
     },
     
     _resetFormEdit : function() {
     	$('#questEditor').children('form').get(0).reset();
     	$('#fakeAnswerList').empty();
+    	$('#goodAnswerList').empty();
     },
     
     _getTrNodeContainsId : function (id) {

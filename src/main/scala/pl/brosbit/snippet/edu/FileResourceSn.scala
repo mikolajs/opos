@@ -26,7 +26,9 @@ class FileResourceSn extends BaseResourceSn {
         <td><a href={ "/file/" + file.fileId.toString  + file.mime}>{ file.title}</a></td>
         <td>{ file.descript }</td><td>{file.department}</td>
         <td>{ levMap(file.lev.toString) }</td>
-        <td><span onclick="editFile.edit(this)" class="btn btn-success">Edytuj</span></td>
+        <td><button class="btn btn-success" onclick="editFile.edit(this);">
+            	<span class="glyphicon glyphicon-edit"></span></button>
+        </td>
       </tr>
     })
   }

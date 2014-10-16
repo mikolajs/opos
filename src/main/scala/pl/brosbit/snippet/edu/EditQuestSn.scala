@@ -31,10 +31,10 @@ class EditQuestSn extends BaseResourceSn {
         
         "tr" #> QuizQuestion.findAll(("authorId"->userId)~("subjectId"->subjectId)).map(quest => {
             <tr id={quest._id.toString}><td>{Unparsed(quest.question)}</td>
-            <td>{quest.answers.mkString(";")}</td><td>{quest.fake.map(f => <span class="wrong">{f}</span>)}</td>
+            <td>{quest.answers.map(f => <span class="good">{f}</span>)}</td><td>{quest.fake.map(f => <span class="wrong">{f}</span>)}</td>
             <td>{levMap(quest.lev.toString)}</td>
             <td>{quest.dificult}</td><td>{quest.department}</td>
-            <td><button class="btn btn-success" onciick="editQuest.editQuestion(this);">
+            <td><button class="btn btn-success" onclick="editQuest.editQuestion(this);">
             	<span class="glyphicon glyphicon-edit"></span></button></td></tr>
         })
     }
@@ -56,8 +56,8 @@ class EditQuestSn extends BaseResourceSn {
             val quest = QuizQuestion.find(id).getOrElse(QuizQuestion.create)
             if(quest.authorId != 0L && quest.authorId != userId) return Alert("To nie twoje pytanie!")
             quest.authorId = userId
-            quest.answers = answer.split(";").toList
-            quest.fake = wrongAnswers.split(";").toList
+            quest.answers = answer.split(";").toList.map(a => a.trim).filterNot(a => a.length() == 0)
+            quest.fake = wrongAnswers.split(";").toList.map(a => a.trim).filterNot(a => a.length() == 0)
             quest.question = question
             quest.subjectId = subjectNow.id
             quest.subjectName = subjectNow.name

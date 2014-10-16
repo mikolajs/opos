@@ -29,7 +29,8 @@ class DocumentsSn  extends BaseResourceSn {
       ".descriptTd *" #> Text( doc.descript ) &
       ".departmentTd *" #> Text(doc.department) &
       ".levelTd *" #> Text(levMap(doc.lev.toString)) &
-      ".editTd *" #> <a class="btn btn-success" href={"/educontent/editdocument/" + doc._id.toString}> Edytuj</a>
+      ".editTd *" #> <a class="btn btn-success" href={"/educontent/editdocument/" + doc._id.toString}>
+      	<span class="glyphicon glyphicon-edit"></span></a>
       )
   }
  

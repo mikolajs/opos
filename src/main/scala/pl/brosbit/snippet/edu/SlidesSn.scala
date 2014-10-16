@@ -26,7 +26,9 @@ class SlidesSn extends  BaseResourceSn  {
     "tbody tr" #> slides.map(slide => {
         <tr><td><a href={"/view/slide/"+slide._id.toString} target="_blank">{slide.title}</a></td>
     	<td>{slide.descript}</td>
-    	<td><a href={"/educontent/editslide/"+slide._id.toString}>edytuj</a> </td></tr>
+    	<td><a href={"/educontent/editslide/"+slide._id.toString}>
+    		<span class="glyphicon glyphicon-edit"></span></a> 
+    	</td></tr>
     })
   }  
   

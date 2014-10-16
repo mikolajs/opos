@@ -27,7 +27,8 @@ class HeadWordsSn extends BaseResourceSn {
     val headWords = HeadWord.findAll(("authorId"-> user.id.is)~("subjectId"->subjectId))
     "tbody tr" #>headWords.map(headWord => {
         <tr><td>{headWord.title}</td><td>{headWord.department}</td><td>{levMap(headWord.lev.toString)}</td>
-    	<td><a  class="btn btn-success" href={"/educontent/editheadword/"+headWord._id.toString}>edytuj</a></td></tr>
+    	<td><a  class="btn btn-success" href={"/educontent/editheadword/"+headWord._id.toString}>
+    	<span class="glyphicon glyphicon-edit"></span></a></td></tr>
     })
   }
   
