@@ -131,25 +131,58 @@ class BaseShowCourseSn {
   }
 
   protected def createQuest(quest: QuizQuestion) = {
-    val rand = new Random
-    val witch = rand.nextInt(quest.fake.length + 1)
-    val all = quest.fake.take(witch) ++ (quest.answers.mkString :: quest.fake.drop(witch)) ///bez sensu!!!
-    var n = -1
-    var qId = quest._id.toString
+
+      if(quest.fake.length == 0) {
+        if(quest.answers.length == 0) createPlainQuest(quest)
+        else createInputQuest(quest)
+      }
+    else {
+        if(quest.answers.length == 1) createSingleAnswerQuest(quest)
+        else createMultiAnswerQuest(quest)
+      }
+  }
+
+  protected def createPlainQuest(quest: QuizQuestion) = {
+    mkQuestHTML('p', quest.question, "", scala.xml.NodeSeq.Empty)
+  }
+
+  protected def createSingleAnswerQuest(quest: QuizQuestion) = {
+    val all = (quest.fake ++ quest.answers).sortWith(_ > _)
+      .map(s => <li><input type="radio" value={s} name={ quest._id.toString }/> <label>{s}</label></li>)
+    val correctString = quest.answers.mkString(";;;")
+    mkQuestHTML('s', quest.question, correctString, <ul>{all}</ul>)
+  }
+
+  protected def createInputQuest(quest: QuizQuestion) = {
+    val all = <div><label>Odpowiedź:</label><input type="text" name={ quest._id.toString }/></div>
+    val correctString = quest.answers.mkString(";;;")
+    mkQuestHTML('s', quest.question, correctString, all)
+  }
+
+  protected def createMultiAnswerQuest(quest: QuizQuestion) = {
+    val all = (quest.fake ++ quest.answers).sortWith(_ > _)
+      .map(s => <li><input type="checkbox" value={s} name={ quest._id.toString }/> <label>{s}</label></li>)
+    val correctString = quest.answers.mkString(";;;")
+    mkQuestHTML('s', quest.question, correctString, <ul>{all}</ul>)
+  }
+
+  protected def mkQuestHTML(questType:Char, question:String, correct:String,answers:scala.xml.NodeSeq) = {
     <section class="question">
-      <h4>Zadanie</h4>
-      <input type="hidden" class="correct" value={ witch.toString }/>
-      <div class="questionText">{ Unparsed(quest.question) } </div>
-      <ul>	{
-        all.map(a => {
-          n += 1
-          <li><input type="radio" name={ quest._id.toString } class={ "answer" + n }/> <label>{ a }</label></li>
-        })
-      } </ul>
-      <button onclick="checkAnswer(this)">Sprawdź</button>
-      <p class="alertWell"></p>
+      <div class="panel panel-info">
+        <div class="panel-heading questionMark"><span class="glyphicon glyphicon-question-sign"></span> Zadanie</div>
+        <div class="panel-body">
+          <input type="hidden" class="questType" value={ questType.toString }/>
+          <input type="hidden" class="correct" value={ correct }/>
+          <div class="questionText">{Unparsed(question)}</div>
+          {answers}
+          {if (questType != 'p') <button onclick="showCourse.checkAnswer(this)">Sprawdź</button> else <span></span>}
+          <p class="alertWell"></p>
+        </div>
+      </div>
     </section>
   }
+
+  //protected def insert
 
   protected def createLessonList() = {
     var chapterFiltred:List[LessonCourse] = lessons

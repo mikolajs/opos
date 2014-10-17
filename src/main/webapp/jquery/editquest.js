@@ -109,11 +109,6 @@ var EditQuest =  dejavu.Class.declare({
 		
 		if(idForm == "0" || jQuery.trim(idForm) == "") {
 			var nodeTr = this._insertNewRow(array, id);
-			nodeTr.id = id;
-			var self = this;
-			$(nodeTr).click(function(){
-				self.editQuestion(this);
-			});			
 		}
 		else {
 			this._editRow(array, id);
