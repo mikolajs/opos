@@ -81,7 +81,7 @@ var LessonEditor = dejavu.Class
 				//alert("refresh");
 				this._createList();
 				//alert("bindRefesh");
-				this._bindRefreshData();
+				//this._bindRefreshData();
 				//alert("bindSortable");
 				this._bindSortableList();
 
@@ -180,29 +180,19 @@ var LessonEditor = dejavu.Class
 						+ '<br/>' + descript + '</li>';
 			},
 
-			_bindRefreshData : function() {
-				$('#getItemType').change(function() {
-					var $select = $(this);
-					//alert("change select");
-					var t = $select.children('option:selected').val();
-					var ajaxT = $('#hiddenAjaxText');
-					ajaxT.val(t);
-					ajaxT.get(0).onblur();
-				});
-			},
 
 			refreshDataTable : function(data) {
-				//alert("begin refresh " + this.$name);
+				console.log("begin refresh " + this.$name);
 				var str = "";
 				if (data == "")
 					str = $("#forDataTable").val();
 				else
 					str = data
-					//alert(str);
+					console.log(" JSON " + str);
 				this.table.fnClearTable();
 				if (str != "") {
-					var json = eval('(' + str + ')');
-					this.table.fnAddData(json);
+					var json = JSON.parse(str);
+					this.table.fnAddData(json.data);
 					this.table.fnDraw();
 					this._bindInsertData();
 				}

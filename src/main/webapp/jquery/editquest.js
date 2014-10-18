@@ -158,7 +158,7 @@ var EditQuest =  dejavu.Class.declare({
     	if(this.isOpen) return;
     	this.isOpen = true;
     	this._resetFormEdit();
-    	CKEDITOR.instances.questionQuest.setData('');
+    	CKEDITOR.instances.questionQuest.setData();
     	$('#questEditor').dialog('open');
     },
     

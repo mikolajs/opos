@@ -7,8 +7,8 @@
 	<link rel="stylesheet" type="text/css"
 		href="/style/jquery.dataTables.css" />
 	<script type="text/javascript" src="/jquery/editquest.js"></script> <script
-		src="/jquery/jquery.dataTables.min.js"></script> <script
-		src="/jquery/redirecttoselect.js"></script> <script>
+		src="/jquery/jquery.dataTables.min.js"></script>
+        <script>
 			var editQuest = Object();
 
 			$(document).ready(function() {
@@ -28,7 +28,7 @@
 	padding: 5px;
 }
 
-.wrong {
+.wrong, .good {
 	padding-left: 5px;
 	display: block;
 }
@@ -148,7 +148,7 @@
 		<table id="datatable">
 			<thead>
 				<tr>
-					<th>Pytanie</th>
+					<th style="width:30%;">Pytanie</th>
 					<th>Odpowiedz prawidłowa</th>
 					<th>Błędne odpowiedzi</th>
 					<th>Poziom</th>

@@ -1,13 +1,10 @@
 package pl.brosbit.snippet.edu
 
-import java.util.Date
 import scala.xml.{ Text, XML, Unparsed, NodeSeq }
 import _root_.net.liftweb._
-import http.{ S, SHtml }
-import common._
-import util._
-import mapper.{ OrderBy, Descending }
-import pl.brosbit.model._
+import _root_.net.liftweb.http.{ S, SHtml }
+
+import _root_.net.liftweb.mapper.{ OrderBy, Descending }
 import pl.brosbit.model.edu._
 import pl.brosbit.lib.DataTableOption._
 import pl.brosbit.lib.{ DataTable, Formater }
@@ -37,7 +34,7 @@ class EditLesson extends BaseLesson {
       "h2" #>  (<h2>Nie znaleziono kursu!</h2> ++ <p>Utwórz najpierw kurs, a następnie kliknij na edycję i dodaj lekcję. 
     Dopierwo wetedy możesz ją edytować</p>)
     } else  {
-      var course = courseOption.get
+      val course = courseOption.get
       "h2" #> 
      (<h2>{course.title} <span class="mutted"> - klasy: {course.classInfo}</span></h2> ++ <p>{course.descript} 
     		 <br/><span class="mutted">Przedmiot: </span> {course.subjectName}</p>)
@@ -154,7 +151,7 @@ class EditLesson extends BaseLesson {
     
     def refreshData():JsCmd = {
       println("[AppINFO]:: Ajax Hidden text refresh; itemType= " + itemCh + " level= " + level + " depart= " + department )
-      Run("refreshTab(\"" + getData + "\");")
+      Run("refreshTab({ 'data':" + getData + "});")
     }
     
    val  itemTypes = List(("w" -> "Hasła"), ("d" -> "Artykuły"), ("q" -> "Zadania"), ("v" -> "Filmy"))
@@ -202,6 +199,8 @@ private def deleteChapterIfLast(chapter:String) = {
     	course.save
   }
 }
+
+
 
 }
 
