@@ -11,6 +11,7 @@ var LessonEditor = dejavu.Class
 			editor: null,
 
 			initialize : function() {
+
 				this.table = jQuery('#choiceTable')
 						.dataTable(
 								{
@@ -77,7 +78,7 @@ var LessonEditor = dejavu.Class
 				this._prepareVar();
 				this._bindBeforeSubmit();
 				//alert("List");
-				this.refreshDataTable("");
+				//this.refreshDataTable("");
 				//alert("refresh");
 				this._createList();
 				//alert("bindRefesh");
@@ -181,21 +182,14 @@ var LessonEditor = dejavu.Class
 			},
 
 
-			refreshDataTable : function(data) {
+			refreshDataTable : function() {
 				console.log("begin refresh " + this.$name);
-				var str = "";
-				if (data == "")
-					str = $("#forDataTable").val();
-				else
-					str = data
-					console.log(" JSON " + str);
+				var data = $('#jsonForDataTable').val();
 				this.table.fnClearTable();
-				if (str != "") {
-					var json = JSON.parse(str);
-					this.table.fnAddData(json.data);
-					this.table.fnDraw();
-					this._bindInsertData();
-				}
+			    var array = eval( data );
+				this.table.fnAddData(array);
+				this.table.fnDraw();
+				this._bindInsertData();
 
 			},
 

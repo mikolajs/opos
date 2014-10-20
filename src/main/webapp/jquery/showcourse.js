@@ -24,6 +24,7 @@ var ShowCourse = dejavu.Class.declare({
 		this.$panelBody = $(elem).parent();
 		var corrects = this.$panelBody.children("input.correct").val().split(';;;');
 		var questType = this.$panelBody.children("input.questType").val();
+		console.log('prawidłowe: ' + corrects.join(', ') + " questType " + questType );
 		var info = "";
 		if(questType[0] == 's') {
             this._checkSingle(corrects);
@@ -38,7 +39,7 @@ var ShowCourse = dejavu.Class.declare({
 
 	_checkMulti : function(corrects) {
          var $answers = this.$panelBody.children('ul').children("li").children('input:checked');
-         if($answers.length() != corrects.length()) {
+         if($answers.length != corrects.length) {
          this._setInfo($panelBody, false);
          return false;
          }
@@ -73,8 +74,9 @@ var ShowCourse = dejavu.Class.declare({
 	},
 
 	_checkInput : function( corrects) {
-	    var answer = this.$panelBody.children('div').children('input[type=text]').first().val();
+	    var answer = this.$panelBody.children('div').children('input[type="text"]').first().val();
 	    var answer = jQuery.trim(answer);
+	    console.log('answer = ' + answer + " prawidłowe: " + corrects.join(', '));
 	    for(i in corrects) {
 	        if(corrects[i] == answer)  {
 	            this._setInfo(true);

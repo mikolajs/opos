@@ -156,14 +156,14 @@ class BaseShowCourseSn {
   protected def createInputQuest(quest: QuizQuestion) = {
     val all = <div><label>Odpowiedź:</label><input type="text" name={ quest._id.toString }/></div>
     val correctString = quest.answers.mkString(";;;")
-    mkQuestHTML('s', quest.question, correctString, all)
+    mkQuestHTML('i', quest.question, correctString, all)
   }
 
   protected def createMultiAnswerQuest(quest: QuizQuestion) = {
     val all = (quest.fake ++ quest.answers).sortWith(_ > _)
       .map(s => <li><input type="checkbox" value={s} name={ quest._id.toString }/> <label>{s}</label></li>)
     val correctString = quest.answers.mkString(";;;")
-    mkQuestHTML('s', quest.question, correctString, <ul>{all}</ul>)
+    mkQuestHTML('m', quest.question, correctString, <ul>{all}</ul>)
   }
 
   protected def mkQuestHTML(questType:Char, question:String, correct:String,answers:scala.xml.NodeSeq) = {

@@ -6,6 +6,7 @@ var EditQuest =  dejavu.Class.declare({
 	initialize : function() {
 		
 		var self = this;
+
 		
 		$('#questEditor').dialog({
 			autoOpen : false,

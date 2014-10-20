@@ -3,21 +3,17 @@ package pl.brosbit.snippet.edu
 import scala.xml.{ Text, XML, Unparsed, NodeSeq }
 import _root_.net.liftweb._
 import _root_.net.liftweb.http.{ S, SHtml }
-
-import _root_.net.liftweb.mapper.{ OrderBy, Descending }
+import _root_.net.liftweb.common._
 import pl.brosbit.model.edu._
 import pl.brosbit.lib.DataTableOption._
-import pl.brosbit.lib.{ DataTable, Formater }
-import mapper.By
+import pl.brosbit.lib.{ DataTable }
 import json.DefaultFormats
 import json.JsonDSL._
-import json.JsonAST.JObject
 import json.JsonParser._
 import  _root_.net.liftweb.http.js.JsCmds._
 import  _root_.net.liftweb.http.js.JsCmd
-import  _root_.net.liftweb.http.js.JE._
-import org.bson.types.ObjectId
-import Helpers._
+import _root_.net.liftweb.util.Helpers._
+
 
 case class TestJ(l: String, t: String)
 
@@ -32,7 +28,7 @@ class EditLesson extends BaseLesson {
   def showCourseInfo() = {
     if(courseOption.isEmpty) {
       "h2" #>  (<h2>Nie znaleziono kursu!</h2> ++ <p>Utwórz najpierw kurs, a następnie kliknij na edycję i dodaj lekcję. 
-    Dopierwo wetedy możesz ją edytować</p>)
+    Dopiero wtedy możesz ją edytować</p>)
     } else  {
       val course = courseOption.get
       "h2" #> 
@@ -123,7 +119,7 @@ class EditLesson extends BaseLesson {
       itemCh match {
       case "q" => {
         val str = QuizQuestion.findAll(lookingQuest)
-          .map(h => "[ '" + h._id.toString + "',  '" + h.question + "', '" + h.department + "']")
+          .map(q => "[ '" + q._id.toString + "',  '" + q.question + "', '" + q.department + "']")
           .mkString(",")
         "[" + str + "]"
       }
@@ -151,7 +147,7 @@ class EditLesson extends BaseLesson {
     
     def refreshData():JsCmd = {
       println("[AppINFO]:: Ajax Hidden text refresh; itemType= " + itemCh + " level= " + level + " depart= " + department )
-      Run("refreshTab({ 'data':" + getData + "});")
+      SetValById("jsonForDataTable", getData) & Run( "refreshTab();")
     }
     
    val  itemTypes = List(("w" -> "Hasła"), ("d" -> "Artykuły"), ("q" -> "Zadania"), ("v" -> "Filmy"))
