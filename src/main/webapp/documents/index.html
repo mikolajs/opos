@@ -1,17 +1,66 @@
 
 <div id="main" class="lift:surround?with=documents;at=content">
 		<head_merge> <script type="text/javascript"
-			charset="utf-8" src="/style/common_users.js"></script> </head_merge>
+			charset="utf-8" src="/style/common_users.js"></script>
+        <style>
+            .msg {
+                margin: 10px 20px;
+                padding: 10px 10px 20px 10px;
+                border-radius: 6px;
+                border: 1px solid #ccc;
+
+            }
+            .msg-red {
+                border-left: 8px solid #e00;
+
+            }
+            .msg-blue {
+            border-left: 8px solid #00e;
+            }
+
+            .messegeSign {
+                float:right;
+                font-size: 0.8em;
+                font-style: italic;
+                }
+        </style>
+
+        </head_merge>
 
 
 		<div class="jumbotron">
 			<h1>Informacje i ogłoszenia</h1>
 		</div>
 		<div class="row" data-lift="view.MainSn.showInfo">
-		<div class="col-lg-3"></div>
-		<div class="col-lg-3">
+		<div class="col-lg-6">
+            <div class="msg msg-red">
+                <div>Tutaj jest message! Na pewno warto coś napiać. It wasn't long ago that people who created a new programming language had to build everything that turned code into the bits fed to the silicon. Then someone figured out they could piggyback on the work that came before. Now people with a clever idea just write a preprocessor that translates the new code into something old with a rich set of libraries and APIs.
+
+                </div>
+                <div class="messegeSign">
+                    <span class="glyphicon glyphicon-user"></span>
+                    Mikołaj Sochacki  &nbsp;&nbsp; <span class="glyphicon glyphicon-calendar"></span> 23.11.2014</div>
+            </div>
+            <div class="msg msg-red">
+                <div>Tutaj jest message!</div>
+                <div class="messegeSign">
+                    <span class="glyphicon glyphicon-user"></span>
+                    Mikołaj Sochacki 23.11.2014</div>
+            </div>
 		</div>
-		<div class="col-lg-3"></div>
+		<div class="col-lg-6">
+            <div class="msg msg-blue">
+                <div>Tutaj jest message! Teraz to jest wiadomość tylko do Ciebie</div>
+                <div class="messegeSign">
+                    <span class="glyphicon glyphicon-user"></span>
+                    Mikołaj Sochacki 23.11.2014</div>
+            </div>
+
+
+
+
+
+		</div>
 		</div>
 
 
