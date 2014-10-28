@@ -1,11 +1,10 @@
 
 <div id="main" class="lift:surround?with=documents;at=content">
-		<head_merge> <script type="text/javascript"
-			charset="utf-8" src="/style/common_users.js"></script>
+		<head_merge> 
         <style>
             .msg {
-                margin: 10px 20px;
-                padding: 10px 10px 20px 10px;
+                margin: 10px 10px;
+                padding: 10px;
                 border-radius: 6px;
                 border: 1px solid #ccc;
 
@@ -19,10 +18,17 @@
             }
 
             .messegeSign {
-                float:right;
-                font-size: 0.8em;
-                font-style: italic;
+                border-top: dotted 1px #ccc;
+                font-size: 80%;
+                padding-top: 5px;
+                margin-top: 5px;
+                color: #777;
                 }
+            .btn-del-msg {
+              float: right;
+               
+            }
+            blockquote {border-top: 1px solid #ccc; border-bottom:1px solid #ccc; border-right: 1px solid #ccc; }
         </style>
 
         </head_merge>
@@ -33,7 +39,10 @@
 		</div>
 		<div class="row" data-lift="view.MainSn.showInfo">
 		<div class="col-lg-6">
+		<h3>Tablica ogłoszeń</h3>
             <div class="msg msg-red">
+            
+            <h4>Tytuł ogłoszenia?</h4>
                 <div>Tutaj jest message! Na pewno warto coś napiać. It wasn't long ago that people who created a new programming language had to build everything that turned code into the bits fed to the silicon. Then someone figured out they could piggyback on the work that came before. Now people with a clever idea just write a preprocessor that translates the new code into something old with a rich set of libraries and APIs.
 
                 </div>
@@ -42,6 +51,7 @@
                     Mikołaj Sochacki  &nbsp;&nbsp; <span class="glyphicon glyphicon-calendar"></span> 23.11.2014</div>
             </div>
             <div class="msg msg-red">
+            <h4>Tytuł ogłoszenia?</h4>
                 <div>Tutaj jest message!</div>
                 <div class="messegeSign">
                     <span class="glyphicon glyphicon-user"></span>
@@ -49,17 +59,17 @@
             </div>
 		</div>
 		<div class="col-lg-6">
+		<h3>Prywatne wiadomości</h3>
             <div class="msg msg-blue">
                 <div>Tutaj jest message! Teraz to jest wiadomość tylko do Ciebie</div>
-                <div class="messegeSign">
+                 <div class="messegeSign">
                     <span class="glyphicon glyphicon-user"></span>
-                    Mikołaj Sochacki 23.11.2014</div>
-            </div>
-
-
-
-
-
+                    Mikołaj Sochacki  &nbsp;&nbsp; 
+                    <span class="glyphicon glyphicon-calendar"></span> 23.11.2014 
+                     <button type="button" class="close">
+                    <span>&times;</span></button>
+                    </div>
+            
 		</div>
 		</div>
 

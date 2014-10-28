@@ -27,7 +27,7 @@
          $(function() {
          $( "#accordion" ).accordion();
          });
-  
+        
      </script>
 	<style>
 
@@ -135,15 +135,43 @@ label {
 </style>
 
 	</head_merge>
+	  <div id="carousel-main" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-main" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-main" data-slide-to="1"></li>
+    <li data-target="#carousel-main" data-slide-to="2"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+    <div class="item active">
+      <img src="..." alt="">
+      <div class="carousel-caption">
+        Tytuł
+      </div>
+    </div>
+    <div class="item">
+      <img src="..." alt="">
+      <div class="carousel-caption">
+        Tytuł
+      </div>
+    </div>
+    ...
+  </div>
+
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-main" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+  </a>
+  <a class="right carousel-control" href="#carousel-main" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+  </a>
+</div> 
+
 	<div class="row">
 	<div class="col-lg-1"></div>
    <div class="col-lg-10">
-            <div class="row">
-                <!--  <div id="slider" class="lift:page.MainSn.slides nivoSlider">
-                            <img src="/style/images/fern.jpg" title="" alt="" />
-                              </div> -->
-                              <div class="jumbotron"><h2>XX LO w Gdańsku</h2></div> 
-                      </div>
    
    
    <div class="row">
