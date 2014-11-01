@@ -37,44 +37,92 @@
 		<div class="jumbotron">
 			<h1>Informacje i ogłoszenia</h1>
 		</div>
-		<div class="row" data-lift="view.MainSn.showInfo">
-		<div class="col-lg-6">
+		<div class="row">
+		<div class="col-lg-6" data-lift="doc.MainDocSn.showAnnounces">
 		<h3>Tablica ogłoszeń</h3>
             <div class="msg msg-red">
-            
-            <h4>Tytuł ogłoszenia?</h4>
-                <div>Tutaj jest message! Na pewno warto coś napiać. It wasn't long ago that people who created a new programming language had to build everything that turned code into the bits fed to the silicon. Then someone figured out they could piggyback on the work that came before. Now people with a clever idea just write a preprocessor that translates the new code into something old with a rich set of libraries and APIs.
-
+            <h4></h4>
+                <div class="msg-cont"></div>
+                <div class="messegeSign">
+                    <span class="glyphicon glyphicon-user"></span>
+                    <span class="msg-name" onclick="infoTeacher.sendMessage('who')"></span>
+                    <span class="glyphicon glyphicon-calendar"></span> <span class="msg-date"> </span>
                 </div>
-                <div class="messegeSign">
-                    <span class="glyphicon glyphicon-user"></span>
-                    Mikołaj Sochacki  &nbsp;&nbsp; <span class="glyphicon glyphicon-calendar"></span> 23.11.2014</div>
-            </div>
-            <div class="msg msg-red">
-            <h4>Tytuł ogłoszenia?</h4>
-                <div>Tutaj jest message!</div>
-                <div class="messegeSign">
-                    <span class="glyphicon glyphicon-user"></span>
-                    Mikołaj Sochacki 23.11.2014</div>
             </div>
 		</div>
-		<div class="col-lg-6">
+		<div class="col-lg-6" data-lift="doc.MainDocSn.showMessages">
 		<h3>Prywatne wiadomości</h3>
             <div class="msg msg-blue">
-                <div>Tutaj jest message! Teraz to jest wiadomość tylko do Ciebie</div>
+                <div class="msg-cont"></div>
                  <div class="messegeSign">
                     <span class="glyphicon glyphicon-user"></span>
-                    Mikołaj Sochacki  &nbsp;&nbsp; 
-                    <span class="glyphicon glyphicon-calendar"></span> 23.11.2014 
-                     <button type="button" class="close">
+                    <span class="msg-name" onclick="infoTeacher.sendMessage('who')"></span>
+                    <span class="glyphicon glyphicon-calendar"></span> <span class="msg-date"> </span>
+                     <button type="button" class="close" onclick="infoTeacher.deleteMessage(this,id)">
                     <span>&times;</span></button>
                     </div>
-            
-		</div>
+		    </div>
 		</div>
 
+    <div id="sendMessageForm">
+        <form class="form-horizontal" data-lift="doc.MainDocSn.sendMessage" method="post">
+            <div class="form-group">
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                    <textarea id="writeMessage" rows="4" style="width:100%;" ></textarea></div>
+                <div class="col-md-1"></div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-9"></div>
+                <div class="col-md-3">
+                    <button id="sendMessage" class="btn btn-lg btn-success">
+                        <span class="glyphicon glyphicon-send"></span> Wyślij
+                    </button>
+                </div>
+            </div>
+        </form>
 
-		<p id="addInfo"></p>
+    </div>
+
+            <div id="editAnnounceForm">
+                <form class="form-horizontal" data-lift="doc.MainDocSn.editAnnounce" method="post">
+                    <div class="form-group">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-10">
+                            <textarea id="writeMessage" rows="4" style="width:100%;" ></textarea></div>
+                        <div class="col-md-1"></div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-9"></div>
+                        <div class="col-md-3">
+                            <button id="sendMessage" class="btn btn-lg btn-success">
+                                <span class="glyphicon glyphicon-send"></span> Wyślij
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <div id="showCommentsForm">
+                <form class="form-horizontal" data-lift="doc.MainDocSn.showComments" method="post">
+                    <div class="form-group">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-10">
+                            <textarea id="writeMessage" rows="4" style="width:100%;" ></textarea></div>
+                        <div class="col-md-1"></div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-9"></div>
+                        <div class="col-md-3">
+                            <button id="sendMessage" class="btn btn-lg btn-success">
+                                <span class="glyphicon glyphicon-send"></span> Wyślij
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
 
 		<br /> <br />
 	</div>
+    </div>

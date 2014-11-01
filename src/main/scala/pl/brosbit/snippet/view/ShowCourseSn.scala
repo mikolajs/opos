@@ -1,22 +1,17 @@
 package pl.brosbit.snippet.view
 
-import java.util.Date
-import java.util.Random
-import scala.xml.{ Text, XML, Unparsed }
+import java.util.{Date}
+import scala.xml.{ Text}
 import _root_.net.liftweb._
 import http.{ S, SHtml }
-import common._
 import util._
-import mapper.{ OrderBy, Descending }
 import pl.brosbit.model._
-import edu._
-import mapper.By
+import pl.brosbit.model.page.Comment
 import json.JsonDSL._
-import json.JsonAST.JObject
-import json.JsonParser
 import org.bson.types.ObjectId
 import Helpers._
 import pl.brosbit.snippet.BaseShowCourseSn
+import pl.brosbit.lib.Formater
 
 class ShowCourseSn extends BaseShowCourseSn {
   
@@ -33,18 +28,24 @@ class ShowCourseSn extends BaseShowCourseSn {
 
     def sendMessage() = {
       
-      var messege = ""
+      var message = ""
       def send() {
         if(canView) {
-          
+          val messageTeacher = Messages.findAll(("ownerId"->course.authorId)).headOption.getOrElse(Messages.create)
+          if(messageTeacher.ownerId == 0L) {
+            messageTeacher.ownerId = course.authorId
+            messageTeacher.save
+          }
+          message = "<p>Widomość z kursu " + course.getInfo + " lekcja: " + currentLesson.title + "</p>"
+          val comment = Comment(ObjectId.get(),user.getFullName, user.id.is.toString, Formater.formatTime(new Date()), message)
+          Messages.update(("ownerId"->course.authorId), ("$addToSet"-> ("mes" -> comment.mapString)))
         }
       }
       
-      "#writeMessage" #> SHtml.textarea(messege, messege = _) &
-      "#sendMessege" #> SHtml.button(<span class="glyphicon glyphicon-send"></span> ++ Text("Wyślij"), send)
+      "#writeMessage" #> SHtml.textarea(message, message = _) &
+      "#sendMessage" #> SHtml.button(<span class="glyphicon glyphicon-send"></span> ++ Text("Wyślij"), send)
     }
      
      private def canView = (course.authorId == user.id.is || course.classList.exists(x => x == user.classId.is))
-
 
 }
