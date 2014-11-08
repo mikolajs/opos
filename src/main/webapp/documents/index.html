@@ -1,128 +1,148 @@
 
 <div id="main" class="lift:surround?with=documents;at=content">
-		<head_merge> 
-        <style>
-            .msg {
-                margin: 10px 10px;
-                padding: 10px;
-                border-radius: 6px;
-                border: 1px solid #ccc;
+	<head_merge>
+	<style>
+.msg {
+	margin: 10px 10px;
+	padding: 10px;
+	border-radius: 6px;
+	border: 1px solid #ccc;
+}
 
-            }
-            .msg-red {
-                border-left: 8px solid #e00;
+.msg-red {
+	border-left: 8px solid #e00;
+}
 
-            }
-            .msg-blue {
-            border-left: 8px solid #00e;
-            }
+.msg-blue {
+	border-left: 8px solid #00e;
+}
 
-            .messegeSign {
-                border-top: dotted 1px #ccc;
-                font-size: 80%;
-                padding-top: 5px;
-                margin-top: 5px;
-                color: #777;
-                }
-            .btn-del-msg {
-              float: right;
-               
-            }
-            blockquote {border-top: 1px solid #ccc; border-bottom:1px solid #ccc; border-right: 1px solid #ccc; }
-        </style>
+.messegeSign {
+	border-top: dotted 1px #ccc;
+	font-size: 80%;
+	padding-top: 5px;
+	margin-top: 5px;
+	color: #777;
+}
 
-        </head_merge>
+.btn-del-msg {
+	float: right;
+}
+
+h3 {
+	text-align: center;
+}
+</style>
+<script data-lift="doc.MainDocSn.messageData"></script>
+
+	</head_merge>
 
 
-		<div class="jumbotron">
-			<h1>Informacje i ogłoszenia</h1>
-		</div>
-		<div class="row">
+	<div class="jumbotron">
+		<h1>Informacje i ogłoszenia</h1>
+	</div>
+	<div class="row">
 		<div class="col-lg-6" data-lift="doc.MainDocSn.showAnnounces">
-		<h3>Tablica ogłoszeń</h3>
-            <div class="msg msg-red">
-            <h4></h4>
-                <div class="msg-cont"></div>
-                <div class="messegeSign">
-                    <span class="glyphicon glyphicon-user"></span>
-                    <span class="msg-name" onclick="infoTeacher.sendMessage('who')"></span>
-                    <span class="glyphicon glyphicon-calendar"></span> <span class="msg-date"> </span>
-                </div>
-            </div>
+			<h3>Tablica ogłoszeń</h3>
+			<div class="msg msg-red">
+				<h4></h4>
+				<div class="msg-cont"></div>
+				<div class="messegeSign">
+					<span class="glyphicon glyphicon-user"></span> <span
+						class="msg-name" onclick="infoTeacher.sendMessage('who')"></span>
+					<span class="glyphicon glyphicon-calendar"></span> <span
+						class="msg-date"> </span>
+				</div>
+			</div>
 		</div>
 		<div class="col-lg-6" data-lift="doc.MainDocSn.showMessages">
-		<h3>Prywatne wiadomości</h3>
-            <div class="msg msg-blue">
-                <div class="msg-cont"></div>
-                 <div class="messegeSign">
-                    <span class="glyphicon glyphicon-user"></span>
-                    <span class="msg-name" onclick="infoTeacher.sendMessage('who')"></span>
-                    <span class="glyphicon glyphicon-calendar"></span> <span class="msg-date"> </span>
-                     <button type="button" class="close" onclick="infoTeacher.deleteMessage(this,id)">
-                    <span>&times;</span></button>
-                    </div>
-		    </div>
+			<h3>Prywatne wiadomości</h3>
+			<div class="msg msg-blue">
+				<div class="msg-cont"></div>
+				<div class="messegeSign">
+					<span class="glyphicon glyphicon-user"></span> <span
+						class="msg-name" onclick="infoTeacher.sendMessage('who')"></span>
+					<span class="glyphicon glyphicon-calendar"></span> <span
+						class="msg-date"> </span>
+					<button type="button" class="close"
+						onclick="infoTeacher.deleteMessage(this,id)">
+						<span>&times;</span>
+					</button>
+				</div>
+			</div>
 		</div>
-
-    <div id="sendMessageForm">
-        <form class="form-horizontal" data-lift="doc.MainDocSn.sendMessage" method="post">
-            <div class="form-group">
-                <div class="col-md-1"></div>
-                <div class="col-md-10">
-                    <textarea id="writeMessage" rows="4" style="width:100%;" ></textarea></div>
-                <div class="col-md-1"></div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-9"></div>
-                <div class="col-md-3">
-                    <button id="sendMessage" class="btn btn-lg btn-success">
-                        <span class="glyphicon glyphicon-send"></span> Wyślij
-                    </button>
-                </div>
-            </div>
-        </form>
-
-    </div>
-
-            <div id="editAnnounceForm">
-                <form class="form-horizontal" data-lift="doc.MainDocSn.editAnnounce" method="post">
-                    <div class="form-group">
-                        <div class="col-md-1"></div>
-                        <div class="col-md-10">
-                            <textarea id="writeMessage" rows="4" style="width:100%;" ></textarea></div>
-                        <div class="col-md-1"></div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-9"></div>
-                        <div class="col-md-3">
-                            <button id="sendMessage" class="btn btn-lg btn-success">
-                                <span class="glyphicon glyphicon-send"></span> Wyślij
-                            </button>
-                        </div>
-                    </div>
-                </form>
-
-            </div>
-            <div id="showCommentsForm">
-                <form class="form-horizontal" data-lift="doc.MainDocSn.showComments" method="post">
-                    <div class="form-group">
-                        <div class="col-md-1"></div>
-                        <div class="col-md-10">
-                            <textarea id="writeMessage" rows="4" style="width:100%;" ></textarea></div>
-                        <div class="col-md-1"></div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-9"></div>
-                        <div class="col-md-3">
-                            <button id="sendMessage" class="btn btn-lg btn-success">
-                                <span class="glyphicon glyphicon-send"></span> Wyślij
-                            </button>
-                        </div>
-                    </div>
-                </form>
-
-            </div>
-
+		<br /> <br />
+		<br /> <br />
 		<br /> <br />
 	</div>
-    </div>
+
+	<div id="sendMessageForm">
+		<form class="form-horizontal" data-lift="doc.MainDocSn.sendMessage"
+			method="post">
+			<ul id="peopleToSend" class="col-md-6"></ul>
+			<div class="col-md-6">
+				<div class="form-group">
+					<button type="button" class="btn btn-default">Nauczyciel</button>
+					<button type="button" class="btn btn-default">Uczeń/Rodzic</button>
+				</div>
+				<div class="form-group">
+				<div class="input-group">
+					<span class="input-group-addon">Klasa</span> <select
+						class="form-control"><option>1b</option></select>
+				</div>
+				</div>
+				<div class="form-group">
+				<div class="input-group">
+					<span class="input-group-addon">Adresat</span> <select
+						class="form-control"><option>Jan Kowalski</option></select>
+				</div>
+				</div>
+				<div class="col-md-8"></div>
+				<div class="col-md-4">
+					<div class="input-group">
+						<button class="btn btn-success">
+							<span class="glyphicon glyphicon-plus-sign"> Dodaj</span>
+						</button>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<textarea id="writeMessage" rows="2" style="width: 100%;"></textarea>
+			</div>
+			<div class="form-group">
+
+				<button id="sendMessage" class="btn btn-lg btn-success">
+					<span class="glyphicon glyphicon-send"></span> Wyślij
+				</button>
+
+			</div>
+		</form>
+	</div>
+
+	<div id="editAnnounceForm">
+		<form class="form-horizontal" data-lift="doc.MainDocSn.editAnnounce"
+			method="post">
+			<input type="text" style="display:none" id="idAnno" />
+			<div class="form-group">
+			     <label class="col-md-3">Temat</label>
+			     <div class="col-md-9">
+                    <input type="text" id="titleAnno" class="form-control" />
+                    </div>
+            </div>
+			<div class="form-group">
+					<textarea id="bodyAnno" rows="4" style="width: 100%;"></textarea>
+			</div>
+			<div class="form-group">
+				<div class="col-md-9"></div>
+				<div class="col-md-3">
+					<button id="editAnno" class="btn btn-lg btn-success">
+						<span class="glyphicon glyphicon-send"></span> Wyślij
+					</button>
+				</div>
+			</div>
+		</form>
+
+	</div>
+
+
+</div>

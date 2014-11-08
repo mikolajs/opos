@@ -12,6 +12,7 @@ trait BaseDoc  {
    
 	
 	protected def isAdmin = user.role.is == "a"
+	protected def isTeacher = user.role.is == "d" || user.role.is == "t" || isAdmin
 	
 }
 

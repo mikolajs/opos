@@ -41,7 +41,7 @@ class ShowCourseSn extends BaseShowCourseSn {
   def sortChapters() = {
     var sorted = ""
     def delete() {
-      val allChapters = lessons.map(l => l.chapter).removeDuplicates
+      val allChapters = lessons.map(l => l.chapter).distinct
       course.chapters = course.chapters.filter(ch => allChapters.exists(all => all == ch))
       course.save
     }
