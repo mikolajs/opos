@@ -9,6 +9,10 @@
 	<script>
 		    var editArticle = null;
             $(document).ready(function(){ editArticle = new EditArticle(); });
+$(function() {
+$( "#radio" ).buttonset();
+});
+
 		</script>
 	<style>
 form label.leftText {
@@ -20,6 +24,10 @@ form label.leftText {
 
 form input[type=submit] {
 	width: 100%;
+}
+
+form input[type=button] {
+        width: 100%;
 }
 
 #tagContainer span,#departContainer span {
@@ -65,7 +73,9 @@ form input[type=submit] {
 
 				</p>
 				<div>
-					<div id="typePage"></div>
+					<div id="typePage">
+
+					</div>
 					<br />
 					<div id="newsContainer">
 						<img id="thumbPreview" style="width: 214px;" src="" /> <input

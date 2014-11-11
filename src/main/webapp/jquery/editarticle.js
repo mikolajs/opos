@@ -28,7 +28,7 @@ var EditArticle =  dejavu.Class.declare({
     $('#departContainer').multiToButtons({'max':1});
  
     this.insertThumbnailPreviewSource();
-    
+
     $( "#typePage" ).buttonset();
 
     $("#helpBox").dialog({
@@ -43,7 +43,7 @@ var EditArticle =  dejavu.Class.declare({
     	});
 
     $("#typePage input:checked").each(function (){
-      self.switchTagsDepart(this);        
+      self.switchTagsDepart(this);
     });
     $("#refreshButton").click(function() { self.refreshThumbnail();});
 
@@ -77,15 +77,18 @@ var EditArticle =  dejavu.Class.declare({
 	},
 
     switchTagsDepart : function(elem) {
+        console.log("switchTagsDepart start");
 		var $tags = $("#newsContainer");
 		var $depart = $("#departContainer");
-		if(elem.value =="Aktualności") {
+		console.log(elem.value);
+		if(elem.id =="radio1") {
 			$tags.show();
 			$depart.hide();
 		} else {
 			$tags.hide();
 	        $depart.show();
 		}
+		console.log("switchTagsDepart end");
 	},
 
     refreshThumbnail : function() {

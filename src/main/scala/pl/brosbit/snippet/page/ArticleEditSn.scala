@@ -17,13 +17,10 @@ import _root_.net.liftweb.json.JsonDSL._
 import scala.xml.UnprefixedAttribute
 
 class ArticleEditSn {
-    
+
     val pageTypes = Map(true -> "Aktualności",false ->  "Artykuły")
 
   def editPage() = {
-    val departmentTuples = ("Aktualności","Aktualności")::PageDepartment.findAll.map(department => {
-      (department.name, department.name)
-    })
     
     var id = S.param("id").openOr("")
     var title = ""
@@ -35,8 +32,10 @@ class ArticleEditSn {
     var content = ""
     var news  = true
     var pageType = ""
-      
+
+     //wczytywanie danych wpisu
     if(id.length > 11) ArticleHead.find(id)  match {
+     //stary wpis
       case Some(newsHead) => {
         val articleContent = ArticleContent.find(newsHead.content).getOrElse(ArticleContent.create)
         title = newsHead.title
@@ -50,17 +49,19 @@ class ArticleEditSn {
         pageType = pageTypes(news)
       }
       case _ => {
+        //nie znaleziono wpisu
         pageType = pageTypes(true)
         thumbnailLink = "/style/images/nothumb.png"
       }
     }
     else {
+       //nowy wpis
         pageType = pageTypes(true)
         thumbnailLink = "/style/images/nothumb.png"
     }
     
     def save() {
-      var isNew = false
+
       val newsHead = ArticleHead.find(id).getOrElse(ArticleHead.create)
       if(newsHead.authorId == 0L || isOwner(newsHead.authorId)){
         newsHead.title = title
@@ -85,13 +86,13 @@ class ArticleEditSn {
         articleContent.save
         newsHead.content = articleContent._id
         if(newsHead.authorId == 0L){
-            isNew = true       
             newsHead.authorId = user.id.is
             newsHead.authorName = user.getFullName
         }
         newsHead.save
       }
       S.redirectTo("/index/a")
+
     }
     
     def discard() {
