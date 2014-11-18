@@ -31,14 +31,14 @@ class ShowCourseSn extends BaseShowCourseSn {
       var message = ""
       def send() {
         if(canView) {
-          val messageTeacher = Messages.findAll(("ownerId"->course.authorId)).headOption.getOrElse(Messages.create)
-          if(messageTeacher.ownerId == 0L) {
-            messageTeacher.ownerId = course.authorId
-            messageTeacher.save
-          }
-          message = "<p>Widomość z kursu " + course.getInfo + " lekcja: " + currentLesson.title + "</p>"
-          val comment = Comment(ObjectId.get(),user.getFullName, user.id.is.toString, Formater.formatTime(new Date()), message)
-          Messages.update(("ownerId"->course.authorId), ("$addToSet"-> ("mes" -> comment.mapString)))
+          val message = Message.create
+          message.body += "<p><small class=\"msgSource\">Widomość z kursu " + course.getInfo + " lekcja: " + currentLesson.title + "</small></p>"
+          message.authorId = user.id.is
+          message.authorName = user.getFullName
+          message.date = Formater.formatTime(new Date())
+          message.who = List(course.authorId)
+          message.dest = "c"
+          message.save
         }
       }
       

@@ -117,10 +117,7 @@ class VideoReaderSn extends BaseResourceSn {
 
   private def isVideo(name: String) = {
     name.split('.').last.toLowerCase() match {
-      //case "avi" => true
       case "mp4" => true
-      //case "mpg" => true
-      //case "ogg" => true
       case _ => false
     }
   }

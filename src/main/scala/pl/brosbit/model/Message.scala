@@ -3,17 +3,20 @@ package pl.brosbit.model
 
 import _root_.net.liftweb.mongodb._
 import org.bson.types.ObjectId
-import _root_.net.liftweb.json.JsonDSL._
-import pl.brosbit.model.page.Comment
 
-
-object Messages extends MongoDocumentMeta[Messages] {
-  override def collectionName = "Messages"
+//dest: t - teachers, p - pupils, i - indywidual, c - from course
+object Message extends MongoDocumentMeta[Message] {
+  override def collectionName = "Message"
   override def formats = super.formats + new ObjectIdSerializer + new DateSerializer
-  def create = Messages(ObjectId.get, 0L, Nil)
+  def create = Message(ObjectId.get, 0L, "", "", Nil, 0L, "", "")
 }
 
-case class Messages(var _id: ObjectId, var ownerId:Long, var mes: List[Comment]) 
-							extends MongoDocument[Messages] {
-  def meta = Messages
+case class Message(var _id: ObjectId, var authorId:Long,  var authorName: String,
+                   var  dest: String, var who: List[Long],  var cl: Long, var body: String,
+                   var date: String
+                   ) extends MongoDocument[Message] {
+  def meta = Message
+  def forAllTechers = dest == "t"
+  def forAllPupils = dest == "p"
+  def forIndywiduals = dest == "i"
 }
