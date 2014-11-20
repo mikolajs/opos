@@ -91,5 +91,13 @@ while(cursor.hasNext()) {
     db.lessons.update({'_id' : less._id}, {$set: {"contents": newCont}}, false, false);   
 }
 
+#move video
 
+var cursor = db.videos.find({'authorId':3, 'onServer':true});
+while(cursor.hasNext()) {
+   var video = cursor.next();
+   var path = "/Video/" + video.oldPath
+   print(path);
+   db.videos.update({'_id':video._id}, {$set: {"oldPath": path}} ,true, true, true);
+}
 

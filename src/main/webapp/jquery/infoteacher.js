@@ -7,7 +7,7 @@ var InfoTeacher = dejavu.Class.declare({
        	    width : 660,
        	    height: 200,
        	    extraPlugins : 'addImage,symbol',
-       	    toolbar : [ 
+       	    toolbar : [
                [ 'Link','Unlink','Anchor' ],
                [ 'Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo' ],
                [ 'Bold','Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat' ],

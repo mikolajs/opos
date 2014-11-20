@@ -25,7 +25,7 @@ import java.nio.file.Path
 class VideoReaderSn extends BaseResourceSn {
 
   var videoItems: scala.collection.mutable.ListBuffer[File] = scala.collection.mutable.ListBuffer()
-
+  println("start indexvideo")
   val parentPath = "/home/"
   val parentDir = new File(parentPath)
   val userDirPath = parentPath + toASCIICharAndLower(user.firstName.is) + user.id.toString
@@ -34,9 +34,9 @@ class VideoReaderSn extends BaseResourceSn {
   def getUserNames() = parentDir.listFiles().filter(f => f.isDirectory()).map(f => f.getName())
 
   def getPaths() = {
-
+    println("getPaths")
     val userDir = new File(userDirPath)
-    var paths: List[File] = findFiles(userDir, Nil)
+    val paths: List[File] = findFiles(userDir, Nil)
     paths.map(f => {
       val full = f.getAbsolutePath()
       val mime = Files.probeContentType(Paths.get(full))
@@ -47,11 +47,11 @@ class VideoReaderSn extends BaseResourceSn {
 
 
   def findFiles(dir: File, list: List[File]): List[File] = {
-
+    println("findFiles")
     if (dir.isDirectory()) {
       val allFil = dir.listFiles().toList
-      val maped = allFil.map(f => findFiles(f, list)).flatten
-      maped
+      val mapped = allFil.map(f => findFiles(f, list)).flatten
+      mapped
     } else {
       val name = dir.getName()
       if (isVideo(name)) dir :: list
@@ -61,6 +61,7 @@ class VideoReaderSn extends BaseResourceSn {
   }
 
   def indexed = {
+    println("indexed")
     //add filter not added
     val existPath = Video.findAll(("authorId" -> user.id.is)~("onServer" -> true))
       .map(v =>  userDirPath + v.oldPath)
@@ -122,10 +123,6 @@ class VideoReaderSn extends BaseResourceSn {
     }
   }
 
-  private def addDepartment(dep:String, subject:SubjectTeach) {
-    if(!subject.departments.contains(dep)) subject.departments = dep::subject.departments
-  }
-
   private def toASCIICharAndLower(str:String) = {
     val m = Map(( 'Ą', 'A' ), ( 'Ć', 'C' ), ( 'Ę', 'E' ), ( 'Ł', 'L' ), ( 'Ń', 'N' ), ( 'Ó', 'O' ), ( 'Ś', 'S' ), ( 'Ź', 'Z' ), ( 'Ż', 'Z' ),
       ( 'ą', 'a' ), ( 'ć', 'c' ), ( 'ę', 'e' ), ( 'ł', 'l' ), ( 'ń', 'n' ), ( 'ó', 'o' ), ( 'ś', 's' ), ( 'ź', 'z' ), ( 'ż', 'z' ),
@@ -133,17 +130,5 @@ class VideoReaderSn extends BaseResourceSn {
     str.toLowerCase.toCharArray().map(n =>
       if(m.contains(n)) m(n) else n
     ).mkString
-  }
-
-
-  private def findAllVideoInUserPath = {
-    var name = toASCIICharAndLower(user.firstName.is) + user.id.toString
-    val paths = getPaths()
-    val videos = paths.map(p => (p._1.replace(userDirPath, ""), p._2, p._1)).map(p => {
-      val pathArray = p._1.split("/")
-      if (pathArray.length > 1) (pathArray.head, pathArray.last, p._2, p._3)
-      else ("","", "", "")
-    }).filter(t => t._2 != "")
-    videos
   }
 }
