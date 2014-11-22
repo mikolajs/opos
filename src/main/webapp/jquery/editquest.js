@@ -21,6 +21,7 @@ var EditQuest =  dejavu.Class.declare({
 		CKEDITOR.replace('questionQuest', {
 			width : 500,
 			height : 240,
+			allowedContent : true,
 			extraPlugins : 'addThumb,formula,symbol',
 			toolbar : [
 					{

@@ -56,6 +56,7 @@ var LessonEditor = dejavu.Class
 					extraPlugins: 'sourcedialog,addImage,syntaxhighlight,formula,symbol,image',
 					format_tags : 'p;h2;h3;h4;h5;h6;pre;address',
 					disableNativeSpellChecker : false,
+					allowedContent : true,
 					language : 'pl',
 					toolbar: [
 					        [ 'Sourcedialog' ],

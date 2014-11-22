@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta content="width=1024, user-scalable=no" name="viewport">
+    <link href="/deckjs/core/deck.core.css" rel="stylesheet">
+    <link href="/deckjs/extensions/status/deck.status.css" rel="stylesheet">
+    <link href="/deckjs/themes/style/neon.css" id="style-theme-link" type="text/css" rel="stylesheet">
+    <link href="/deckjs/themes/transition/horizontal-slide.css" id="transition-theme-link" rel="stylesheet">
+    <script src="/jquery/jquery.min.js" type="text/javascript"></script>
+    <script src="/deckjs/core/deck.core.js" type="text/javascript"></script>
+    <script src="/deckjs/extensions/status/deck.status.js" type="text/javascript"></script>
+    <script src="/jquery/showslide.js" type="text/javascript"></script>
+    <script src="/syntaxhighlighter/shCore.js" type="text/javascript"></script>
+    <script src="/syntaxhighlighter/shBrushBash.js" type="text/javascript"></script>
+    <script src="/syntaxhighlighter/shBrushCpp.js" type="text/javascript"></script>
+    <script src="/syntaxhighlighter/shBrushCss.js" type="text/javascript"></script>
+    <script src="/syntaxhighlighter/shBrushJava.js" type="text/javascript"></script>
+    <script src="/syntaxhighlighter/shBrushJScript.js" type="text/javascript"></script>
+    <script src="/syntaxhighlighter/shBrushPhp.js" type="text/javascript"></script>
+    <script src="/syntaxhighlighter/shBrushPlain.js" type="text/javascript"></script>
+    <script src="/syntaxhighlighter/shBrushPython.js" type="text/javascript"></script>
+    <script src="/syntaxhighlighter/shBrushRuby.js" type="text/javascript"></script>
+    <script src="/syntaxhighlighter/shBrushScala.js" type="text/javascript"></script>
+    <script src="/syntaxhighlighter/shBrushSql.js" type="text/javascript"></script>
+    <script src="/syntaxhighlighter/shBrushXml.js" type="text/javascript"></script>
+    <link href="/syntaxhighlighter/shCore.css" rel="stylesheet" type="text/css">
+    <link href="/syntaxhighlighter/shThemeDefault.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript">
+        SyntaxHighlighter.all();
+    </script>
+    <script>
+   
+
+    
+  
+    </script>
+    <style>
+
+        body { background: url(/images/background.png) repeat; margin: 0 auto; }
+
+        #header { background: #1a1a1a;
+        position: absolute;
+        top: 0; font-weight: bold;
+        text-align: center;
+        width: 100%;
+        color: #eee; margin: 0 auto; border 0 0 2px 0 solid red;
+        }
+        #header  > ul { position: relative; top 0; margin: 0; padding: 0; }
+        #header  > ul > li { display: inline; decoration: none; vertical-align: middle;
+        border: 0 3px 0 3px 0; padding: 0 5px 0 5px;
+        font: 12px serif; color: green; }
+
+        #header >  ul > li > span { font: 15px sans; color: #eee; padding:0;}
+        #header > ul > li > a { color: orange; text-decoration: none; font: 16px sans; vertical-align: middle;}
+        #header >  ul > li > img { vertical-align: middle; padding: 0; }
+        #slides { position: relative; top: 35px; }
+
+    </style>
+
+
+</head>
+<body id="thebody" data-lift="edu.ShowSlideSn.slideData">
+<div id="header">
+    <ul>
+        <li id="previous-slide"><img src="/images/previous.png"></li>
+        <li>Temat: <span id="title"></span></li>
+        <li id="change-slide"><img onclick="changeTemplate()" src="/images/change.png"></li>
+        <li id="large-slide"><img src="/images/fullscreen.png"></li>
+        <li id="next-slide"><img src="/images/next.png"></li>
+    </ul>
+</div>
+<div class="deck-container" id="slides">
+    <section id="slideHTML"></section>
+    <p class="deck-status">
+        <span class="deck-status-current"></span>
+        /
+        <span class="deck-status-total"></span>
+    </p>
+    </div>
+
+
+</body>
+</html>  
+  

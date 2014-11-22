@@ -63,7 +63,7 @@ class BaseShowCourseSn {
       case "w" => {
         val headW = hws.find(i => i._id.toString == item.id.drop(1)).
           getOrElse(HeadWord.create)
-        "<section class=\" headword\"/><h2>" + headW.title + "</h2>" + headW.content + "</section>"
+        "<section class=\"headword\">" + headW.content + "</section>"
       }
       case "q" => {
         createQuest(qts.find(q => q._id.toString == item.id.drop(1)).
@@ -100,7 +100,7 @@ class BaseShowCourseSn {
       }
       case "d" => {
         val docModel = docs.find(i => i._id.toString == item.id.drop(1)).getOrElse(Document.create)
-        "<section class=\"document\"> <h3>" + docModel.title + "</h3>\n " + docModel.content + "</section>"
+        "<section class=\"document\"> <h2>" + docModel.title + "</h2>\n " + docModel.content + "</section>"
       }
       case _ => <h4>Błąd - nie ma takiego typu zawartości</h4>
     }).mkString("\n")

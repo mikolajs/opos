@@ -9,7 +9,7 @@
 	
 	<script>
 	$(document).ready(function(){
-		window.setInterval("timerSaver()", 600000);
+		window.setInterval("timerSaver()", 900000);
 				
 		
 		CKEDITOR.replace( 'slideText',{
@@ -33,35 +33,15 @@
 	
 		
 		CKEDITOR.config.disableNativeSpellChecker = false;
-		
-		CKEDITOR.replace( 'extraText',{
-			width : 955, 
-			height: 620,
-			extraPlugins : 'formula,syntaxhighlight,symbol',
-			contentsCss : '/deckjs/themes/style/swiss_ckeditor.css',
-    		toolbar :[
-	{ name: 'document',  items: [ 'Source'] },
-	{ name: 'clipboard', groups: [ 'clipboard', 'undo' ], items: [ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ] },
-	{ name: 'editing', groups: [ 'find', 'selection', 'spellchecker' ], items: [ 'Find', 'Replace', '-', 'SelectAll']},
-	{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ] },
-	{ name: 'insert', items: [ 'Formula', 'Table', 'HorizontalRule', 'Smiley', 'Symbol','Syntaxhighlight' ] },
-	{ name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl' ] },
-	{ name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ] },
-	{ name: 'styles', items: [ 'Styles', 'Format', 'Font', 'FontSize' ] },
-	{ name: 'colors', items: [ 'TextColor', 'BGColor' ] },
-	{ name: 'tools', items: [ 'Maximize', 'ShowBlocks' ] }
-	]
-		});
-		
-		 $( "#tabs" ).tabs();
+
 		
 		var slides = new EditSlides(30);
 				
 	});
 	
 	function timerSaver() {
-		if(confirm("Nie zapisano od 10 minut. Zapisać teraz?")) $("#save").trigger('click');
-		window.setInterval("timerSaver()", 600000);
+		if(confirm("Nie zapisano od 15 minut. Zapisać teraz?")) $("#save").trigger('click');
+		window.setInterval("timerSaver()", 900000);
 	}
 	
 	var activeEditor = 1;
@@ -130,17 +110,17 @@
   </form>
   <hr/>
   <div class=" tabsConainer">
- 	 <div id="addslide"  class="form-inline"><strong>Dodaj nowy slajd: </strong>
-  	<div class="radio"><label> <input type="radio" value="przed obecnym" name="addSlide" /> przed obecnym</label>
-  	<label><input type="radio" value="po obecnym" name="addSlide" checked="checked" id="radioAfter"/> po obecnym</label>
-</div>
-  	  <button type="button" class="btn btn-success btn-lg"  id="addSlideAction" >
-  <span class="glyphicon glyphicon-plus-sign"></span> Dodaj slajd
+ 	 <div id="addslide"  class="form-inline">
+         <button type="button" class="btn btn-success btn-lg"  id="addSlideActionB" >
+             <span class="glyphicon glyphicon-plus-sign"></span> Dodaj slajd PRZED aktualnym
+         </button>
+  	  <button type="button" class="btn btn-success btn-lg"  id="addSlideActionA" >
+  <span class="glyphicon glyphicon-plus-sign"></span> Dodaj slajd PO aktualnym
 </button>
   	 
-  	 <div id="deleteSlide"  class="input-group"><label>Usuń akutalny slajd: </label>
+  	 <div id="deleteSlide"  class="input-group">
   	  <button type="button" class="btn btn-danger btn-lg"  id="delSlideAction"  >
-  <span class="glyphicon glyphicon-remove-sign"></span> Usuń slajd
+  <span class="glyphicon glyphicon-remove-sign"></span> Usuń aktualny slajd
 </button></div>
 </div>
   <hr/>
@@ -152,26 +132,14 @@
     	<br/>
     	
     	</div>
-    	
-    	  <div id="tabs">
-<ul>
-<li><a href="#tabs-1">Edycja slajdów</a></li>
-<li><a href="#tabs-2">Edycja komentarza</a></li>
-</ul>
-<div id="tabs-1">
+<div >
 <textarea class="ckeditor" id="slideText"></textarea>
 </div>
-<div id="tabs-2">
-<textarea class="ckeditor2" id="extraText"></textarea>
-</div>
-</div>
-    	</div>
     	<br />          
     </div>
    
    <div class="lift:edu.EditSlideSn.slideData">
-   <div id="slidesHTML"  style="display:none;"><section id="slideHTML"></section></div>  		
-   <div id="detailsHTML" style="display:none;"><details id="detailHTML"></details></div>
+   <div id="slidesHTML"  style="display:none;"><section id="slideHTML"></section></div>
    </div> 
    
   </div>

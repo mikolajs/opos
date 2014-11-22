@@ -27,8 +27,7 @@ class EditSlideSn extends BaseResourceSn  {
   def slideData() = {
       "#title" #> <span>{slide.title}</span> &
       "#description" #> <span>{slide.descript}</span> &
-      "#slideHTML" #>  Unparsed(slideCont.slides)  &
-      "#detailHTML" #> Unparsed(slideCont.details) 
+      "#slideHTML" #>  Unparsed(slideCont.slides)
   }
   
   
@@ -39,7 +38,6 @@ class EditSlideSn extends BaseResourceSn  {
     var title = slide.title
     var description = slide.descript
     var slidesString = slideCont.slides
-    var detailsString = slideCont.details
   
     def saveData() {
       val userId = user.id.is
@@ -49,13 +47,12 @@ class EditSlideSn extends BaseResourceSn  {
           slide.descript = description.trim
           slide.authorId = userId
           slideCont.slides = slidesString
-          slideCont.details = detailsString
           slideCont.save
           slide.slides = slideCont._id      
           slide.save 
       }
            
-      S.redirectTo("/resources/editslide/"+ slide._id.toString) //!important must refresh page
+      S.redirectTo("/educontent/editslide/"+ slide._id.toString) //!important must refresh page
     }
     
     def deleteData() {
@@ -76,7 +73,6 @@ class EditSlideSn extends BaseResourceSn  {
     "#titleTheme" #> SHtml.text(title, title= _,"class"->"Name") &
     "#description" #> SHtml.textarea(description, description = _)&
     "#slidesData" #> SHtml.text(slidesString, slidesString = _, "type"->"hidden") &
-    "#detailsData" #> SHtml.text(detailsString, detailsString = _, "type"->"hidden") &
     "#save" #> SHtml.button(<span class="glyphicon glyphicon-plus-sign"></span> ++ Text(" Zapisz  prezentację!"), saveData,
             "title"->"Zapisz") &
     "#delete" #> SHtml.button(<span class="glyphicon glyphicon-remove-sign"></span> ++ Text(" Usuń prezentację!"),  deleteData,

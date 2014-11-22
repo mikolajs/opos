@@ -29,7 +29,6 @@ class ShowSlideSn  {
                         case Some(slideCont) => {
                             "#title" #> <span>{ slide.title.take(30) }</span> &
                                 "#slideHTML" #> Unparsed(slideCont.slides) &
-                                "#detailHTML" #> Unparsed(slideCont.details)  
                         }
                         case _ => infoError
                     }

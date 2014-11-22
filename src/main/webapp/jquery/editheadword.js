@@ -1,7 +1,7 @@
 	
 	var EditHeadWord = dejavu.Class.declare({
 		
-		slideMaxNr : 4,
+		slideMaxNr : 6,
 		$slidesHTML : null,
 		$slideChoice : null,
 		slideSize : 0,
@@ -20,7 +20,7 @@
 			$('#delSlideAction').click(function(){self.delSlide();});	
 			
 			if(this.slideSize == 0) this.slideSize = 1;
-			for( i = this.slideSize +1;  i <  5;  i++){
+			for( i = this.slideSize +1;  i <  this.slideMaxNr + 1;  i++){
 		    	$('#section_'+ i).hide();
 		    }		
 		},

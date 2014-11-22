@@ -3,7 +3,6 @@
 		
 		slideMaxNr : 30,
 		$slidesHTML : null,
-		$detailsHTML : null,
 		$slideChoice : null,
 		$currentSlide : null,
 		slideSize : 0,
@@ -12,12 +11,10 @@
 		initialize : function(maxSize) {
 			this.slideMaxNr = maxSize;
 			this.$slidesHTML = $('#slidesHTML');
-			this.$detailsHTML = $("#detailsHTML");
 			this.slideSize = this.$slidesHTML.children('section').length;
 			this.$slideChoice = $('#slideChoice');
 			if(this.slideSize == 0){
 				this.$slidesHTML.append('<section class="slide"></section>');
-				this.$detailsHTML.append('<details></details>');
 				this.slideSize = 1;
 			}
 			this.createPage();
@@ -29,7 +26,8 @@
 				});}
 			});
 			$('#save').click(function(){self.createData();});
-			$('#addSlideAction').click(function(){self.addSlide();});
+			$('#addSlideActionA').click(function(){self.addSlide(true);});
+			$('#addSlideActionB').click(function(){self.addSlide(false);});
 			$('#delSlideAction').click(function(){self.delSlide();});
 			this._sureDeletePesentation();
 		},
@@ -37,15 +35,11 @@
 	    insertFromCKEditor : function(){
 	    	var data = CKEDITOR.instances.slideText.getData();
 	    	this.$listItem.children('section').html(data) ;
-	    	data = CKEDITOR.instances.extraText.getData();
-	    	this.$listItem.children('details').get(0).innerHTML = data;
 		},
 		
 		insertToCKEditor : function() {
 			var data = this.$listItem.children('section').get(0).innerHTML;
 			CKEDITOR.instances.slideText.setData(data);
-			data = this.$listItem.children('details').get(0).innerHTML;
-			CKEDITOR.instances.extraText.setData(data);
 		},
 		
 		choiceSlide : function(elem){
@@ -64,19 +58,15 @@
 						
 			this.$slideChoice.children().remove();
 			var self = this;
-			var  $detailsList = this.$detailsHTML.children('details');
+
 		    this.$slidesHTML.children('section').each(function(index){
 				var $this = $(this);
 				self.$slideChoice.append('<div class="lista"><span>' + (index + 1).toString()+ '</span>'
-						+ '<section>' + $this.get(0).innerHTML + '</section>' + '<details>' +
-						$detailsList.get(index).innerHTML + '</details>'
+						+ '<section>' + $this.get(0).innerHTML + '</section>'
 						+ '</div>');
 			});
 			
 			this.$slideChoice.children('div.lista').children('section').each(function() {
-				$(this).hide();
-			});
-			this.$slideChoice.children('div.lista').children('details').each(function() {
 				$(this).hide();
 			});
 				
@@ -88,17 +78,16 @@
 			this.$slideChoice.children('div.lista').click(function() {self.choiceSlide(this)}); 
 		},
 		
-		addSlide : function(){
+		addSlide : function(after){
 			if(this.slideMaxNr <= this.slideSize) {
 				alert("Maksmalna ilość slajdów to: " + this.slideMaxNr);
 				return;
 			}
 			this.insertFromCKEditor();
 
-			var isAfter = ($('#radioAfter').attr('checked') == 'checked');
+			var isAfter = after;
 			
-			var itemString = '<div class="lista"><span>x</span><section style="display:none;"></section>' +
-				 '<details  style="display:none;"></details></div>';
+			var itemString = '<div class="lista"><span>x</span><section style="display:none;"></section>';
 			if (isAfter) {
 				this.$listItem.after(itemString);
 				this.$listItem = this.$listItem.next();
@@ -152,20 +141,15 @@
 			//zapisuje ostatnio edytowany slajd
 			this.insertFromCKEditor();
 			var dataSlides  = "";
-			var dataDetails = "";
 			//var dep = $('#departmentTheme').children('option:selected').val();
 			//$('#departmentThemeHidden').val(dep); //to robi na bieżąco properties
 			this.$slideChoice.children('div.lista').each(function(index){
-				var inner = $(this).children('section').html();			
-				var innerExtra = $(this).children('details').get(0).innerHTML ;
+				var inner = $(this).children('section').html();
 				dataSlides +=  '<section id="slide-' + (index +1).toString()
 					+ '" class="slide">' + inner +  '</section>';
-				dataDetails += '<details id="details-' + (index +1).toString() + '">' 
-					+ innerExtra + '</details>';
 			});
 			$('#slidesData').val(dataSlides);
-			$('#detailsData').val(dataDetails);
-			alert("data created" + dataSlides);
+			//alert("data created" + dataSlides);
 			return true;
 		}
 		
