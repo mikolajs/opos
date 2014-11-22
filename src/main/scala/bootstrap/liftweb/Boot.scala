@@ -106,9 +106,8 @@ class Boot {
         Menu("Edycja wątku") / "editthread" / ** >> LocGroup("extra") >> loggedIn,
         Menu("Forum Post") / "forumpost" / ** >> LocGroup("extra"),
         Menu("Login") / "login" >> LocGroup("extra"),
-        Menu("Edytor bip") / "editpage" / ** >> LocGroup("extra") >> isTeacher,
         Menu("Edytor artykułów") / "editarticle" / ** >> LocGroup("extra") >> isTeacher,
-        Menu("Edytor GSF") / "gsfedit" / ** >> LocGroup("extra") >> loggedIn,
+        Menu("Pokaz") / "view" / "showslide" / ** >> LocGroup("extra") >> Hidden,
         Menu("Maile kontaktowe") / "admin" / "index" >> LocGroup("admin") >> isAdmin,
         Menu("Działy BIP") / "admin" / "pages" >> LocGroup("admin") >> isAdmin,
         Menu("Tagi aktualności") / "admin" / "tags" >> LocGroup("admin") >> isAdmin,
@@ -147,7 +146,6 @@ class Boot {
         //Menu("Nieobecności") / "view" / "absents" >> LocGroup("view") >> loggedIn,
         Menu("Lekcje") / "view" /  "courses" >> LocGroup("view") >> loggedIn,
         Menu("Zobacz lekcję") / "view" /  "course" / ** >> LocGroup("extra") >> loggedIn,
-        Menu("Pokaz") / "view" / "showslide" / ** >> LocGroup("extra") >> Hidden,
         Menu("Hasło") / "view" / "showheadword" / ** >> LocGroup("extra") >> Hidden,
         Menu("Quiz")  / "view" / "showquiz" / ** >> LocGroup("extra") >> Hidden,
         Menu("Kursy")  / "educontent" / "index" >> LocGroup("edu") >> isTeacher,
@@ -204,10 +202,6 @@ class Boot {
             ParsePath("register" :: "marks" :: subjectId :: Nil, _, _,_), _, _) =>
           RewriteResponse(
             "register" :: "marks" :: Nil, Map("idS" -> subjectId  )	)
-        case RewriteRequest(
-            ParsePath("gsfedit" :: id :: Nil, _, _,_), _, _) =>
-          RewriteResponse(
-            "gsfedit"  :: Nil, Map("id" -> id)  )
          case RewriteRequest(
             ParsePath("documents" :: "doctemplate" :: id :: Nil, _, _,_), _, _) =>
           RewriteResponse(
@@ -275,8 +269,8 @@ class Boot {
     LiftRules.loggedInTest = Full(() => User.loggedIn_?)
 
     LiftRules.passNotFoundToChain = true
-    LiftRules.maxMimeSize = 1 * 1024 * 1024 * 1024
-    LiftRules.maxMimeFileSize = 1 * 1024 * 1024 * 1024
+    LiftRules.maxMimeSize = 128 * 1024 * 1024
+    LiftRules.maxMimeFileSize = 128 * 1024 * 1024
     
     { new MailConfig().autoConfigure() }
 
