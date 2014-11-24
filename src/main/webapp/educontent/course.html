@@ -34,6 +34,7 @@
     	var sortedChapters = "";
     	$("#sortable").children("li").each(function(){
     		sortedChapters += this.innerHTML + "||";
+    		console.log(sortedChapters);
     	});
     	if(sortedChapters.length > 3) sortedChapters = sortedChapters.slice(0, sortedChapters.length - 2);
     	document.getElementById("sortedChaptersData").value = sortedChapters;

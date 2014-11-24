@@ -39,7 +39,7 @@ class VideoReaderSn extends BaseResourceSn {
     val paths: List[File] = findFiles(userDir, Nil)
     paths.map(f => {
       val full = f.getAbsolutePath()
-      val mime = Files.probeContentType(Paths.get(full))
+      val mime = tryo(Files.probeContentType(Paths.get(full))).getOrElse("error")
       println(full)
       (full, mime)
     })
@@ -117,6 +117,7 @@ class VideoReaderSn extends BaseResourceSn {
   }
 
   private def isVideo(name: String) = {
+    println("start isVideo method")
     name.split('.').last.toLowerCase() match {
       case "mp4" => true
       case _ => false
@@ -124,6 +125,7 @@ class VideoReaderSn extends BaseResourceSn {
   }
 
   private def toASCIICharAndLower(str:String) = {
+   println("toASCIICharLower")
     val m = Map(( 'Ą', 'A' ), ( 'Ć', 'C' ), ( 'Ę', 'E' ), ( 'Ł', 'L' ), ( 'Ń', 'N' ), ( 'Ó', 'O' ), ( 'Ś', 'S' ), ( 'Ź', 'Z' ), ( 'Ż', 'Z' ),
       ( 'ą', 'a' ), ( 'ć', 'c' ), ( 'ę', 'e' ), ( 'ł', 'l' ), ( 'ń', 'n' ), ( 'ó', 'o' ), ( 'ś', 's' ), ( 'ź', 'z' ), ( 'ż', 'z' ),
       ( ' ', '-' ))

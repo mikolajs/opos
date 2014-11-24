@@ -28,7 +28,7 @@ class ShowSlideSn  {
                     SlideContent.find(slide.slides) match {
                         case Some(slideCont) => {
                             "#title" #> <span>{ slide.title.take(30) }</span> &
-                                "#slideHTML" #> Unparsed(slideCont.slides) &
+                                "#slideHTML" #> Unparsed(slideCont.slides)
                         }
                         case _ => infoError
                     }

@@ -217,7 +217,7 @@ class BaseShowCourseSn {
       }) 
     }
     
-    println("[AppINFO:::::: ]" + toReturn.flatten.toString +  "\n" + rest.toString)
+    //println("[AppINFO:::::: ]" + toReturn.flatten.toString +  "\n" + rest.toString)
     toReturn.flatten ++ rest
   }
 

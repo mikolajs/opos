@@ -114,8 +114,8 @@ class EditLesson extends BaseLesson {
     var department = ""
       
     def getData = {
-      val levInt = tryo(level.toInt).getOrElse(1)
-      val lookingQuest = ("authorId" -> user.id.is)~("lev" -> levInt)~("department" -> department)
+      //val levInt = tryo(level.toInt).getOrElse(1)
+      val lookingQuest = ("authorId" -> user.id.is)~("department" -> department)
       itemCh match {
       case "q" => {
         val str = QuizQuestion.findAll(lookingQuest)
@@ -153,7 +153,7 @@ class EditLesson extends BaseLesson {
    val  itemTypes = List(("w" -> "Hasła"), ("d" -> "Artykuły"), ("q" -> "Zadania"), ("v" -> "Filmy"))
     
     val form = "#getItemType" #> SHtml.select(itemTypes, Full(itemCh), itemCh = _) &
-    	"#getLevel" #> SHtml.select(levList, Full(level), level = _) &
+    	//"#getLevel" #> SHtml.select(levList, Full(level), level = _) &
     	"#getDepartment" #> SHtml.select(departList, Full(department), department = _) &
     	"#getItems" #> SHtml.ajaxSubmit("Pokaż",() => refreshData, 
     	    "class" -> "btn btn-lg btn-success", "type" -> "submit") andThen SHtml.makeFormsAjax

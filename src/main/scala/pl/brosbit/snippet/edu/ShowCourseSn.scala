@@ -46,8 +46,9 @@ class ShowCourseSn extends BaseShowCourseSn {
       course.save
     }
     def save() {
-      val chaps = sorted.split("\\|\\|").map(s => s.trim).filter(s => s.length < 1).toList
-      //println("[AppInfo:::: " + chaps.length + " : " + chaps.mkString("||"))
+      //println("SORTED: " + sorted );
+      val chaps = sorted.split("\\|\\|").map(s => s.trim).filter(s => s.length > 2).toList
+      println("[AppInfo:::: sort " + chaps.length + " : " + chaps.mkString("||"))
       if(chaps.length == course.chapters.length){
         course.chapters = chaps 
         course.save
@@ -56,14 +57,6 @@ class ShowCourseSn extends BaseShowCourseSn {
     "#sortedChaptersData" #> SHtml.text(sorted, sorted = _, "style"-> "display:none;") &
     "#saveSort" #> SHtml.submit("Zapisz", save) &
     "#deleteNotUsed" #> SHtml.submit("Czyść puste", delete)
-  }
-  
-  def showComments() = {
-    
-  }
-  
-  def addComment() = {
-    
   }
   
   def slideData = {

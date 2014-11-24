@@ -28,7 +28,7 @@ object DBVendor extends ConnectionManager {
     try {
       //Class.forName(classOf[org.postgresql.Driver].getName)
       Class.forName("org.postgresql.Driver")
-      val dm = DriverManager.getConnection("jdbc:postgresql:osp", "osp", "123test456")
+      val dm = DriverManager.getConnection("jdbc:postgresql:osp", "osp", "sbs2005nsgizdm")
       Full(dm)
     } catch {
       case e: Exception => e.printStackTrace; Empty
@@ -42,7 +42,7 @@ class Boot {
 
     DB.defineConnectionManager(DefaultConnectionIdentifier, DBVendor)
     
-    MongoDB.defineDb(DefaultMongoIdentifier, MongoAddress(MongoHost("127.0.0.1", 27017), "osp"))
+    MongoDB.defineDb(DefaultMongoIdentifier, MongoAddress(MongoHost("127.0.0.1", 27017), "osp2"))
 
     // where to search snippet
     LiftRules.addToPackages("pl.brosbit")
@@ -107,7 +107,7 @@ class Boot {
         Menu("Forum Post") / "forumpost" / ** >> LocGroup("extra"),
         Menu("Login") / "login" >> LocGroup("extra"),
         Menu("Edytor artykułów") / "editarticle" / ** >> LocGroup("extra") >> isTeacher,
-        Menu("Pokaz") / "view" / "showslide" / ** >> LocGroup("extra") >> Hidden,
+        Menu("Pokaz") / "showslide" / ** >> LocGroup("extra") >> Hidden,
         Menu("Maile kontaktowe") / "admin" / "index" >> LocGroup("admin") >> isAdmin,
         Menu("Działy BIP") / "admin" / "pages" >> LocGroup("admin") >> isAdmin,
         Menu("Tagi aktualności") / "admin" / "tags" >> LocGroup("admin") >> isAdmin,
@@ -239,9 +239,9 @@ class Boot {
         RewriteResponse(
           "educontent" :: "editlesson" :: Nil, Map("id" -> entryId))
       case RewriteRequest(
-        ParsePath("view" :: "showslide" :: subjectId :: Nil, _, _, _), _, _) =>
+        ParsePath( "showslide" :: slideId :: Nil, _, _, _), _, _) =>
         RewriteResponse(
-          "view" :: "showslide" :: Nil, Map("id" -> subjectId))
+          "showslide" :: Nil, Map("id" -> slideId))
       case RewriteRequest(
         ParsePath("educontent" :: "showlessonslides" :: lessonId :: Nil, _, _, _), _, _) =>
         RewriteResponse(
