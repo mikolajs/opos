@@ -11,16 +11,27 @@ import pl.brosbit.lib.Formater
 
 class MainDocSn extends BaseDoc {
 
-  val selector = S.param("s").openOr("a").toUpperCase()
+  val selector = S.param("s").openOr("a").toLowerCase()
 
   def showMessages() = {
 
-    val mess = Message.findAll("authorId"->user.id.is)
-    if(mess.isEmpty) ".msg" #> ""
+    val mess = selector match {
+      case "a" => Message.findAll(("authorId"->user.id.is),("_id" -> -1))
+      case letter => Message.findAll(("authorId"->user.id.is)~("dest"->letter),("_id" -> -1))
+    }
+
+
+    if(mess.isEmpty) ".msg" #> <h2>Brak wiadomości</h2>
     else {
 
       ".msg" #> mess.map(m => {
-        println("MESSAGE: " + m.body)
+        ".msg [class]" #> (m.dest match {
+          case "c" => "msg msg-orange"
+          case "t" => "msg msg-red"
+          case "i" => "msg msg-blue"
+          case "p" => "msg msg-green"
+          case _ => "msg"
+        }) &
         ".msg-cont *" #> Unparsed(m.body) &
         ".msg-name *" #> Text(m.authorName) &
         ".msg-name [onclick]" #> "infoTeacher.sendMessage('%s [%s]')".format(m.authorName, m.authorId.toString) &

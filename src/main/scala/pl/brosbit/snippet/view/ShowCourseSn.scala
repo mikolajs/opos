@@ -28,11 +28,12 @@ class ShowCourseSn extends BaseShowCourseSn {
 
     def sendMessage() = {
       
-      var message = ""
+      var msg = ""
       def send() {
         if(canView) {
           val message = Message.create
-          message.body += "<p><small class=\"msgSource\">Widomość z kursu " + course.getInfo + " lekcja: " + currentLesson.title + "</small></p>"
+          message.body += "<p class=\"msq-body\">" + msg + "</p><p><small class=\"msgSource\">Widomość z kursu " +
+              course.getInfo + " lekcja: " + currentLesson.title + "</small></p>"
           message.authorId = user.id.is
           message.authorName = user.getFullName
           message.date = Formater.formatTime(new Date())
@@ -42,7 +43,7 @@ class ShowCourseSn extends BaseShowCourseSn {
         }
       }
       
-      "#writeMessage" #> SHtml.textarea(message, message = _) &
+      "#writeMessage" #> SHtml.textarea(msg, msg = _) &
       "#sendMessage" #> SHtml.button(<span class="glyphicon glyphicon-send"></span> ++ Text("Wyślij"), send)
     }
      

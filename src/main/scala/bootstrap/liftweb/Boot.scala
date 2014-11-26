@@ -18,17 +18,16 @@ import java.sql.{ Connection, DriverManager }
 import _root_.pl.brosbit.model._
 import _root_.pl.brosbit.api._
 import _root_.pl.brosbit.lib.MailConfig
-
 import _root_.net.liftweb.mongodb._
 
-import pl.brosbit.lib.DataTable
+import pl.brosbit.lib.{ConfigLoader => CL}
 
 object DBVendor extends ConnectionManager {
   def newConnection(name: ConnectionIdentifier): Box[Connection] = {
     try {
       //Class.forName(classOf[org.postgresql.Driver].getName)
       Class.forName("org.postgresql.Driver")
-      val dm = DriverManager.getConnection("jdbc:postgresql:osp", "osp", "sbs2005nsgizdm")
+      val dm = DriverManager.getConnection("jdbc:postgresql:osp", CL.sqlDB, CL.sqlPassw)
       Full(dm)
     } catch {
       case e: Exception => e.printStackTrace; Empty
@@ -39,10 +38,11 @@ object DBVendor extends ConnectionManager {
 
 class Boot {
   def boot {
+    CL.init
 
     DB.defineConnectionManager(DefaultConnectionIdentifier, DBVendor)
     
-    MongoDB.defineDb(DefaultMongoIdentifier, MongoAddress(MongoHost("127.0.0.1", 27017), "osp2"))
+    MongoDB.defineDb(DefaultMongoIdentifier, MongoAddress(MongoHost("127.0.0.1", 27017), CL.mongoDB))
 
     // where to search snippet
     LiftRules.addToPackages("pl.brosbit")
