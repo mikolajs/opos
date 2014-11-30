@@ -49,9 +49,12 @@ class VideoReaderSn extends BaseResourceSn {
   def findFiles(dir: File, list: List[File]): List[File] = {
     println("findFiles")
     if (dir.isDirectory()) {
-      val allFil = dir.listFiles().toList
+      val allFilArray = dir.listFiles()
+      if(allFileArray != null) {
+        val allFil.allFillArray.toList
       val mapped = allFil.map(f => findFiles(f, list)).flatten
       mapped
+      } else Nil
     } else {
       val name = dir.getName()
       if (isVideo(name)) dir :: list
