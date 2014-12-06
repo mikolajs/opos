@@ -108,9 +108,11 @@ var EditQuest =  dejavu.Class.declare({
 		//alert("insertQuestion:" + id);
 		var array = this._getArrayFromForm();
 		var idForm = $('#idQuest').val();
-		
+		console.log("id: " + id);
 		if(idForm == "0" || jQuery.trim(idForm) == "") {
 			var nodeTr = this._insertNewRow(array, id);
+			nodeTr.setAttribute('id', id);
+			console.log(nodeTr.innerHTML +  " id: " + id );
 		}
 		else {
 			this._editRow(array, id);

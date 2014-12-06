@@ -107,26 +107,34 @@ h3 {
             </div>
 			<div class="col-lg-6">
 				<div class="form-group">
-					<button type="button" class="btn btn-default">Nauczyciel</button>
-					<button type="button" class="btn btn-default">Klasa</button>
-                    <button type="button" class="btn btn-default">Uczeń/Rodzic</button>
+					<button type="button" id="showTeacher" class="btn btn-default" onclick="infoTeacher.showTeacher()">Nauczyciel</button>
+					<button type="button" id="showClass" class="btn btn-default" onclick="infoTeacher.showClass()">Klasa</button>
+                    <button type="button" id="showPupil" class="btn btn-default" onclick="infoTeacher.showPupil()">Uczeń/Rodzic</button>
 				</div>
 				<div class="form-group">
-				<div class="input-group">
+				<div class="input-group" id="classMessageS">
 					<span class="input-group-addon">Klasa</span> <select id="classMessage"
 						class="form-control"><option>1b</option></select>
 				</div>
 				</div>
 				<div class="form-group">
-				<div class="input-group">
-					<span class="input-group-addon">Adresat</span> <select id="pupilsMessage"
+				<div class="input-group" id="pupilMessageS">
+					<span class="input-group-addon">Adresat</span> <select id="pupilMessage"
 						class="form-control"><option>Jan Kowalski</option></select>
 				</div>
 				</div>
+                <div class="form-group" id="teacherMessageS">
+                    <div class="input-group">
+                        <span class="input-group-addon">Nauczyciel</span> <select id="teacherMessage"
+                            class="form-control"><option>Mikołaj Sochacki</option></select>
+                    </div>
+                </div>
                 <div class="form-group">
                     <div class="input-group">
-                        <span class="input-group-addon">Nauczyciel</span> <select id="teachersMessage"
-                            class="form-control"><option>Mikołaj Sochacki</option></select>
+                        <span id="addAddress" class="btn btn-success" onclick="infoTeacher.addAddress()">
+                            <span class="glyphicon glyphicon-plus-sign"></span> Dodaj adresata
+                        </span>
+
                     </div>
                 </div>
 			</div>
@@ -150,7 +158,7 @@ h3 {
                         </div>
                 <div class="col-md-4">
                     <button id="sendMessage" class="btn btn-lg btn-success">
-                        <span class="glyphicon glyphicon-send"></span> Wyślij
+                        <span class="glyphicon glyphicon-send"></span>  Wyślij
                     </button>
                 </div>
 

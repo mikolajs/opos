@@ -51,7 +51,7 @@ class AdminDepartmentsSn {
 
     "#id" #> SHtml.text(id, x => id = x, "style" -> "display:none;", "id" -> "id") &
     "#order" #> SHtml.text(nrStr, x => nrStr= x.trim, "maxlength" -> "2") &
-      "#name" #> SHtml.text(name, x => name = x.trim, "maxlength" -> "30", "id" -> "name") &
+      "#name" #> SHtml.text(name, x => name = x.trim, "maxlength" -> "40", "id" -> "name") &
       "#save" #> SHtml.submit("Zapisz!", addDepartment, "onclick" -> "return validateForm()") &
       "#delete" #> SHtml.submit("Usuń!", delDepartment, 
           "onclick" -> "return confirm('Na pewno chcesz usunąć dział i wszystkie strony działu?');")

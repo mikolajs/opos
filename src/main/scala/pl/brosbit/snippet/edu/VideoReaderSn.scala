@@ -50,8 +50,8 @@ class VideoReaderSn extends BaseResourceSn {
     println("findFiles")
     if (dir.isDirectory()) {
       val allFilArray = dir.listFiles()
-      if(allFileArray != null) {
-        val allFil.allFillArray.toList
+      if(allFilArray != null) {
+        val allFil = allFilArray.toList
       val mapped = allFil.map(f => findFiles(f, list)).flatten
       mapped
       } else Nil

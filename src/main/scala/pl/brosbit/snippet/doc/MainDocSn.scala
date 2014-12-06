@@ -56,7 +56,7 @@ class MainDocSn extends BaseDoc {
     
     "#toWhoMessage" #> SHtml.text(peopleStr, peopleStr = _) &
     "#bodyMessage" #> SHtml.textarea(body, body = _) &
-    "#sendMessage" #> SHtml.button(<span class="glyphicon glyphicon-send"></span> ++ Text("Zapisz"), add)
+    "#sendMessage" #> SHtml.button(<span class="glyphicon glyphicon-send"></span> ++ Text(" Wyślij"), add)
     
     
   }
@@ -70,7 +70,7 @@ class MainDocSn extends BaseDoc {
 
     "#toWhoMessage" #> SHtml.text(peopleStr, peopleStr = _) &
       "#bodyMessage" #> SHtml.textarea(body, body = _) &
-      "#sendMessage" #> SHtml.button(<span class="glyphicon glyphicon-send"></span> ++ Text("Zapisz"), add)
+      "#sendMessage" #> SHtml.button(<span class="glyphicon glyphicon-send"></span> ++ Text(" Wyślij"), add)
 
 
   }
