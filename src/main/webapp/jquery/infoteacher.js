@@ -19,7 +19,7 @@ var InfoTeacher = dejavu.Class.declare({
 
     	$("#editMessageForm").dialog({
                     autoOpen: false,
-                    height: 750,
+                    height: 700,
                     width: 700,
                     modal: true
           });
@@ -29,8 +29,11 @@ var InfoTeacher = dejavu.Class.declare({
 
     deleteMessage : function(elem, idStr) {
         if(!confirm("Czy na pewno usunąć wiadomość?")) return;
+        $hiddenInput = $("#deleteMessage");
+        $hiddenInput.val(idStr);
         $(elem).parent().parent().remove();
-        cosole.log("remove " + idStr);
+        console.log("remove " + idStr);
+        $hiddenInput.submit();
     },
 
     newMessage : function() {
@@ -38,9 +41,9 @@ var InfoTeacher = dejavu.Class.declare({
         $editForm.dialog("option", "title", "Dodaj wiadomość");
         $editForm.dialog("open");
     },
-    editMessage : function(elem, idStr) {
+    answerMessage : function(elem, idStr) {
         var $editForm = $("#editMessageForm");
-        $editForm.dialog("option", "title", "Edytuj wiadomość");
+        $editForm.dialog("option", "title", "Odpowiedz na wiadomość");
         $editForm.dialog("open");
     },
 
@@ -55,6 +58,7 @@ var InfoTeacher = dejavu.Class.declare({
 
     showTeacher : function() {
         this._hideAll();
+        this._clearAddresses();
         $("#showTeacher").addClass("btn-info");
         this.addressKind = 't';
         $('#teacherMessageS').show();
@@ -62,6 +66,7 @@ var InfoTeacher = dejavu.Class.declare({
 
     showPupil : function() {
         this._hideAll();
+        this._clearAddresses();
         $("#showPupil").addClass("btn-info");
         this.addressKind = 'p';
         $('#pupilMessageS').show();
@@ -70,6 +75,7 @@ var InfoTeacher = dejavu.Class.declare({
 
      showClass : function() {
         this._hideAll();
+        this._clearAddresses();
         $("#showClass").addClass("btn-info");
         this.addressKind = 'c';
         $('#classMessageS').show();
@@ -88,18 +94,53 @@ var InfoTeacher = dejavu.Class.declare({
      },
 
      _addTeacher : function() {
-        console.log("add teacher");
+        if(this.curSize  > 4) {
+            alert("Możesz wysłać tylko do pięciu wiadomości naraz.");
+            return;
+        }
         var opt = $('#teacherMessage').children('option:selected').get()[0];
-        console.log(opt.value + " - " + opt.innerHTML);
+        var li = "<li class='list-group-item' id='userId_"+ opt.value + "' >" +  opt.innerHTML +
+                   "<span class='btn btn-sm btn-danger btn-right glyphicon glyphicon-remove-sign'" +
+                   " onclick='infoTeacher.delAddress(this)'></span></li>";
+        $("#peopleToSend").append(li);
+        this.curSize++;
      },
 
      _addPupil : function() {
-        console.log("add pupil");
+        if(this.curSize  > 4) {
+                            alert("Możesz wysłać tylko do pięciu wiadomości na raz");
+                            return;
+        }
+        var opt = $('#pupilMessage').children('option:selected').get()[0];
+                var li = "<li class='list-group-item' id='userId_"+ opt.value + "' >" +  opt.innerHTML +
+                                   "<span class='btn btn-sm btn-danger btn-right glyphicon glyphicon-remove-sign'" +
+                                   " onclick='infoTeacher.delAddress(this)' ></span></li>";
+        $("#peopleToSend").append(li);
+        this.curSize++;
      },
 
      _addClass : function() {
-        console.log("add Class");
+        if(this.curSize  > 2) {
+                    alert("Możesz wysłać wiadomość tylko trzech klas na raz");
+                    return;
+        }
+        var opt = $('#classMessage').children('option:selected').get()[0];
+        var li = "<li class='list-group-item' id='classId_"+ opt.value + "' >" +  opt.innerHTML +
+                           "<span class='btn btn-sm btn-danger btn-right glyphicon glyphicon-remove-sign'" +
+                           " onclick='infoTeacher.delAddress(this)' ></span></li>";
+        $("#peopleToSend").append(li);
+        this.curSize++;
      },
+
+     _clearAddresses : function() {
+        $("#peopleToSend").children("li").remove();
+        this.curSize = 0;
+     },
+
+     delAddress : function(elem) {
+        $(elem).parent('li').remove();
+        this.curSize--;
+     }
 
 
 });

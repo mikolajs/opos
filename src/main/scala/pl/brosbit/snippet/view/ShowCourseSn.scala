@@ -6,12 +6,13 @@ import _root_.net.liftweb._
 import http.{ S, SHtml }
 import util._
 import pl.brosbit.model._
-import pl.brosbit.model.page.Comment
+import net.liftweb.mapper.{By}
 import json.JsonDSL._
 import org.bson.types.ObjectId
 import Helpers._
 import pl.brosbit.snippet.BaseShowCourseSn
 import pl.brosbit.lib.Formater
+import net.liftweb.common.Full
 
 class ShowCourseSn extends BaseShowCourseSn {
   
@@ -38,8 +39,12 @@ class ShowCourseSn extends BaseShowCourseSn {
           message.authorName = user.getFullName
           message.date = Formater.formatTime(new Date())
           message.who = List(course.authorId)
-          message.dest = "c"
+          message.dest = "i"
           message.save
+          UserMessages.find("userId"->course.authorId) match {
+            case Some(um) => UserMessages.update(("_id"->um._id.toString), ("messLatest"->("$push"->(message._id.toString))))
+            case _ =>
+          }
         }
       }
       

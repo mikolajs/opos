@@ -1,23 +1,36 @@
 package pl.brosbit.snippet.doc
 
-import java.util.Date
 import net.liftweb.http.{S, SHtml}
 import net.liftweb.util.Helpers._
-import pl.brosbit.model.{ Message, User}
+import pl.brosbit.model.{UserMessages, ClassModel, Message, User}
 import net.liftweb.json.JsonDSL._
 import scala.xml.{Unparsed, Text}
 import net.liftweb.mapper._
-import pl.brosbit.lib.Formater
+import net.liftweb.common.Full
+import net.liftweb.http.js.JE.JsRaw
 
 class MainDocSn extends BaseDoc {
 
-  val selector = S.param("s").openOr("a").toLowerCase()
+  val msgType = S.param("s").openOr("a").toLowerCase()
+  val msgArch = if(S.param("a").openOr("f") == "f") false else true
 
   def showMessages() = {
 
-    val mess = selector match {
-      case "a" => Message.findAll(("authorId"->user.id.is),("_id" -> -1))
-      case letter => Message.findAll(("authorId"->user.id.is)~("dest"->letter),("_id" -> -1))
+    val mess = if(msgArch) msgType match {
+      case "a" => Message.findAll(Nil,("_id" -> -1))
+      case "t" => Message.findAll(("dest"->"t"),("_id" -> -1))
+      case "i" => Message.findAll(("dest"->"i")~("who"->("$in"->List(user.id.is))),("_id" -> -1))
+      case "s" => Message.findAll(("authorId"->user.id.is),("_id" -> -1))
+    } else  {
+      val uMessT = UserMessages.findAll("userId" -> user.id.is)
+      val uMess = if(uMessT.isEmpty) {
+        val um = UserMessages.create
+        um.userId = user.id.is
+        um.userName = user.getFullName
+        um
+      } else uMessT.head
+      val me = (uMess.messLatest:::uMess.messOld).map(ID => ID.toString)
+      Message.findAll("_id"->("$in"->me))
     }
 
 
@@ -26,7 +39,6 @@ class MainDocSn extends BaseDoc {
 
       ".msg" #> mess.map(m => {
         ".msg [class]" #> (m.dest match {
-          case "c" => "msg msg-orange"
           case "t" => "msg msg-red"
           case "i" => "msg msg-blue"
           case "p" => "msg msg-green"
@@ -34,68 +46,81 @@ class MainDocSn extends BaseDoc {
         }) &
         ".msg-cont *" #> Unparsed(m.body) &
         ".msg-name *" #> Text(m.authorName) &
-        ".msg-name [onclick]" #> "infoTeacher.sendMessage('%s [%s]')".format(m.authorName, m.authorId.toString) &
         ".msg-date *" #> Text(m.date) &
-        "button [onclick]" #> "infoTeacher.editMessage(this, '%s')".format(m._id.toString)
+        ".btn-answer [onclick]" #> "infoTeacher.answerMessage(this, '%s')".format(m.authorId.toString) &
+          (if(msgArch) ".close" #> <span></span>
+        else ".close [onclick]" #> "infoTeacher.deleteMessage(this, '%s')".format(m._id.toString))
     })
     }
   }
   
   def showSelectors = {
-    val sel = "#select" + selector + " [class]"
+    val sel = "#select" + msgType + " [class]"
 
     sel #> "list-group-item active"
   }
 
   def editMessage() = {
+    var teacher = ""
+    var classId = ""
     var peopleStr = ""
     var body = ""
+
     def add() {
       
     }
-    
+
+    val classHead = if(mapClasses.length > 0) mapClasses.head._2 else ""
+    val teacherHead = if(mapTeachers.length > 0) mapTeachers.head._2 else ""
+
+    "#classMessage" #> SHtml.select(mapClasses, Full(classHead), classId = _ ) &
+    "#teacherMessage" #> SHtml.select(mapTeachers, Full(teacherHead), teacher = _) &
     "#toWhoMessage" #> SHtml.text(peopleStr, peopleStr = _) &
     "#bodyMessage" #> SHtml.textarea(body, body = _) &
     "#sendMessage" #> SHtml.button(<span class="glyphicon glyphicon-send"></span> ++ Text(" Wyślij"), add)
     
-    
   }
 
-  def newMessage() =  {
-    var peopleStr = ""
-    var body = ""
-    def add() {
 
+
+  def pupilsData() = {
+    var pupilsList = ""
+    def refresh(classId:String) {
+      var pupils = User.findAll(By(User.classId, classId.toLong), By(User.role, "u"))
+
+        pupilsList = "[" + pupils.map(p => {
+        val father = p.father.obj.getOrElse(User.create)
+        val mather = p.mather.obj.getOrElse(User.create)
+          "[%s, '%s', %s, '%s', %s, '%s']".format(p.id.is.toString, p.getFullName,
+            father.id.is.toString, father.getFullName, mather.id.is.toString, mather.getFullName)
+    }).mkString(",") + "]"
+      JsRaw("infoTeacher.refreshPupils()")
     }
+    println("PUPILSDATA FUNCTION: " + pupilsList)
 
-    "#toWhoMessage" #> SHtml.text(peopleStr, peopleStr = _) &
-      "#bodyMessage" #> SHtml.textarea(body, body = _) &
-      "#sendMessage" #> SHtml.button(<span class="glyphicon glyphicon-send"></span> ++ Text(" Wyślij"), add)
-
-
+    "input" #> SHtml.ajaxText(pupilsList, classId => refresh(classId))
   }
 
-  def messageData() = {
-    val teachers = User.findAll(By(User.role, "n"), By(User.role, "d"), By(User.role, "s"), By(User.role, "a"))
-    val pupils = User.findAll(By(User.role, "u"))
-    val teacherData = teachers.map(t => "['" + t.getFullName + "', " + t.id.is.toString + "]").mkString(", ")
-    val pupilData = pupils.map(p => {
-      val mObj = p.mather.obj
-      val mTuple = if (mObj.isEmpty) ("", 0L) else {
-        val m = mObj.openOrThrowException("open empty parent")
-        if (m.validated.is && m.email.is.length() > 4) (m.getFullName, m.id.is)
-        else ("", 0L)
-      }
-      val fObj = p.father.obj
-      val fTuple = if (fObj.isEmpty) ("", 0L) else {
-        val f = fObj.openOrThrowException("open empty parent")
-        if (f.validated.is && f.email.is.length() > 4) (f.getFullName, f.id.is)
-        else ("", 0L)
-      }
-      "['%s', %s, 'M: %s', %s, 'T: %s', %s]".format(p.getFullName, p.id.is.toString,
-        mTuple._1, mTuple._2.toString, fTuple._1, fTuple._2.toString)
-    }).mkString(", ")
-    val allData = "var messageData = {'teachers' : [" + teacherData + "]," + " 'pupils' : [" + pupilData + "]}" 
-    "script *" #> allData
+
+  def deleteMessage() = {
+    "input" #> SHtml.ajaxText("", messageId => {
+     println("DELETEMESSAGE FUNCION id: " + messageId)
+    UserMessages.find("userId"->user.id.is) match {
+      case  Some(uMess) => UserMessages.update(("_id"->uMess._id.toString),
+        (("$pullAll")->("messLatest"->(messageId)))~(("$pullAll")->("messOld"->(messageId))) ) //sprawdzić czy nie trzeba dodać napis ObjectId("messageId")
+      case _ =>
+    }
+  })
   }
+
+  private def getTeachers = {
+    val seq: Seq[String] = List("n", "a", "d", "s")
+    User.findAll(ByList(User.role, seq ))
+  }
+
+
+  private lazy val mapTeachers = getTeachers.map(t => (t.id.is.toString, t.shortInfo))
+  private def getClasses = ClassModel.findAll(By(ClassModel.scratched, false))
+  private lazy val mapClasses = getClasses.map(c => (c.id.is.toString, c.classString()))
+  private def getPupilsAndParents = User.findAll(ByList(User.role, List("u", "r")))
 }

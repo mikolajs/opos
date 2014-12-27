@@ -20,9 +20,7 @@
 .msg-green {
         border-left: 8px solid #0e0;
  }
- .msg-orange {
-        border-left: 8px solid #ea1;
- }
+
 .messegeSign {
 	border-top: dotted 1px #ccc;
 	font-size: 80%;
@@ -39,6 +37,16 @@ h3 {
 	text-align: center;
 }
 .mainRow { min-height: 600px;}
+.btn-right {float: right; margin-top: -7px !important;}
+.btn-answer {
+        cursor: pointer;
+        font-size: 21px;
+        font-weight: 700;
+        line-height: 1;
+        color: #000;
+        text-shadow: 0px 1px 0px #FFF;
+        opacity: 0.2;
+}
 </style>
         <script src="/jquery/dejavu.js"></script>
         <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
@@ -53,27 +61,30 @@ h3 {
             });
 
         </script>
-<script data-lift="doc.MainDocSn.messageData"></script>
-
 	</head_merge>
 
 
 	<div class="jumbotron">
-		<h1>Wiadomości</h1>
+		<h1>Przegląd wiadomości</h1>
 	</div>
 	<div class="row mainRow">
 		<div class="col-lg-4" >
-            <button class="btn btn-lg btn-info" onclick="infoTeacher.newMessage()">
-                <span class="glyphicon glyphicon-plus-sign"></span> Nowa wiadomość</button>
+            <span class="btn btn-lg btn-info" onclick="infoTeacher.newMessage()">
+                <span class="glyphicon glyphicon-plus-sign"></span> Nowa wiadomość</span>
             <br/><br/>
             <div class="list-group" data-lift="doc.MainDocSn.showSelectors">
-                <span class="list-group-item list-group-item-success">Wybierz nadawcę:</span>
-                <a id="selectA" class="list-group-item" href="/documents/index?s=a">Wszystkie</a>
-                <a id="selectT" class="list-group-item"  href="/documents/index?s=t">Komunikaty</a>
-                <a id="selectC" class="list-group-item" href="/documents/index?s=c">Z kursu</a>
-                <a id="selectI" class="list-group-item" href="/documents/index?s=i">Od nauczycieli</a>
-                <a id="selectP" class="list-group-item" href="/documents/index?s=p">Od uczniów</a>
+                <span class="list-group-item list-group-item-success"><h4>Wiadomości:</h4></span>
+                <a id="selectT" class="list-group-item"  href="/documents/index?a=f">Najnowsze</a>
+                <a id="selectT" class="list-group-item"  href="/documents/index?a=t&s=t">Komunikaty – archiwum</a>
+                <a id="selectI" class="list-group-item" href="/documents/index?a=t&s=i">Indywidualne – archiwum</a>
+                <a id="selectT" class="list-group-item"  href="/documents/index?a=ts=s">Wysłane</a>
 
+            </div>
+            <div>
+                <h3>Legenda:</h3>
+                <div class="msg-red"> <h4>  Ogłoszenia nauczycielskie </h4></div>
+                <div class="msg-green"><h4>  Ogłoszenia uczniowskie</h4></div>
+                <div class="msg-blue"><h4> Widomości idywidualne</h4></div>
             </div>
 		</div>
 		<div class="col-lg-8" data-lift="doc.MainDocSn.showMessages">
@@ -81,91 +92,83 @@ h3 {
 			<div class="msg msg-blue">
 				<div class="msg-cont"></div>
 				<div class="messegeSign">
-					<span class="glyphicon glyphicon-user"></span> <span
-						class="msg-name" onclick="infoTeacher.sendMessage('who')"></span>
+					<span class="glyphicon glyphicon-user"></span>
+                    <span class="msg-name"></span>
+                    <span class="btn-answer"
+                            onclick="infoTeacher.answerMessage(this,id)">
+                        <span>&crarr;</span>
+                    </span>
 					<span class="glyphicon glyphicon-calendar"></span> <span
 						class="msg-date"> </span>
 					<button type="button" class="close"
-						onclick="infoTeacher.deleteMessage(this,id)">
-						<span>&crarr;</span>
+						onclick="infoTeacher.deleteMessage(tis,id)">
+						<span>&times;</span>
 					</button>
 				</div>
 			</div>
 		</div>
 		<br /> <br />
 		<br /> <br />
-		<br /> <br />
 	</div>
 
-	<div id="editMessageForm" title="">
-		<form  data-lift="doc.MainDocSn.editMessage"
-			method="post">
+    <div id="editMessageForm" title="">
+        <form  data-lift="doc.MainDocSn.editMessage"
+               method="post">
             <div class="row">
-            <div class="col-lg-6">
-            <h4>Adresat:</h4>
-			<ul id="peopleToSend"></ul>
-            </div>
-			<div class="col-lg-6">
-				<div class="form-group">
-					<button type="button" id="showTeacher" class="btn btn-default" onclick="infoTeacher.showTeacher()">Nauczyciel</button>
-					<button type="button" id="showClass" class="btn btn-default" onclick="infoTeacher.showClass()">Klasa</button>
-                    <button type="button" id="showPupil" class="btn btn-default" onclick="infoTeacher.showPupil()">Uczeń/Rodzic</button>
-				</div>
-				<div class="form-group">
-				<div class="input-group" id="classMessageS">
-					<span class="input-group-addon">Klasa</span> <select id="classMessage"
-						class="form-control"><option>1b</option></select>
-				</div>
-				</div>
-				<div class="form-group">
-				<div class="input-group" id="pupilMessageS">
-					<span class="input-group-addon">Adresat</span> <select id="pupilMessage"
-						class="form-control"><option>Jan Kowalski</option></select>
-				</div>
-				</div>
-                <div class="form-group" id="teacherMessageS">
-                    <div class="input-group">
-                        <span class="input-group-addon">Nauczyciel</span> <select id="teacherMessage"
-                            class="form-control"><option>Mikołaj Sochacki</option></select>
-                    </div>
+                <div class="col-lg-6">
+                    <div class="well well-sm">Wyślij do:</div>
+
+                    <ul id="peopleToSend" class="list-group"></ul>
+
                 </div>
-                <div class="form-group">
-                    <div class="input-group">
-                        <span id="addAddress" class="btn btn-success" onclick="infoTeacher.addAddress()">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <button type="button" id="showTeacher" class="btn btn-default" onclick="infoTeacher.showTeacher()">Nauczyciel</button>
+                        <button type="button" id="showClass" class="btn btn-default" onclick="infoTeacher.showClass()">Klasa</button>
+                        <button type="button" id="showPupil" class="btn btn-default" onclick="infoTeacher.showPupil()">Uczeń/Rodzic</button>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group" id="classMessageS">
+                            <span class="input-group-addon">Klasa</span> <select id="classMessage"
+                                                                                 class="form-control"><option>1b</option></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group" id="pupilMessageS">
+                            <span class="input-group-addon">Adresat</span> <select id="pupilMessage"
+                                                                                   class="form-control"><option>Jan Kowalski</option></select>
+                        </div>
+                    </div>
+                    <div class="form-group" id="teacherMessageS">
+                        <div class="input-group">
+                            <span class="input-group-addon">Nauczyciel</span> <select id="teacherMessage"
+                                                                                      class="form-control"><option>Mikołaj Sochacki</option></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                        <span id="addAddress" class="btn btn-primary" onclick="infoTeacher.addAddress()">
                             <span class="glyphicon glyphicon-plus-sign"></span> Dodaj adresata
                         </span>
 
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="form-group">
+                        <div class="input-group">
+                            <button id="sendMessage" class="btn btn-lg btn-success">
+                                <span class="glyphicon glyphicon-send"></span>  Wyślij
+                            </button>
+                        </div>
                     </div>
                 </div>
-			</div>
-               </div>
+            </div>
             <div>
                 <textarea id="writeMessage"></textarea>
             </div>
-            <hr/>
-            <div class="form-horizontal">
-			<div class="form-group">
-                <div class="col-md-offset-2 col-md-2">
-                    <button id="deleteMessage" class="btn btn-lg btn-danger">
-                        <span class="glyphicon glyphicon-remove-sign"></span> Usuń
-                    </button>
-                </div>
+        </form>
+    </div>
 
-                    <div class="col-md-offset-1 col-md-3">
-                <button id="cancelMessage" class="btn btn-lg btn-default">
-                        <span class="glyphicon glyphicon-off"></span> Anuluj
-                </button>
-                        </div>
-                <div class="col-md-4">
-                    <button id="sendMessage" class="btn btn-lg btn-success">
-                        <span class="glyphicon glyphicon-send"></span>  Wyślij
-                    </button>
-                </div>
-
-			</div>
-            </div>
-		</form>
-	</div>
-
-
+<div  style="display:none;" data-lift="doc.MainDocSn.deleteMessage"><input id="deleteMessageHidden" /></div>
+<div  style="display:none;" data-lift="doc.MainDocSn.pupilsData"><input id="pupilsDataHidden" /></div>
 </div>
