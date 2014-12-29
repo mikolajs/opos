@@ -21,13 +21,12 @@ class AnouncesSn extends BaseTeacher {
   val classId = ClassChoose.is	
   
   def dataTable() = {
-    val anounces = Anounces.findAll("classId"->classId)
+    val anounces = Announce.findAll("classId"->classId, ("_id"-> -1))
     "tr" #> anounces.map(anounce => {
       ".id *" #> anounce._id.toString &
       ".dateIn *" #> Formater.formatDate(new Date(anounce._id.getTime())) &
-      ".contentData *" #> Unparsed(anounce.content.head) &
+      ".contentData *" #> Unparsed(anounce.body) &
       ".teacher *" #> anounce.teacherName
-     //howto show history?
     })
   }
   
@@ -36,10 +35,10 @@ class AnouncesSn extends BaseTeacher {
     var content = ""
     
     def save():JsCmd = {
-      val anounce = Anounces.find(id).getOrElse(Anounces.create)
+      val anounce = Announce.find(id).getOrElse(Announce.create)
       if(id == "" || user.id.is == anounce.teacherId) {
             if (anounce.classId == 0L) anounce.classId = classId
-            anounce.content = content::anounce.content
+            anounce.body = content
            
             if(id == "") {
               anounce.teacherId = user.id.is

@@ -2,65 +2,45 @@ package pl.brosbit.snippet.doc
 
 import net.liftweb.http.{S, SHtml}
 import net.liftweb.util.Helpers._
-import pl.brosbit.model.{UserMessages, ClassModel, Message, User}
+import pl.brosbit.model._
 import net.liftweb.json.JsonDSL._
 import scala.xml.{Unparsed, Text}
 import net.liftweb.mapper._
 import net.liftweb.common.Full
-import net.liftweb.http.js.JE.JsRaw
+import net.liftweb.http.js.JE.{JsFunc, JsRaw}
+import net.liftweb.common.Full
+import scala.Some
+import net.liftweb.mapper.ByList
+import net.liftweb.http.js.JsCmd
 
 class MainDocSn extends BaseDoc {
 
-  val msgType = S.param("s").openOr("a").toLowerCase()
-  val msgArch = if(S.param("a").openOr("f") == "f") false else true
-
   def showMessages() = {
+   val page = S.param("p").openOr("1").toInt
+   val perPage = 30
+   val allMess =  Message.findAll(("$or"->List(("all"->true),("who"->("$in"->List(user.id.is)))),("lastDate" -> -1))
+   val pages = allMess.length
 
-    val mess = if(msgArch) msgType match {
-      case "a" => Message.findAll(Nil,("_id" -> -1))
-      case "t" => Message.findAll(("dest"->"t"),("_id" -> -1))
-      case "i" => Message.findAll(("dest"->"i")~("who"->("$in"->List(user.id.is))),("_id" -> -1))
-      case "s" => Message.findAll(("authorId"->user.id.is),("_id" -> -1))
-    } else  {
-      val uMessT = UserMessages.findAll("userId" -> user.id.is)
-      val uMess = if(uMessT.isEmpty) {
-        val um = UserMessages.create
-        um.userId = user.id.is
-        um.userName = user.getFullName
-        um
-      } else uMessT.head
-      val me = (uMess.messLatest:::uMess.messOld).map(ID => ID.toString)
-      Message.findAll("_id"->("$in"->me))
-    }
-
+   val mess = if(page*perPage >= pages) allMess.slice((page-1)*perPage, (page)*perPage)
+    else allMess.take(perPage)
 
     if(mess.isEmpty) ".msg" #> <h2>Brak wiadomości</h2>
     else {
+      ".msg-grp" #> mess.map(m => {
+        ".msg" #> m.body.map(b => {
+            ".msg [class]" #> "msg msg-green" &
+            ".msg-cont *" #> Unparsed(b.body) &
+            ".msg-name *" #> Text(b.author) &
+            ".msg-date *" #> Text(b.date) &
+            ".btn-answer [onclick]" #> "infoTeacher.answerMessage(this, '%s')".format(m._id.toString)
+        })
 
-      ".msg" #> mess.map(m => {
-        ".msg [class]" #> (m.dest match {
-          case "t" => "msg msg-red"
-          case "i" => "msg msg-blue"
-          case "p" => "msg msg-green"
-          case _ => "msg"
-        }) &
-        ".msg-cont *" #> Unparsed(m.body) &
-        ".msg-name *" #> Text(m.authorName) &
-        ".msg-date *" #> Text(m.date) &
-        ".btn-answer [onclick]" #> "infoTeacher.answerMessage(this, '%s')".format(m.authorId.toString) &
-          (if(msgArch) ".close" #> <span></span>
-        else ".close [onclick]" #> "infoTeacher.deleteMessage(this, '%s')".format(m._id.toString))
     })
-    }
   }
-  
-  def showSelectors = {
-    val sel = "#select" + msgType + " [class]"
-
-    sel #> "list-group-item active"
   }
 
-  def editMessage() = {
+
+  def newMessage() = {
     var teacher = ""
     var classId = ""
     var peopleStr = ""
@@ -81,12 +61,26 @@ class MainDocSn extends BaseDoc {
     
   }
 
+  def addComment() = {
+    var idMessage = ""
+    var body = ""
+    def add():JsCmd = {
+      JsFunc("editForm.insertRowAndClose", "").cmd //poprawić
+    }
+
+    val form = "#idMessage" #> SHtml.text(idMessage, idMessage = _) &
+    "#writeComment" #> SHtml.textarea(body, body = _) &
+    "#addComment" #> SHtml.ajaxSubmit("Dodaj", add) andThen SHtml.makeFormsAjax
+
+    "form" #> (in => form(in))
+  }
+
 
 
   def pupilsData() = {
     var pupilsList = ""
     def refresh(classId:String) {
-      var pupils = User.findAll(By(User.classId, classId.toLong), By(User.role, "u"))
+      val pupils = User.findAll(By(User.classId, classId.toLong), By(User.role, "u"))
 
         pupilsList = "[" + pupils.map(p => {
         val father = p.father.obj.getOrElse(User.create)
@@ -101,17 +95,6 @@ class MainDocSn extends BaseDoc {
     "input" #> SHtml.ajaxText(pupilsList, classId => refresh(classId))
   }
 
-
-  def deleteMessage() = {
-    "input" #> SHtml.ajaxText("", messageId => {
-     println("DELETEMESSAGE FUNCION id: " + messageId)
-    UserMessages.find("userId"->user.id.is) match {
-      case  Some(uMess) => UserMessages.update(("_id"->uMess._id.toString),
-        (("$pullAll")->("messLatest"->(messageId)))~(("$pullAll")->("messOld"->(messageId))) ) //sprawdzić czy nie trzeba dodać napis ObjectId("messageId")
-      case _ =>
-    }
-  })
-  }
 
   private def getTeachers = {
     val seq: Seq[String] = List("n", "a", "d", "s")

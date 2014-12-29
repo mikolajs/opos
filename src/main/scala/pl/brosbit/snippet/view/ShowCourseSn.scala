@@ -6,13 +6,9 @@ import _root_.net.liftweb._
 import http.{ S, SHtml }
 import util._
 import pl.brosbit.model._
-import net.liftweb.mapper.{By}
-import json.JsonDSL._
-import org.bson.types.ObjectId
 import Helpers._
 import pl.brosbit.snippet.BaseShowCourseSn
 import pl.brosbit.lib.Formater
-import net.liftweb.common.Full
 
 class ShowCourseSn extends BaseShowCourseSn {
   
@@ -33,18 +29,13 @@ class ShowCourseSn extends BaseShowCourseSn {
       def send() {
         if(canView) {
           val message = Message.create
-          message.body += "<p class=\"msq-body\">" + msg + "</p><p><small class=\"msgSource\">Widomość z kursu " +
+          val body = "<p class=\"msq-body\">" + msg + "</p><p><small class=\"msgSource\">Widomość z kursu " +
               course.getInfo + " lekcja: " + currentLesson.title + "</small></p>"
-          message.authorId = user.id.is
-          message.authorName = user.getFullName
-          message.date = Formater.formatTime(new Date())
-          message.who = List(course.authorId)
-          message.dest = "i"
+          val d = new Date()
+          val mc= MessageChunk(user.id.is, user.getFullName, Formater.formatTime(d), body)
+          message.lastDate = d.getTime
+          message.who = List(course.authorId, user.id.is)
           message.save
-          UserMessages.find("userId"->course.authorId) match {
-            case Some(um) => UserMessages.update(("_id"->um._id.toString), ("messLatest"->("$push"->(message._id.toString))))
-            case _ =>
-          }
         }
       }
       

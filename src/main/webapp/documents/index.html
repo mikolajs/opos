@@ -2,42 +2,45 @@
 <div id="main" class="lift:surround?with=documents;at=content">
 	<head_merge>
 	<style>
+
 .msg {
-	margin: 10px 10px;
-	padding: 10px;
-	border-radius: 6px;
-	border: 1px solid #ccc;
+        border-top: solid 1px #ccc;
+        border-bottom: solid 1px #ccc;
 }
 
-.msg-red {
-	border-left: 8px solid #e00;
-}
+.row { margin: 0px !important; }
 
 .msg-blue {
 	border-left: 8px solid #00e;
+    border-right: solid 1px #ccc;
 }
 
 .msg-green {
         border-left: 8px solid #0e0;
+        border-right: solid 1px #ccc;
+        border-top: solid 1px #ccc;
+        border-bottom: solid 1px #ccc;
  }
 
 .messegeSign {
-	border-top: dotted 1px #ccc;
+	border-right: dotted 1px #ccc;
 	font-size: 80%;
-	padding-top: 5px;
-	margin-top: 5px;
+	padding: 5px 5px;
+	margin: 5px 0px;
 	color: #777;
 }
 
-.btn-del-msg {
-	float: right;
-}
+.msg-cont {
+        padding: 5px 5px;
+        margin: 5px 0px;
+ }
+
 
 h3 {
 	text-align: center;
 }
+
 .mainRow { min-height: 600px;}
-.btn-right {float: right; margin-top: -7px !important;}
 .btn-answer {
         cursor: pointer;
         font-size: 21px;
@@ -67,52 +70,63 @@ h3 {
 	<div class="jumbotron">
 		<h1>Przegląd wiadomości</h1>
 	</div>
-	<div class="row mainRow">
-		<div class="col-lg-4" >
+	<div class="mainRow">
+        <div>
             <span class="btn btn-lg btn-info" onclick="infoTeacher.newMessage()">
-                <span class="glyphicon glyphicon-plus-sign"></span> Nowa wiadomość</span>
-            <br/><br/>
-            <div class="list-group" data-lift="doc.MainDocSn.showSelectors">
-                <span class="list-group-item list-group-item-success"><h4>Wiadomości:</h4></span>
-                <a id="selectT" class="list-group-item"  href="/documents/index?a=f">Najnowsze</a>
-                <a id="selectT" class="list-group-item"  href="/documents/index?a=t&s=t">Komunikaty – archiwum</a>
-                <a id="selectI" class="list-group-item" href="/documents/index?a=t&s=i">Indywidualne – archiwum</a>
-                <a id="selectT" class="list-group-item"  href="/documents/index?a=ts=s">Wysłane</a>
+            <span class="glyphicon glyphicon-plus-sign"></span> Nowa wiadomość</span>
+        </div>
+            <div class="msg-blue">
+                <div class="row msg">
+                    <div class="messegeSign col-sm-3">
+                        <span class="glyphicon glyphicon-user"></span>
+                        <span class="msg-name">Imię i Nazwisko</span>
+                        <br/>
+                        <span class="glyphicon glyphicon-calendar"></span> <span
+                            class="msg-date">12.12.2014 </span>
+                    </div>
+                    <div class="msg-cont col-sm-9">Zawartość
+                        poprostu generalnie wisi mi to czy bedzie taka jakosc czy inna, pozatym z tego co mysle to kazdy dazy do zmniejszenia rozmiaru ok rozmiar bedzie mniejszy a jakosc dalej taka sama, bo skoro przy tym samym rozmiarze mamy lepsza jakosc to przy mniejszym jakosc spadnie.
+                        Mnie to wsio ryba jaka bedzie jakosc, co do mobilnego transferu masz po czesci racje lecz pakiety rosna a nie maleja.
+                        Co do reklam to nie preferuje tego typu zabawy, owszem ktos zarabia cudzym kosztem, wytlumacze to tak:
+                        masz juz ten transfer mobilny wiec kozystasz z niego oszczednie z regoly a dokladajac reklamy ktos cie okrada zarabiajac na tym.
+                        Dlatego ja preferuje wszelkiego rodzaju Adbloki czy to na PC czy to na telefonie.
+                        Nie zycze sobie obnizania jakosci i obciazania wiekowego juz PCta.
+                        No ale kazdy ma swoje zdanie i tez to doceniam, ile ludzi tyle zdan i opini i to normalnepoprostu generalnie wisi mi to czy bedzie taka jakosc czy inna, pozatym z tego co mysle to kazdy dazy do zmniejszenia rozmiaru ok rozmiar bedzie mniejszy a jakosc dalej taka sama, bo skoro przy tym samym rozmiarze mamy lepsza jakosc to przy mniejszym jakosc spadnie.
+                        Mnie to wsio ryba jaka bedzie jakosc, co do mobilnego transferu masz po czesci racje lecz pakiety rosna a nie maleja.
+                        Co do reklam to nie preferuje tego typu zabawy, owszem ktos zarabia cudzym kosztem, wytlumacze to tak:
+                        masz juz ten transfer mobilny wiec kozystasz z niego oszczednie z regoly a dokladajac reklamy ktos cie okrada zarabiajac na tym.
+                        Dlatego ja preferuje wszelkiego rodzaju Adbloki czy to na PC czy to na telefonie.
+                        Nie zycze sobie obnizania jakosci i obciazania wiekowego juz PCta.
+                        No ale kazdy ma swoje zdanie i tez to doceniam, ile ludzi tyle zdan i opini i to normalne
 
-            </div>
-            <div>
-                <h3>Legenda:</h3>
-                <div class="msg-red"> <h4>  Ogłoszenia nauczycielskie </h4></div>
-                <div class="msg-green"><h4>  Ogłoszenia uczniowskie</h4></div>
-                <div class="msg-blue"><h4> Widomości idywidualne</h4></div>
-            </div>
-		</div>
-		<div class="col-lg-8" data-lift="doc.MainDocSn.showMessages">
 
-			<div class="msg msg-blue">
-				<div class="msg-cont"></div>
-				<div class="messegeSign">
-					<span class="glyphicon glyphicon-user"></span>
-                    <span class="msg-name"></span>
+
+                    </div>
+                </div>
+                <div class="row msg">
+                    <div class="messegeSign col-sm-4">
+                        <span class="glyphicon glyphicon-user"></span>
+                        <span class="msg-name"></span>
+                        <br/>
+                        <span class="glyphicon glyphicon-calendar"></span> <span
+                            class="msg-date"> </span>
+                    </div>
+                    <div class="msg-cont  col-sm-4"></div>
+                </div>
+                <div class="msg-answer">
+                    <textarea rows="1"></textarea>
                     <span class="btn-answer"
-                            onclick="infoTeacher.answerMessage(this,id)">
+                          onclick="infoTeacher.answerMessage(this,id)">
                         <span>&crarr;</span>
                     </span>
-					<span class="glyphicon glyphicon-calendar"></span> <span
-						class="msg-date"> </span>
-					<button type="button" class="close"
-						onclick="infoTeacher.deleteMessage(tis,id)">
-						<span>&times;</span>
-					</button>
-				</div>
-			</div>
-		</div>
+                </div>
+            </div>
 		<br /> <br />
 		<br /> <br />
 	</div>
 
-    <div id="editMessageForm" title="">
-        <form  data-lift="doc.MainDocSn.editMessage"
+    <div id="newMessageForm" title="">
+        <form  data-lift="doc.MainDocSn.newMessage"
                method="post">
             <div class="row">
                 <div class="col-lg-6">
@@ -124,7 +138,6 @@ h3 {
                 <div class="col-lg-6">
                     <div class="form-group">
                         <button type="button" id="showTeacher" class="btn btn-default" onclick="infoTeacher.showTeacher()">Nauczyciel</button>
-                        <button type="button" id="showClass" class="btn btn-default" onclick="infoTeacher.showClass()">Klasa</button>
                         <button type="button" id="showPupil" class="btn btn-default" onclick="infoTeacher.showPupil()">Uczeń/Rodzic</button>
                     </div>
                     <div class="form-group">
@@ -166,6 +179,28 @@ h3 {
             <div>
                 <textarea id="writeMessage"></textarea>
             </div>
+        </form>
+    </div>
+
+    <div id="addMessageForm" title="">
+        <form  data-lift="doc.MainDocSn.addComment"
+               method="post">
+            <div class="row">
+                <div class="col-lg-1"> </div>
+                <div class="col-lg-10">
+                    <div>
+                        <textarea id="writeComment"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <button id="saveComment" class="btn btn-lg btn-success">
+                                <span class="glyphicon glyphicon-envelope"></span>  Wyślij
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </form>
     </div>
 

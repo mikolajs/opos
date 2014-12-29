@@ -4,19 +4,17 @@ package pl.brosbit.model
 import _root_.net.liftweb.mongodb._
 import org.bson.types.ObjectId
 
-//dest: t - for teachers announce, p - for pupils announce, i - individual message
+case class MessageChunk(var authorId:Long, var author: String, var date:String, var body:String)
+
 object Message extends MongoDocumentMeta[Message] {
   override def collectionName = "Message"
   override def formats = super.formats + new ObjectIdSerializer + new DateSerializer
-  def create = Message(ObjectId.get, 0L, "", "", Nil, "", "")
+  def create = Message(ObjectId.get, false, Nil, Nil,  false, 0L)
 }
 
-case class Message(var _id: ObjectId, var authorId:Long,  var authorName: String,
-                   var  dest: String, var who: List[Long], var body: String,
-                   var date: String
+case class Message(var _id: ObjectId,
+                   var all:Boolean, var who:List[Long], var body: List[MessageChunk],
+                   var mailed:Boolean, var lastDate:Long
                    ) extends MongoDocument[Message] {
   def meta = Message
-  def forAllTechers = dest == "t"
-  def forAllPupils = dest == "p"
-  def forIndywiduals = dest == "i"
 }

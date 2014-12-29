@@ -57,12 +57,6 @@ package pl.brosbit.snippet.secretariat
       user.lastName(lastName).firstName(firstName).phone(telephone).email(email).
       role("n").scratched(false).validated(true).save
 
-      //dodawanie rekordu do przekazywania wiadomości
-      val um = UserMessages.create
-      um.userId = user.id.is
-      um.userName = user.getFullName
-      um.save
-
       if (userId == ""){
         userId = user.id.toString
         JsFunc("editForm.insertRowAndClear", userId).cmd

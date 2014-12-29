@@ -17,12 +17,14 @@ var InfoTeacher = dejavu.Class.declare({
                [ 'Styles' ], [ 'TextColor','BGColor' ] ]
        	});
 
-    	$("#editMessageForm").dialog({
+
+    	$("#newMessageForm").dialog({
                     autoOpen: false,
                     height: 700,
                     width: 700,
                     modal: true
-          });
+        });
+
 
         this.showTeacher();
     },
@@ -46,6 +48,17 @@ var InfoTeacher = dejavu.Class.declare({
         $editForm.dialog("option", "title", "Odpowiedz na wiadomość");
         $editForm.dialog("open");
     },
+
+    editAnnounce : function() {
+
+    },
+
+    addAnnounce : function() {
+         var $editForm = $("#editMessageForm");;
+         $editForm.dialog("option", "title", "Dodaj wiadomość");
+         $editForm.dialog("open");
+    },
+
 
     _hideAll : function() {
         $('#classMessageS').hide();
