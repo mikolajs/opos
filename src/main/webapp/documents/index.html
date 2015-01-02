@@ -18,12 +18,9 @@
 .msg-green {
         border-left: 8px solid #0e0;
         border-right: solid 1px #ccc;
-        border-top: solid 1px #ccc;
-        border-bottom: solid 1px #ccc;
  }
 
 .messegeSign {
-	border-right: dotted 1px #ccc;
 	font-size: 80%;
 	padding: 5px 5px;
 	margin: 5px 0px;
@@ -33,6 +30,7 @@
 .msg-cont {
         padding: 5px 5px;
         margin: 5px 0px;
+        border-left: dotted 1px #ccc;
  }
 
 
@@ -41,15 +39,11 @@ h3 {
 }
 
 .mainRow { min-height: 600px;}
-.btn-answer {
-        cursor: pointer;
-        font-size: 21px;
-        font-weight: 700;
-        line-height: 1;
-        color: #000;
-        text-shadow: 0px 1px 0px #FFF;
-        opacity: 0.2;
+.msg-grp {margin-bottom: 20px;
+        border-bottom: solid 1px #ccc;
 }
+
+
 </style>
         <script src="/jquery/dejavu.js"></script>
         <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
@@ -75,57 +69,32 @@ h3 {
             <span class="btn btn-lg btn-info" onclick="infoTeacher.newMessage()">
             <span class="glyphicon glyphicon-plus-sign"></span> Nowa wiadomość</span>
         </div>
-            <div class="msg-blue">
+        <hr/>
+
+        <div class="msg-grp" data-lift="doc.MainDocSn.showMessages">
                 <div class="row msg">
                     <div class="messegeSign col-sm-3">
-                        <span class="glyphicon glyphicon-user"></span>
-                        <span class="msg-name">Imię i Nazwisko</span>
-                        <br/>
-                        <span class="glyphicon glyphicon-calendar"></span> <span
-                            class="msg-date">12.12.2014 </span>
-                    </div>
-                    <div class="msg-cont col-sm-9">Zawartość
-                        poprostu generalnie wisi mi to czy bedzie taka jakosc czy inna, pozatym z tego co mysle to kazdy dazy do zmniejszenia rozmiaru ok rozmiar bedzie mniejszy a jakosc dalej taka sama, bo skoro przy tym samym rozmiarze mamy lepsza jakosc to przy mniejszym jakosc spadnie.
-                        Mnie to wsio ryba jaka bedzie jakosc, co do mobilnego transferu masz po czesci racje lecz pakiety rosna a nie maleja.
-                        Co do reklam to nie preferuje tego typu zabawy, owszem ktos zarabia cudzym kosztem, wytlumacze to tak:
-                        masz juz ten transfer mobilny wiec kozystasz z niego oszczednie z regoly a dokladajac reklamy ktos cie okrada zarabiajac na tym.
-                        Dlatego ja preferuje wszelkiego rodzaju Adbloki czy to na PC czy to na telefonie.
-                        Nie zycze sobie obnizania jakosci i obciazania wiekowego juz PCta.
-                        No ale kazdy ma swoje zdanie i tez to doceniam, ile ludzi tyle zdan i opini i to normalnepoprostu generalnie wisi mi to czy bedzie taka jakosc czy inna, pozatym z tego co mysle to kazdy dazy do zmniejszenia rozmiaru ok rozmiar bedzie mniejszy a jakosc dalej taka sama, bo skoro przy tym samym rozmiarze mamy lepsza jakosc to przy mniejszym jakosc spadnie.
-                        Mnie to wsio ryba jaka bedzie jakosc, co do mobilnego transferu masz po czesci racje lecz pakiety rosna a nie maleja.
-                        Co do reklam to nie preferuje tego typu zabawy, owszem ktos zarabia cudzym kosztem, wytlumacze to tak:
-                        masz juz ten transfer mobilny wiec kozystasz z niego oszczednie z regoly a dokladajac reklamy ktos cie okrada zarabiajac na tym.
-                        Dlatego ja preferuje wszelkiego rodzaju Adbloki czy to na PC czy to na telefonie.
-                        Nie zycze sobie obnizania jakosci i obciazania wiekowego juz PCta.
-                        No ale kazdy ma swoje zdanie i tez to doceniam, ile ludzi tyle zdan i opini i to normalne
-
-
-
-                    </div>
-                </div>
-                <div class="row msg">
-                    <div class="messegeSign col-sm-4">
                         <span class="glyphicon glyphicon-user"></span>
                         <span class="msg-name"></span>
                         <br/>
                         <span class="glyphicon glyphicon-calendar"></span> <span
                             class="msg-date"> </span>
                     </div>
-                    <div class="msg-cont  col-sm-4"></div>
+                    <div class="msg-cont  col-sm-9"></div>
                 </div>
-                <div class="msg-answer">
-                    <textarea rows="1"></textarea>
-                    <span class="btn-answer"
-                          onclick="infoTeacher.answerMessage(this,id)">
-                        <span>&crarr;</span>
-                    </span>
+                <div class="msg-answer row">
+                    <div class="col-sm-9"></div>
+                    <div class="col-sm-3">
+                        <span class="btn btn-success btn-sm"
+                          onclick="infoTeacher.openAddComment(this, id)">
+                        <span class="glyphicon glyphicon-comment"> Dodaj</span>
+                         </span>
+                    </div>
                 </div>
             </div>
-		<br /> <br />
-		<br /> <br />
 	</div>
 
-    <div id="newMessageForm" title="">
+    <div id="addMessageForm" title="">
         <form  data-lift="doc.MainDocSn.newMessage"
                method="post">
             <div class="row">
@@ -140,7 +109,7 @@ h3 {
                         <button type="button" id="showTeacher" class="btn btn-default" onclick="infoTeacher.showTeacher()">Nauczyciel</button>
                         <button type="button" id="showPupil" class="btn btn-default" onclick="infoTeacher.showPupil()">Uczeń/Rodzic</button>
                     </div>
-                    <div class="form-group">
+                   <div class="form-group">
                         <div class="input-group" id="classMessageS">
                             <span class="input-group-addon">Klasa</span> <select id="classMessage"
                                                                                  class="form-control"><option>1b</option></select>
@@ -150,6 +119,13 @@ h3 {
                         <div class="input-group" id="pupilMessageS">
                             <span class="input-group-addon">Adresat</span> <select id="pupilMessage"
                                                                                    class="form-control"><option>Jan Kowalski</option></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group" id="allTeacherMessageS">
+                            <label>
+                            <input id="allTeacherMessage" type="checkbox" onchange="infoTeacher.switchAnnounce()"/> Ogłoszenie</label>
+
                         </div>
                     </div>
                     <div class="form-group" id="teacherMessageS">
@@ -169,7 +145,7 @@ h3 {
                     <hr />
                     <div class="form-group">
                         <div class="input-group">
-                            <button id="sendMessage" class="btn btn-lg btn-success">
+                            <button id="sendMessage" class="btn btn-lg btn-success" onclick="return infoTeacher.prepareSubmit()">
                                 <span class="glyphicon glyphicon-send"></span>  Wyślij
                             </button>
                         </div>
@@ -177,33 +153,28 @@ h3 {
                 </div>
             </div>
             <div>
+                <input id="toWhoMessage" style="display:none;" />
                 <textarea id="writeMessage"></textarea>
             </div>
         </form>
     </div>
 
-    <div id="addMessageForm" title="">
+    <div id="addCommentForm" title="" style="display:none;">
         <form  data-lift="doc.MainDocSn.addComment"
                method="post">
-            <div class="row">
-                <div class="col-lg-1"> </div>
-                <div class="col-lg-10">
-                    <div>
-                        <textarea id="writeComment"></textarea>
-                    </div>
+            <div class="">
                     <div class="form-group">
-                        <div class="input-group">
-                            <button id="saveComment" class="btn btn-lg btn-success">
-                                <span class="glyphicon glyphicon-envelope"></span>  Wyślij
-                            </button>
-                        </div>
+                        <div class="col-md-8"><input id="idMessage" style="display:none;" />
+                        <textarea id="writeComment" class="form-control" rows="3"></textarea></div>
+                        <div class="col-md-4"><button id="addComment" class="btn btn-lg btn-success">
+                            <span class="glyphicon glyphicon-envelope"></span>  Wyślij
+                        </button></div>
                     </div>
-                </div>
+
             </div>
 
         </form>
     </div>
 
-<div  style="display:none;" data-lift="doc.MainDocSn.deleteMessage"><input id="deleteMessageHidden" /></div>
 <div  style="display:none;" data-lift="doc.MainDocSn.pupilsData"><input id="pupilsDataHidden" /></div>
 </div>

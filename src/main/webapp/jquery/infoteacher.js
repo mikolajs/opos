@@ -2,6 +2,7 @@ var InfoTeacher = dejavu.Class.declare({
 
     addressKind: 't',
     curSize: 0,
+    lastHideMessageButton: null,
     initialize : function() {
 
        CKEDITOR.replace( 'writeMessage',{
@@ -18,7 +19,7 @@ var InfoTeacher = dejavu.Class.declare({
        	});
 
 
-    	$("#newMessageForm").dialog({
+    	$("#addMessageForm").dialog({
                     autoOpen: false,
                     height: 700,
                     width: 700,
@@ -29,36 +30,61 @@ var InfoTeacher = dejavu.Class.declare({
         this.showTeacher();
     },
 
-    deleteMessage : function(elem, idStr) {
-        if(!confirm("Czy na pewno usunąć wiadomość?")) return;
-        $hiddenInput = $("#deleteMessage");
-        $hiddenInput.val(idStr);
-        $(elem).parent().parent().remove();
-        console.log("remove " + idStr);
-        $hiddenInput.submit();
-    },
 
     newMessage : function() {
-        var $editForm = $("#editMessageForm");;
+        console.log("new Message");
+        var $editForm = $("#addMessageForm");
         $editForm.dialog("option", "title", "Dodaj wiadomość");
         $editForm.dialog("open");
     },
-    answerMessage : function(elem, idStr) {
-        var $editForm = $("#editMessageForm");
-        $editForm.dialog("option", "title", "Odpowiedz na wiadomość");
-        $editForm.dialog("open");
+
+    openAddComment : function(elem, id) {
+        if(this.lastHideMessageButton != null) {
+            this.lastHideMessageButton.show();
+        }
+        var $commentForm = $("#addCommentForm");
+        $("#idMessage").val(id);
+        var $elem = $(elem);
+        $elem.hide();
+        this.lastHideMessageButton = $elem;
+        $elem.parent().parent().append($commentForm);
+        $commentForm.show();
     },
 
-    editAnnounce : function() {
-
+    prepareSubmit : function() {
+        var toAdd = "";
+        var checked = $("#allTeacherMessage").prop("checked");
+        if(checked) {
+            $("#toWhoMessage").val("Ogłoszenie");
+            return true;
+        }
+        $("#peopleToSend").children("li").each(function(){
+            toAdd += $(this).text() + ";";
+        });
+        console.log("prepareSubmit toAdd: " + toAdd.length);
+        if(toAdd.length == 0) return false;
+        $("#toWhoMessage").val(toAdd);
+        return true;
     },
 
-    addAnnounce : function() {
-         var $editForm = $("#editMessageForm");;
-         $editForm.dialog("option", "title", "Dodaj wiadomość");
-         $editForm.dialog("open");
+    insertComment : function() {
+        alert("Insert comment");
     },
 
+    switchAnnounce : function() {
+        var checked = $("#allTeacherMessage").prop("checked");
+        if(checked) {
+            this._clearAddresses();
+            var li = "<li class='list-group-item'> Wszyscy nauczyciele </li>";
+            $("#peopleToSend").append(li);
+            $('#teacherMessageS').hide();
+            $("#addAddress").hide();
+        } else {
+            this._clearAddresses();
+            $('#teacherMessageS').show();
+            $("#addAddress").show();
+        }
+    },
 
     _hideAll : function() {
         $('#classMessageS').hide();
@@ -67,6 +93,7 @@ var InfoTeacher = dejavu.Class.declare({
         $("#showClass").removeClass("btn-info");
         $("#showPupil").removeClass("btn-info");
         $("#showTeacher").removeClass("btn-info");
+        $("#allTeacherMessage").prop("checked", false);
     },
 
     showTeacher : function() {
@@ -102,7 +129,7 @@ var InfoTeacher = dejavu.Class.declare({
             this._addPupil();
         }
         else {
-            this._addClass();
+
         }
      },
 
@@ -112,9 +139,9 @@ var InfoTeacher = dejavu.Class.declare({
             return;
         }
         var opt = $('#teacherMessage').children('option:selected').get()[0];
-        var li = "<li class='list-group-item' id='userId_"+ opt.value + "' >" +  opt.innerHTML +
-                   "<span class='btn btn-sm btn-danger btn-right glyphicon glyphicon-remove-sign'" +
-                   " onclick='infoTeacher.delAddress(this)'></span></li>";
+        var li = "<li class='list-group-item' id='userId_"+ opt.value + "' >" +
+                   " <span class='btn btn-sm btn-danger btn-right glyphicon glyphicon-remove-sign'" +
+                   " onclick='infoTeacher.delAddress(this)'></span> "+ opt.innerHTML +"</li>";
         $("#peopleToSend").append(li);
         this.curSize++;
      },
@@ -125,22 +152,9 @@ var InfoTeacher = dejavu.Class.declare({
                             return;
         }
         var opt = $('#pupilMessage').children('option:selected').get()[0];
-                var li = "<li class='list-group-item' id='userId_"+ opt.value + "' >" +  opt.innerHTML +
-                                   "<span class='btn btn-sm btn-danger btn-right glyphicon glyphicon-remove-sign'" +
-                                   " onclick='infoTeacher.delAddress(this)' ></span></li>";
-        $("#peopleToSend").append(li);
-        this.curSize++;
-     },
-
-     _addClass : function() {
-        if(this.curSize  > 2) {
-                    alert("Możesz wysłać wiadomość tylko trzech klas na raz");
-                    return;
-        }
-        var opt = $('#classMessage').children('option:selected').get()[0];
-        var li = "<li class='list-group-item' id='classId_"+ opt.value + "' >" +  opt.innerHTML +
-                           "<span class='btn btn-sm btn-danger btn-right glyphicon glyphicon-remove-sign'" +
-                           " onclick='infoTeacher.delAddress(this)' ></span></li>";
+                var li = "<li class='list-group-item' id='userId_"+ opt.value + "' >"  +
+                          "<span class='btn btn-sm btn-danger btn-right glyphicon glyphicon-remove-sign'" +
+                          " onclick='infoTeacher.delAddress(this)' ></span>" +  opt.innerHTML + "</li>";
         $("#peopleToSend").append(li);
         this.curSize++;
      },
