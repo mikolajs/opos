@@ -51,6 +51,23 @@ var InfoTeacher = dejavu.Class.declare({
         $commentForm.show();
     },
 
+    insertComment : function(userAndDate) {
+        $("#addCommentForm").hide();
+        if(this.lastHideMessageButton != null) {
+              this.lastHideMessageButton.show();
+        }
+        $("#idMessage").val();
+        var UandD = userAndDate.split(";");
+        var comment = $("#writeComment").val();
+        var commentCont = '<div class="row msg"><div class="messegeSign col-sm-2">' +
+           '<span class="glyphicon glyphicon-user"></span><span class="msg-name">'+ UandD[0]+ '</span><br/>' +
+           '<span class="glyphicon glyphicon-calendar">'  +
+           '</span> <span class="msg-date">' + UandD[1] + '</span>' +
+           '</div><div class="msg-cont  col-sm-10">' + comment + '</div></div>';
+        $("#addCommentForm").parent().before(commentCont);
+    },
+
+
     prepareSubmit : function() {
         var toAdd = "";
         var checked = $("#allTeacherMessage").prop("checked");
@@ -65,10 +82,6 @@ var InfoTeacher = dejavu.Class.declare({
         if(toAdd.length == 0) return false;
         $("#toWhoMessage").val(toAdd);
         return true;
-    },
-
-    insertComment : function() {
-        alert("Insert comment");
     },
 
     switchAnnounce : function() {

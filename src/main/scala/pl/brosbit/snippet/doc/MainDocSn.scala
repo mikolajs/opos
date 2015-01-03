@@ -56,7 +56,7 @@ class MainDocSn extends BaseDoc {
       val allReg = "Ogłoszenie".r
       val mess = Message.create
       val date = new Date
-      mess.body = List(MessageChunk(user.id.is, user.getFullName, Formater.formatDate(date), body))
+      mess.body = List(MessageChunk(user.id.is.toString, user.getFullName, Formater.formatDate(date), body))
       mess.lastDate = date.getTime
       if(toSend.length > 0 && !toSend.head.trim.isEmpty){
         allReg.findFirstIn(toSend.head) match {
@@ -101,9 +101,12 @@ class MainDocSn extends BaseDoc {
     var body = ""
     def add():JsCmd = {
       val date = new Date
-      val messChunk =  MessageChunk(user.id.is, user.getFullName, Formater.formatDate(date), body.trim)
-      //Message.update("_id"->idMessage.trim, ("lastDate"->("$set"->date.getTime))~("body"->messChunk))
-      JsFunc("infoTeacher.insertComment").cmd //poprawić
+      val formatedDate = Formater.formatDate(date)
+      val messChunk =  MessageChunk(user.id.is.toString, user.getFullName, formatedDate, body.trim)
+
+      Message.update(("_id"->idMessage.trim),
+        ("$set"->("lastDate"->date.getTime))~("$addToSet"->("body"->messChunk.toMap)))
+      JsFunc("infoTeacher.insertComment", user.getFullName + ";" + formatedDate ).cmd
     }
 
     val form = "#idMessage" #> SHtml.text(idMessage, idMessage = _) &

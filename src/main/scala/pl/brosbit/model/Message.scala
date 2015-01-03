@@ -3,8 +3,14 @@ package pl.brosbit.model
 
 import _root_.net.liftweb.mongodb._
 import org.bson.types.ObjectId
+import net.liftweb.json.JsonDSL._
 
-case class MessageChunk(var authorId:Long, var author: String, var date:String, var body:String)
+case class MessageChunk(var authorId:String, var author: String, var date:String, var body:String) {
+  def forJSONStr = "{\"authorId\":\"" + authorId + "\",\"author\":\"" + author + "\",\"date\":\"" +
+    date + "\",\"body\":\"" + body+ "\"}"
+  def toQuest = ("authorId"->authorId)~("author"->author)~("date"->date)~("body"->body)
+  def toMap = Map("authorId"->authorId, "author"->author, "date"->date, "body"->body)
+}
 
 object Message extends MongoDocumentMeta[Message] {
   override def collectionName = "Message"

@@ -32,7 +32,7 @@ class ShowCourseSn extends BaseShowCourseSn {
           val body = "<p class=\"msq-body\">" + msg + "</p><p><small class=\"msgSource\">Widomość z kursu " +
               course.getInfo + " lekcja: " + currentLesson.title + "</small></p>"
           val d = new Date()
-          val mc= MessageChunk(user.id.is, user.getFullName, Formater.formatTime(d), body)
+          val mc= MessageChunk(user.id.is.toString, user.getFullName, Formater.formatTime(d), body)
           message.lastDate = d.getTime
           message.who = List(course.authorId, user.id.is)
           message.save
