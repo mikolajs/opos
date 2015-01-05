@@ -8,14 +8,14 @@ var InfoTeacher = dejavu.Class.declare({
        CKEDITOR.replace( 'writeMessage',{
        	    width : 660,
        	    height: 200,
-       	    extraPlugins : 'addImage,symbol',
+       	    extraPlugins : 'addImage,symbol,youTube,addFile',
        	    toolbar : [
                [ 'Link','Unlink','Anchor' ],
                [ 'Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo' ],
                [ 'Bold','Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat' ],
+               [ 'Styles' ], [ 'TextColor','BGColor' ],
                [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock' ],
-               [ 'AddImage', 'Table', 'HorizontalRule', 'Smiley', 'Symbol'] ,
-               [ 'Styles' ], [ 'TextColor','BGColor' ] ]
+               [ 'AddImage', 'AddFile', 'YouTube', 'Table', 'HorizontalRule', 'Smiley', 'Symbol'] ]
        	});
 
 
@@ -124,6 +124,7 @@ var InfoTeacher = dejavu.Class.declare({
         this.addressKind = 'p';
         $('#pupilMessageS').show();
         $('#classMessageS').show();
+        this.triggerRefreshPupils();
     },
 
      showClass : function() {
@@ -164,12 +165,14 @@ var InfoTeacher = dejavu.Class.declare({
                             alert("Możesz wysłać tylko do pięciu wiadomości na raz");
                             return;
         }
-        var opt = $('#pupilMessage').children('option:selected').get()[0];
-                var li = "<li class='list-group-item' id='userId_"+ opt.value + "' >"  +
-                          "<span class='btn btn-sm btn-danger btn-right glyphicon glyphicon-remove-sign'" +
-                          " onclick='infoTeacher.delAddress(this)' ></span>" +  opt.innerHTML + "</li>";
-        $("#peopleToSend").append(li);
-        this.curSize++;
+        var opt = $('#pupilMessage optgroup').children('option:selected').get()[0];
+        if(!(typeof opt === 'undefined') && opt.value != '-1'){
+             var li = "<li class='list-group-item' id='userId_"+ opt.value + "' >"  +
+                      "<span class='btn btn-sm btn-danger btn-right glyphicon glyphicon-remove-sign'" +
+                     " onclick='infoTeacher.delAddress(this)' ></span>" +  opt.innerHTML + "</li>";
+             $("#peopleToSend").append(li);
+             this.curSize++;
+        }
      },
 
      _clearAddresses : function() {
@@ -180,6 +183,13 @@ var InfoTeacher = dejavu.Class.declare({
      delAddress : function(elem) {
         $(elem).parent('li').remove();
         this.curSize--;
+     },
+
+     triggerRefreshPupils : function() {
+         var classId = $('#classMessage option:selected').val()
+         console.log(classId);
+         $('#pupilsDataHidden').val(classId);
+         document.getElementById("pupilsDataHidden").onblur();
      }
 
 

@@ -61,7 +61,7 @@ class Boot {
       case Req("getdocument" :: id :: Nil, _, GetRequest) => () => TemplateDocumentCreater.create(id)
     })
       
-     
+
 
 
     if (DB.runQuery("select * from users where lastname = 'Administrator'")._2.isEmpty) {
@@ -70,10 +70,10 @@ class Boot {
     }
 
     val loggedIn = If(() => User.loggedIn_? && User.currentUser.openOrThrowException("Not logged").validated.is,
-      () => RedirectResponse("/login"))
-      
+      () => RedirectResponse("/login?r=" + S.uri))
+
     val isAdmin = If(() => User.loggedIn_? && (User.currentUser.openOrThrowException("Not logged").role.is == "a"),
-      () => RedirectResponse("/login"))
+      () => RedirectResponse("/login?r=" + S.uri))
       
     val isSecretariat = If(() => {
       User.currentUser match {
@@ -83,7 +83,7 @@ class Boot {
         }
         case _ => false
       }
-        } , () => RedirectResponse("/login"))
+        } , () => RedirectResponse("/login?r=" + S.uri))
       
     val isTeacher = If(() => {
       User.currentUser match {
@@ -93,13 +93,12 @@ class Boot {
         }
         case _ => false
         }
-      } , () => RedirectResponse("/login"))
+      } , () => RedirectResponse("/login?r=" + S.uri))
 
     // Build SiteMap::
     def sitemap() = SiteMap(
       List(
-        Menu("Strona główna") / "index"  / ** >> LocGroup("public"), // Simple menu form
-        //Menu("Biuletyn Informacji Publicznej") / "bip" / ** >> LocGroup("public"),
+        Menu("Strona główna") / "index"  / ** >> LocGroup("public"),
         Menu("Galeria") / "gallery" / ** >> LocGroup("public"),
         Menu("Kontakt") / "contact" >> LocGroup("public"),
         Menu("Forum") / "forum" >> LocGroup("public"),

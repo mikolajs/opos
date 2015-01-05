@@ -13,6 +13,7 @@ import net.liftweb.mapper.ByList
 import net.liftweb.http.js.JsCmd
 import net.liftweb.json.JsonAST.JValue
 import java.util.Date
+import net.liftweb.http.js.JsCmds.SetHtml
 
 class MainDocSn extends BaseDoc {
 
@@ -30,10 +31,10 @@ class MainDocSn extends BaseDoc {
     if(mess.isEmpty) ".msg-blue" #> <h2>Brak wiadomości</h2>
     else {
       ".msg-grp" #> mess.map(m => {
-        println("showMessage message m.id " + m._id.toString)
+        //println("showMessage message m.id " + m._id.toString)
         ".msg-grp [class]" #> (if(m.all) "msg-grp msg-blue"  else  "msg-grp msg-green") &
         ".msg" #> m.body.map(b => {
-          println("showMessage message body " + b.body + " name:" + b.author)
+          //println("showMessage message body " + b.body + " name:" + b.author)
             ".msg-cont *" #> Unparsed(b.body) &
             ".msg-name *" #> Text(b.author) &
             ".msg-date *" #> Text(b.date)
@@ -52,7 +53,6 @@ class MainDocSn extends BaseDoc {
 
     def add() {
       val toSend = peopleStr.split(';')
-      println("newMessage people to Send: " + peopleStr)
       val allReg = "Ogłoszenie".r
       val mess = Message.create
       val date = new Date
@@ -67,10 +67,10 @@ class MainDocSn extends BaseDoc {
           }
           case _ => {
             val num = """[(\d+)]""".r
-            toSend.foreach(adr => {
+            toSend.take(5).foreach(adr => {
               num.findFirstIn(adr) match {
                 case Some(str) => {
-                  println("newMessage people str of Ogłoszenie: " + str)
+                  //println("newMessage people str of Ogłoszenie: " + str)
                   val who = tryo(str.toLong).getOrElse(0L)
                   if(who != 0L) mess.who = who::mess.who
                 }
@@ -78,7 +78,7 @@ class MainDocSn extends BaseDoc {
               }
             })
             mess.who = mess.who.distinct
-            println("newMessage people who length: " + mess.who.length)
+            //println("newMessage people who length: " + mess.who.length)
             if(mess.who.length > 0) mess.save
           }
         }
@@ -120,20 +120,23 @@ class MainDocSn extends BaseDoc {
 
   def pupilsData() = {
     var pupilsList = ""
-    def refresh(classId:String) {
-      val pupils = User.findAll(By(User.classId, classId.toLong), By(User.role, "u"))
+    def refresh(classId:String):JsCmd = {
+      val classIdLong = tryo(classId.toLong).getOrElse(0L)
+      val pupils = User.findAll(By(User.classId, classIdLong), By(User.role, "u"))
 
-        pupilsList = "[" + pupils.map(p => {
+        val pupilsNodes = pupils.map(p => {
         val father = p.father.obj.getOrElse(User.create)
         val mather = p.mather.obj.getOrElse(User.create)
-          "[%s, '%s', %s, '%s', %s, '%s']".format(p.id.is.toString, p.getFullName,
-            father.id.is.toString, father.getFullName, mather.id.is.toString, mather.getFullName)
-    }).mkString(",") + "]"
-      JsRaw("infoTeacher.refreshPupils()")
+          <optgroup label={p.getFullName}>
+            <option value={p.id.is.toString}>{p.getFullName}</option>
+            <option value={father.id.is.toString}>{"Ojciec: " + father.getFullName}</option>
+            <option value={mather.id.is.toString}>{"Matka: " + mather.getFullName}</option>
+          </optgroup>
+    })
+      SetHtml("pupilMessage", pupilsNodes)
     }
-    println("PUPILSDATA FUNCTION: " + pupilsList)
 
-    "input" #> SHtml.ajaxText(pupilsList, classId => refresh(classId))
+    "#pupilsDataHidden" #> SHtml.ajaxText(pupilsList, classId => refresh(classId))
   }
 
 

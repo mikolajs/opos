@@ -6,9 +6,9 @@ import org.bson.types.ObjectId
 import net.liftweb.json.JsonDSL._
 
 case class MessageChunk(var authorId:String, var author: String, var date:String, var body:String) {
-  def forJSONStr = "{\"authorId\":\"" + authorId + "\",\"author\":\"" + author + "\",\"date\":\"" +
-    date + "\",\"body\":\"" + body+ "\"}"
-  def toQuest = ("authorId"->authorId)~("author"->author)~("date"->date)~("body"->body)
+  //def forJSONStr = "{\"authorId\":\"" + authorId + "\",\"author\":\"" + author + "\",\"date\":\"" +
+  //  date + "\",\"body\":\"" + body+ "\"}"
+  //def toQuest = ("authorId"->authorId)~("author"->author)~("date"->date)~("body"->body)
   def toMap = Map("authorId"->authorId, "author"->author, "date"->date, "body"->body)
 }
 

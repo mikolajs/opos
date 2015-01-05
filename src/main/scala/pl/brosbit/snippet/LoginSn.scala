@@ -18,7 +18,7 @@ object SubjectChoose extends SessionVar[Long](0L)
 object LevelChoose extends SessionVar[Int](1)
 
 class LoginSn {
-
+val redirectUrl = S.param("r").getOrElse("/login")
   val userBox = User.currentUser
   def show() = {
     userBox match {
@@ -43,11 +43,17 @@ class LoginSn {
       User.findAll(By(User.email, email.trim)) match {
         case user :: other => {
           if (user.role == "t" || user.role == "a" || user.role == "d") {
-            if (user.password.match_?(pass.trim)) User.logUserIn(user)
+            if (user.password.match_?(pass.trim)) {
+              User.logUserIn(user)
+              S.redirectTo(redirectUrl)
+            }
             else S.notice(" Błędne hasło. ")
           } else {
             if (user.password.match_?(pass.trim)){
-              if(pesel == user.pesel.is) User.logUserIn(user)
+              if(pesel == user.pesel.is) {
+                User.logUserIn(user)
+                S.redirectTo(redirectUrl)
+              }
               else S.notice(" Błędny pesel ")
             }
             else S.notice(" Błędne hasło. ")

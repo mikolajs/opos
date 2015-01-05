@@ -35,6 +35,7 @@ class ShowCourseSn extends BaseShowCourseSn {
           val mc= MessageChunk(user.id.is.toString, user.getFullName, Formater.formatTime(d), body)
           message.lastDate = d.getTime
           message.who = List(course.authorId, user.id.is)
+          message.body = List(mc)
           message.save
         }
       }
