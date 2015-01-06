@@ -22,12 +22,12 @@ class OpinionsSn extends BaseTeacher {
   val classId = ClassChoose.is	
   
   def dataTable() = {
-    val opinions = Opinions.findAll(("classId"->classId))
+    val opinions = MessagePupil.findAll(("classId"->classId)~("opinion"->true),("_id")-> -1)
     "tr" #> opinions.map(opinion => {
       ".id *" #> opinion._id.toString &
       ".dateIn *" #> Formater.formatDate(new Date(opinion._id.getTime()))&
       ".pupil *" #> opinion.pupilName &
-       ".contentData *" #> Unparsed(opinion.content.head) &
+       ".contentData *" #> Unparsed(opinion.body) &
       ".teacher *" #> opinion.teacherName
      
     })
@@ -40,18 +40,18 @@ class OpinionsSn extends BaseTeacher {
     var pupilId = ""
     
     def save():JsCmd = {
-      val opinion = Opinions.find(id).getOrElse(Opinions.create)
+      val opinion = MessagePupil.find(id).getOrElse(MessagePupil.create)
 
       if(id == "" || user.id.is == opinion.teacherId) {
             if (opinion.classId == 0L) opinion.classId = classId
-            opinion.content = content::opinion.content
-           
-            if(id == "") {
+            opinion.body = content
+            if(opinion.classId == 0L && opinion.pupilId == 0L) {
               opinion.teacherId = user.id.is
               opinion.teacherName = user.getFullName
               val pupil = User.find(pupilId).getOrElse(User.create)
               opinion.pupilName = pupil.shortInfo
               opinion.pupilId = pupil.id.is
+              opinion.classId = ClassChoose.is
               opinion.save
               JsFunc("editForm.insertRowAndClear", opinion._id.toString).cmd
             }

@@ -1,23 +1,165 @@
 
 	<div id="main" class="lift:surround?with=viewer;at=content">
-		<head_merge> <script type="text/javascript"
-			charset="utf-8" src="/style/common_users.js"></script> </head_merge>
+		<head_merge>
+            <style>
+            .msg {
+            border-bottom: solid 1px #ccc;
+            }
+
+            .row { margin: 0px !important; }
+
+            .msg-blue {
+            border-left: 8px solid #00e;
+            border-right: solid 1px #ccc;
+            }
+
+            .msg-green {
+            border-left: 8px solid #0e0;
+            border-right: solid 1px #ccc;
+            }
+
+            .msg-red {
+            border-left: 8px solid #e00;
+            border-right: solid 1px #ccc;
+            }
+
+            .messegeSign {
+            font-size: 80%;
+            padding: 5px 5px;
+            margin: 5px 0px;
+            color: #777;
+            }
+
+            .msg-cont {
+            padding: 5px 5px;
+            margin: 5px 0px;
+            border-left: dotted 1px #ccc;
+            }
+
+
+            h3 {
+            text-align: center;
+            }
+
+            .mainRow { min-height: 600px;}
+            .msg-grp {margin-bottom: 20px;
+            border-top: solid 1px #ccc;
+            border-bottom: solid 1px #ccc;
+            }
+
+
+            </style>
+            <script src="/jquery/dejavu.js"></script>
+            <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
+            <script type="text/javascript" src="/jquery/ckeditorresource.js"></script>
+            <script type="text/javascript" src="/jquery/infopupil.js"></script>
+
+
+            <script>
+            var infoPupil;
+            $(document).ready(function(){
+                infoPupil = new InfoPupil();
+            });
+
+        </script>
+
+        </head_merge>
 
 
 		<div class="jumbotron">
-			<h1>Informacje, uwagi i ogłoszenia</h1>
+			<h1>Wiadomości, uwagi i ogłoszenia</h1>
 		</div>
-		<div class="row">
-		<div class="col-lg-3"></div>
-		<div class="col-lg-3">
-		</div>
-		<div class="col-lg-3"></div>
-		</div>
+        <div class="mainRow row">
+        <div class="col-lg-6">
+            <h2>Uwagi i ogłoszenia</h2>
+            <div class="msg-grp" data-lift="view.MainSn.showPupilMessages">
+                <div class="row msg">
+                    <div class="messegeSign col-sm-2">
+                        <span class="glyphicon glyphicon-user"></span>
+                        <span class="msg-name"></span>
+                        <br/>
+                        <span class="glyphicon glyphicon-calendar"></span> <span
+                            class="msg-date"> </span>
+                    </div>
+                    <div class="msg-cont  col-sm-10"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <h2>Wiadomości od nauczycieli</h2>
+            <div>
+            <span class="btn btn-lg btn-info" onclick="infoPupil.newMessage()">
+            <span class="glyphicon glyphicon-plus-sign"></span> Nowa wiadomość</span>
+            </div>
+            <hr/>
+            <div class="msg-grp" data-lift="view.MainSn.showMessages">
+                <div class="row msg">
+                    <div class="messegeSign col-sm-2">
+                        <span class="glyphicon glyphicon-user"></span>
+                        <span class="msg-name"></span>
+                        <br/>
+                        <span class="glyphicon glyphicon-calendar"></span> <span
+                            class="msg-date"> </span>
+                    </div>
+                    <div class="msg-cont  col-sm-10"></div>
+                </div>
+                <div class="msg-answer row">
+                    <div class="col-sm-9"></div>
+                    <div class="col-sm-3">
+                        <span class="btn btn-success btn-sm"
+                              onclick="infoPupil.openAddComment(this, id)">
+                        <span class="glyphicon glyphicon-comment"> Dodaj</span>
+                         </span>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
-		<p id="addInfo"></p>
+        </div>
+
 
 		<br /> <br />
+
+        <div id="addMessageForm" title="">
+            <form  data-lift="view.MainSn.newMessage"
+                   method="post">
+
+                        <div class="horizontal-form" id="teacherMessageS">
+                            <div class="input-group">
+                                <span class="input-group-addon">Nauczyciel: </span>
+                                <select id="teacherMessage"  class="form-control"></select>
+                                <button id="sendMessage" class="input-group-btn"
+                                        onclick="return infoPupil.prepareSubmit()">  Prześlij
+                                </button>
+                            </div>
+                        </div>
+
+                <div class="form-group">
+                    <textarea id="writeMessage"></textarea>
+                </div>
+            </form>
+        </div>
+
+        <div id="addCommentForm" title="" style="display:none;">
+            <form  data-lift="view.MainSn.addComment"
+                   method="post">
+                <div class="">
+                    <div class="form-group">
+                        <div class="col-md-8"><input id="idMessage" style="display:none;" />
+                            <textarea id="writeComment" class="form-control" rows="3"></textarea></div>
+                        <div class="col-md-4"><button id="addComment" class="btn btn-lg btn-success">
+                            <span class="glyphicon glyphicon-envelope"></span>  Wyślij
+                        </button></div>
+                    </div>
+
+                </div>
+
+            </form>
+        </div>
+
+
+
 	</div>
 
 

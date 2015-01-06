@@ -17,11 +17,11 @@ import  _root_.net.liftweb.http.js.JsCmds._
 
 
 class AnouncesSn extends BaseTeacher {
-	
-  val classId = ClassChoose.is	
-  
+
+  val classId = ClassChoose.is
+
   def dataTable() = {
-    val anounces = Announce.findAll("classId"->classId, ("_id"-> -1))
+    val anounces = MessagePupil.findAll(("classId"->classId)~("opinion"->false), ("_id"-> -1))
     "tr" #> anounces.map(anounce => {
       ".id *" #> anounce._id.toString &
       ".dateIn *" #> Formater.formatDate(new Date(anounce._id.getTime())) &
@@ -29,17 +29,17 @@ class AnouncesSn extends BaseTeacher {
       ".teacher *" #> anounce.teacherName
     })
   }
-  
+
   def saveData() = {
     var id = ""
     var content = ""
-    
+
     def save():JsCmd = {
-      val anounce = Announce.find(id).getOrElse(Announce.create)
+      val anounce = MessagePupil.find(id).getOrElse(MessagePupil.create)
       if(id == "" || user.id.is == anounce.teacherId) {
             if (anounce.classId == 0L) anounce.classId = classId
             anounce.body = content
-           
+
             if(id == "") {
               anounce.teacherId = user.id.is
               anounce.teacherName = user.getFullName

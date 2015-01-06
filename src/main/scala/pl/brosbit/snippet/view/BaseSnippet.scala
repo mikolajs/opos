@@ -11,7 +11,7 @@ import edu._
 import Helpers._
 
 trait BaseSnippet {
-  
+  val user = User.currentUser.openOrThrowException("Uczeń musi być zalogowany")
   
 }
 

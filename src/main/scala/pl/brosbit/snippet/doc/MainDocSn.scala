@@ -28,7 +28,7 @@ class MainDocSn extends BaseDoc {
    val mess = if(page*perPage >= pages) allMess.slice((page-1)*perPage, (page)*perPage)
     else allMess.take(perPage)
 
-    if(mess.isEmpty) ".msg-blue" #> <h2>Brak wiadomości</h2>
+    if(mess.isEmpty) ".msg-grp" #> <h2>Brak wiadomości</h2>
     else {
       ".msg-grp" #> mess.map(m => {
         //println("showMessage message m.id " + m._id.toString)
@@ -79,7 +79,10 @@ class MainDocSn extends BaseDoc {
             })
             mess.who = mess.who.distinct
             //println("newMessage people who length: " + mess.who.length)
-            if(mess.who.length > 0) mess.save
+            if(mess.who.length > 0) {
+              mess.who = user.id.is::mess.who
+              mess.save
+            }
           }
         }
       }
@@ -119,7 +122,6 @@ class MainDocSn extends BaseDoc {
 
 
   def pupilsData() = {
-    var pupilsList = ""
     def refresh(classId:String):JsCmd = {
       val classIdLong = tryo(classId.toLong).getOrElse(0L)
       val pupils = User.findAll(By(User.classId, classIdLong), By(User.role, "u"))
@@ -136,7 +138,7 @@ class MainDocSn extends BaseDoc {
       SetHtml("pupilMessage", pupilsNodes)
     }
 
-    "#pupilsDataHidden" #> SHtml.ajaxText(pupilsList, classId => refresh(classId))
+    "#pupilsDataHidden" #> SHtml.ajaxText("", classId => refresh(classId))
   }
 
 
