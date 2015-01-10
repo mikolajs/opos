@@ -30,7 +30,7 @@ var InfoPupil = dejavu.Class.declare({
     newMessage : function() {
         console.log("new Message");
         var $editForm = $("#addMessageForm");
-        $editForm.dialog("option", "title", "Dodaj wiadomość");
+        $editForm.dialog("option", "title", "Utwórz nową wiadomość");
         $editForm.dialog("open");
     },
 
@@ -62,30 +62,6 @@ var InfoPupil = dejavu.Class.declare({
            '</div><div class="msg-cont  col-sm-10">' + comment + '</div></div>';
         $("#addCommentForm").parent().before(commentCont);
     },
-
-
-    prepareSubmit : function() {
-        var toAdd = "";
-        var checked = $("#allTeacherMessage").prop("checked");
-        if(checked) {
-            $("#toWhoMessage").val("Ogłoszenie");
-            return true;
-        }
-        $("#peopleToSend").children("li").each(function(){
-            toAdd += $(this).text() + ";";
-        });
-        console.log("prepareSubmit toAdd: " + toAdd.length);
-        if(toAdd.length == 0) return false;
-        $("#toWhoMessage").val(toAdd);
-        return true;
-    },
-
-     triggerRefreshPupils : function() {
-         var classId = $('#classMessage option:selected').val()
-         console.log(classId);
-         $('#pupilsDataHidden').val(classId);
-         document.getElementById("pupilsDataHidden").onblur();
-     }
 
 
 });

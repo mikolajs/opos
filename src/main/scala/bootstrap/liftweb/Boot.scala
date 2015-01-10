@@ -140,7 +140,7 @@ class Boot {
         Menu("Rozkłady") / "documents" / "themesplan" >> LocGroup("documents") >> isTeacher,
         Menu("Dokumenty") / "documents" / "doctemplate" / ** >> LocGroup("documents") >> isTeacher,
         Menu("Szablon") / "documents" / "createtemplate" / ** >> LocGroup("extra") >> isAdmin,
-        Menu("Informacja") / "view" / "index" >> LocGroup("view"),
+        Menu("Informacja") / "view" / "index" >> LocGroup("view") >> loggedIn,
         //Menu("Oceny") / "view" / "marks" >> LocGroup("view") >> loggedIn,
         //Menu("Nieobecności") / "view" / "absents" >> LocGroup("view") >> loggedIn,
         Menu("Lekcje") / "view" /  "courses" >> LocGroup("view") >> loggedIn,

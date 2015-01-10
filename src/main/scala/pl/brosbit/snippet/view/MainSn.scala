@@ -28,7 +28,7 @@ class MainSn extends BaseSnippet {
     val mess = if(page*perPage >= pages) allMess.slice((page-1)*perPage, (page)*perPage)
     else allMess.take(perPage)
 
-    if(mess.isEmpty) ".msg-blue" #> <h2>Brak wiadomości</h2>
+    if(mess.isEmpty) ".msg-grp" #> <h2>Brak ogłoszeń lub uwag</h2>
     else {
       ".msg-grp" #> mess.map(m => {
         //println("showMessage message m.id " + m._id.toString)
@@ -60,7 +60,8 @@ class MainSn extends BaseSnippet {
               ".msg-name *" #> Text(b.author) &
               ".msg-date *" #> Text(b.date)
           }) &
-          ".btn-success [onclick]" #> "infoPupil.openAddComment(this, '%s')".format(m._id.toString)
+          ".btn-success [onclick]" #> "infoPupil.openAddComment(this, '%s')".format(m._id.toString) &
+          ".toWhoMessage *" #> m.people
       })
     }
   }
@@ -75,14 +76,15 @@ class MainSn extends BaseSnippet {
       mess.body = List(MessageChunk(user.id.is.toString, user.getFullName, Formater.formatDate(date), body))
       mess.lastDate = date.getTime
       val who = tryo(teacherId.toLong).getOrElse(0L)
-      if (who != 0L) mess.who = who :: mess.who
-            //println("newMessage people who length: " + mess.who.length)
-       if (mess.who.length > 0) {
-              mess.who = user.id.is :: mess.who
-              mess.save
-       }
-
-
+      User.find(By(User.id, who)) match  {
+        case Full(u) => {
+          mess.people = u.getFullName
+          mess.who = List(u.id.is, user.id.is)
+          mess.people = u.getFullName +  " " + user.getFullName
+          mess.save
+        }
+        case _ =>
+      }
     }
     val teacherHead = if(mapTeachers.length > 0) mapTeachers.head._2 else ""
 
@@ -102,7 +104,7 @@ class MainSn extends BaseSnippet {
 
       Message.update(("_id"->idMessage.trim),
         ("$set"->("lastDate"->date.getTime))~("$addToSet"->("body"->messChunk.toMap)))
-      JsFunc("infoTeacher.insertComment", user.getFullName + ";" + formatedDate ).cmd
+      JsFunc("infoPupil.insertComment", user.getFullName + ";" + formatedDate ).cmd
     }
 
     val form = "#idMessage" #> SHtml.text(idMessage, idMessage = _) &

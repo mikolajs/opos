@@ -39,7 +39,8 @@ class MainDocSn extends BaseDoc {
             ".msg-name *" #> Text(b.author) &
             ".msg-date *" #> Text(b.date)
         }) &
-        ".btn-success [onclick]" #> "infoTeacher.openAddComment(this, '%s')".format(m._id.toString)
+        ".btn-success [onclick]" #> "infoTeacher.openAddComment(this, '%s')".format(m._id.toString) &
+        ".toWhoMessage *" #> m.people
     })
   }
   }
@@ -53,11 +54,13 @@ class MainDocSn extends BaseDoc {
 
     def add() {
       val toSend = peopleStr.split(';')
+      println(peopleStr)
       val allReg = "Ogłoszenie".r
       val mess = Message.create
       val date = new Date
       mess.body = List(MessageChunk(user.id.is.toString, user.getFullName, Formater.formatDate(date), body))
       mess.lastDate = date.getTime
+      mess.people = user.getFullName
       if(toSend.length > 0 && !toSend.head.trim.isEmpty){
         allReg.findFirstIn(toSend.head) match {
           case Some(str) => {
@@ -70,15 +73,19 @@ class MainDocSn extends BaseDoc {
             toSend.take(5).foreach(adr => {
               num.findFirstIn(adr) match {
                 case Some(str) => {
-                  //println("newMessage people str of Ogłoszenie: " + str)
+                  println("newMessage people str of Ogłoszenie: " + str)
                   val who = tryo(str.toLong).getOrElse(0L)
-                  if(who != 0L) mess.who = who::mess.who
+                  if(who != 0L) {
+                    mess.who = who::mess.who
+                    mess.people += " " + tryo(adr.split('[').head).getOrElse("???")
+                  }
+
                 }
-                case _ =>
+                case _ => println("newMessage people str Id not found ")
               }
             })
             mess.who = mess.who.distinct
-            //println("newMessage people who length: " + mess.who.length)
+            println("newMessage people who length: " + mess.who.length)
             if(mess.who.length > 0) {
               mess.who = user.id.is::mess.who
               mess.save
@@ -130,9 +137,9 @@ class MainDocSn extends BaseDoc {
         val father = p.father.obj.getOrElse(User.create)
         val mather = p.mather.obj.getOrElse(User.create)
           <optgroup label={p.getFullName}>
-            <option value={p.id.is.toString}>{p.getFullName}</option>
-            <option value={father.id.is.toString}>{"Ojciec: " + father.getFullName}</option>
-            <option value={mather.id.is.toString}>{"Matka: " + mather.getFullName}</option>
+            <option value={p.id.is.toString}>{p.getFullName + " [" + p.id.is.toString + "]"}</option>
+            <option value={father.id.is.toString}>{"O: " + father.getFullName + " [" + father.id.is.toString + "]"}</option>
+            <option value={mather.id.is.toString}>{"M: " + mather.getFullName + " [" + mather.id.is.toString + "]"}</option>
           </optgroup>
     })
       SetHtml("pupilMessage", pupilsNodes)

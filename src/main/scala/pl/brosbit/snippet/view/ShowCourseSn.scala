@@ -9,6 +9,8 @@ import pl.brosbit.model._
 import Helpers._
 import pl.brosbit.snippet.BaseShowCourseSn
 import pl.brosbit.lib.Formater
+import net.liftweb.mapper.By
+import net.liftweb.common.Full
 
 class ShowCourseSn extends BaseShowCourseSn {
   
@@ -34,9 +36,16 @@ class ShowCourseSn extends BaseShowCourseSn {
           val d = new Date()
           val mc= MessageChunk(user.id.is.toString, user.getFullName, Formater.formatTime(d), body)
           message.lastDate = d.getTime
-          message.who = List(course.authorId, user.id.is)
           message.body = List(mc)
-          message.save
+          User.find(By(User.id, course.authorId)) match  {
+            case Full(u) => {
+              message.people = u.getFullName
+              message.who = List(u.id.is, user.id.is)
+              message.people = u.getFullName +  " " + user.getFullName
+              message.save
+            }
+            case _ =>
+          }
         }
       }
       

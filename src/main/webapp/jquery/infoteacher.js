@@ -102,6 +102,7 @@ var InfoTeacher = dejavu.Class.declare({
     _hideAll : function() {
         $('#classMessageS').hide();
         $('#pupilMessageS').hide();
+        $('#allTeacherMessageS').hide();
         $('#teacherMessageS').hide();
         $("#showClass").removeClass("btn-info");
         $("#showPupil").removeClass("btn-info");
@@ -115,6 +116,7 @@ var InfoTeacher = dejavu.Class.declare({
         $("#showTeacher").addClass("btn-info");
         this.addressKind = 't';
         $('#teacherMessageS').show();
+        $('#allTeacherMessageS').show();
     },
 
     showPupil : function() {
