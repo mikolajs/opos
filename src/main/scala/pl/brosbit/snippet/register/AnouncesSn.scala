@@ -21,7 +21,7 @@ class AnouncesSn extends BaseTeacher {
   val classId = ClassChoose.is
 
   def dataTable() = {
-    val anounces = MessagePupil.findAll(("classId"->classId)~("opinion"->false), ("_id"-> -1))
+    val anounces = MessagePupil.findAll(("classId"->classId)~("opinion"->false), ("_id"-> 1))
     "tr" #> anounces.map(anounce => {
       ".id *" #> anounce._id.toString &
       ".dateIn *" #> Formater.formatDate(new Date(anounce._id.getTime())) &
@@ -43,8 +43,9 @@ class AnouncesSn extends BaseTeacher {
             if(id == "") {
               anounce.teacherId = user.id.is
               anounce.teacherName = user.getFullName
-               anounce.save
-               JsFunc("editForm.insertRowAndClear", anounce._id.toString).cmd
+              anounce.dateStr = Formater.formatDate(new Date)
+              anounce.save
+              JsFunc("editForm.insertRowAndClear", anounce._id.toString).cmd
             }
             else {
               anounce.save

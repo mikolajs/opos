@@ -22,7 +22,7 @@ class OpinionsSn extends BaseTeacher {
   val classId = ClassChoose.is	
   
   def dataTable() = {
-    val opinions = MessagePupil.findAll(("classId"->classId)~("opinion"->true),("_id")-> -1)
+    val opinions = MessagePupil.findAll(("classId"->classId)~("opinion"->true),("_id")-> 1)
     "tr" #> opinions.map(opinion => {
       ".id *" #> opinion._id.toString &
       ".dateIn *" #> Formater.formatDate(new Date(opinion._id.getTime()))&
@@ -38,30 +38,27 @@ class OpinionsSn extends BaseTeacher {
     var id = ""
     var content = ""
     var pupilId = ""
-    
-    def save():JsCmd = {
+
+    def save(): JsCmd = {
       val opinion = MessagePupil.find(id).getOrElse(MessagePupil.create)
 
-      if(id == "" || user.id.is == opinion.teacherId) {
-            if (opinion.classId == 0L) opinion.classId = classId
-            opinion.body = content
-            if(opinion.classId == 0L && opinion.pupilId == 0L) {
-              opinion.teacherId = user.id.is
-              opinion.teacherName = user.getFullName
-              val pupil = User.find(pupilId).getOrElse(User.create)
-              opinion.pupilName = pupil.shortInfo
-              opinion.pupilId = pupil.id.is
-              opinion.classId = ClassChoose.is
-              opinion.save
-              JsFunc("editForm.insertRowAndClear", opinion._id.toString).cmd
-            }
-            else {
-              opinion.save
-              JsFunc("editForm.insertRowAndClose", opinion._id.toString).cmd
-            }
-          }
+      if (opinion.teacherId == 0L || user.id.is == opinion.teacherId) {
+        opinion.body = content
+        opinion.teacherId = user.id.is
+        opinion.teacherName = user.getFullName
+        val pupil = User.find(pupilId).getOrElse(User.create)
+        opinion.pupilName = pupil.shortInfo
+        opinion.pupilId = pupil.id.is
+        opinion.classId = ClassChoose.is
+        opinion.opinion = true
+        opinion.dateStr = Formater.formatDate(new Date)
+        opinion.save
+        JsFunc("editForm.insertRowAndClose", opinion._id.toString).cmd
+
+      }
       else Alert("Tylko właściciel może zmienić wpis!")
     }
+
     val pupils = User.findAll(By(User.classId, classId),By(User.role,"u")).filter(!_.scratched.is).map(user => {
     (user.id.toString, user.shortInfo)
     })

@@ -22,7 +22,8 @@ object MapExtraData extends MongoDocumentMeta[MapExtraData] {
           case Nil => Map()
           case list  => list.head.data
         }
-      }
+   }
+
   def setMapData(key : String, data:Map[String,String]) {
     val keyTrimmed = key.trim
     val mapExtraData = MapExtraData.findAll(("key" -> keyTrimmed))  match {

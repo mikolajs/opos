@@ -26,6 +26,10 @@ object ExtraData extends MongoDocumentMeta[ExtraData] {
           case list  => list.head.data
         }
       }
+
+  def updateKey(key:String,data:String) {
+    ExtraData.update({"key"->key},{("key"->key)~("data"->data)}, Upsert )
+  }
 }
 
 case class ExtraData(var _id: ObjectId, var key:String,

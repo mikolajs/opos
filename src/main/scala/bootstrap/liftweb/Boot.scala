@@ -19,6 +19,7 @@ import _root_.pl.brosbit.model._
 import _root_.pl.brosbit.api._
 import _root_.pl.brosbit.lib.MailConfig
 import _root_.net.liftweb.mongodb._
+import pl.brosbit.comet.CronActor
 
 import pl.brosbit.lib.{ConfigLoader => CL}
 
@@ -261,9 +262,9 @@ class Boot {
       
       //DataTable.init
       
-        LiftRules.early.append(makeUtf8)
+    LiftRules.early.append(makeUtf8)
 
-      LiftRules.htmlProperties.default.set((r: Req) =>new Html5Properties(r.userAgent)) 
+    LiftRules.htmlProperties.default.set((r: Req) =>new Html5Properties(r.userAgent))
 
     LiftRules.loggedInTest = Full(() => User.loggedIn_?)
 
@@ -276,6 +277,10 @@ class Boot {
     LiftRules.liftRequest.append {
       case Req("extra" :: _, _, _) => false
     }
+
+    val cron = new CronActor()
+
+
 
     S.addAround(DB.buildLoanWrapper)
   }

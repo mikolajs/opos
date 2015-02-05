@@ -20,9 +20,10 @@ class MainSn extends BaseSnippet {
   def showPupilMessages() = {
     val page = S.param("p").openOr("1").toInt
     val perPage = 30
-    val q1:JValue = ("opionion"-> false)~("classId"-> user.classId.is)
-    val q2:JValue = ("opionion"-> true)~("pupilId"-> user.id.is)
+    val q1:JValue = ("opinion"-> false)~("classId"-> user.classId.is)
+    val q2:JValue = ("opinion"-> true)~("pupilId"-> user.id.is)
     val allMess =  MessagePupil.findAll(("$or"->List(q1,q2)),("_id" -> -1))
+    println("View pupil messages length: " + allMess.length)
     val pages = allMess.length
 
     val mess = if(page*perPage >= pages) allMess.slice((page-1)*perPage, (page)*perPage)
@@ -32,7 +33,7 @@ class MainSn extends BaseSnippet {
     else {
       ".msg-grp" #> mess.map(m => {
         //println("showMessage message m.id " + m._id.toString)
-        ".msg-grp [class]" #> (if(m.opinion) "msg-grp msg-red"  else  "msg-grp msg-green") &
+        ".msg-grp [class]" #> (if(m.opinion) "msg-grp msg-red"  else  "msg-grp msg-blue") &
             ".msg-cont *" #> Unparsed(m.body) &
               ".msg-name *" #> Text(m.teacherName) &
               ".msg-date *" #> Text(m.dateStr)
@@ -103,7 +104,7 @@ class MainSn extends BaseSnippet {
       val messChunk =  MessageChunk(user.id.is.toString, user.getFullName, formatedDate, body.trim)
 
       Message.update(("_id"->idMessage.trim),
-        ("$set"->("lastDate"->date.getTime))~("$addToSet"->("body"->messChunk.toMap)))
+        ("$set"->(("lastDate"->date.getTime)~("mailed" -> false)))~("$addToSet"->(("body"->messChunk.toMap))))
       JsFunc("infoPupil.insertComment", user.getFullName + ";" + formatedDate ).cmd
     }
 
@@ -113,6 +114,7 @@ class MainSn extends BaseSnippet {
 
     "form" #> (in => form(in))
   }
+
 
   private def getTeachers = {
     val seq: Seq[String] = List("n", "a", "d", "s")

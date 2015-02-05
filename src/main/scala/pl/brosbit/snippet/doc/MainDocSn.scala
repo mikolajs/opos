@@ -115,7 +115,7 @@ class MainDocSn extends BaseDoc {
       val messChunk =  MessageChunk(user.id.is.toString, user.getFullName, formatedDate, body.trim)
 
       Message.update(("_id"->idMessage.trim),
-        ("$set"->("lastDate"->date.getTime))~("$addToSet"->("body"->messChunk.toMap)))
+        ("$set"->(("lastDate"->date.getTime)~("mailed" -> false)))~("$addToSet"->("body"->messChunk.toMap)))
       JsFunc("infoTeacher.insertComment", user.getFullName + ";" + formatedDate ).cmd
     }
 
