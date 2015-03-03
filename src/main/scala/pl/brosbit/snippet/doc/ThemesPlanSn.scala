@@ -21,8 +21,7 @@ class ThemesPlanSn extends BaseDoc {
       ".classes *" #> themesPlan.classes.mkString(", ") &
       ".subject *" #> themesPlan.subjectStr &
       ".urlLink *" #> Unparsed("<a href=\"" + themesPlan.urlLink + "\">plik</a>") &
-      ".teacher *" #> themesPlan.teacherName 
-     
+      ".teacher *" #> themesPlan.teacherName
     })
   }
   
@@ -31,11 +30,12 @@ class ThemesPlanSn extends BaseDoc {
     var classesTeacher:List[String] = List()
     var subject = ""
     var urlLink = ""
-    var errorInfo = ""
+    //var errorInfo = ""
     
     def save():JsCmd = {
       val themesPlan = ThemesPlan.find(id).getOrElse(ThemesPlan.create)
-      var user = User.currentUser.get
+      val isNew = themesPlan.urlLink.isEmpty
+      val user = User.currentUser.get
       if(id == "" || user.id.is == themesPlan.teacherId) {
     	  
     	    themesPlan.classes = classesTeacher
@@ -47,7 +47,8 @@ class ThemesPlanSn extends BaseDoc {
             }
     	  if(themesPlan.isValid){
             themesPlan.save
-            JsFunc("editForm.insertRowAndClose", themesPlan._id.toString).cmd
+            if(isNew) JsFunc("editForm.insertRowAndClear", themesPlan._id.toString).cmd
+            else JsFunc("editForm.insertRowAndClose", themesPlan._id.toString).cmd
     	  } else Alert("Nie zapisono! Brakuje linku.")
       }
       else Alert("Tylko właściciel może zmienić wpis!")
@@ -74,7 +75,7 @@ class ThemesPlanSn extends BaseDoc {
     		"#urlLink" #> SHtml.text(urlLink, urlLink = _) & 
     		"#save" #> SHtml.ajaxSubmit("Zapisz", save, "type"->"image") &
           "#delete" #> {if(isAdmin) SHtml.ajaxSubmit("USUŃ!", delete, "type"->"image") 
-        	  					else <span></span>} andThen SHtml.makeFormsAjax
+        	  					else <span class=""></span>} andThen SHtml.makeFormsAjax
     		
         	 "#loggedTeacher" #> <input id="loggedTeacher" value={User.currentUser.get.getFullName} 
         	 							type="text" style="display:none;"/> & 					

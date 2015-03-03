@@ -13,6 +13,7 @@ import json.JsonParser
 import org.bson.types.ObjectId
 import Helpers._
 import pl.brosbit.model.edu.SubjectTeach
+import scala.util.matching.Regex
 
 object SubjectChoose extends SessionVar[Long](0L)
 object LevelChoose extends SessionVar[Int](1)
@@ -35,42 +36,57 @@ val redirectUrl = S.param("r").getOrElse("/login")
   }
 
   def mkLogIn() = {
-    var email = ""
+    var login = ""
     var pass = ""
-    var pesel = ""
+    var message = ""
 
-    def login() {
-      User.findAll(By(User.email, email.trim)) match {
-        case user :: other => {
-          if (user.role == "t" || user.role == "a" || user.role == "d") {
-            if (user.password.match_?(pass.trim)) {
-              User.logUserIn(user)
-              S.redirectTo(redirectUrl)
-            }
-            else S.notice(" Błędne hasło. ")
-          } else {
-            if (user.password.match_?(pass.trim)){
-              if(pesel == user.pesel.is) {
+    def mkLog() {
+      val reg = "^[0-9]{11}$".r
+      val pesel_? = reg.findFirstIn(login.trim) match {
+        case Some(str) => true
+        case _ => false
+      }
+
+      if(pesel_?) {
+        User.findAll(By(User.pesel, login.trim)) match {
+          case user :: other => {
+            if (user.role == "u" || user.role == "r") {
+              if (user.password.match_?(pass.trim)) {
                 User.logUserIn(user)
                 S.redirectTo(redirectUrl)
               }
-              else S.notice(" Błędny pesel ")
-            }
-            else S.notice(" Błędne hasło. ")
+              else message = " Błędny PESEL "
+            } else message = " Będąc nauczycielem wpisz email jako login"
           }
+          case _ => message = " Nie znaleziono PESELu. "
         }
-        case _ => S.notice(" Nie znaleziono adresu email. ")
       }
+      else {
+        User.findAll(By(User.email, login.trim)) match {
+          case user :: other => {
+            if (user.role == "n" || user.role == "a" || user.role == "d") {
+              if (user.password.match_?(pass.trim)) {
+                User.logUserIn(user)
+                S.redirectTo(redirectUrl)
+              }
+              else message = " Błędne hasło "
+            } else message = " Będąc uczeniem wpisz PESEL jako login"
+          }
+          case _ => message = " Nie znaleziono adresu email. "
+        }
+      }
+      S.notice(message)
     }
+
+
     userBox match {
       case Full(user) => {
         "form" #> <span></span>
       }
       case _ => {
-        "#email" #> SHtml.text(email, email = _) &
+        "#login" #> SHtml.text(login, login = _) &
           "#password" #> SHtml.password(pass, pass = _) &
-          "#pesel" #> SHtml.text(pesel, pesel = _) &
-          "#mkLog" #> SHtml.submit("Zaloguj", login)
+          "#mkLog" #> SHtml.submit("Zaloguj", mkLog)
       }
     }
 

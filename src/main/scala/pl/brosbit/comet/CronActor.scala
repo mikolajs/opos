@@ -22,7 +22,7 @@ class CronActor extends LiftActor {
         sendMessages
         sendRepleacmentInfo()
       }
-      LAPinger.schedule(this, Check, 800000L)
+      LAPinger.schedule(this, Check, 1200000L)
     }
   }
 
@@ -80,14 +80,16 @@ class CronActor extends LiftActor {
       val body = if(u.role.is == "r" || u.role.is == "u") {
         (if(noticesInfo.isDefinedAt(u.id.is) && noticesInfo(u.id.is) > 0)
         {have = true; textInfoNotices.format(noticesInfo(u.id.is))} else "") +
-        (if(userInfo.isDefinedAt(u.id.is)) { have = true; textInfoMess.format(userInfo(u.id.is))} else "") +
+        (if(userInfo.isDefinedAt(u.id.is) && userInfo(u.id.is) > 0) {
+          have = true; textInfoMess.format(userInfo(u.id.is))} else "") +
         (if(anouncesClass.isDefinedAt(u.classId.is)) {have = true; textInfoClassAnoun.format(anouncesClass(u.classId.is))}) +
         "Możesz przeczytać informacje na stronie http://edu.epodrecznik.edu.pl/view/index \n "
 
       } else {
         (if(anouncesCount > 0) { have = true; textInfoAnounce.format(anouncesCount)} else "") +
-        (if(userInfo.isDefinedAt(u.id.is)) {have = true; textInfoMess.format(userInfo(u.id.is))} else "") +
-        "Możesz przeczytać informacje na stronie http://edu.epodrecznik.edu.pl/document/index \n "
+        (if(userInfo.isDefinedAt(u.id.is) && userInfo(u.id.is) > 0)
+        {have = true; textInfoMess.format(userInfo(u.id.is))} else "") +
+        "Możesz przeczytać informacje na stronie http://edu.epodrecznik.edu.pl/documents/index \n "
       }
 
       if(have) Mailer.sendMail(From("automat@xxlo.pl"), Subject("Ogłoszenia i wiadomości na stronie"),

@@ -27,6 +27,14 @@
 <!--[if lt IE 7]>
     <link href="ie_style.css" rel="stylesheet" type="text/css" />
 <![endif]-->
+    <script>
+    $(document).ready(function() {
+        //console.log("READY");
+        var $mess = $('#msg');
+        if($mess.text() == "") $mess.hide();
+       });
+
+    </script>
 
 </head>
 <body>
@@ -54,19 +62,14 @@
 			<form class="form-horizontal" data-lift="lift:LoginSn.mkLogIn"
 				role="form" method="post">
 				<div class="form-group">
-				<label>E-mail: </label>
-					<input type="text" placeholder="Email" id="email"
+				<label>E-mail (nauczyciel) / PESEL (uczeń): </label>
+					<input type="text" placeholder="Email/PESEL" id="login"
 						class="form-control" />
 				</div>
 				<div class="form-group">
-					<label>Hasło: </label>
+					<label>Hasło : </label>
 					<input type="password" placeholder="Hasło" id="password"
 						class="form-control" />
-				</div>
-				<div class="form-group">
-				   <label>PESEL: </label>
-					<input type="text" placeholder="Pesel" id="pesel" autocomplete="on"
-						maxlength="11"  class="form-control" />
 				</div>
 				<div class="form-group">
 
@@ -81,11 +84,7 @@
 					</div>
 					<div class="col-sm-3"></div>
 				</div>
-				<div class="panel panel-default" >
-				<div class="panel-body">
-            <span  data-lift="Msgs?showAll=true">Zaloguj</span>
-            </div>
-            </div>
+				<div id="msg" class="alert alert-warning" ><span data-lift="msgs?notice"></span></div>
 			</form>
 			
 		</div>

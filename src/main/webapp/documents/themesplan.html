@@ -6,14 +6,14 @@
             
             <link rel="stylesheet" type="text/css" href="/style/jquery.multiselect.css" />
              <script type="text/javascript" charset="utf-8" src="/jquery/datatableone.js"></script>
-                <script type="text/javascript" charset="utf-8" src="/jquery/editformdiv.js"></script>
+                <script type="text/javascript" charset="utf-8" src="/jquery/edittable.js"></script>
                  <script type="text/javascript" charset="utf-8" src="/jquery/select_operations.js"></script>   
                 <script type="text/javascript" charset="utf-8" src="/jquery/myvalidation.js"></script>
                 <script type="text/javascript" src="/jquery/jquery.multiselect.min.js"></script>
                 <script type="text/javascript" charset="utf-8">
                 var editFrom = new Object();
                 
-                EditFormDiv.prototype.putDataToForm = function(array){
+                EditTable.prototype.putDataToForm = function(array){
                 	//CKEDITOR.instances['contentData'].updateElement();
                 	document.getElementById('id').value = array[0];
                 	 var select = document.getElementById('classes');
@@ -21,9 +21,10 @@
                      select = document.getElementById('subject');
                      setSelectedIndexWithInner(select,array[2]);
              		document.getElementById('urlLink').value = array[3].split('"')[1];
+             		$("#classes").multiselect('refresh');
             	}
             	
-                EditFormDiv.prototype.getData = function(){
+                EditTable.prototype.getData = function(){
                 	   var array = new Array();
                        array[0] = document.getElementById('id').value;
                        var select = document.getElementById('classes'); 
@@ -33,14 +34,16 @@
                        var urlLinkStr = document.getElementById('urlLink').value;
                        array[3] =  '<a href="' + urlLinkStr + '">plik</a>';
                        array[4] = document.getElementById('loggedTeacher').value;
+                       array[5] = '<button class="btn btn-info editButton" onclick="editForm.startEditRow(this)">' +
+                       '<span class="glyphicon glyphicon-pencil"></span>Edytuj</button>'
             		return array;
             	}
                
                 
-                EditFormDiv.prototype.addNewItemInfo = 'Dodawanie rozkładów materiału';
-                EditFormDiv.prototype.editItemInfo = 'Edycja rozkładów materiału';
+                EditTable.prototype.addNewItemInfo = 'Dodawanie rozkładów materiału';
+                EditTable.prototype.editItemInfo = 'Edycja rozkładów materiału';
                 
-                EditFormDiv.prototype.validate = function () { 
+                EditTable.prototype.validate = function () {
                 	clearFormsAddInfo(); 
            	 		var errorText = "";
         	 		var isError = false;
@@ -55,7 +58,7 @@
                }
                        
                 $(document).ready(function(){         	                     		
-                	editForm = new EditFormDiv();
+                	editForm = new EditTable();
                 	editForm.init(500,480);
                 	
                 	$("#classes").multiselect({
@@ -67,52 +70,69 @@
                          var oldSave = $('#save').attr('onclick');
                          $('#save').attr('onclick', addToSave + oldSave);
                 });
-            
+
+             function getImageURLfromIFrame(elem){
+	            var innerDoc = elem.contentDocument || elem.contentWindow.document;
+	            var url  = innerDoc.getElementById('linkpath').innerHTML;
+	            $('#urlLink').val(url);
+               }
+
                
                 </script>
                 <style >
                 	.errorInfo { background-color: #faa;}
                     #errorInfo { font-style: italic; font-weight: bold; color: red;}
-                    input[readonly] {background: buttonface;}
-                    #formAdd label { float:left; width: 90px; vertical-align: top;}
-                    #formAdd  textarea { width: 325px; }
-                    #buttons  { text-align:center; }
-					#buttons span	{ 
-    display: -moz-inline-box;
-    width: 20%;
-    text-align: center;}
+
+
+
  
                    
                 </style>
             </head_merge>
 
-            <div class="container_12">              
+            <div>
                 
                 <div class="lift:doc.ThemesPlanSn.saveAjaxDate" id="formAdd" style="display: none;" title="Dane uczniów">
                 <input id="loggedTeacher"  type="text" style="display:none;"/> 
                 <form   method="POST">
-               <p>
+
                   <input id="id" type="text" />
-                </p> 
-                <p id="classStrRow">
-                	<label for="classes">Klasy:</label>
-                  <p id="tagContainer"> <select id="classes" ></select></p>
-                </p>
-                <p id="subjectRow">
-                	<label for="subject">Przedmiot:</label>
-                   <select id="subject" ></select>
-                </p>
-                 <p id="urlLinkRow">
-                  <label for="urlLink">Link:</label>
-                  <input id="urlLink" type="text" readonly="readonly"/>
-                </p>
-                <p><iframe src="/filestorage" width="100%" height="180px;"></iframe> </p>
-                
-                
-                <p id="buttons"> 
-                    <span><input type="image"  src="/style/images/saveico.png"  id="save"/></span>
-                    <span><input type="image" src="/style/images/delico.png"  id="delete"/></span>
-                </p>
+
+                <div id="classStrRow" class="form-group" >
+                	<label class="col-md-4" for="classes">Klasy:</label>
+                  <div  id="tagContainer" class="col-md-8">
+                      <select id="classes" ></select>
+                  </div>
+                </div>
+                <div style="clear:both;"></div>
+                <br/>
+                <div id="subjectRow" class="form-group">
+                	<label class="col-md-4 control-label" for="subject" >Przedmiot: </label>
+                   <div class="col-md-8"><select id="subject"  class="form-control" ></select></div>
+                </div>
+
+                 <div id="urlLinkRow" class="form-group">
+                  <label class="col-md-4 control-label" for="urlLink">Link:</label>
+                     <div class="col-md-8">
+                        <input class="form-control" id="urlLink" type="text" readonly="readonly"/>
+                    </div>
+                </div>
+
+                <div class="form-group" id="urlLinkRow">
+
+                    <iframe src="/filestorage" onload="getImageURLfromIFrame(this)"
+                            style=" width: 100%; height:200px; border:0px;"></iframe>
+                </div>
+
+                <div class="form-group" id="buttons">
+                    <div class="col-md-6"></div>
+                    <div class="col-md-6">
+                    <input class="btn btn-lg btn-success" type="button"
+                                 value="Zapisz!"  id="save"/>
+                    <input class="btn btn-lg btn-danger" type="button"
+                                 value="Usuń!"  id="delete"/>
+                    </div>
+                </div>
                 <p id="addInfo"></p>
                 </form>
                 </div>
@@ -120,14 +140,15 @@
 
 
                 <h3>Rozkłady materiału</h3><hr />
-                <p><label for="newadd">Dodaj:</label>
-                <input src="/style/images/addico.png" type="image" id="newadd"></p>
+                <p><span class="btn btn-lg btn-info" id="newadd">
+                <span class="glyphicon glyphicon-plus-sign"  ></span> Nowy rozkład</span>
+                </p>
                 <table id="fullList" class="display" border="0" cellpadding="2" cellspacing="2" >
                    
                    <thead>
-                       <tr>
-                       <th>ID</th><th>Klasa</th><th>Przedmiot</th>
-                       <th>Załącznik</th><th>Nauczyciel</th>
+                       <tr><th>ID</th>
+                       <th>Klasa</th><th>Przedmiot</th>
+                       <th>Załącznik</th><th>Nauczyciel</th><th>Edycja</th>
                        </tr>
                    </thead>
 
@@ -138,8 +159,19 @@
                             <td class="subject"></td>
                             <td class="urlLink"></td>
                             <td class="teacher"></td>
+                            <td class="edit"><button class="btn btn-info editButton" onclick="editForm.startEditRow(this)">
+                                <span class="glyphicon glyphicon-pencil"></span>Edytuj</button></td>
                         </tr>
                     </tbody>
+
+                    <tfoot>
+                    <tr><th>ID</th>
+                        <th>Klasa</th><th>Przedmiot</th>
+                        <th>Załącznik</th><th>Nauczyciel</th><th>Edycja</th>
+                    </tr>
+                    </tfoot>
+
+
                 </table>
 
             </div>

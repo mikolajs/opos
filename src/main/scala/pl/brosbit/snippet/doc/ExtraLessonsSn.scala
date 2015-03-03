@@ -32,7 +32,8 @@ class ExtraLessonsSn extends BaseDoc {
     
     def save():JsCmd = {
       val extraLesson = ExtraLessons.find(id).getOrElse(ExtraLessons.create)
-      var user = User.currentUser.get
+      val isNew = extraLesson.teacherId == 0L
+      val user = User.currentUser.get
       if(id == "" || user.id.is == extraLesson.teacherId) {
             extraLesson.title = title.trim()
             extraLesson.description = description.trim()
@@ -42,7 +43,8 @@ class ExtraLessonsSn extends BaseDoc {
               extraLesson.teacherName = user.getFullName
             }
             extraLesson.save
-            JsFunc("editForm.insertRowAndClose", extraLesson._id.toString).cmd
+            if(isNew) JsFunc("editForm.insertRowAndClear", extraLesson._id.toString).cmd
+            else JsFunc("editForm.insertRowAndClose", extraLesson._id.toString).cmd
           }
       else Alert("Tylko właściciel może zmienić wpis!")
     }
@@ -65,7 +67,7 @@ class ExtraLessonsSn extends BaseDoc {
     		"#when" #> SHtml.text(when, when = _) & 
     		"#save" #> SHtml.ajaxSubmit("Zapisz", save, "type"->"image") &
           "#delete" #> {if(isAdmin) SHtml.ajaxSubmit("USUŃ!", delete, "type"->"image") 
-        	  					else <span></span>} andThen SHtml.makeFormsAjax
+        	  					else <span class=""></span>} andThen SHtml.makeFormsAjax
     		
         	 "#loggedTeacher" #> <input id="loggedTeacher" value={User.currentUser.get.getFullName} 
         	 							type="text" style="display:none;"/> & 					

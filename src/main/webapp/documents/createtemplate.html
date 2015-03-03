@@ -8,8 +8,8 @@
 <script>
 $(document).ready(function(){
 	CKEDITOR.replace( 'comment',{
-	    width : 700, 
-	    height: 150,
+	    width : 750,
+	    height: 120,
 	    toolbar : [ 
 	    [ 'Link','Unlink','Anchor' ] ,
 	    [ 'Cut','Copy','Paste','PasteText','-','Undo','Redo' ],
@@ -18,37 +18,42 @@ $(document).ready(function(){
 	    [ 'TextColor'] ]
 	});
 	CKEDITOR.replace( 'template',{
-	    width : 700, 
-	    height: 350,
+	    width : 750,
+	    height: 400,
+	    extraPlugins :  'symbol',
 	    toolbar : [ [ 'Source' ],
-                    [ 'Link','Unlink','Anchor' ],[ 'Maximize', 'ShowBlocks','-','About' ] ,
+                    [ 'Link','Unlink','Anchor' ],[ 'ShowBlocks'] ,
         [ 'Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo' ],
-        [ 'Find','Replace','-','SelectAll' ],
+        [ 'Find','Replace','-','SelectAll' ], [ 'AddImage', 'Table','Symbol' ] ,
         [ 'Bold','Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat' ],
-        [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','BidiLtr','BidiRtl' ],
-        [ 'AddImage',  'YouTube', 'AddFile', 'Formula', 'Table','HorizontalRule','SpecialChar','Iframe' ] ,
-        [ 'Styles','Format','FontSize','Font' ],
-        [ 'TextColor','BGColor' ] ]
+        [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock' ],
+        [ 'Format','FontSize' ] ]
 	});
 });
 
 </script>
 </head_merge>
-	<div class="container_12">
+	<div class="container" style="max-width: 750px;" >
 	<h1>Edycja szablonu</h1>
-	<form class="lift:doc.CreateTemplateSn.edit" method="POST">
+	<form class="lift:doc.CreateTemplateSn.edit form-horizontal" method="POST">
 	 <input id="id" type="text" style="display:none;"/>	
-	 <p><label>Tytuł:</label><br/><input type="text" id="title"/></p>
-     <p> <label>Opis:</label><br/><textarea id="comment"></textarea></p>
-     <p> <label>Szablon:</label><br/><textarea id="template"></textarea></p>
+	 <div class="form-group"><label class="col-md-3">Tytuł:</label><div class="col-md-9"><input type="text"  class="form-control" id="title"/></div></div>
+     <div class="form-group"><label class="col-md-3"> <input class="from-control" id="table" type="checkbox"/>  Jedna tabela</label></div>
+     <br/>
+     <div class="form-group" style="margin-left: 4px;"> <label >Opis:</label><br/><textarea id="comment"></textarea></div>
+     <div class="form-group" style="margin-left: 4px;"> <label>Szablon:</label><br/><textarea id="template"></textarea></div>
      
-     <p><input id="save"/>
-     <input id="delete" onclick="return confirm('Na pewno usunąć szablon?');"/>
-     <input id="discard" value="Porzuć" onclick="return confirm('Czy chcesz wyjść bez zapisu?');" type="submit"/></p>
+     <div class="form-group">
+      <div class="col-md-2"></div>
+         <div class="col-md-3"><input id="save"  class="btn btn-success"/></div>
+       <div class="col-md-3"><input id="delete" onclick="return confirm('Na pewno usunąć szablon?');" class="btn btn-danger"/></div>
+       <div class="col-md-3"><input id="discard" value="Porzuć" onclick="return confirm('Czy chcesz wyjść bez zapisu?');" type="submit" class="btn btn-default"/></div>
+     <div class="col-md-1"></div>
+
+        </div>
      </form>
      
-     
-    <div class="clear"></div>
+     <br/><br/><br/>
     
     </div>
 	 		

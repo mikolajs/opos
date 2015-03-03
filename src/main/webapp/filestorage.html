@@ -1,15 +1,30 @@
 <!DOCTYPE html>
 <html>
     <head>
-    <script type="text/javascript" src="/jquery/jquery.js"></script>    
+
+        <script src="/jquery/jquery.min.js"></script>
+        <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <style>input[type="file"] {min-height: 45px;}</style>
     </head>
 <body>
-<h4>Wczytywanie pliku:</h4>
-	<form class="lift:page.FilesSn.uploadFile" method="POST" enctype="multipart/form-data" >
-	<input id="file" /><br />
-	<input id="submit" /><br /><hr />
+
+	<form class="lift:page.FilesSn.uploadFile container" method="POST" enctype="multipart/form-data" >
+    <fieldset>
+      <h4>Wczytywanie pliku:</h4>
+
+    <div class="form-group">
+            <input id="file"  class="form-control"/>
+    </div>
+    <div>
+
+	<input class="btn btn-info" id="submit" onclick=""/>
+
+    </div>
 	<p><span id="linkpath" ></span> </p>
         <lift:msgs/>
-	</form><br />
+        </div>
+    </fieldset>
+	</form>
+
 </body>
 </html>
