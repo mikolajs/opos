@@ -77,6 +77,6 @@ class DocTemplateSn extends BaseDoc {
       docHead.template
     }
     else userTemplateList.head.template  
-  } 
+  }
   
 }

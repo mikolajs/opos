@@ -29,10 +29,13 @@ object TemplateDocumentCreater {
       case Some(docHead) => {
         DocTemplateContent.find(docHead.content) match {
           case Some(docContent) => {
+
               val documents = docContent.content.map(_.template)
+            val content:String = if(docHead.tab) docHTMLasTable(documents, docHead.template)
+              else docHTMLasDiv(documents)
         	  """<html><head><title> %s </title>
             	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" /></head><body> 
-        			 %s </body></html>""".format( docHead.title, documents.mkString("\n"))
+        			 %s </body></html>""".format( docHead.title, content)
            }
           case _ => "Brak dokumentu"
           }
@@ -40,4 +43,20 @@ object TemplateDocumentCreater {
       case _ => "Brak dokumentu"
       }
     }
+
+
+  private def docHTMLasDiv(docs:List[String]) = {
+    docs.mkString("\n")
+  }
+
+  private def docHTMLasTable(docs:List[String], templ:String) = {
+    val reg = "<tr>(*)</tr>".r
+    val trs = docs.map(d => {
+      val res =  reg.findAllIn(d)
+      "<tr>" + res.slice(1,res.length).mkString(" ") + "</tr>"
+    })
+    val ths = reg.findAllIn(templ).slice(0,1).mkString("")
+    "<table><thead><tr>%s</tr><thead><tbody>%s</tbody></table>".format(trs.mkString(""), ths)
+  }
+
 }

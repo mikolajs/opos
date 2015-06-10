@@ -19,19 +19,22 @@ object SubjectChoose extends SessionVar[Long](0L)
 object LevelChoose extends SessionVar[Int](1)
 
 class LoginSn {
-val redirectUrl = S.param("r").getOrElse("/login")
+  val redirectUrl = S.param("r").getOrElse("/login")
   val userBox = User.currentUser
+
   def show() = {
     userBox match {
       case Full(user) =>
-        "a" #> <a href="/user_mgt/logout" class="btn btn-info" role="button" title="Wyloguj" style="padding:10px">
-                 <span class="glyphicon glyphicon-log-out"></span> { user.getFullName }
-               </a>
+        "a" #> <span> <span class="glyphicon glyphicon-user"></span> { user.getFullName }
+          <a href="/user_mgt/logout" class="btn btn-info" role="button" title="Wyloguj" style="padding:10px">
+                 <span class="glyphicon glyphicon-log-out"> Wyloguj</span>
+               </a> </span>
       case _ =>
-        "a" #> <a href="/login" role="button" class="btn btn-default" title="Zaloguj" style="padding:10px">
-                 <span class="glyphicon glyphicon-user"></span>
-                  Niezalogowno
-               </a>
+        "a" #> <span><span class="glyphicon glyphicon-user"></span> Niezalogowano
+          <a href="/login" role="button" class="btn btn-default" title="Zaloguj" style="padding:10px">
+
+            <span class="glyphicon glyphicon-log-in" > Logowanie </span>
+               </a></span>
     }
   }
 

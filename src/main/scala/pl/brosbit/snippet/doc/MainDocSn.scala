@@ -23,6 +23,10 @@ class MainDocSn extends BaseDoc {
    val q1:JValue = "all"-> true
    val q2:JValue = "who"->("$in"->List(user.id.is))
    val allMess =  Message.findAll(("$or"->List(q1,q2)),("lastDate" -> -1))
+
+   //debug only
+    allMess.map(m => m.body.map(b => println(b.body)))
+
    val pages = allMess.length
 
    val mess = if(page*perPage >= pages) allMess.slice((page-1)*perPage, (page)*perPage)
