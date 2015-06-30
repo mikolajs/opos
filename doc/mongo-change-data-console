@@ -101,3 +101,12 @@ while(cursor.hasNext()) {
    db.videos.update({'_id':video._id}, {$set: {"oldPath": path}} ,true, true, true);
 }
 
+
+ar cursor = db.doctemplatehead.find({"_id" : ObjectId("54ddf79844ae2719b8c2e025")});
+while(cursor.hasNext()) {
+   var d = cursor.next(); 
+   print(d.tab);
+db.doctemplatehead.update({"_id" : ObjectId("54ddf79844ae2719b8c2e025")}, {$set: {'tab':
+}
+
+

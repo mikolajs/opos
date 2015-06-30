@@ -1,10 +1,9 @@
-
 <div class="lift:surround?with=page;at=content">
-	<head_merge>
-	<link rel="stylesheet" href="/style/pages.css" />
-    <link rel="stylesheet" href="/style/carousel.css" />
+<head_merge>
+    <link rel="stylesheet" href="/style/pages.css"/>
+    <link rel="stylesheet" href="/style/carousel.css"/>
 
-	<script>     
+    <script>
      function redirectOnFilter() {
          var tag = $('#filter option:selected').val(); 
          if(tag == "Wszystkie artykuły")
@@ -29,226 +28,221 @@
          $(function() {
          $( "#accordion" ).accordion();
          });
-        
-     </script>
-	<style>
-
-.linkNews, .linkNewsImg {
-    display: inline-block;
-    padding-left: 20px;
-    padding-right: 20px;
-    font-size: 1.5em;
-}
-
-.pagersNews ul {
-    margin: auto;
-    text-align: center;
-}
 
 
-#searchBox input[type=text] {
-	width: 190px;
-	height: 32px;
-	vertical-align: top;
-}
+    </script>
+    <style>
 
 
-label {
-	font-weight: bold;
-	font-size: 1.2em;
-	padding-right: 20px;
-}
-
-.gsc-control-cse,.gsc-control-cse-pl {
-	padding: 0 !important;
-}
+        .pagersNews ul {
+        margin: auto;
+        text-align: center;
+        }
 
 
-.linkNewsA {
-	padding: 5px 15px 5px 15px;
-	color: #2da8f8;
-}
+        #searchBox input[type=text] {
+        width: 190px;
+        height: 32px;
+        vertical-align: top;
+        }
 
-.readMore,.pine-box h2 {
-	color: #2da8f8;
-}
 
-.readMore:hover,.linkNewsA:hover,.pine-box h2:hover {
-	color: #FF0000;
-}
+        label {
+        font-weight: bold;
+        font-size: 1.2em;
+        padding-right: 20px;
+        }
 
-.pine-box { 
-    border: 1px solid #ddd;
-    padding: 5px 10px 5px 10px; 
-    margin: 10px 0 10px 0; 
-    background-color: #fff; 
-    -webkit-box-shadow: 2px 3px 4px 2px #667a7a;
-    box-shadow: 1px 2px 4px rgb(34, 25, 25, 0.4);
-    
-    }
-.pine-box h2 {
-    padding: 5px 4px 3px 30px;
-    margin-bottom: 6px;
-    font-size: 18px;
-    background: url(/style/images/pin.png) no-repeat left; 
-    border-bottom: 1px dotted #ccc;
-    }
-    
- .pine-box .imgBox {
-    text-align: center;
-    float: left;
- }
- .pine-box .imgBox img {width: 270px;}
- 
- .pine-box  .textBox {
-    padding-left: 290px;
- }
- .pine-box .pageinfo {
-    text-align: left;
- }
- 
- #accordion ul {min-height: 150px;}
- #accordion h3 {min-height: 35px; font-size: 20px; padding: 4px 10px 4px 30px;}
+        .gsc-control-cse,.gsc-control-cse-pl {
+        padding: 0 !important;
+        }
 
-.pageshort {
-    border-bottom: 1px dotted black;
-    min-height: 110px;
-}
 
-.pageshort > p {
-    margin-top: 5px;
-    margin-bottom: 0px;
-}
+        .linkNewsA {
+        padding: 5px 15px 5px 15px;
+        color: #2da8f8;
+        }
 
-.pageintroduction {
-    padding: 0 0  0 290px;
-    font-weight: bold;
-}
-#linkarea {width:100%;color:#FFF; padding:10px 0; background-color: #222;}
-#linkarea h1 {text-shadow: 0px 1px 1px #000000;}
-#linkarea ul {margin-top:10px;list-style:none;}
-#linkarea ul  li{ list-style:none; border-top:solid 1px #414141; padding: 3px 0;}
+        .readMore,.pine-box h2 {
+        color: #2da8f8;
+        }
+
+        .readMore:hover,.linkNewsA:hover,.pine-box h2:hover {
+        color: #FF0000;
+        }
+
+
+        .pine-box {
+        border: 1px solid #ddd;
+        padding: 5px 10px 5px 10px;
+        margin: 10px 0 10px 0;
+        background-color: #fff;
+        -webkit-box-shadow: 2px 3px 4px 2px #667a7a;
+        box-shadow: 1px 2px 4px rgb(34, 25, 25, 0.4);
+
+        }
+        .pine-box h2 {
+        padding: 5px 4px 3px 30px;
+        margin-bottom: 6px;
+        font-size: 18px;
+        background: url(/style/images/pin.png) no-repeat left;
+        border-bottom: 1px dotted #ccc;
+        }
+
+        .imgBox {
+        text-align: center;
+        width: 275px;
+        float: left;
+
+        }
+        .imgBox img {width: 270px;}
+
+        .textBox {min-width: 275px;}
+
+
+        .pine-box .pageinfo {
+        text-align: left;
+        }
+
+        #accordion ul {min-height: 150px;}
+        #accordion h3 {min-height: 35px; font-size: 20px; padding: 4px 10px 4px 30px;}
+
+        .pageshort {
+        border-bottom: 1px dotted black;
+        min-height: 110px;
+        }
+
+        .pageshort > p {
+        margin-top: 5px;
+        margin-bottom: 0px;
+        }
+
+        .pageintroduction {
+        padding: 0 0 0 290px;
+        font-weight: bold;
+        }
+        #linkarea {color:#FFF; padding:10px 0; background-color: #222;}
+        #linkarea h1 {text-shadow: 0px 1px 1px #000000;}
+        #linkarea ul {margin-top:10px;list-style:none;}
+        #linkarea ul li{ list-style:none; border-top:solid 1px #414141; padding: 3px 0;}
 
         .gsc-search-button, .gsc-search-button-v2 { height: 35px !important; width: auto !important; }
         #gsc-i-id1 {height: auto !important; }
-</style>
+    </style>
 
-	</head_merge>
+</head_merge>
+<div class="row">
+<div id="carousel-main" class="carousel slide" data-ride="carousel">
 
- <div id="carousel-main" class="carousel slide" data-ride="carousel">
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+        <div class="item active">
+            <img src="/style/edukacja.jpg" alt="">
 
-  <!-- Wrapper for slides -->
-  <div class="carousel-inner">
-    <div class="item active">
-      <img src="/style/edukacja.jpg" alt="">
-      <div class="carousel-caption">
-        <h2>Portal edukacyjny XX LO w Gdańsku</h2>
-          <a href="/view/courses"><button class="btn btn-info">Uczeń</button></a>
-      </div>
-    </div>
-    <div class="item">
-      <img src="/style/herbert.jpg" alt="">
-      <div class="carousel-caption">
-          <h2></h2>
-      </div>
-    </div>
-    ...
-  </div>
-
-  <!-- Controls -->
-  <a class="left carousel-control" href="#carousel-main" role="button" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left"></span>
-  </a>
-  <a class="right carousel-control" href="#carousel-main" role="button" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right"></span>
-  </a>
-</div> 
-
-	<div class="row">
-	<div class="col-lg-1"></div>
-   <div class="col-lg-10">
-   
-   
-   <div class="row">
-
-<div class="col-lg-9"  data-lift="page.MainSn.switchContent">
-    <h1 id="departmentInfo" style="margin: 15px; font-size: 2em;">Aktualności</h1>
-            <div class="newsInfo "></div>
-            <div class="clear"></div>
-            <div id="oneNews" class="lift:page.MainSn.showOneNews">
-                <input id="hiddenAjaxText" style="display: none;" />
-                <div id="ajaxNews">
-                    <br />
-
-                </div>
+            <div class="carousel-caption">
+                <h2>Portal edukacyjny XX LO w Gdańsku</h2>
+                <a href="/view/courses">
+                    <button class="btn btn-info">Uczeń</button>
+                </a>
             </div>
-            <div class="pagersNews" style="padding: 10px;;">
-            <ul>
-                <li class="linkNewsImg">Strony:</li>
-                <li class="linkNews"></li>
-                </ul>
-            </div>
+        </div>
+        <div class="item">
+            <img src="/style/herbert.jpg" alt="">
 
+            <div class="carousel-caption">
+                <h2></h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#carousel-main" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+    <a class="right carousel-control" href="#carousel-main" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+    <ol class="carousel-indicator"></ol>
+</div>
 </div>
 
-  <div class="col-lg-3" >
-            <div id="searchBox">
-                <script>
-  (function() {
-    var cx = '007556354535223111716:a3pkofbjdzu';
-    var gcse = document.createElement('script');
-    gcse.type = 'text/javascript';
-    gcse.async = true;
-    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
-        '//www.google.com/cse/cse.js?cx=' + cx;
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(gcse, s);
-  })();
-</script>
-                <gcse:search></gcse:search>
+<div class="row">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-10">
 
-            </div>
-            <div>
-                <h1 style="margin: 10px; font-size: 2em;">Menu:</h1>
-                <div class="lift:page.MainSn.submenuArticles">
 
-                    <div id="accordion">
-                        <h3>Aktualności</h3>
-                        <div>
-                            <ul>
-                                <li></li>
-                            </ul>
+        <div class="row">
+
+            <div class="col-lg-3">
+                <div id="searchBox">
+                    <script src="/jquery/googlesearch.js">
+
+                    </script>
+                    <gcse:search></gcse:search>
+
+                </div>
+                <div>
+                    <h1 style="margin: 10px; font-size: 2em;">Menu:</h1>
+
+                    <div class="lift:page.MainSn.submenuArticles">
+
+                        <div id="accordion">
+                            <h3>Aktualności</h3>
+
+                            <div>
+                                <ul>
+                                    <li></li>
+                                </ul>
+                            </div>
                         </div>
+                        <p><span id="addArticleMenu"></span></p>
                     </div>
-                <p><span id="addArticleMenu"></span></p>
                 </div>
             </div>
-</div>
 
-</div>
-   
-   </div>
-	<div class="col-lg-1"></div>
-	</div>
-	 
+            <div class="col-lg-9" data-lift="page.MainSn.switchContent">
+                <h1 id="departmentInfo" style="margin: 15px; font-size: 2em;">Aktualności</h1>
 
+                <div class="newsInfo "></div>
+                <div class="clear"></div>
+                <div id="oneNews" class="lift:page.MainSn.showOneNews">
+                    <input id="hiddenAjaxText" style="display: none;"/>
 
+                    <div id="ajaxNews">
+                        <br/>
 
+                    </div>
+                </div>
+                <label id="labelPage">Strona:</label>
 
-	   <div class="lift:page.MainSn.links  row"  id="linkarea">
-	   <div class="col-lg-1"></div>
-                <div class="col-lg-2 grid_3">
-                    <h1>Our Favorites</h1>
-                    <ul>
-                        <li><a href="#">Test link 1</a></li>
-                        <li><a href="#">Test link 2</a></li>
-                        <li><a href="#">Test link 3</a></li>
-                        <li><a href="#">Test link 4</a></li>
+                <div class="btn-group pagersNews" role="group" aria-label="labelPage">
+                    <a type="button" class="btn btn-default linkNews">1</a>
+                </div>
 
-                    </ul>
-                </div>   
-           <div class="col-lg-1"></div>                  
             </div>
+
+
+        </div>
+
+    </div>
+    <div class="col-lg-1"></div>
+</div>
+
+
+<div class="lift:page.MainSn.links  row" id="linkarea">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-2 grid_3">
+        <h1>Our Favorites</h1>
+        <ul>
+            <li><a href="#">Test link 1</a></li>
+            <li><a href="#">Test link 2</a></li>
+            <li><a href="#">Test link 3</a></li>
+            <li><a href="#">Test link 4</a></li>
+
+        </ul>
+    </div>
+    <div class="col-lg-1"></div>
+</div>
 
 
 </div>

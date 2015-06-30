@@ -50,7 +50,7 @@ val  isTeacher = if(user.isEmpty) false else {
     }
 
     def links = {
-        var mainPageLinks = MainPageLinks.findAll match {
+        val mainPageLinks = MainPageLinks.findAll match {
             case head :: list => head
             case _ => MainPageLinks.create
         }
@@ -66,7 +66,8 @@ val  isTeacher = if(user.isEmpty) false else {
 
     def submenuArticles() = {
         val allTag = <a href="/index/a">Wszystkie</a>
-        val newsTags = allTag::NewsTag.findAll.map(tag => <a href={"/index/t?tag=" + tag.tag}>{ tag.tag + " (" + tag.count.toString() + ")" }</a>).toList
+        val newsTags = allTag::NewsTag.findAll.map(tag => <a href={"/index/t?tag=" + tag.tag}>{ tag.tag +
+          " (" + tag.count.toString() + ")" }</a>).toList
         val menuNews = List(("Aktualności",  newsTags ))
         val pages = ArticleHead.findAll("news" -> false)
         val menuDep = PageDepartment.findAll(Nil, ("nr" -> 1)).map(pageDep => {
@@ -76,7 +77,8 @@ val  isTeacher = if(user.isEmpty) false else {
         val menu = menuNews:::menuDep
         
         "#addArticleMenu" #>  <span>
-                                { if (isTeacher) <a href="/editarticle/0"><img title="Dodaj artykuł" src="/style/images/article.png"/> Dodaj artykuł</a> }
+                                { if (isTeacher) <a href="/editarticle/0"><img title="Dodaj artykuł"
+                                                                               src="/style/images/article.png"/> Dodaj artykuł</a> }
                             </span> &
          "#accordion"  #>  <div id="accordion">{menu.map(m => { 
             <h3>{ m._1} </h3>
@@ -116,7 +118,7 @@ val  isTeacher = if(user.isEmpty) false else {
 
     def showNewses(newses: List[ArticleHead], tag:String) = {
         val sizeP = 20
-        var page = S.param("p").getOrElse("1")
+        val page = S.param("p").getOrElse("1")
         val pageInt = tryo(page.toInt).getOrElse(1)
         val pages = newses.size / sizeP + (if(newses.size % sizeP > 0) 1 else 0)
         
@@ -127,7 +129,10 @@ val  isTeacher = if(user.isEmpty) false else {
         val choiceContent = if(tag == "") "a?p=" else "t?tag=" + tag + "&p="
         ".newsInfo" #> <div>  { toShowNewses.map(news => createPinBox(news)) }    </div> &
             ".linkNews" #>  (1 to pages).map(p => {
-                <li>{ if(p == pageInt) <span>{p.toString}</span> else <a href={"/index/" + choiceContent + p.toString} >{ p.toString }</a>} </li>
+              <a type="button" href={"/index/" + choiceContent + p.toString}
+                 class={"btn " + (if(p == pageInt) "btn-info" else "btn-default")}>{pageInt.toString}</a>
+
+
             })
 
     }
@@ -201,8 +206,9 @@ val  isTeacher = if(user.isEmpty) false else {
     }
 
     private def createPinBox(news: ArticleHead) = {
-        <div class="pine-box new-bullet ">
-    	<h2 onclick={ "return showNews('" + news._id + "')" }>{ news.title }</h2>
+      <div class="pine-box new-bullet ">
+    	  <h2 onclick={ "return showNews('" + news._id + "')" }>{ news.title }</h2>
+          <div >
             <div class="imgBox">
                 <img src={ news.thumbnailLink }/>
             </div>
@@ -215,6 +221,7 @@ val  isTeacher = if(user.isEmpty) false else {
                 <span class="readMore" onclick={ "return showNews('" + news._id + "')" }>Czytaj dalej</span>
             </div>
             <div style="clear:both;"></div>
+          </div>
         </div>
     }
     
@@ -230,6 +237,7 @@ val  isTeacher = if(user.isEmpty) false else {
     }
     
      val contentOption = ArticleContent.find(pageHead.content)
+
         "#departmentInfo" #> <span></span> &
        ".newsInfo" #> <div id="pagecontent">
         					<h1>{pageHead.title}</h1>

@@ -20,7 +20,8 @@ object TemplateDocumentCreater {
       Full(NotFoundResponse("Not found"))
     } 
     else {
-      Full(StreamingResponse(inputStream, () => (), inputStream.available().toLong, ("Content-Type", "text/html") :: Nil, Nil, 200))
+      Full(StreamingResponse(inputStream, () =>
+        (), inputStream.available().toLong, ("Content-Type", "text/html") :: Nil, Nil, 200))
     }
   }
   
@@ -50,13 +51,17 @@ object TemplateDocumentCreater {
   }
 
   private def docHTMLasTable(docs:List[String], templ:String) = {
-    val reg = "<tr>(*)</tr>".r
+    val reg =  "<tr>(.+?)</tr>".r
+
     val trs = docs.map(d => {
-      val res =  reg.findAllIn(d)
-      "<tr>" + res.slice(1,res.length).mkString(" ") + "</tr>"
+      val doc = d.replace("\n"," ").replace("\r", "").replace("\t", "")
+      println("DOC::: \n" + doc)
+      val res =  reg.findAllIn(doc).toList
+      res.drop(1).mkString(" ")
     })
-    val ths = reg.findAllIn(templ).slice(0,1).mkString("")
-    "<table><thead><tr>%s</tr><thead><tbody>%s</tbody></table>".format(trs.mkString(""), ths)
+    val ths = reg.findAllIn(templ.replace("\n", " ").replace("\r", "").replace("\t", ""))
+        .toList.take(1).mkString("")
+    "<table border=\"1\"><thead><tr>%s</tr><thead><tbody>%s</tbody></table>".format(ths, trs.mkString(""))
   }
 
 }

@@ -1,0 +1,4 @@
+Przed zbudowaniem należy podmienić pliki:
+
+1.Logo 
+2.Skrypt googlesearch w którym znajduje się kod do usługi
