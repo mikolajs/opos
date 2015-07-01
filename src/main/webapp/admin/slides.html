@@ -3,13 +3,13 @@
 <body class="lift:content_id=main">
 <div id="main" class="lift:surround?with=admin;at=content">
     <head_merge>
-         <link rel="stylesheet" href="/style/adminsite.css" />
-         <script type="text/javascript" src="/jquery/mytables.js"></script>
+        <link rel="stylesheet" href="/style/adminsite.css"/>
+        <script type="text/javascript" src="/jquery/mytables.js"></script>
         <script>
         function getImageURLfromIFrame(elem){
         	var innerDoc = elem.contentDocument || elem.contentWindow.document;
         	var url  = innerDoc.getElementById('linkpath').innerHTML;
-        	$('.cke_dialog_ui_input_text').val(url);
+        	$('#link').val(url);
         }
         
         $(document).ready(function(){
@@ -26,13 +26,13 @@
             $ele.children('td').each(function(index){
             	switch(index){
             	case 0:
-            		document.getElementById('source').value = $(this).children('img').attr('src');
+            		document.getElementById('link').value = $(this).children('img').attr('src');
             	    break;
             	case 1:
-            		document.getElementById('link').value = this.innerHTML;
+            		document.getElementById('description').value = this.innerHTML;
             		break;
             	case 2: 
-            		document.getElementById('description').value = this.innerHTML;
+            		document.getElementById('htmlContent').value = this.innerHTML;
             		break;
             	default:
             		break;
@@ -50,39 +50,59 @@
             }
             else return true;
         }
+
         </script>
     </head_merge>
 
-<div class="well">
-<h3>Edycja slajdów na stronie główniej</h3>
+    <div class="well">
+        <h3>Edycja slajdów na stronie główniej</h3>
+    </div>
+
+    <div>
+
+        <form class="lift:admin.AdminAddSlidesSn.addSlide?form=POST" id="frm1" onsubmit="validateForm()"><br/>
+            <fieldset>
+                <h2 id="newInfo">Nowy slajd</h2>
+
+                <p><input id="id"/></p>
+                <p><label for="description">Opisk: </label><input class="form-control" id="description"/></p>
+                <p><label for="htmlContent">Zawartość: </label>
+                    <textarea class="form-control" id="htmlContent" rows="5"></textarea>
+                </p>
+
+                <p><label for="link">Adres slajdu: </label>
+                    <input class="form-control"  readonly="readonly" id="link"/>
+                </p>
+
+                <p><input id="save" class="btn btn-success"/><input id="delete" class="btn btn-danger"/>
+                    <input type="button" class="btn btn-default" onclick="clearForm()" value="Czyść!"/></p>
+
+                <p id="notice"></p>
+            </fieldset>
+        </form>
+        <hr/>
+        <div class="tables">
+            <table>
+                <thead>
+                <tr>
+                    <th width="310px">Podgląd</th>
+                    <th>Opis</th>
+                    <th>Zawartość</th>
+                </tr>
+                </thead>
+                <tbody class="lift:admin.AdminAddSlidesSn.slideList">
+                <tr></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="alert alert-info">Kliknij dwukrotnie na wybranym slajdzie, aby go edytować</div>
+        <hr/>
+        <p>Slajdy powinny mieć proporcje 3:1, optymalna wysokość to 400px</p>
+        <iframe onload="getImageURLfromIFrame(this)" src='/imgstorage' width='95%' height='250px'><p>Brak obsługi ifame!</p></iframe>
+
+    </div>
+
+
 </div>
-
-<div>
-
-<form class="lift:admin.AdminAddSlidesSn.addSlide?form=POST" id="frm1" onsubmit="validateForm()"><br />
-<fieldset>
-<p id="newInfo">Nowy slajd</p>
-<p><input id="id" /></p>
-<p><label for="description">Opis: </label><input id="description" /></p> 
-<p><label for="link">Odnośnik: </label><input id="link" /></p> 
-<p><label for="source">Adres slajdu: </label><input id="source" /> </p> 
-<p><input id="save" /><input id="delete" />
- <input type="button" onclick="clearForm()" value="Czyść!" /></p>
-<p id="notice"></p>
-</fieldset>
-</form>
-<hr />
-<div class="tables">
-<table><thead><tr><th width="310px">Podgląd</th><th>Odnośnik</th><th>Opis</th></tr></thead>
-    <tbody class="lift:admin.AdminAddSlidesSn.slideList"><tr></tr> </tbody>
-</table>
-</div>
-<hr/>
-<p>Slajdy muszą mieć rozmiary 940px na 330px</p>
-<iframe src='/imgstorage' width='95%' height='250px'><p>Brak obsługi ifame!</p></iframe>
-
-</div>
-
-
-</div>
-</body></html>
+</body>
+</html>

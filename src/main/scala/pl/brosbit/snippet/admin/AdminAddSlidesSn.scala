@@ -21,21 +21,17 @@ class AdminAddSlidesSn {
     var id = ""
     var descript = ""
     var src = ""
-    var link = ""
+    var htmlContent = ""
       
     def save(){
-      val mainPageData = MainPageData.find(id) match {
-        case Some(mainPageData) => mainPageData
-        case _ => {
-          val tmpMainPageData = MainPageData.create
-          tmpMainPageData.key = Keys.slide.toString
-          tmpMainPageData
-        }
+      val mainPageSlide = MainPageSlide.find(id) match {
+        case Some(mainPageSlide) => mainPageSlide
+        case _ => MainPageSlide.create
       }
-      mainPageData.title = descript
-      mainPageData.src = src
-      mainPageData.link = link
-      mainPageData.save
+      mainPageSlide.desc = descript
+      mainPageSlide.img = src
+      mainPageSlide.html = htmlContent
+      mainPageSlide.save
     }
     
     def delete() {
@@ -46,25 +42,21 @@ class AdminAddSlidesSn {
     }
     
     "#id" #> SHtml.text(id, id = _, "style"->"display:none;") &
-    "#source" #> SHtml.text(src, src = _) &
-    "#link" #> SHtml.text(link, link = _) &
+    "#link" #> SHtml.text(src, src = _) &
+    "#htmlContent" #> SHtml.textarea(htmlContent, htmlContent = _) &
     "#description" #> SHtml.text(descript, descript = _) &
     "#save" #> SHtml.submit("Zapisz!", save) &
     "#delete" #> SHtml.submit("Usuń!", delete) 
   }
   
   def slideList() = {
-    val slides = getMainPageDataWithSlides
+    val slides = MainPageSlide.findAll
     "tr" #> slides.map(slide => {
     		<tr id={slide._id.toString} ondblclick="setData(this);" >
-    		<td><img src={slide.src} style="width:300px;height:100px;" /></td>
-    		<td>{slide.link}</td><td>{slide.title}</td></tr>
+    		<td><img src={slide.img} style="width:300px;height:100px;" /></td>
+    		<td>{slide.desc}</td><td>{Unparsed(slide.html)}</td></tr>
     	})
   }
   
-  
-  
-  
-  private def getMainPageDataWithSlides = MainPageData.findAll(("key"->Keys.slide.toString))
-  
+
 }

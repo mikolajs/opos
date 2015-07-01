@@ -41,11 +41,16 @@ val  isTeacher = if(user.isEmpty) false else {
 
    //slider na głównej stronie
     def slides = {
-       val mainPageNewInfo = MainPageData.getMainPageNewInfo
-        val slideList = mainPageNewInfo.slides
-        "img" #> slideList.map(slide => {
-            <a href={ slide.link }><img src={ slide.src } title={ slide.title } alt=""/></a>
+       val mpSlides = MainPageSlide.findAll
+       var isFirst = true
+        ".item" #> mpSlides.map(slide => {
+          <div class={"item" + (if(isFirst) {isFirst = false; " active"} else "")}>
+            <img src={slide.img} alt={slide.desc} />
 
+              <div class="carousel-caption">
+                {Unparsed(slide.html)}
+              </div>
+            </div>
         })
     }
 
@@ -76,9 +81,8 @@ val  isTeacher = if(user.isEmpty) false else {
             })
         val menu = menuNews:::menuDep
         
-        "#addArticleMenu" #>  <span>
-                                { if (isTeacher) <a href="/editarticle/0"><img title="Dodaj artykuł"
-                                                                               src="/style/images/article.png"/> Dodaj artykuł</a> }
+        "#addArticleMenu" #>  <span>{ if (isTeacher) <a href="/editarticle/0">
+                                          <img title="Dodaj artykuł" src="/style/images/article.png"/> Dodaj artykuł</a> }
                             </span> &
          "#accordion"  #>  <div id="accordion">{menu.map(m => { 
             <h3>{ m._1} </h3>
