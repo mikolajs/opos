@@ -4,14 +4,14 @@
 <div id="main" class="lift:surround?with=page;at=content">
 	<head_merge> <script type="text/javascript"
 		src="/ckeditor/ckeditor.js"></script> <script src="/jquery/dejavu.js" /></script>
-	<script src="/jquery/editarticle.js"></script> 
+	<script src="/jquery/editnews.js"></script>
 	<script type="text/javascript" src="/jquery/jquery.multitobuttons.js"></script>
 	<script>
 		    var editArticle = null;
-            $(document).ready(function(){ editArticle = new EditArticle(); });
-$(function() {
-$( "#radio" ).buttonset();
-});
+            $(document).ready(function(){
+                editArticle = new EditArticle();
+                $( "#radio" ).buttonset();
+            });
 
 		</script>
 	<style>
@@ -68,8 +68,9 @@ form input[type=button] {
 		<div class="row">
 			<div class="col-md-3">
 				<p>
-					<input type="submit" id="save" /><br /> <input type="submit"
-						id="delete" /><br /> <input type="submit" id="discard" />
+					<input type="submit" class="btn btn-success" id="save" /><br /><br />
+                    <input type="submit"  class="btn btn-danger" id="delete" /><br /><br />
+                    <input type="submit"  class="btn btn-default" id="discard" /><br />
 
 				</p>
 				<div>
@@ -100,7 +101,7 @@ form input[type=button] {
 					<input id="id" type="text" />
 					<p>
 						<label for="title" class="leftText">Tytuł:</label> <input
-							id="title" type="text" style="width: 500px;" />
+							id="title" type="text" class="form-control" style="width: 500px;" />
 					</p>
 					<input id="introduction" type="text" style="display: none;" /> <input
 						id="thumbnail" type="text" style="display: none;" />
