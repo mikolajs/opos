@@ -4,6 +4,8 @@
     <link rel="stylesheet" href="/style/carousel.css"/>
 
     <script>
+     var $introDiv = null;
+     var $imgBox = null;
      function redirectOnFilter() {
          var tag = $('#filter option:selected').val(); 
          if(tag == "Wszystkie artykuły")
@@ -12,18 +14,39 @@
              window.location = 'http://' + location.hostname +  "/index/t?tag=" + $('#filter option:selected').val();
      }
      
-   function showNews(id){
-             $('#hiddenAjaxText').val(id).trigger('blur');
-             $('#ajaxNews').empty();
-             $(".newsInfo").hide();
-            $('#ajaxNews').show();
+   function showNews(id, elem){
+             if($introDiv != null && $imgBox != null) closeNews();
+             $introDiv = $(elem).parent().children('div.introNews');
+
+             $imgBox = $(elem).parent().parent().children('div.imgBox');
+            showNewsCommon(id);
             return false;
-         };
+    };
          
-         function closeNews() {
-        	 $('#ajaxNews').hide();
-        	 $(".newsInfo").show();
-         };
+   function closeNews() {
+       	 $introDiv.show();
+       	 $imgBox.show();
+       	 $('#ajaxNews').hide().empty();
+
+   };
+
+    function showNewsTitle(id, elem){
+        if($introDiv != null && $imgBox != null) closeNews();
+        $introDiv = $(elem).parent().children('div').children('div.textBox').children('div.introNews');
+        $imgBox = $(elem).parent().children('div').children('div.imgBox');
+        showNewsCommon(id);
+    };
+
+    function showNewsCommon(id) {
+        if($introDiv != null && $imgBox != null) closeNews();
+         $('#hiddenAjaxText').val(id).trigger('blur');
+         var $ajaxNews = $('#ajaxNews');
+         $introDiv.before($ajaxNews);
+         $imgBox.hide();
+         $introDiv.hide();
+         $('#ajaxNews').show(100);
+    }
+
          
          $(function() {
          $( "#accordion" ).accordion();
@@ -91,14 +114,17 @@
 
         .imgBox {
         text-align: center;
-        width: 275px;
+        min-width: 280px;
         float: left;
-
         }
-        .imgBox img {width: 270px;}
 
-        .textBox {min-width: 275px;}
+        .imgBox img {width: 270px; padding-right: 10px;}
 
+        .textBox {min-width: 280px;}
+
+        @media screen and (min-width:580px) { .textBox {margin-left: 280px;}}
+
+        span.edit {float: right;}
 
         .pine-box .pageinfo {
         text-align: left;
@@ -203,6 +229,7 @@
                     <a type="button" class="btn btn-default linkNews">1</a>
                 </div>
 
+
             </div>
 
 
@@ -211,6 +238,7 @@
     </div>
     <div class="col-lg-1"></div>
 </div>
+
 
 
 <div class="lift:page.MainSn.links  row" id="linkarea">

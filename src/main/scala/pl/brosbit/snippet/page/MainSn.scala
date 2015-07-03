@@ -94,14 +94,14 @@ val  isTeacher = if(user.isEmpty) false else {
                                 
                                 
     def switchContent() = {
-        var what = S.param("w") openOr "a"
+        val what = S.param("w") openOr "a"
         what match {
             case "a" => {
                 val newses = ArticleHead.findAll(("news" -> true), ("_id" -> -1))
                 showNewses(newses, "")
             }
             case "t" => {
-                var tag = S.param("tag").openOr("")
+                val tag = S.param("tag").openOr("")
                 if (tag == "") S.redirectTo("/index")
                 else {
                     val newsHeads = ArticleHead.findAll(("news" -> true)~("tags", tag), ("_id" -> -1)) 
@@ -146,20 +146,14 @@ val  isTeacher = if(user.isEmpty) false else {
             ArticleHead.find(id) match {
                 case Some(newsHead) => {
                     val contentOption = ArticleContent.find(newsHead.content)
-                    <div id="pagecontent">
-                    		<span class="closeNewsButton" onclick="closeNews()"><img src="/style/images/delico.png"  /> Zamknij</span>
-                    <h1>{ newsHead.title }</h1>
-                        <p class="pageinfo">
-                            <span class="fullname">{ newsHead.authorName }</span>
-                            <span class="date">{ Formater.formatDate(new Date(newsHead._id.getTime())) }</span>
-                            {
-                                if (isOwner(newsHead.authorId)) <span class="edit">
-                                                                    <a href={ "/editarticle/" + newsHead._id.toString }>Edytuj</a>
-                                                                </span>
-                                else <span></span>
-                            }
-                        </p>
-                        <div class="pagebody">{ Unparsed(contentOption.getOrElse(ArticleContent.create).content) }</div>
+                    <div class="pagebody">{ Unparsed(contentOption.getOrElse(ArticleContent.create).content) }</div> ++
+                    <div class="pageinfo">
+                    { if (isOwner(newsHead.authorId)) {<span class="edit">
+                              <a href={ "/editarticle/" + newsHead._id.toString } class=" btn btn-info">
+                                <span class="glyphicon glyphicon-pencil"></span>Edytuj</a>
+                            </span>}
+                      else <span></span> }
+                    <span class="closeNewsButton" onclick="closeNews()"><img src="/style/images/delico.png"  /> Zamknij</span>
                     </div>
                 }
                 case _ => <div>Błąd - brak wybranej lekcji</div>
@@ -211,8 +205,8 @@ val  isTeacher = if(user.isEmpty) false else {
 
     private def createPinBox(news: ArticleHead) = {
       <div class="pine-box new-bullet ">
-    	  <h2 onclick={ "return showNews('" + news._id + "')" }>{ news.title }</h2>
-          <div >
+    	  <h2 onclick={ "showNewsTitle('" + news._id + "', this)" }>{ news.title }</h2>
+          <div>
             <div class="imgBox">
                 <img src={ news.thumbnailLink }/>
             </div>
@@ -221,8 +215,8 @@ val  isTeacher = if(user.isEmpty) false else {
                     <span class="fullname">{ news.authorName }</span>
                     <span class="date">{ Formater.formatDate(new Date(news._id.getTime())) }</span>
                 </p>
-                <div>{ Unparsed(news.introduction) }</div>
-                <span class="readMore" onclick={ "return showNews('" + news._id + "')" }>Czytaj dalej</span>
+                <div class="introNews">{ Unparsed(news.introduction) }</div>
+                <span class="readMore" onclick={ "return showNews('" + news._id + "', this)" }>Czytaj dalej</span>
             </div>
             <div style="clear:both;"></div>
           </div>
