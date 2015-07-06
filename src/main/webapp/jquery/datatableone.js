@@ -94,6 +94,7 @@ function DataTableOne(){
          if (tr) self.dTable.fnUpdate(array, tr);  
          
 	 }
+
 	 
  
 }

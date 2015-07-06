@@ -1,6 +1,4 @@
 
-
-
 function setSelectedIndexWithInner(select,toCompare){
     //console.log("select.options " + select.options);
 	for(i in select.options) {
@@ -12,11 +10,11 @@ function setSelectedIndexWithInner(select,toCompare){
 	}
 }
 
-function setMultiSelect(select, data){
-    //console.log("start setMutiSelect");
+function setMultiSelect(select, classList){
+   // console.log("start setMutiSelect");
 	clearSelected(select);
-	//console.log("setMuti : " + select.innerHTML + " " + data);
-	var array = data.split(",");
+	//console.log("setMuti : " + select.innerHTML + " " + classList);
+	var array = classList.toString().split(",");
 	for(i in array) {
 		array[i] = jQuery.trim(array[i]);
 	}

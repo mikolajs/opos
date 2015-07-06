@@ -17,11 +17,13 @@ class ThemesPlanSn extends BaseDoc {
   def dataTable() = {
     val themesPlans = ThemesPlan.findAll
     "tr" #> themesPlans.map(themesPlan => {
-      ".id *" #> themesPlan._id.toString &
-      ".classes *" #> themesPlan.classes.mkString(", ") &
-      ".subject *" #> themesPlan.subjectStr &
-      ".urlLink *" #> Unparsed("<a href=\"" + themesPlan.urlLink + "\">plik</a>") &
-      ".teacher *" #> themesPlan.teacherName
+      ".tdItem" #>
+        (<td>{themesPlan._id.toString}</td> ++
+        <td>{ themesPlan.classes.mkString(", ") }</td> ++
+        <td>{themesPlan.subjectStr} </td> ++
+        <td>{Unparsed("<a href=\"" + themesPlan.urlLink + "\">plik</a>")}</td> ++
+        <td>{themesPlan.teacherName}</td>)
+
     })
   }
   
@@ -59,7 +61,7 @@ class ThemesPlanSn extends BaseDoc {
         ThemesPlan.find(id) match {
           case Some(themesPlan) => {
             themesPlan.delete
-            JsFunc("formEdit.scratchRow", id).cmd
+            JsFunc("formEdit.deleteRow", id).cmd
           }
           case _ => Alert("Brak wpisu!")
         }
@@ -74,8 +76,8 @@ class ThemesPlanSn extends BaseDoc {
     		"#subject" #> SHtml.select(subjects, Full(""), subject = _ ) &
     		"#urlLink" #> SHtml.text(urlLink, urlLink = _) & 
     		"#save" #> SHtml.ajaxSubmit("Zapisz", save, "type"->"image") &
-          "#delete" #> {if(isAdmin) SHtml.ajaxSubmit("USUŃ!", delete, "type"->"image") 
-        	  					else <span class=""></span>} andThen SHtml.makeFormsAjax
+        "#delete" #>  {if(isAdmin) SHtml.ajaxSubmit("USUŃ!", delete, "class"->"btn btn-lg btn-danger")
+        else <span style="display:none;" class="brak"></span>} andThen SHtml.makeFormsAjax
     		
         	 "#loggedTeacher" #> <input id="loggedTeacher" value={User.currentUser.get.getFullName} 
         	 							type="text" style="display:none;"/> & 					

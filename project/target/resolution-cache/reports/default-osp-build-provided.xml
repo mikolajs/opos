@@ -9,7 +9,7 @@
 		extra-scalaVersion="2.10"
 		conf="provided"
 		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom, scala-tool"
-		date="20141109175102"/>
+		date="20150706093521"/>
 	<dependencies>
 		<module organisation="org.scala-sbt" name="sbt">
 			<revision name="0.13.1" status="release" pubdate="20131210101538" resolver="sbt-chain" artresolver="sbt-chain" downloaded="false" searched="false" default="false" conf="default(compile), compile" position="1">
@@ -312,8 +312,8 @@
 			</revision>
 		</module>
 		<module organisation="org.scala-tools.sbinary" name="sbinary_2.10">
-			<revision name="0.4.2" status="release" pubdate="20130718174211" resolver="sbt-chain" artresolver="sbt-chain" downloaded="false" searched="false" default="false" conf="default(compile), compile" position="22">
-				<metadata-artifact status="no" details="" size="1781" time="0" location="/home/ms/.ivy2/cache/org.scala-tools.sbinary/sbinary_2.10/ivy-0.4.2.xml" searched="false" origin-is-local="false" origin-location="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-tools.sbinary/sbinary_2.10/0.4.2/ivys/ivy.xml"/>
+			<revision name="0.4.2" status="release" pubdate="20140522001025" resolver="sbt-chain" artresolver="sbt-chain" downloaded="false" searched="false" default="false" conf="default(compile), compile" position="22">
+				<metadata-artifact status="no" details="" size="1401" time="0" location="/home/ms/.ivy2/cache/org.scala-tools.sbinary/sbinary_2.10/ivy-0.4.2.xml" searched="false" origin-is-local="false" origin-location="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-tools.sbinary/sbinary_2.10/0.4.2/ivys/ivy.xml"/>
 				<caller organisation="org.scala-sbt" name="persist" conf="compile" rev="0.4.2" rev-constraint-default="0.4.2" rev-constraint-dynamic="0.4.2" callerrev="0.13.1"/>
 				<caller organisation="org.scala-sbt" name="main-settings" conf="compile" rev="0.4.2" rev-constraint-default="0.4.2" rev-constraint-dynamic="0.4.2" callerrev="0.13.1"/>
 				<caller organisation="org.scala-sbt" name="cache" conf="compile" rev="0.4.2" rev-constraint-default="0.4.2" rev-constraint-dynamic="0.4.2" callerrev="0.13.1"/>
@@ -566,7 +566,7 @@
 		<module organisation="org.scala-lang" name="scala-reflect">
 			<revision name="2.10.3" status="release" pubdate="20130927114529" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.scala-lang.org/" extra-info.apiURL="http://www.scala-lang.org/api/2.10.3/" downloaded="false" searched="false" default="false" conf="compile, master(*), runtime, compile(*), runtime(*), master" position="6">
 				<license name="BSD-like" url="http://www.scala-lang.org/downloads/license.html    "/>
-				<metadata-artifact status="no" details="" size="2745" time="0" location="/home/ms/.ivy2/cache/org.scala-lang/scala-reflect/ivy-2.10.3.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/scala-lang/scala-reflect/2.10.3/scala-reflect-2.10.3.pom"/>
+				<metadata-artifact status="no" details="" size="2647" time="0" location="/home/ms/.ivy2/cache/org.scala-lang/scala-reflect/ivy-2.10.3.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/scala-lang/scala-reflect/2.10.3/scala-reflect-2.10.3.pom"/>
 				<caller organisation="org.scala-lang" name="scala-compiler" conf="default, compile, runtime, master" rev="2.10.3" rev-constraint-default="2.10.3" rev-constraint-dynamic="2.10.3" callerrev="2.10.3"/>
 				<artifacts>
 					<artifact name="scala-reflect" type="jar" ext="jar" status="no" details="" size="3206936" time="0" location="/home/ms/.ivy2/cache/org.scala-lang/scala-reflect/jars/scala-reflect-2.10.3.jar">
@@ -578,7 +578,7 @@
 		<module organisation="org.scala-lang" name="scala-library">
 			<revision name="2.10.3" status="release" pubdate="20130927114454" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.scala-lang.org/" extra-info.apiURL="http://www.scala-lang.org/api/2.10.3/" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, master(*), compile(*), runtime, runtime(*), master" position="0">
 				<license name="BSD-like" url="http://www.scala-lang.org/downloads/license.html          "/>
-				<metadata-artifact status="no" details="" size="2585" time="0" location="/home/ms/.ivy2/cache/org.scala-lang/scala-library/ivy-2.10.3.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/scala-lang/scala-library/2.10.3/scala-library-2.10.3.pom"/>
+				<metadata-artifact status="no" details="" size="2487" time="0" location="/home/ms/.ivy2/cache/org.scala-lang/scala-library/ivy-2.10.3.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/scala-lang/scala-library/2.10.3/scala-library-2.10.3.pom"/>
 				<caller organisation="org.scala-sbt" name="api" conf="compile" rev="2.10.3" rev-constraint-default="2.10.3" rev-constraint-dynamic="2.10.3" callerrev="0.13.1"/>
 				<caller organisation="org.scala-sbt" name="main" conf="compile" rev="2.10.3" rev-constraint-default="2.10.3" rev-constraint-dynamic="2.10.3" callerrev="0.13.1"/>
 				<caller organisation="org.scala-sbt" name="run" conf="compile" rev="2.10.3" rev-constraint-default="2.10.3" rev-constraint-dynamic="2.10.3" callerrev="0.13.1"/>

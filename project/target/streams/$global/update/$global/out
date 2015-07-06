@@ -55,9 +55,32 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies default#osp-build;0.1-SNAPSHOT->com.earldouglas#xsbt-web-plugin;0.7.0 [compile->default(compile)][0m
 [0m[[0minfo[0m] [0mResolving com.earldouglas#xsbt-web-plugin;0.7.0 ...[0m
 [0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: com.earldouglas#xsbt-web-plugin;0.7.0 {compile=[default(compile)]}[0m
-[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: com.earldouglas#xsbt-web-plugin;0.7.0[0m
-[0m[[0mdebug[0m] [0m	typesafe-ivy-releases: revision in cache: com.earldouglas#xsbt-web-plugin;0.7.0[0m
-[0m[[0mdebug[0m] [0m	found com.earldouglas#xsbt-web-plugin;0.7.0 in sbt-chain[0m
+[0m[[0mdebug[0m] [0m		tried http://repo.typesafe.com/typesafe/ivy-releases/com.earldouglas/xsbt-web-plugin/scala_2.10/sbt_0.13/0.7.0/ivys/ivy.xml[0m
+[0m[[0mdebug[0m] [0mCLIENT ERROR: Not Found url=http://repo.typesafe.com/typesafe/ivy-releases/com.earldouglas/xsbt-web-plugin/scala_2.10/sbt_0.13/0.7.0/ivys/ivy.xml[0m
+[0m[[0mdebug[0m] [0m	typesafe-ivy-releases: no ivy file found for com.earldouglas#xsbt-web-plugin;0.7.0[0m
+[0m[[0mdebug[0m] [0m		tried http://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/com.earldouglas/xsbt-web-plugin/scala_2.10/sbt_0.13/0.7.0/ivys/ivy.xml[0m
+[0m[[0mdebug[0m] [0mCLIENT ERROR: Not Found url=http://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/com.earldouglas/xsbt-web-plugin/scala_2.10/sbt_0.13/0.7.0/ivys/ivy.xml[0m
+[0m[[0mdebug[0m] [0m	sbt-plugin-releases: no ivy file found for com.earldouglas#xsbt-web-plugin;0.7.0[0m
+[0m[[0mdebug[0m] [0m		tried /home/ms/.ivy2/local/com.earldouglas/xsbt-web-plugin/scala_2.10/sbt_0.13/0.7.0/ivys/ivy.xml[0m
+[0m[[0mdebug[0m] [0m	local: no ivy file found for com.earldouglas#xsbt-web-plugin;0.7.0[0m
+[0m[[0mdebug[0m] [0m		tried http://repo1.maven.org/maven2/com/earldouglas/xsbt-web-plugin_2.10_0.13/0.7.0/xsbt-web-plugin-0.7.0.pom[0m
+[0m[[0mdebug[0m] [0m	public: found md file for com.earldouglas#xsbt-web-plugin;0.7.0[0m
+[0m[[0mdebug[0m] [0m		=> http://repo1.maven.org/maven2/com/earldouglas/xsbt-web-plugin_2.10_0.13/0.7.0/xsbt-web-plugin-0.7.0.pom (0.7.0)[0m
+[0m[[0mdebug[0m] [0mdownloading http://repo1.maven.org/maven2/com/earldouglas/xsbt-web-plugin_2.10_0.13/0.7.0/xsbt-web-plugin-0.7.0.pom ...[0m
+[0m[[0mdebug[0m] [0m	public: downloading http://repo1.maven.org/maven2/com/earldouglas/xsbt-web-plugin_2.10_0.13/0.7.0/xsbt-web-plugin-0.7.0.pom[0m
+[0m[[0mdebug[0m] [0m	public: downloading http://repo1.maven.org/maven2/com/earldouglas/xsbt-web-plugin_2.10_0.13/0.7.0/xsbt-web-plugin-0.7.0.pom.sha1[0m
+[0m[[0mdebug[0m] [0msha1 OK for http://repo1.maven.org/maven2/com/earldouglas/xsbt-web-plugin_2.10_0.13/0.7.0/xsbt-web-plugin-0.7.0.pom[0m
+[0m[[0mdebug[0m] [0m	[SUCCESSFUL ] com.earldouglas#xsbt-web-plugin;0.7.0!xsbt-web-plugin.pom(pom.original) (537ms)[0m
+[0m[[0mdebug[0m] [0m		tried http://repo.typesafe.com/typesafe/ivy-releases/com.earldouglas/xsbt-web-plugin/0.7.0/jars/xsbt-web-plugin.jar[0m
+[0m[[0mdebug[0m] [0mCLIENT ERROR: Not Found url=http://repo.typesafe.com/typesafe/ivy-releases/com.earldouglas/xsbt-web-plugin/0.7.0/jars/xsbt-web-plugin.jar[0m
+[0m[[0mdebug[0m] [0m		tried http://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/com.earldouglas/xsbt-web-plugin/0.7.0/jars/xsbt-web-plugin.jar[0m
+[0m[[0mdebug[0m] [0mCLIENT ERROR: Not Found url=http://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/com.earldouglas/xsbt-web-plugin/0.7.0/jars/xsbt-web-plugin.jar[0m
+[0m[[0mdebug[0m] [0m		tried /home/ms/.ivy2/local/com.earldouglas/xsbt-web-plugin/0.7.0/jars/xsbt-web-plugin.jar[0m
+[0m[[0mdebug[0m] [0m		tried http://repo1.maven.org/maven2/com/earldouglas/xsbt-web-plugin/0.7.0/xsbt-web-plugin-0.7.0.jar[0m
+[0m[[0mdebug[0m] [0mCLIENT ERROR: Not Found url=http://repo1.maven.org/maven2/com/earldouglas/xsbt-web-plugin/0.7.0/xsbt-web-plugin-0.7.0.jar[0m
+[0m[[0mdebug[0m] [0m		tried http://repo.typesafe.com/typesafe/ivy-releases/com.earldouglas/xsbt-web-plugin/0.7.0/jars/xsbt-web-plugin.jar[0m
+[0m[[0mdebug[0m] [0mCLIENT ERROR: Not Found url=http://repo.typesafe.com/typesafe/ivy-releases/com.earldouglas/xsbt-web-plugin/0.7.0/jars/xsbt-web-plugin.jar[0m
+[0m[[0mdebug[0m] [0m	found com.earldouglas#xsbt-web-plugin;0.7.0 in public[0m
 [0m[[0mdebug[0m] [0m== resolving dependencies default#osp-build;0.1-SNAPSHOT->com.earldouglas#xsbt-web-plugin;0.7.0 [compile->runtime][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies default#osp-build;0.1-SNAPSHOT->com.earldouglas#xsbt-web-plugin;0.7.0 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.mortbay.jetty#jetty;6.1.22 [compile->master(*)][0m
@@ -106,144 +129,9 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies org.mortbay.jetty#jetty-plus;6.1.22->geronimo-spec#geronimo-spec-jta;1.0.1B-rc4 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.mortbay.jetty#jetty-plus;6.1.22->geronimo-spec#geronimo-spec-jta;1.0.1B-rc4 [runtime->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-webapp;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0minfo[0m] [0mResolving org.eclipse.jetty#jetty-webapp;7.5.1.v20110908 ...[0m
-[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.eclipse.jetty#jetty-webapp;7.5.1.v20110908 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
-[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.eclipse.jetty#jetty-webapp;7.5.1.v20110908[0m
-[0m[[0mdebug[0m] [0m	typesafe-ivy-releases: revision in cache: org.eclipse.jetty#jetty-webapp;7.5.1.v20110908[0m
-[0m[[0mdebug[0m] [0m	found org.eclipse.jetty#jetty-webapp;7.5.1.v20110908 in sbt-chain[0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-webapp;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-webapp;7.5.1.v20110908->org.eclipse.jetty#jetty-xml;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0minfo[0m] [0mResolving org.eclipse.jetty#jetty-xml;7.5.1.v20110908 ...[0m
-[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.eclipse.jetty#jetty-xml;7.5.1.v20110908 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
-[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.eclipse.jetty#jetty-xml;7.5.1.v20110908[0m
-[0m[[0mdebug[0m] [0m	typesafe-ivy-releases: revision in cache: org.eclipse.jetty#jetty-xml;7.5.1.v20110908[0m
-[0m[[0mdebug[0m] [0m	found org.eclipse.jetty#jetty-xml;7.5.1.v20110908 in sbt-chain[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-webapp;7.5.1.v20110908->org.eclipse.jetty#jetty-xml;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-xml;7.5.1.v20110908->org.eclipse.jetty#jetty-util;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0minfo[0m] [0mResolving org.eclipse.jetty#jetty-util;7.5.1.v20110908 ...[0m
-[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.eclipse.jetty#jetty-util;7.5.1.v20110908 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
-[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.eclipse.jetty#jetty-util;7.5.1.v20110908[0m
-[0m[[0mdebug[0m] [0m	typesafe-ivy-releases: revision in cache: org.eclipse.jetty#jetty-util;7.5.1.v20110908[0m
-[0m[[0mdebug[0m] [0m	found org.eclipse.jetty#jetty-util;7.5.1.v20110908 in sbt-chain[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-xml;7.5.1.v20110908->org.eclipse.jetty#jetty-util;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-webapp;7.5.1.v20110908->org.eclipse.jetty#jetty-servlet;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0minfo[0m] [0mResolving org.eclipse.jetty#jetty-servlet;7.5.1.v20110908 ...[0m
-[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.eclipse.jetty#jetty-servlet;7.5.1.v20110908 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
-[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.eclipse.jetty#jetty-servlet;7.5.1.v20110908[0m
-[0m[[0mdebug[0m] [0m	typesafe-ivy-releases: revision in cache: org.eclipse.jetty#jetty-servlet;7.5.1.v20110908[0m
-[0m[[0mdebug[0m] [0m	found org.eclipse.jetty#jetty-servlet;7.5.1.v20110908 in sbt-chain[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-webapp;7.5.1.v20110908->org.eclipse.jetty#jetty-servlet;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-servlet;7.5.1.v20110908->org.eclipse.jetty#jetty-security;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0minfo[0m] [0mResolving org.eclipse.jetty#jetty-security;7.5.1.v20110908 ...[0m
-[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.eclipse.jetty#jetty-security;7.5.1.v20110908 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
-[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.eclipse.jetty#jetty-security;7.5.1.v20110908[0m
-[0m[[0mdebug[0m] [0m	typesafe-ivy-releases: revision in cache: org.eclipse.jetty#jetty-security;7.5.1.v20110908[0m
-[0m[[0mdebug[0m] [0m	found org.eclipse.jetty#jetty-security;7.5.1.v20110908 in sbt-chain[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-servlet;7.5.1.v20110908->org.eclipse.jetty#jetty-security;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-security;7.5.1.v20110908->org.eclipse.jetty#jetty-server;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0minfo[0m] [0mResolving org.eclipse.jetty#jetty-server;7.5.1.v20110908 ...[0m
-[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.eclipse.jetty#jetty-server;7.5.1.v20110908 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
-[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.eclipse.jetty#jetty-server;7.5.1.v20110908[0m
-[0m[[0mdebug[0m] [0m	typesafe-ivy-releases: revision in cache: org.eclipse.jetty#jetty-server;7.5.1.v20110908[0m
-[0m[[0mdebug[0m] [0m	found org.eclipse.jetty#jetty-server;7.5.1.v20110908 in sbt-chain[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-security;7.5.1.v20110908->org.eclipse.jetty#jetty-server;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;7.5.1.v20110908->javax.servlet#servlet-api;2.5 [compile->master(*)][0m
-[0m[[0minfo[0m] [0mResolving javax.servlet#servlet-api;2.5 ...[0m
-[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: javax.servlet#servlet-api;2.5 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
-[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: javax.servlet#servlet-api;2.5[0m
-[0m[[0mdebug[0m] [0m	typesafe-ivy-releases: revision in cache: javax.servlet#servlet-api;2.5[0m
-[0m[[0mdebug[0m] [0m	found javax.servlet#servlet-api;2.5 in sbt-chain[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;7.5.1.v20110908->javax.servlet#servlet-api;2.5 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;7.5.1.v20110908->org.eclipse.jetty#jetty-continuation;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0minfo[0m] [0mResolving org.eclipse.jetty#jetty-continuation;7.5.1.v20110908 ...[0m
-[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.eclipse.jetty#jetty-continuation;7.5.1.v20110908 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
-[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.eclipse.jetty#jetty-continuation;7.5.1.v20110908[0m
-[0m[[0mdebug[0m] [0m	typesafe-ivy-releases: revision in cache: org.eclipse.jetty#jetty-continuation;7.5.1.v20110908[0m
-[0m[[0mdebug[0m] [0m	found org.eclipse.jetty#jetty-continuation;7.5.1.v20110908 in sbt-chain[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;7.5.1.v20110908->org.eclipse.jetty#jetty-continuation;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;7.5.1.v20110908->org.eclipse.jetty#jetty-http;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0minfo[0m] [0mResolving org.eclipse.jetty#jetty-http;7.5.1.v20110908 ...[0m
-[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.eclipse.jetty#jetty-http;7.5.1.v20110908 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
-[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.eclipse.jetty#jetty-http;7.5.1.v20110908[0m
-[0m[[0mdebug[0m] [0m	typesafe-ivy-releases: revision in cache: org.eclipse.jetty#jetty-http;7.5.1.v20110908[0m
-[0m[[0mdebug[0m] [0m	found org.eclipse.jetty#jetty-http;7.5.1.v20110908 in sbt-chain[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;7.5.1.v20110908->org.eclipse.jetty#jetty-http;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-http;7.5.1.v20110908->org.eclipse.jetty#jetty-io;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0minfo[0m] [0mResolving org.eclipse.jetty#jetty-io;7.5.1.v20110908 ...[0m
-[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.eclipse.jetty#jetty-io;7.5.1.v20110908 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
-[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.eclipse.jetty#jetty-io;7.5.1.v20110908[0m
-[0m[[0mdebug[0m] [0m	typesafe-ivy-releases: revision in cache: org.eclipse.jetty#jetty-io;7.5.1.v20110908[0m
-[0m[[0mdebug[0m] [0m	found org.eclipse.jetty#jetty-io;7.5.1.v20110908 in sbt-chain[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-http;7.5.1.v20110908->org.eclipse.jetty#jetty-io;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-io;7.5.1.v20110908->org.eclipse.jetty#jetty-util;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-io;7.5.1.v20110908->org.eclipse.jetty#jetty-util;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-webapp;7.5.1.v20110908 [compile->runtime(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-webapp;7.5.1.v20110908 [compile->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-webapp;7.5.1.v20110908->org.eclipse.jetty#jetty-xml;7.5.1.v20110908 [runtime->runtime(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-webapp;7.5.1.v20110908->org.eclipse.jetty#jetty-xml;7.5.1.v20110908 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-xml;7.5.1.v20110908->org.eclipse.jetty#jetty-util;7.5.1.v20110908 [runtime->runtime(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-xml;7.5.1.v20110908->org.eclipse.jetty#jetty-util;7.5.1.v20110908 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-webapp;7.5.1.v20110908->org.eclipse.jetty#jetty-servlet;7.5.1.v20110908 [runtime->runtime(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-webapp;7.5.1.v20110908->org.eclipse.jetty#jetty-servlet;7.5.1.v20110908 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-servlet;7.5.1.v20110908->org.eclipse.jetty#jetty-security;7.5.1.v20110908 [runtime->runtime(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-servlet;7.5.1.v20110908->org.eclipse.jetty#jetty-security;7.5.1.v20110908 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-security;7.5.1.v20110908->org.eclipse.jetty#jetty-server;7.5.1.v20110908 [runtime->runtime(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-security;7.5.1.v20110908->org.eclipse.jetty#jetty-server;7.5.1.v20110908 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;7.5.1.v20110908->javax.servlet#servlet-api;2.5 [runtime->runtime(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;7.5.1.v20110908->javax.servlet#servlet-api;2.5 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;7.5.1.v20110908->org.eclipse.jetty#jetty-continuation;7.5.1.v20110908 [runtime->runtime(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;7.5.1.v20110908->org.eclipse.jetty#jetty-continuation;7.5.1.v20110908 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;7.5.1.v20110908->org.eclipse.jetty#jetty-http;7.5.1.v20110908 [runtime->runtime(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;7.5.1.v20110908->org.eclipse.jetty#jetty-http;7.5.1.v20110908 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-http;7.5.1.v20110908->org.eclipse.jetty#jetty-io;7.5.1.v20110908 [runtime->runtime(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-http;7.5.1.v20110908->org.eclipse.jetty#jetty-io;7.5.1.v20110908 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-io;7.5.1.v20110908->org.eclipse.jetty#jetty-util;7.5.1.v20110908 [runtime->runtime(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-io;7.5.1.v20110908->org.eclipse.jetty#jetty-util;7.5.1.v20110908 [runtime->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-plus;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0minfo[0m] [0mResolving org.eclipse.jetty#jetty-plus;7.5.1.v20110908 ...[0m
-[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.eclipse.jetty#jetty-plus;7.5.1.v20110908 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
-[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.eclipse.jetty#jetty-plus;7.5.1.v20110908[0m
-[0m[[0mdebug[0m] [0m	typesafe-ivy-releases: revision in cache: org.eclipse.jetty#jetty-plus;7.5.1.v20110908[0m
-[0m[[0mdebug[0m] [0m	found org.eclipse.jetty#jetty-plus;7.5.1.v20110908 in sbt-chain[0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-plus;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;7.5.1.v20110908->org.apache.geronimo.specs#geronimo-jta_1.1_spec;1.1.1 [compile->master(*)][0m
-[0m[[0minfo[0m] [0mResolving org.apache.geronimo.specs#geronimo-jta_1.1_spec;1.1.1 ...[0m
-[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.apache.geronimo.specs#geronimo-jta_1.1_spec;1.1.1 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
-[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.apache.geronimo.specs#geronimo-jta_1.1_spec;1.1.1[0m
-[0m[[0mdebug[0m] [0m	typesafe-ivy-releases: revision in cache: org.apache.geronimo.specs#geronimo-jta_1.1_spec;1.1.1[0m
-[0m[[0mdebug[0m] [0m	found org.apache.geronimo.specs#geronimo-jta_1.1_spec;1.1.1 in sbt-chain[0m
-[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: junit#junit;3.8.1 {test=[runtime(*), master(*)]} => dependency: junit#junit;4.8.1 {test=[runtime(*), master(*)]}[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;7.5.1.v20110908->org.apache.geronimo.specs#geronimo-jta_1.1_spec;1.1.1 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: junit#junit;3.8.1 {test=[runtime(*), master(*)]} => dependency: junit#junit;4.8.1 {test=[runtime(*), master(*)]}[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;7.5.1.v20110908->org.eclipse.jetty#jetty-webapp;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;7.5.1.v20110908->org.eclipse.jetty#jetty-webapp;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;7.5.1.v20110908->org.eclipse.jetty#jetty-jndi;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0minfo[0m] [0mResolving org.eclipse.jetty#jetty-jndi;7.5.1.v20110908 ...[0m
-[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.eclipse.jetty#jetty-jndi;7.5.1.v20110908 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
-[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.eclipse.jetty#jetty-jndi;7.5.1.v20110908[0m
-[0m[[0mdebug[0m] [0m	typesafe-ivy-releases: revision in cache: org.eclipse.jetty#jetty-jndi;7.5.1.v20110908[0m
-[0m[[0mdebug[0m] [0m	found org.eclipse.jetty#jetty-jndi;7.5.1.v20110908 in sbt-chain[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;7.5.1.v20110908->org.eclipse.jetty#jetty-jndi;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-jndi;7.5.1.v20110908->javax.mail#mail;1.4.1 [compile->master(*)][0m
-[0m[[0minfo[0m] [0mResolving javax.mail#mail;1.4.1 ...[0m
-[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: javax.mail#mail;1.4.1 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
-[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: javax.mail#mail;1.4.1[0m
-[0m[[0mdebug[0m] [0m	typesafe-ivy-releases: revision in cache: javax.mail#mail;1.4.1[0m
-[0m[[0mdebug[0m] [0m	found javax.mail#mail;1.4.1 in sbt-chain[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-jndi;7.5.1.v20110908->javax.mail#mail;1.4.1 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0mexcluding dependency: javax.activation#activation;1.1 {compile=[compile(*), master(*)], runtime=[runtime(*)]} in compile[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-plus;7.5.1.v20110908 [compile->runtime(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-plus;7.5.1.v20110908 [compile->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;7.5.1.v20110908->org.apache.geronimo.specs#geronimo-jta_1.1_spec;1.1.1 [runtime->runtime(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;7.5.1.v20110908->org.apache.geronimo.specs#geronimo-jta_1.1_spec;1.1.1 [runtime->compile][0m
-[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: junit#junit;3.8.1 {test=[runtime(*), master(*)]} => dependency: junit#junit;4.8.1 {test=[runtime(*), master(*)]}[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;7.5.1.v20110908->org.eclipse.jetty#jetty-webapp;7.5.1.v20110908 [runtime->runtime(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;7.5.1.v20110908->org.eclipse.jetty#jetty-webapp;7.5.1.v20110908 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;7.5.1.v20110908->org.eclipse.jetty#jetty-jndi;7.5.1.v20110908 [runtime->runtime(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;7.5.1.v20110908->org.eclipse.jetty#jetty-jndi;7.5.1.v20110908 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-jndi;7.5.1.v20110908->javax.mail#mail;1.4.1 [runtime->runtime(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-jndi;7.5.1.v20110908->javax.mail#mail;1.4.1 [runtime->compile][0m
-[0m[[0mdebug[0m] [0mexcluding dependency: javax.activation#activation;1.1 {compile=[compile(*), master(*)], runtime=[runtime(*)]} in runtime[0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [compile->master(*)][0m
 [0m[[0minfo[0m] [0mResolving org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 ...[0m
 [0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
@@ -265,12 +153,6 @@
 [0m[[0mdebug[0m] [0m	typesafe-ivy-releases: revision in cache: org.eclipse.jetty#jetty-util;9.1.0.v20131115[0m
 [0m[[0mdebug[0m] [0m	found org.eclipse.jetty#jetty-util;9.1.0.v20131115 in sbt-chain[0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-xml;9.1.0.v20131115->org.eclipse.jetty#jetty-util;9.1.0.v20131115 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-xml;9.1.0.v20131115->org.eclipse.jetty#jetty-util;9.1.0.v20131115 [compile->runtime(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-xml;9.1.0.v20131115->org.eclipse.jetty#jetty-util;9.1.0.v20131115 [compile->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-webapp;9.1.0.v20131115->org.eclipse.jetty#jetty-xml;9.1.0.v20131115 [compile->runtime(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-webapp;9.1.0.v20131115->org.eclipse.jetty#jetty-xml;9.1.0.v20131115 [compile->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-xml;9.1.0.v20131115->org.eclipse.jetty#jetty-util;9.1.0.v20131115 [runtime->runtime(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-xml;9.1.0.v20131115->org.eclipse.jetty#jetty-util;9.1.0.v20131115 [runtime->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-webapp;9.1.0.v20131115->org.eclipse.jetty#jetty-servlet;9.1.0.v20131115 [compile->master(*)][0m
 [0m[[0minfo[0m] [0mResolving org.eclipse.jetty#jetty-servlet;9.1.0.v20131115 ...[0m
 [0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.eclipse.jetty#jetty-servlet;9.1.0.v20131115 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
@@ -308,10 +190,6 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;9.1.0.v20131115->org.eclipse.jetty#jetty-http;9.1.0.v20131115 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-http;9.1.0.v20131115->org.eclipse.jetty#jetty-util;9.1.0.v20131115 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-http;9.1.0.v20131115->org.eclipse.jetty#jetty-util;9.1.0.v20131115 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;9.1.0.v20131115->org.eclipse.jetty#jetty-http;9.1.0.v20131115 [compile->runtime(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;9.1.0.v20131115->org.eclipse.jetty#jetty-http;9.1.0.v20131115 [compile->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-http;9.1.0.v20131115->org.eclipse.jetty#jetty-util;9.1.0.v20131115 [runtime->runtime(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-http;9.1.0.v20131115->org.eclipse.jetty#jetty-util;9.1.0.v20131115 [runtime->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;9.1.0.v20131115->org.eclipse.jetty#jetty-io;9.1.0.v20131115 [compile->master(*)][0m
 [0m[[0minfo[0m] [0mResolving org.eclipse.jetty#jetty-io;9.1.0.v20131115 ...[0m
 [0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.eclipse.jetty#jetty-io;9.1.0.v20131115 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
@@ -321,38 +199,52 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;9.1.0.v20131115->org.eclipse.jetty#jetty-io;9.1.0.v20131115 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-io;9.1.0.v20131115->org.eclipse.jetty#jetty-util;9.1.0.v20131115 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-io;9.1.0.v20131115->org.eclipse.jetty#jetty-util;9.1.0.v20131115 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;9.1.0.v20131115->org.eclipse.jetty#jetty-io;9.1.0.v20131115 [compile->runtime(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;9.1.0.v20131115->org.eclipse.jetty#jetty-io;9.1.0.v20131115 [compile->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-io;9.1.0.v20131115->org.eclipse.jetty#jetty-util;9.1.0.v20131115 [runtime->runtime(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-io;9.1.0.v20131115->org.eclipse.jetty#jetty-util;9.1.0.v20131115 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-security;9.1.0.v20131115->org.eclipse.jetty#jetty-server;9.1.0.v20131115 [compile->runtime(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-security;9.1.0.v20131115->org.eclipse.jetty#jetty-server;9.1.0.v20131115 [compile->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;9.1.0.v20131115->javax.servlet#javax.servlet-api;3.1.0 [runtime->runtime(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;9.1.0.v20131115->javax.servlet#javax.servlet-api;3.1.0 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;9.1.0.v20131115->org.eclipse.jetty#jetty-http;9.1.0.v20131115 [runtime->runtime(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;9.1.0.v20131115->org.eclipse.jetty#jetty-http;9.1.0.v20131115 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;9.1.0.v20131115->org.eclipse.jetty#jetty-io;9.1.0.v20131115 [runtime->runtime(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;9.1.0.v20131115->org.eclipse.jetty#jetty-io;9.1.0.v20131115 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-servlet;9.1.0.v20131115->org.eclipse.jetty#jetty-security;9.1.0.v20131115 [compile->runtime(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-servlet;9.1.0.v20131115->org.eclipse.jetty#jetty-security;9.1.0.v20131115 [compile->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-security;9.1.0.v20131115->org.eclipse.jetty#jetty-server;9.1.0.v20131115 [runtime->runtime(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-security;9.1.0.v20131115->org.eclipse.jetty#jetty-server;9.1.0.v20131115 [runtime->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-webapp;9.1.0.v20131115->org.eclipse.jetty#jetty-servlet;9.1.0.v20131115 [compile->runtime(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-webapp;9.1.0.v20131115->org.eclipse.jetty#jetty-servlet;9.1.0.v20131115 [compile->compile][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-servlet;9.1.0.v20131115->org.eclipse.jetty#jetty-security;9.1.0.v20131115 [runtime->runtime(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-servlet;9.1.0.v20131115->org.eclipse.jetty#jetty-security;9.1.0.v20131115 [runtime->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [compile->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-webapp;9.1.0.v20131115->org.eclipse.jetty#jetty-xml;9.1.0.v20131115 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-webapp;9.1.0.v20131115->org.eclipse.jetty#jetty-xml;9.1.0.v20131115 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-xml;9.1.0.v20131115->org.eclipse.jetty#jetty-util;9.1.0.v20131115 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-xml;9.1.0.v20131115->org.eclipse.jetty#jetty-util;9.1.0.v20131115 [runtime->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-webapp;9.1.0.v20131115->org.eclipse.jetty#jetty-servlet;9.1.0.v20131115 [runtime->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-webapp;9.1.0.v20131115->org.eclipse.jetty#jetty-servlet;9.1.0.v20131115 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-servlet;9.1.0.v20131115->org.eclipse.jetty#jetty-security;9.1.0.v20131115 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-servlet;9.1.0.v20131115->org.eclipse.jetty#jetty-security;9.1.0.v20131115 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-security;9.1.0.v20131115->org.eclipse.jetty#jetty-server;9.1.0.v20131115 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-security;9.1.0.v20131115->org.eclipse.jetty#jetty-server;9.1.0.v20131115 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;9.1.0.v20131115->javax.servlet#javax.servlet-api;3.1.0 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;9.1.0.v20131115->javax.servlet#javax.servlet-api;3.1.0 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;9.1.0.v20131115->org.eclipse.jetty#jetty-http;9.1.0.v20131115 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;9.1.0.v20131115->org.eclipse.jetty#jetty-http;9.1.0.v20131115 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-http;9.1.0.v20131115->org.eclipse.jetty#jetty-util;9.1.0.v20131115 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-http;9.1.0.v20131115->org.eclipse.jetty#jetty-util;9.1.0.v20131115 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;9.1.0.v20131115->org.eclipse.jetty#jetty-io;9.1.0.v20131115 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;9.1.0.v20131115->org.eclipse.jetty#jetty-io;9.1.0.v20131115 [runtime->compile][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-io;9.1.0.v20131115->org.eclipse.jetty#jetty-util;9.1.0.v20131115 [runtime->runtime(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-io;9.1.0.v20131115->org.eclipse.jetty#jetty-util;9.1.0.v20131115 [runtime->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-annotations;9.1.0.v20131115 [compile->master(*)][0m
 [0m[[0minfo[0m] [0mResolving org.eclipse.jetty#jetty-annotations;9.1.0.v20131115 ...[0m
 [0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.eclipse.jetty#jetty-annotations;9.1.0.v20131115 {compile=[compile(*), master(*)], runtime=[runtime(*)]}[0m
-[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.eclipse.jetty#jetty-annotations;9.1.0.v20131115[0m
-[0m[[0mdebug[0m] [0m	typesafe-ivy-releases: revision in cache: org.eclipse.jetty#jetty-annotations;9.1.0.v20131115[0m
-[0m[[0mdebug[0m] [0m	found org.eclipse.jetty#jetty-annotations;9.1.0.v20131115 in sbt-chain[0m
+[0m[[0mdebug[0m] [0m		tried http://repo.typesafe.com/typesafe/ivy-releases/org.eclipse.jetty/jetty-annotations/9.1.0.v20131115/ivys/ivy.xml[0m
+[0m[[0mdebug[0m] [0mCLIENT ERROR: Not Found url=http://repo.typesafe.com/typesafe/ivy-releases/org.eclipse.jetty/jetty-annotations/9.1.0.v20131115/ivys/ivy.xml[0m
+[0m[[0mdebug[0m] [0m	typesafe-ivy-releases: no ivy file found for org.eclipse.jetty#jetty-annotations;9.1.0.v20131115[0m
+[0m[[0mdebug[0m] [0m		tried http://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/org.eclipse.jetty/jetty-annotations/9.1.0.v20131115/ivys/ivy.xml[0m
+[0m[[0mdebug[0m] [0mCLIENT ERROR: Not Found url=http://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/org.eclipse.jetty/jetty-annotations/9.1.0.v20131115/ivys/ivy.xml[0m
+[0m[[0mdebug[0m] [0m	sbt-plugin-releases: no ivy file found for org.eclipse.jetty#jetty-annotations;9.1.0.v20131115[0m
+[0m[[0mdebug[0m] [0m		tried /home/ms/.ivy2/local/org.eclipse.jetty/jetty-annotations/9.1.0.v20131115/ivys/ivy.xml[0m
+[0m[[0mdebug[0m] [0m	local: no ivy file found for org.eclipse.jetty#jetty-annotations;9.1.0.v20131115[0m
+[0m[[0mdebug[0m] [0m		tried http://repo1.maven.org/maven2/org/eclipse/jetty/jetty-annotations/9.1.0.v20131115/jetty-annotations-9.1.0.v20131115.pom[0m
+[0m[[0mdebug[0m] [0m	public: found md file for org.eclipse.jetty#jetty-annotations;9.1.0.v20131115[0m
+[0m[[0mdebug[0m] [0m		=> http://repo1.maven.org/maven2/org/eclipse/jetty/jetty-annotations/9.1.0.v20131115/jetty-annotations-9.1.0.v20131115.pom (9.1.0.v20131115)[0m
+[0m[[0mdebug[0m] [0mdownloading http://repo1.maven.org/maven2/org/eclipse/jetty/jetty-annotations/9.1.0.v20131115/jetty-annotations-9.1.0.v20131115.pom ...[0m
+[0m[[0mdebug[0m] [0m	public: downloading http://repo1.maven.org/maven2/org/eclipse/jetty/jetty-annotations/9.1.0.v20131115/jetty-annotations-9.1.0.v20131115.pom[0m
+[0m[[0mdebug[0m] [0m	public: downloading http://repo1.maven.org/maven2/org/eclipse/jetty/jetty-annotations/9.1.0.v20131115/jetty-annotations-9.1.0.v20131115.pom.sha1[0m
+[0m[[0mdebug[0m] [0msha1 OK for http://repo1.maven.org/maven2/org/eclipse/jetty/jetty-annotations/9.1.0.v20131115/jetty-annotations-9.1.0.v20131115.pom[0m
+[0m[[0mdebug[0m] [0m	[SUCCESSFUL ] org.eclipse.jetty#jetty-annotations;9.1.0.v20131115!jetty-annotations.pom(pom.original) (461ms)[0m
+[0m[[0minfo[0m] [0mResolving org.eclipse.jetty#jetty-project;9.1.0.v20131115 ...[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.eclipse.jetty#jetty-project;9.1.0.v20131115 {}[0m
+[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.eclipse.jetty#jetty-project;9.1.0.v20131115[0m
+[0m[[0mdebug[0m] [0m	typesafe-ivy-releases: revision in cache: org.eclipse.jetty#jetty-project;9.1.0.v20131115[0m
+[0m[[0mdebug[0m] [0m	found org.eclipse.jetty#jetty-annotations;9.1.0.v20131115 in public[0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-annotations;9.1.0.v20131115 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-annotations;9.1.0.v20131115->org.eclipse.jetty#jetty-plus;9.1.0.v20131115 [compile->master(*)][0m
 [0m[[0minfo[0m] [0mResolving org.eclipse.jetty#jetty-plus;9.1.0.v20131115 ...[0m
@@ -370,8 +262,6 @@
 [0m[[0mdebug[0m] [0m	typesafe-ivy-releases: revision in cache: org.eclipse.jetty#jetty-jndi;9.1.0.v20131115[0m
 [0m[[0mdebug[0m] [0m	found org.eclipse.jetty#jetty-jndi;9.1.0.v20131115 in sbt-chain[0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;9.1.0.v20131115->org.eclipse.jetty#jetty-jndi;9.1.0.v20131115 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;9.1.0.v20131115->org.eclipse.jetty#jetty-jndi;9.1.0.v20131115 [compile->runtime(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;9.1.0.v20131115->org.eclipse.jetty#jetty-jndi;9.1.0.v20131115 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-annotations;9.1.0.v20131115->org.eclipse.jetty#jetty-plus;9.1.0.v20131115 [compile->runtime(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-annotations;9.1.0.v20131115->org.eclipse.jetty#jetty-plus;9.1.0.v20131115 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;9.1.0.v20131115->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [runtime->runtime(*)][0m
@@ -521,41 +411,8 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies org.mortbay.jetty#jetty-plus;6.1.22->geronimo-spec#geronimo-spec-jta;1.0.1B-rc4 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.mortbay.jetty#jetty-plus;6.1.22->geronimo-spec#geronimo-spec-jta;1.0.1B-rc4 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-webapp;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-webapp;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-webapp;7.5.1.v20110908->org.eclipse.jetty#jetty-xml;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-webapp;7.5.1.v20110908->org.eclipse.jetty#jetty-xml;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-xml;7.5.1.v20110908->org.eclipse.jetty#jetty-util;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-xml;7.5.1.v20110908->org.eclipse.jetty#jetty-util;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-webapp;7.5.1.v20110908->org.eclipse.jetty#jetty-servlet;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-webapp;7.5.1.v20110908->org.eclipse.jetty#jetty-servlet;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-servlet;7.5.1.v20110908->org.eclipse.jetty#jetty-security;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-servlet;7.5.1.v20110908->org.eclipse.jetty#jetty-security;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-security;7.5.1.v20110908->org.eclipse.jetty#jetty-server;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-security;7.5.1.v20110908->org.eclipse.jetty#jetty-server;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;7.5.1.v20110908->javax.servlet#servlet-api;2.5 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;7.5.1.v20110908->javax.servlet#servlet-api;2.5 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;7.5.1.v20110908->org.eclipse.jetty#jetty-continuation;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;7.5.1.v20110908->org.eclipse.jetty#jetty-continuation;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;7.5.1.v20110908->org.eclipse.jetty#jetty-http;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;7.5.1.v20110908->org.eclipse.jetty#jetty-http;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-http;7.5.1.v20110908->org.eclipse.jetty#jetty-io;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-http;7.5.1.v20110908->org.eclipse.jetty#jetty-io;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-io;7.5.1.v20110908->org.eclipse.jetty#jetty-util;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-io;7.5.1.v20110908->org.eclipse.jetty#jetty-util;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-plus;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-plus;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;7.5.1.v20110908->org.apache.geronimo.specs#geronimo-jta_1.1_spec;1.1.1 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: junit#junit;3.8.1 {test=[runtime(*), master(*)]} => dependency: junit#junit;4.8.1 {test=[runtime(*), master(*)]}[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;7.5.1.v20110908->org.apache.geronimo.specs#geronimo-jta_1.1_spec;1.1.1 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: junit#junit;3.8.1 {test=[runtime(*), master(*)]} => dependency: junit#junit;4.8.1 {test=[runtime(*), master(*)]}[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;7.5.1.v20110908->org.eclipse.jetty#jetty-webapp;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;7.5.1.v20110908->org.eclipse.jetty#jetty-webapp;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;7.5.1.v20110908->org.eclipse.jetty#jetty-jndi;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;7.5.1.v20110908->org.eclipse.jetty#jetty-jndi;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-jndi;7.5.1.v20110908->javax.mail#mail;1.4.1 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-jndi;7.5.1.v20110908->javax.mail#mail;1.4.1 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0mexcluding dependency: javax.activation#activation;1.1 {compile=[compile(*), master(*)], runtime=[runtime(*)]} in compile[0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-webapp;7.5.1.v20110908 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-webapp;9.1.0.v20131115->org.eclipse.jetty#jetty-xml;9.1.0.v20131115 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-webapp;9.1.0.v20131115->org.eclipse.jetty#jetty-xml;9.1.0.v20131115 [compile->compile(*)][0m
@@ -577,14 +434,20 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;9.1.0.v20131115->org.eclipse.jetty#jetty-io;9.1.0.v20131115 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-io;9.1.0.v20131115->org.eclipse.jetty#jetty-util;9.1.0.v20131115 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-io;9.1.0.v20131115->org.eclipse.jetty#jetty-util;9.1.0.v20131115 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-annotations;9.1.0.v20131115 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-annotations;9.1.0.v20131115 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-annotations;9.1.0.v20131115->org.eclipse.jetty#jetty-plus;9.1.0.v20131115 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-annotations;9.1.0.v20131115->org.eclipse.jetty#jetty-plus;9.1.0.v20131115 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-plus;7.5.1.v20110908 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-plus;9.1.0.v20131115 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-plus;7.5.1.v20110908 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-plus;9.1.0.v20131115 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;9.1.0.v20131115->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;9.1.0.v20131115->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;9.1.0.v20131115->org.eclipse.jetty#jetty-jndi;9.1.0.v20131115 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;9.1.0.v20131115->org.eclipse.jetty#jetty-jndi;9.1.0.v20131115 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-annotations;9.1.0.v20131115 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-annotations;9.1.0.v20131115 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-annotations;9.1.0.v20131115->org.eclipse.jetty#jetty-plus;9.1.0.v20131115 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-annotations;9.1.0.v20131115->org.eclipse.jetty#jetty-plus;9.1.0.v20131115 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-annotations;9.1.0.v20131115->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-annotations;9.1.0.v20131115->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-annotations;9.1.0.v20131115->javax.annotation#javax.annotation-api;1.2 [compile->master(*)][0m
@@ -716,41 +579,8 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies org.mortbay.jetty#jetty-plus;6.1.22->geronimo-spec#geronimo-spec-jta;1.0.1B-rc4 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.mortbay.jetty#jetty-plus;6.1.22->geronimo-spec#geronimo-spec-jta;1.0.1B-rc4 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-webapp;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-webapp;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-webapp;7.5.1.v20110908->org.eclipse.jetty#jetty-xml;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-webapp;7.5.1.v20110908->org.eclipse.jetty#jetty-xml;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-xml;7.5.1.v20110908->org.eclipse.jetty#jetty-util;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-xml;7.5.1.v20110908->org.eclipse.jetty#jetty-util;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-webapp;7.5.1.v20110908->org.eclipse.jetty#jetty-servlet;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-webapp;7.5.1.v20110908->org.eclipse.jetty#jetty-servlet;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-servlet;7.5.1.v20110908->org.eclipse.jetty#jetty-security;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-servlet;7.5.1.v20110908->org.eclipse.jetty#jetty-security;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-security;7.5.1.v20110908->org.eclipse.jetty#jetty-server;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-security;7.5.1.v20110908->org.eclipse.jetty#jetty-server;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;7.5.1.v20110908->javax.servlet#servlet-api;2.5 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;7.5.1.v20110908->javax.servlet#servlet-api;2.5 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;7.5.1.v20110908->org.eclipse.jetty#jetty-continuation;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;7.5.1.v20110908->org.eclipse.jetty#jetty-continuation;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;7.5.1.v20110908->org.eclipse.jetty#jetty-http;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;7.5.1.v20110908->org.eclipse.jetty#jetty-http;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-http;7.5.1.v20110908->org.eclipse.jetty#jetty-io;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-http;7.5.1.v20110908->org.eclipse.jetty#jetty-io;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-io;7.5.1.v20110908->org.eclipse.jetty#jetty-util;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-io;7.5.1.v20110908->org.eclipse.jetty#jetty-util;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-plus;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-plus;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;7.5.1.v20110908->org.apache.geronimo.specs#geronimo-jta_1.1_spec;1.1.1 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: junit#junit;3.8.1 {test=[runtime(*), master(*)]} => dependency: junit#junit;4.8.1 {test=[runtime(*), master(*)]}[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;7.5.1.v20110908->org.apache.geronimo.specs#geronimo-jta_1.1_spec;1.1.1 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: junit#junit;3.8.1 {test=[runtime(*), master(*)]} => dependency: junit#junit;4.8.1 {test=[runtime(*), master(*)]}[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;7.5.1.v20110908->org.eclipse.jetty#jetty-webapp;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;7.5.1.v20110908->org.eclipse.jetty#jetty-webapp;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;7.5.1.v20110908->org.eclipse.jetty#jetty-jndi;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;7.5.1.v20110908->org.eclipse.jetty#jetty-jndi;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-jndi;7.5.1.v20110908->javax.mail#mail;1.4.1 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-jndi;7.5.1.v20110908->javax.mail#mail;1.4.1 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0mexcluding dependency: javax.activation#activation;1.1 {compile=[compile(*), master(*)], runtime=[runtime(*)]} in compile[0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-webapp;7.5.1.v20110908 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-webapp;9.1.0.v20131115->org.eclipse.jetty#jetty-xml;9.1.0.v20131115 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-webapp;9.1.0.v20131115->org.eclipse.jetty#jetty-xml;9.1.0.v20131115 [compile->compile(*)][0m
@@ -772,14 +602,20 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;9.1.0.v20131115->org.eclipse.jetty#jetty-io;9.1.0.v20131115 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-io;9.1.0.v20131115->org.eclipse.jetty#jetty-util;9.1.0.v20131115 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-io;9.1.0.v20131115->org.eclipse.jetty#jetty-util;9.1.0.v20131115 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-annotations;9.1.0.v20131115 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-annotations;9.1.0.v20131115 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-annotations;9.1.0.v20131115->org.eclipse.jetty#jetty-plus;9.1.0.v20131115 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-annotations;9.1.0.v20131115->org.eclipse.jetty#jetty-plus;9.1.0.v20131115 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-plus;7.5.1.v20110908 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-plus;9.1.0.v20131115 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-plus;7.5.1.v20110908 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-plus;9.1.0.v20131115 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;9.1.0.v20131115->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;9.1.0.v20131115->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;9.1.0.v20131115->org.eclipse.jetty#jetty-jndi;9.1.0.v20131115 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;9.1.0.v20131115->org.eclipse.jetty#jetty-jndi;9.1.0.v20131115 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-annotations;9.1.0.v20131115 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-annotations;9.1.0.v20131115 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-annotations;9.1.0.v20131115->org.eclipse.jetty#jetty-plus;9.1.0.v20131115 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-annotations;9.1.0.v20131115->org.eclipse.jetty#jetty-plus;9.1.0.v20131115 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-annotations;9.1.0.v20131115->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-annotations;9.1.0.v20131115->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-annotations;9.1.0.v20131115->javax.annotation#javax.annotation-api;1.2 [compile->master(*)][0m
@@ -875,7 +711,7 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies for default#osp-build;0.1-SNAPSHOT [provided][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies default#osp-build;0.1-SNAPSHOT->org.scala-lang#scala-library;2.10.3 [provided->default(compile)][0m
 [0m[[0minfo[0m] [0mResolving org.scala-lang#scala-library;2.10.3 ...[0m
-[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: sbt.ivyint.MergedDescriptors@341b168b[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: sbt.ivyint.MergedDescriptors@624d980c[0m
 [0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.scala-lang#scala-library;2.10.3[0m
 [0m[[0mdebug[0m] [0m	typesafe-ivy-releases: revision in cache: org.scala-lang#scala-library;2.10.3[0m
 [0m[[0mdebug[0m] [0m	found org.scala-lang#scala-library;2.10.3 in sbt-chain[0m
@@ -1459,41 +1295,8 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies org.mortbay.jetty#jetty-plus;6.1.22->geronimo-spec#geronimo-spec-jta;1.0.1B-rc4 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.mortbay.jetty#jetty-plus;6.1.22->geronimo-spec#geronimo-spec-jta;1.0.1B-rc4 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-webapp;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-webapp;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-webapp;7.5.1.v20110908->org.eclipse.jetty#jetty-xml;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-webapp;7.5.1.v20110908->org.eclipse.jetty#jetty-xml;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-xml;7.5.1.v20110908->org.eclipse.jetty#jetty-util;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-xml;7.5.1.v20110908->org.eclipse.jetty#jetty-util;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-webapp;7.5.1.v20110908->org.eclipse.jetty#jetty-servlet;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-webapp;7.5.1.v20110908->org.eclipse.jetty#jetty-servlet;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-servlet;7.5.1.v20110908->org.eclipse.jetty#jetty-security;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-servlet;7.5.1.v20110908->org.eclipse.jetty#jetty-security;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-security;7.5.1.v20110908->org.eclipse.jetty#jetty-server;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-security;7.5.1.v20110908->org.eclipse.jetty#jetty-server;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;7.5.1.v20110908->javax.servlet#servlet-api;2.5 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;7.5.1.v20110908->javax.servlet#servlet-api;2.5 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;7.5.1.v20110908->org.eclipse.jetty#jetty-continuation;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;7.5.1.v20110908->org.eclipse.jetty#jetty-continuation;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;7.5.1.v20110908->org.eclipse.jetty#jetty-http;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;7.5.1.v20110908->org.eclipse.jetty#jetty-http;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-http;7.5.1.v20110908->org.eclipse.jetty#jetty-io;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-http;7.5.1.v20110908->org.eclipse.jetty#jetty-io;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-io;7.5.1.v20110908->org.eclipse.jetty#jetty-util;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-io;7.5.1.v20110908->org.eclipse.jetty#jetty-util;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-plus;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-plus;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;7.5.1.v20110908->org.apache.geronimo.specs#geronimo-jta_1.1_spec;1.1.1 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: junit#junit;3.8.1 {test=[runtime(*), master(*)]} => dependency: junit#junit;4.8.1 {test=[runtime(*), master(*)]}[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;7.5.1.v20110908->org.apache.geronimo.specs#geronimo-jta_1.1_spec;1.1.1 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: junit#junit;3.8.1 {test=[runtime(*), master(*)]} => dependency: junit#junit;4.8.1 {test=[runtime(*), master(*)]}[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;7.5.1.v20110908->org.eclipse.jetty#jetty-webapp;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;7.5.1.v20110908->org.eclipse.jetty#jetty-webapp;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;7.5.1.v20110908->org.eclipse.jetty#jetty-jndi;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;7.5.1.v20110908->org.eclipse.jetty#jetty-jndi;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-jndi;7.5.1.v20110908->javax.mail#mail;1.4.1 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-jndi;7.5.1.v20110908->javax.mail#mail;1.4.1 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0mexcluding dependency: javax.activation#activation;1.1 {compile=[compile(*), master(*)], runtime=[runtime(*)]} in compile[0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-webapp;7.5.1.v20110908 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-webapp;9.1.0.v20131115->org.eclipse.jetty#jetty-xml;9.1.0.v20131115 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-webapp;9.1.0.v20131115->org.eclipse.jetty#jetty-xml;9.1.0.v20131115 [compile->compile(*)][0m
@@ -1515,14 +1318,20 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;9.1.0.v20131115->org.eclipse.jetty#jetty-io;9.1.0.v20131115 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-io;9.1.0.v20131115->org.eclipse.jetty#jetty-util;9.1.0.v20131115 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-io;9.1.0.v20131115->org.eclipse.jetty#jetty-util;9.1.0.v20131115 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-annotations;9.1.0.v20131115 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-annotations;9.1.0.v20131115 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-annotations;9.1.0.v20131115->org.eclipse.jetty#jetty-plus;9.1.0.v20131115 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-annotations;9.1.0.v20131115->org.eclipse.jetty#jetty-plus;9.1.0.v20131115 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-plus;7.5.1.v20110908 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-plus;9.1.0.v20131115 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-plus;7.5.1.v20110908 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-plus;9.1.0.v20131115 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;9.1.0.v20131115->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;9.1.0.v20131115->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;9.1.0.v20131115->org.eclipse.jetty#jetty-jndi;9.1.0.v20131115 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;9.1.0.v20131115->org.eclipse.jetty#jetty-jndi;9.1.0.v20131115 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-annotations;9.1.0.v20131115 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-annotations;9.1.0.v20131115 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-annotations;9.1.0.v20131115->org.eclipse.jetty#jetty-plus;9.1.0.v20131115 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-annotations;9.1.0.v20131115->org.eclipse.jetty#jetty-plus;9.1.0.v20131115 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-annotations;9.1.0.v20131115->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-annotations;9.1.0.v20131115->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-annotations;9.1.0.v20131115->javax.annotation#javax.annotation-api;1.2 [compile->master(*)][0m
@@ -1973,41 +1782,8 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies org.mortbay.jetty#jetty-plus;6.1.22->geronimo-spec#geronimo-spec-jta;1.0.1B-rc4 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.mortbay.jetty#jetty-plus;6.1.22->geronimo-spec#geronimo-spec-jta;1.0.1B-rc4 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-webapp;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-webapp;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-webapp;7.5.1.v20110908->org.eclipse.jetty#jetty-xml;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-webapp;7.5.1.v20110908->org.eclipse.jetty#jetty-xml;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-xml;7.5.1.v20110908->org.eclipse.jetty#jetty-util;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-xml;7.5.1.v20110908->org.eclipse.jetty#jetty-util;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-webapp;7.5.1.v20110908->org.eclipse.jetty#jetty-servlet;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-webapp;7.5.1.v20110908->org.eclipse.jetty#jetty-servlet;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-servlet;7.5.1.v20110908->org.eclipse.jetty#jetty-security;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-servlet;7.5.1.v20110908->org.eclipse.jetty#jetty-security;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-security;7.5.1.v20110908->org.eclipse.jetty#jetty-server;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-security;7.5.1.v20110908->org.eclipse.jetty#jetty-server;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;7.5.1.v20110908->javax.servlet#servlet-api;2.5 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;7.5.1.v20110908->javax.servlet#servlet-api;2.5 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;7.5.1.v20110908->org.eclipse.jetty#jetty-continuation;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;7.5.1.v20110908->org.eclipse.jetty#jetty-continuation;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;7.5.1.v20110908->org.eclipse.jetty#jetty-http;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;7.5.1.v20110908->org.eclipse.jetty#jetty-http;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-http;7.5.1.v20110908->org.eclipse.jetty#jetty-io;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-http;7.5.1.v20110908->org.eclipse.jetty#jetty-io;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-io;7.5.1.v20110908->org.eclipse.jetty#jetty-util;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-io;7.5.1.v20110908->org.eclipse.jetty#jetty-util;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-plus;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-plus;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;7.5.1.v20110908->org.apache.geronimo.specs#geronimo-jta_1.1_spec;1.1.1 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: junit#junit;3.8.1 {test=[runtime(*), master(*)]} => dependency: junit#junit;4.8.1 {test=[runtime(*), master(*)]}[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;7.5.1.v20110908->org.apache.geronimo.specs#geronimo-jta_1.1_spec;1.1.1 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: junit#junit;3.8.1 {test=[runtime(*), master(*)]} => dependency: junit#junit;4.8.1 {test=[runtime(*), master(*)]}[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;7.5.1.v20110908->org.eclipse.jetty#jetty-webapp;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;7.5.1.v20110908->org.eclipse.jetty#jetty-webapp;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;7.5.1.v20110908->org.eclipse.jetty#jetty-jndi;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;7.5.1.v20110908->org.eclipse.jetty#jetty-jndi;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-jndi;7.5.1.v20110908->javax.mail#mail;1.4.1 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-jndi;7.5.1.v20110908->javax.mail#mail;1.4.1 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0mexcluding dependency: javax.activation#activation;1.1 {compile=[compile(*), master(*)], runtime=[runtime(*)]} in compile[0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-webapp;7.5.1.v20110908 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-webapp;9.1.0.v20131115->org.eclipse.jetty#jetty-xml;9.1.0.v20131115 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-webapp;9.1.0.v20131115->org.eclipse.jetty#jetty-xml;9.1.0.v20131115 [compile->compile(*)][0m
@@ -2029,14 +1805,20 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;9.1.0.v20131115->org.eclipse.jetty#jetty-io;9.1.0.v20131115 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-io;9.1.0.v20131115->org.eclipse.jetty#jetty-util;9.1.0.v20131115 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-io;9.1.0.v20131115->org.eclipse.jetty#jetty-util;9.1.0.v20131115 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-annotations;9.1.0.v20131115 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-annotations;9.1.0.v20131115 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-annotations;9.1.0.v20131115->org.eclipse.jetty#jetty-plus;9.1.0.v20131115 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-annotations;9.1.0.v20131115->org.eclipse.jetty#jetty-plus;9.1.0.v20131115 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-plus;7.5.1.v20110908 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-plus;9.1.0.v20131115 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-plus;7.5.1.v20110908 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-plus;9.1.0.v20131115 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;9.1.0.v20131115->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;9.1.0.v20131115->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;9.1.0.v20131115->org.eclipse.jetty#jetty-jndi;9.1.0.v20131115 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;9.1.0.v20131115->org.eclipse.jetty#jetty-jndi;9.1.0.v20131115 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-annotations;9.1.0.v20131115 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-annotations;9.1.0.v20131115 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-annotations;9.1.0.v20131115->org.eclipse.jetty#jetty-plus;9.1.0.v20131115 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-annotations;9.1.0.v20131115->org.eclipse.jetty#jetty-plus;9.1.0.v20131115 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-annotations;9.1.0.v20131115->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-annotations;9.1.0.v20131115->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-annotations;9.1.0.v20131115->javax.annotation#javax.annotation-api;1.2 [compile->master(*)][0m
@@ -2176,41 +1958,8 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies org.mortbay.jetty#jetty-plus;6.1.22->geronimo-spec#geronimo-spec-jta;1.0.1B-rc4 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.mortbay.jetty#jetty-plus;6.1.22->geronimo-spec#geronimo-spec-jta;1.0.1B-rc4 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-webapp;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-webapp;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-webapp;7.5.1.v20110908->org.eclipse.jetty#jetty-xml;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-webapp;7.5.1.v20110908->org.eclipse.jetty#jetty-xml;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-xml;7.5.1.v20110908->org.eclipse.jetty#jetty-util;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-xml;7.5.1.v20110908->org.eclipse.jetty#jetty-util;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-webapp;7.5.1.v20110908->org.eclipse.jetty#jetty-servlet;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-webapp;7.5.1.v20110908->org.eclipse.jetty#jetty-servlet;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-servlet;7.5.1.v20110908->org.eclipse.jetty#jetty-security;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-servlet;7.5.1.v20110908->org.eclipse.jetty#jetty-security;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-security;7.5.1.v20110908->org.eclipse.jetty#jetty-server;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-security;7.5.1.v20110908->org.eclipse.jetty#jetty-server;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;7.5.1.v20110908->javax.servlet#servlet-api;2.5 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;7.5.1.v20110908->javax.servlet#servlet-api;2.5 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;7.5.1.v20110908->org.eclipse.jetty#jetty-continuation;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;7.5.1.v20110908->org.eclipse.jetty#jetty-continuation;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;7.5.1.v20110908->org.eclipse.jetty#jetty-http;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;7.5.1.v20110908->org.eclipse.jetty#jetty-http;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-http;7.5.1.v20110908->org.eclipse.jetty#jetty-io;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-http;7.5.1.v20110908->org.eclipse.jetty#jetty-io;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-io;7.5.1.v20110908->org.eclipse.jetty#jetty-util;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-io;7.5.1.v20110908->org.eclipse.jetty#jetty-util;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-plus;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-plus;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;7.5.1.v20110908->org.apache.geronimo.specs#geronimo-jta_1.1_spec;1.1.1 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: junit#junit;3.8.1 {test=[runtime(*), master(*)]} => dependency: junit#junit;4.8.1 {test=[runtime(*), master(*)]}[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;7.5.1.v20110908->org.apache.geronimo.specs#geronimo-jta_1.1_spec;1.1.1 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0mdependency descriptor has been mediated: dependency: junit#junit;3.8.1 {test=[runtime(*), master(*)]} => dependency: junit#junit;4.8.1 {test=[runtime(*), master(*)]}[0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;7.5.1.v20110908->org.eclipse.jetty#jetty-webapp;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;7.5.1.v20110908->org.eclipse.jetty#jetty-webapp;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;7.5.1.v20110908->org.eclipse.jetty#jetty-jndi;7.5.1.v20110908 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;7.5.1.v20110908->org.eclipse.jetty#jetty-jndi;7.5.1.v20110908 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-jndi;7.5.1.v20110908->javax.mail#mail;1.4.1 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-jndi;7.5.1.v20110908->javax.mail#mail;1.4.1 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0mexcluding dependency: javax.activation#activation;1.1 {compile=[compile(*), master(*)], runtime=[runtime(*)]} in compile[0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-webapp;7.5.1.v20110908 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-webapp;9.1.0.v20131115->org.eclipse.jetty#jetty-xml;9.1.0.v20131115 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-webapp;9.1.0.v20131115->org.eclipse.jetty#jetty-xml;9.1.0.v20131115 [compile->compile(*)][0m
@@ -2232,14 +1981,20 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-server;9.1.0.v20131115->org.eclipse.jetty#jetty-io;9.1.0.v20131115 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-io;9.1.0.v20131115->org.eclipse.jetty#jetty-util;9.1.0.v20131115 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-io;9.1.0.v20131115->org.eclipse.jetty#jetty-util;9.1.0.v20131115 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-annotations;9.1.0.v20131115 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-annotations;9.1.0.v20131115 [compile->compile(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-annotations;9.1.0.v20131115->org.eclipse.jetty#jetty-plus;9.1.0.v20131115 [compile->master(*)][0m
-[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-annotations;9.1.0.v20131115->org.eclipse.jetty#jetty-plus;9.1.0.v20131115 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-plus;7.5.1.v20110908 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-plus;9.1.0.v20131115 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-plus;7.5.1.v20110908 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-plus;9.1.0.v20131115 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;9.1.0.v20131115->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;9.1.0.v20131115->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;9.1.0.v20131115->org.eclipse.jetty#jetty-jndi;9.1.0.v20131115 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-plus;9.1.0.v20131115->org.eclipse.jetty#jetty-jndi;9.1.0.v20131115 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-annotations;9.1.0.v20131115 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies com.earldouglas#xsbt-web-plugin;0.7.0->org.eclipse.jetty#jetty-annotations;9.1.0.v20131115 [compile->compile(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-annotations;9.1.0.v20131115->org.eclipse.jetty#jetty-plus;9.1.0.v20131115 [compile->master(*)][0m
+[0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-annotations;9.1.0.v20131115->org.eclipse.jetty#jetty-plus;9.1.0.v20131115 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-annotations;9.1.0.v20131115->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [compile->master(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-annotations;9.1.0.v20131115->org.eclipse.jetty#jetty-webapp;9.1.0.v20131115 [compile->compile(*)][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies org.eclipse.jetty#jetty-annotations;9.1.0.v20131115->javax.annotation#javax.annotation-api;1.2 [compile->master(*)][0m
@@ -2701,30 +2456,6 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies default#osp-build;0.1-SNAPSHOT->org.scala-lang#scala-library;2.10.3 [scala-tool->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies default#osp-build;0.1-SNAPSHOT->org.scala-lang#scala-library;2.10.3 [scala-tool->master][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies default#osp-build;0.1-SNAPSHOT->org.scala-lang#scala-library;2.10.3 [scala-tool->optional(default)][0m
-[0m[[0mdebug[0m] [0mall callers are evicted for javax.mail#mail;1.4.1: evicting too[0m
-[0m[[0mdebug[0m] [0mall callers are evicted for javax.mail#mail;1.4.1: evicting too[0m
-[0m[[0mdebug[0m] [0mall callers are evicted for javax.mail#mail;1.4.1: evicting too[0m
-[0m[[0mdebug[0m] [0mall callers are evicted for javax.mail#mail;1.4.1: evicting too[0m
-[0m[[0mdebug[0m] [0mall callers are evicted for javax.mail#mail;1.4.1: evicting too[0m
-[0m[[0mdebug[0m] [0mall callers are evicted for javax.mail#mail;1.4.1: evicting too[0m
-[0m[[0mdebug[0m] [0mall callers are evicted for org.apache.geronimo.specs#geronimo-jta_1.1_spec;1.1.1: evicting too[0m
-[0m[[0mdebug[0m] [0mall callers are evicted for org.apache.geronimo.specs#geronimo-jta_1.1_spec;1.1.1: evicting too[0m
-[0m[[0mdebug[0m] [0mall callers are evicted for org.apache.geronimo.specs#geronimo-jta_1.1_spec;1.1.1: evicting too[0m
-[0m[[0mdebug[0m] [0mall callers are evicted for org.apache.geronimo.specs#geronimo-jta_1.1_spec;1.1.1: evicting too[0m
-[0m[[0mdebug[0m] [0mall callers are evicted for org.apache.geronimo.specs#geronimo-jta_1.1_spec;1.1.1: evicting too[0m
-[0m[[0mdebug[0m] [0mall callers are evicted for org.apache.geronimo.specs#geronimo-jta_1.1_spec;1.1.1: evicting too[0m
-[0m[[0mdebug[0m] [0mall callers are evicted for org.eclipse.jetty#jetty-continuation;7.5.1.v20110908: evicting too[0m
-[0m[[0mdebug[0m] [0mall callers are evicted for org.eclipse.jetty#jetty-continuation;7.5.1.v20110908: evicting too[0m
-[0m[[0mdebug[0m] [0mall callers are evicted for org.eclipse.jetty#jetty-continuation;7.5.1.v20110908: evicting too[0m
-[0m[[0mdebug[0m] [0mall callers are evicted for org.eclipse.jetty#jetty-continuation;7.5.1.v20110908: evicting too[0m
-[0m[[0mdebug[0m] [0mall callers are evicted for org.eclipse.jetty#jetty-continuation;7.5.1.v20110908: evicting too[0m
-[0m[[0mdebug[0m] [0mall callers are evicted for org.eclipse.jetty#jetty-continuation;7.5.1.v20110908: evicting too[0m
-[0m[[0mdebug[0m] [0mall callers are evicted for javax.servlet#servlet-api;2.5: evicting too[0m
-[0m[[0mdebug[0m] [0mall callers are evicted for javax.servlet#servlet-api;2.5: evicting too[0m
-[0m[[0mdebug[0m] [0mall callers are evicted for javax.servlet#servlet-api;2.5: evicting too[0m
-[0m[[0mdebug[0m] [0mall callers are evicted for javax.servlet#servlet-api;2.5: evicting too[0m
-[0m[[0mdebug[0m] [0mall callers are evicted for javax.servlet#servlet-api;2.5: evicting too[0m
-[0m[[0mdebug[0m] [0mall callers are evicted for javax.servlet#servlet-api;2.5: evicting too[0m
 [0m[[0mdebug[0m] [0m	resolved ivy file produced in /home/ms/Programy/osp/project/target/resolution-cache/default/osp-build/scala_2.10/sbt_0.13/0.1-SNAPSHOT/resolved.xml.xml[0m
 [0m[[0mdebug[0m] [0m:: downloading artifacts ::[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] com.typesafe.sbteclipse#sbteclipse-plugin;2.4.0!sbteclipse-plugin.jar[0m
@@ -2804,7 +2535,7 @@
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scala-sbt#apply-macro;0.13.1!apply-macro.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scala-lang#jline;2.10.3!jline.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.fusesource.jansi#jansi;1.4!jansi.jar[0m
-[0m[[0mdebug[0m] [0m:: resolution report :: resolve 3574ms :: artifacts dl 141ms[0m
+[0m[[0mdebug[0m] [0m:: resolution report :: resolve 8621ms :: artifacts dl 117ms[0m
 [0m[[0mdebug[0m] [0m	report for default#osp-build;0.1-SNAPSHOT compile produced in /home/ms/Programy/osp/project/target/resolution-cache/reports/default-osp-build-compile.xml[0m
 [0m[[0mdebug[0m] [0m	report for default#osp-build;0.1-SNAPSHOT runtime produced in /home/ms/Programy/osp/project/target/resolution-cache/reports/default-osp-build-runtime.xml[0m
 [0m[[0mdebug[0m] [0m	report for default#osp-build;0.1-SNAPSHOT test produced in /home/ms/Programy/osp/project/target/resolution-cache/reports/default-osp-build-test.xml[0m
@@ -2818,5 +2549,5 @@
 [0m[[0mdebug[0m] [0m	report for default#osp-build;0.1-SNAPSHOT docs produced in /home/ms/Programy/osp/project/target/resolution-cache/reports/default-osp-build-docs.xml[0m
 [0m[[0mdebug[0m] [0m	report for default#osp-build;0.1-SNAPSHOT pom produced in /home/ms/Programy/osp/project/target/resolution-cache/reports/default-osp-build-pom.xml[0m
 [0m[[0mdebug[0m] [0m	report for default#osp-build;0.1-SNAPSHOT scala-tool produced in /home/ms/Programy/osp/project/target/resolution-cache/reports/default-osp-build-scala-tool.xml[0m
-[0m[[0mdebug[0m] [0m	resolve done (3574ms resolve - 141ms download)[0m
+[0m[[0mdebug[0m] [0m	resolve done (8621ms resolve - 117ms download)[0m
 [0m[[0minfo[0m] [0mDone updating.[0m

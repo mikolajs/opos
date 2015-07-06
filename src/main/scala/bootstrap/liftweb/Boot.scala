@@ -113,7 +113,6 @@ class Boot {
         Menu("Tagi aktualności") / "admin" / "tags" >> LocGroup("admin") >> isAdmin,
         Menu("Linki") / "admin" / "links" >> LocGroup("admin") >> isAdmin,
         Menu("Slajdy") / "admin" / "slides" >> LocGroup("admin") >> isAdmin,
-        Menu("Skrzynka pocztowa") / "admin" / "emailconfig" >> LocGroup("admin") >> isAdmin,
         Menu("Edycja administratorów") / "admin" / "admins" >> LocGroup("admin") >> isAdmin,
         Menu("Sekretariat") / "admin" / "secretariat" >> LocGroup("admin") >> isAdmin,
         Menu("Indeksowanie Picasa") / "admin" / "picasaindex" >> LocGroup("admin") >> isAdmin,
@@ -139,6 +138,7 @@ class Boot {
         Menu("Wiadomości") / "documents" / "index" >> LocGroup("documents") >> isTeacher,
         Menu("Kółka") / "documents" / "extralessons" >> LocGroup("documents") >> isTeacher,
         Menu("Rozkłady") / "documents" / "themesplan" >> LocGroup("documents") >> isTeacher,
+        Menu("PSO") / "documents" / "pso" >> LocGroup("documents") >> isTeacher,
         Menu("Dokumenty") / "documents" / "doctemplate" / ** >> LocGroup("documents") >> isTeacher,
         Menu("Szablon") / "documents" / "createtemplate" / ** >> LocGroup("extra") >> isAdmin,
         Menu("Wiadomości") / "view" / "index" >> LocGroup("view") >> loggedIn,
@@ -278,8 +278,8 @@ class Boot {
       case Req("extra" :: _, _, _) => false
     }
 
-    val cron = new CronActor()
-
+    //cron jobs for find zastepstwa
+    //val cron = new CronActor()
 
 
     S.addAround(DB.buildLoanWrapper)

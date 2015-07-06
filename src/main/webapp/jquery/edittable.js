@@ -40,13 +40,13 @@ function EditTable(){
 	}
 	//click on table
 	this.startEditRow = function(elem){
-	    //console.log("startEditRow " + $(elem).html());
+	    //console.log("startEditRow button content: " + $(elem).html());
 	    var tr = $(elem).parent().parent();
 	    //console.log(" tr: " + tr.text());
 		self.editDiv.dialog({title: self.editItemInfo});
 		self.editDiv.dialog('open');
 		var array = self.dataTable.dTable.fnGetData(tr.get(0));
-		//console.log("array: " + array);
+		console.log("array: " + array);
 		self.putDataToForm(array);
 		$('#delete').show();
 	}
@@ -74,11 +74,17 @@ function EditTable(){
 		self.dataTable.scratchRow(id);
 		self.close();
 	}
+    //ajax
+	this.deleteRow = function(id){
+	    self.dataTable.deleteRow(id);
+	    self.close();
+	}
 
 	this.insertNewRow = function(id){
 		var array = self.getData();
 		array[0] = id;
-		var tr = self.dataTable.insertNewRow(array);
+		self.dataTable.insertNewRow(array);
+
 	}
 
 	this.editRow = function(id){
