@@ -8,21 +8,21 @@ import util._
 
 trait RoleChecker {
 
-  def isTeacher:Boolean = {
+  def isTeacher: Boolean = {
     User.currentUser match {
-        case Full(user) => {
-          var r = user.role.is
-          (r == "t" || r == "m" || r == "a")
-        }
-        case _ => {
-          false
-        }
-      } 
+      case Full(user) => {
+        var r = user.role.get
+        (r == "t" || r == "m" || r == "a")
+      }
+      case _ => {
+        false
+      }
+    }
   }
-  
-  
+
+
   def isAdmin = User.currentUser match {
-    case Full(user) => user.role.is == "a"
+    case Full(user) => user.role.get == "a"
     case _ => false
   }
 }

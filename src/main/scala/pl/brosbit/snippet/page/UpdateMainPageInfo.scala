@@ -11,18 +11,18 @@ import _root_.pl.brosbit.model._
 import _root_.net.liftweb.json.JsonDSL._
 
 trait UpdateMainPageInfo {
-	def updateForumInfo(date:String, title:String, id:String){
-	  val fullLink = "/forumpost/" + id
-	  MainPageData.delete(("key" -> Keys.forum.toString) ~ ("link" -> fullLink))
-	  val mainPageData = MainPageData.create
-	  mainPageData.key = Keys.forum.toString
-	  mainPageData.link = fullLink
-	  mainPageData.title = title
-	  mainPageData.save
-	}
-	
-	def deleteMainPageInfo(id:String){
-	   val fullLink = "/forumpost/" + id
-	   MainPageData.delete(("key" -> Keys.forum.toString) ~ ("link" -> fullLink))
-	}
+  def updateForumInfo(date: String, title: String, id: String) {
+    val fullLink = "/forumpost/" + id
+    MainPageData.delete(("key" -> Keys.forum.toString) ~ ("link" -> fullLink))
+    val mainPageData = MainPageData.create
+    mainPageData.key = Keys.forum.toString
+    mainPageData.link = fullLink
+    mainPageData.title = title
+    mainPageData.save
+  }
+
+  def deleteMainPageInfo(id: String) {
+    val fullLink = "/forumpost/" + id
+    MainPageData.delete(("key" -> Keys.forum.toString) ~ ("link" -> fullLink))
+  }
 }

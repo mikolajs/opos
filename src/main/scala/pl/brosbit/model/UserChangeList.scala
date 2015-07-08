@@ -15,26 +15,32 @@
  *   along with VRegister.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package pl.brosbit.model 
+package pl.brosbit.model
 
-    import net.liftweb.mapper._
-    import _root_.net.liftweb.util._
-    import _root_.net.liftweb.common._
+import net.liftweb.mapper._
+import _root_.net.liftweb.util._
+import _root_.net.liftweb.common._
 
-    class UserChangeList extends LongKeyedMapper[UserChangeList] with IdPK {
-      def getSingleton = UserChangeList
+class UserChangeList extends LongKeyedMapper[UserChangeList] with IdPK {
+  def getSingleton = UserChangeList
 
-      object firstName extends MappedString(this, 30)
-      object lastName extends MappedString(this, 40)
-      object email extends MappedEmail(this, 48)
-      object passStr extends MappedString(this, 12)
-      object phone extends MappedString(this, 12)
-      object date extends MappedDate(this)
-      object user extends MappedLongForeignKey(this, User)
+  object firstName extends MappedString(this, 30)
 
-    }
+  object lastName extends MappedString(this, 40)
 
-    object UserChangeList extends UserChangeList with LongKeyedMetaMapper[UserChangeList] {
-    }
+  object email extends MappedEmail(this, 48)
+
+  object passStr extends MappedString(this, 12)
+
+  object phone extends MappedString(this, 12)
+
+  object date extends MappedDate(this)
+
+  object user extends MappedLongForeignKey(this, User)
+
+}
+
+object UserChangeList extends UserChangeList with LongKeyedMetaMapper[UserChangeList] {
+}
 
 

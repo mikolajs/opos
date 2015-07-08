@@ -17,7 +17,7 @@ import net.liftweb.util.Helpers._
 class RegisterSwitcherSn {
   def redir() = {
     User.currentUser match {
-      case Full(user) => user.role.is match {
+      case Full(user) => user.role.get match {
         case char: String if (char == "a" || char == "n") => S.redirectTo("/teacher/index")
         case "s" => S.redirectTo("/secretariat/index")
         case char: String if (char == "u" || char == "r") => S.redirectTo("/view/")

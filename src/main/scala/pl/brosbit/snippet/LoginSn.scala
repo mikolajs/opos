@@ -4,7 +4,7 @@ import scala.xml.Unparsed
 import _root_.net.liftweb.util._
 import _root_.net.liftweb.common._
 import net.liftweb._
-import http.{ S, SHtml, SessionVar }
+import http.{S, SHtml, SessionVar}
 import mapper.By
 import _root_.pl.brosbit.model._
 import json.JsonDSL._
@@ -16,6 +16,7 @@ import pl.brosbit.model.edu.SubjectTeach
 import scala.util.matching.Regex
 
 object SubjectChoose extends SessionVar[Long](0L)
+
 object LevelChoose extends SessionVar[Int](1)
 
 class LoginSn {
@@ -25,16 +26,20 @@ class LoginSn {
   def show() = {
     userBox match {
       case Full(user) =>
-        "a" #> <span> <span class="glyphicon glyphicon-user"></span> { user.getFullName }
-          <a href="/user_mgt/logout" class="btn btn-info" role="button" title="Wyloguj" style="padding:10px">
-                 <span class="glyphicon glyphicon-log-out"> Wyloguj</span>
-               </a> </span>
+        "a" #> <span>
+          <span class="glyphicon glyphicon-user"></span>{user.getFullName}<a href="/user_mgt/logout" class="btn btn-info" role="button" title="Wyloguj" style="padding:10px">
+            <span class="glyphicon glyphicon-log-out">Wyloguj</span>
+          </a>
+        </span>
       case _ =>
-        "a" #> <span><span class="glyphicon glyphicon-user"></span> Niezalogowano
+        "a" #> <span>
+          <span class="glyphicon glyphicon-user"></span>
+          Niezalogowano
           <a href="/login" role="button" class="btn btn-default" title="Zaloguj" style="padding:10px">
 
-            <span class="glyphicon glyphicon-log-in" > Logowanie </span>
-               </a></span>
+            <span class="glyphicon glyphicon-log-in">Logowanie</span>
+          </a>
+        </span>
     }
   }
 
@@ -50,7 +55,7 @@ class LoginSn {
         case _ => false
       }
 
-      if(pesel_?) {
+      if (pesel_?) {
         User.findAll(By(User.pesel, login.trim)) match {
           case user :: other => {
             if (user.role == "u" || user.role == "r") {
@@ -118,21 +123,21 @@ class LoginSn {
         docC = "btn btn-info btn-lg"
       }
       else {
-        if(user.role == "u" || user.role == "r") {
+        if (user.role == "u" || user.role == "r") {
           viewH = "/view"
           viewC = "btn btn-info btn-lg"
         }
       }
-       if (user.role == "s" || user.role == "a" || user.role == "d") {
-         secretariatH = "/secretariat/index"
-         secretariatC = "btn btn-info btn-lg"
-       }
+      if (user.role == "s" || user.role == "a" || user.role == "d") {
+        secretariatH = "/secretariat/index"
+        secretariatC = "btn btn-info btn-lg"
+      }
     }
     "#viewA [href]" #> viewH &
       "#viewA [class]" #> viewC &
       "#secretariatA [href]" #> secretariatH &
       "#secretariatA [class]" #> secretariatC &
-       "#educontentA [href]" #> educontentH &
+      "#educontentA [href]" #> educontentH &
       "#educontentA [class]" #> educontentC &
       "#registerA [href]" #> registerH &
       "#registerA [class]" #> registerC &
@@ -140,14 +145,14 @@ class LoginSn {
       "#docA [class]" #> docC
 
   }
-  
-  private def intalizeSubjectAndLevelChoice(user:User) {
-    val subjs = SubjectTeach.findAll(("authorId" -> user.id.is),("$orderby"->("prior"->1)))
-    if(subjs.length > 0) {
+
+  private def intalizeSubjectAndLevelChoice(user: User) {
+    val subjs = SubjectTeach.findAll(("authorId" -> user.id.get), ("$orderby" -> ("prior" -> 1)))
+    if (subjs.length > 0) {
       SubjectChoose.set(subjs.head.id)
       LevelChoose.set(subjs.head.lev)
     }
-   
+
   }
 
 }

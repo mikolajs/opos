@@ -14,14 +14,16 @@ import _root_.net.liftweb.json.JsonDSL._
 
 object ExtraLessons extends MongoDocumentMeta[ExtraLessons] {
   override def collectionName = "extralessons"
+
   override def formats = super.formats + new ObjectIdSerializer + new DateSerializer
+
   def create = ExtraLessons(ObjectId.get, "", "", "", "", 0L)
-  
-  
+
+
 }
 
-case class ExtraLessons(var _id: ObjectId, var title:String, var description:String,
-					 var when:String, var teacherName:String, var teacherId:Long ) extends MongoDocument[ExtraLessons] {
+case class ExtraLessons(var _id: ObjectId, var title: String, var description: String,
+                        var when: String, var teacherName: String, var teacherId: Long) extends MongoDocument[ExtraLessons] {
   def meta = ExtraLessons
 }
 

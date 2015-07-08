@@ -3,7 +3,7 @@ package pl.brosbit.snippet.doc
 import net.liftweb.http.{S, SHtml}
 import net.liftweb.util.Helpers._
 import pl.brosbit.model._
-import  pl.brosbit.lib.Formater
+import pl.brosbit.lib.Formater
 import net.liftweb.json.JsonDSL._
 import scala.xml.{Unparsed, Text}
 import net.liftweb.mapper._
@@ -18,35 +18,35 @@ import net.liftweb.http.js.JsCmds.SetHtml
 class MainDocSn extends BaseDoc {
 
   def showMessages() = {
-   val page = S.param("p").openOr("1").toInt
-   val perPage = 30
-   val q1:JValue = "all"-> true
-   val q2:JValue = "who"->("$in"->List(user.id.is))
-   val allMess =  Message.findAll(("$or"->List(q1,q2)),("lastDate" -> -1))
+    val page = S.param("p").openOr("1").toInt
+    val perPage = 30
+    val q1: JValue = "all" -> true
+    val q2: JValue = "who" -> ("$in" -> List(user.id.get))
+    val allMess = Message.findAll(("$or" -> List(q1, q2)), ("lastDate" -> -1))
 
-   //debug only
+    //debug only
     allMess.map(m => m.body.map(b => println(b.body)))
 
-   val pages = allMess.length
+    val pages = allMess.length
 
-   val mess = if(page*perPage >= pages) allMess.slice((page-1)*perPage, (page)*perPage)
+    val mess = if (page * perPage >= pages) allMess.slice((page - 1) * perPage, (page) * perPage)
     else allMess.take(perPage)
 
-    if(mess.isEmpty) ".msg-grp" #> <h2>Brak wiadomości</h2>
+    if (mess.isEmpty) ".msg-grp" #> <h2>Brak wiadomości</h2>
     else {
       ".msg-grp" #> mess.map(m => {
         //println("showMessage message m.id " + m._id.toString)
-        ".msg-grp [class]" #> (if(m.all) "msg-grp msg-blue"  else  "msg-grp msg-green") &
-        ".msg" #> m.body.map(b => {
-          //println("showMessage message body " + b.body + " name:" + b.author)
+        ".msg-grp [class]" #> (if (m.all) "msg-grp msg-blue" else "msg-grp msg-green") &
+          ".msg" #> m.body.map(b => {
+            //println("showMessage message body " + b.body + " name:" + b.author)
             ".msg-cont *" #> Unparsed(b.body) &
-            ".msg-name *" #> Text(b.author) &
-            ".msg-date *" #> Text(b.date)
-        }) &
-        ".btn-success [onclick]" #> "infoTeacher.openAddComment(this, '%s')".format(m._id.toString) &
-        ".toWhoMessage *" #> m.people
-    })
-  }
+              ".msg-name *" #> Text(b.author) &
+              ".msg-date *" #> Text(b.date)
+          }) &
+          ".btn-success [onclick]" #> "infoTeacher.openAddComment(this, '%s')".format(m._id.toString) &
+          ".toWhoMessage *" #> m.people
+      })
+    }
   }
 
 
@@ -62,10 +62,10 @@ class MainDocSn extends BaseDoc {
       val allReg = "Ogłoszenie".r
       val mess = Message.create
       val date = new Date
-      mess.body = List(MessageChunk(user.id.is.toString, user.getFullName, Formater.formatDate(date), body))
+      mess.body = List(MessageChunk(user.id.get.toString, user.getFullName, Formater.formatDate(date), body))
       mess.lastDate = date.getTime
       mess.people = user.getFullName
-      if(toSend.length > 0 && !toSend.head.trim.isEmpty){
+      if (toSend.length > 0 && !toSend.head.trim.isEmpty) {
         allReg.findFirstIn(toSend.head) match {
           case Some(str) => {
             println("newMessage people str of Ogłoszenie: " + str)
@@ -79,8 +79,8 @@ class MainDocSn extends BaseDoc {
                 case Some(str) => {
                   println("newMessage people str of Ogłoszenie: " + str)
                   val who = tryo(str.toLong).getOrElse(0L)
-                  if(who != 0L) {
-                    mess.who = who::mess.who
+                  if (who != 0L) {
+                    mess.who = who :: mess.who
                     mess.people += " " + tryo(adr.split('[').head).getOrElse("???")
                   }
 
@@ -90,8 +90,8 @@ class MainDocSn extends BaseDoc {
             })
             mess.who = mess.who.distinct
             println("newMessage people who length: " + mess.who.length)
-            if(mess.who.length > 0) {
-              mess.who = user.id.is::mess.who
+            if (mess.who.length > 0) {
+              mess.who = user.id.get :: mess.who
               mess.save
             }
           }
@@ -99,53 +99,58 @@ class MainDocSn extends BaseDoc {
       }
     }
 
-    val classHead = if(mapClasses.length > 0) mapClasses.head._2 else ""
-    val teacherHead = if(mapTeachers.length > 0) mapTeachers.head._2 else ""
+    val classHead = if (mapClasses.length > 0) mapClasses.head._2 else ""
+    val teacherHead = if (mapTeachers.length > 0) mapTeachers.head._2 else ""
 
-    "#classMessage" #> SHtml.select(mapClasses, Full(classHead), classId = _ ) &
-    "#teacherMessage" #> SHtml.select(mapTeachers, Full(teacherHead), teacher = _) &
-    "#toWhoMessage" #> SHtml.text(peopleStr, peopleStr = _) &
-    "#writeMessage" #> SHtml.textarea(body, body = _) &
-    "#sendMessage" #> SHtml.button(<span class="glyphicon glyphicon-send"></span> ++ Text(" Wyślij"), add)
-    
+    "#classMessage" #> SHtml.select(mapClasses, Full(classHead), classId = _) &
+      "#teacherMessage" #> SHtml.select(mapTeachers, Full(teacherHead), teacher = _) &
+      "#toWhoMessage" #> SHtml.text(peopleStr, peopleStr = _) &
+      "#writeMessage" #> SHtml.textarea(body, body = _) &
+      "#sendMessage" #> SHtml.button(<span class="glyphicon glyphicon-send"></span> ++ Text(" Wyślij"), add)
+
   }
 
   def addComment() = {
     var idMessage = ""
     var body = ""
-    def add():JsCmd = {
+    def add(): JsCmd = {
       val date = new Date
       val formatedDate = Formater.formatDate(date)
-      val messChunk =  MessageChunk(user.id.is.toString, user.getFullName, formatedDate, body.trim)
+      val messChunk = MessageChunk(user.id.get.toString, user.getFullName, formatedDate, body.trim)
 
-      Message.update(("_id"->idMessage.trim),
-        ("$set"->(("lastDate"->date.getTime)~("mailed" -> false)))~("$addToSet"->("body"->messChunk.toMap)))
-      JsFunc("infoTeacher.insertComment", user.getFullName + ";" + formatedDate ).cmd
+      Message.update(("_id" -> idMessage.trim),
+        ("$set" -> (("lastDate" -> date.getTime) ~ ("mailed" -> false))) ~ ("$addToSet" -> ("body" -> messChunk.toMap)))
+      JsFunc("infoTeacher.insertComment", user.getFullName + ";" + formatedDate).cmd
     }
 
     val form = "#idMessage" #> SHtml.text(idMessage, idMessage = _) &
-    "#writeComment" #> SHtml.textarea(body, body = _) &
-    "#addComment" #> SHtml.ajaxSubmit("Dodaj", add) andThen SHtml.makeFormsAjax
+      "#writeComment" #> SHtml.textarea(body, body = _) &
+      "#addComment" #> SHtml.ajaxSubmit("Dodaj", add) andThen SHtml.makeFormsAjax
 
     "form" #> (in => form(in))
   }
 
 
-
   def pupilsData() = {
-    def refresh(classId:String):JsCmd = {
+    def refresh(classId: String): JsCmd = {
       val classIdLong = tryo(classId.toLong).getOrElse(0L)
       val pupils = User.findAll(By(User.classId, classIdLong), By(User.role, "u"))
 
-        val pupilsNodes = pupils.map(p => {
+      val pupilsNodes = pupils.map(p => {
         val father = p.father.obj.getOrElse(User.create)
         val mather = p.mather.obj.getOrElse(User.create)
-          <optgroup label={p.getFullName}>
-            <option value={p.id.is.toString}>{p.getFullName + " [" + p.id.is.toString + "]"}</option>
-            <option value={father.id.is.toString}>{"O: " + father.getFullName + " [" + father.id.is.toString + "]"}</option>
-            <option value={mather.id.is.toString}>{"M: " + mather.getFullName + " [" + mather.id.is.toString + "]"}</option>
-          </optgroup>
-    })
+        <optgroup label={p.getFullName}>
+          <option value={p.id.is.toString}>
+            {p.getFullName + " [" + p.id.is.toString + "]"}
+          </option>
+          <option value={father.id.is.toString}>
+            {"O: " + father.getFullName + " [" + father.id.is.toString + "]"}
+          </option>
+          <option value={mather.id.is.toString}>
+            {"M: " + mather.getFullName + " [" + mather.id.is.toString + "]"}
+          </option>
+        </optgroup>
+      })
       SetHtml("pupilMessage", pupilsNodes)
     }
 
@@ -155,12 +160,15 @@ class MainDocSn extends BaseDoc {
 
   private def getTeachers = {
     val seq: Seq[String] = List("n", "a", "d", "s")
-    User.findAll(ByList(User.role, seq ))
+    User.findAll(ByList(User.role, seq))
   }
 
 
-  private lazy val mapTeachers = getTeachers.map(t => (t.id.is.toString, t.shortInfo))
+  private lazy val mapTeachers = getTeachers.map(t => (t.id.get.toString, t.shortInfo))
+
   private def getClasses = ClassModel.findAll(By(ClassModel.scratched, false))
+
   private lazy val mapClasses = getClasses.map(c => (c.id.is.toString, c.classString()))
+
   private def getPupilsAndParents = User.findAll(ByList(User.role, List("u", "r")))
 }

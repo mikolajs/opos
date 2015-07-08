@@ -6,12 +6,12 @@
 
 package pl.brosbit.snippet.page
 
-import _root_.scala.xml.{ NodeSeq, Text }
+import _root_.scala.xml.{NodeSeq, Text}
 import _root_.net.liftweb.util._
 import _root_.net.liftweb.common._
 import _root_.pl.brosbit.model.page._
 import pl.brosbit.model._
-import _root_.net.liftweb.http.{ S }
+import _root_.net.liftweb.http.{S}
 import Helpers._
 
 class GallerySn {
@@ -20,8 +20,10 @@ class GallerySn {
   def drawSlider() = {
     val galleries = Gallery.findAll
     "li" #> galleries.map(gallery => {
-      <li><img src={ gallery.photos.head.thumbnail } width="144" height="108" 
-      alt={ gallery.title } onclick={ "window.location='/gallery/" + gallery._id.toString  + "'"}/></li>
+      <li>
+        <img src={gallery.photos.head.thumbnail} width="144" height="108"
+             alt={gallery.title} onclick={"window.location='/gallery/" + gallery._id.toString + "'"}/>
+      </li>
     })
   }
 
@@ -47,13 +49,15 @@ class GallerySn {
       }
     }
     var counter = 0
-    "#gallerytitle" #> <span>{ gallery.title }</span> &
+    "#gallerytitle" #> <span>
+      {gallery.title}
+    </span> &
       ".grid_3" #> gallery.photos.map(photo => {
         val extraClass = if (counter % 5 == 0) "alpha" else if (counter % 4 == 0) "omega" else ""
         counter += 1
-          <a href={ photo.full } rel="group1">
-            <img src={ photo.thumbnail } alt="" class="frame"/>
-          </a>
+        <a href={photo.full} rel="group1">
+          <img src={photo.thumbnail} alt=" " class="frame"/>
+        </a>
       })
   }
 }

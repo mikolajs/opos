@@ -7,14 +7,14 @@
 
 package pl.brosbit.snippet.page
 
-import _root_.scala.xml.{ NodeSeq }
+import _root_.scala.xml.{NodeSeq}
 import _root_.net.liftweb.util._
 import Mailer._
 import _root_.net.liftweb.common._
 import _root_.pl.brosbit.model.page._
-import _root_. pl.brosbit.model._
+import _root_.pl.brosbit.model._
 import _root_.pl.brosbit.lib._
-import _root_.net.liftweb.http.{ SHtml, S }
+import _root_.net.liftweb.http.{SHtml, S}
 import Helpers._
 
 class ContactSn {
@@ -25,7 +25,7 @@ class ContactSn {
   def getData() = {
     val contactMails = ContactMail.findAll
     val contactMailsToForm = contactMails.map(contactMail =>
-    (contactMail.description -> contactMail.description))
+      (contactMail.description -> contactMail.description))
     var theme = ""
     var content = ""
     var mail = ""
@@ -35,15 +35,15 @@ class ContactSn {
       val emailList = contactMails.filter(contactMail => {
         contactMail.description == selectedMail
       })
-      if(!emailList.isEmpty) {
-    	 val emailToSend = emailList.head.mailAddress
-         val body = content + "\n" + "----------\n Informacja wysłana ze strony przez: " + mail
-         Mailer.sendMail(From("zestrony@zkpig26.gda.pl"), Subject(theme), 
+      if (!emailList.isEmpty) {
+        val emailToSend = emailList.head.mailAddress
+        val body = content + "\n" + "----------\n Informacja wysłana ze strony przez: " + mail
+        Mailer.sendMail(From("zestrony@zkpig26.gda.pl"), Subject(theme),
           To(emailToSend), PlainMailBodyType(body))
-          S.redirectTo("/contact")
-      } 
+        S.redirectTo("/contact")
+      }
       else S.notice("Błędny email")
-     
+
     }
 
     "#theme" #> SHtml.text(theme, x => theme = x) &

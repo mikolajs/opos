@@ -16,27 +16,31 @@
  */
 
 package net.brosbit4u {
-  package model {
+package model {
 
-    import net.liftweb.mapper._
-    import _root_.net.liftweb.util._
-    import _root_.net.liftweb.common._
+import net.liftweb.mapper._
+import _root_.net.liftweb.util._
+import _root_.net.liftweb.common._
 
-    class ClassChangeList extends LongKeyedMapper[ClassChangeList] with IdPK {
-      def getSingleton = ClassChangeList
+class ClassChangeList extends LongKeyedMapper[ClassChangeList] with IdPK {
+  def getSingleton = ClassChangeList
 
-      object level extends MappedInt(this)
-      object division extends MappedString(this, 2)
-      object descript extends MappedString(this, 80)
-      object date extends MappedDate(this)
+  object level extends MappedInt(this)
 
-      def info(): String = level.is.toString + division.is + " " + date.is.toString
+  object division extends MappedString(this, 2)
 
-    }
+  object descript extends MappedString(this, 80)
 
-    object ClassChangeList extends ClassChangeList with LongKeyedMetaMapper[ClassChangeList] {
+  object date extends MappedDate(this)
 
-    }
+  def info(): String = level.is.toString + division.is + " " + date.is.toString
 
-  }
+}
+
+object ClassChangeList extends ClassChangeList with LongKeyedMetaMapper[ClassChangeList] {
+
+}
+
+}
+
 }

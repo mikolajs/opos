@@ -6,15 +6,15 @@
 
 package pl.brosbit.snippet.page
 
-import _root_.scala.xml.{ NodeSeq }
+import _root_.scala.xml.{NodeSeq}
 import _root_.net.liftweb.util._
 import _root_.net.liftweb.common._
 import _root_.pl.brosbit.model.page._
 import _root_.pl.brosbit.model._
-import _root_.net.liftweb.mapper.{ By }
-import _root_.net.liftweb.http.{ SHtml }
+import _root_.net.liftweb.mapper.{By}
+import _root_.net.liftweb.http.{SHtml}
 import Helpers._
-import _root_.pl.brosbit.lib.{ PicasaIndex }
+import _root_.pl.brosbit.lib.{PicasaIndex}
 import _root_.net.liftweb.json.JsonDSL._
 
 class PicasaSn {

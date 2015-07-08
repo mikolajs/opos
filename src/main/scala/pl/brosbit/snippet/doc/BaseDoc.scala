@@ -3,17 +3,18 @@
  *   LICENCE: GNU AFFERO GENERAL PUBLIC LICENS Version 3 (AGPLv3)
  *   See: <http://www.gnu.org/licenses/>.
  */
-package pl.brosbit.snippet.doc 
+package pl.brosbit.snippet.doc
 
 import pl.brosbit.model._
 
-trait BaseDoc  {
-   val user = User.currentUser.openOrThrowException("Nauczyciel musi być zalogowany!")
-   
-	
-	protected def isAdmin = user.role.is == "a"
-	protected def isTeacher = user.role.is == "d" || user.role.is == "t" || isAdmin
-	
+trait BaseDoc {
+  val user = User.currentUser.openOrThrowException("Nauczyciel musi być zalogowany!")
+
+
+  protected def isAdmin = user.role.get == "a"
+
+  protected def isTeacher = user.role.get == "d" || user.role.get == "t" || isAdmin
+
 }
 
 

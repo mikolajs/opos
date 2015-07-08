@@ -4,7 +4,7 @@ import scala.xml.{Text, Unparsed}
 import _root_.net.liftweb.util._
 import _root_.net.liftweb.common._
 import net.liftweb._
-import http.{ S, SHtml }
+import http.{S, SHtml}
 import net.liftweb.mapper.{ByList, By}
 import pl.brosbit.model._
 import Helpers._
@@ -20,23 +20,23 @@ class MainSn extends BaseSnippet {
   def showPupilMessages() = {
     val page = S.param("p").openOr("1").toInt
     val perPage = 30
-    val q1:JValue = ("opinion"-> false)~("classId"-> user.classId.is)
-    val q2:JValue = ("opinion"-> true)~("pupilId"-> user.id.is)
-    val allMess =  MessagePupil.findAll(("$or"->List(q1,q2)),("_id" -> -1))
+    val q1: JValue = ("opinion" -> false) ~ ("classId" -> user.classId.get)
+    val q2: JValue = ("opinion" -> true) ~ ("pupilId" -> user.id.get)
+    val allMess = MessagePupil.findAll(("$or" -> List(q1, q2)), ("_id" -> -1))
     println("View pupil messages length: " + allMess.length)
     val pages = allMess.length
 
-    val mess = if(page*perPage >= pages) allMess.slice((page-1)*perPage, (page)*perPage)
+    val mess = if (page * perPage >= pages) allMess.slice((page - 1) * perPage, (page) * perPage)
     else allMess.take(perPage)
 
-    if(mess.isEmpty) ".msg-grp" #> <h2>Brak ogłoszeń lub uwag</h2>
+    if (mess.isEmpty) ".msg-grp" #> <h2>Brak ogłoszeń lub uwag</h2>
     else {
       ".msg-grp" #> mess.map(m => {
         //println("showMessage message m.id " + m._id.toString)
-        ".msg-grp [class]" #> (if(m.opinion) "msg-grp msg-red"  else  "msg-grp msg-blue") &
-            ".msg-cont *" #> Unparsed(m.body) &
-              ".msg-name *" #> Text(m.teacherName) &
-              ".msg-date *" #> Text(m.dateStr)
+        ".msg-grp [class]" #> (if (m.opinion) "msg-grp msg-red" else "msg-grp msg-blue") &
+          ".msg-cont *" #> Unparsed(m.body) &
+          ".msg-name *" #> Text(m.teacherName) &
+          ".msg-date *" #> Text(m.dateStr)
       })
     }
   }
@@ -44,17 +44,17 @@ class MainSn extends BaseSnippet {
   def showMessages() = {
     val page = S.param("p").openOr("1").toInt
     val perPage = 30
-    val allMess =  Message.findAll("who"->("$in"->List(user.id.is)), ("lastDate" -> -1))
+    val allMess = Message.findAll("who" -> ("$in" -> List(user.id.get)), ("lastDate" -> -1))
     val pages = allMess.length
 
-    val mess = if(page*perPage >= pages) allMess.slice((page-1)*perPage, (page)*perPage)
+    val mess = if (page * perPage >= pages) allMess.slice((page - 1) * perPage, (page) * perPage)
     else allMess.take(perPage)
 
-    if(mess.isEmpty) ".msg-grp" #> <h2>Brak wiadomości</h2>
+    if (mess.isEmpty) ".msg-grp" #> <h2>Brak wiadomości</h2>
     else {
       ".msg-grp" #> mess.map(m => {
         //println("showMessage message m.id " + m._id.toString)
-        ".msg-grp [class]" #>  "msg-grp msg-green" &
+        ".msg-grp [class]" #> "msg-grp msg-green" &
           ".msg" #> m.body.map(b => {
             //println("showMessage message body " + b.body + " name:" + b.author)
             ".msg-cont *" #> Unparsed(b.body) &
@@ -74,20 +74,20 @@ class MainSn extends BaseSnippet {
     def add() {
       val mess = Message.create
       val date = new Date
-      mess.body = List(MessageChunk(user.id.is.toString, user.getFullName, Formater.formatDate(date), body))
+      mess.body = List(MessageChunk(user.id.get.toString, user.getFullName, Formater.formatDate(date), body))
       mess.lastDate = date.getTime
       val who = tryo(teacherId.toLong).getOrElse(0L)
-      User.find(By(User.id, who)) match  {
+      User.find(By(User.id, who)) match {
         case Full(u) => {
           mess.people = u.getFullName
-          mess.who = List(u.id.is, user.id.is)
-          mess.people = u.getFullName +  " " + user.getFullName
+          mess.who = List(u.id.get, user.id.get)
+          mess.people = u.getFullName + " " + user.getFullName
           mess.save
         }
         case _ =>
       }
     }
-    val teacherHead = if(mapTeachers.length > 0) mapTeachers.head._2 else ""
+    val teacherHead = if (mapTeachers.length > 0) mapTeachers.head._2 else ""
 
     "#teacherMessage" #> SHtml.select(mapTeachers, Full(teacherHead), teacherId = _) &
       "#writeMessage" #> SHtml.textarea(body, body = _) &
@@ -98,14 +98,14 @@ class MainSn extends BaseSnippet {
   def addComment() = {
     var idMessage = ""
     var body = ""
-    def add():JsCmd = {
+    def add(): JsCmd = {
       val date = new Date
       val formatedDate = Formater.formatDate(date)
-      val messChunk =  MessageChunk(user.id.is.toString, user.getFullName, formatedDate, body.trim)
+      val messChunk = MessageChunk(user.id.get.toString, user.getFullName, formatedDate, body.trim)
 
-      Message.update(("_id"->idMessage.trim),
-        ("$set"->(("lastDate"->date.getTime)~("mailed" -> false)))~("$addToSet"->(("body"->messChunk.toMap))))
-      JsFunc("infoPupil.insertComment", user.getFullName + ";" + formatedDate ).cmd
+      Message.update(("_id" -> idMessage.trim),
+        ("$set" -> (("lastDate" -> date.getTime) ~ ("mailed" -> false))) ~ ("$addToSet" -> (("body" -> messChunk.toMap))))
+      JsFunc("infoPupil.insertComment", user.getFullName + ";" + formatedDate).cmd
     }
 
     val form = "#idMessage" #> SHtml.text(idMessage, idMessage = _) &
@@ -118,9 +118,9 @@ class MainSn extends BaseSnippet {
 
   private def getTeachers = {
     val seq: Seq[String] = List("n", "a", "d", "s")
-    User.findAll(ByList(User.role, seq ))
+    User.findAll(ByList(User.role, seq))
   }
 
-  private lazy val mapTeachers = getTeachers.map(t => (t.id.is.toString, t.shortInfo))
+  private lazy val mapTeachers = getTeachers.map(t => (t.id.get.toString, t.shortInfo))
 
 }

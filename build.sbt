@@ -1,10 +1,10 @@
 name := "osp"
 
-version := "0.4.1"
+version := "0.5.1"
 
 organization := "pl.brosbit"
 
-scalaVersion := "2.10.4"
+scalaVersion := "2.11.7"
 
 resolvers ++= Seq("snapshots" at "http://oss.sonatype.org/content/repositories/snapshots",
 		  "staging" at "http://oss.sonatype.org/content/repositories/staging",
@@ -12,27 +12,25 @@ resolvers ++= Seq("snapshots" at "http://oss.sonatype.org/content/repositories/s
 "Google GData" at "http://mandubian-mvn.googlecode.com/svn/trunk/mandubian-mvn/repository"
                  )
 
-seq(webSettings :_*)
-
 unmanagedResourceDirectories in Test <+= (baseDirectory) { _ / "src/main/webapp" }
 
+enablePlugins(JettyPlugin)
 
 scalacOptions ++= Seq("-deprecation", "-unchecked")
 
 libraryDependencies ++= {
-  val liftVersion = "2.5.1"
+  val liftVersion = "2.6.2"
   val gdataVersion = "1.41.1"
   Seq(
     "net.liftweb" %% "lift-webkit" % liftVersion % "compile",
     "net.liftweb" %% "lift-mapper" % liftVersion % "compile",
     "net.liftweb" %% "lift-actor" % liftVersion % "compile",
-    "net.liftmodules" %% "lift-jquery-module_2.5" % "2.3",
+    "net.liftmodules" % "lift-jquery-module_2.6_2.11" % "2.8",
      "org.eclipse.jetty" % "jetty-webapp" % "9.1.0.v20131115" % "container",
     "org.eclipse.jetty" % "jetty-plus"   % "9.1.0.v20131115" % "container",
     "ch.qos.logback" % "logback-classic" % "1.0.6",
      "net.liftweb" %% "lift-mongodb" % liftVersion % "compile",	    	
     "postgresql" % "postgresql" % "9.1-901.jdbc4" % "compile", 
-    "org.specs2" %% "specs2" % "1.14" % "test",
 "com.google.gdata" % "gdata-core-1.0" % gdataVersion % "compile",
 "com.google.gdata" % "gdata-base-1.0" % gdataVersion % "compile",
 "com.google.gdata" % "gdata-photos-2.0" % gdataVersion % "compile",

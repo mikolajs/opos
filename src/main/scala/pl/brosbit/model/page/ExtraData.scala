@@ -17,23 +17,29 @@ object ExtraDataKeys extends Enumeration {
 
 object ExtraData extends MongoDocumentMeta[ExtraData] {
   override def collectionName = "extradata"
-  override def formats = super.formats + new ObjectIdSerializer + new DateSerializer
-  def create = ExtraData(ObjectId.get, "", "")
-  
-  def getData(key: String): String = {
-        ExtraData.findAll(("key" -> key))  match {
-          case Nil => ""
-          case list  => list.head.data
-        }
-      }
 
-  def updateKey(key:String,data:String) {
-    ExtraData.update({"key"->key},{("key"->key)~("data"->data)}, Upsert )
+  override def formats = super.formats + new ObjectIdSerializer + new DateSerializer
+
+  def create = ExtraData(ObjectId.get, "", "")
+
+  def getData(key: String): String = {
+    ExtraData.findAll(("key" -> key)) match {
+      case Nil => ""
+      case list => list.head.data
+    }
+  }
+
+  def updateKey(key: String, data: String) {
+    ExtraData.update({
+      "key" -> key
+    }, {
+      ("key" -> key) ~ ("data" -> data)
+    }, Upsert)
   }
 }
 
-case class ExtraData(var _id: ObjectId, var key:String,
-					 var data:String ) extends MongoDocument[ExtraData] {
+case class ExtraData(var _id: ObjectId, var key: String,
+                     var data: String) extends MongoDocument[ExtraData] {
   def meta = ExtraData
 }
 

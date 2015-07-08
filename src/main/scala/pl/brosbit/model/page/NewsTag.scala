@@ -12,11 +12,13 @@ import org.bson.types.ObjectId
 
 object NewsTag extends MongoDocumentMeta[NewsTag] {
   override def collectionName = "newstag"
+
   override def formats = super.formats + new ObjectIdSerializer + new DateSerializer
+
   def create = new NewsTag(ObjectId.get, "", 0)
 }
 
-case class NewsTag(var _id: ObjectId, var tag:String, var count:Int ) 
-							extends MongoDocument[NewsTag] {
+case class NewsTag(var _id: ObjectId, var tag: String, var count: Int)
+  extends MongoDocument[NewsTag] {
   def meta = NewsTag
 }

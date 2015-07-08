@@ -14,17 +14,20 @@ import _root_.pl.brosbit.model._
 import _root_.net.liftweb.json.JsonDSL._
 import _root_.net.liftweb.util.Helpers._
 
-case class Link(url:String, title:String)
-case class LinkDepartment(name:String, links:List[Link])
+case class Link(url: String, title: String)
+
+case class LinkDepartment(name: String, links: List[Link])
 
 object MainPageLinks extends MongoDocumentMeta[MainPageLinks] {
   override def collectionName = "mainpagelinks"
+
   override def formats = super.formats + new ObjectIdSerializer + new DateSerializer
+
   def create = MainPageLinks(ObjectId.get, Nil)
 }
 
-case class MainPageLinks(_id: ObjectId, var links:List[LinkDepartment])
-						extends MongoDocument[MainPageLinks] {
+case class MainPageLinks(_id: ObjectId, var links: List[LinkDepartment])
+  extends MongoDocument[MainPageLinks] {
   def meta = MainPageLinks
 }
 

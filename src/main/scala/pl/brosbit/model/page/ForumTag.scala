@@ -12,11 +12,13 @@ import org.bson.types.ObjectId
 
 object ForumTag extends MongoDocumentMeta[ForumTag] {
   override def collectionName = "forumtag"
+
   override def formats = super.formats + new ObjectIdSerializer + new DateSerializer
+
   def create = new ForumTag(ObjectId.get, "", 0)
 }
 
-case class ForumTag(var _id: ObjectId, var tag:String, var count:Int ) 
-							extends MongoDocument[ForumTag] {
+case class ForumTag(var _id: ObjectId, var tag: String, var count: Int)
+  extends MongoDocument[ForumTag] {
   def meta = ForumTag
 }
