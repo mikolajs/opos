@@ -71,22 +71,4 @@ class AdminMailsSn {
     })
   }
 
-  def addMailConfig() = {
-    val mailConfig = new MailConfig
-    var (host, port, user, password) = mailConfig.getConfig
-
-    def save() {
-      {
-        mailConfig.configureMailer(host, port, user, password)
-      }
-      println("MailConfig saved")
-    }
-
-    "#host" #> SHtml.text(host, host = _) &
-      "#port" #> SHtml.text(port, port = _) &
-      "#user" #> SHtml.text(user, user = _) &
-      "#password1" #> SHtml.password(password, password = _) &
-      "#save" #> SHtml.submit("Zapisz!", save)
-  }
-
 }

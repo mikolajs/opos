@@ -1,26 +1,24 @@
 <!DOCTYPE html>
 <html>
-    <body class="lift:content_id=main">
-        <div id="main" class="lift:surround?with=documents;at=content">
-            <head_merge>
-            
-            <link rel="stylesheet" type="text/css" href="/style/jquery.multiselect.css" />
-             <script type="text/javascript" charset="utf-8" src="/jquery/datatableone.js"></script>
-                <script type="text/javascript" charset="utf-8" src="/jquery/edittable.js"></script>
-                 <script type="text/javascript" charset="utf-8" src="/jquery/select_operations.js"></script>   
-                <script type="text/javascript" charset="utf-8" src="/jquery/myvalidation.js"></script>
-                <script type="text/javascript" src="/jquery/jquery.multiselect.min.js"></script>
-                <script type="text/javascript" charset="utf-8">
+<body class="lift:content_id=main">
+<div id="main" class="lift:surround?with=documents;at=content">
+    <head_merge>
+
+        <link rel="stylesheet" type="text/css" href="/style/jquery.multiselect.css" />
+        <script type="text/javascript" charset="utf-8" src="/jquery/datatableone.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/jquery/edittable.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/jquery/select_operations.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/jquery/myvalidation.js"></script>
+        <script type="text/javascript" src="/jquery/jquery.multiselect.min.js"></script>
+        <script type="text/javascript" charset="utf-8">
                 var editFrom = new Object();
                 
                 EditTable.prototype.putDataToForm = function(array){
                 	document.getElementById('id').value = array[0];
                 	 var select = document.getElementById('classes');
-                	 //console.log('Array 1: ' + array[1]);
                      setMultiSelect(select, array[1]);
                      select = document.getElementById('subject');
                      setSelectedIndexWithInner(select,array[2]);
-                     //console.log("Array 3: " + array[3]);
              		document.getElementById('urlLink').value = array[3].split('"')[1];
              		$("#classes").multiselect('refresh');
             	}
@@ -41,8 +39,8 @@
             	}
                
                 
-                EditTable.prototype.addNewItemInfo = 'Dodawanie rozkładów materiału';
-                EditTable.prototype.editItemInfo = 'Edycja rozkładów materiału';
+                EditTable.prototype.addNewItemInfo = 'Dodawanie nowego PSO';
+                EditTable.prototype.editItemInfo = 'Edycja PSO';
                 
                 EditTable.prototype.validate = function () {
                 	clearFormsAddInfo(); 
@@ -80,36 +78,42 @@
 
                
                 </script>
-                <style >
-                	.errorInfo { background-color: #faa;}
-                    #errorInfo { font-style: italic; font-weight: bold; color: red;}
-                </style>
-            </head_merge>
+        <style >
+            .errorInfo { background-color: #faa;}
+            #errorInfo { font-style: italic; font-weight: bold; color: red;}
 
-            <div>
-                
-                <div class="lift:doc.ThemesPlanSn.saveAjaxDate" id="formAdd" style="display: none;" title="Dane uczniów">
-                <input id="loggedTeacher"  type="text" style="display:none;"/> 
-                <form   method="POST">
 
-                  <input id="id" type="text" />
+
+
+
+        </style>
+    </head_merge>
+
+    <div>
+
+        <div class="lift:doc.PSOSn.saveAjaxDate" id="formAdd" style="display: none;"
+             title="Przedmiotowy system oceniania">
+            <input id="loggedTeacher"  type="text" style="display:none;"/>
+            <form   method="POST">
+
+                <input id="id" type="text" />
 
                 <div id="classStrRow" class="form-group" >
-                	<label class="col-md-4" for="classes">Klasy:</label>
-                  <div  id="tagContainer" class="col-md-8">
-                      <select id="classes" ></select>
-                  </div>
+                    <label class="col-md-4" for="classes">Klasy:</label>
+                    <div  id="tagContainer" class="col-md-8">
+                        <select id="classes" ></select>
+                    </div>
                 </div>
                 <div style="clear:both;"></div>
                 <br/>
                 <div id="subjectRow" class="form-group">
-                	<label class="col-md-4 control-label" for="subject" >Przedmiot: </label>
-                   <div class="col-md-8"><select id="subject"  class="form-control" ></select></div>
+                    <label class="col-md-4 control-label" for="subject" >Przedmiot: </label>
+                    <div class="col-md-8"><select id="subject"  class="form-control" ></select></div>
                 </div>
 
-                 <div id="urlLinkRow" class="form-group">
-                  <label class="col-md-4 control-label" for="urlLink">Link:</label>
-                     <div class="col-md-8">
+                <div id="urlLinkRow" class="form-group">
+                    <label class="col-md-4 control-label" for="urlLink">Link:</label>
+                    <div class="col-md-8">
                         <input class="form-control" id="urlLink" type="text" readonly="readonly"/>
                     </div>
                 </div>
@@ -123,56 +127,53 @@
                 <div class="form-group" id="buttons">
                     <div class="col-md-6"></div>
                     <div class="col-md-6">
-                    <input class="btn btn-lg btn-success" type="button"
-                                 value="Zapisz!"  id="save"/>
-                    <input value="Usuń!"  id="delete"/>
+                        <input class="btn btn-lg btn-success" type="button"
+                               value="Zapisz!"  id="save"/>
+                        <input
+                               value="Usuń!"  id="delete"/>
                     </div>
                 </div>
                 <p id="addInfo"></p>
-                </form>
-                </div>
+            </form>
+        </div>
 
 
 
-                <h3>Rozkłady materiału</h3><hr />
-                <p><span class="btn btn-lg btn-info" id="newadd">
-                <span class="glyphicon glyphicon-plus-sign"  ></span> Nowy rozkład</span>
-                </p>
-                <table id="fullList" class="display" border="0" cellpadding="2" cellspacing="2" >
-                   
-                   <thead>
-                       <tr><th>ID</th>
-                       <th>Klasa</th><th>Przedmiot</th>
-                       <th>Załącznik</th><th>Nauczyciel</th><th>Edycja</th>
-                       </tr>
-                   </thead>
+        <h3>PSO - Przedmiotowe systemy oceniania </h3><hr />
+        <p><span class="btn btn-lg btn-info" id="newadd">
+                <span class="glyphicon glyphicon-plus-sign"  ></span> Dodaj PSO</span>
+        </p>
+        <table id="fullList" class="display" border="0" cellpadding="2" cellspacing="2" >
 
-                    <tbody class="lift:doc.ThemesPlanSn.dataTable">
-                        <tr>
-                            <td class="tdItem"></td>
+            <thead>
+            <tr><th>ID</th>
+                <th>Klasa</th><th>Przedmiot</th>
+                <th>Załącznik</th><th>Nauczyciel</th><th>Edycja</th>
+            </tr>
+            </thead>
 
-                            <td class="edit"><button class="btn btn-info editButton" onclick="editForm.startEditRow(this)">
-                                <span class="glyphicon glyphicon-pencil"></span>Edytuj</button></td>
-                        </tr>
-                    </tbody>
+            <tbody class="lift:doc.PSOSn.dataTable">
+            <tr>
+                <td class="tdItem"></td>
+                <td class="edit"><button class="btn btn-info editButton" onclick="editForm.startEditRow(this)">
+                    <span class="glyphicon glyphicon-pencil"></span>Edytuj</button></td>
+            </tr>
+            </tbody>
 
-                    <tfoot>
-                    <tr><th>ID</th>
-                        <th>Klasa</th><th>Przedmiot</th>
-                        <th>Załącznik</th><th>Nauczyciel</th><th>Edycja</th>
-                    </tr>
-                    </tfoot>
+            <tfoot>
+            <tr><th>ID</th>
+                <th>Klasa</th><th>Przedmiot</th>
+                <th>Załącznik</th><th>Nauczyciel</th><th>Edycja</th>
+            </tr>
+            </tfoot>
 
 
-                </table>
+        </table>
 
-            </div>
-             <br/>
-            <div class="clear"></div>
-            </div>
-    </body>
+    </div>
+    <br/>
+    <div class="clear"></div>
+</div>
+</body>
 </html>
-
-
-
 
