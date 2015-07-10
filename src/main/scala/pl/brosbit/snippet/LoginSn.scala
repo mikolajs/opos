@@ -27,7 +27,7 @@ class LoginSn {
     userBox match {
       case Full(user) =>
         "a" #> <span>
-          <span class="glyphicon glyphicon-user"></span>{user.getFullName}<a href="/user_mgt/logout" class="btn btn-info" role="button" title="Wyloguj" style="padding:10px">
+          <span class="glyphicon glyphicon-user"></span>{user.getFullName} <a href="/user_mgt/logout" class="btn btn-info" role="button" title="Wyloguj" style="padding:10px">
             <span class="glyphicon glyphicon-log-out">Wyloguj</span>
           </a>
         </span>

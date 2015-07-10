@@ -21,7 +21,7 @@ import _root_.net.liftweb.http.js.JE._
 class ParentDataSn extends BaseTeacher {
 
   def dataTable() = {
-    val idClass = ClassChoose.is
+    val idClass = ClassChoose.get
     if (idClass == 0) S.redirectTo("/teacher/index")
     val classModel = ClassModel.find(idClass) match {
       case Full(theClass) => theClass
@@ -33,21 +33,21 @@ class ParentDataSn extends BaseTeacher {
       val father = pupil.father.obj.getOrElse(User.create)
       val mather = pupil.mather.obj.getOrElse(User.create)
       "tr [class]" #> {
-        if (pupil.scratched.is) "scratched" else ""
+        if (pupil.scratched.get) "scratched" else ""
       } &
         ".id *" #> pupil.id.get.toString &
-        ".number *" #> pupil.classNumber.is.toString &
+        ".number *" #> pupil.classNumber.get.toString &
         ".reversefullname *" #> pupil.getFullNameReverse &
-        ".lastnamefather *" #> father.lastName.is &
-        ".firstnamefather *" #> father.firstName.is &
-        ".emailfather *" #> father.email.is &
-        ".phonefather *" #> father.phone.is &
-        ".addressfather *" #> father.address.is &
-        ".lastnamemather *" #> mather.lastName.is &
-        ".firstnamemather *" #> mather.firstName.is &
-        ".emailmather *" #> mather.email.is &
-        ".phonemather *" #> mather.phone.is &
-        ".addressmather *" #> mather.address.is
+        ".lastnamefather *" #> father.lastName.get &
+        ".firstnamefather *" #> father.firstName.get &
+        ".emailfather *" #> father.email.get &
+        ".phonefather *" #> father.phone.get &
+        ".addressfather *" #> father.address.get &
+        ".lastnamemather *" #> mather.lastName.get &
+        ".firstnamemather *" #> mather.firstName.get &
+        ".emailmather *" #> mather.email.get &
+        ".phonemather *" #> mather.phone.get &
+        ".addressmather *" #> mather.address.get
 
     })
   }
@@ -81,7 +81,7 @@ class ParentDataSn extends BaseTeacher {
               email(emailMather.trim).lastName(lastNameMather.trim).
               firstName(firstNameMather.trim).role("r").
               scratched(false).save
-            pupil.father(father.id.is).mather(mather.id.is).save
+            pupil.father(father.id.get).mather(mather.id.get).save
             JsFunc("editForm.editRow", id).cmd
           }
           case _ => Alert("Nie ma takiego ucznia")

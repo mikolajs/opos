@@ -14,7 +14,7 @@ resolvers ++= Seq("snapshots" at "http://oss.sonatype.org/content/repositories/s
 
 unmanagedResourceDirectories in Test <+= (baseDirectory) { _ / "src/main/webapp" }
 
-enablePlugins(JettyPlugin)
+seq(webSettings :_*)
 
 scalacOptions ++= Seq("-deprecation", "-unchecked")
 

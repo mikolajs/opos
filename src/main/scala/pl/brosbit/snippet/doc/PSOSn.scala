@@ -5,7 +5,7 @@ import scala.xml.Unparsed
 import _root_.net.liftweb.util._
 import _root_.net.liftweb.common._
 import _root_.pl.brosbit.model._
-import _root_.net.liftweb.http.{ S, SHtml }
+import _root_.net.liftweb.http.SHtml
 import Helpers._
 import  _root_.net.liftweb.http.js.JsCmds._
 import  _root_.net.liftweb.http.js.JsCmd
@@ -36,14 +36,14 @@ class PSOSn extends BaseDoc {
     def save():JsCmd = {
       val pso = PSO.find(id).getOrElse(PSO.create)
       val isNew = pso.urlLink.isEmpty
-      val user = User.currentUser.get
-      if(id == "" || user.id.is == pso.teacherId) {
+      val user = User.currentUser.openOrThrowException("No current user")
+      if(id == "" || user.id.get == pso.teacherId) {
 
         pso.classes = classesTeacher
         pso.subjectStr = subject
         pso.urlLink = urlLink
         if(id == "") {
-          pso.teacherId = user.id.is
+          pso.teacherId = user.id.get
           pso.teacherName = user.getFullName
         }
         if(pso.isValid){
@@ -67,8 +67,8 @@ class PSOSn extends BaseDoc {
       } else Alert("Tylko administrator może usunąć wpis!")
     }
 
-    val classes = ClassModel.findAll().filter(!_.scratched.is).map(theClass => (theClass.classString(), theClass.classString()))
-    val subjects = SubjectName.findAll().filter(!_.scratched.is).map(subject => (subject.name.is, subject.name.is))
+    val classes = ClassModel.findAll().filter(!_.scratched.get).map(theClass => (theClass.classString(), theClass.classString()))
+    val subjects = SubjectName.findAll().filter(!_.scratched.get).map(subject => (subject.name.get, subject.name.get))
 
     val form = "#id" #> SHtml.text(id, id = _, "style"->"display:none;") &
       "#classes" #> SHtml.multiSelect(classes, classesTeacher, classesTeacher = _) &
@@ -78,7 +78,7 @@ class PSOSn extends BaseDoc {
       "#delete" #>  {if(isAdmin) SHtml.ajaxSubmit("USUŃ!", delete, "class"->"btn btn-lg btn-danger")
       else <span style="display:none;" class="brak"></span>} andThen SHtml.makeFormsAjax
 
-    "#loggedTeacher" #> <input id="loggedTeacher" value={User.currentUser.get.getFullName}
+    "#loggedTeacher" #> <input id="loggedTeacher" value={User.currentUser.openOrThrowException("No logged user").getFullName}
                                type="text" style="display:none;"/> &
       "form" #> (in => form(in))
   }

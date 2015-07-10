@@ -33,7 +33,7 @@ class MainSn {
 
   val isTeacher = if (user.isEmpty) false
   else {
-    user.openOrThrowException("Niemożliwe").role.is match {
+    user.openOrThrowException("Niemożliwe").role.get match {
       case "a" => true
       case "n" => true
       case "d" => true
@@ -157,11 +157,11 @@ class MainSn {
     ".newsInfo" #> <div>
       {toShowNewses.map(news => createPinBox(news))}
     </div> &
-      ".linkNews" #> (1 to pages).map(p => {
-        <a type="button" href={"/index/" + choiceContent + p.toString}
-           class={"btn " + (if (p == pageInt) "btn-info" else "btn-default")}>
+      "li" #> (1 to pages).map(p => {
+        <li><a  href={"/index/" + choiceContent + p.toString}
+           class={ (if (p == pageInt) "actualPage" else "")}>
           {pageInt.toString}
-        </a>
+        </a></li>
 
 
       })
@@ -242,7 +242,7 @@ class MainSn {
       <h2 onclick={"showNewsTitle('" + news._id + "', this)"}>
         {news.title}
       </h2>
-      <div>
+      <div class="innerBox">
         <div class="imgBox">
           <img src={news.thumbnailLink}/>
         </div>
@@ -252,7 +252,7 @@ class MainSn {
               {news.authorName}
             </span>
             <span class="date">
-              {Formater.formatDate(new Date(news._id.getTime()))}
+              {Formater.formatDate(news._id.getDate())}
             </span>
           </p>
           <div class="introNews">
@@ -292,7 +292,7 @@ class MainSn {
             {pageHead.authorName}
           </span>
           <span class="date">
-            {Formater.formatTime(new Date(pageHead._id.getTime()))}
+            {Formater.formatTime(pageHead._id.getDate())}
           </span>{if (isOwner(pageHead.authorId)) <span class="edit">
           <a href={"/editarticle/" + pageHead._id.toString}>Edytuj</a>
         </span>

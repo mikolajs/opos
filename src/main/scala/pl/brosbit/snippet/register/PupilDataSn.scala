@@ -24,7 +24,7 @@ class PupilDataSn extends BaseTeacher {
 
 
   def dataTable() = {
-    val idClass = ClassChoose.is
+    val idClass = ClassChoose.get
     if (idClass == 0) S.redirectTo("teacher/index")
     val classModel = ClassModel.find(idClass) match {
       case Full(theClass) => theClass
@@ -34,19 +34,19 @@ class PupilDataSn extends BaseTeacher {
 
     "tr" #> pupils.map(pupil => {
       "tr [class]" #> {
-        if (pupil.scratched.is) "scratched" else ""
+        if (pupil.scratched.get) "scratched" else ""
       } &
         ".id *" #> pupil.id.get.toString &
-        ".number *" #> pupil.classNumber.is.toString &
+        ".number *" #> pupil.classNumber.get.toString &
         ".reversefullname *" #> pupil.getFullNameReverse &
-        ".secondname *" #> pupil.secondName.is &
-        ".email *" #> pupil.email.is &
-        ".phone *" #> pupil.phone.is &
-        ".pesel *" #> pupil.pesel.is &
-        ".birthdate *" #> Formater.formatDate(pupil.birthDate.is) &
-        ".birthplace *" #> pupil.birthPlace.is &
+        ".secondname *" #> pupil.secondName.get &
+        ".email *" #> pupil.email.get &
+        ".phone *" #> pupil.phone.get &
+        ".pesel *" #> pupil.pesel.get &
+        ".birthdate *" #> Formater.formatDate(pupil.birthDate.get) &
+        ".birthplace *" #> pupil.birthPlace.get &
         ".birthdistrict *" #> pupil.birthDisctrict &
-        ".address *" #> pupil.address.is
+        ".address *" #> pupil.address.get
 
     })
   }

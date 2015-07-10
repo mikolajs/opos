@@ -6,17 +6,14 @@
 
 package pl.brosbit.snippet.secretariat
 
-import java.util.{Date, GregorianCalendar, TimeZone}
-import scala.xml.{NodeSeq, Text, XML}
 import _root_.net.liftweb.util._
-import _root_.net.liftweb.http.{SHtml, S}
+import _root_.net.liftweb.http.SHtml
 import _root_.net.liftweb.common._
-import _root_.net.liftweb.mapper.{By, OrderBy, Ascending}
+import _root_.net.liftweb.mapper.By
 import Helpers._
 import _root_.pl.brosbit.model._
 import _root_.pl.brosbit.lib.Formater
 import _root_.net.liftweb.http.js.JsCmds._
-import _root_.net.liftweb.http.js.JsCmd
 import _root_.net.liftweb.http.js.JE._
 
 class PupilSn {
@@ -26,25 +23,25 @@ class PupilSn {
     val pupils = User.findAll(By(User.role, "u"))
     "tr" #> pupils.map(pupil => {
       "tr [class]" #> {
-        if (pupil.scratched.is) "scratched" else ""
+        if (pupil.scratched.get) "scratched" else ""
       } &
         ".id" #> <td>
           {pupil.id.get.toString}
         </td> &
         ".firstname" #> <td>
-          {pupil.firstName.is}
+          {pupil.firstName.get}
         </td> &
         ".lastname" #> <td>
-          {pupil.lastName.is}
+          {pupil.lastName.get}
         </td> &
         ".birthdate" #> <td>
-          {Formater.formatDate(pupil.birthDate.is)}
+          {Formater.formatDate(pupil.birthDate.get)}
         </td> &
         ".classInfo" #> <td>
-          {pupil.classInfo.is}
+          {pupil.classInfo.get}
         </td> &
         ".pesel" #> <td>
-          {pupil.pesel.is}
+          {pupil.pesel.get}
         </td>
     })
   }
@@ -61,10 +58,10 @@ class PupilSn {
     def save() = {
       val pupil = User.find(id).openOr(User.create)
       ClassModel.find(classId) match {
-        case Full(classModel) => {
+        case Full(classModel) =>
           pupil.classInfo(classModel.classString()).
             classId(classModel.id.get)
-        }
+
         case _ =>
       }
       pupil.birthDate(Formater.fromStringToDate(birthDate)).firstName(firstName).

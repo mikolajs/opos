@@ -17,22 +17,19 @@
 
 package pl.brosbit.snippet.secretariat
 
-import _root_.scala.xml.{NodeSeq, Text, XML}
 import _root_.net.liftweb.util._
-import _root_.net.liftweb.http.{SHtml, S}
+import _root_.net.liftweb.http.SHtml
 import _root_.net.liftweb.common._
-import _root_.java.util.{Date, Random, GregorianCalendar, TimeZone}
 import pl.brosbit.model._
 import _root_.net.liftweb.mapper.{By, OrderBy, Ascending}
 import Helpers._
 import _root_.net.liftweb.http.js.JsCmds._
-import _root_.net.liftweb.http.js.JsCmd
 import _root_.net.liftweb.http.js.JE._
 
 class ClassSn extends {
 
 
-  def teachers() = User.findAll(By(User.role, "n")).filter(teacher => !teacher.scratched.is).
+  def teachers() = User.findAll(By(User.role, "n")).filter(teacher => !teacher.scratched.get).
     map(teacher => {
     val teacherString = teacher.shortInfo
     (teacherString, teacherString)
@@ -45,16 +42,16 @@ class ClassSn extends {
     //val user:List[User] = User.find(class.id.get).get
     "tr" #> classList.map(theClass => {
       "tr [class]" #> {
-        if (theClass.scratched.is) "scratched" else ""
+        if (theClass.scratched.get) "scratched" else ""
       } &
         ".id" #> <td>
           {theClass.id.get.toString}
         </td> &
         ".level" #> <td>
-          {theClass.level.is.toString}
+          {theClass.level.get.toString}
         </td> &
         ".division" #> <td>
-          {theClass.division.is}
+          {theClass.division.get}
         </td> &
         ".teacher" #> <td>
           {theClass.teacher.obj match {
@@ -63,7 +60,7 @@ class ClassSn extends {
           }}
         </td> &
         ".description" #> <td>
-          {theClass.descript.is}
+          {theClass.descript.get}
         </td>
     })
   }
@@ -80,16 +77,16 @@ class ClassSn extends {
       val theClass = ClassModel.find(id).openOr(ClassModel.create)
       val teacherId = refitTeacherIdFromShortInfo(teacher)
       val teacherModel = User.find(teacherId).openOr(User.create)
-      if (teacherModel.role == "n") {
+      if (teacherModel.role.get == "n") {
         val levelInt = tryo(level.toInt).openOr(0)
         theClass.level(levelInt).descript(description).division(division).
-          teacher(teacherModel.id.is).scratched(false).save
+          teacher(teacherModel.id.get).scratched(false).save
         if (id == "") {
-          id = theClass.id.toString
+          id = theClass.id.get.toString
           JsFunc("editForm.insertRowAndClear", id).cmd
         }
         else {
-          id = theClass.id.toString
+          id = theClass.id.get.toString
           JsFunc("editForm.insertRowAndClose", id).cmd
         }
 

@@ -5,7 +5,7 @@ import scala.xml.Unparsed
 import _root_.net.liftweb.util._
 import _root_.net.liftweb.common._
 import _root_.pl.brosbit.model._
-import _root_.net.liftweb.http.{S, SHtml}
+import _root_.net.liftweb.http.SHtml
 import Helpers._
 import _root_.net.liftweb.http.js.JsCmds._
 import _root_.net.liftweb.http.js.JsCmd
@@ -38,7 +38,7 @@ class ThemesPlanSn extends BaseDoc {
     def save(): JsCmd = {
       val themesPlan = ThemesPlan.find(id).getOrElse(ThemesPlan.create)
       val isNew = themesPlan.urlLink.isEmpty
-      val user = User.currentUser.get
+      val user = User.currentUser.openOrThrowException("No teacher")
       if (id == "" || user.id.get == themesPlan.teacherId) {
 
         themesPlan.classes = classesTeacher
@@ -69,8 +69,8 @@ class ThemesPlanSn extends BaseDoc {
       } else Alert("Tylko administrator może usunąć wpis!")
     }
 
-    val classes = ClassModel.findAll().filter(!_.scratched.is).map(theClass => (theClass.classString(), theClass.classString()))
-    val subjects = SubjectName.findAll().filter(!_.scratched.is).map(subject => (subject.name.is, subject.name.is))
+    val classes = ClassModel.findAll().filter(!_.scratched.get).map(theClass => (theClass.classString(), theClass.classString()))
+    val subjects = SubjectName.findAll().filter(!_.scratched.get).map(subject => (subject.name.get, subject.name.get))
 
     
     val form = "#id" #> SHtml.text(id, id = _, "style"->"display:none;") &
@@ -81,7 +81,7 @@ class ThemesPlanSn extends BaseDoc {
         "#delete" #>  {if(isAdmin) SHtml.ajaxSubmit("USUŃ!", delete, "class"->"btn btn-lg btn-danger")
         else <span style="display:none;" class="brak"></span>} andThen SHtml.makeFormsAjax
     		
-        	 "#loggedTeacher" #> <input id="loggedTeacher" value={User.currentUser.get.getFullName} 
+        	 "#loggedTeacher" #> <input id="loggedTeacher" value={User.currentUser.openOrThrowException("No teacher").getFullName}
         	 							type="text" style="display:none;"/> & 					
     		 "form" #> (in => form(in))
   }

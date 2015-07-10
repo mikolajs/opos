@@ -21,7 +21,7 @@ import _root_.net.liftweb.json.JsonDSL._
 
 class PlanSn extends BaseTeacher {
 
-  val idClass = ClassChoose.is
+  val idClass = ClassChoose.get
   val classModel = ClassModel.find(idClass) match {
     case Full(theClass) => theClass
     case _ => S.redirectTo("/register/index")
@@ -166,7 +166,7 @@ class PlanSn extends BaseTeacher {
   }
 
   def insertSelectSubject = {
-    val subjects = SubjectName.findAll.map(subject => subject.name.is)
+    val subjects = SubjectName.findAll.map(subject => subject.name.get)
     "option" #> subjects.map(subject => <option value={subject}>
       {subject}
     </option>)

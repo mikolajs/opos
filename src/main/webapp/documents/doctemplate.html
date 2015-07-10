@@ -8,7 +8,7 @@
 <script src="/ckeditor/ckeditor.js" type="text/javascript"></script>
 <script>
 $(document).ready(function(){
-CKEDITOR.replace( 'addentry',{
+CKEDITOR.replace( 'content',{
 	    width : 750,
 	    height: 450,
 	    extraPlugins :  'symbol',
@@ -20,42 +20,76 @@ CKEDITOR.replace( 'addentry',{
         [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock' ],
         [ 'Format','FontSize' ] ]
 	});
+
+	$('#formDiv').hide();
+
 });
+
+function editDoc(elem) {
+  document.getElementById('idContent').value=elem.getAttribute('id');;
+  document.getElementById('nr').value = "987";
+  var doc = $(elem).parent().parent().children('div.docItem').html();
+  CKEDITOR.instances['content'].setData(doc);
+  CKEDITOR.instances['content'].updateElement();
+  $('#formDiv').show();
+}
+
+function addDoc() {
+  document.getElementById('idContent').value="0";
+  document.getElementById('nr').value = "987";
+  var templ = document.getElementById('hiddenTemplate').value;
+  document.getElementById('content').value = templ;
+  CKEDITOR.instances['content'].setData(document.getElementById('content').value);
+  $('#formDiv').show();
+}
+
+function cancelEdit() {
+  $('#formDiv').hide();
+  return false;
+}
  
 </script>
 <style>
 	h2  span { padding-left: 15px; color: #e55; font-style: italic;}
-	.fulldocument {border: solid 1px #eee; background-color: #fefefe;}
+	.fulldocument {border: solid 1px #eee; background-color: #fefefe; padding: 5px;}
 	.fulldocument th { font-weight: bold; }
 	.fulldocument td, th {border: solid 1px; text-align: center;}
+    .editbutton {float: right;}
 </style>
 </head_merge>
 	<div class="row">
     <div   class="col-lg-9">
-    <h1>Dokumenty</h1>
+    <h1>Edycja dokumentów</h1>
     <hr/>
     <div class="lift:doc.DocTemplateSn.showHead" >
      
      <h2>Temat: <span></span></h2>
      <h3>Opis dokumentu:</h3>
        	<div class="well" id="comment"></div>
+        <input style="display:none;" id="hiddenTemplate" />
      </div>
      <hr/>
-     <form class="lift:doc.DocTemplateSn.addEntry" method="POST">
-     <label>Twój wpis:</label><br/>
-     <textarea id="addentry"></textarea>
+     <div id="formDiv">
+     <form id="theForm" class="lift:doc.DocTemplateSn.addEntry" method="POST">
+     <label>Dodaj wpis:</label><br/>
+     <input style="display:none" id="idContent" />
+     <input style="display:none" id="nr" />
+     <textarea id="content"></textarea>
      <div>
       <hr/>
      <div class="col-lg-2"></div>
-         <div class="col-lg-2">
+         <div class="col-lg-4">
      <input class="btn btn-success" id="save" />
-     <input class="btn btn-danger"  id="delete" />
+     <input class="btn btn-danger"  onclick="return confirm('Na pewno usunąć?')" id="delete" />
+     <input class="btn btn-default" type="submit" onclick="return cancelEdit()" value="Anuluj" id="cancel" />
              </div>
      </div>
      </form>
- 	<br/><br/>
- 	<div class="lift:doc.DocTemplateSn.fullDocument" >
- 	<h1>Dodane wpisy:</h1>
+     </div>
+
+  	<div class="lift:doc.DocTemplateSn.fullDocument" >
+ 	<h2>Dodane wpisy:</h2>
+        <button onclick="addDoc(1)"> Nowy</button>
  	<div class="fulldocument">
  		Brak wpisów
  	</div>
@@ -67,7 +101,9 @@ CKEDITOR.replace( 'addentry',{
     
     <div id="sidebar" class="col-lg-3" >
     <h1>Wybierz dokument:</h1>
+
      <div class="lift:doc.DocTemplateSn.docTemplates">
+
        <ul><li></li></ul>
        </div>
        

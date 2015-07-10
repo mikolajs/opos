@@ -6,16 +6,13 @@
 
 package pl.brosbit.snippet.secretariat
 
-import _root_.java.util.{Date, GregorianCalendar, TimeZone}
-import _root_.scala.xml.{NodeSeq, Text, XML}
 import _root_.net.liftweb.util._
-import _root_.net.liftweb.http.{SHtml, S}
+import _root_.net.liftweb.http.{SHtml}
 import _root_.net.liftweb.common._
-import _root_.net.liftweb.mapper.{By, OrderBy, Ascending}
+import _root_.net.liftweb.mapper.{ OrderBy, Ascending}
 import Helpers._
-import pl.brosbit.model.{User, SubjectName, SubjectChangeList}
+import pl.brosbit.model.{ SubjectName}
 import _root_.net.liftweb.http.js.JsCmds._
-import _root_.net.liftweb.http.js.JsCmd
 import _root_.net.liftweb.http.js.JE._
 
 class SubjectSn {
@@ -25,19 +22,19 @@ class SubjectSn {
     val subjects: List[SubjectName] = SubjectName.findAll(OrderBy(SubjectName.nr, Ascending))
     "tr" #> subjects.map(subject => {
       "tr [class]" #> {
-        if (subject.scratched.is) "scratched" else ""
+        if (subject.scratched.get) "scratched" else ""
       } &
         ".id" #> <td>
           {subject.id.get.toString}
         </td> &
         ".longname" #> <td>
-          {subject.name.is}
+          {subject.name.get}
         </td> &
         ".shortname" #> <td>
-          {subject.short.is}
+          {subject.short.get}
         </td> &
         ".ordernumber" #> <td>
-          {subject.nr.is.toString}
+          {subject.nr.get.toString}
         </td>
     })
   }
@@ -53,13 +50,15 @@ class SubjectSn {
     def save() = {
       val subject = SubjectName.find(id).openOr(SubjectName.create)
       val number = tryo(ordernumber.toInt).openOr(36)
-      subject.name(longName.trim).short(shortName.trim).nr(number).scratched(false).save
+      if(subject.name(longName.trim).short(shortName.trim).nr(number).scratched(false).save)
+        errorInfo = ""
+      else errorInfo = "Nieudany zapis"
       if (id == "") {
-        id = subject.id.toString
+        id = subject.id.toString()
         JsFunc("editForm.insertRowAndClear", id).cmd
       }
       else {
-        id = subject.id.toString
+        id = subject.id.toString()
         JsFunc("editForm.insertRowAndClose", id).cmd
       }
     }

@@ -5,16 +5,16 @@ import org.bson.types.ObjectId
 import _root_.net.liftweb.json.JsonDSL._
 
 
-object DocTemplateHead extends MongoDocumentMeta[DocTemplateHead] {
-  override def collectionName = "doctemplatehead"
+object DocTemplate extends MongoDocumentMeta[DocTemplate] {
+  override def collectionName = "DocTemplate"
 
   override def formats = super.formats + new ObjectIdSerializer + new DateSerializer
 
-  def create = DocTemplateHead(ObjectId.get, false, "", "", "", new ObjectId("000000000000000000000000"))
+  def create = DocTemplate(ObjectId.get, false, "", "", "")
 }
 
-case class DocTemplateHead(var _id: ObjectId, var tab: Boolean, var title: String,
-                           var comment: String, var template: String, var content: ObjectId)
-  extends MongoDocument[DocTemplateHead] {
-  def meta = DocTemplateHead
+case class DocTemplate(var _id: ObjectId, var tab: Boolean, var title: String,
+                           var comment: String, var template: String)
+  extends MongoDocument[DocTemplate] {
+  def meta = DocTemplate
 }

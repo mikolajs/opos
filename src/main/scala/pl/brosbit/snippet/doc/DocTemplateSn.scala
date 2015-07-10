@@ -11,57 +11,66 @@ import _root_.net.liftweb.json.JsonDSL._
 class DocTemplateSn extends BaseDoc {
 
   var id = S.param("id").getOrElse("0")
-  var docHead = DocTemplateHead.find(id) match {
+  var docHead = DocTemplate.find(id) match {
     case Some(templateHead) => templateHead
     case _ => {
-      val docList = DocTemplateHead.findAll
+      val docList = DocTemplate.findAll
       if (!docList.isEmpty) docList.head
-      else DocTemplateHead.create
+      else DocTemplate.create
     }
-  }
-  var docContent = DocTemplateContent.find(docHead.content) match {
-    case Some(templateContent) => templateContent
-    case _ => DocTemplateContent.create
   }
 
   def showHead() = {
     "span *" #> docHead.title &
-      "#comment *" #> Unparsed(docHead.comment)
+      "#comment *" #> Unparsed(docHead.comment) &
+    "#hiddenTemplate [value]" #> Unparsed(docHead.template)
   }
 
   def addEntry() = {
-    var userTemplate = findCurrentUserTemplate
+    var id = ""
+    var cont = ""
+    var nr = ""
+
     def save() {
-      val newTemplatePiece = TemplatePiece(user.id.toString, user.getFullName, userTemplate)
-      DocTemplateContent.update(("_id" -> docContent._id.toString),
-        ("$pull" -> ("content" -> ("userId" -> user.id.toString))))
-      DocTemplateContent.update(("_id" -> docContent._id.toString),
-        ("$addToSet" -> ("content" -> newTemplatePiece.mapString)))
+      val docCont = DocContent.find(id).getOrElse(DocContent.create)
+      docCont.template = docHead._id
+      docCont.userId = user.id.get
+      docCont.content = cont.trim
+      docCont.userName = user.getFullName
+      docCont.nr = tryo(nr.toInt).getOrElse(999)
+      docCont.save
+
     }
 
     def delete() {
-      DocTemplateContent.update(("_id" -> docContent._id.toString),
-        ("$pull" -> ("content" -> ("userId" -> user.id.toString))))
-    }
+      DocContent.find(id) match {
+        case Some(docCont) =>
+          if(user.id.get == docCont.userId ) docCont.delete
+        case _ =>
+      }
 
-    "#addentry" #> SHtml.textarea(userTemplate, userTemplate = _) &
+    }
+     "#idContent" #> SHtml.text(id, id = _) &
+    "#content" #> SHtml.textarea(cont, cont = _) &
+    "#nr" #> SHtml.text(nr, nr = _) &
       "#save" #> SHtml.submit("Zapisz", save) &
       "#delete" #> SHtml.submit("Usuń", delete)
 
   }
 
   def fullDocument() = {
-    ".fulldocument *" #> docContent.content.map(template => {
+    ".fulldocument *" #> DocContent.findAll(("template"->docHead._id.toString), ("nr" -> -1)).map(docItem => {
       <div>
-        <h2>Dodane przez:
-          {template.userName}
-        </h2> <hr/>{Unparsed(template.template)}
+        <h3><small>Dodane przez:</small> {docItem.userName}
+          <span class="btn btn-default editbutton" id={docItem._id.toString} onclick="editDoc(this)">
+          <span class="glyphicon glyphicon-pencil"  ></span>Edytuj</span></h3>
+        <hr/><div class="docItem">{Unparsed(docItem.content)}</div>
       </div>
     })
   }
 
   def docTemplates() = {
-    "li" #> DocTemplateHead.findAll.map(templateHead => {
+    "li" #> DocTemplate.findAll.map(templateHead => {
       <li>
         <a href={"/documents/doctemplate/" + templateHead._id.toString}>
           {templateHead.title}
@@ -89,14 +98,6 @@ class DocTemplateSn extends BaseDoc {
         <ul></ul>
       }
     }
-  }
-
-  private def findCurrentUserTemplate: String = {
-    val userTemplateList = docContent.content.filter(_.userId == user.id.toString)
-    if (userTemplateList.isEmpty) {
-      docHead.template
-    }
-    else userTemplateList.head.template
   }
 
 }

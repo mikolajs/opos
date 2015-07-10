@@ -4,7 +4,10 @@ import _root_.net.liftweb.util._
 import _root_.pl.brosbit.model._
 import _root_.net.liftweb.http.{S, SHtml}
 import Helpers._
+import _root_.net.liftweb.json.JsonDSL._
 import net.liftweb.common.Full
+
+
 
 
 class CreateTemplateSn extends BaseDoc {
@@ -14,7 +17,7 @@ class CreateTemplateSn extends BaseDoc {
   var comment = ""
   var table = false
   var template = ""
-  DocTemplateHead.find(id) match {
+  DocTemplate.find(id) match {
     case Some(templateHead) => {
       title = templateHead.title
       comment = templateHead.comment
@@ -28,34 +31,23 @@ class CreateTemplateSn extends BaseDoc {
   def edit() = {
 
     def save() {
-      val docHead = DocTemplateHead.find(id) match {
+      val docHead = DocTemplate.find(id) match {
         case Some(templateHead) => templateHead
-        case _ => DocTemplateHead.create
-      }
-      val docContent = DocTemplateContent.find(docHead.content) match {
-        case Some(templateContent) => templateContent
-        case _ => DocTemplateContent.create
+        case _ => DocTemplate.create
       }
       docHead.title = title.trim
       docHead.tab = table
       docHead.comment = comment.trim
-      docHead.content = docContent._id
       docHead.template = template.trim
       docHead.save
-      docContent.save
       S.redirectTo("/documents/doctemplate/" + id)
     }
 
     def delete() {
       if (id.length > 20) {
-        DocTemplateHead.find(id) match {
-          case Some(templateHead) => {
-            DocTemplateContent.find(templateHead.content) match {
-              case Some(templateContent) => templateContent.delete
-              case _ =>
-            }
-            templateHead.delete
-          }
+        DocTemplate.find(id) match {
+          case Some(templateHead) =>
+            DocContent.delete(("template" -> templateHead._id.toString))
           case _ =>
         }
       }

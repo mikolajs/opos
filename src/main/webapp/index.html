@@ -4,8 +4,9 @@
     <link rel="stylesheet" href="/style/carousel.css"/>
 
     <script>
-     var $introDiv = null;
      var $imgBox = null;
+     var $innerBox = null;
+     var $textBox = null;
      function redirectOnFilter() {
          var tag = $('#filter option:selected').val(); 
          if(tag == "Wszystkie artykuły")
@@ -15,35 +16,36 @@
      }
      
    function showNews(id, elem){
-             if($introDiv != null && $imgBox != null) closeNews();
-             $introDiv = $(elem).parent().children('div.introNews');
-
+             if($textBox != null && $imgBox != null) closeNews();
+             $innerBox = $(elem).parent().parent();
+             $textBox = $(elem).parent();
              $imgBox = $(elem).parent().parent().children('div.imgBox');
             showNewsCommon(id);
             return false;
     };
          
    function closeNews() {
-       	 $introDiv.show();
+       	 $textBox.show();
        	 $imgBox.show();
        	 $('#ajaxNews').hide().empty();
 
    };
 
     function showNewsTitle(id, elem){
-        if($introDiv != null && $imgBox != null) closeNews();
-        $introDiv = $(elem).parent().children('div').children('div.textBox').children('div.introNews');
+        if($textBox != null && $imgBox != null) closeNews();
+        $textBox = $(elem).parent().children('div').children('div.textBox');
+        $innerBox = $(elem).parent().children('div.innerBox');
         $imgBox = $(elem).parent().children('div').children('div.imgBox');
         showNewsCommon(id);
     };
 
     function showNewsCommon(id) {
-        if($introDiv != null && $imgBox != null) closeNews();
+        if($textBox != null && $imgBox != null) closeNews();
          $('#hiddenAjaxText').val(id).trigger('blur');
          var $ajaxNews = $('#ajaxNews');
-         $introDiv.before($ajaxNews);
+         $innerBox.before($ajaxNews);
+         $textBox.hide();
          $imgBox.hide();
-         $introDiv.hide();
          $('#ajaxNews').show(100);
     }
 
@@ -57,10 +59,7 @@
     <style>
 
 
-        .pagersNews ul {
-        margin: auto;
-        text-align: center;
-        }
+       .actualPage {color: #ccc !important;}
 
 
         #searchBox input[type=text] {
@@ -183,6 +182,29 @@
 
         <div class="row">
 
+
+            <div class="col-lg-9" data-lift="page.MainSn.switchContent">
+                <h1 id="departmentInfo" style="margin: 15px; font-size: 2em;">Aktualności hello</h1>
+
+                <div class="newsInfo "></div>
+                <div class="clear"></div>
+                <div id="oneNews" class="lift:page.MainSn.showOneNews">
+                    <input id="hiddenAjaxText" style="display: none;"/>
+
+                    <div id="ajaxNews">
+                        <br/>
+
+                    </div>
+                </div>
+
+                <ul class="pagination">
+                    <li></li>
+                </ul>
+
+
+
+            </div>
+
             <div class="col-lg-3">
                 <div id="searchBox">
                     <script src="/jquery/googlesearch.js">
@@ -208,28 +230,6 @@
                         <p><span id="addArticleMenu"></span></p>
                     </div>
                 </div>
-            </div>
-
-            <div class="col-lg-9" data-lift="page.MainSn.switchContent">
-                <h1 id="departmentInfo" style="margin: 15px; font-size: 2em;">Aktualności</h1>
-
-                <div class="newsInfo "></div>
-                <div class="clear"></div>
-                <div id="oneNews" class="lift:page.MainSn.showOneNews">
-                    <input id="hiddenAjaxText" style="display: none;"/>
-
-                    <div id="ajaxNews">
-                        <br/>
-
-                    </div>
-                </div>
-                <label id="labelPage">Strona:</label>
-
-                <div class="btn-group pagersNews" role="group" aria-label="labelPage">
-                    <a type="button" class="btn btn-default linkNews">1</a>
-                </div>
-
-
             </div>
 
 
