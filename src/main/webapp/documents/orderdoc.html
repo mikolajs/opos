@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<body class="lift:content_id=main">
+<div id="main" class="lift:surround?with=documents;at=content">
+    <head_merge>
+        <script type="text/javascript" src="/jquery/jquery.js" ></script>
+        <link rel="stylesheet" type="text/css" href="/jqueryui/jquery-ui.css"/>
+        <link rel="stylesheet" type="text/css" href="/jqueryui/custom.css"/>
+        <script src="/jqueryui/jquery-ui.min.js" type="text/javascript"></script>
+        <script>
+          $(function() {
+    $( "#docs" ).sortable();
+    $( "#docs" ).disableSelection();
+  });
+
+  function prepareData(){
+    var data = [];
+    $('#docs li h4').each(function(){
+        data.push($(this).attr('id'));
+    });
+    $('#inorder').val(data.join(','));
+    return true;
+  }
+</script>
+    </head_merge>
+    <div class="container" style="max-width: 750px;" >
+        <h1>Ustawianie kolejności</h1>
+        <form class="lift:doc.OrderDocSn.mkOrder form-horizontal" method="POST">
+            <input id="inorder" type="text" style="display:none;"/>
+            <input id="save" onclick="return prepareData();" class="btn btn-success"/>
+            <input id="cancel" value="Anuluj" class="btn btn-defualt"/>
+            <h2 id="title"/></h2>
+            <div id="descript"  class="well"></div>
+            <ul id="docs" class="list-group">
+                <li class="list-group-item"></li>
+            </ul>
+        </form>
+
+        <br/><br/>
+
+    </div>
+
+</div>
+</body></html>

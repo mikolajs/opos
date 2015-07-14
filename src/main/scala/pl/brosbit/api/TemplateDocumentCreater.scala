@@ -26,7 +26,7 @@ object TemplateDocumentCreater {
   private def getAllTemplates(id: String) = {
     DocTemplate.find(id) match {
       case Some(docHead) => {
-        val documents = DocContent.findAll(("_id" -> docHead.template), ("nr" -> -1)).map(_.content)
+        val documents = DocContent.findAll(("template" -> docHead._id.toString), ("nr" -> 1)).map(_.content)
         val content: String = if (docHead.tab) docHTMLasTable(documents, docHead.template)
         else docHTMLasDiv(documents)
         """<html><head><title> %s </title>

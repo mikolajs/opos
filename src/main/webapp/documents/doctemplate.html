@@ -26,17 +26,17 @@ CKEDITOR.replace( 'content',{
 });
 
 function editDoc(elem) {
-  document.getElementById('idContent').value=elem.getAttribute('id');;
-  document.getElementById('nr').value = "987";
+  document.getElementById('idContent').value=elem.getAttribute('id');
+  document.getElementById('nr').value = elem.getAttribute('name').substr(1);
   var doc = $(elem).parent().parent().children('div.docItem').html();
   CKEDITOR.instances['content'].setData(doc);
   CKEDITOR.instances['content'].updateElement();
   $('#formDiv').show();
 }
 
-function addDoc() {
+function addDoc(nr) {
   document.getElementById('idContent').value="0";
-  document.getElementById('nr').value = "987";
+  document.getElementById('nr').value = parseInt(nr) + 1;
   var templ = document.getElementById('hiddenTemplate').value;
   document.getElementById('content').value = templ;
   CKEDITOR.instances['content'].setData(document.getElementById('content').value);
@@ -89,8 +89,9 @@ function cancelEdit() {
 
   	<div class="lift:doc.DocTemplateSn.fullDocument" >
  	<h2>Dodane wpisy:</h2>
-        <button onclick="addDoc(1)"> Nowy</button>
- 	<div class="fulldocument">
+        <span class="btn btn-default addbutton"  onclick="addDoc(0)">
+        <span class="glyphicon glyphicon-plus"  ></span> Dodaj</span>
+ 	<div class="fulldocumentCont">
  		Brak wpisów
  	</div>
  	</div>

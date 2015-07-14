@@ -6,6 +6,7 @@ import _root_.pl.brosbit.model._
 import _root_.net.liftweb.http.{S, SHtml}
 import Helpers._
 import _root_.net.liftweb.json.JsonDSL._
+import _root_.net.liftweb.json.JsonAST._
 
 
 class DocTemplateSn extends BaseDoc {
@@ -37,7 +38,12 @@ class DocTemplateSn extends BaseDoc {
       docCont.userId = user.id.get
       docCont.content = cont.trim
       docCont.userName = user.getFullName
-      docCont.nr = tryo(nr.toInt).getOrElse(999)
+      val nrInt =  tryo(nr.toInt).getOrElse(999)
+      val q2 = ("nr" -> ("$gt" -> (nrInt - 1)))
+      val q1 = ("template" -> docHead._id.toString)
+      if(docCont.nr == 0)
+        DocContent.update(q1 ~ q2  , ("$inc"-> ("nr" -> 1)))
+      docCont.nr = nrInt
       docCont.save
 
     }
@@ -45,7 +51,7 @@ class DocTemplateSn extends BaseDoc {
     def delete() {
       DocContent.find(id) match {
         case Some(docCont) =>
-          if(user.id.get == docCont.userId ) docCont.delete
+          if(user.id.get == docCont.userId || isAdmin ) docCont.delete
         case _ =>
       }
 
@@ -59,13 +65,14 @@ class DocTemplateSn extends BaseDoc {
   }
 
   def fullDocument() = {
-    ".fulldocument *" #> DocContent.findAll(("template"->docHead._id.toString), ("nr" -> -1)).map(docItem => {
-      <div>
+    ".fulldocumentCont *" #> DocContent.findAll(("template"->docHead._id.toString), ("nr" -> 1)).map(docItem => {
+      <div class="fulldocument">
         <h3><small>Dodane przez:</small> {docItem.userName}
-          <span class="btn btn-default editbutton" id={docItem._id.toString} onclick="editDoc(this)">
-          <span class="glyphicon glyphicon-pencil"  ></span>Edytuj</span></h3>
+          <span class="btn btn-default editbutton" name={"#" + docItem.nr.toString} id={docItem._id.toString} onclick="editDoc(this)">
+          <span class="glyphicon glyphicon-pencil"  ></span> Edytuj</span></h3>
         <hr/><div class="docItem">{Unparsed(docItem.content)}</div>
-      </div>
+      </div> ++ <span class="btn btn-default addbutton"  onclick={"addDoc(" + docItem.nr.toString + ")"}>
+        <span class="glyphicon glyphicon-plus"  ></span> Dodaj</span>
     })
   }
 
@@ -88,6 +95,9 @@ class DocTemplateSn extends BaseDoc {
           </li>
           <li id="editTemplate">
             <a href={"/documents/createtemplate/" + docHead._id.toString}>Edytuj aktualny</a>
+          </li>
+          <li id="editTemplate">
+            <a href={"/documents/orderdoc/" + docHead._id.toString}>Uporządkuj aktualny</a>
           </li>
           <li id="importTemplate">
             <a href={"/getdocument/" + docHead._id.toString}>Pobierz</a>

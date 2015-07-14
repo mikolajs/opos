@@ -144,6 +144,7 @@ class Boot {
         Menu("PSO") / "documents" / "pso" >> LocGroup("documents") >> isTeacher,
         Menu("Dokumenty") / "documents" / "doctemplate" / ** >> LocGroup("documents") >> isTeacher,
         Menu("Szablon") / "documents" / "createtemplate" / ** >> LocGroup("extra") >> isAdmin,
+        Menu("Kolejność") / "documents" / "orderdoc" / ** >> LocGroup("extra") >> isAdmin,
         Menu("Wiadomości") / "view" / "index" >> LocGroup("view") >> loggedIn,
         //Menu("Oceny") / "view" / "marks" >> LocGroup("view") >> loggedIn,
         //Menu("Nieobecności") / "view" / "absents" >> LocGroup("view") >> loggedIn,
@@ -213,6 +214,10 @@ class Boot {
       ParsePath("documents" :: "createtemplate" :: id :: Nil, _, _, _), _, _) =>
         RewriteResponse(
           "documents" :: "createtemplate" :: Nil, Map("id" -> id))
+      case RewriteRequest(
+      ParsePath("documents" :: "orderdoc" :: id :: Nil, _, _, _), _, _) =>
+        RewriteResponse(
+          "documents" :: "orderdoc" :: Nil, Map("id" -> id))
       case RewriteRequest(
       ParsePath("index" :: w :: Nil, _, _, _), _, _) =>
         RewriteResponse(
