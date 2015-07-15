@@ -13,7 +13,7 @@ class OrderDocSn extends BaseDoc {
   var id = S.param("id").getOrElse("0")
   var inorder = ""
   val docTempl = DocTemplate.find(id).getOrElse(DocTemplate.create)
-  val docs = DocContent.findAll("template" -> docTempl._id.toString)
+  val docs = DocContent.findAll("template" -> docTempl._id.toString, "nr" -> 1)
 
 
   def mkOrder() = {
@@ -43,9 +43,10 @@ class OrderDocSn extends BaseDoc {
        })
   }
 
-  private def sortDocById(order:Array[String]) = {
-    docs
-  }
+  private def sortDocById(order:Array[String]) =
+    docs.sortWith((f, l ) => {
+      order.indexOf(f._id.toString) < order.indexOf(l._id.toString)
+    })
 
 
 }

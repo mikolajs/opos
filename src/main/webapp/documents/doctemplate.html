@@ -26,27 +26,40 @@ CKEDITOR.replace( 'content',{
 });
 
 function editDoc(elem) {
+  document.getElementById('info').innerHTML = "Edytuj wpis:";
   document.getElementById('idContent').value=elem.getAttribute('id');
   document.getElementById('nr').value = elem.getAttribute('name').substr(1);
   var doc = $(elem).parent().parent().children('div.docItem').html();
   CKEDITOR.instances['content'].setData(doc);
   CKEDITOR.instances['content'].updateElement();
-  $('#formDiv').show();
+   $('#formDiv').show(100, function(){
+    $('html, body').animate({
+        scrollTop: $('#formDiv').offset().top
+    }, 800);
+  });
+
 }
 
 function addDoc(nr) {
+  document.getElementById('info').innerHTML = "Dodaj wpis:";
   document.getElementById('idContent').value="0";
   document.getElementById('nr').value = parseInt(nr) + 1;
   var templ = document.getElementById('hiddenTemplate').value;
   document.getElementById('content').value = templ;
   CKEDITOR.instances['content'].setData(document.getElementById('content').value);
-  $('#formDiv').show();
+  $('#formDiv').show(100, function(){
+       $('html, body').animate({
+        scrollTop: $('#formDiv').offset().top
+    }, 800);
+  });
+
 }
 
 function cancelEdit() {
   $('#formDiv').hide();
   return false;
 }
+
  
 </script>
 <style>
@@ -71,7 +84,7 @@ function cancelEdit() {
      <hr/>
      <div id="formDiv">
      <form id="theForm" class="lift:doc.DocTemplateSn.addEntry" method="POST">
-     <label>Dodaj wpis:</label><br/>
+     <label id="info">Dodaj wpis:</label><br/>
      <input style="display:none" id="idContent" />
      <input style="display:none" id="nr" />
      <textarea id="content"></textarea>
@@ -95,7 +108,6 @@ function cancelEdit() {
  		Brak wpisów
  	</div>
  	</div>
- 	
     <br/><br/>
     </div>
     
@@ -114,6 +126,7 @@ function cancelEdit() {
        	</ul>
       </div>
     </div>
+
     
     </div>
 	 		
