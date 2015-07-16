@@ -55,7 +55,7 @@ class CoursesSn extends BaseResourceSn {
     var classInfo = ""
     var classesList: List[String] = List()
 
-    val classesWithLong = ClassModel.findAll().filter(!_.scratched.is).map(theClass => (theClass.id.get, theClass.classString()))
+    val classesWithLong = ClassModel.findAll().filter(!_.scratched.get).map(theClass => (theClass.id.get, theClass.classString()))
     val classes = classesWithLong.map(c => (c._1.toString(), c._2))
 
     def save() {

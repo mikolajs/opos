@@ -15,19 +15,20 @@ import _root_.net.liftweb.http.js.JsCmd
 import _root_.net.liftweb.util.Helpers._
 
 
-case class TestJ(l: String, t: String)
+//case class TestJ(l: String, t: String)
 
 class EditLesson extends BaseLesson {
 
   val subjectTeach = SubjectTeach.findAll(("authorId" -> user.id.get), ("$orderby" -> ("prior" -> 1)))
   val subjectNow = subjectTeach.find(s => s.id == subjectId).getOrElse(subjectTeach.head)
 
-  val departList = subjectNow.departments.map(d => (d.name, d.name))
+  val departList = subjectNow.departments.map(d => (d.name -> d.name))
 
 
   def showCourseInfo() = {
     if (courseOption.isEmpty) {
-      "h2" #> (<h2>Nie znaleziono kursu!</h2> ++ <p>Utwórz najpierw kurs, a następnie kliknij na edycję i dodaj lekcję.
+      "h2" #> (<h2>Nie znaleziono kursu!</h2> ++
+        <p>Utwórz najpierw kurs, a następnie kliknij na edycję i dodaj lekcję.
         Dopiero wtedy możesz ją edytować</p>)
     } else {
       val course = courseOption.get
@@ -50,7 +51,6 @@ class EditLesson extends BaseLesson {
     var title = lesson.title
     var nr = lesson.nr
     var descript = lesson.descript
-    var extraText = lesson.extraText
     var chapter = lesson.chapter
     val chapterOld = lesson.chapter
     var newChapter = ""
@@ -64,7 +64,6 @@ class EditLesson extends BaseLesson {
         lesson.title = title
         lesson.authorId = userId
         lesson.nr = nr
-        lesson.extraText = extraText
         lesson.descript = descript
         val cour = courseOption.get
         if (newElem) {
@@ -96,12 +95,12 @@ class EditLesson extends BaseLesson {
       S.redirectTo("/educontent/course/" + lesson.courseId.toString)
     }
 
-    val subj = subjectTeach.find(s => courseOption.getOrElse(Course.create).subjectId == s.id).getOrElse(subjectTeach.head)
-    val departs = subj.departments.map(d => (d, d))
+    val subj = subjectTeach.find(s =>
+      courseOption.getOrElse(Course.create).subjectId == s.id).getOrElse(subjectTeach.head)
+    //val departs = subj.departments.map(d => (d, d))
     "#ID" #> SHtml.text(id, id = _) &
       "#title" #> SHtml.text(title, x => title = x.trim) &
       "#nr" #> SHtml.number(nr, nr = _, 1, 200) &
-      "#extraText" #> SHtml.text(extraText, extraText = _) &
       "#chapterNameIsNew" #> SHtml.checkbox_id(newElem, (x: Boolean) => newElem = x, Full("chapterNameIsNew")) &
       "#chapterNameExists" #> SHtml.select(chaptersList, Full(chapter), chapter = _) &
       "#chapterNameNew" #> SHtml.text(newChapter, newChapter = _) &
@@ -115,7 +114,7 @@ class EditLesson extends BaseLesson {
   def ajaxText = {
 
     var itemCh = ""
-    var level = ""
+    //var level = ""
     var department = ""
 
     def getData = {
@@ -151,11 +150,13 @@ class EditLesson extends BaseLesson {
     }
 
     def refreshData(): JsCmd = {
-      println("[AppINFO]:: Ajax Hidden text refresh; itemType= " + itemCh + " level= " + level + " depart= " + department)
+      println("[AppINFO]:: Ajax Hidden text refresh; itemType= " +
+        itemCh  + " depart= " + department)
       SetValById("jsonForDataTable", getData) & Run("refreshTab();")
     }
 
-    val itemTypes = List(("w" -> "Hasła"), ("d" -> "Artykuły"), ("q" -> "Zadania"), ("v" -> "Filmy"))
+    val itemTypes = List(("w" -> "Hasła"), ("d" -> "Artykuły"),
+      ("q" -> "Zadania"), ("v" -> "Filmy"), ("n" -> "Notatka"))
 
     val form = "#getItemType" #> SHtml.select(itemTypes, Full(itemCh), itemCh = _) &
       //"#getLevel" #> SHtml.select(levList, Full(level), level = _) &
@@ -193,7 +194,8 @@ class EditLesson extends BaseLesson {
   private def deleteChapterIfLast(chapter: String) = {
     if (!courseOption.isEmpty) {
       val course = courseOption.get
-      val lessons = LessonCourse.findAll(("courseId" -> course._id.toStringMongod()) ~ ("chapter" -> chapter))
+      val lessons =
+        LessonCourse.findAll(("courseId" -> course._id.toString()) ~ ("chapter" -> chapter))
       if (lessons.isEmpty)
         course.chapters = course.chapters.filterNot(ch => ch == chapter)
       println("[AppINFO:::::: on delete lesson delete chapters if last == " + lessons.length.toString)

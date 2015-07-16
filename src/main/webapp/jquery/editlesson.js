@@ -7,8 +7,11 @@ var LessonEditor = dejavu.Class
 			$json : null,
 			$window : null,
 			$edited : null,
+			$dialog: null,
 			table : null,
 			editor: null,
+			isEditNotice: false,
+			editedNoticeDesc: null,
 
 			initialize : function() {
 
@@ -51,27 +54,33 @@ var LessonEditor = dejavu.Class
 				
 				CKEDITOR.disableAutoInline = true;
 
-				document.getElementById('extraTextEdit').innerHTML = $('#extraText').val();
-				this.editor = CKEDITOR.inline( 'extraTextEdit', {
-					extraPlugins: 'sourcedialog,addImage,syntaxhighlight,formula,symbol,image',
-					format_tags : 'p;h2;h3;h4;h5;h6;pre;address',
-					disableNativeSpellChecker : false,
-					allowedContent : true,
-					language : 'pl',
-					toolbar: [
-					        [ 'Sourcedialog' ],
-					  		[ 'Cut', 'Copy','Paste', 'PasteText', 'PasteFromWord', '-','Undo', 'Redo' ],
-					  		[ 'AddImage', 'Table','Syntaxhighlight','Formula', 'Symbol', "Image" ],
-					  		[ 'Link', 'Unlink',	'Anchor' ],
-					  		[ 'Find', 'Replace','-', 'SelectAll' ],
-					  		'/',
-					  		[ 'Bold', 'Italic','Underline', 'Strike','Subscript',	'Superscript', '-','RemoveFormat' ],
-					  		[ 'NumberedList',	'BulletedList', '-','Outdent', 'Indent','-', 'Blockquote', '-','JustifyLeft',
-								'JustifyCenter','JustifyRight',	'JustifyBlock' ],	
-								[ 'Styles', 'Format',	'Font', 'FontSize' ]
-								
-					  	]
-				});
+				this.editor = CKEDITOR.replace('noticeEditor', {
+                			width : 700,
+                			height : 250,
+                			allowedContent : true,
+                			extraPlugins: 'sourcedialog,addImage,syntaxhighlight,formula,symbol,image',
+                            format_tags : 'p;h2;h3;h4;h5;h6;pre;address',
+                            language : 'pl',
+                			toolbar: [
+                                [ 'Sourcedialog' ],
+                            	[ 'Cut', 'Copy','Paste', 'PasteText', 'PasteFromWord', '-','Undo', 'Redo' ],
+                            	[ 'AddImage', 'Table','Syntaxhighlight','Formula', 'Symbol', "Image" ],
+                            	[ 'Link', 'Unlink',	'Anchor' ], 	'/',
+                            	[ 'Find', 'Replace','-', 'SelectAll' ],
+                            	[ 'Bold', 'Italic','Underline', 'Strike','Subscript',	'Superscript', '-','RemoveFormat' ],
+                            	[ 'NumberedList',	'BulletedList', '-','Outdent', 'Indent','-', 'Blockquote', '-','JustifyLeft',
+                            	'JustifyCenter','JustifyRight',	'JustifyBlock' ], 	'/',
+                            	[ 'Styles', 'Format',	'Font', 'FontSize' ]
+                            ]
+                		});
+
+
+				this.$dialog = $('#dialog');
+				this.$dialog.dialog( {
+				 autoOpen: false,
+                  height: 450,
+                  width: 750,
+                  modal: true});
 				
 				
 				this._bindChapterNameSwitch();
@@ -133,7 +142,7 @@ var LessonEditor = dejavu.Class
 										var title = $title.text();
 										var id = $title.attr('name');
 										var descript = $this.children(
-												'.descript').text();
+												'.descript').html().toString();
 										var what = $this.children('.what')
 												.children('img').first().attr(
 														'title');
@@ -169,16 +178,22 @@ var LessonEditor = dejavu.Class
 					q : "quiz.png",
 					w : "presentation.png",
 					v : "video.png",
-					d : "document.png"
+					d : "document.png",
+					n : "notice.png"
 				};
 				var title = '<span class="title" name="' + item.id + '">'
 						+ item.title + '</span>';
-				var descript = '<p class="descript">' + item.descript + '</p>';
+				var descript = '<div class="descript">' + item.descript + '</div>';
 				var what = '<span class="what"><img src="/style/images/'
 						+ mapIco[item.what] + '" name="' + item.what
 						+ '" title="' + item.what + '" /></span>';
-				var del = '<button class="btn btn-danger imgDel" onclick="lessonEditor.deleteData(this);"><span class="glyphicon glyphicon-remove-sign" ></span></button>';
-				return '<li class="list-group-item">' + what + title + del
+				var del = '<button class="btn btn-danger imgDel" onclick="lessonEditor.deleteData(this);">' +
+				   '<span class="glyphicon glyphicon-remove-sign" ></span></button>';
+				var edit = "";
+				if(item.what == "n")
+				    edit =  '<button class="btn btn-info imgEdit" onclick="lessonEditor.editData(this);">' +
+                            '<span class="glyphicon glyphicon-pencil" ></span></button>';
+				return '<li class="list-group-item">' + what + title + del + edit
 						+ '<br/>' + descript + '</li>';
 			},
 
@@ -204,6 +219,35 @@ var LessonEditor = dejavu.Class
 				item.what = $('#getItemType option:selected').val();
 				var str = self._createItem(item);
 				self.$listBody.append(str);
+			},
+
+			addNotice : function() {
+			  this.editor.setData("");
+			  this.$dialog.dialog("open");
+			  this.isEditNotice = false;
+			},
+
+			saveNotice : function() {
+			    var noticeCont = this.editor.getData();
+                if(!this.isEditNotice){
+			        var noticeItem = {};
+			        noticeItem.id = 0;
+			        noticeItem.what = "n";
+			        noticeItem.descript = noticeCont;
+			        noticeItem.title = "Notatka";
+			        this.$listBody.append(this._createItem(noticeItem));
+			    }
+			    else {
+			        this.editedNoticeDesc.html(noticeCont);
+			    }
+			    this.$dialog.dialog('close');
+			},
+
+			editData : function(elem) {
+			    this.isEditNotice = true;
+			    this.editedNoticeDesc = $(elem).parent().children('div.descript');
+			    this.editor.setData(this.editedNoticeDesc.html());
+			    this.$dialog.dialog("open");
 			},
 
 			_bindInsertData : function() {

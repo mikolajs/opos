@@ -3,24 +3,37 @@ body {
 }
 
 
-
-@media (min-width: 768px) {
-  .sidebar {
+.openSidebar {
     position: fixed;
-    display: block;
     top: 60px;
     left: 0;
-    bottom: 0;
-    z-index: 1000;
+    z-index: 100;
     padding: 10px;
-    overflow-x: hidden;
-    overflow-y:  auto;
-  }
-}
+ }
+ .sidebar {
+      background-color: white;
+      border: 2px solid #ccc;
+      position:fixed;
+      display:block;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      z-index: 1000;
+      width: 350px;
 
-#subjectsList {
-	width: 350px;
-}
+ }
+
+.overflowBar {
+
+       position: absolute;
+       top: 50px;
+       bottom: 0;
+       overflow: auto;
+
+ }
+
+
+
 
 
 .main {

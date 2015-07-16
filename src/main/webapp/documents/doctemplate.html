@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <body class="lift:content_id=main">
-<div id="main" class="lift:surround?with=documents;at=content">	
-<head_merge>
-<script type="text/javascript" src="/jquery/jquery.js" ></script>
-	
-<script src="/ckeditor/ckeditor.js" type="text/javascript"></script>
-<script>
+<div id="main" class="lift:surround?with=documents;at=content">
+    <head_merge>
+        <script type="text/javascript" src="/jquery/jquery.js"></script>
+
+        <script src="/ckeditor/ckeditor.js" type="text/javascript"></script>
+        <script>
 $(document).ready(function(){
 CKEDITOR.replace( 'content',{
 	    width : 750,
@@ -61,75 +61,83 @@ function cancelEdit() {
 }
 
  
-</script>
-<style>
-	h2  span { padding-left: 15px; color: #e55; font-style: italic;}
-	.fulldocument {border: solid 1px #eee; background-color: #fefefe; padding: 5px;}
-	.fulldocument th { font-weight: bold; }
-	.fulldocument td, th {border: solid 1px; text-align: center;}
-    .editbutton {float: right;}
-</style>
-</head_merge>
-	<div class="row">
-    <div   class="col-lg-9">
-    <h1>Edycja dokumentów</h1>
-    <hr/>
-    <div class="lift:doc.DocTemplateSn.showHead" >
-     
-     <h2>Temat: <span></span></h2>
-     <h3>Opis dokumentu:</h3>
-       	<div class="well" id="comment"></div>
-        <input style="display:none;" id="hiddenTemplate" />
-     </div>
-     <hr/>
-     <div id="formDiv">
-     <form id="theForm" class="lift:doc.DocTemplateSn.addEntry" method="POST">
-     <label id="info">Dodaj wpis:</label><br/>
-     <input style="display:none" id="idContent" />
-     <input style="display:none" id="nr" />
-     <textarea id="content"></textarea>
-     <div>
-      <hr/>
-     <div class="col-lg-2"></div>
-         <div class="col-lg-4">
-     <input class="btn btn-success" id="save" />
-     <input class="btn btn-danger"  onclick="return confirm('Na pewno usunąć?')" id="delete" />
-     <input class="btn btn-default" type="submit" onclick="return cancelEdit()" value="Anuluj" id="cancel" />
-             </div>
-     </div>
-     </form>
-     </div>
 
-  	<div class="lift:doc.DocTemplateSn.fullDocument" >
- 	<h2>Dodane wpisy:</h2>
-        <span class="btn btn-default addbutton"  onclick="addDoc(0)">
-        <span class="glyphicon glyphicon-plus"  ></span> Dodaj</span>
- 	<div class="fulldocumentCont">
- 		Brak wpisów
- 	</div>
- 	</div>
-    <br/><br/>
+        </script>
+        <style>
+            h2 span { padding-left: 15px; color: #e55; font-style: italic;}
+            .fulldocument {border: solid 1px #eee; background-color: #fefefe; padding: 5px;}
+            .fulldocument th { font-weight: bold; }
+            .fulldocument td, th {border: solid 1px; text-align: center;}
+            .editbutton {float: right;}
+        </style>
+    </head_merge>
+    <div class="row">
+        <div class="col-lg-9">
+            <h1>Edycja dokumentów</h1>
+            <hr/>
+            <div class="lift:doc.DocTemplateSn.showHead">
+
+                <h2>Temat: <span></span></h2>
+
+                <h3>Opis dokumentu:</h3>
+
+                <div class="well" id="comment"></div>
+                <input style="display:none;" id="hiddenTemplate"/>
+            </div>
+            <hr/>
+            <div id="formDiv">
+                <form id="theForm" class="lift:doc.DocTemplateSn.addEntry" method="POST">
+                    <label id="info">Dodaj wpis:</label><br/>
+                    <input style="display:none" id="idContent"/>
+                    <input style="display:none" id="nr"/>
+                    <textarea id="content"></textarea>
+
+                    <div>
+                        <hr/>
+                        <div class="col-lg-2"></div>
+                        <div class="col-lg-4">
+                            <input class="btn btn-success" id="save"/>
+                            <input class="btn btn-danger" onclick="return confirm('Na pewno usunąć?')" id="delete"/>
+                            <input class="btn btn-default" type="submit" onclick="return cancelEdit()" value="Anuluj"
+                                   id="cancel"/>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="lift:doc.DocTemplateSn.fullDocument">
+                <h2>Dodane wpisy:</h2>
+        <span class="btn btn-default addbutton" onclick="addDoc(0)">
+        <span class="glyphicon glyphicon-plus"></span> Dodaj</span>
+
+                <div class="fulldocumentCont">
+                    Brak wpisów
+                </div>
+            </div>
+            <br/><br/>
+        </div>
+
+
+        <div id="sidebar" class="col-lg-3">
+            <h1>Wybierz dokument:</h1>
+
+            <div class="lift:doc.DocTemplateSn.docTemplates">
+
+                <ul>
+                    <li></li>
+                </ul>
+            </div>
+
+            <div class="lift:doc.DocTemplateSn.adminMenu">
+                <ul>
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+
     </div>
-    
-    
-    <div id="sidebar" class="col-lg-3" >
-    <h1>Wybierz dokument:</h1>
 
-     <div class="lift:doc.DocTemplateSn.docTemplates">
-
-       <ul><li></li></ul>
-       </div>
-       
-      <div class="lift:doc.DocTemplateSn.adminMenu">
-       	<ul>
-       		<li></li>
-       	</ul>
-      </div>
-    </div>
-
-    
-    </div>
-	 		
 
 </div>
-    </body></html>
+</body>
+</html>

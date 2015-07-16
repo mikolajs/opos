@@ -47,19 +47,18 @@ class BaseShowCourseSn {
 
     val (headWords, restOf) = lesson.contents.partition(x => x.what == "w")
     val (quests, restOf2) = restOf.partition(x => x.what == "q")
-    val (files, restOf3) = restOf2.partition(x => x.what == "f")
+    val (notes, restOf3) = restOf2.partition(x => x.what == "n")
     val (docum, videos) = restOf3.partition(x => x.what == "d")
 
     val listHWid = headWords.map(hw => hw.id.drop(1))
     val listQid = quests.map(q => q.id.drop(1))
     val listVideos = videos.map(v => v.id.drop(1))
     val listDocs = docum.map(d => d.id.drop(1))
-    val listFiles = docum.map(f => f.id.drop(1))
+
     val vs = Video.findAll(("_id" -> ("$in" -> listVideos)))
     val hws = HeadWord.findAll(("_id" -> ("$in" -> listHWid)))
     val qts = QuizQuestion.findAll(("_id" -> ("$in" -> listQid)))
     val docs = Document.findAll(("_id" -> ("$in" -> listDocs)))
-    val fs = FileResource.findAll("_id" -> ("$in" -> listFiles))
 
     val content = lesson.contents.map(item => item.what match {
       case "w" => {
@@ -105,6 +104,9 @@ class BaseShowCourseSn {
         val docModel = docs.find(i => i._id.toString == item.id.drop(1)).getOrElse(Document.create)
         "<section class=\"document\"> <h2>" + docModel.title + "</h2>\n " + docModel.content + "</section>"
       }
+      case "n" => {
+        <section class="notice">{Unparsed(item.descript)}</section>
+      }
       case _ => <h4>Błąd - nie ma takiego typu zawartości</h4>
     }).mkString("\n")
 
@@ -123,8 +125,7 @@ class BaseShowCourseSn {
       "#run-as-slides [href]" #> ("/lesson-slides/" + lesson._id.toString()) &
         ".page-header *" #> Text("Temat: " + lesson.title) &
         ".chapterInfo *" #> chapterInfo &
-        "#sections" #> Unparsed(content) &
-        "#extra-info *" #> Unparsed(lesson.extraText)
+        "#sections" #> Unparsed(content)
 
     if (admin) {
       baseCSS &

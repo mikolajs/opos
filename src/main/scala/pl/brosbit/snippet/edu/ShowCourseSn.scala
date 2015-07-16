@@ -1,20 +1,9 @@
 package pl.brosbit.snippet.edu
 
-import java.util.Date
-import java.util.Random
-import scala.xml.{Text, XML, Unparsed}
+
 import _root_.net.liftweb._
 import http.{S, SHtml}
-import common._
 import util._
-import mapper.{OrderBy, Descending}
-import pl.brosbit.model._
-import edu._
-import mapper.By
-import json.JsonDSL._
-import json.JsonAST.JObject
-import json.JsonParser
-import org.bson.types.ObjectId
 import Helpers._
 import pl.brosbit.snippet.BaseShowCourseSn
 

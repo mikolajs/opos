@@ -74,38 +74,50 @@
  background-color: #DFF0D8;
 }
 .badge {float:left !important; margin-left: 2px; margin-right: 5px;}
+
+section.notice {
+        background-color: #fbfafb;
+        border-radius: 5px;
+        border: 1px solid #ededed;
+        padding: 10px 5px;
+}
 </style>
 	</head_merge>
 
 
 	<div class="lift:edu.ShowCourseSn.show">
 		<div class="row">
-			<div class="sidebar">
-				<p>
-					<button type="button" class="btn btn-info btn-lg"
-						onclick="showCourse.hideSidebar()">
-						<span class="glyphicon glyphicon-list"></span>
-					</button>
-				</p>
-				<div id="subjectsList" style="display:none;">
+            <div class="openSidebar">
+                <button type="button" class="btn btn-info btn-lg"
+                        onclick="showCourse.hideSidebar()">
+                    <span class="glyphicon glyphicon-list"></span>
+                </button>
+            </div>
+			<div class="sidebar" id="subjectsList" style="display:none;">
+                <div style="margin: 10px;" class="panel-heading">
+                    <h4 style="display:inline;">Lista tematów:</h3>
+                    <span class="btn glyphicon glyphicon-remove"
+                                  style="float:right;"   onclick="showCourse.hideSidebar()"></span>
+
+                </div>
+				<div class="overflowBar">
+
 				<div class="panel panel-info">
-					<div class="panel-heading">
-						<h3 class="panel-title">Lista tematów:</h3>
-					</div>
+
 					<div class="panel-body list-group" id="subjectListLinks"><a></a></div>
 					<div class="list-group">
 						<div class="list-group-item" style="text-align:center;">
-						
+
 						<a  id="addLessonButton" href="/educontent/editlesson" class="btn btn-success">
 							<span class="glyphicon glyphicon-plus-sign"></span> Dodaj lekcję
 						</a>
 						<button id="sortChaptersButton"  class="btn btn-info">
                             <span class="glyphicon glyphicon-th-list"></span> Uporządkuj działy
                         </button>
-						
+
 						</div>
 					</div>
-				</div>
+                </div>
 				</div>
 			</div>
 			<div class="main ">
