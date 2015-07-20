@@ -1,18 +1,15 @@
 package pl.brosbit.snippet.edu
 
-import scala.xml.{Text, XML, Unparsed}
+import scala.xml.Unparsed
 import _root_.net.liftweb._
-import http.{S, SHtml}
+import http.SHtml
 import common._
 import util._
-import mapper.{OrderBy, Descending}
 import pl.brosbit.model._
 import edu._
 import Helpers._
 import json.JsonDSL._
-import json.JsonAST.JObject
-import json.JsonParser
-import org.bson.types.ObjectId
+
 import _root_.net.liftweb.http.js.JsCmds._
 import _root_.net.liftweb.http.js.JsCmd
 import _root_.net.liftweb.http.js.JE._
@@ -26,10 +23,24 @@ class EditQuestSn extends BaseResourceSn {
     super.subjectChoice("/educontent/questions")
   }
 
+  def subjectAndDepartmentChoice() = {
+    super.subjectAndDepartmentChoice("/educontent/questions")
+  }
+
   def showQuests() = {
     val userId = user.id.get
-
-    "tr" #> QuizQuestion.findAll(("authorId" -> userId) ~ ("subjectId" -> subjectId)).map(quest => {
+    val questionsList = if (departNr == -1) {
+      if (subjectNow.departments.isEmpty) QuizQuestion.findAll(
+        ("authorId" -> userId) ~ ("subjectId" -> subjectId))
+      else QuizQuestion.findAll(
+        ("authorId" -> userId) ~ ("subjectId" -> subjectId) ~ ("department" -> ("$nin" -> subjectNow.departments))
+      )
+    } else {
+      QuizQuestion.findAll(
+        ("authorId" -> userId) ~ ("subjectId" -> subjectId) ~ ("department" -> departName)
+      )
+    }
+    "tr" #> questionsList.map(quest => {
       <tr id={quest._id.toString}>
         <td>
           {Unparsed(quest.question)}
@@ -48,9 +59,7 @@ class EditQuestSn extends BaseResourceSn {
         </td>
         <td>
           {quest.dificult}
-        </td> <td>
-        {quest.department}
-      </td>
+        </td>
         <td>
           <button class="btn btn-success" onclick="editQuest.editQuestion(this);">
             <span class="glyphicon glyphicon-edit"></span>
@@ -58,6 +67,7 @@ class EditQuestSn extends BaseResourceSn {
         </td>
       </tr>
     })
+
   }
 
   //working ....
@@ -67,15 +77,15 @@ class EditQuestSn extends BaseResourceSn {
     var level = ""
     var answer = ""
     var wrongAnswers = ""
-    var subject = ""
-    var dificult = "2"
     var department = ""
+    var dificult = "2"
 
     def save(): JsCmd = {
 
       val userId = user.id.get
       val quest = QuizQuestion.find(id).getOrElse(QuizQuestion.create)
       if (quest.authorId != 0L && quest.authorId != userId) return Alert("To nie twoje pytanie!")
+      if (subjectNow.departments.isEmpty) return Alert("Musisz najpierw utworzyc dział w ustawieniach")
       quest.authorId = userId
       quest.answers = answer.split(";").toList.map(a => a.trim).filterNot(a => a.length() == 0)
       quest.fake = wrongAnswers.split(";").toList.map(a => a.trim).filterNot(a => a.length() == 0)
@@ -105,7 +115,8 @@ class EditQuestSn extends BaseResourceSn {
     }
 
     val dificults = 1 to 9 map (i => {
-      val iS = i.toString; (iS, iS)
+      val iS = i.toString;
+      (iS, iS)
     })
     val departments = subjectNow.departments.map(d => (d, d))
 
@@ -115,7 +126,7 @@ class EditQuestSn extends BaseResourceSn {
       "#subjectQuest" #> SHtml.text(subjectNow.name, x => Unit, "readonly" -> "readOonly") &
       "#levelQuest" #> SHtml.select(levList, Full(subjectNow.lev.toString), level = _) &
       "#wrongQuest" #> SHtml.text(wrongAnswers, x => wrongAnswers = x.trim) &
-      "#departmentQuest" #> SHtml.select(departments, Full(subjectNow.departments.head), x => department = x.trim) &
+      "#departmentQuest" #> SHtml.select(departments, Full(departName), department = _) &
       "#dificultQuest" #> SHtml.select(dificults, Full(dificult), dificult = _) &
       "#saveQuest" #> SHtml.ajaxSubmit("Zapisz", save) &
       "#deleteQuest" #> SHtml.ajaxSubmit("Usuń", delete) andThen SHtml.makeFormsAjax

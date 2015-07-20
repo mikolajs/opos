@@ -32,17 +32,19 @@
 	padding-left: 5px;
 	display: block;
 }
+span.label-info {margin: 0 10px;}
 </style>
 
 	</head_merge>
 	<div class="well">
 		<h2>Edycja pytań</h2>
-		<p>Możesz tworzyć cztery typy pytań:
-		<ol><li>Pytanie otwarte: nie dodajesz żadnej dobrej, ani prawidłowej odpowiedzi</li>
-		<li>Pytanie zamknięte; dodajesz kilka dobrych odpowiedzi i co najmniej jedną nieprawidłową. 
+		<p>Możemy tworzyć cztery typy pytań:
+		<ol><li>Pytanie otwarte: nie dodajemy żadnej dobrej, ani prawidłowej odpowiedzi</li>
+		<li>Pytanie zamknięte jednokrotnego i wielokrotnego wyboru.<br/>
+        Dodajemy kilka dobrych odpowiedzi i co najmniej jedną nieprawidłową.
 		Dla pytań z kilkoma dobrymi odpowiedziami będzie to pytanie wielokrotnego wyboru, dla jednej jednokrotego. 
 		W teście po zaznaczeniu opcji jako testu wielokrotnego wyboru wszystkie pytania stają się 
-		testem wielokrotengo wyboru. Ta ostatnia fukcjonalność nie działa w pytaniach w kursie.
+		testem wielokrotengo wyboru.
 		</li>
 		<li>Pytanie otwarte z porównaniem do wzorca: wpisujesz co najmniej jedną odpowiedź prawidłową 
 		(lub kilka możliwych) i żadnej prawidłowej</li>
@@ -51,23 +53,31 @@
 	</div>
 
 	<div class="row">
-		<div class="col-lg-9">
-			<form class="lift:edu.EditQuestSn.subjectChoice form-inline"
+		<div class="col-lg-12">
+			<div class="lift:edu.EditQuestSn.subjectAndDepartmentChoice form-inline"
 				method="POST">
+                <h2 id="subjectAndDepartment">Fizyka <span class="label label-default"> Energia i praca</span></h2>
+                <hr />
+                <div class="row">
+                    <div class="col-md-6">
 				<div class="input-group">
-					<div class="input-group-addon">Przedmiot:</div>
+					<div class="input-group-addon">Wybierz:</div>
 					<select id="subjectChoice" class="form-control"></select>
 				</div>
-			</form>
+                    </div>
+                <div class="col-md-6">
+                    <button type="button" class="btn btn-success btn-lg" id="addQuestion"
+                            onclick="editQuest.startNewQuest()">
+                        <span class="glyphicon glyphicon-plus-sign"></span> Dodaj nowe
+                        pytanie
+                    </button>
+                </div>
+                </div>
+			</div>
 		</div>
-		<div class="col-lg-3">
-			<button type="button" class="btn btn-success btn-lg" id="addQuestion"
-				onclick="editQuest.startNewQuest()">
-				<span class="glyphicon glyphicon-plus-sign"></span> Dodaj nowe
-				pytanie
-			</button>
-		</div>
+
 	</div>
+
 	<br />
 	<hr />
 	<div id="questEditor" title="Edycja pytania" style="display: none;">
@@ -78,9 +88,9 @@
 					<br />
 					<div class="input-group">
 						<input id="saveQuestVisible" class="btn btn-lg btn-success"
-							value="Dodaj!" type="submit"
+							value="Zapisz!" type="submit"
 							onclick="return editQuest.prepareToSave();" /> <input
-							id="saveQuest" value="Dodaj" type="submit" style="display: none;" />
+							id="saveQuest" value="Zapisz" type="submit" style="display: none;" />
 						<input id="deleteQuest" class="btn btn-lg btn-danger" value="Usuń"
 							type="submit" />
 					</div>
@@ -148,12 +158,11 @@
 		<table id="datatable">
 			<thead>
 				<tr>
-					<th style="width:30%;">Pytanie</th>
-					<th>Odpowiedz prawidłowa</th>
-					<th>Błędne odpowiedzi</th>
+					<th style="min-width:40%;">Pytanie</th>
+					<th>Prawidłowe</th>
+					<th>Błędne</th>
 					<th>Poziom</th>
 					<th>Trudność</th>
-					<th>Dział</th>
 					<th>Edycja</th>
 				</tr>
 			</thead>
@@ -164,17 +173,15 @@
 					<td></td>
 					<td></td>
 					<td></td>
-					<td></td>
 				</tr>
 			</tbody>
 			<tfoot>
 				<tr>
 					<th>Pytanie</th>
-					<th>Odpowiedz prawidłowa</th>
-					<th>Błędne odpowiedzi</th>
+					<th>Prawidłowe</th>
+					<th>Błędne</th>
 					<th>Poziom</th>
 					<th>Trudność</th>
-					<th>Dział</th>
 					<th>Edycja</th>
 				</tr>
 			</tfoot>

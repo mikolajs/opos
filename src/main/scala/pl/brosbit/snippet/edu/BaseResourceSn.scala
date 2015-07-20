@@ -27,6 +27,13 @@ trait BaseResourceSn {
   val levList = List(("1", "podstawowy"), ("2", "średni"), ("3", "rozszerzony"))
   val levMap = levList.toMap
 
+  val departNr = tryo(S.param("d").openOr("0").toInt).openOr(0)
+  val departName = departNr match {
+    case -1 => "Zgubione"
+    case 0 => if(subjectNow.departments.isEmpty) "" else subjectNow.departments.head
+    case nr:Int if(subjectNow.departments.length > nr ) =>   subjectNow.departments(nr)
+    case _ => ""
+  }
 
   def techerSubjects() = {
     val subj = subjectTeach.map(s => (s.id, s.name))
@@ -54,6 +61,25 @@ trait BaseResourceSn {
     }
     val subjects = subjectTeach.map(s => (s.id.toString(), s.name))
     "#subjectChoice" #> SHtml.ajaxSelect(subjects, Full(subjectNow.id.toString), (str) => redirect(str))
+  }
+
+  def subjectAndDepartmentChoice(basePath: String) = {
+    def redirect(sub: String, depNr: String): String = {
+      "window.location='" + basePath + "?s=" + sub + "&d=" + depNr + "'"
+    }
+    val subjects = subjectTeach.map(s => {
+      <optgroup label={s.name}>
+        { var n = -1; s.departments.map(d => {
+          n += 1
+          <option value={d} onclick={redirect(s.id.toString, n.toString)} >
+            {d}</option>
+        })} ++ <option value="Zgubione" onclick={redirect(s.id.toString, (-1).toString)}>Zgubione</option>
+      </optgroup>
+    })
+
+
+    "#subjectChoice" #> <select>{subjects}</select> &
+    "h2" #> <h2> <span class="label label-info"> {subjectNow.name}</span> {Unparsed(departName)}</h2>
   }
 
   /*

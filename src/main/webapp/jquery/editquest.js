@@ -1,6 +1,7 @@
 
 var EditQuest =  dejavu.Class.declare({
 	isOpen : false,
+	department : "",
 	oTable : $(),
 	
 	initialize : function() {
@@ -96,6 +97,10 @@ var EditQuest =  dejavu.Class.declare({
 										+ '</select> wierszy'
 							}
 						});
+        this.department = $('#subjectAndDepartment').clone()
+                         .children().remove().end().text().trim();
+        $('#subjectChoice').val(this.department);
+
 	},
 	
 	deleteQuestion : function(id) {
@@ -178,7 +183,7 @@ var EditQuest =  dejavu.Class.declare({
     		var $td = $(this);
     		switch (index) {
     		case 0:
-    			CKEDITOR.instances.questionQuest.setData($td.text());
+    			CKEDITOR.instances.questionQuest.setData($td.html().toString());
     			break;
     		case 1:
     			var array = new Array();
@@ -208,14 +213,13 @@ var EditQuest =  dejavu.Class.declare({
     			break;
     		case 3:	
     			$('#levelQuest option').each(function(index){
-    				if(this.innerHTML == $td.text() ) document.getElementById('levelQuest').value = (index + 1).toString();
+    				if(this.innerHTML == $td.text().trim() ) {
+    				$('#levelQuest').val ((index + 1).toString());
+    				}
     			});
     			break;
     		case 4: 
-    			document.getElementById('dificultQuest').value = $td.text();
-    			break;
-    		case 5:
-    			document.getElementById('departmentQuest').value =$td.text();
+    			$('#dificultQuest').val($td.text().trim());
     			break;
     		default:
     			break;
@@ -269,7 +273,6 @@ var EditQuest =  dejavu.Class.declare({
     	array.push(fakeHTML);
     	array.push($('#levelQuest option:selected').text());
     	array.push($('#dificultQuest option:selected').val());
-    	array.push($('#departmentQuest option:selected').val());
     	array.push('<button class="btn btn-success" onclick="editQuest.editQuestion(this);"><span class="glyphicon glyphicon-edit"></span></button>');
     	return array;
     },
