@@ -1,20 +1,19 @@
 package pl.brosbit.snippet.edu
 
-import java.util.Date
-import scala.xml.{Text, XML, Unparsed}
+import scala.xml.Unparsed
 import _root_.net.liftweb._
 import http.{S, SHtml, RequestVar}
-import common._
 import util._
 import pl.brosbit.model._
 import edu._
-import http.js.JsCmds.SetHtml
-import org.bson.types.ObjectId
 import Helpers._
 import http.js.JsCmds._
 import http.js.JsCmd
 import http.js.JE._
 
+/*
+ old work for show questions in quiz
+ */
 object correct extends RequestVar[Int](0)
 
 object questNow extends RequestVar[Int](0)
@@ -27,7 +26,6 @@ class ShowQuizSn {
     if (quiz.title == "") S.redirectTo("/")
     "#title *" #> quiz.title &
       "#subject *" #> quiz.subjectName &
-      "#etap *" #> quiz.subjectLev.toString &
       "#questionsNr *" #> quiz.questions.length.toString
   }
 

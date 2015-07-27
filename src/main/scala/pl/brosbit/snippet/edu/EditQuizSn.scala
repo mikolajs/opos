@@ -25,20 +25,19 @@ class EditQuizSn extends BaseResourceSn {
 
   def choiseQuest() = {
     val subjects = subjectTeach.map(s => (s.id.toString, s.name))
-    def makeChoise() {
+    def makeChoice() {
       S.redirectTo("/resources/editquiz?sub=" + subjectId + "&lev=" + level)
     }
 
     "#subjects" #> SHtml.select(subjects, Full(subjectId), subjectId = _) &
       "#levels" #> SHtml.select(levList, Full(level), level = _) &
-      "#choise" #> SHtml.submit("Wybierz", makeChoise)
+      "#choise" #> SHtml.submit("Wybierz", makeChoice)
   }
 
   def questionList() = {
     val userId = user.id.get
 
-    val questions = QuizQuestion.findAll(("authorId" -> userId) ~ ("subjectId" -> subjectId) ~
-      ("level" -> level.toInt))
+    val questions = QuizQuestion.findAll(("authorId" -> userId) ~ ("subjectId" -> subjectId))
 
     ///dodać wyszukiwanie pytań z quizu i podział na dwie listy oraz wyświetlenie osobne
 
@@ -63,18 +62,16 @@ class EditQuizSn extends BaseResourceSn {
   def editQuiz() = {
 
     val idQuiz = S.param("id").openOr("0")
-    var id = idQuiz
+    val id = idQuiz
     var questions = ""
     var public = false
     var description = ""
-    var department = ""
     var title = ""
     val userId = user.id.get
 
     Quiz.find(idQuiz) match {
       case Some(quiz) => {
         questions = quiz.questions.mkString(";")
-        department = quiz.department
         description = quiz.description
         title = quiz.title
       }
@@ -89,8 +86,6 @@ class EditQuizSn extends BaseResourceSn {
       quiz.description = description
       if (quiz.authorId == 0L) quiz.authorId = userId
       quiz.title = title
-      quiz.subjectLev = tryo(level.toInt).openOr(0)
-      quiz.department = department
       quiz.subjectId = tryo(subjectId.toLong).openOr(0L)
       quiz.subjectName = findSubjectName(quiz.subjectId)
       quiz.questions = questions.split(";").toList.map(q => new ObjectId(q))
@@ -104,7 +99,7 @@ class EditQuizSn extends BaseResourceSn {
       Quiz.find(id) match {
         case Some(quiz) => {
           if (quiz.authorId != 0L || userId == quiz.authorId ||
-            User.currentUser.openOrThrowException("Niezalogowany nauczyciel").superUser.is) {
+            User.currentUser.openOrThrowException("Niezalogowany nauczyciel").superUser.get) {
             quiz.delete
             S.redirectTo("/resources/quizes")
             Run("")
@@ -125,6 +120,33 @@ class EditQuizSn extends BaseResourceSn {
     "form" #> (in => form(in))
 
   }
+
+  def showInfo = "span *" #> subjectNow.name
+
+  def showAllUserQuizzes() = {
+
+    "tr" #> Quiz.findAll(("authorId" -> user.id.get) ~ ("subjectId" -> subjectNow.id)).map(quiz => {
+      <tr>
+        <td>
+          <a href={"/educontent/showquiz/" + quiz._id.toString} target="_blank">
+            {quiz.title}
+          </a>
+        </td>
+        <td>{quiz.description} </td>
+        <td> {quiz.questions.length.toString}</td>
+        <td>
+          <a class="btn btn-success" href={"/educontent/editquiz/" + quiz._id.toString}>
+            <span class="glyphicon glyphicon-pencil"></span> Edytuj</a>
+        </td>
+      </tr>
+    })
+  }
+
+  def subjectChoice() = super.subjectChoice("/educontent/quizzes")
+
+  def subjectForNew() =
+    "a [href]" #> ("/educontent/editquiz/0?s=" + subjectNow.id.toString)
+
 
   private def printParam =
     println("subjectId=" + subjectId + " level=" + level)

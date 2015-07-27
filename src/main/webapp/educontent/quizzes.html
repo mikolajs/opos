@@ -42,21 +42,35 @@
 <div>
 <div class="well"><h2>Twoje testy</h2></div>
 <br/>
-<div ><a href="/resources/editquiz/0"> <button type="button" class="btn btn-success btn-lg"  id="mkAddDepartment"  >
-  <span class="glyphicon glyphicon-plus-sign"></span> Dodaj test
-</button></a></div>
-</div>    
+    <div class="row">
+        <div class="col-lg-9">
+            <div data-lift="edu.EditQuizSn.subjectChoice" class=" form-inline">
+                <div class="input-group">
+                    <div class="input-group-addon">Wybierz przedmiot:</div>
+                    <select id="subjectChoice" class="form-control"></select>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3"  data-lift="edu.EditQuizSn.subjectForNew">
+            <a href="/educontent/editquiz/0?s="> <span
+                    class="btn btn-success btn-lg" id="iconAddBook"> <span
+                    class="glyphicon glyphicon-plus-sign"></span> Dodaj test
+			</span></a>
+        </div>
+
+    </div>
+
 <br/><br/>
 
 <table id="datatable">
 <thead>
-<tr><th>Tytuł</th><th>Dział</th><th>Przedmiot</th><th>Pytań</th><th>Poziom</th><th>Opis</th><th>Edycja</th></tr>
+<tr><th>Tytuł</th><th>Opis</th><th>Pytań</th><th>Edycja</th></tr>
 </thead>
-<tbody class="lift:edu.edu.ShowQuestionSn.showAllUserQuizes">
-<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tbody class="lift:edu.EditQuizSn.showAllUserQuizzes">
+<tr><td></td><td></td><td></td><td></td></tr>
 </tbody>
 <tfoot>
-<tr><th>Tytuł</th><th>Dział</th><th>Przedmiot</th><th>Pytań</th><th>Poziom</th><th>Opis</th><th>Edycja</th></tr>
+<tr><th>Tytuł</th><th>Opis</th><th>Pytań</th><th>Edycja</th></tr>
 </tfoot>
 </table>
 

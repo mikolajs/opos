@@ -1,22 +1,16 @@
 <div class="lift:surround?with=educontent;at=content">
-	<head_merge> 
-	<script type="text/javascript" src="/ckeditor/ckeditor.js"></script> 
-	<script type="text/javascript"  src="/jquery/ckeditorresource.js"></script> 
-	<script type="text/javascript" src="/jquery/ASCIIMathML.js"></script> 
-	<script type="text/javascript" src="/jquery/dejavu.js"></script> 
-	<script	type="text/javascript" src="/jquery/departmentselect.js"></script> 
+	<head_merge>
+
+	<script type="text/javascript" src="/jquery/dejavu.js"></script>
 	<script type="text/javascript" src="/jquery/editquiz.js"></script> 
 	<script>
-			var department = Object();
+
 			var editQuiz = Object();
 
 			$(document).ready(function() {
 
 				$("#allQuizList").sortable();
 				$("#choosedQuizList").sortable();
-
-				department = new DepartmentSelect();
-				department.initialize();
 				editQuiz = new EditQuiz();
 
 			});
@@ -68,48 +62,69 @@ ul.dropall,ul.dropselected {
 	right: 0px;
 	border: solid 1px #333;
 }
+
 </style>
 
 	</head_merge>
 
-	<div id="selectDep">
-		<form class="lift:edu.EditQuizSn.choiseQuest" method="POST">
-			<label for="subjects">Przedmiot:</label><select id="subjects"></select>
-			<label for="departments">Dział:</label><select id="departments"></select>
-			<label for="levels">Poziom edukacyjny:</label><select id="levels"></select>
-			<input id="departmentHidden" /> <input id="choise" type="submit" />
-		</form>
+	<div  class="jumbotron" data-lift="edu.EditQuizSn.showInfo">
+		<h2>Edycja testu przedmiotu: <span style="color: navy;"></span></h2>
 	</div>
-	<br />
 	<br />
 
 	<div id="questEditor" title="Edycja pytania">
 
 
 		<form class="lift:edu.EditQuizSn.editQuiz" method="POST">
-			<p>
 				<input id="questionsQuiz" type="text" style="display: none;" />
-			</p>
-			<p>
-				<label for="titleQuiz">Tytuł:</label> <input type="text"
-					id="titleQuiz" /> <label for="publicQuiz">Publiczny:</label>
-					<input type="checkbox" id="publicQuiz" /> <input id="saveQuizVisible"
-					value="Dodaj!" type="submit"
-					onclick="return editQuiz.prepareToSave();" /> <input id="saveQuiz"
-					value="Dodaj" type="submit" style="display: none;" /> <input
-					id="deleteQuizVisible" onclick="return editQuiz.prepareToDelete();"
-					value="Usuń!" type="submit" /> <input id="deleteQuiz" value="Usuń"
-					style="display: none;" type="submit" />
-			</p>
-			<p>
-				<label for="descriptionQuiz">Opis testu:</label>
-				<textarea id="descriptionQuiz">Descript</textarea>
-			</p>
+            <div class="row">
+            <div class="col-lg-6">
+            <div class="form-group">
 
+                    <label for="descriptionQuiz"  class="control-label">Tytuł: </label>
+                    <input type="text" id="titleQuiz" class="form-control"/>
+
+            </div>
+            <div class="form-group">
+                <label for="descriptionQuiz" class="control-label">Opis:</label>
+                <div class="">
+                    <textarea type="text" class="form-control" id="descriptionQuiz"
+                              rows="3" cols="75"></textarea>
+                </div>
+            </div>
+                <div class="form-group">
+                    <div class="col-md-6">
+                    <input id="saveQuiz" class="btn btn-success" type="submit" />
+                    </div>
+                    <div class="col-lg-6">
+                    <input id="deleteQuiz" onclick="return confirm('Na pewno usunąć test?');"
+                           class="btn btn-danger" type="submit" />
+                    </div>
+                </div>
+             </div>
+
+            <div class="col-lg-6">
+
+            </div>
+            </div>
+
+            <br />
+            <hr />
 		</form>
 
-		<div class="clear"></div>
 	</div>
+
+    <div class="form-group">
+        <div class="form-inline">
+            <div class="input-group">
+                <div class="input-group-addon">Wybierz dział: </div>
+                <input type="text" id="departments" class="form-control"/>
+            </div>
+            <div class="input-group">
+                <button class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Wybierz</button>
+            </div>
+        </div>
+    </div>
 
 	<div id="listColumns" class="lift:edu.EditQuizSn.questionList">
 
