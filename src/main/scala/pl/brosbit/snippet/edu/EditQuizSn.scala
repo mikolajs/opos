@@ -1,124 +1,97 @@
 package pl.brosbit.snippet.edu
 
-import scala.xml.{Text, XML, Unparsed}
+import scala.xml.{Text, Unparsed, NodeSeq}
 import _root_.net.liftweb._
 import http.{S, SHtml}
 import common._
 import util._
-import mapper.{OrderBy, Descending}
 import pl.brosbit.model._
 import edu._
 import Helpers._
 import json.JsonDSL._
-import json.JsonAST.JObject
-import json.JsonParser
 import org.bson.types.ObjectId
 import _root_.net.liftweb.http.js.JsCmds._
 import _root_.net.liftweb.http.js.JsCmd
-import _root_.net.liftweb.http.js.JE._
+import net.liftweb.http.js.JE.JsRaw
 
 class EditQuizSn extends BaseResourceSn {
 
-  var subjectId = S.param("sub").openOr("0")
-  var level = S.param("lev").openOr("3")
-  if (subjectId == "0") subjectTeach.head.id
+  var subjectId = tryo(S.param("s").openOr("0").toLong).getOrElse(0L)
+  var quizId = S.param("id").openOr("0")
+  if (subjectId == 0L) subjectId = subjectTeach.head.id
 
-  def choiseQuest() = {
-    val subjects = subjectTeach.map(s => (s.id.toString, s.name))
-    def makeChoice() {
-      S.redirectTo("/resources/editquiz?sub=" + subjectId + "&lev=" + level)
-    }
-
-    "#subjects" #> SHtml.select(subjects, Full(subjectId), subjectId = _) &
-      "#levels" #> SHtml.select(levList, Full(level), level = _) &
-      "#choise" #> SHtml.submit("Wybierz", makeChoice)
-  }
+  val userId = user.id.get
+  val quiz = Quiz.find(quizId).getOrElse(Quiz.create)
 
   def questionList() = {
-    val userId = user.id.get
 
-    val questions = QuizQuestion.findAll(("authorId" -> userId) ~ ("subjectId" -> subjectId))
+    val data = mkQuestBoxWithPoints(quiz.questions)
 
-    ///dodać wyszukiwanie pytań z quizu i podział na dwie listy oraz wyświetlenie osobne
-
-    ".questLiAll" #> questions.map(quest => <li id={quest._id.toString}>
-      <span class="question">
-        {Unparsed(quest.question)}
-      </span>
-      <span class="rightAnswer">
-        {quest.answers.mkString("; ")}
-      </span>{quest.fake.map(f => <span class="wrong">
-        {f}
-      </span>)}<span class="department">
-        {quest.department}
-      </span>
-      <strong title="poziom trudności">
-        {quest.dificult}
-      </strong>
-    </li>)
+    ".dropselected *" #> data
   }
 
   //working ....
   def editQuiz() = {
 
-    val idQuiz = S.param("id").openOr("0")
-    val id = idQuiz
     var questions = ""
     var public = false
-    var description = ""
-    var title = ""
+    var description = quiz.description
+    var title = quiz.title
     val userId = user.id.get
 
-    Quiz.find(idQuiz) match {
-      case Some(quiz) => {
-        questions = quiz.questions.mkString(";")
-        description = quiz.description
-        title = quiz.title
-      }
-      case _ =>
-    }
 
-    def save(): JsCmd = {
+    def save()  {
       println("========= save quiz ========")
-      val quiz = Quiz.find(id).getOrElse(Quiz.create)
-      if (quiz.authorId != 0L && quiz.authorId != userId) return Alert("To nie jest Twój test!")
-
+      if (quiz.authorId != 0L && quiz.authorId != userId) return
+      if(title == "" || questions.trim() == "") return
       quiz.description = description
       if (quiz.authorId == 0L) quiz.authorId = userId
       quiz.title = title
-      quiz.subjectId = tryo(subjectId.toLong).openOr(0L)
+      quiz.subjectId = tryo(subjectId).openOr(0L)
       quiz.subjectName = findSubjectName(quiz.subjectId)
-      quiz.questions = questions.split(";").toList.map(q => new ObjectId(q))
+      quiz.questions = questions.split(';').toList.map(qe => {
+        val elem = qe.split(',')
+        QuestElem(new ObjectId(elem(0)), tryo(elem(1).toInt).getOrElse(1))
+      })
       quiz.save
-      S.redirectTo("/resources/quizes")
-      Alert("Zapisano!")
+      S.redirectTo("/educontent/editquiz/" + quiz._id.toString)
     }
 
-    def delete(): JsCmd = {
+    def delete() {
       println("========= delete quiz ========")
-      Quiz.find(id) match {
-        case Some(quiz) => {
-          if (quiz.authorId != 0L || userId == quiz.authorId ||
-            User.currentUser.openOrThrowException("Niezalogowany nauczyciel").superUser.get) {
+      if (quiz.authorId != 0L || userId == quiz.authorId) {
+            //dodać wyszukiwanie sprawdzianów i informację o konieczności ich skasowania
             quiz.delete
-            S.redirectTo("/resources/quizes")
-            Run("")
-          } else Alert("To nie jest Twój test!")
-        }
-        case _ => Alert("Nie znaleziono testu!")
-      }
+            S.redirectTo("/educontent/quizzes")
+      } else S.warning("Nie jesteś autorem lub testu jeszcze nie ma.")
     }
 
-    val form =
       "#titleQuiz" #> SHtml.text(title, x => title = x.trim) &
         "#descriptionQuiz" #> SHtml.textarea(description, x => description = x.trim) &
         "#questionsQuiz" #> SHtml.text(questions, x => questions = x.trim) &
         "#publicQuiz" #> SHtml.checkbox(public, public = _, "id" -> "publicQuest") &
-        "#saveQuiz" #> SHtml.ajaxSubmit("Zapisz", save) &
-        "#deleteQuiz" #> SHtml.ajaxSubmit("Usuń", delete) andThen SHtml.makeFormsAjax
+        "#saveQuiz" #> SHtml.submit("Zapisz", save) &
+        "#deleteQuiz" #> SHtml.submit("Usuń", delete)
 
-    "form" #> (in => form(in))
 
+  }
+
+  def choiceDepart() = {
+    val departs = subjectNow.departments.map(d => (d, d))
+    var depart = if(subjectNow.departments.isEmpty) "" else subjectNow.departments.head
+
+    def getData():JsCmd = {
+      println("======= getData depart: " + depart )
+      val data = mkQuestBox(QuizQuestion.findAll(
+        ("authorId" -> userId) ~ ("subjectId" -> subjectId) ~ ("department" -> depart)
+      ))
+       SetHtml("allquestions", data) & Run("editQuiz.removeDuplicate();")
+    }
+
+    val form = "#departments" #> SHtml.select(departs, Full(depart), depart = _) &
+    "#getDeparts" #> SHtml.ajaxSubmit("Wybierz", getData ) andThen SHtml.makeFormsAjax
+
+    "form" #> ((in:NodeSeq) => form(in))
   }
 
   def showInfo = "span *" #> subjectNow.name
@@ -136,7 +109,7 @@ class EditQuizSn extends BaseResourceSn {
         <td> {quiz.questions.length.toString}</td>
         <td>
           <a class="btn btn-success" href={"/educontent/editquiz/" + quiz._id.toString}>
-            <span class="glyphicon glyphicon-pencil"></span> Edytuj</a>
+            <span class="glyphicon glyphicon-pencil"></span></a>
         </td>
       </tr>
     })
@@ -147,8 +120,45 @@ class EditQuizSn extends BaseResourceSn {
   def subjectForNew() =
     "a [href]" #> ("/educontent/editquiz/0?s=" + subjectNow.id.toString)
 
+  private def mkQuestBox(questions:List[QuizQuestion]) = {
+    println("EditQuiz.mkQuestBox: questions length " + questions.length.toString)
 
-  private def printParam =
-    println("subjectId=" + subjectId + " level=" + level)
+    questions.map(quest => mkBox(quest, 1))
+  }
+
+  private def mkQuestBoxWithPoints(questElems:List[QuestElem]) = {
+    val qes = questElems.map(qe => qe.q.toString)
+    val quests = QuizQuestion.findAll(( "_id" -> ("$in" -> qes )))
+    questElems.map(qe => mkBox(quests.find(q => q._id.toString == qe.q.toString).getOrElse(QuizQuestion.create), qe.p))
+  }
+
+
+  private def mkBox(quest: QuizQuestion, p:Int) = {
+    <li id={quest._id.toString}>
+      <div class="question">
+        {Unparsed(quest.question)}
+      </div>
+      <div class="answers">
+        <span class="rightAnswer"> ODP:
+          {quest.answers.mkString("; ")}
+        </span>{quest.fake.map(f => <span class="wrong">
+        {f}
+      </span>)}</div>
+      <div class="questInfo">
+        <span class="department"> Dział:
+          {quest.department}
+        </span> |
+        <strong title="poziom trudności">
+          {quest.dificult}
+        </strong> | Pukty:
+        <input class="points" type="number" value={p.toString} />
+        <span class="btn btn-sm btn-danger" onclick="editQuiz.removeLi(this);">
+          <span class="glyphicon glyphicon-remove"></span>
+        </span>
+      </div>
+    </li>
+  }
+
+
 
 }

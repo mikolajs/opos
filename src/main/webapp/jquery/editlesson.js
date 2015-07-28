@@ -56,7 +56,7 @@ var LessonEditor = dejavu.Class
 
 				this.editor = CKEDITOR.replace('noticeEditor', {
                 			width : 700,
-                			height : 250,
+                			height : 230,
                 			allowedContent : true,
                 			extraPlugins: 'sourcedialog,addImage,syntaxhighlight,formula,symbol,image',
                             format_tags : 'p;h2;h3;h4;h5;h6;pre;address',
@@ -78,8 +78,8 @@ var LessonEditor = dejavu.Class
 				this.$dialog = $('#dialog');
 				this.$dialog.dialog( {
 				 autoOpen: false,
-                  height: 450,
-                  width: 750,
+                  height: 500,
+                  width: 735,
                   modal: true});
 				
 				

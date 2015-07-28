@@ -1,0 +1,74 @@
+<div class="lift:surround?with=educontent;at=content">
+    <head_merge>
+
+        <script type="text/javascript" src="/jquery/dejavu.js"></script>
+        <script type="text/javascript" src="/jquery/editquiz.js"></script>
+        <script>
+
+			var editExam = Object();
+
+			$(document).ready(function() {
+
+				
+
+			});
+		</script>
+        <style>
+
+        </style>
+
+    </head_merge>
+
+    <div  class="jumbotron" data-lift="edu.EditQuizSn.showInfo">
+        <h2>Edycja sprawdzianu: <span style="color: navy;"></span></h2>
+    </div>
+    <br />
+
+    <div id="questEditor" title="Edycja pytania">
+
+
+        <form class="lift:edu.EditQuizSn.editQuiz" method="POST">
+            <input id="questionsQuiz" type="text" style="display: none;" />
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+
+                        <label for="descriptionQuiz"  class="control-label">Tytuł: </label>
+                        <input type="text" id="titleQuiz" class="form-control"/>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="descriptionQuiz" class="control-label">Opis:</label>
+                        <div class="">
+                            <textarea type="text" class="form-control" id="descriptionQuiz"
+                                      rows="3" cols="75"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <input id="saveQuiz"  onclick="return editQuiz.prepareData();"
+                                   class="btn btn-success" type="submit" />
+                        </div>
+                        <div class="col-lg-6">
+                            <input id="deleteQuiz" onclick="return confirm('Na pewno usunąć test?');"
+                                   class="btn btn-danger" type="submit" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+
+                </div>
+            </div>
+
+            <br />
+            <hr />
+        </form>
+
+    </div>
+
+
+    <br />
+    <br />
+    <br /><br />
+</div>

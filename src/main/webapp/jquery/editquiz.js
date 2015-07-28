@@ -4,7 +4,6 @@
 var EditQuiz =  dejavu.Class.declare({
 	
 	initialize : function() {
-		this._makeQuizList();
 		 $( "ul.dropselected" ).sortable({
 			 connectWith: "ul"
 			 });
@@ -12,31 +11,32 @@ var EditQuiz =  dejavu.Class.declare({
 			 connectWith: "ul"	
 			 });
 	},
-	
-	prepareToSave : function() {
-		$('#questionsQuiz').val(this._getQuizArrayId());
-		$('#saveQuiz').trigger('click');
-		return false;
+
+	prepareData : function() {
+	    $('#questionsQuiz').val(this._getQuizArrayData());
+	    console.log($('#questionsQuiz').val());
+	    var title = $('#titleQuiz').val();
+	    if($('#questionsQuiz').val().trim().length < 26 || title.length < 3) {
+	        alert("Brak pytań lub zbyt krótki (min 3 litery) tytuł");
+	        return false;
+	    }
+	    return false;
 	},
-	prepareToDelete : function() {
-		if(confirm('Na pewno chcesz usunąć bezpowrotnie cały test?')) 
-		{
-			$('#deleteQuiz').trigger('click');
-		}
-		return false;
-	},
-	//find selected questions and add to selected list
-	_makeQuizList : function() {
-		var arrayQuestId = $('#questionsQuiz').val().split(';');
-		var allQuests = $('ul.dropall').children('li').each(function(){
-			for(i in arrayQuestId){
-				if(this.id == arrayQuestId[i]) {
-					$('ul.dropselected').append($(this));
-					break;
-				} 
-			}
-		});
+
+	removeDuplicate : function() {
+	    //console.log("REMOVE DUPLICATE");
+		var ids = this._getQuizArrayId();
+		$('ul.dropall').children('li').each(function(){
+           for(i in ids) {
+            //console.log(ids[i] + " ==? " + this.id);
+            if(ids[i] == this.id) $(this).remove();
+           }
+        });
 		
+	},
+
+	removeLi : function(elem) {
+	 $(elem).parent().parent().remove();
 	},
    
     
@@ -45,7 +45,16 @@ var EditQuiz =  dejavu.Class.declare({
     	$('ul.dropselected').children('li').each(function(){
     			array.push(this.id);
     		});
-    	return array.join(';');
+    	return array;
+    },
+
+    _getQuizArrayData : function() {
+        var array = [];
+        $('ul.dropselected').children('li').each(function(){
+            var points = $(this).children("div.questInfo").children("input.points").val();
+            array.push(this.id + "," + points);
+        });
+        return array.join(';');
     }
     
 	

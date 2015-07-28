@@ -19,6 +19,7 @@ object correct extends RequestVar[Int](0)
 object questNow extends RequestVar[Int](0)
 
 class ShowQuizSn {
+  /*
   val quizId = S.param("id").getOrElse("0")
   val quiz = Quiz.find(quizId).getOrElse(Quiz.create)
 
@@ -111,5 +112,6 @@ class ShowQuizSn {
 
     "form" #> (in => form(in))
   }
+  */
 
 }

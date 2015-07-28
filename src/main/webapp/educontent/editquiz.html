@@ -16,30 +16,31 @@
 			});
 		</script>
 	<style>
-#leftColumn,#rightColumn {
+#leftColumn, #rightColumn {
 	list-style-type: none;
-	margin: 5px;
-	padding: 5px;
-	float: left;
-	margin-right: 10px;
 	background: #eeeeee;
-	padding: 5px;
-	width: 450px;
-	max-height: 600px;
-	overflow-y: scroll;
+	border: 1px solid navy;
+    overflow-y: scroll;
+    max-height: 600px;
+    padding: 0 5px;
 }
 
-ul.dropselected li,ul.dropall li {
-	margin: 5px;
-	padding: 5px;
+ul.dropselected li, ul.dropall li {
+	margin: 2px;
+	padding: 2px;
 	border: dotted 1px #555;
+    list-style-type: none;
 	background-color: #fff !important;
 	background-image: none !important;
 }
 
-ul.dropall,ul.dropselected {
-	max-height: 600px;
-	min-height: 100px;
+ul.dropselected li span.btn, ul.dropall li span.btn {
+       float: right;
+}
+
+ul.dropall, ul.dropselected {
+    min-height: 100px;
+    padding-left: 2px !important;
 }
 
 .wrong {
@@ -55,14 +56,11 @@ ul.dropall,ul.dropselected {
 	color: red;
 }
 
-.dropall strong,.dropselected strong {
-	position: absolute;
-	padding: 5px;
-	bottom: 0px;
-	right: 0px;
-	border: solid 1px #333;
+.dropall strong, .dropselected strong {
+	padding: 0 5px;
+    border: 1px dotted #777;
 }
-
+.points {width: 50px;}
 </style>
 
 	</head_merge>
@@ -94,7 +92,8 @@ ul.dropall,ul.dropselected {
             </div>
                 <div class="form-group">
                     <div class="col-md-6">
-                    <input id="saveQuiz" class="btn btn-success" type="submit" />
+                    <input id="saveQuiz"  onclick="return editQuiz.prepareData();"
+                           class="btn btn-success" type="submit" />
                     </div>
                     <div class="col-lg-6">
                     <input id="deleteQuiz" onclick="return confirm('Na pewno usunąć test?');"
@@ -113,32 +112,44 @@ ul.dropall,ul.dropselected {
 		</form>
 
 	</div>
+    <div class="row">
+        <div class="col-lg-6">
 
-    <div class="form-group">
-        <div class="form-inline">
-            <div class="input-group">
-                <div class="input-group-addon">Wybierz dział: </div>
-                <input type="text" id="departments" class="form-control"/>
-            </div>
-            <div class="input-group">
-                <button class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Wybierz</button>
-            </div>
         </div>
+        <div class="col-lg-6">
+            <form class="form-group" data-lift="edu.EditQuizSn.choiceDepart">
+                <div class="form-inline">
+                    <div class="input-group">
+                        <div class="input-group-addon">Wybierz dział: </div>
+                        <select id="departments" class="form-control"></select>
+                    </div>
+                    <div class="input-group">
+                        <button class="btn btn-success" id="getDeparts">
+                            <span class="glyphicon glyphicon-plus"></span> Wybierz
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
     </div>
 
-	<div id="listColumns" class="lift:edu.EditQuizSn.questionList">
 
-		<div id="leftColumn">
+
+	<div id="listColumns" class="row" data-lift="edu.EditQuizSn.questionList">
+
+		<div id="leftColumn" class="col-lg-6">
 			<ul class="dropselected">
 			</ul>
 		</div>
-		<div id="rightColumn">
-			<ul class="dropall">
-				<li class="questLiAll"></li>
+		<div id="rightColumn" class="col-lg-6">
+			<ul class="dropall" id="allquestions">
 			</ul>
 		</div>
 
 	</div>
 
-
+    <br />
+    <br />
+    <br /><br />
 </div>

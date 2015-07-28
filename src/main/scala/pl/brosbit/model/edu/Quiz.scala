@@ -4,7 +4,7 @@ package pl.brosbit.model.edu
 import _root_.net.liftweb.mongodb._
 import org.bson.types.ObjectId
 
-
+case class QuestElem(q:ObjectId, p:Int)
 //authors - last is older
 object Quiz extends MongoDocumentMeta[Quiz] {
   override def collectionName = "quizzes"
@@ -16,6 +16,6 @@ object Quiz extends MongoDocumentMeta[Quiz] {
 
 case class Quiz(var _id: ObjectId, var authorId: Long, var description: String,
                 var title: String, var subjectName: String, var subjectId: Long,
-                var questions: List[ObjectId]) extends MongoDocument[Quiz] {
+                var questions: List[QuestElem]) extends MongoDocument[Quiz] {
   def meta = Quiz
 }
