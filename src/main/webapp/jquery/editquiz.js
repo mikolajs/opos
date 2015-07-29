@@ -20,7 +20,7 @@ var EditQuiz =  dejavu.Class.declare({
 	        alert("Brak pytań lub zbyt krótki (min 3 litery) tytuł");
 	        return false;
 	    }
-	    return false;
+	    return true;
 	},
 
 	removeDuplicate : function() {

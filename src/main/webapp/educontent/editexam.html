@@ -2,73 +2,170 @@
     <head_merge>
 
         <script type="text/javascript" src="/jquery/dejavu.js"></script>
-        <script type="text/javascript" src="/jquery/editquiz.js"></script>
+        <script type="text/javascript" src="/jquery/editexam.js"></script>
+        <script type="text/javascript" src="/bootstrap/js/bootstrap-datetimepicker.js"></script>
+        <script type="text/javascript" src="/bootstrap/js/locales/bootstrap-datetimepicker.pl.js"
+                charset="UTF-8"></script>
         <script>
 
 			var editExam = Object();
 
 			$(document).ready(function() {
+                editExam = new EditExam();
+
+        $('#datetimepicker1').datetimepicker({
+        language:  'pl',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+        showMeridian: 1
+        });
+        $('#datetimepicker2').datetimepicker({
+        language:  'pl',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+        showMeridian: 1
+        });
+
+        $('#startExam').change(function() {
+            var $end = $('#endExam');
+            if($end.val().length < 6) $end.val(this.value);
+        });
 
 
+           });
 
-			});
-		</script>
+
+        </script>
+        <link href="/bootstrap/css/bootstrap-datetimepicker.min.css" type="text/css" rel="stylesheet"/>
         <style>
+            label {padding-right: 20px;}
+            .addItem {float:left;}
 
         </style>
 
     </head_merge>
 
-    <div  class="jumbotron" data-lift="edu.EditQuizSn.showInfo">
+    <div class="well" data-lift="edu.EditQuizSn.showInfo">
         <h2>Edycja sprawdzianu: <span style="color: navy;"></span></h2>
     </div>
-    <br />
+    <br/>
 
     <div id="questEditor" title="Edycja pytania">
 
 
-        <form class="lift:edu.EditQuizSn.editQuiz" method="POST">
-            <input id="questionsQuiz" type="text" style="display: none;" />
+
             <div class="row">
-                <div class="col-lg-6">
-                    <div class="form-group">
+                <form data-lift="edu.EditQuizSn.editQuiz" method="POST">
+                    <input id="testsList" type="text" style="display: none;"/>
 
-                        <label for="descriptionQuiz"  class="control-label">Tytuł: </label>
-                        <input type="text" id="titleQuiz" class="form-control"/>
-
-                    </div>
                     <div class="form-group">
-                        <label for="descriptionQuiz" class="control-label">Opis:</label>
+                        <label for="descriptionExam" class="control-label">Opis:</label>
+
                         <div class="">
-                            <textarea type="text" class="form-control" id="descriptionQuiz"
+                            <textarea type="text" class="form-control" id="descriptionExam"
                                       rows="3" cols="75"></textarea>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="col-md-6">
-                            <input id="saveQuiz"  onclick="return editQuiz.prepareData();"
-                                   class="btn btn-success" type="submit" />
+
+                    <div class="row">
+                        <div class='col-md-6'>
+                            <div class="form-group">
+                                <div class='input-group date' id='datetimepicker1'>
+                                    <span class="input-group-addon">Początek: </span>
+                                    <input type='text' id="startExam" class="form-control" readonly/>
+                                    <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span></span>
+
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-lg-6">
-                            <input id="deleteQuiz" onclick="return confirm('Na pewno usunąć test?');"
-                                   class="btn btn-danger" type="submit" />
+                        <div class='col-md-6'>
+                            <div class="form-group">
+                                <div class='input-group date' id='datetimepicker2'>
+                                    <span class="input-group-addon">Koniec: </span>
+                                    <input type='text' id="endExam" class="form-control" readonly/>
+                                     <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span> </span>
+
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-lg-6">
+                    <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-6">
+                        <div class="form-inline">
+                            <label for="multiExam" class="control-label">Test wielokrotnego wyboru: </label>
+                            <input type="checkbox" id="multiExam" class="form-control"/>
+                        </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-inline">
+                                <label for="classExam" class="control-label">Klasa: </label>
+                                <select type="text" id="classExam" class="form-control"></select>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <br /><br />
 
-                </div>
+                    <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <input id="saveExam" onclick="return editExam.prepareData();"
+                                   class="btn btn-success" type="submit"/>
+                        </div>
+                        <div class="col-md-6">
+                            <input id="deleteExam" onclick="return confirm('Na pewno usunąć sprawdzian?');"
+                                   class="btn btn-danger" type="submit"/>
+                        </div>
+                    </div>
+                    </div>
+                </form>
             </div>
 
-            <br />
-            <hr />
-        </form>
+
+
+        <br/>
+        <hr/>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <h3>Grupy (max 4)</h3>
+                <ol class="groupsExam">
+                    <li class="" id="4k54k54k34545k4">
+                        <span class="titleQuiz">Nazwa testu 1 </span>
+                <span class="glyphicon glyphicon-remove btn text-danger"
+                      onclick="editExam.removeTest(this);"></span></li>
+                </ol>
+            </div>
+            <div class="col-lg-6">
+                <h3>Testy do wyboru</h3>
+                <ul class="list-group examsList">
+                    <li class="list-group-item btn" onclick="editExam.appendTest(this);"
+                        id="34k54k545k3454345">
+                        <span class="glyphicon glyphicon-plus addItem"></span>
+                        <span class="titleQuiz">Nazwa testu 2</span></li>
+                </ul>
+            </div>
+
+        </div>
+
 
     </div>
 
 
-    <br />
-    <br />
-    <br /><br />
+    <br/>
+    <br/>
+
+    <br/><br/>
 </div>
