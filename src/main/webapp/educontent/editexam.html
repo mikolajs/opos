@@ -47,7 +47,12 @@
         <link href="/bootstrap/css/bootstrap-datetimepicker.min.css" type="text/css" rel="stylesheet"/>
         <style>
             label {padding-right: 20px;}
-            .addItem {float:left;}
+            span.keysShow {font-weight: bold; font-family: mono; font-size: 20px; padding: 10px; margin: 0 10px;}
+
+        </style>
+
+        <style media="print">
+        div.well, #questEditor, footer, div.navbar, h3, ol, ul, div.panel-heading {display:none;}
 
         </style>
 
@@ -65,7 +70,7 @@
             <div class="row">
                 <form data-lift="edu.EditQuizSn.editQuiz" method="POST">
                     <input id="testsList" type="text" style="display: none;"/>
-
+                    <input id="keysList" type="text" style="display: none;"/>
                     <div class="form-group">
                         <label for="descriptionExam" class="control-label">Opis:</label>
 
@@ -138,28 +143,51 @@
         <br/>
         <hr/>
 
-        <div class="row">
-            <div class="col-lg-6">
-                <h3>Grupy (max 4)</h3>
-                <ol class="groupsExam">
-                    <li class="" id="4k54k54k34545k4">
-                        <span class="titleQuiz">Nazwa testu 1 </span>
+
+
+
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <h3>Grupy (max 4)</h3>
+            <ol class="groupsExam" style="list-style-type: upper-alpha;">
+                <li class="" id="4k54k54k34545k4">
+                    <span class="titleQuiz">Nazwa testu 1 </span>
                 <span class="glyphicon glyphicon-remove btn text-danger"
                       onclick="editExam.removeTest(this);"></span></li>
-                </ol>
-            </div>
-            <div class="col-lg-6">
-                <h3>Testy do wyboru</h3>
-                <ul class="list-group examsList">
-                    <li class="list-group-item btn" onclick="editExam.appendTest(this);"
-                        id="34k54k545k3454345">
-                        <span class="glyphicon glyphicon-plus addItem"></span>
-                        <span class="titleQuiz">Nazwa testu 2</span></li>
-                </ul>
-            </div>
+            </ol>
 
+            <div class="panel panel-default" id="keysPanel">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4> Klucze:</h4>
+
+                        </div>
+                        <div class="col-md-6">
+                            <span class="btn btn-success" onclick="editExam.genRandomStrings();">
+                                <span class="glyphicon glyphicon-refresh"></span> Generuj
+                            </span>
+                            <span class="btn btn-info" onclick="editExam.print();">
+                                <span class="glyphicon glyphicon-save"> Drukuj
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                </div>
+            </div>
         </div>
-
+        <div class="col-lg-6">
+            <h3>Testy do wyboru</h3>
+            <ul class="list-group examsList">
+                <li class="list-group-item btn" onclick="editExam.appendTest(this);"
+                    id="34k54k545k3454345">
+                    <span class="glyphicon glyphicon-plus addItem"></span>
+                    <span class="titleQuiz">Nazwa testu 2</span></li>
+            </ul>
+        </div>
 
     </div>
 

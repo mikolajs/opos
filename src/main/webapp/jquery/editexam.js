@@ -3,6 +3,8 @@
 
 var EditExam =  dejavu.Class.declare({
 
+    keysNum: 48,
+
 	initialize : function() {
 		 $( "ol.groupsExam" ).sortable();
 	},
@@ -53,12 +55,61 @@ var EditExam =  dejavu.Class.declare({
 	},
 
 
+	genRandomStrings : function() {
+	    if( $('#keysList').val().length > 8 && !confirm("Generując nowe klucze kasujesz stare! Kasować?"))return;
+	    var groups = $('ol.groupsExam').children('li').length;
+	    if(groups < 2) {
+	        alert("Kody generuje się dla większej ilości grup");
+	        return;
+	    }
+        var $keysDiv = $('#keysPanel').children('div.panel-body');
+        $keysDiv.empty();
+        var array = [];
+        var letters = "ABCD";
+
+        var onGroups = this.keysNum/groups;
+        var letter = '';
+        var code = "";
+        var tmpArray = [];
+        for(var g = 0; g < groups; g++) {
+            letter = letters.charAt(g);
+            for(var j = 0; j < onGroups; j++) {
+                do { code = this._randomString();}
+                while(!this._notExists(tmpArray, code));
+                code = letter + code;
+                tmpArray[j] = code;
+                $keysDiv.append('<span class="keysShow">' + code +  '</span> ');
+                if(j % 3 == 2) $keysDiv.append('<br/>');
+            }
+             array.push(tmpArray);
+             $keysDiv.append('<hr/>');
+        }
+        $('#keysList').val(array.join(';'));
+	},
+
+    print : function(){
+        window.print();
+    },
+
     _getTestArrayId : function() {
     	var array = [];
     	$('ol.groupsExam').children('li').each(function(){
     			array.push(this.id);
     		});
     	return array;
+    },
+
+    _randomString : function() {
+      var code = "";
+      while(code.length < 8) code = Math.floor((10000000000000*Math.random())).toString(36);
+      return code.toUpperCase().substring(0,8)
+    },
+
+    _notExists : function(array, code) {
+        for(i in array) {
+            if(array[i] === code) return false;
+        }
+        return true;
     }
 
 });
