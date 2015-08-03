@@ -58,7 +58,7 @@
 
     </head_merge>
 
-    <div class="well" data-lift="edu.EditQuizSn.showInfo">
+    <div class="well" data-lift="edu.EditExamSn.showInfo">
         <h2>Edycja sprawdzianu: <span style="color: navy;"></span></h2>
     </div>
     <br/>
@@ -68,7 +68,7 @@
 
 
             <div class="row">
-                <form data-lift="edu.EditQuizSn.editQuiz" method="POST">
+                <form data-lift="edu.EditExamSn.editExam" method="POST">
                     <input id="testsList" type="text" style="display: none;"/>
                     <input id="keysList" type="text" style="display: none;"/>
                     <div class="form-group">
@@ -151,9 +151,9 @@
     <div class="row">
         <div class="col-lg-6">
             <h3>Grupy (max 4)</h3>
-            <ol class="groupsExam" style="list-style-type: upper-alpha;">
-                <li class="" id="4k54k54k34545k4">
-                    <span class="titleQuiz">Nazwa testu 1 </span>
+            <ol class="groupsExam" style="list-style-type: upper-alpha;" data-lift="edu.EditExamSn.showExamQuizzes">
+                <li class="" id="">
+                    <span class="titleQuiz"></span>
                 <span class="glyphicon glyphicon-remove btn text-danger"
                       onclick="editExam.removeTest(this);"></span></li>
             </ol>
@@ -181,11 +181,11 @@
         </div>
         <div class="col-lg-6">
             <h3>Testy do wyboru</h3>
-            <ul class="list-group examsList">
+            <ul class="list-group examsList" data-lift="edu.EditExamSn.showAllQuizzes">
                 <li class="list-group-item btn" onclick="editExam.appendTest(this);"
-                    id="34k54k545k3454345">
+                    id="">
                     <span class="glyphicon glyphicon-plus addItem"></span>
-                    <span class="titleQuiz">Nazwa testu 2</span></li>
+                    <span class="titleQuiz"></span></li>
             </ul>
         </div>
 

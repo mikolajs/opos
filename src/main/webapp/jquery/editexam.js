@@ -11,7 +11,8 @@ var EditExam =  dejavu.Class.declare({
 
 	appendTest : function(elem) {
 	    $ol = $("ol.groupsExam");
-	    if($ol.children('li').length > 4) {
+
+	    if($ol.children('li').length >= 4) {
 	        alert("Można utworzyc tylko cztery grupy");
 	        return;
 	    };
@@ -51,7 +52,7 @@ var EditExam =  dejavu.Class.declare({
 	        alert("Grup może być od jednej do czterech");
 	        return false;
 	    }
-	    return false;
+	    return true;
 	},
 
 

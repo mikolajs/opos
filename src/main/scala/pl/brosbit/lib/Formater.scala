@@ -41,4 +41,14 @@ object Formater {
       new Date()
 
   }
+
+  def fromStringDataTimeToDate(strDate: String): Date = {
+    val listDateTime = strDate.split(" ").map(_.trim).filter(s => (s.length > 1))
+    if(listDateTime.length == 2 ) {
+      val year :: month :: day :: rest1 = listDateTime.head.split('-').map(x => x.toInt).toList
+      val hour :: minute :: rest2 = listDateTime.last.split(':').map(x => x.toInt).toList
+      val gregorianCal = new GregorianCalendar(year, month, day, hour, minute)
+      gregorianCal.getTime
+    } else new Date
+  }
 }
