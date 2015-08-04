@@ -7,6 +7,8 @@ var EditExam =  dejavu.Class.declare({
 
 	initialize : function() {
 		 $( "ol.groupsExam" ).sortable();
+		 this._removeExistsTests();
+		 this._insertKeysOnStart();
 	},
 
 	appendTest : function(elem) {
@@ -41,7 +43,7 @@ var EditExam =  dejavu.Class.declare({
 	prepareData : function() {
 	    var array = this._getTestArrayId()
 	    $('#testsList').val(array.join(';'));
-	    console.log($('#testsList').val());
+	    //console.log($('#testsList').val());
 	    var descr = $('#descriptionExam').val();
 	    if(descr.length < 3 ) {
 	        alert("Zbyt krótki opis (min 3 litery)");
@@ -78,13 +80,15 @@ var EditExam =  dejavu.Class.declare({
                 do { code = this._randomString();}
                 while(!this._notExists(tmpArray, code));
                 code = letter + code;
-                tmpArray[j] = code;
+                tmpArray.push(code);
                 $keysDiv.append('<span class="keysShow">' + code +  '</span> ');
                 if(j % 3 == 2) $keysDiv.append('<br/>');
             }
-             array.push(tmpArray);
+             array = array.concat(tmpArray);
+             tmpArray = [];
              $keysDiv.append('<hr/>');
         }
+        console.log(array.join('\n'));
         $('#keysList').val(array.join(';'));
 	},
 
@@ -111,6 +115,33 @@ var EditExam =  dejavu.Class.declare({
             if(array[i] === code) return false;
         }
         return true;
+    },
+
+    _removeExistsTests : function() {
+       var array = this._getTestArrayId();
+       $("ul.examsList").children("li").each(function(){
+            for(i in array) if(array[i] == this.id) {
+                $(this).remove();
+            }
+       });
+    },
+
+    _insertKeysOnStart : function() {
+         var array = $("#keysList").val().split(";");
+         var lastLetter = "A";
+         var code = "";
+         var html = "";
+        var $keysDiv = $('#keysPanel').children('div.panel-body');
+         $keysDiv.empty();
+         for(i in array) {
+            code = array[i];
+            if(lastLetter != code.charAt(0)){
+              lastLetter = code.charAt(0);
+              $keysDiv.append('<hr />');
+            }
+            $keysDiv.append('<span class="keysShow">' + code +  '</span> ');
+         }
+
     }
 
 });

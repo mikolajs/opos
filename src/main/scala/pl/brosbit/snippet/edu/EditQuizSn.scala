@@ -13,6 +13,8 @@ import org.bson.types.ObjectId
 import _root_.net.liftweb.http.js.JsCmds._
 import _root_.net.liftweb.http.js.JsCmd
 import net.liftweb.http.js.JE.JsRaw
+import pl.brosbit.lib.Formater
+import java.util.Date
 
 class EditQuizSn extends BaseResourceSn {
 
@@ -119,6 +121,39 @@ class EditQuizSn extends BaseResourceSn {
 
   def subjectForNew() =
     "a [href]" #> ("/educontent/editquiz/0?s=" + subjectNow.id.toString)
+
+
+  //sort not work???????
+  def showExams() = {
+    ".col-lg-4"  #> Exam.findAll(("authorId" -> userId), ("start" -> -1)).map(ex => {
+      mkExamDiv(ex)
+    })
+  }
+
+  private def mkExamDiv(ex:Exam) = {
+
+    <div class="col-lg-4">
+      <h4 class="text-info"> {ex.description} </h4>
+
+      <p>klasa: <strong> {ex.className} </strong> grupy: <strong> {ex.quizzes.length.toString} </strong> </p>
+      <p><em>Start: </em> { Formater.strForDateTimePicker(new Date(ex.start))} <br/>
+        <em>Koniec: </em> { Formater.strForDateTimePicker(new Date(ex.end))}</p>
+      <p>
+        <a href={"/educontent/checkexam/" + ex._id.toString}> <span
+        class="btn btn-info" > <span
+        class="glyphicon glyphicon-edit"></span> Sprawdź
+        </span></a>
+        <a href={"/educontent/editexam/" + ex._id.toString}> <span
+        class="btn btn-warning" > <span
+        class="glyphicon glyphicon-pencil"></span> Edytuj
+        </span></a>
+      </p>
+    </div>
+
+  }
+
+
+
 
   private def mkQuestBox(questions:List[QuizQuestion]) = {
     println("EditQuiz.mkQuestBox: questions length " + questions.length.toString)

@@ -29,8 +29,8 @@ class EditExamSn extends BaseResourceSn {
     var multi = exam.multi
     var description = exam.description
     var keys = exam.keys.mkString(";")
-    var startExam = Formater.formatTime(new Date(exam.start))
-    var endExam =  Formater.formatTime(new Date(exam.start))
+    var startExam = Formater.strForDateTimePicker(if(exam.start == 0L) new Date() else new Date(exam.start))
+    var endExam =  Formater.strForDateTimePicker(if(exam.end == 0L) new Date() else new Date(exam.end))
     var classId = exam.classId.toString
 
 
@@ -40,19 +40,17 @@ class EditExamSn extends BaseResourceSn {
 
     def save()  {
       println("========= save quiz ========")
-
       if (exam.authorId != 0L && exam.authorId != userId) return
-
       exam.description = description
       if (exam.authorId == 0L) exam.authorId = userId
       exam.subjectId = tryo(subjectId).openOr(0L)
       exam.subjectName = findSubjectName(exam.subjectId)
+      exam.multi = multi
       exam.quizzes = quizzes.split(';').map(q => new ObjectId(q)).toList
       exam.keys = keys.split(';').toList
       exam.start = Formater.fromStringDataTimeToDate(startExam).getTime
       exam.end = Formater.fromStringDataTimeToDate(endExam).getTime
       exam.classId = tryo(classId.toLong).getOrElse(0)
-
       exam.className = classes.filter(c => c._1 == classId) match {
         case cl :: rest => cl._2
         case _ => "Brak"
@@ -76,7 +74,7 @@ class EditExamSn extends BaseResourceSn {
       "#testsList" #> SHtml.text(quizzes, x =>  quizzes = x.trim) &
       "#keysList" #> SHtml.text(keys, x =>  keys = x.trim) &
       "#classExam" #> SHtml.select(classes, Full(classId), classId = _ ) &
-      "#multiExam" #> SHtml.checkbox(multi, multi = _, "id" -> "publicQuest") &
+      "#multiExam" #> SHtml.checkbox(multi, multi = _) &
       "#startExam" #> SHtml.text(startExam, x =>  startExam = x.trim) &
       "#endExam" #> SHtml.text(endExam, x =>  endExam = x.trim) &
       "#saveExam" #> SHtml.submit("Zapisz", save) &

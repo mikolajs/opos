@@ -14,7 +14,13 @@ import java.text.{SimpleDateFormat}
 object Formater {
   def formatTime(t: Date): String = {
     val l = new Locale("pl")
-    val sfd = new SimpleDateFormat("EEE, dd MMM yyyy, HH:mm", l)
+    val sfd = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm", l)
+    sfd.format(t)
+  }
+
+  def strForDateTimePicker(t: Date): String = {
+    val l = new Locale("pl")
+    val sfd = new SimpleDateFormat("dd.MM.yyyy, HH:mm", l)
     sfd.format(t)
   }
 
@@ -30,25 +36,25 @@ object Formater {
     sfd.format(t)
   }
 
-  //nie napisana!!!
   def fromStringToDate(strDate: String): Date = {
     val listDate = strDate.split("-")
     if (listDate.length == 3) {
       val year :: month :: day :: rest = listDate.map(x => x.toInt).toList
-      val gregorianCal = new GregorianCalendar(year, month, day)
+      val gregorianCal = new GregorianCalendar(year, month - 1, day)
       gregorianCal.getTime
     } else
-      new Date()
+    {println("========= nieprawwidłowa data"); new Date() }
 
   }
 
+  // 12.08.2015 10:33
   def fromStringDataTimeToDate(strDate: String): Date = {
     val listDateTime = strDate.split(" ").map(_.trim).filter(s => (s.length > 1))
     if(listDateTime.length == 2 ) {
-      val year :: month :: day :: rest1 = listDateTime.head.split('-').map(x => x.toInt).toList
+      val day :: month :: year :: rest1 = listDateTime.head.split('.').map(x => x.toInt).toList
       val hour :: minute :: rest2 = listDateTime.last.split(':').map(x => x.toInt).toList
-      val gregorianCal = new GregorianCalendar(year, month, day, hour, minute)
+      val gregorianCal = new GregorianCalendar(year, month - 1, day, hour, minute)
       gregorianCal.getTime
-    } else new Date
+    } else {println("========= nieprawwidłowa data"); new Date() }
   }
 }
