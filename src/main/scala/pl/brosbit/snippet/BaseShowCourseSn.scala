@@ -1,23 +1,17 @@
 package pl.brosbit.snippet
 
-import java.util.Date
-import java.util.Random
-import scala.xml.{Text, XML, Unparsed}
+import scala.xml.{Text,  Unparsed}
 import _root_.net.liftweb._
-import http.{S, SHtml}
+import http.S
 import common._
 import util._
-import mapper.{OrderBy, Descending}
 import pl.brosbit.model.edu._
 import pl.brosbit.model._
-import mapper.By
 import json.JsonDSL._
-import json.JsonAST.JObject
-import json.JsonParser
-import org.bson.types.ObjectId
 import Helpers._
+import pl.brosbit.snippet.view.BaseCreateQuest
 
-class BaseShowCourseSn {
+class BaseShowCourseSn extends BaseCreateQuest {
 
   val basePath = "/view/course/"
 
@@ -134,72 +128,7 @@ class BaseShowCourseSn {
 
   }
 
-  protected def createQuest(quest: QuizQuestion) = {
 
-    if (quest.fake.length == 0) {
-      if (quest.answers.length == 0) createPlainQuest(quest)
-      else createInputQuest(quest)
-    }
-    else {
-      if (quest.answers.length == 1) createSingleAnswerQuest(quest)
-      else createMultiAnswerQuest(quest)
-    }
-  }
-
-  protected def createPlainQuest(quest: QuizQuestion) = {
-    mkQuestHTML('p', quest.question, "", scala.xml.NodeSeq.Empty)
-  }
-
-  protected def createSingleAnswerQuest(quest: QuizQuestion) = {
-    val all = (quest.fake ++ quest.answers).sortWith(_ > _)
-      .map(s => <li>
-      <input type="radio" value={s} name={quest._id.toString}/> <label>
-        {s}
-      </label>
-    </li>)
-    val correctString = quest.answers.mkString(";;;")
-    mkQuestHTML('s', quest.question, correctString, <ul>
-      {all}
-    </ul>)
-  }
-
-  protected def createInputQuest(quest: QuizQuestion) = {
-    val all = <div>
-      <label>Odpowiedź:</label> <input type="text" name={quest._id.toString}/>
-    </div>
-    val correctString = quest.answers.mkString(";;;")
-    mkQuestHTML('i', quest.question, correctString, all)
-  }
-
-  protected def createMultiAnswerQuest(quest: QuizQuestion) = {
-    val all = (quest.fake ++ quest.answers).sortWith(_ > _)
-      .map(s => <li>
-      <input type="checkbox" value={s} name={quest._id.toString}/> <label>
-        {s}
-      </label>
-    </li>)
-    val correctString = quest.answers.mkString(";;;")
-    mkQuestHTML('m', quest.question, correctString, <ul>
-      {all}
-    </ul>)
-  }
-
-  protected def mkQuestHTML(questType: Char, question: String, correct: String, answers: scala.xml.NodeSeq) = {
-    <section class="question">
-      <div class="panel panel-info">
-        <div class="panel-heading questionMark">
-          <span class="glyphicon glyphicon-question-sign"></span>
-          Zadanie</div>
-        <div class="panel-body">
-          <input type="hidden" class="questType" value={questType.toString}/>
-          <input type="hidden" class="correct" value={correct}/>
-          <div class="questionText">
-            {Unparsed(question)}
-          </div>{answers}{if (questType != 'p') <button onclick="showCourse.checkAnswer(this)">Sprawdź</button> else <span></span>}<p class="alertWell"></p>
-        </div>
-      </div>
-    </section>
-  }
 
   //protected def insert
 
