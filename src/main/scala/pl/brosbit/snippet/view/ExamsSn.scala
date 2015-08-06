@@ -8,10 +8,9 @@ import net.liftweb.json.JsonDSL._
 import pl.brosbit.lib.Formater
 import java.util.Date
 
-import pl.brosbit.model.edu.{QuizQuestion, Quiz, Exam}
-import net.liftweb.http.S
+import pl.brosbit.model.edu.Exam
 
-class ExamsSn extends BaseSnippet with BaseCreateQuest {
+class ExamsSn extends BaseSnippet  {
 
   def showExams() = {
     val now = new Date()
@@ -26,22 +25,7 @@ class ExamsSn extends BaseSnippet with BaseCreateQuest {
     })
   }
 
-  def oneExam() = {
-    val id = S.param("id").getOrElse("")
-    val exam = Exam.find(id).getOrElse(Exam.create)
-    if(exam.authorId == 0L) S.redirectTo("/view/exams")
 
-
-    val quiz = Quiz.find(exam.quizzes.head.toString).getOrElse(Quiz.create)
-    println("=========  quiz: " + quiz.title + " ; length:  " + quiz.questions.length.toString)
-    val questions = QuizQuestion.findAll("_id" -> ("$in" -> quiz.questions.map(qi => qi.q.toString)))
-    println("=========  questions: " + questions.length.toString)
-    "#descript *" #> exam.description &
-    "#subject *" #> exam.subjectName &
-    "#endTime *" #> Formater.formatDate(new Date(exam.end)) &
-    "#test" #> questions.map( q => "div" #> createQuest(q))
-
-  }
 
   private def mkExamDiv(ex:Exam) = {
     <div class="col-lg-4">
@@ -58,6 +42,7 @@ class ExamsSn extends BaseSnippet with BaseCreateQuest {
       </p>
     </div>
   }
+
 
 
 }
