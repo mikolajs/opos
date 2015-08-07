@@ -6,11 +6,11 @@ import net.liftweb.json.JsonDSL._
 import pl.brosbit.lib.Formater
 import java.util.Date
 
-import pl.brosbit.model.edu.{QuestElem, QuizQuestion, Quiz, Exam}
-import net.liftweb.http.S
+import pl.brosbit.model.edu.{ExamAnswer, QuizQuestion, Quiz, Exam}
+import net.liftweb.http.{SHtml, S}
 import scala.xml.Unparsed
 
-class PerformExamSn {
+class PerformExamSn extends BaseSnippet {
 
   var nr = 0
   val id = S.param("id").getOrElse("")
@@ -32,6 +32,20 @@ class PerformExamSn {
       "#test" #> questionsItems.map( q => "div" #> mkQuestHTML(q._1, q._2))
 
   }
+
+
+  def getAnswers() = {
+
+    val exAns = ExamAnswer.findAll(("exam" -> exam._id.toString) ~ ("authoriD" -> user.id.get)) match {
+      case ea :: rest => ea
+      case _ => ExamAnswer.create
+  }
+    var answers = exAns.answers.map(ai => ai.answ).mkString("\n");
+
+   "#answers" #> SHtml.ajaxText(answers, (data) => {
+
+  })
+ }
 
 
   protected def mkQuestHTML(question:QuizQuestion, pkt:Int) = {
@@ -63,15 +77,14 @@ class PerformExamSn {
     else {
       val aType = if(good.length > 1 || multi) "checkbox" else "radio"
 
-      val all = (fake ++ good).sortWith(_ > _) .map(s => <li>
-        <input class="form-control" type={aType} value={s} name={name}/> <label>
-          {Unparsed(s)} </label> </li>)
+      val all = (fake ++ good).sortWith(_ < _) .map(s => <div class={aType}>
+        <label><input type={aType} value={s} name={name}/>
+          {Unparsed(s)} </label> </div>)
 
-      <ul>{all}</ul>
+      <div class="answerBox">{all}</div>
     }
 
-
-
   }
+
 
 }
