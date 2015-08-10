@@ -17,13 +17,25 @@
             #fixedButton { position: fixed; top: 50px; right: 2px; }
             #timeToEnd {font-weight: bold; }
         </style>
+    <script type="text/javascript">
+        var showExam = new Object();
+        $(document).ready(function() {
+            showExam = new ShowExam();
 
+        });
+
+    </script>
     </head_merge>
     <br/>
     <div  data-lift="view.PerformExamSn.oneExam">
+
         <div class="well"><h3 id="descript"></h3>
             <h4>Zakończenie: <small id="endTime"></small></h4>
         </div>
+        <form class="form-inline" class="row">
+            <input id="code"  class="form-control" />
+            <input id="saveCode" class="form-control" />
+        </form>
         <div class="row " id="test">
             <div>Zadania/div>
 
@@ -34,10 +46,11 @@
 
     </form>
 
-        <button id="fixedButton"  class="btn btn-lg btn-danger"
-                title="zapisz" onclick="showQuiz.pressedSave()">
+        <button id="fixedButton"  class="btn btn-lg btn-success" data-lift="view.PerformExamSn.setTime"
+                title="Zapisz (poniżej czas w godzinach i minutach do końca" onclick="showExam.pressedSave()">
             <span class="glyphicon glyphicon-save"></span>
-            <br/><span id="timeToEnd">1:45</span>
+            <br/><span id="timeToEnd"></span>
+            <span id="secondsToEnd" style="display:none;"></span>
         </button>
 
 

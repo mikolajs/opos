@@ -103,7 +103,7 @@ class EditQuizSn extends BaseResourceSn {
     "tr" #> Quiz.findAll(("authorId" -> user.id.get) ~ ("subjectId" -> subjectNow.id)).map(quiz => {
       <tr>
         <td>
-          <a href={"/educontent/showquiz/" + quiz._id.toString} target="_blank">
+          <a href={"/view/showquiz/" + quiz._id.toString} target="_blank">
             {quiz.title}
           </a>
         </td>
