@@ -31,6 +31,7 @@ class PerformExamSn extends BaseSnippet {
         exAns.code = enterCode
         exAns.exam = exam._id
         exAns.authorId = user.id.get
+        exAns.authorName = user.getFullName
         exAns.save
       }
       else {

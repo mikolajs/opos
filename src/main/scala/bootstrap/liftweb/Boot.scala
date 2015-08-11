@@ -164,7 +164,8 @@ class Boot {
         Menu("Ustawienia") / "educontent" / "options" >> LocGroup("edu") >> isTeacher,
         Menu("Lekcje") / "educontent" / "course" / ** >> LocGroup("extra") >> isTeacher,
         Menu("Sprawdziany edycja") / "educontent" / "editexam" / ** >> LocGroup("extra") >> isTeacher,
-        Menu("Sprawdziany sprawdzanie") / "educontent" / "checkexam" / ** >> LocGroup("extra") >> isTeacher,
+        Menu("Lista odpowiedzi") / "educontent" / "showexams" / ** >> LocGroup("extra") >> isTeacher,
+        Menu("Sprawdzian sprawdzanie") / "educontent" / "checkexam" / ** >> LocGroup("extra") >> isTeacher,
         Menu("Edycja lekcji") / "educontent" / "editlesson" / ** >> LocGroup("extra") >> Hidden >> isTeacher,
         Menu("Edycja tematów") / "educontent" / "editheadword" / ** >> LocGroup("extra") >> Hidden >> isTeacher,
         Menu("Edycja Slajdów") / "educontent" / "editslide" / ** >> LocGroup("extra") >> Hidden >> isTeacher,
@@ -261,6 +262,10 @@ class Boot {
       ParsePath("educontent" :: "editexam" :: examId :: Nil, _, _, _), _, _) =>
         RewriteResponse(
           "educontent" :: "editexam" :: Nil, Map("id" -> examId))
+      case RewriteRequest(
+      ParsePath("educontent" :: "showexams" :: examId :: Nil, _, _, _), _, _) =>
+        RewriteResponse(
+          "educontent" :: "showexams" :: Nil, Map("id" -> examId))
       case RewriteRequest(
       ParsePath("educontent" :: "checkexam" :: examId :: Nil, _, _, _), _, _) =>
         RewriteResponse(
