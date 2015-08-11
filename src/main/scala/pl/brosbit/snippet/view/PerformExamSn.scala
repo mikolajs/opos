@@ -21,37 +21,38 @@ class PerformExamSn extends BaseSnippet {
   val exAnsList = ExamAnswer.findAll(("exam" -> exam._id.toString) ~ ("authorId" -> user.id.get))
   val exAns = if(exAnsList.isEmpty) ExamAnswer.create
   else exAnsList.head
-  val code = S.param("c").getOrElse("")
 
   def oneExam():CssSel = {
     var enterCode = ""
-    var group = 0
-    def saveCode() { S.redirectTo("/view/showquiz/" + exam._id.toString + "?c=" + enterCode)}
 
-    if(exam.quizzes.length > 1 && exAns.code.isEmpty) {
-      if(code.isEmpty)
-        return "#code" #> SHtml.text(enterCode, enterCode = _) &
-          "#descript" #> <span style="display:none;"></span> &
-          "#subject" #> <span style="display:none;"></span> &
-          "#endTime" #> Formater.formatDate(new Date(exam.end)) &
-          "#test" #> <span style="display:none;"></span> &
-          "#saveCode" #> SHtml.submit("Zatwierdź", saveCode)
-      else {
-        val gr = checkCode(code)
-        if(gr > 0 && gr < exam.quizzes.length){
-          group = gr
-          exAns.code = code
-          exAns.exam = exam._id
-          exAns.authorId = user.id.get
-          exAns.save
-        }
-        else {
-          S.notice("Nieprawidłowy kod")
-          S.redirectTo("/view/showquiz/" + exam._id.toString)
-        }
+    def saveCode() {
+
+      if(checkCode(enterCode)) {
+        exAns.code = enterCode
+        exAns.exam = exam._id
+        exAns.authorId = user.id.get
+        exAns.save
       }
+      else {
+        S.notice("Nieprawidłowy kod")
+        S.redirectTo("/view/showquiz/" + exam._id.toString)
+      }
+
+
     }
 
+    if(exam.quizzes.length > 1 && exAns.code.isEmpty) {
+
+         "#code" #> SHtml.text(enterCode, enterCode = _) &
+          "#descript" #> <span style="display:none;"></span> &
+          "#subject" #> <span style="display:none;"></span> &
+          "#endTime *" #> Formater.formatDate(new Date(exam.end)) &
+          "#test" #> <span style="display:none;"></span> &
+          "#saveCode" #> SHtml.submit("Zatwierdź", saveCode)
+    }
+    else {
+
+    val group = getGroupNr(exAns.code)
     val quiz = Quiz.find(exam.quizzes(group)).getOrElse(Quiz.create)
     if(quiz.questions.length < 1) S.redirectTo("/view/exams?Error")
     println("=========  quiz: " + quiz.title + " ; length:  " + quiz.questions.length.toString)
@@ -60,13 +61,12 @@ class PerformExamSn extends BaseSnippet {
     val questions = QuizQuestion.findAll("_id" -> ("$in" -> questMap.keySet.toList))
     val questionsItems = questions.map(qu =>  (qu, questMap(qu._id.toString)))
     println("=========  questions: " + questions.length.toString)
-    "#code" #> <span style="display:none;"></span> &
-      "#saveCode" #> <span style="display:none;"></span> &
+    "form" #> <span style="display:none;"></span> &
       "#descript *" #> exam.description &
       "#subject *" #> exam.subjectName &
       "#endTime *" #> Formater.formatDate(new Date(exam.end)) &
       "#test" #> questionsItems.map( q => "div" #> mkQuestHTML(q._1, q._2))
-
+    }
   }
 
 
@@ -142,19 +142,15 @@ class PerformExamSn extends BaseSnippet {
     data
   }
 
-  private def checkCode(c: String):Int = {
+  private def checkCode(c: String):Boolean = {
 
-    if(findIfCodeExists(c))  return -1
-
-    val count = if(exam.keys.exists(k => k == c)) c.charAt(0).toInt - 'A'.toInt
-                else -1
-    if(count > 3) -1
-    else count
+    if(findIfCodeExists(c))  false
+    else exam.keys.exists(k => k == c)
   }
 
   private def findIfCodeExists(c:String) = !ExamAnswer.findAll("code" -> c).isEmpty
 
-
+  private def getGroupNr(c:String) =  c.charAt(0).toInt - 'A'.toInt
 
 
 }

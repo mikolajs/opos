@@ -32,19 +32,21 @@
         <div class="well"><h3 id="descript"></h3>
             <h4>Zakończenie: <small id="endTime"></small></h4>
         </div>
-        <form class="form-inline" class="row">
-            <input id="code"  class="form-control" />
+        <form class="form-inline col-lg-offset-3 col-lg-9" class="row" method="POST">
+            <h2>Wpisz otrzymany kod</h2>
+            <label>KOD: </label><input id="code"  class="form-control" />
             <input id="saveCode" class="form-control" />
+            <br/><br/><br/><br/>
         </form>
         <div class="row " id="test">
             <div>Zadania/div>
 
         </div>
     </div>
-    <form style="display:none" data-lift="view.PerformExamSn.getAnswers">
+    <div style="display:none" data-lift="view.PerformExamSn.getAnswers">
        <input id="answers" type="text" />
 
-    </form>
+    </div>
 
         <button id="fixedButton"  class="btn btn-lg btn-success" data-lift="view.PerformExamSn.setTime"
                 title="Zapisz (poniżej czas w godzinach i minutach do końca" onclick="showExam.pressedSave()">
