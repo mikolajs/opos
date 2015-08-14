@@ -2,10 +2,10 @@
     <head_merge>
 
         <script type="text/javascript" src="/jquery/dejavu.js"></script>
-        <script type="text/javascript" src="/jquery/editquiz.js"></script>
+        <script type="text/javascript" src="/jquery/checkexam.js"></script>
         <script>
 
-			var editExam = Object();
+			var checkExam = Object();
 
 			$(document).ready(function() {
 
@@ -19,16 +19,15 @@
 
     </head_merge>
 
-    <div  class="well" data-lift="edu.ChecExamSn.showPupil">
+    <div  class="well" data-lift="edu.CheckExamSn.showPupil">
         <h2>Uczeń: <span style="color: navy;"></span></h2>
+        <h3>Klasa: <small></small></h3>
     </div>
     <br />
-    <div class="lift:edu.CheckExamSn.showAnswers" >
-        <table class="table table-striped">
-            <tr><th>Uczeń</th><th>Kod</th><th>Punkty</th><th>Sprawdź</th></tr>
-            <tr><td class="col1"></td><td class="col2"></td><td class="col3"></td><td class="col4"></td></tr>
-        </table>
-
+    <div data-lift="edu.CheckExamSn.showAnswers" >
+        <div class="row">
+       <section></section>
+        </div>
     </div>
 
 

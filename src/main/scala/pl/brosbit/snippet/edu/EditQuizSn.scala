@@ -139,7 +139,7 @@ class EditQuizSn extends BaseResourceSn {
       <p><em>Start: </em> { Formater.strForDateTimePicker(new Date(ex.start))} <br/>
         <em>Koniec: </em> { Formater.strForDateTimePicker(new Date(ex.end))}</p>
       <p>
-        <a href={"/educontent/checkexam/" + ex._id.toString}> <span
+        <a href={"/educontent/showexams/" + ex._id.toString}> <span
         class="btn btn-info" > <span
         class="glyphicon glyphicon-edit"></span> Sprawdź
         </span></a>

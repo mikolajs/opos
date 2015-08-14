@@ -6,7 +6,8 @@ import Helpers._
 import net.liftweb.json.JsonDSL._
 import net.liftweb.http.S
 import pl.brosbit.model.edu.{ExamAnswer, Exam}
-
+import pl.brosbit.lib.Formater
+import java.util.Date
 
 class ShowExamsSn extends BaseResourceSn {
 
@@ -15,7 +16,9 @@ class ShowExamsSn extends BaseResourceSn {
   val exam = Exam.find(exId).getOrElse(Exam.create)
 
   def showInfo() = {
-    "span *" #> exam.description
+    "span *" #> exam.description &
+    "small *" #> ("od " + Formater.formatTime(new Date(exam.start)) +
+      " do " + Formater.formatTime(new Date(exam.end)))
   }
 
   def showExamAnswers() = {
@@ -25,7 +28,7 @@ class ShowExamsSn extends BaseResourceSn {
       ".col1 *" #> ea.authorName &
       ".col2 *" #> ea.code &
       ".col3 *" #> (ea.answers.map(_.p).reduce((f, n) => f + n)).toString &
-      ".col4 *" #> <a href={"/educontent/checkexam" + ea._id.toString}
+      ".col4 *" #> <a href={"/educontent/checkexam/" + ea._id.toString}
                       class="btn btn-small btn-success"><span class="glyphicon glyphicon-check"></span>Sprawdź</a>
 
     })
