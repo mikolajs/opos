@@ -2,11 +2,15 @@ package pl.brosbit.snippet.edu
 
 import _root_.net.liftweb.util._
 import Helpers._
-import net.liftweb.http.S
+import net.liftweb.http.{SHtml, S}
 import _root_.net.liftweb.json.JsonDSL._
 import pl.brosbit.model.edu._
 import scala.xml.Unparsed
-
+import net.liftweb.json.DefaultFormats
+import net.liftweb.json.JsonParser._
+import pl.brosbit.model.edu.AnswerItem
+import scala.Some
+import pl.brosbit.model.edu.QuestElem
 
 
 class CheckExamSn {
@@ -38,9 +42,34 @@ class CheckExamSn {
  }
 
  def showPupil() = {
-   "span *" #>  ansEx.authorName &
-   "small *" #> exam.className
+   "em *" #> exam.description &
+   "a [href]" #> ("/educontent/showexams/" + exam._id.toString) &
+   "#namePupil *" #>  ansEx.authorName &
+   "small *" #> exam.className &
+   "#max [value]" #> questItems.map(_._4).reduce((a,b) => a+b).toString
  }
+
+  def getPoints() = {
+    val data = "[" + ansEx.answers.map(_.json).mkString(",") + "]"
+
+    "#pointsGain" #> SHtml.ajaxText(data, (str) => {
+
+      //println( "========== json data: " + str);
+      val newData = createFromJsonList(str)
+      val ansNew = ansEx.answers.map(a => {
+
+        a.p = newData.find(ae => ae.q == a.q) match {
+          case Some(ansIt) => ansIt.p
+          case _ => a.p
+        }
+        a
+      })
+
+      ansEx.answers = ansNew
+      ansEx.save
+    })
+
+  }
 
   private def getGroupInt = {
     if(ansEx.code.isEmpty) 0
@@ -57,34 +86,44 @@ class CheckExamSn {
         <div class="panel-heading">
           <span class="quizNr">{nr.toString}</span>
           Zadanie  <span class="badge" title="Punkty">{pktA.toString} pkt.</span>
-          <input type="number" min="0" maxlength="5" max={pktA.toString} step="0.5" name={"zad_" + nr.toString}
-          value={pktG.toString} /></div>
+          <input type="number" min="0" maxlength="5" max={pktA.toString} name={"zad_" + nr.toString}
+          value={pktG.toString} onchange="checkExam.reCountData()"/></div>
         <div class="panel-body">
           <div class="questionText">
             {Unparsed(question.question)}
           </div>
-          <div class="form-group">{createAnswers(question.answers, question.fake, ans,  nr.toString)}</div>
+          {createAnswers(question.answers, question.fake, ans)}
         </div>
       </div>
     </section>
   }
 
-  protected def createAnswers(good:List[String], fake:List[String], ans:String, nr:String) = {
+  protected def createAnswers(good:List[String], fake:List[String], ans:String) = {
 
-    val name = "quest_" + nr.toString
 
     if(fake.length == 0) {
-      if(good.length > 0)  <input type="text" readonly="readonly" class="form-control" value={ans}  name={name} />
-      else  <textarea class="form-control" name={name} readonly="readonly">{ans}</textarea>
+      if(good.length > 0)  {
+        val addC = if(good.exists(_ == ans)) " alert-success" else " alert-danger"
+          <div class={"answerBox alert" + addC}  name="one">{Unparsed(ans)}</div>
+      }
+      else  <div  name="open" class="well"><pre>{Unparsed(ans)}</pre></div>
     }
     else {
+      val ansList = ans.split(",;;,")
+      val all = fake.map(s => {
+        val isAns = ansList.exists(_ == s)
+        val addC = if(isAns) " glyphicon-check" else " glyphicon-unchecked"
+        val col = if(isAns) " list-group-item-danger" else " list-group-item-success"
+        <li class={"list-group-item " + col}>
+        <span class={"glyphicon" + addC}></span> {Unparsed(s)} </li>}) ++
+        good.map(s => {
+          val isAns = ansList.exists(_ == s)
+          val addC = if(isAns) " glyphicon-check" else " glyphicon-unchecked"
+          val col = if(isAns) " list-group-item-success" else " list-group-item-danger"
+        <li class={"list-group-item" + col}>
+          <span class={"glyphicon" + addC}></span> {Unparsed(s)} </li>})
 
-      val all = fake.map(s => <li class="list-group-item">
-        <span class="glyphicon"></span>{Unparsed(s)} </li>) ++
-        good.map(s => <li class="list-group-item">
-          <span class="glyphicon"></span>{Unparsed(s)} </li>)
-
-      <div class="answerBox"><ul class="list-group" name={name}>{all}</ul></div>
+      <div class="answerBox" name="test"><ul class="list-group">{all}</ul></div>
     }
 
   }
@@ -100,5 +139,16 @@ class CheckExamSn {
       case Some(q) => q.p
       case _ => -1
     }
+
+  private def createFromJsonList(jsonStr: String) = {
+
+    var data:List[AnswerItem] = Nil
+    implicit val formats = DefaultFormats
+    try {
+      val json = parse(jsonStr)
+      data = json.extract[List[AnswerItem]]
+    } catch {case _ : Throwable => println("ERROR PARSER JSON PERFORMEXAMS")}
+    data
+  }
 
 }

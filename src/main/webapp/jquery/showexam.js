@@ -35,7 +35,7 @@ var ShowExam =  dejavu.Class.declare({
 
         $("#answers").val('[' + arrayAll.join(',') + ']');
         console.log($("#answers").val());
-        $("#answers").trigger('blur');
+        document.getElementById("answers").onblure();
         $('#fixedButton').removeClass('btn-danger').addClass('btn-success');
 
 	},
