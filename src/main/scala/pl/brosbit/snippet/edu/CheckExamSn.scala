@@ -36,17 +36,20 @@ class CheckExamSn {
 
   var nr = 0
 
+  var maxPoints = questItems.map(_._4).reduce((a,b) => a+b)
+
  def showAnswers() = {
    "div" #>  questItems.map(q =>
    "section" #> mkQuestHTML(q._1, q._2, q._3, q._4) )
  }
 
  def showPupil() = {
+
    "em *" #> exam.description &
    "a [href]" #> ("/educontent/showexams/" + exam._id.toString) &
    "#namePupil *" #>  ansEx.authorName &
    "small *" #> exam.className &
-   "#max [value]" #> questItems.map(_._4).reduce((a,b) => a+b).toString
+   "#max [value]" #> maxPoints.toString
  }
 
   def getPoints() = {
@@ -66,6 +69,7 @@ class CheckExamSn {
       })
 
       ansEx.answers = ansNew
+      ansEx.max = maxPoints
       ansEx.save
     })
 

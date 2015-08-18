@@ -1,5 +1,5 @@
 
-
+function beforeUnload() { return "Nie zapisano zmian, opuścić stronę?";}
 
 var ShowExam =  dejavu.Class.declare({
 
@@ -35,7 +35,8 @@ var ShowExam =  dejavu.Class.declare({
 
         $("#answers").val('[' + arrayAll.join(',') + ']');
         console.log($("#answers").val());
-        document.getElementById("answers").onblure();
+        document.getElementById("answers").onblur();
+        window.onbeforeunload = null;
         $('#fixedButton').removeClass('btn-danger').addClass('btn-success');
 
 	},
@@ -81,9 +82,11 @@ var ShowExam =  dejavu.Class.declare({
 	_bindIsChanged : function() {
         $('input').change(function() {
             $('#fixedButton').removeClass('btn-success').addClass('btn-danger');
+            window.onbeforeunload = beforeUnload;
         });
          $('textarea').change(function() {
                     $('#fixedButton').removeClass('btn-success').addClass('btn-danger');
+                    window.onbeforeunload = beforeUnload;
          });
 	}
 

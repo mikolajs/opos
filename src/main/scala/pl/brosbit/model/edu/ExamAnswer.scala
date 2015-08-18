@@ -15,10 +15,10 @@ object ExamAnswer extends MongoDocumentMeta[ExamAnswer] {
 
   override def formats = super.formats + new ObjectIdSerializer + new DateSerializer
 
-  def create = new ExamAnswer(ObjectId.get, ObjectId.get, "", 0L, "", Nil)
+  def create = new ExamAnswer(ObjectId.get, ObjectId.get, "", 0, 0L, "", Nil)
 }
 
-case class ExamAnswer(var _id: ObjectId, var exam:ObjectId, var code:String,
+case class ExamAnswer(var _id: ObjectId, var exam:ObjectId, var code:String, var max:Int,
                       var authorId: Long,  var authorName : String, var answers: List[AnswerItem]
                 ) extends MongoDocument[ExamAnswer] {
   def meta = ExamAnswer

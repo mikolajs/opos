@@ -29,24 +29,16 @@ class ShowExamsSn extends BaseResourceSn {
 
     "tr" #>  exAns.map(ea => {
       val gain = ea.answers.map(_.p).reduce((f, n) => f + n)
-      val max = pointsMaxList(getGroupFromCode(ea.code))
+      val percent = if(ea.max == 0) 0.0F else ((100.0F* gain.toFloat) / ea.max.toFloat)
       ".col1 *" #> ea.authorName &
       ".col2 *" #> ea.code &
-      ".col3 *" #> (gain.toString + " / " + max.toString  + " : " +
-        scala.math.round((100.0F* gain.toFloat) / max.toFloat).toString  + "%") &
+      ".col3 *" #> (gain.toString + " / " + ea.max.toString  + " : " +
+        scala.math.round(percent).toString  + "%") &
       ".col4 *" #> <a href={"/educontent/checkexam/" + ea._id.toString}
                       class="btn btn-small btn-success"><span class="glyphicon glyphicon-check"></span>Sprawdź</a>
 
     })
 
-  }
-
-  private def getGroupFromCode(code:String) = {
-    if(code.isEmpty) 0
-    else {
-      val nr = code.charAt(0).toInt -'A'.toInt
-      if(nr >= 1 && nr <= 4) nr else 0
-    }
   }
 
 
