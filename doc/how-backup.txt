@@ -1,0 +1,19 @@
+## Backup na serwerze:
+
+1. Backup bazy danej mongo (sprawdzić nazwę bazy danych!)
+ Używamy mongodump: 
+    mongodump  --db baza --collection collection --out /sciezka/do/katalogu/wynikowego
+    
+2. Kopia plików wideo z katalogu /home/osp
+
+3. Zrzut zawartości postgres
+ jako użytkownik postgres wykonaj (nadaj prawo do zapisu temu użytkownikowi w danym katalogu):
+    pg_dump osp > nazwa_pliku
+    
+4. Odzysk Mongo: 
+    mongorestore --db osp /sciezka/do/katalogu
+ 
+5.Odzysk postgres:
+    psql osp < nazwa_pliku
+    
+6. skopiowanie plików video do /home/osp
