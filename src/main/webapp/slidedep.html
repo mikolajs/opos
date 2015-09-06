@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta name="viewport">
+    <link href="/deckjs/core/deck.core.css" rel="stylesheet">
+
+    <link href="/deckjs/themes/style/swiss.css" id="style-theme-link" type="text/css" rel="stylesheet">
+    <link href="/deckjs/themes/transition/fade.css"  rel="stylesheet">
+    <script src="/jquery/jquery.min.js" type="text/javascript"></script>
+    <script src="/deckjs/core/deck.core.js" type="text/javascript"></script>
+
+    <script>
+   var nr = 0;
+   var size = 0;
+   var reload = 0;
+$(document).ready(function() {
+
+        $.deck('.slide');
+
+        var arrayId = new Array();
+
+        $('#slides').children('section').each(function() {
+            arrayId.push('#' + this.id)
+        });
+    $.deck(arrayId);
+    size = arrayId.length - 1;
+
+    setInterval(function() {
+        if(nr < size) {
+            $.deck('next');
+            nr++;
+        }
+        else {
+            $.deck('go', 0);
+            nr = 0;
+            reload++;
+        }
+        reload += 30000;
+        if(reload > 3600000) location.reload();
+    },
+
+    30000);
+
+    });
+
+    function _resize(){
+    	 var h = parseFloat(window.screen.height) - 40.0;
+    	 var w = parseFloat(window.screen.width);
+    	 var prop = 0.0;
+    	 if(w/h < 1.65) {
+    		 prop = (w/1000.0);
+    	 }
+    	 else {
+    		 prop = (h/610.0) ;
+    	 }
+    	 var translateY = parseInt(h/2)-270;
+    	 $('#slides').css('transform', 'scale(' + prop + ', ' + prop + ')' ).css('top', translateY+'px');
+    }
+
+
+
+
+
+
+
+    </script>
+    <style>
+
+
+      .deck-container { width: 95%; margin: 0; }
+
+
+
+    </style>
+
+
+</head>
+<body id="thebody" data-lift="page.SlideDepartSn.data">
+
+<div class="deck-container" id="slides">
+    <section id="slideHTML"></section>
+
+</div>
+
+
+</body>
+</html>

@@ -1,9 +1,9 @@
 .csstransitions.csstransforms .deck-container .slide {
-  -webkit-transition: opacity 500ms ease-in-out 0ms;
-  -moz-transition: opacity 500ms ease-in-out 0ms;
-  -ms-transition: opacity 500ms ease-in-out 0ms;
-  -o-transition: opacity 500ms ease-in-out 0ms;
-  transition: opacity 500ms ease-in-out 0ms;
+  -webkit-transition: opacity 1000ms ease-in-out 0ms;
+  -moz-transition: opacity 1000ms ease-in-out 0ms;
+  -ms-transition: opacity 1000ms ease-in-out 0ms;
+  -o-transition: opacity 1000ms ease-in-out 0ms;
+  transition: opacity 1000ms ease-in-out 0ms;
 }
 .csstransitions.csstransforms .deck-container:not(.deck-menu) > .slide {
   position: absolute;

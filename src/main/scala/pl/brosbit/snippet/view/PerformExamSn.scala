@@ -51,10 +51,10 @@ class PerformExamSn extends BaseSnippet {
           "#test" #> <span style="display:none;"></span> &
           "#saveCode" #> SHtml.submit("Zatwierdź", saveCode)
     }
-    else {
-
-    val group = getGroupNr(exAns.code)
-    val quiz = Quiz.find(exam.quizzes(group)).getOrElse(Quiz.create)
+    else
+    {
+    val idQuiz = if(exam.quizzes.isEmpty) "0" else exam.quizzes.head.toString
+    val quiz = Quiz.find(idQuiz).getOrElse(Quiz.create)
     if(quiz.questions.length < 1) S.redirectTo("/view/exams?Error")
     println("=========  quiz: " + quiz.title + " ; length:  " + quiz.questions.length.toString)
     val questMap = quiz.questions.map(qi => ( qi.q.toString -> qi.p)).toMap

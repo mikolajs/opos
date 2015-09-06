@@ -80,7 +80,8 @@ var LessonEditor = dejavu.Class
 				 autoOpen: false,
                   height: 500,
                   width: 735,
-                  modal: true});
+                  modal: false
+                  });
 				
 				
 				this._bindChapterNameSwitch();

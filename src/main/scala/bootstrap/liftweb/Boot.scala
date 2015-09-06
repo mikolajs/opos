@@ -106,6 +106,7 @@ class Boot {
         Menu("Galeria") / "gallery" / ** >> LocGroup("public"),
         Menu("Kontakt") / "contact" >> LocGroup("public"),
         Menu("Forum") / "forum" >> LocGroup("public"),
+        Menu("Dział Slajdy") / "slidedep" >> LocGroup("extra"),
         Menu("Edycja wątku") / "editthread" / ** >> LocGroup("extra") >> loggedIn,
         Menu("Forum Post") / "forumpost" / ** >> LocGroup("extra"),
         Menu("Login") / "login" >> LocGroup("extra"),

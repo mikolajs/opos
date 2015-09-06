@@ -95,7 +95,7 @@ class BaseShowCourseSn  {
       }
       case "d" => {
         val docModel = docs.find(i => i._id.toString == item.id.drop(1)).getOrElse(Document.create)
-        "<section class=\"document\"> <h2>" + docModel.title + "</h2>\n " + docModel.content + "</section>"
+        "<section class=\"document\"> <h1>" + docModel.title + "</h1>\n " + docModel.content + "</section>"
       }
       case "n" => {
         <section class="notice">{Unparsed(item.descript)}</section>

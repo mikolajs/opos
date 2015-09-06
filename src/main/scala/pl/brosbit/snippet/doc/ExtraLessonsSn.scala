@@ -19,7 +19,8 @@ class ExtraLessonsSn extends BaseDoc {
         ".title *" #> extraLesson.title &
         ".teacher *" #> extraLesson.teacherName &
         ".description *" #> Unparsed(extraLesson.description) &
-        ".when *" #> extraLesson.when
+        ".when *" #> extraLesson.when &
+        "#meetButton [href]" #> ("/documents/addmeetting?id=0&el=" + extraLesson._id.toString)
 
     })
   }
