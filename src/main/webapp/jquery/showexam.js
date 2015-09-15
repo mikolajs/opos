@@ -29,12 +29,16 @@ var ShowExam =  dejavu.Class.declare({
                 if(elems[j].checked) arrayTmp.push(elems[j].value);
            } else arrayTmp.push(elems[j].value);
          }
-         arrayAll.push('{"q": "' + id + '", "a": "' + arrayTmp.join(',;;,') + '", "p": 0 }');
+         var objJson = {};
+         objJson.q = id;
+         objJson.a = arrayTmp.join(',;;,');
+         objJson.p = 0;
+         arrayAll.push(objJson)
          arrayTmp = [];
         });
 
-        $("#answers").val('[' + arrayAll.join(',') + ']');
-        console.log($("#answers").val());
+        $("#answers").val(JSON.stringify(arrayAll));
+        //alert($("#answers").val());
         document.getElementById("answers").onblur();
         window.onbeforeunload = null;
         $('#fixedButton').removeClass('btn-danger').addClass('btn-success');

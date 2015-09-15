@@ -59,7 +59,7 @@ class ExamsSn extends BaseSnippet  {
   }
 
   private def mkAnsDiv(ex: Exam, an: ExamAnswer) = {
-    val points = an.answers.map(_.p).reduce( _ + _)
+    val points = an.answers.map(_.p).foldLeft(0)( _ + _)
     val percent = if(an.max == 0) 0.0F else ((100.0F* points.toFloat) / an.max.toFloat)
     <div class="col-lg-4">
       <h4 class="text-info"> {ex.description} </h4>

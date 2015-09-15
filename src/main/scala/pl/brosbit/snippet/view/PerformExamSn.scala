@@ -75,12 +75,13 @@ class PerformExamSn extends BaseSnippet {
 
 
     val answers = "[" + exAns.answers.map(_.json).mkString(",") + "]"
-
+    println("========= answers: " + answers)
    "#answers" #> SHtml.ajaxText(answers, (data) => {
       println("========== get Answers acctions: " + data)
       exAns.answers = createFromJsonList(data)
       exAns.exam = exam._id
       exAns.authorId = user.id.get
+      exAns.authorName = user.getFullName
       if( (exam.end + 30000L) >= new Date().getTime) exAns.save
   })
  }
@@ -118,7 +119,7 @@ class PerformExamSn extends BaseSnippet {
 
     if(fake.length == 0) {
       if(good.length > 0)  <input type="text" class="form-control" value=""  name={name} />
-      else  <textarea class="form-control" name={name}></textarea>
+      else  <textarea class="form-control" name={name} rows="10"></textarea>
     }
     else {
       val aType = if(good.length > 1 || multi) "checkbox" else "radio"

@@ -5,7 +5,11 @@ import _root_.net.liftweb.mongodb._
 import org.bson.types.ObjectId
 
 case class AnswerItem (var q:String, var a: String, var p: Int) {
-  def json = """ {"q": "%s", "a": "%s" , "p" : "%d" } """.format(q, a, p)
+  import net.liftweb.json.Serialization.write
+  import net.liftweb.json.DefaultFormats
+  //def json = """ {"q": "%s", "a": "%s" , "p" : "%d" } """.format(q, a.replace("\n", "\\n"), p)
+  implicit val formats = DefaultFormats
+  def json = write(this)
 }
 
 

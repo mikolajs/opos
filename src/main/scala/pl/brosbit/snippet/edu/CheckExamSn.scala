@@ -36,7 +36,7 @@ class CheckExamSn {
 
   var nr = 0
 
-  var maxPoints = questItems.map(_._4).reduce((a,b) => a+b)
+  var maxPoints = questItems.map(_._4).foldLeft(0)((a,b) => a+b)
 
  def showAnswers() = {
    "div" #>  questItems.map(q =>

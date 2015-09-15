@@ -134,29 +134,23 @@ var LessonEditor = dejavu.Class
 							//alert("before submit");
 							self.copyFromEditorToInput();
 							//alert($('#extraText').val());
-							var jsonString = "[";
+							var jsonArray = [];
 							$('#lessonList').children('li').each(
 									function() {
 										var $this = $(this);
-										$title = $this.children('.title')
-												.first();
-										var title = $title.text();
-										var id = $title.attr('name');
-										var descript = $this.children(
+										$title = $this.children('.title').first();
+									    var objJson = {};
+										objJson.title = $title.text();
+										objJson.id = $title.attr('name');
+										objJson.descript = $this.children(
 												'.descript').html().toString();
-										var what = $this.children('.what')
-												.children('img').first().attr(
-														'title');
-										jsonString += '{"what": "' + what
-												+ '", "id": "' + id
-												+ '", "title":"' + title
-												+ '", "descript":"' + descript
-												+ '"},';
+										objJson.what = $this.children('.what')
+												.children('img').first().attr('title');
+										jsonArray.push(objJson);
 									});
-							jsonString += "]";
-							$('#json').val(jsonString);
-							$('#extraText').val(
-									$('#extraTextEdit').html().toString());
+
+							$('#json').val(JSON.stringify(jsonArray));
+							$('#extraText').val($('#extraTextEdit').html().toString());
 							//alert($('#extraText').val() + " J: " + jsonString );
 							return true;
 						});
