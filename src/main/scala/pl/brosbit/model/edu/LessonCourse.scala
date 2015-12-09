@@ -5,8 +5,12 @@ import java.util.Date
 import org.bson.types.ObjectId
 
 case class LessonContent(what: String, id: String, title: String, descript: String) {
-  def forJSONStr = "{\"what\":\"" + what + "\",\"id\":\"" + id + "\",\"title\":\"" +
-    title + "\",\"descript\":\"" + descript + "\"}"
+  import net.liftweb.json.Serialization.write
+  import net.liftweb.json.DefaultFormats
+  implicit val formats = DefaultFormats
+  def forJSONStr = write(this)
+ /* def forJSONStr = "{\"what\":\"" + what + "\",\"id\":\"" + id + "\",\"title\":\"" +
+    title + "\",\"descript\":\"" + descript + "\"}"*/
 }
 
 // what: headword - h,  quest - q

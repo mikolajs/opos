@@ -115,6 +115,36 @@ class MainSn {
 
   }
 
+  def submenuTopArticles() = {
+    val allTag = <li><a href="/index/a">Wszystkie</a></li>
+    val newsTags = allTag :: NewsTag.findAll.map(tag => <li><a href={"/index/t?tag=" + tag.tag}>
+      {tag.tag +
+        " (" + tag.count.toString() + ")"}
+    </a></li>).toList
+    val menuNews = List(("Aktualności", newsTags))
+    val pages = ArticleHead.findAll("news" -> false)
+    val menuDep = PageDepartment.findAll(Nil, ("nr" -> 1)).map(pageDep => {
+      (pageDep.name, pages.filter(p => p.departmentId == pageDep._id).map(page =>
+        <a href={"/index/b?i=" + page._id}>
+          {page.title}
+        </a>))
+    })
+    val menu = menuNews ::: menuDep
+
+
+      "li *" #> menu.map(m => {
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+          {m._1} <span class="caret"></span>
+        </a> ++
+        <ul class="dropdown-menu">
+        {m._2.map(ahref => <li>
+          {ahref}
+        </li>)}
+        </ul>
+
+      })
+  }
+
 
   def switchContent() = {
     val what = S.param("w") openOr "a"
