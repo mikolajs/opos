@@ -11,8 +11,11 @@ object SlideDepartSn {
 
 
   def data() = {
-    val dep = S.param("d").getOrElse("")
-    val ahs = ArticleHead.findAll(("news" -> true) ~ ("tags" -> dep))
+    val deps = S.param("d").getOrElse("").split(',').toList
+    val ahs = if(deps.isEmpty && deps.head == "all")
+            ArticleHead.findAll("news" -> true)
+          else
+            ArticleHead.findAll(("news" -> true) ~ ("tags" -> ("$in" -> deps)))
     val acs = ArticleContent.findAll("_id" -> ("$in" -> ahs.map(_.content.toString)))
     //println("============ article content size:  " + acs.length.toString )
     var nr = 0

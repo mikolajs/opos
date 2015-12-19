@@ -20,9 +20,11 @@ class CheckExamSn {
   val ansEx = ExamAnswer.find(ansId).getOrElse(ExamAnswer.create)
   val exam = Exam.find(ansEx.exam.toString).getOrElse(Exam.create)
   val group = getGroupInt
+  //println("GROUP CHeck exam: " + group)
   val quiz = Quiz.find(exam.quizzes(group)).getOrElse(Quiz.create)
+  //println("quizID exam: " + quiz._id.toString + " " + quiz.title)
   val questList = quiz.questions.map(qi => qi.q.toString )
-
+  //println("Quest List exam: " + questList.mkString(", "))
   val questions = QuizQuestion.findAll("_id" -> ("$in" -> questList))
 
 
@@ -48,6 +50,7 @@ class CheckExamSn {
    "em *" #> exam.description &
    "a [href]" #> ("/educontent/showexams/" + exam._id.toString) &
    "#namePupil *" #>  ansEx.authorName &
+   "#codeGroup *" #> ansEx.code &
    "small *" #> exam.className &
    "#max [value]" #> maxPoints.toString
  }
@@ -110,7 +113,7 @@ class CheckExamSn {
         val addC = if(good.exists(_ == ans)) " alert-success" else " alert-danger"
           <div class={"answerBox alert" + addC}  name="one">{Unparsed(ans)}</div>
       }
-      else  <div  name="open" class="well"><pre>{Unparsed(ans)}</pre></div>
+      else  <div  name="open" class="well"><pre>{ans}</pre></div>
     }
     else {
       val ansList = ans.split(",;;,")

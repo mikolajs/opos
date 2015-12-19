@@ -53,7 +53,8 @@ class PerformExamSn extends BaseSnippet {
     }
     else
     {
-    val idQuiz = if(exam.quizzes.isEmpty) "0" else exam.quizzes.head.toString
+
+    val idQuiz = if(exam.quizzes.isEmpty) "0" else exam.quizzes(getGroupInt).toString
     val quiz = Quiz.find(idQuiz).getOrElse(Quiz.create)
     if(quiz.questions.length < 1) S.redirectTo("/view/exams?Error")
     println("=========  quiz: " + quiz.title + " ; length:  " + quiz.questions.length.toString)
@@ -152,7 +153,11 @@ class PerformExamSn extends BaseSnippet {
 
   private def findIfCodeExists(c:String) = !ExamAnswer.findAll("code" -> c).isEmpty
 
-  private def getGroupNr(c:String) =  c.charAt(0).toInt - 'A'.toInt
-
+  private def getGroupInt = {
+    if(exAns.code.isEmpty) 0
+    else {
+      exAns.code.charAt(0).toInt -'A'.toInt
+    }
+  }
 
 }

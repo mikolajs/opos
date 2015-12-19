@@ -6,6 +6,8 @@ organization := "pl.brosbit"
 
 scalaVersion := "2.11.7"
 
+offline := true
+
 resolvers ++= Seq("snapshots" at "http://oss.sonatype.org/content/repositories/snapshots",
 		  "staging" at "http://oss.sonatype.org/content/repositories/staging",
                   "releases" at "http://oss.sonatype.org/content/repositories/releases",
