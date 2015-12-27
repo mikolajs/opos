@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<body class="lift:content_id=main">
+<div id="main" class="lift:surround?with=admin;at=content">
+    <head_merge>
+        <link rel="stylesheet" href="/style/adminsite.css"/>
+        <script type="text/javascript" src="/jquery/mytables.js"></script>
+        <script>
+
+
+
+        function clearForm() {
+            document.getElementById('frm1').reset()
+            document.getElementById('newInfo').innerHTML = "Nowy slajd";
+        }
+
+
+        </script>
+    </head_merge>
+
+    <div class="well">
+        <h3>Edycja danych kontaktowych</h3>
+    </div>
+
+    <div>
+
+        <form class="lift:admin.AdminContactSn.data?form=POST" id="frm1" ><br/>
+            <fieldset>
+                <p><label for="name">Nazwa placówki: </label><input class="form-control" id="name"/></p>
+                <p><label for="patron">Patron: </label><input class="form-control" id="patron"/></p>
+                <p><label for="street">Adres: </label><input class="form-control" id="street"/></p>
+                <p><label for="city">Miejscowość: </label><input class="form-control"  id="city"/></p>
+                <p><label for="phone">Telefon: </label><input class="form-control"  id="phone"/></p>
+                <p><label for="fax">Faks: </label><input class="form-control"  id="fax"/></p>
+                <p><label for="email">E-mail: </label><input class="form-control"  id="email"/></p>
+                <p><label for="maps">Google map (skopiuj tag z iframe): </label><input class="form-control"  id="maps"/></p>
+                <p><input id="save" class="btn btn-success"/>
+                    <input type="button" class="btn btn-default" onclick="clearForm()" value="Czyść!"/></p>
+
+                <p id="notice"></p>
+            </fieldset>
+        </form>
+        <hr/>
+
+
+</div>
+</div>
+</body>
+</html>

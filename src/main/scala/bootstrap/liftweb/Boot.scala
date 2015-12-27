@@ -113,6 +113,7 @@ class Boot {
         Menu("Edytor artykułów") / "editarticle" / ** >> LocGroup("extra") >> isTeacher,
         Menu("Pokaz") / "showslide" / ** >> LocGroup("extra") >> Hidden,
         Menu("Maile kontaktowe") / "admin" / "index" >> LocGroup("admin") >> isAdmin,
+        Menu("Dane kontaktowe") / "admin" / "contact" >> LocGroup("admin") >> isAdmin,
         Menu("Działy BIP") / "admin" / "pages" >> LocGroup("admin") >> isAdmin,
         Menu("Tagi aktualności") / "admin" / "tags" >> LocGroup("admin") >> isAdmin,
         Menu("Linki") / "admin" / "links" >> LocGroup("admin") >> isAdmin,

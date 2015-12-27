@@ -7,7 +7,7 @@
 
 package pl.brosbit.snippet.page
 
-import _root_.scala.xml.{NodeSeq}
+import scala.xml.{Unparsed, NodeSeq}
 import _root_.net.liftweb.util._
 import Mailer._
 import _root_.net.liftweb.common._
@@ -21,6 +21,8 @@ class ContactSn {
 
   val contactMails = ContactMail.findAll.map(contactMail =>
     (contactMail.description -> contactMail.description))
+
+  val contactInfo = MapExtraData.getMapData("contactInfo")
 
   def getData() = {
     val contactMails = ContactMail.findAll
@@ -53,6 +55,19 @@ class ContactSn {
       "#submit" #> SHtml.submit("Wyślij!", sendMail, "onclick" -> "return isValid();")
 
   }
+
+  def mainInfo() = {
+
+    "#nameCont *" #> (if(contactInfo.contains("name")) contactInfo("name") else "") &
+    "#patronCont *" #> (if(contactInfo.contains("patron")) contactInfo("patron") else "")  &
+    "#streetCont *" #> (if(contactInfo.contains("street")) contactInfo("street") else "")  &
+    "#cityCont *" #> (if(contactInfo.contains("city")) contactInfo("city") else "") &
+    "#phoneCont *" #> (if(contactInfo.contains("phone")) contactInfo("phone") else "") &
+    "#faxCont *" #> (if(contactInfo.contains("fax")) contactInfo("fax") else "") &
+    "#mailCont *" #> (if(contactInfo.contains("email")) contactInfo("email") else "") &
+    "iframe" #> (if(contactInfo.contains("maps")) <span>{Unparsed(contactInfo("maps"))}</span> else <span></span>)
+  }
+
 }
 
  

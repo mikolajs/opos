@@ -16,7 +16,9 @@ resolvers ++= Seq("snapshots" at "http://oss.sonatype.org/content/repositories/s
 
 unmanagedResourceDirectories in Test <+= (baseDirectory) { _ / "src/main/webapp" }
 
+
 seq(webSettings :_*)
+
 
 scalacOptions ++= Seq("-deprecation", "-unchecked")
 
@@ -41,5 +43,7 @@ libraryDependencies ++= {
 "com.google.gdata" % "gdata-client-meta-1.0" % gdataVersion % "compile",
 "com.google.gdata" % "gdata-photos-meta-2.0" % gdataVersion % "compile"  )
 }
+
+port in container.Configuration := 9090
 
 

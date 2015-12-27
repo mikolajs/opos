@@ -49,26 +49,22 @@
          $('#ajaxNews').show(100);
     }
 
-         
-         $(function() {
-         $( "#accordion" ).accordion();
-         });
+    function searchGoogle() {
+      var search = $('#toSearch').val();
+      $('#gsc-i-id1').val(search);
+      $(".gsc-search-button").trigger('click');
+    }
 
 
     </script>
     <style>
 
        .secondNavbar {margin-top: -20px;}
-       .dropdown-toggle {color: #2DA8F8; }
+
 
        .actualPage {color: #ccc !important;}
 
 
-        #searchBox input[type=text] {
-        width: 190px;
-        height: 32px;
-        vertical-align: top;
-        }
 
 
         label {
@@ -77,9 +73,7 @@
         padding-right: 20px;
         }
 
-        .gsc-control-cse,.gsc-control-cse-pl {
-        padding: 0 !important;
-        }
+
 
 
         .linkNewsA {
@@ -153,26 +147,47 @@
         #linkarea ul {margin-top:10px;list-style:none;}
         #linkarea ul li{ list-style:none; border-top:solid 1px #414141; padding: 3px 0;}
 
-        .gsc-search-button, .gsc-search-button-v2 { height: 35px !important; width: auto !important; }
-        #gsc-i-id1 {height: auto !important; }
+        .navbar {border-radius: 0px;}
+
+        #searchBox {width:0px; height:0px; }
+        form.gsc-search-box {display:none;}
+
+        .gsc-control-cse {
+        padding: 0 !important;
+        margin: 0 !important;
+        background-color: black;
+        }
+
     </style>
 
 </head_merge>
-    <div class="navbar navbar-default secondNavbar" role="navigation">
+    <div class="navbar navbar-inverse secondNavbar" role="navigation">
         <div class="col-lg-1"></div>
         <div class="col-lg-10">
-            <ul class="nav nav-pills" data-lift="page.MainSn.submenuTopArticles">
+            <ul class="nav navbar-nav " style="margin-left:250px;" data-lift="page.MainSn.submenuTopArticles">
                 <li role="presentation" class="dropdown" >
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                         Dropdown <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#kdl">Akcja 1 </a></li>
-                        <li><a href="kdfkd">Akacja 2</a></li>
+                        <li><a href="#kdl"> </a></li>
                     </ul>
                 </li>
 
             </ul>
+            <ul class="nav navbar-nav navbar-right ">
+                <li class="loginLi">
+                    <div class="navbar-form" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Szukaj z Google" id="toSearch"/>
+                        </div>
+                        <button type="submit" class="btn btn-default" onclick="searchGoogle()">Zatwiedź</button>
+                    </div>
+
+                </li>
+
+
+           </ul>
         </div>
         <div class="col-lg-1"></div>
 
@@ -202,11 +217,28 @@
     <div class="col-lg-1"></div>
     <div class="col-lg-10">
 
+        <div id="searchBox">
+            <script>
+                (function() {
+    var cx = '007556354535223111716:a3pkofbjdzu';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+            </script>
+            <gcse:search></gcse:search>
 
+        </div>
         <div class="row">
 
 
-            <div class="col-lg-9" data-lift="page.MainSn.switchContent">
+            <div class="col-lg-12" data-lift="page.MainSn.switchContent">
+
+                <div id="newsCont">
                 <h1 id="departmentInfo" style="margin: 15px; font-size: 2em;">Aktualności</h1>
 
                 <div class="newsInfo "></div>
@@ -224,35 +256,24 @@
                     <li></li>
                 </ul>
 
-
-
-            </div>
-
-            <div class="col-lg-3">
-                <div id="searchBox">
-                    <script src="/jquery/googlesearch.js">
-
-                    </script>
-                    <gcse:search></gcse:search>
-
                 </div>
-                <div>
-                    <h1 style="margin: 10px; font-size: 2em;">Menu:</h1>
 
-                    <div class="lift:page.MainSn.submenuArticles">
-
-                        <div id="accordion">
-                            <h3>Aktualności</h3>
-
-                            <div>
-                                <ul>
-                                    <li></li>
-                                </ul>
-                            </div>
+                 <div class="row" id="articleCont">
+                        <div class="col-lg-3">
+                         <h2 ><small id="depHeader"></small></h2>
+                         <div class="list-group">
+                            <a class="depMenu"></a>
+                         </div>
                         </div>
-                        <p><span id="addArticleMenu"></span></p>
-                    </div>
+                        <div class="col-lg-9">
+                           <div id="depBody"></div>
+                        </div>
+                 </div>
+
+
+
                 </div>
+
             </div>
 
 

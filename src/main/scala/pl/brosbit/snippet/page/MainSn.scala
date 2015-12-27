@@ -79,41 +79,7 @@ class MainSn {
     })
   }
 
-  def submenuArticles() = {
-    val allTag = <a href="/index/a">Wszystkie</a>
-    val newsTags = allTag :: NewsTag.findAll.map(tag => <a href={"/index/t?tag=" + tag.tag}>
-      {tag.tag +
-        " (" + tag.count.toString() + ")"}
-    </a>).toList
-    val menuNews = List(("Aktualności", newsTags))
-    val pages = ArticleHead.findAll("news" -> false)
-    val menuDep = PageDepartment.findAll(Nil, ("nr" -> 1)).map(pageDep => {
-      (pageDep.name, pages.filter(p => p.departmentId == pageDep._id).map(page =>
-        <a href={"/index/b?i=" + page._id}>
-          {page.title}
-        </a>))
-    })
-    val menu = menuNews ::: menuDep
 
-    "#addArticleMenu" #> <span>
-      {if (isTeacher) <a href="/editarticle/0">
-        <img title="Dodaj artykuł" src="/style/images/article.png"/>
-        Dodaj artykuł</a>}
-    </span> &
-      "#accordion" #> <div id="accordion">
-        {menu.map(m => {
-          <h3>
-            {m._1}
-          </h3>
-            <ul>
-              {m._2.map(ahref => <li>
-              {ahref}
-            </li>)}
-            </ul>
-        })}
-      </div>
-
-  }
 
   def submenuTopArticles() = {
     val allTag = <li><a href="/index/a">Wszystkie</a></li>
@@ -122,14 +88,15 @@ class MainSn {
         " (" + tag.count.toString() + ")"}
     </a></li>).toList
     val menuNews = List(("Aktualności", newsTags))
-    val pages = ArticleHead.findAll("news" -> false)
-    val menuDep = PageDepartment.findAll(Nil, ("nr" -> 1)).map(pageDep => {
-      (pageDep.name, pages.filter(p => p.departmentId == pageDep._id).map(page =>
-        <a href={"/index/b?i=" + page._id}>
-          {page.title}
-        </a>))
-    })
-    val menu = menuNews ::: menuDep
+
+
+    val menuDepCont = PageDepartment.findAll(Nil, ("nr" -> 1)).map(pageDep => {
+      <li><a href={"/index/b?d=" + pageDep._id.toString}>
+        {pageDep.name}
+      </a></li>
+    }).toList
+    val menuDep = List(("O Szkole", menuDepCont))
+    val menu = menuNews ++ menuDep
 
 
       "li *" #> menu.map(m => {
@@ -163,9 +130,10 @@ class MainSn {
       }
       case "b" => {
         val id = S.param("i").openOr("")
-        if (id == "") S.redirectTo("/index")
+        val dep = S.param("d").openOr("")
+        if (dep == "") S.redirectTo("/index")
         else {
-          pageContent(id)
+          pageContent(dep, id)
         }
       }
       case _ => S.redirectTo("/index")
@@ -184,13 +152,14 @@ class MainSn {
 
     val toShowNewses = newses.slice(beginNews, endNews)
     val choiceContent = if (tag == "") "a?p=" else "t?tag=" + tag + "&p="
+    "#articleCont" #> "" &
     ".newsInfo" #> <div>
       {toShowNewses.map(news => createPinBox(news))}
     </div> &
       "li" #> (1 to pages).map(p => {
         <li><a  href={"/index/" + choiceContent + p.toString}
            class={ (if (p == pageInt) "actualPage" else "")}>
-          {pageInt.toString}
+          {p.toString}
         </a></li>
 
 
@@ -295,21 +264,35 @@ class MainSn {
     </div>
   }
 
-  private def pageContent(id: String) = {
+  //!!!!!!!!!!!!!!!!!!poprawić żeby wyświetlała co trzeba (z boku menu i artykuł)
+  private def pageContent(dep: String, id: String) = {
+
     val pageHead = ArticleHead.find(id) match {
       case Some(page) => page
       case _ => {
-        val ph = ArticleHead.create
-        ph.title = "BŁĄD - brak strony"
-        ph
+        ArticleHead.findAll(("news" -> false)) match {
+          case ah::rest => ah
+          case Nil => {
+            val ah = ArticleHead.create
+            ah.title = "Brak strony - błąd"
+            ah
+          }
+        }
       }
 
     }
 
+    val depName:String = PageDepartment.find(dep).getOrElse(PageDepartment.create).name
+
+    val departmentArticles = ArticleHead.findAll(("news" -> false)~("departmentId" -> dep), ("_id" -> -1))
+
     val contentOption = ArticleContent.find(pageHead.content)
 
-    "#departmentInfo" #> <span></span> &
-      ".newsInfo" #> <div id="pagecontent">
+    "#newsCont" #> "" &
+    "#depHeader *" #> depName &
+    ".depMenu" #> departmentArticles.map(d =>
+      <a href={"/index/b?d=" + dep + "&i=" + d._id.toString} class="list-group-item" >{d.title}</a>) &
+      "#depBody" #> <div id="pagecontent">
         <h1>
           {pageHead.title}
         </h1>
@@ -328,8 +311,8 @@ class MainSn {
         </span>
         else <span></span>}
         </p>
-      </div> &
-      ".pagersNews" #> <span></span>
+      </div>
   }
+
 
 }
