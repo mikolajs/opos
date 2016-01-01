@@ -15,7 +15,7 @@ object FileLoader {
 
   def file(idWithExtension: String): Box[LiftResponse] = {
     val id = idWithExtension.split('.').head
-    var outputStream = new ByteArrayOutputStream()
+    val outputStream = new ByteArrayOutputStream()
     var mime = ""
     MongoDB.use(DefaultMongoIdentifier) {
       db =>

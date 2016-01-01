@@ -120,7 +120,8 @@ class Boot {
         Menu("Slajdy") / "admin" / "slides" >> LocGroup("admin") >> isAdmin,
         Menu("Edycja administratorów") / "admin" / "admins" >> LocGroup("admin") >> isAdmin,
         Menu("Sekretariat") / "admin" / "secretariat" >> LocGroup("admin") >> isAdmin,
-        Menu("Indeksowanie Picasa") / "admin" / "picasaindex" >> LocGroup("admin") >> isAdmin,
+        Menu("Galerie zdjęć") / "admin" / "galleries" >> LocGroup("admin") >> isAdmin,
+        Menu("Edycja galerii") / "admin" / "gallery" / ** >> LocGroup("extra") >> isAdmin,
         Menu("Eksporty stron") / "admin" / "pagesexport" >> LocGroup("admin") >> isAdmin,
         Menu("Ideksacja newsów") / "admin" / "reindexnews" >> LocGroup("admin") >> isAdmin,
         Menu("Img") / "imgstorage" >> LocGroup("extra") >> loggedIn,
@@ -272,6 +273,10 @@ class Boot {
       ParsePath("educontent" :: "checkexam" :: examId :: Nil, _, _, _), _, _) =>
         RewriteResponse(
           "educontent" :: "checkexam" :: Nil, Map("id" -> examId))
+      case RewriteRequest(
+      ParsePath("admin" :: "gallery" :: galId :: Nil, _, _, _), _, _) =>
+        RewriteResponse(
+          "admin" :: "gallery" :: Nil, Map("id" -> galId))
       case RewriteRequest(
       ParsePath("view" :: "showheadword" :: subjectId :: Nil, _, _, _), _, _) =>
         RewriteResponse(

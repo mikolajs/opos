@@ -28,10 +28,10 @@ class PicasaIndex {
 
     val apiUrlStr = "https://picasaweb.google.com/data/feed/api/user/"
 
-    val myService: PicasawebService = new PicasawebService("virtual-register")
-
+    val myService: PicasawebService = new PicasawebService("osp-photos")
+    println("Authentication Picasaweb: email %s, password %s".format(email, password))
     myService.setUserCredentials(email, password)
-    val feedUrl: URL = new URL("https://picasaweb.google.com/data/feed/api/user/" + email + "?kind=album")
+    val feedUrl: URL = new URL(apiUrlStr + email + "?kind=album")
 
     val myUserFeed: UserFeed = myService.getFeed(feedUrl, classOf[UserFeed]);
     val albumEntries = bufferAsJavaList(myUserFeed.getAlbumEntries())
@@ -43,7 +43,7 @@ class PicasaIndex {
       gallery.title = myAlbum.getTitle().getPlainText
       gallery.description = myAlbum.getDescription().getPlainText()
 
-      val feedUrl2: URL = new URL("https://picasaweb.google.com/data/feed/api/user/" + email + "/albumid/" + myAlbum.getId.toString.split("/").last)
+      val feedUrl2: URL = new URL(apiUrlStr + email + "/albumid/" + myAlbum.getId.toString.split("/").last)
       val feed: AlbumFeed = myService.getFeed(feedUrl2, classOf[AlbumFeed])
       var photos: List[Photo] = Nil
 

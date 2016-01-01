@@ -10,9 +10,7 @@ offline := true
 
 resolvers ++= Seq("snapshots" at "http://oss.sonatype.org/content/repositories/snapshots",
 		  "staging" at "http://oss.sonatype.org/content/repositories/staging",
-                  "releases" at "http://oss.sonatype.org/content/repositories/releases",
-"Google GData" at "http://mandubian-mvn.googlecode.com/svn/trunk/mandubian-mvn/repository"
-                 )
+                  "releases" at "http://oss.sonatype.org/content/repositories/releases" )
 
 unmanagedResourceDirectories in Test <+= (baseDirectory) { _ / "src/main/webapp" }
 
@@ -24,7 +22,7 @@ scalacOptions ++= Seq("-deprecation", "-unchecked")
 
 libraryDependencies ++= {
   val liftVersion = "2.6.2"
-  val gdataVersion = "1.41.1"
+  val gdataVersion = "1.47.1"
   Seq(
     "net.liftweb" %% "lift-webkit" % liftVersion % "compile",
     "net.liftweb" %% "lift-mapper" % liftVersion % "compile",
@@ -35,13 +33,7 @@ libraryDependencies ++= {
     "ch.qos.logback" % "logback-classic" % "1.0.6",
      "net.liftweb" %% "lift-mongodb" % liftVersion % "compile",	    	
     "postgresql" % "postgresql" % "9.1-901.jdbc4" % "compile", 
-"com.google.gdata" % "gdata-core-1.0" % gdataVersion % "compile",
-"com.google.gdata" % "gdata-base-1.0" % gdataVersion % "compile",
-"com.google.gdata" % "gdata-photos-2.0" % gdataVersion % "compile",
-"com.google.gdata" % "gdata-client-1.0" % gdataVersion % "compile",
-"com.google.gdata" % "gdata-media-1.0" % gdataVersion % "compile",
-"com.google.gdata" % "gdata-client-meta-1.0" % gdataVersion % "compile",
-"com.google.gdata" % "gdata-photos-meta-2.0" % gdataVersion % "compile"  )
+"com.google.gdata" % "core" % gdataVersion % "compile" )
 }
 
 port in container.Configuration := 9090

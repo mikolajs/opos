@@ -22,12 +22,15 @@ class VideoSn extends BaseResourceSn {
 
   def showVideos = {
 
+   val pathVideo = "http://v-" + S.hostName + "/"
+    //println("+++++++++++++++++ hostName Video: " + domain)
+
     "tr" #> Video.findAll(("authorId" -> user.id.get) ~ ("subjectId" -> subjectNow.id)
     ).map(video => {
       <tr id={video._id.toString}>
         <td>
           <a href={if (video.onServer)
-            "http://video.epodrecznik.edu.pl/" + video._id.toString + "." + video.link.split('.').last
+            pathVideo + video._id.toString + "." + video.link.split('.').last
           else "http://youtube.com/embed/" + video.link} target="_blank">
             {video.title}
           </a>

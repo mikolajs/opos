@@ -15,15 +15,17 @@ import _root_.net.liftweb.http.{S}
 import Helpers._
 
 class GallerySn {
-
+  var location = "http://localhost/"
+  //var location = S.hostAndPath
+  println("===== " + S.hostAndPath)
   //dodaje listę galeriigalleryLe
   def drawSlider() = {
     val galleries = Gallery.findAll
-    "li" #> galleries.map(gallery => {
-      <li>
-        <img src={gallery.photos.head.thumbnail} width="144" height="108"
+    ".item" #> galleries.map(gallery => {
+      <div>
+        <img src={location + gallery._id.toString + "/" + gallery.photos.head.thumbnail} title={gallery.title}
              alt={gallery.title} onclick={"window.location='/gallery/" + gallery._id.toString + "'"}/>
-      </li>
+      </div>
     })
   }
 
@@ -48,15 +50,16 @@ class GallerySn {
         }
       }
     }
+    val galId = gallery._id.toString + "/"
     var counter = 0
     "#gallerytitle" #> <span>
       {gallery.title}
     </span> &
-      ".grid_3" #> gallery.photos.map(photo => {
+      "a" #> gallery.photos.map(photo => {
         val extraClass = if (counter % 5 == 0) "alpha" else if (counter % 4 == 0) "omega" else ""
         counter += 1
-        <a href={photo.full} rel="group1">
-          <img src={photo.thumbnail} alt=" " class="frame"/>
+        <a href={location + galId + photo.full} >
+          <img src={location + galId + photo.thumbnail} alt="" />
         </a>
       })
   }

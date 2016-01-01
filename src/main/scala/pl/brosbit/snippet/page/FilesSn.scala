@@ -17,23 +17,16 @@
 
 package pl.brosbit.snippet.page
 
-import _root_.scala.xml.{NodeSeq, Text}
 import _root_.net.liftweb.util._
 import _root_.net.liftweb.common._
-import _root_.pl.brosbit.model.page._
-import _root_.pl.brosbit.model._
+
 import _root_.net.liftweb.http.{S, SHtml, FileParamHolder, RequestVar}
-import _root_.net.liftweb.mapper.{Ascending, OrderBy}
-import _root_.net.liftweb.http.js._
-import JsCmds._
-import JE._
 import Helpers._
 import java.awt.image.BufferedImage
 import java.awt.Image
 import javax.imageio.ImageIO
 import java.io.{File, ByteArrayInputStream, ByteArrayOutputStream, FileOutputStream}
 import com.mongodb.gridfs._
-import com.mongodb._
 import net.liftweb.mongodb.MongoDB
 import _root_.net.liftweb.mongodb.DefaultMongoIdentifier
 
@@ -57,7 +50,7 @@ class FilesSn {
       if (isCorrect) {
         val imageBuf: BufferedImage = ImageIO.read(new ByteArrayInputStream(fileHold.get.file))
         val resizedImageBuf = resizeImageWithProportion(imageBuf, 680)
-        var outputStream = new ByteArrayOutputStream()
+        val outputStream = new ByteArrayOutputStream()
         ImageIO.write(resizedImageBuf, mimeType.substring(1), outputStream)
         val inputStream = new ByteArrayInputStream(outputStream.toByteArray())
         MongoDB.use(DefaultMongoIdentifier) {
