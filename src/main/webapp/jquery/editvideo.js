@@ -76,7 +76,7 @@ var EditVideo = dejavu.Class.declare({
     	$tr.children('td').each(function(index){
     		switch(index){
     		case 0:
-    			document.getElementById('titleAdd').value = $(this).text();
+    			document.getElementById('titleAdd').value = $(this).text().trim();
     			link = self._getIdFromHref($(this).children('a').attr('href'));
     			break;
     		case 1: 
@@ -93,7 +93,7 @@ var EditVideo = dejavu.Class.declare({
     			}
     			break;
     		case 2: 
-    			document.getElementById('descriptAdd').value = $(this).text();
+    			document.getElementById('descriptAdd').value = $(this).text().trim();
     			break;
     		case 3: 
     			self._setSelectOptionDepart(this.innerHTML);

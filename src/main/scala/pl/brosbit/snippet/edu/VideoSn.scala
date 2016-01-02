@@ -21,9 +21,8 @@ import com.mongodb.gridfs._
 class VideoSn extends BaseResourceSn {
 
   def showVideos = {
-
-   val pathVideo = "http://v-" + S.hostName + "/"
-    //println("+++++++++++++++++ hostName Video: " + domain)
+   val pathVideo = S.hostAndPath.split('/').take(3).mkString("/").split(':').take(2).mkString(":") + "/osp/"
+   //println("+++++++++++++++++ hostName Video: " + pathVideo)
 
     "tr" #> Video.findAll(("authorId" -> user.id.get) ~ ("subjectId" -> subjectNow.id)
     ).map(video => {

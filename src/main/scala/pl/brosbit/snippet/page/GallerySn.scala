@@ -15,8 +15,7 @@ import _root_.net.liftweb.http.{S}
 import Helpers._
 
 class GallerySn {
-  var location = "http://localhost/"
-  //var location = S.hostAndPath
+  val location =  S.hostAndPath.split('/').take(3).mkString("/").split(':').take(2).mkString(":") + "/osp/"
   println("===== " + S.hostAndPath)
   //dodaje listę galeriigalleryLe
   def drawSlider() = {

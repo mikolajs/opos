@@ -17,7 +17,7 @@ object Gallery extends MongoDocumentMeta[Gallery] {
 
   override def formats = super.formats + new ObjectIdSerializer + new DateSerializer
 
-  def create = new Gallery(ObjectId.get, "Brak galerii", "", Nil)
+  def create = new Gallery(ObjectId.get, "", "", Nil)
 }
 
 case class Gallery(var _id: ObjectId, var title: String, var description: String,

@@ -8,7 +8,7 @@
         $(document).ready(function(){
             $("#indexedVideos").children("li").click(function() {
                 var $li = $(this);
-                var path = $li.children("strong").text();
+                var path = $li.children("strong").text().trim();
                 var mimeType = $li.children("em").text();
                 document.getElementById("mime").value = mimeType;
                 document.getElementById("path").value = path;

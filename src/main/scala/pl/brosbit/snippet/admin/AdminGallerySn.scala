@@ -15,7 +15,7 @@ class AdminGallerySn {
   var videoItems: scala.collection.mutable.ListBuffer[File] = scala.collection.mutable.ListBuffer()
   println("start index photos")
   lazy val pathGallery = "/home/osp/"
-
+  lazy val  pathMedia =  S.hostAndPath.split('/').take(3).mkString("/").split(':').take(2).mkString(":")  + "/osp/"
 
  def listGallery() = {
 
@@ -31,14 +31,11 @@ class AdminGallerySn {
 
    var title = gal.title
    var descript = gal.description
-   //na testy na laptopie
-   var pictures = gal.photos.map(ph => "http://localhost/" + gal._id.toString + "/" + ph.thumbnail).mkString(";")
-   //na serwer
- ///var pictures = gal.photos.map(ph => "http://m" + S.hostAndPath +  "/" + gal._id.toString + "/" + ph.thumbnail).mkString(";;;")
+   var pictures = gal.photos.map(ph => pathMedia + gal._id.toString + "/" + ph.thumbnail).mkString(";")
+
 
    def save() {
      if(title.trim.isEmpty) return
-     //S.notice("Brak tytułu!")
      val files : List[FileParamHolder] = S.request.map(_.uploadedFiles) openOr Nil
      val newPhotos = files.map(f => Photo("t_" + f.fileName, f.fileName )).filterNot(p => p.full.trim.isEmpty)
      println("======Dodane: " + newPhotos.mkString)
@@ -114,7 +111,7 @@ class AdminGallerySn {
          val path = Paths.get(fFull.getAbsolutePath)
          Files.write(path, outputStream.toByteArray())
          outputStream.close()
-         val resizedImageBuf2 = resizeImageWithProportion(imageBuf, 144, mimeLast)
+         val resizedImageBuf2 = resizeImageThumbSquare(imageBuf, 100, mimeLast)
          val outputStream2 = new ByteArrayOutputStream()
          ImageIO.write(resizedImageBuf2, mimeLast, outputStream2)
          val path2 = Paths.get(fThumb.getAbsolutePath)
@@ -170,6 +167,28 @@ class AdminGallerySn {
     }
     imageBufferOut
   }
+
+  private def resizeImageThumbSquare(imageBuf: BufferedImage, dimension: Int, mime:String): BufferedImage = {
+    val bufferedImageTYPE = getImageType(mime)
+    val width = imageBuf.getWidth
+    val height = imageBuf.getHeight
+    var imageBufferOut: BufferedImage = if(width > height) {
+      val start = (width - height) / 2
+      imageBuf.getSubimage(start, 0,  width - 2*start, height)
+    } else {
+      val start = (height - width) / 2
+      imageBuf.getSubimage(0, start,  width, height - 2*start)
+    }
+
+    val image: java.awt.Image = imageBufferOut.getScaledInstance(dimension, dimension, Image.SCALE_SMOOTH)
+    imageBufferOut = new BufferedImage(dimension, dimension, bufferedImageTYPE)
+    imageBufferOut.getGraphics.drawImage(image, 0, 0, null)
+
+
+    imageBufferOut
+  }
+
+
   private def getImageType(mimeType:String) = if (mimeType == "jpeg" || mimeType == "jpg") BufferedImage.TYPE_INT_RGB
   else BufferedImage.TYPE_INT_ARGB
 }
