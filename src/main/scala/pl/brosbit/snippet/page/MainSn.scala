@@ -6,12 +6,10 @@
 
 package pl.brosbit.snippet.page
 
-import java.util.Date
-import scala.xml.{NodeSeq, Unparsed, Text}
+import scala.xml.{Unparsed}
 import _root_.net.liftweb._
 import util._
 import common._
-import mongodb.Limit
 import _root_.pl.brosbit._
 import model.page._
 import model._
@@ -20,12 +18,8 @@ import _root_.net.liftweb.mapper.By
 import _root_.net.liftweb.http.{S, SHtml}
 import Helpers._
 import _root_.net.liftweb.json.JsonDSL._
-import _root_.net.liftweb.json.JsonAST._
-import com.mongodb.DBObject
 import http.js.JsCmds.SetHtml
-import net.liftweb.json.JsonAST
 
-//import com.mongodb.QueryBuilder
 
 class MainSn {
 
@@ -153,6 +147,7 @@ class MainSn {
     val toShowNewses = newses.slice(beginNews, endNews)
     val choiceContent = if (tag == "") "a?p=" else "t?tag=" + tag + "&p="
     "#articleCont" #> "" &
+    "#departmentInfo *" #> tag &
     ".newsInfo" #> <div>
       {toShowNewses.map(news => createPinBox(news))}
     </div> &
@@ -264,13 +259,13 @@ class MainSn {
     </div>
   }
 
-  //!!!!!!!!!!!!!!!!!!poprawić żeby wyświetlała co trzeba (z boku menu i artykuł)
+
   private def pageContent(dep: String, id: String) = {
 
     val pageHead = ArticleHead.find(id) match {
       case Some(page) => page
       case _ => {
-        ArticleHead.findAll(("news" -> false)) match {
+        ArticleHead.findAll(("news" -> false)~("departmentId" -> dep), ("_id" -> -1) ) match {
           case ah::rest => ah
           case Nil => {
             val ah = ArticleHead.create

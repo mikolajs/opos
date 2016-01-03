@@ -8,7 +8,7 @@
         <script>
         function getImageURLfromIFrame(elem){
         	var innerDoc = elem.contentDocument || elem.contentWindow.document;
-        	var url  = innerDoc.getElementById('linkpath').innerHTML;
+        	var url  = innerDoc.getElementById('linkpath').innerHTML.trim();
         	$('#link').val(url);
         }
         
@@ -26,13 +26,13 @@
             $ele.children('td').each(function(index){
             	switch(index){
             	case 0:
-            		document.getElementById('link').value = $(this).children('img').attr('src');
+            		document.getElementById('link').value = $(this).children('img').attr('src').trim();
             	    break;
             	case 1:
-            		document.getElementById('description').value = this.innerHTML;
+            		document.getElementById('description').value = this.innerHTML.trim();
             		break;
             	case 2: 
-            		document.getElementById('htmlContent').value = this.innerHTML;
+            		document.getElementById('htmlContent').value = this.innerHTML.trim();
             		break;
             	default:
             		break;
@@ -65,7 +65,7 @@
                 <h2 id="newInfo">Nowy slajd</h2>
 
                 <p><input id="id"/></p>
-                <p><label for="description">Opisk: </label><input class="form-control" id="description"/></p>
+                <p><label for="description">Opis: </label><input class="form-control" id="description"/></p>
                 <p><label for="htmlContent">Zawartość: </label>
                     <textarea class="form-control" id="htmlContent" rows="5"></textarea>
                 </p>

@@ -1,6 +1,6 @@
 name := "osp"
 
-version := "0.6.2"
+version := "0.6.3"
 
 organization := "pl.brosbit"
 
@@ -32,8 +32,7 @@ libraryDependencies ++= {
     "org.eclipse.jetty" % "jetty-plus"   % "9.1.0.v20131115" % "container",
     "ch.qos.logback" % "logback-classic" % "1.0.6",
      "net.liftweb" %% "lift-mongodb" % liftVersion % "compile",	    	
-    "postgresql" % "postgresql" % "9.1-901.jdbc4" % "compile", 
-"com.google.gdata" % "core" % gdataVersion % "compile" )
+    "postgresql" % "postgresql" % "9.1-901.jdbc4" % "compile")
 }
 
 port in container.Configuration := 9090
