@@ -73,7 +73,7 @@ var EditArticle =  dejavu.Class.declare({
 
     insertThumbnailPreviewSource : function(){
 		var src = document.getElementById("thumbnail").value;
-	    if(src.length > 20) document.getElementById("thumbPreview").setAttribute("src",src);
+	    if(src.length > 10) document.getElementById("thumbPreview").setAttribute("src",src);
 	},
 
     switchTagsDepart : function(elem) {
@@ -93,7 +93,7 @@ var EditArticle =  dejavu.Class.declare({
 	  var $html = $($("#editor").val());
       var $img = $html.find("img").first();
       var src = $img.attr("src");
-      if(!src || src.length < 10) src = "/style/images/nothumb.png";
+      if(!src || src.length < 10) src = "/images/nothumb.png";
       document.getElementById("thumbnail").value = src;
       document.getElementById("thumbPreview").setAttribute("src",src);
       return false;

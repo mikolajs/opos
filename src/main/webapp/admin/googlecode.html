@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<body class="lift:content_id=main">
+<div id="main" class="lift:surround?with=admin;at=content">
+    <head_merge>
+        <script>
+
+
+
+        function clearForm() {
+            document.getElementById('frm1').reset()
+            document.getElementById('newInfo').innerHTML = "Nowy slajd";
+        }
+
+
+        </script>
+    </head_merge>
+
+    <div class="well">
+        <h3>Edycja kodu wyszukiwania stron <small> Skopiuj z Google</small></h3>
+    </div>
+
+    <div>
+
+        <form data-lift="admin.AdminSearchGoogleSn.show" method="POST" id="frm1" ><br/>
+            <fieldset>
+                <p><label for="code">Kod z Google: </label><textarea rows="10" class="form-control" id="code"></textarea></p>
+                <p><input id="save" class="btn btn-success"/></p>
+
+                <p id="notice"></p>
+            </fieldset>
+        </form>
+        <hr/>
+
+
+    </div>
+</div>
+</body>
+</html>

@@ -3,7 +3,6 @@
 <body class="lift:content_id=main">
 <div id="main" class="lift:surround?with=admin;at=content">
     <head_merge>
-         <link rel="stylesheet" href="/style/adminsite.css" />
           <script type="text/javascript" src="/jquery/mytables.js"></script>
         <script>
         $(document).ready(function(){
@@ -19,10 +18,10 @@
             $elem.children('td').each(function(index){
             	 switch (index) {
             	 case 0:
-            		 document.getElementById('order').value= this.innerHTML;
+            		 document.getElementById('order').value = this.innerHTML.trim();
             		 break;
             	 case 1: 
-            		 document.getElementById('name').value= this.innerHTML;
+            		 document.getElementById('name').value = this.innerHTML.trim();
             		 break;
             	default:
             		break;
@@ -51,16 +50,18 @@
 <form class="lift:admin.AdminDepartmentsSn.addDepartment?form=POST" id="frm1" onsubmit="validateForm()"><br />
 <fieldset><legend>Edycja działów w aktualnościach szkoły</legend>
 <p><input id="id" /></p>
-<p><label for="order">Kolejność:</label><input id="order"  type="text" style="width:40px;" /></p>
-<p><label for="name">Nazwa: </label><input id="name" /></p> 
-<p><input id="save" /><input id="delete" />
- <input type="submit" onclick="return clearForm()" value="Czyść!" /></p>
+<p><label for="order">Kolejność:</label><input id="order"  class="form-control" type="text" style="width:40px;" /></p>
+<p><label for="name">Nazwa: </label><input id="name" class="form-control" /></p>
+<p><input id="save" class="btn btn-success" />
+ <input type="submit" class="btn btn-default" onclick="return clearForm()" value="Czyść!" />
+    <input id="delete" class="btn btn-danger"/>
+</p>
 <p id="notice"></p>
 </fieldset>
 </form>
 <hr />
 <div class="tables">
-<table><thead><tr><th>Kolejność</th><th>Nazwa</th></tr></thead>
+<table class="table table-striped"><thead><tr><th>Kolejność</th><th>Nazwa</th></tr></thead>
     <tbody class="lift:admin.AdminDepartmentsSn.departments"> </tbody>
 </table>
 </div>

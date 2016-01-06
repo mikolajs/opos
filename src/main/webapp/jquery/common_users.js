@@ -105,14 +105,14 @@ function toggleScratch(elem){
     if (isScratched) {
         if(confirm('Chcesz przywrócić użytkownika?')) {
             $tr.removeClass('scratched');
-            $input.attr('src','/style/images/delico.png');
+            $input.attr('src','/images/delico.png');
             addDataToUsersArray($tr);
         } 
     }
     else {
         if(confirm('Chcesz skreślić użytkownika?')) {
             $tr.addClass('scratched'); 
-            $input.attr('src','/style/images/addico.png'); 
+            $input.attr('src','/images/addico.png');
             addDataToUsersArray($tr);
         }      
     }   

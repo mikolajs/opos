@@ -35,8 +35,8 @@ class VideoSn extends BaseResourceSn {
           </a>
         </td>
         <td>
-          {if (video.onServer) <img src="/style/images/video.png"/>
-        else <img src="/style/images/youtube.png"/>}
+          {if (video.onServer) <img src="/images/video.png"/>
+        else <img src="/images/youtube.png"/>}
         </td>
         <td>
           {video.descript}

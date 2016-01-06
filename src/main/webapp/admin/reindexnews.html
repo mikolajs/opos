@@ -3,7 +3,6 @@
 <body class="lift:content_id=main">
 <div id="main" class="lift:surround?with=admin;at=content">
 <head_merge>
- <link rel="stylesheet" href="/style/adminsite.css" />
   <script type="text/javascript" src="/jquery/mytables.js"></script>
         <script>
         $(document).ready(function(){
@@ -21,13 +20,13 @@
 <h1>Ponowne indeksowanie ilości artykułów według tagów</h1>
 <form class="lift:admin.AdminAddTagsSn.indexTags" method="POST" id="frm2"><br />
 <fieldset>
-<p><input id="save"  value="Ponownie indeksuj"/> </p>
+<p><input id="save"  class="btn btn-success" value="Ponownie indeksuj"/> </p>
 <p id="notice"></p>
 </fieldset>
 </form>
 <hr />
 <div class="tables">
-<table><thead><tr><th>Nazwa</th></tr></thead>
+<table class="table table-striped"><thead><tr><th>Nazwa</th></tr></thead>
     <tbody class="lift:admin.AdminAddTagsSn.tagsList"><tr></tr> </tbody>
 </table>
 </div>

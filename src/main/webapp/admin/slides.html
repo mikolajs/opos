@@ -3,7 +3,6 @@
 <body class="lift:content_id=main">
 <div id="main" class="lift:surround?with=admin;at=content">
     <head_merge>
-        <link rel="stylesheet" href="/style/adminsite.css"/>
         <script type="text/javascript" src="/jquery/mytables.js"></script>
         <script>
         function getImageURLfromIFrame(elem){
@@ -81,8 +80,11 @@
             </fieldset>
         </form>
         <hr/>
+        <p>Slajdy powinny mieć proporcje 3:1, optymalna wysokość to 400px</p>
+        <iframe onload="getImageURLfromIFrame(this)" src='/imgstorage' width='95%' height='170px'><p>Brak obsługi ifame!</p></iframe>
+        <hr/>
         <div class="tables">
-            <table>
+            <table class="table table-striped">
                 <thead>
                 <tr>
                     <th width="310px">Podgląd</th>
@@ -96,9 +98,9 @@
             </table>
         </div>
         <div class="alert alert-info">Kliknij dwukrotnie na wybranym slajdzie, aby go edytować</div>
-        <hr/>
-        <p>Slajdy powinny mieć proporcje 3:1, optymalna wysokość to 400px</p>
-        <iframe onload="getImageURLfromIFrame(this)" src='/imgstorage' width='95%' height='250px'><p>Brak obsługi ifame!</p></iframe>
+
+
+
 
     </div>
 

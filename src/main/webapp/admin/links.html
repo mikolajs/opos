@@ -4,64 +4,60 @@
 <body class="lift:content_id=main">
 <div id="main" class="lift:surround?with=admin;at=content">
     <head_merge>
-      <link rel="stylesheet" href="/style/adminsite.css" />
         <script>
-            
-            var isEdited = false;
-            var $edited = $();
+
 
             function addRow(elem) {
                 var $elem = $(elem);
-                var $name = $elem.parent('td').parent('tr').children('td').children('.addLinkNameInput');
-                var name = jQuery.trim($name.val());
-                $name.val('');
-                var $url = $elem.parent('td').parent('tr').children('td').children('.addLinkUrlInput');
-                var url = jQuery.trim($url.val());
-                $url.val('');
-                $elem.parent().parent().parent().parent().children('tbody').append(
-                '<tr class="linkTr" onclick="editLink(this)" ><td class="nameLink">' + name + '</td><td class="urlLink">' + url +
-                    '</td><td class="buttonLink"></td></tr>');
-            }
-
-            function editLink(elem) {
-                if (elem.id=='edited') return;
-                if (isEdited) closeEdit();              
-
-                isEdited = true;
-                $edited = $(elem);
-                $edited.attr('id','edited');
-                var name = $edited.children('.nameLink').text();
-                var url = $edited.children('.urlLink').text();
-                $edited.children('.nameLink').text('');
-                $edited.children('.urlLink').text('');
-                $edited.children('.nameLink').append('<input type="text" value="' + name +'" />');
-                $edited.children('.urlLink').append('<input type="text" value="' + url +'" />');
-                $edited.children('.buttonLink').append('<input type="image" src="/style/images/delico.png" onclick="deleteRow(this)"/>');
-
+                var $name = $elem.parent('td').parent('tr').children('td').children('input.addLinkNameInput');
+                var name = $name.val().trim();
+                var $url = $elem.parent('td').parent('tr').children('td').children('input.addLinkUrlInput');
+                var url = $url.val().trim();
+                if(name.length > 2 && url.length > 8) {
+                     $name.val('');
+                     $url.val('');
+                    $elem.parent().parent().parent().parent().children('tbody').append(
+                    '<tr class="linkTr"><td class="nameLink">' + name + '</td><td class="urlLink">' + url +
+                    '</td><td><button class="btn btn-danger" onclick="delLink(this)" >' +
+                    '<span class="glyphicon glyphicon-remove"></span></button></td></tr>');
+                } else alert("Za krótkia nazwa lub adres " + url + ' ' + name);
 
             }
 
-            function closeEdit() {
-               var $name = $edited.children('.nameLink').children('input');
-               var name = $name.val();
-               var $url = $edited.children('.urlLink').children('input');
-               var url = $url.val();
-               $name.remove();
-               $url.remove();
-               $edited.children('.buttonLink').children('input').remove();
-               $edited.children('.nameLink').text(name);
-               $edited.children('.urlLink').text(url);
-               $edited.removeAttr('id');
+            function cleanRow(elem) {
+              var $foot = $(elem).parent('td').parent('tr').parent('tfoot');
+              $foot.children('tr').children('td').children('input').val('');
             }
 
-            function deleteRow(elem){
-                $(elem).parent().parent().remove();
+            function delLink(elem){
+                var $tr = $(elem).parent().parent();
+                var $table = $tr.parent().parent();
+                var name = "";
+                var link = "";
+                $tr.children('td').each( function(index) {
+                   switch(index) {
+                    case 0:
+                     name = this.innerHTML.trim();
+                     break;
+                    case 1:
+                     link = this.innerHTML.trim();
+                     break;
+                    default:
+                     break;
+                   }
+                });
+                $tr.remove();
+                $table.children('tfoot').children('tr').children('td').children('input').each(function(){
+                    $inp = $(this);
+                    if($inp.hasClass('addLinkNameInput')) $inp.val(name);
+                    if($inp.hasClass('addLinkUrlInput')) $inp.val(link);
+                });
             }
 
             function saveAll() {
                 if (saveAllHelper()) {
                     var xml  = document.getElementById('xmlData').value;
-                    alert('OK: ' + xml);
+                    console.log('OK: ' + xml);
                     return true;
                 }
                 else {
@@ -71,20 +67,18 @@
             }
 
             function saveAllHelper() {
-                if (isEdited) closeEdit();
                 var isError = false;
                 var xmlStr = "<root>";
-                //$('#linksCont').css('background-color','red');
                 $('#linksCont').children('fieldset').each(function() {
-                    var name = $(this).children('.nameDep').val();
+                    var name = $(this).children('div.form-inline').children('div.form-group').children('.nameDep').val().trim();
                     var value = "";
-                    name = jQuery.trim(name);
+                    console.log('nazwa działu: ' + name);
                     if (name.length < 3) {
-                        $(this).children('.nameError').text('Za krótka nazwa');
+                        $(this).children('div.form-inline').children('div.form-group').children('.nameError').text('Za krótka nazwa');
                         isError = true;
                         return;
                     }
-                    else $(this).children('.nameError').text('');
+                    else $(this).children('div.form-inline').children('div.form-group').children('.nameError').text('');
                     xmlStr += '<links name="';
                     xmlStr += name;
                     xmlStr += '">';
@@ -135,28 +129,41 @@
             }
 
             function deleteDepartment(elem) {
-                $(elem).parent().hide(400, function()  {
+                $(elem).parent().parent().parent().hide(400, function()  {
                     $(this).remove();
                 });
             }
 
             function newDepartment() {
-                var divDep  = '<fieldset class="divDepartment"> \
-                    <strong class="nameDepartment">Nazwa działu: </strong><input type="text" class="nameDep" value="" /> \
-                <span class="nameError"></span> \
-                <img type="image" src="/style/images/delico.png" onclick="deleteDepartment(this)"  /> \
+
+                var divDep = '<fieldset class="divDepartment"> \
+                <div class="form-inline"> \
+                    <div class="form-group"><strong class="nameDepartment">Nazwa działu: </strong> \
+                    <input class="nameDep form-control" /> \
+                    <span class="nameError"></span> \
+                     <button class="btn btn-danger" onclick="deleteDepartment(this)"> \
+                    <span class="glyphicon glyphicon-remove"></span> Usuń cały dział \
+                </button></div> \
+                </div> \
                 <div class="tables"> \
-                <table> \
+                <table class="table table-striped"> \
                     <thead><tr><th>Nazwa</th><th>Link</th><th></th></tr></thead> \
-                    <tfoot><tr><td><input type="text" class="addLinkNameInput" /></td> \
-                <td><input type="text" class="addLinkUrlInput" /></td> \
-                <td><input type="image" src="/style/images/addico.png" value="DODAJ" onclick="addRow(this)"/></td> \
-            </tr> \
-                       </tfoot> \
                     <tbody ></tbody> \
-                </table>  \
+                    <tfoot> \
+                        <tr><td><input type="text" class="addLinkNameInput form-control" /></td> \
+                <td><input type="text" class="addLinkUrlInput form-control" /></td> \
+                <td><button class="btn btn-success" onclick="addRow(this)" title="Dodaj"> \
+                    <span class="glyphicon glyphicon-plus"></span> \
+                </button> \
+                 <button class="btn btn-default" onclick="cleanRow(this)" title="Czyść"> \
+                        <span class="glyphicon glyphicon-erase"></span> \
+                 </button> \
+                </td> \
+            </tr></tfoot> \
+                </table> \
                 </div> \
                 </fieldset>';
+
             $("#linksCont").prepend(divDep);
             }
 	</script>
@@ -171,32 +178,48 @@
             <h2>Edycja linków</h2><br/>
             <div class="lift:admin.AdminEditLinksSn.showLinks" id="linksCont">
                 <fieldset class="divDepartment">
-                <strong class="nameDepartment">Nazwa działu: </strong><input class="nameDep" />
-                <span class="nameError"></span>
-                <input  type="image" src="/style/images/delico.png" onclick="deleteDepartment(this)"  />
+                <div class="form-inline">
+                    <div class="form-group"><strong class="nameDepartment">Nazwa działu: </strong>
+                    <input class="nameDep form-control" />
+                    <span class="nameError"></span>
+                     <button class="btn btn-danger" onclick="deleteDepartment(this)">
+                    <span class="glyphicon glyphicon-remove"></span> Usuń cały dział
+                </button></div>
+                </div>
                 <div class="tables">
-                <table>
-                    <thead><tr><th>Nazwa</th><th>Link</th><th></th></tr></thead>
+                <table class="table table-striped">
+                    <thead><tr><th>Nazwa</th><th>Link</th><th>Akcje</th></tr></thead>
                     <tfoot>
-                        <tr><td><input type="text" class="addLinkNameInput" /></td>
-                <td><input type="text" class="addLinkUrlInput" /></td>
-                <td><input type="image" src="/style/images/okico.png" onclick="addRow(this)"/></td>
+                        <tr><td><input type="text" class="addLinkNameInput form-control" /></td>
+                <td><input type="text" class="addLinkUrlInput form-control" /></td>
+                <td><button class="btn btn-success" onclick="addRow(this)" title="Dodaj">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+                    <button class="btn btn-default" onclick="cleanRow(this)" title="Czyść">
+                        <span class="glyphicon glyphicon-erase"></span>
+                    </button>
+                </td>
             </tr></tfoot>
-                    <tbody ><tr class="linkTr" onclick="editLink(this)"><td class="nameLink"></td>
-                            <td class="urlLink"></td><td class="buttonLink"></td></tr></tbody>
-                    
+                    <tbody ><tr class="linkTr"><td class="nameLink"></td>
+                            <td class="urlLink"></td><td class="buttonLink"></td>
+                            <td><button class="btn btn-danger" onclick="delLink(this)" >
+                            <span class="glyphicon glyphicon-remove"></span></button></td>
+                             </tr>
+                    </tbody>
                 </table>
                 </div>
                 </fieldset>
                 <br/>
-                <label>Nowy dział </label><input type="image" src="/style/images/addico.png" onclick="newDepartment()" />
+                <button class="btn btn-success" onclick="newDepartment()">
+                    <span class="glyphicon glyphicon-plus"></span> Dodaj dział linków
+                </button>
             </div>
         <hr/>
         <iframe src='/filestorage' width='95%' height='150px'><p>Brak obsługi ifame!</p></iframe>
         <hr />
 		<form class="lift:admin.AdminEditLinksSn.addLinks" method="POST" id="frm2">
-			<input id="xmlData" />
-			<input id="submit" /> 
+			<input id="xmlData"  />
+			<input id="submit" class="btn btn-success" />
                 </form>
     </div>
                

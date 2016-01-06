@@ -19,7 +19,7 @@ import scala.xml.UnprefixedAttribute
 class ArticleEditSn {
 
   val pageTypes = Map(true -> "Aktualności", false -> "Artykuły")
-
+  val thumbDefault = "/images/nothumb.png"
   def editPage() = {
 
     var id = S.param("id").openOr("")
@@ -51,13 +51,13 @@ class ArticleEditSn {
       case _ => {
         //nie znaleziono wpisu
         pageType = pageTypes(true)
-        thumbnailLink = "/style/images/nothumb.png"
+        thumbnailLink = thumbDefault
       }
     }
     else {
       //nowy wpis
       pageType = pageTypes(true)
-      thumbnailLink = "/style/images/nothumb.png"
+      thumbnailLink = thumbDefault
     }
 
     def save() {
@@ -74,13 +74,12 @@ class ArticleEditSn {
           newsHead.tags = newTags
           updateNewsTags(toAddTags, toDeleteTags)
           newsHead.introduction = introduction
-          newsHead.thumbnailLink = if (thumbnailLink == "") "/style/images/nothumb.png"
-          else thumbnailLink
-          //println("Save news with origin link: %s, and new %s".format(newsHead.thumbnailLink,thumbnailLink))
+          newsHead.thumbnailLink = if (thumbnailLink.trim() == "") thumbDefault
+          else thumbnailLink.trim
         } else {
           if (departId.length() > 20) newsHead.departmentId = new org.bson.types.ObjectId(departId)
         }
-        val user = User.currentUser.get
+        val user = User.currentUser.openOrThrowException("Brak użytkownika")
         val articleContent = ArticleContent.find(newsHead.content).getOrElse(ArticleContent.create)
         articleContent.content = content
         articleContent.save

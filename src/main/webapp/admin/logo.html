@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<body class="lift:content_id=main">
+<div id="main" class="lift:surround?with=admin;at=content">
+    <head_merge>
+        <link rel="stylesheet" href="/style/adminsite.css"/>
+        <script>
+
+
+
+        function clearForm() {
+            document.getElementById('frm1').reset()
+            document.getElementById('newInfo').innerHTML = "Nowy slajd";
+        }
+
+
+        </script>
+    </head_merge>
+
+    <div class="well">
+        <h3>Dodawanie logo i favicon <small> Logo do 40px na 230 px, favicon 32 na 32 px</small></h3>
+    </div>
+
+    <div>
+
+        <form data-lift="admin.AdminLogoSn.show" method="POST" id="frm1" enctype="multipart/form-data">
+            <div class="row" >
+                <div class="jumbotron">
+                <div class="col-lg-6 ">Logo: <img id="logoImg" src="" /> </div>
+                <div class="col-lg-6 ">Favicon: <img id="faviconImg" src="" /></div>
+                </div>
+            </div>
+            <fieldset>
+
+                <p><label for="logo">Logo: </label><input rows="10" class="form-control" id="logo"/></p>
+                <p><label for="favicon">Favicon: </label><input rows="10" class="form-control" id="favicon"/></p>
+                <p><input id="save" class="btn btn-success"/></p>
+
+                <p id="notice"></p>
+            </fieldset>
+        </form>
+        <hr/>
+
+
+    </div>
+</div>
+</body>
+</html>

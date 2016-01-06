@@ -3,7 +3,7 @@
 <body class="lift:content_id=main">
 <div id="main" class="lift:surround?with=admin;at=content">
     <head_merge>
-     <link rel="stylesheet" href="/style/adminsite.css" />
+
         <script>
                     function checkPass() {
                         var pass1 = document.getElementById('pass1').value;
@@ -29,16 +29,16 @@
                     	$(elem).children('td').each(function(index){
                     		switch(index){
                     		case 0:
-                    			document.getElementById("id").value = this.innerHTML;
+                    			document.getElementById("id").value = this.innerHTML.trim();
                     			break;
                     		case 1:
-                    			document.getElementById("firstname").value = this.innerHTML;
+                    			document.getElementById("firstname").value = this.innerHTML.trim();
                     			break;
                     		case 2:
-                    			document.getElementById("lastname").value = this.innerHTML;
+                    			document.getElementById("lastname").value = this.innerHTML.trim();
                     			break;
                     		case 3:
-                    			document.getElementById("email").value = this.innerHTML;
+                    			document.getElementById("email").value = this.innerHTML.trim();
                     			break;
                     		default:
                     			break;
@@ -59,22 +59,23 @@
 
 <form class="lift:admin.AdminEditAdminsSn.editAdmin" method="POST" id="frm1"><br />
 <fieldset><legend>Zmiana hasła administratora</legend>
-<p><label for="id">Id:</label><input id="id" readonly="readonly"/></p>
-<p><label for="firstname">Imię:</label><input id="firstname" /></p>
-<p><label for="lastname">Nazwisko:</label><input id="lastname" /></p>
-<p><label for="email">E-mail:</label><input id="email" /></p>
-<p><label for="password1">Hasło:</label><input id="password1" /></p>
-<p><label for="password2">Potwierdź hasło:</label><input id="password2" /> </p>
-<p><input id="save" /> 
-<input id="delete"  onclick="return confirm('Jesteś pewien, że chcesz usunąć administratora?'');"/>
-<input id="reset" type="reset" value="Nowy" onclick="return clearForm();"/></p>
+<p><label for="id">Id:</label><input class="form-control" id="id" readonly="readonly"/></p>
+<p><label for="firstname">Imię:</label><input class="form-control" id="firstname" /></p>
+<p><label for="lastname">Nazwisko:</label><input class="form-control" id="lastname" /></p>
+<p><label for="email">E-mail:</label><input class="form-control" id="email" /></p>
+<p><label for="password1">Hasło:</label><input class="form-control" id="password1" /></p>
+<p><label for="password2">Potwierdź hasło:</label><input class="form-control" id="password2" /> </p>
+<p><input id="save" class="btn btn-success"/>
+<input id="reset" type="reset" value="Nowy" onclick="return clearForm();" class="btn btn-default"/>
+<input id="delete"  class="btn btn-danger" onclick="return confirm('Jesteś pewien, że chcesz usunąć administratora?');"/>
+</p>
 <p ><em><span id="notice"></span></em></p>
 </fieldset>
 </form>
 
 <div class="tables">
 		<h2>Lista administratorów:</h2>
-		<table><thead><tr><th>ID</th><th>Imię</th><th>Nazwisko</th><th>Adres e-mail</th></tr></thead>
+		<table class="table table-striped"><thead><tr><th>ID</th><th>Imię</th><th>Nazwisko</th><th>Adres e-mail</th></tr></thead>
                     <tbody class="lift:admin.AdminEditAdminsSn.adminsList"><tr></tr></tbody>
 		</table>
 		</div>

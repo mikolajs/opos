@@ -40,7 +40,7 @@ trait UsersOperations {
         </span>
       </a>
       <a href="/user_mgt/change_password">
-        &nbsp; &nbsp; &nbsp; &nbsp; <img src="/style/images/dice.png" title="Zmień hasło"/>
+        &nbsp; &nbsp; &nbsp; &nbsp; <img src="/images/dice.png" title="Zmień hasło"/>
       </a>
     </span>
     else <a href="/user_mgt/login">

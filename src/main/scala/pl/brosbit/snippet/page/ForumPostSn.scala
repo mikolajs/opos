@@ -42,7 +42,7 @@ class ForumPostSn extends UsersOperations with UpdateMainPageInfo with ForumBase
       "#threaddelete" #> {
         if (isAdmin) {
           <a href={"/forumpost/" + threadHead._id.toString + "?del=1"}>
-            <img src="/style/images/delico.png" style="float:right;"
+            <img src="/images/delico.png" style="float:right;"
                  onclick="return confirm('Czy na pewno usunąć wątek?');"/>
           </a>
         } else <a></a>

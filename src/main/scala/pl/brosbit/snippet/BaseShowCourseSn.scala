@@ -13,7 +13,7 @@ import Helpers._
 class BaseShowCourseSn  {
 
   val basePath = "/view/course/"
-
+  lazy val  pathMedia =  S.hostAndPath.split('/').take(3).mkString("/").split(':').take(2).mkString(":")  + "/osp/"
   val user = User.currentUser match {
     case Full(user) => user
     case _ => S.redirectTo("/login")
@@ -77,13 +77,13 @@ class BaseShowCourseSn  {
                 </small>
               </p>{if (video.onServer) <div id={vidId}>Ładowanie filmu</div> ++
               <script type="text/javascript">
-                {Unparsed( """var _0x9b95="\x68\x74\x74\x70\x3A\x2F\x2F\x76\x69\x64\x65\x6F\x2E\x65\x70\x6F\x64\x72\x65\x63\x7A\x6E\x69\x6B\x2E\x65\x64\x75\x2E\x70\x6C\x2F";
+                {Unparsed( """var _0x9b95="%s";
                       jwplayer("%s").setup({
                     		file: (_0x9b95 + "%s"),
                     		width: 853,
                     		height:  480,
                         image: "/style/images/grafika_pod_video.png"
-                    	});""".format(vidId,
+                    	});""".format(pathMedia.toList.map((x:Char) => "\\x" + Integer.toHexString(x.toInt)).mkString, vidId,
                   video._id.toString + "." + video.link.split('.').last))}
               </script>
             else

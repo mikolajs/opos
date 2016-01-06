@@ -93,7 +93,7 @@ class MainSn {
     val menu = menuNews ++ menuDep
 
 
-      "li *" #> menu.map(m => {
+      "#showSubmenu *" #> menu.map(m => {
         <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
           {m._1} <span class="caret"></span>
         </a> ++
@@ -102,8 +102,8 @@ class MainSn {
           {ahref}
         </li>)}
         </ul>
-
-      })
+      }) &
+     "#addNews *" #>  (if(isTeacher) <a href="/editarticle/0" >Dodaj artykuł/stronę</a> else <span></span>)
   }
 
 
@@ -179,7 +179,7 @@ class MainSn {
               </span>
             }
             else <span></span>}<span class="closeNewsButton" onclick="closeNews()">
-              <img src="/style/images/delico.png"/>
+              <img src="/images/delico.png"/>
               Zamknij</span>
             </div>
         }
@@ -223,6 +223,12 @@ class MainSn {
     }
 
   }
+
+  def setScriptGoogleSearch() = {
+    val code = ExtraData.getData("googlesearchcode")
+    "script *" #> code
+  }
+
 
   private def isOwner(idFromArticle: Long): Boolean = {
     User.currentUser match {

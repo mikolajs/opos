@@ -49,7 +49,7 @@ class FilesSn {
     def save() {
       if (isCorrect) {
         val imageBuf: BufferedImage = ImageIO.read(new ByteArrayInputStream(fileHold.get.file))
-        val resizedImageBuf = resizeImageWithProportion(imageBuf, 680)
+        val resizedImageBuf = resizeImageWithProportion(imageBuf, 800)
         val outputStream = new ByteArrayOutputStream()
         ImageIO.write(resizedImageBuf, mimeType.substring(1), outputStream)
         val inputStream = new ByteArrayInputStream(outputStream.toByteArray())

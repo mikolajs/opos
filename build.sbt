@@ -1,6 +1,6 @@
 name := "osp"
 
-version := "0.6.3"
+version := "0.6.5"
 
 organization := "pl.brosbit"
 

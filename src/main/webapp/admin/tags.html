@@ -3,7 +3,6 @@
 <body class="lift:content_id=main">
 <div id="main" class="lift:surround?with=admin;at=content">
 <head_merge>
- <link rel="stylesheet" href="/style/adminsite.css" />
   <script type="text/javascript" src="/jquery/mytables.js"></script>
         <script>
         $(document).ready(function(){
@@ -15,8 +14,8 @@
     }
     function setData(elem) {
         $elem = $(elem);
-        document.getElementById('id').value = $elem.attr('id');
-        document.getElementById('name').value = $elem.children('td').first().text();
+        document.getElementById('id').value = $elem.attr('id').trim();
+        document.getElementById('name').value = $elem.children('td').first().text().trim();
     }
     function validateForm() {
             var name = $('#name');
@@ -38,16 +37,18 @@
 <div >
 <form class="lift:admin.AdminAddTagsSn.addTag" method="POST" id="frm2"><br />
 <fieldset>
-<p><input id="id" /></p>
-<p><label for="name">Nazwa</label><input id="name" /></p>
-<p><input id="save" /><input id="delete" />
-<input type="submit" onclick="return clearForm()" value="Czyść!" /> </p>
+<p><input id="id" class="form-control"/></p>
+<p><label for="name">Nazwa</label><input id="name" class="form-control" /></p>
+<p><input id="save" class="btn btn-success" />
+<input type="submit" class="btn btn-default" onclick="return clearForm()" value="Czyść!" />
+    <input id="delete" class="btn btn-danger"/>
+</p>
 <p id="notice"></p>
 </fieldset>
 </form>
 <hr />
 <div class="tables">
-<table><thead><tr><th>Nazwa</th></tr></thead>
+<table class="table table-striped"><thead><tr><th>Nazwa</th></tr></thead>
     <tbody class="lift:admin.AdminAddTagsSn.tags"><tr></tr> </tbody>
 </table>
 </div>

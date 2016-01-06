@@ -3,7 +3,6 @@
 <body class="lift:content_id=main">
 <div id="main" class="lift:surround?with=admin;at=content">	
     <head_merge>
-     <link rel="stylesheet" href="/style/adminsite.css" />
         <script>
         function setData(elem){
         	$elem = $(elem);
@@ -11,10 +10,10 @@
             $elem.children('td').each(function(index){
             	switch(index){
             	case 0:
-            		document.getElementById('mail').value = this.innerHTML;
+            		document.getElementById('mail').value = this.innerHTML.trim();
             		break;
             	case 1:
-            		document.getElementById('descript').value = this.innerHTML;
+            		document.getElementById('descript').value = this.innerHTML.trim();
             	}
             });  
         }
@@ -34,17 +33,19 @@
 		<form class="lift:admin.AdminMailsSn.addContactMail?form=POST" method="POST" id="frm2"><br />
 			<fieldset><legend>Maile kontaktowe</legend>
 			<p><input id="id" /></p>
-				<p><label for="mail">Adres e-mail</label><input id="mail" /></p>
-				<p><label for="descript">Opis</label><input id="descript" /></p>
-				 <p><input id="save" /> <input id="delete" />
-				 <input type="submit" onclick="return clearForm()" value="Czyść!" /> </p>
+				<p><label for="mail">Adres e-mail</label><input class="form-control" id="mail" /></p>
+				<p><label for="descript">Opis</label><input class="form-control" id="descript" /></p>
+				 <p><input id="save" class="btn btn-success"/>
+                     <input type="submit" onclick="return clearForm()" value="Czyść!" class="btn btn-default" />
+                     <input id="delete" class="btn btn-danger"/>
+				 </p>
 				<p id="notice" />
 	</fieldset></form>
 		
 		
 		<div class="tables">
 		<h2>Lista adresów kontaktowych:</h2>
-		<table><thead><tr><th>Adres e-mail</th><th>Opis</th></tr></thead>
+		<table class="table table-striped"><thead><tr><th>Adres e-mail</th><th>Opis</th></tr></thead>
                     <tbody class="lift:admin.AdminMailsSn.contactMails"><tr></tr></tbody>
 		</table>
 		</div>

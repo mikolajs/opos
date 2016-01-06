@@ -179,7 +179,7 @@ var LessonEditor = dejavu.Class
 				var title = '<span class="title" name="' + item.id + '">'
 						+ item.title + '</span>';
 				var descript = '<div class="descript">' + item.descript + '</div>';
-				var what = '<span class="what"><img src="/style/images/'
+				var what = '<span class="what"><img src="/images/'
 						+ mapIco[item.what] + '" name="' + item.what
 						+ '" title="' + item.what + '" /></span>';
 				var del = '<button class="btn btn-danger imgDel" onclick="lessonEditor.deleteData(this);">' +
