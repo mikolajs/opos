@@ -112,4 +112,8 @@ db.doctemplatehead.update({"_id" : ObjectId("54ddf79844ae2719b8c2e025")}, {$set:
 #change nothumb.png location
  db.articlehead.update({ thumbnailLink: '/style/images/nothumb.png'},{$set: {thumbnailLink: '/images/nothumb.png'}} , true, true, true);
 
+#add prior field
+db.articlehead.update({},{$set: {prior: 99}} , true, true, true);
+
+
 

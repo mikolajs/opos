@@ -38,11 +38,11 @@
 					var $courseItem = $(this).parent().parent();
 					var id = $courseItem.children(' input.courseId').val();
 					$('#courseId').val(id);
-					var title = $courseItem.children('h2').text();
+					var title = $courseItem.children('h2').text().trim();
 					$('#title').val(title);
 					var $h3 = $courseItem.children('h3');
-					var ids = $h3.children('span.classIds').text().split(";");
-					var subjId = $h3.children('span.subjectId').text();
+					var ids = $h3.children('span.classIds').text().trim().split(";");
+					var subjId = $h3.children('span.subjectId').text().trim();
 					$("#classesList option").each(function() {
 						var sel = false;
 						for (i in ids) {
@@ -63,7 +63,7 @@
 						} else
 							this.removeAttribute('selected');
 					});
-					var descript = $courseItem.children('p.courseInfo').text();
+					var descript = $courseItem.children('p.courseInfo').text().trim();
 					$('#descript').val(descript);
 
 					$('#addNewItem').dialog('open');

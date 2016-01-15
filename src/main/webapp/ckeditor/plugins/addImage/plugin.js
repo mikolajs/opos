@@ -42,7 +42,7 @@ CKEDITOR.plugins.add( 'addImage',
 	          },
               {
                   type: 'html',
-                  html: '<img src="" id="imagePreview" style="height:30%;width:auto;"/>'
+                  html: '<img src="" id="imagePreview" style="max-height:250px;%;width:auto;"/>'
                 },
             ]
           },

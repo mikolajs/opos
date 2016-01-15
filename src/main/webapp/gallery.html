@@ -3,9 +3,9 @@
 <body class="lift:content_id=main">
 <div id="main" class="lift:surround?with=page;at=content">
 <head_merge>
-    <link rel="stylesheet" href="/style/blueimp-gallery.min.css">
-    <link rel="stylesheet" href="/owl-carousel/owl.carousel.css/">
-    <link rel="stylesheet" href="/owl-carousel/owl.theme.css/">
+    <link rel="stylesheet" href="/style/blueimp-gallery.min.css" />
+    <link rel="stylesheet" href="/owl-carousel/owl.carousel.css" />
+    <link rel="stylesheet" href="/owl-carousel/owl.theme.css" />
     <script src="/jquery/blueimp-gallery.min.js"></script>
     <script src="/owl-carousel/owl.carousel.min.js"></script>
     <script>
@@ -16,9 +16,11 @@
       $("#owl-demo").owlCarousel({
 
           autoPlay: 6000,
-
-          itemsDesktop : [1199,3],
-          itemsDesktopSmall : [979,3]
+          items : 8,
+          itemsDesktop : [1281,6],
+          itemsDesktopSmall : [800,4],
+          itemsTablet: [600,3],
+          itemsMobile : [400, 2]
 
       });
 

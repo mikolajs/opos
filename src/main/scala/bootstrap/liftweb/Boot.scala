@@ -15,13 +15,13 @@ import _root_.net.liftweb.sitemap.Loc._
 import Helpers._
 import _root_.net.liftweb.mapper.{DB, By, ConnectionManager, ConnectionIdentifier, Schemifier, DefaultConnectionIdentifier}
 import java.sql.{Connection, DriverManager}
-import _root_.pl.brosbit.model._
-import _root_.pl.brosbit.api._
-import _root_.pl.brosbit.lib.MailConfig
+import pl.edu.osp.model._
+import pl.edu.osp.api._
+import pl.edu.osp.lib.MailConfig
 import _root_.net.liftweb.mongodb._
-import pl.brosbit.comet.CronActor
+import pl.edu.osp.comet.CronActor
 
-import pl.brosbit.lib.{ConfigLoader => CL}
+import pl.edu.osp.lib.{ConfigLoader => CL}
 
 object DBVendor extends ConnectionManager {
   def newConnection(name: ConnectionIdentifier): Box[Connection] = {
@@ -49,12 +49,12 @@ class Boot {
     MongoDB.defineDb(DefaultMongoIdentifier, MongoAddress(MongoHost("127.0.0.1", 27017), CL.mongoDB))
 
     // where to search snippet
-    LiftRules.addToPackages("pl.brosbit")
-    LiftRules.addToPackages("pl.brosbit.snippet.page")
-    LiftRules.addToPackages("pl.brosbit.snippet.edu")
-    LiftRules.addToPackages("pl.brosbit.snippet.register")
-    LiftRules.addToPackages("pl.brosbit.snippet.secretariat")
-    LiftRules.addToPackages("pl.brosbit.snippet.doc")
+    LiftRules.addToPackages("pl.edu.osp")
+    LiftRules.addToPackages("pl.edu.osp.snippet.page")
+    LiftRules.addToPackages("pl.edu.osp.snippet.edu")
+    LiftRules.addToPackages("pl.edu.osp.snippet.register")
+    LiftRules.addToPackages("pl.edu.osp.snippet.secretariat")
+    LiftRules.addToPackages("pl.edu.osp.snippet.doc")
 
     Schemifier.schemify(true, Schemifier.infoF _, User,
       ClassModel, MarkMap, SubjectName)

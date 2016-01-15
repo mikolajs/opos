@@ -10,6 +10,7 @@ var EditArticle =  dejavu.Class.declare({
 		this.ckEditor = CKEDITOR.replace( 'editor',{
         width : 714, 
         height: 600,
+        allowedContent : true,
         extraPlugins : 'youTube,addImage,addFile,formula',
         toolbar : [ [ 'Source' ],
                     [ 'Link','Unlink','Anchor' ],[ 'Maximize', 'ShowBlocks','-','About' ] ,
@@ -79,12 +80,15 @@ var EditArticle =  dejavu.Class.declare({
     switchTagsDepart : function(elem) {
 		var $tags = $("#newsContainer");
 		var $depart = $("#departContainer");
+		var $prior = $('#priorContainer');
 		if(elem.value =="Aktualności") {
 			$tags.show();
 			$depart.hide();
+			$prior.hide();
 		} else {
 			$tags.hide();
 	        $depart.show();
+	        $prior.show();
 		}
 	},
 
@@ -135,7 +139,8 @@ var EditArticle =  dejavu.Class.declare({
 
  function getImageURLfromIFrame(elem){
 	var innerDoc = elem.contentDocument || elem.contentWindow.document;
-	var url  = innerDoc.getElementById('linkpath').innerHTML;
+	var url  = innerDoc.getElementById('linkpath').innerHTML.trim();
+	$('#imagePreview').attr("src", url);
 	$('.cke_dialog_ui_input_text').val(url);
     }
 
