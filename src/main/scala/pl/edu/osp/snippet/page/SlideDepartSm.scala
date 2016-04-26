@@ -12,7 +12,7 @@ object SlideDepartSn {
 
   def data() = {
     val deps = S.param("d").getOrElse("").split(',').toList
-    val ahs = if(deps.isEmpty && deps.head == "all")
+    val ahs = if(deps.isEmpty || deps.head == "all")
             ArticleHead.findAll("news" -> true)
           else
             ArticleHead.findAll(("news" -> true) ~ ("tags" -> ("$in" -> deps)))

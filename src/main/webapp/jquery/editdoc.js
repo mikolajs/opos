@@ -8,7 +8,7 @@ var Document =  dejavu.Class.declare({
 
 		//document.getElementById('docEdit').innerHTML = $('#extraText').val();
 		this.editor = CKEDITOR.inline( 'docEdit', {
-			extraPlugins: 'sourcedialog,addImage,syntaxhighlight,formula,symbol,image',
+			extraPlugins: 'sourcedialog,addImage,addFile,syntaxhighlight,formula,symbol,image',
 			format_tags : 'p;h2;h3;h4;h5;h6;pre;address',
 			allowedContent : true,
 			disableNativeSpellChecker : false,
@@ -16,7 +16,7 @@ var Document =  dejavu.Class.declare({
 			toolbar: [
 			        [ 'Sourcedialog' ],
 			  		[ 'Cut', 'Copy','Paste', 'PasteText', 'PasteFromWord', '-','Undo', 'Redo' ],
-			  		[ 'AddImage', 'Table','Syntaxhighlight','Formula', 'Symbol', "Image" ],
+			  		[ 'AddImage','AddFile', 'Table','Syntaxhighlight','Formula', 'Symbol', "Image" ],
 			  		[ 'Link', 'Unlink',	'Anchor' ],
 			  		[ 'Find', 'Replace','-', 'SelectAll' ],
 			  		'/',

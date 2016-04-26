@@ -1,6 +1,6 @@
 name := "osp"
 
-version := "0.6.6"
+version := "0.6.7"
 
 organization := "pl.edu.osp"
 
@@ -22,7 +22,6 @@ scalacOptions ++= Seq("-deprecation", "-unchecked")
 
 libraryDependencies ++= {
   val liftVersion = "2.6.2"
-  val gdataVersion = "1.47.1"
   Seq(
     "net.liftweb" %% "lift-webkit" % liftVersion % "compile",
     "net.liftweb" %% "lift-mapper" % liftVersion % "compile",
@@ -31,6 +30,7 @@ libraryDependencies ++= {
      "org.eclipse.jetty" % "jetty-webapp" % "9.1.0.v20131115" % "container",
     "org.eclipse.jetty" % "jetty-plus"   % "9.1.0.v20131115" % "container",
     "ch.qos.logback" % "logback-classic" % "1.0.6",
+    "org.jsoup" % "jsoup" % "1.8.3",
      "net.liftweb" %% "lift-mongodb" % liftVersion % "compile",	    	
     "postgresql" % "postgresql" % "9.1-901.jdbc4" % "compile")
 }

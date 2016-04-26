@@ -23,7 +23,7 @@ var EditQuest =  dejavu.Class.declare({
 			width : 500,
 			height : 240,
 			allowedContent : true,
-			extraPlugins : 'addThumb,formula,symbol',
+			extraPlugins : 'addImage,addFile,formula,symbol',
 			toolbar : [
 					{
 						name : 'clipboard',
@@ -49,7 +49,7 @@ var EditQuest =  dejavu.Class.declare({
 					},
 					{
 						name : 'insert',
-						items : [ 'AddThumb',
+						items : [ 'AddImage', 'AddFile',
 								'Formula', 'YouTube',
 								'Table',
 								'HorizontalRule',

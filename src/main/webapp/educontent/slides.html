@@ -60,8 +60,22 @@
  <div id="boxText">
  <div class="well"> <h2>Twoje prezentacje</h2></div>
   
-   <div class="row"  style="margin-left:20px;"><a href="/educontent/editslide/0"><span class="btn btn-success btn-lg"  id="addTrigger">
-  <span class="glyphicon glyphicon-plus-sign"></span> Stwórz prezentację</span></a>
+   <div class="row"  style="margin-left:20px;">
+
+       <div class="col-lg-6">
+       <a href="/educontent/editslide/0">
+       <span class="btn btn-success btn-lg"  id="addTrigger">
+  <span class="glyphicon glyphicon-plus-sign"></span> Utwórz prezentację</span></a>
+   </div>
+     <div class="col-lg-6">
+       <form data-lift="edu.SlidesSn.uploadSlides" class="form-inline" enctype="multipart/form-data" method="post">
+           <div class="form-group">
+               <label>Import:</label><input class="form-control" type="file" id="zip" />
+           </div>
+           <input type="submit" id="addZip" class="btn btn-info" value="Wczytaj" />
+           <p id="info"></p>
+       </form>
+     </div>
 </div>
   
   <br/><hr/>

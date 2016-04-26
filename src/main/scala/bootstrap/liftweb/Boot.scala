@@ -59,10 +59,20 @@ class Boot {
     Schemifier.schemify(true, Schemifier.infoF _, User,
       ClassModel, MarkMap, SubjectName)
 
+    val isTeacherBool = User.currentUser match {
+      case Full(user) => {
+        val role = user.role.get
+        role == "n" || role == "a" || role == "s" || role == "d"
+      }
+      case _ => false
+    }
+
     LiftRules.statelessDispatch.append({
       case Req("img" :: id :: Nil, _, GetRequest) => () => ImageLoader.image(id)
       case Req("file" :: id :: Nil, _, GetRequest) => () => FileLoader.file(id)
       case Req("getdocument" :: id :: Nil, _, GetRequest) => () => TemplateDocumentCreater.create(id)
+      case Req("export" ::  Nil, _, GetRequest) => () =>
+        if(isTeacherBool) ImportExportSlides.zip else Full(NotFoundResponse("Not found"))
     })
 
 
@@ -89,11 +99,13 @@ class Boot {
       }
     }, () => RedirectResponse("/login?r=" + S.uri))
 
+
+
     val isTeacher = If(() => {
       User.currentUser match {
         case Full(user) => {
           val role = user.role.get
-          role == "n" || role == "a" || role == "s" || role == "d"
+          role == "n" || role == "a" || role == "d"
         }
         case _ => false
       }

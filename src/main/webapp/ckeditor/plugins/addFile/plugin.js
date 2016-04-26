@@ -27,15 +27,23 @@ CKEDITOR.plugins.add( 'addFile',
             elements :
             [
               {
+                type : 'html',
+                html : '<h2>URL obrazka:</h2>'
+              },
+              {
                 type : 'text',
                 id : 'url',
-                label : 'Url do pliku',
+                label : '',
                 validate : CKEDITOR.dialog.validate.notEmpty('Nie może być pusty')
               },
+              {
+                  type : 'html',
+                  html : '<h2>Opis linku:</h2>'
+               },
 	      {
 		type: 'text',
 	  	id : 'descript',
-		label : 'Opis linku',
+		label : '',
 		validate : CKEDITOR.dialog.validate.notEmpty('Nie może być pusty')
 	      },
 	      {

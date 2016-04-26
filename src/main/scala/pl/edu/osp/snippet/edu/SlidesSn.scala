@@ -3,7 +3,7 @@ package pl.edu.osp.snippet.edu
 import java.util.Date
 import scala.xml.{Text, XML, Unparsed}
 import _root_.net.liftweb._
-import http.{S, SHtml}
+import net.liftweb.http.{FileParamHolder, S, SHtml}
 import common._
 import util._
 import mapper.{OrderBy, Descending}
@@ -15,6 +15,13 @@ import json.JsonAST.{JObject, JArray, JValue, JBool, JField, JInt}
 import json.JsonParser
 import org.bson.types.ObjectId
 import Helpers._
+import java.awt.image.BufferedImage
+import javax.imageio.ImageIO
+import java.io.{ByteArrayOutputStream, ByteArrayInputStream}
+import net.liftweb.mongodb._
+import net.liftweb.common.Full
+import com.mongodb.gridfs.GridFS
+import pl.edu.osp.api.ImportExportSlides
 
 
 class SlidesSn extends BaseResourceSn {
@@ -41,5 +48,22 @@ class SlidesSn extends BaseResourceSn {
       </tr>
     })
   }
+
+
+  //plik zip sprawdzić tylko rozszerzenie lub mime type z
+  def uploadSlides() = {
+    var fileHold: Box[FileParamHolder] = Empty
+    var infoStr = ""
+    def load() {
+      if (ImportExportSlides.loadZip(fileHold))
+        infoStr = "wczytanie udane"
+      else
+        infoStr = "Nieudane wczytywanie!"
+    }
+    "#zip" #> SHtml.fileUpload(fileUploaded => fileHold = Full(fileUploaded)) &
+    "info *" #> infoStr &
+    "#addZip" #> SHtml.submit("Importuj", load)
+  }
+
 
 }
