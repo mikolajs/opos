@@ -83,4 +83,8 @@ class User extends MegaProtoUser[User] {
 
   def shortInfo = getFullName + " [" + id.is.toString + "]"
 
+  def isAdmin_? = this.role.get == "a"
+  def isTeacher_? = this.role.get == "n" || this.role.get == 's' || this.role.get == "d"
+  def isSecretary_? = this.role.get == "s" || this.role.get == 'd'
+  def isDirector_? = this.role.get == 'd'
 }
