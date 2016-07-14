@@ -2,7 +2,7 @@
 <html>
     <body class="lift:content_id=main">
         <div id="main" class="lift:surround?with=secret;at=content">
-            <head_merge><link rel="stylesheet" type="text/css" href="/style/register.css" />
+            <head_merge>
               <script type="text/javascript" charset="utf-8" src="/jquery/datatableone.js"></script>
                  <script type="text/javascript" charset="utf-8" src="/jquery/editformdiv.js"></script>
                <script type="text/javascript" charset="utf-8" src="/jquery/select_operations.js"></script>
@@ -10,6 +10,21 @@
                 <script type="text/javascript" charset="utf-8">
                 
 				var editFrom = new Object();
+
+				function peselToBirth() {
+                    var p = document.getElementById('pesel').value.slice(0,6);
+                    var num = parseInt(p.slice(0, 2));
+                    var date = "";
+                    if(num > 60) (date += "19" + p.slice(0, 2));
+                    else date += ("20" + p.slice(0, 2));
+                    date += "-";
+                    num = parseInt(p.slice(2,4));
+                    if(num > 20)  num -= 20;
+                    if(num > 9) date += num.toString();
+                    else date += ("0" + num.toString());
+                    date  += ("-" + p.slice(4, 6));
+                     document.getElementById('birthdate').value = date;
+                }
                 
                 EditFormDiv.prototype.putDataToForm = function(array){
                 	document.getElementById('id').value = array[0];
@@ -19,17 +34,19 @@
                      document.getElementById('pesel').value =array[4];
                      var select = document.getElementById('classInfo');
                      setSelectedIndexWithInner(select,array[5]);
+                     document.getElementById('email').value = array[6]
             	}
             	
                 EditFormDiv.prototype.getData = function(){
                 	   var array = new Array();
                        array[0] = document.getElementById('id').value;
                        array[1] = document.getElementById('lastname').value;
-                       array[2] = document.getElementById('firstname').value;                  
+                       array[2] = document.getElementById('firstname').value;
                        array[3] = document.getElementById('birthdate').value;
                        array[4] = document.getElementById('pesel').value;
                        var select = document.getElementById('classInfo');
                        array[5] = select.options[select.selectedIndex].innerHTML;
+                       array[6] = document.getElementById('email').value;
             		return array;
             	}
                 
@@ -37,27 +54,17 @@
                 EditFormDiv.prototype.editItemInfo = 'Edycja ucznia';
                 
                 EditFormDiv.prototype.validate = function(){
+                    //alert("validate");
                 	return true;
                 }
-                       
+
                 $(document).ready(function(){
                 	                     		
                 	editForm = new EditFormDiv();
-                	editForm.init(350,500);                	
-                     
-                	$( "#birthdate" ).datepicker({
-                        changeMonth: true,
-                        changeYear: true,
-                        yearRange: '1980:2010' ,
-                        defaultDate: '-14y',
-                        dateFormat: 'yy-mm-dd',
-                        prevText : "poprzedni",
-                        nextText : "następny",
-                        dayNamesMin: ['Ni','Po','Wt','Śr','Cz','Pi','So'],
-                        monthNamesShort: ['Sty','Lut','Mar','Kwi','Maj','Cze','Lip','Sie', 'Wrz','Paź','Lis','Gru'] 
-                    });
+                	editForm.init(500,550);
+
                 });
-                
+
                
                 </script>
                 <style >
@@ -68,55 +75,87 @@
             </head_merge>
 
            <div class="submenu">
-</div>
+            </div>
             <div class="container_12">              
                 
                 <div class="lift:secretariat.PupilSn.editAjax" id="formAdd" style="display: none;" >
-                <form  method="POST">
-               <p><label for="id">Id:</label>
-                  <input id="id" type="text" />
-                </p> 
-               <p><label for="lastname">Nazwisko:</label>
-                  <input id="lastname" /><br/>
-                  <span id="lastnameinfo" class="errorInfo"></span>
-                </p>
-                <p><label for="firstname">Imię:</label>
-                   <input id="firstname" type="text"  maxlength="20"/><br/>
-                   <span id="firstnameinfo" class="errorInfo"></span>
-                </p>
-                <p><label for="birthdate">Data urodzenia:</label>
-                  <input id="birthdate" />
-                                  <br/>
-                  <span id="birthdateinfo" class="errorInfo"></span>
-                </p>
-                <p><label for="pesel">PESEL:</label>
-                   <input id="pesel" maxlength="11"/><br/>
-                   <span id="peselinfo" class="errorInfo"></span>
-                </p>
-                <p><label for="classInfo">Klasa:</label>
-                   <input id="classInfo" maxlength="11"/><br/>
-                   <span id="classInfoinfo" class="errorInfo"></span>
-                </p>
-                <p>
+                <form  method="POST" class="form-horizontal">
+
+               <div class="form-group"><label for="id" class="col-sm-3 control-label">Id:</label>
+                   <div class="col-sm-9">
+                  <input id="id" type="text" class="form-control"/>
+                       </div>
+                </div>
+               <div class="form-group">
+                   <label for="lastname" class="col-sm-3 control-label">Nazwisko:</label>
+                   <div class="col-sm-9">
+                  <input id="lastname" class="form-control" />
+                      </div>
+                </div>
+                <div class="form-group">
+                    <label for="firstname" class="col-sm-3 control-label">Imiona:</label>
+                    <div class="col-sm-9">
+                   <input id="firstname" type="text"  maxlength="100" class="form-control"/><br/>
+                   </div>
+                </div>
+                <div class="form-group">
+                    <label for="birthdate" class="col-sm-3 control-label">Data urodzenia:</label>
+                    <div class="col-sm-9">
+                  <input id="birthdate" class="form-control" class="form-control" readonly />
+                               </div>
+                </div>
+                <div class="form-group">
+                    <label for="pesel" class="col-sm-3 control-label">PESEL:</label>
+                    <div class="col-sm-9">
+                   <input id="pesel" maxlength="11" class="form-control" onchange="peselToBirth();"/>
+                        </div>
+                </div>
+                <div class="form-group">
+                    <label for="classInfo" class="col-sm-3 control-label">Klasa:</label>
+                    <div class="col-sm-9">
+                   <input id="classInfo"  class="form-control"/>
+                        </div>
+                </div>
+                <div class="form-group">
+                        <label for="email" class="col-sm-3 control-label">Email</label>
+                        <div class="col-sm-9">
+                            <input type="email" class="form-control" id="email" placeholder="Email">
+                        </div>
+                 </div>
+
+                <div class="form-group">
+                    <div class="col-sm-6"></div>
+                    <div class="col-sm-3">
                     <input type="image"  src="/images/saveico.png"  id="save"/>
+                        </div>
+                    <div class="col-sm-3">
                     <input type="image" src="/images/delico.png" id="delete"/>
-                </p>
+                        </div>
+                </div>
                 <p id="addInfo"></p>
                 </form>
                 </div>
 
                 <h2>Przegląd i edycja uczniów</h2><hr />
-                <input type="image" id="newadd" src="/images/addico.png"/>
+                <div class="row">
+                    <div class="col-lg-6">
+                    <button id="newadd" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Dodaj ucznia</button>
+                        </div>
+                    <div class="col-lg-6 form-inline"><div class="form-group" data-lift="secretariat.PupilSn.selectClass">
+                        <labe for="getClas">Wybierz klasę: </label><select id="getClass" class="form-control"></select>
+                    </div></div>
+                </div>
+
                 
                 
                 <table id="fullList" class="display" border="0" cellpadding="2" cellspacing="2" >
                     <thead>
                         <tr><th>ID</th><th>Nazwisko</th><th>Imię</th>
-                            <th>Data urodzenia</th><th>PESEL</th><th>Klasa</th>
+                            <th>Data urodzenia</th><th>PESEL</th><th>Klasa</th><th>Email</th>
                         </tr>
                     </thead>
 
-                    <tbody class="lift:secretariat.PupilSn.pupilList">
+                    <tbody data-lift="secretariat.PupilSn.pupilList">
                         <tr >
                             <td class="id"></td>
                             <td  class="lastname"></td>
@@ -124,11 +163,12 @@
                             <td class="birthdate"></td>
                             <td class="pesel"></td>
                             <td class="classInfo"></td>
+                            <td class="email"></td>
                         </tr>
                     </tbody>
                     <tfoot>
                         <tr><th>ID</th><th>Nazwisko</th><th>Imię</th>
-                            <th>Data urodzenia</th><th>PESEL</th><th>Klasa</th>
+                            <th>Data urodzenia</th><th>PESEL</th><th>Klasa</th><th>Email</th>
                         </tr>
                     </tfoot>
                 </table>

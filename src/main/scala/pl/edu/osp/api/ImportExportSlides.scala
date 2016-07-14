@@ -121,7 +121,7 @@ object ImportExportSlides {
         if(img.startsWith("/") && !img.startsWith("//")) {
           val p = img.split('/')
           if(p.length > 2) {
-            println("++++ " + p(2))
+            //println("++++ " + p(2))
             val array = p(2).split('.')
             val outStream = getImages(array(0))
             val e = new ZipEntry(array.mkString("."))

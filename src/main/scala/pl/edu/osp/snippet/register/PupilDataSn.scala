@@ -39,7 +39,6 @@ class PupilDataSn extends BaseTeacher {
         ".id *" #> pupil.id.get.toString &
         ".number *" #> pupil.classNumber.get.toString &
         ".reversefullname *" #> pupil.getFullNameReverse &
-        ".secondname *" #> pupil.secondName.get &
         ".email *" #> pupil.email.get &
         ".phone *" #> pupil.phone.get &
         ".pesel *" #> pupil.pesel.get &
@@ -53,7 +52,6 @@ class PupilDataSn extends BaseTeacher {
 
   def editAjax() = {
     var id = ""
-    var secondName = ""
     var number = ""
     var email = ""
     var phone = ""
@@ -66,7 +64,7 @@ class PupilDataSn extends BaseTeacher {
       User.find(id) match {
         case Full(pupil) => {
           pupil.address(address.trim).birthPlace(birthPlace.trim).
-            secondName(secondName.trim).birthDisctrict(birthDistrict.trim).
+            birthDisctrict(birthDistrict.trim).
             email(email.trim).classNumber(tryo(number.toInt).openOr(0)).phone(phone.trim).validated(true).save
           id = pupil.id.toString
           JsFunc("editForm.editRow", id).cmd
@@ -79,7 +77,6 @@ class PupilDataSn extends BaseTeacher {
 
     val form = "#id" #> SHtml.text(id, id = _, "readonly" -> "readonly") &
       "#number" #> SHtml.select(numbers, Full("40"), number = _) &
-      "#secondname" #> SHtml.text(secondName, secondName = _) &
       "#email" #> SHtml.text(email, email = _) &
       "#phone" #> SHtml.text(phone, phone = _) &
       "#birthplace" #> SHtml.text(birthPlace, birthPlace = _) &

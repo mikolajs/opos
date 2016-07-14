@@ -52,9 +52,9 @@ class User extends MegaProtoUser[User] {
   }
 
   object phone extends MappedString(this, 12)
-
+  //to delete - use firstnames
   object secondName extends MappedString(this, 30)
-
+  //to repleace by pesel
   object birthDate extends MappedDate(this)
 
   object birthPlace extends MappedString(this, 30)

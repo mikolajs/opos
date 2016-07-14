@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
-    <body class="lift:content_id=main">
-        <div id="main" class="lift:surround?with=register;at=content">
-            <head_merge>
-                <script type="text/javascript" charset="utf-8" src="/jquery/datatableone.js"></script>
-                <script type="text/javascript" charset="utf-8" src="/jquery/editformdiv.js"></script>
-                <script type="text/javascript" charset="utf-8" src="/jquery/select_operations.js"></script>
-                <script type="text/javascript" charset="utf-8" src="/jquery/myvalidation.js"></script>
-                <script type="text/javascript" charset="utf-8">
+<body class="lift:content_id=main">
+<div id="main" class="lift:surround?with=register;at=content">
+<head_merge>
+    <script type="text/javascript" charset="utf-8" src="/jquery/datatableone.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/jquery/editformdiv.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/jquery/select_operations.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/jquery/myvalidation.js"></script>
+    <script type="text/javascript" charset="utf-8">
                 
            var editFrom = new Object();
                 
@@ -16,14 +16,13 @@
                     var select = document.getElementById('number');
                     setSelectedIndexWithInner(select,array[1]);
                     document.getElementById('reversefullname').value = array[2];
-                    document.getElementById('secondname').value = array[3] ;
-                    document.getElementById('email').value = array[4] ;
-                    document.getElementById('pesel').value = array[5] ;
-                    document.getElementById('birthdate').value = array[6] ;
-                    document.getElementById('birthplace').value = array[7] ;
-                    document.getElementById('birthdistrict').value = array[8] ;
-                    document.getElementById('phone').value = array[9] ;
-                    document.getElementById('address').value = array[10] ;
+                    document.getElementById('email').value = array[3] ;
+                    document.getElementById('pesel').value = array[4] ;
+                    document.getElementById('birthdate').value = array[5] ;
+                    document.getElementById('birthplace').value = array[6] ;
+                    document.getElementById('birthdistrict').value = array[7] ;
+                    document.getElementById('phone').value = array[8] ;
+                    document.getElementById('address').value = array[9] ;
                 	
             	}
             	
@@ -33,14 +32,13 @@
                     var select = document.getElementById('number');
                     array[1] = select.options[select.selectedIndex].value;
                     array[2] =  document.getElementById('reversefullname').value;
-                    array[3] = document.getElementById('secondname').value;
-                    array[4] = document.getElementById('email').value;
-                    array[5] = document.getElementById('pesel').value;
-                    array[6] = document.getElementById('birthdate').value;
-                    array[7] = document.getElementById('birthplace').value;
-                    array[8] = document.getElementById('birthdistrict').value;
-                    array[9] = document.getElementById('phone').value;
-                    array[10] = document.getElementById('address').value;
+                    array[3] = document.getElementById('email').value;
+                    array[4] = document.getElementById('pesel').value;
+                    array[5] = document.getElementById('birthdate').value;
+                    array[6] = document.getElementById('birthplace').value;
+                    array[7] = document.getElementById('birthdistrict').value;
+                    array[8] = document.getElementById('phone').value;
+                    array[9] = document.getElementById('address').value;
                     return array;
             	}
                 
@@ -69,9 +67,8 @@
                         editForm.dataTable.dTable.fnSetColumnVis( 5, true );
                         editForm.dataTable.dTable.fnSetColumnVis( 6, true );
                         editForm.dataTable.dTable.fnSetColumnVis( 7, true );
-                        editForm.dataTable.dTable.fnSetColumnVis( 8, true );
+                        editForm.dataTable.dTable.fnSetColumnVis( 8, false );
                         editForm.dataTable.dTable.fnSetColumnVis( 9, false );
-                        editForm.dataTable.dTable.fnSetColumnVis( 10, false );
                     }
                     
                     editForm.showAddressData = function(){
@@ -81,9 +78,8 @@
                             editForm.dataTable.dTable.fnSetColumnVis( 5, false );
                             editForm.dataTable.dTable.fnSetColumnVis( 6, false );
                             editForm.dataTable.dTable.fnSetColumnVis( 7, false );
-                            editForm.dataTable.dTable.fnSetColumnVis( 8, false );
+                            editForm.dataTable.dTable.fnSetColumnVis( 8, true );
                             editForm.dataTable.dTable.fnSetColumnVis( 9, true );
-                            editForm.dataTable.dTable.fnSetColumnVis( 10, true );
                             
                  		  
                     }
@@ -93,117 +89,163 @@
                 
                
                
-                </script>
-                <style >
-                    #errorInfo { font-style: italic; font-weight: bold; color: red;}
-                    .scratched td {text-decoration: line-through;}
-                    input[readonly] {background: buttonface;}
-                </style>
-            </head_merge>
-
-            <div class="container_12">              
-                 <div class="lift:register.ParentDataSn.choosenClass choosenclass">
-                    <h1>Przeglądasz klasę: <span id="choosenclass">4C</span></h1>
-                </div>
-                
-                <div class="lift:register.PupilDataSn.editAjax" id="formAdd" style="display: none;" title="Dane uczniów">
-                <form  method="POST">
-               <p><label for="id">Id:</label>
-                  <input id="id" type="text" />
-                </p> 
-               <p><label for="reversefullname">Nazwisko i imię:</label>
-                  <input id="reversefullname" type="text" readonly="readonly"/><br/>
-                  <span id="reversefullnameinfo" class="errorInfo"></span>
-                </p>
-                 <p><label for="number">Numer w dzienniku:</label>
-                   <input id="number" /><br/>
-                   <span id="numberinfo" class="errorInfo"></span>
-                </p>
-                <p><label for="secondname">Drugie imię:</label>
-                  <input id="secondname" maxlength="30"/><br/>
-                  <span id="secondnameinfo" class="errorInfo"></span>
-                </p>
-                 <p><label for="email">E-mail:</label>
-                  <input id="email" maxlength="50"/><br/>
-                  <span id="emailinfo" class="errorInfo"></span>
-                </p>
-                 <p><label for="pesel">PESEL:</label>
-                  <input id="pesel" type="text" readonly="readonly"/><br/>
-                  <span id="peselinfo" class="errorInfo"></span>
-                </p>
-                <p><label for="birthdate">Data urodzenia:</label>
-                   <input id="birthdate" type="text"  readonly="readonly"/><br/>
-                   <span id="birthdateinfo" class="errorInfo"></span>
-                </p>
-                <p><label for="birthplace">Miejsce urodzenia:</label>
-                   <input id="birthplace" type="text"  maxlength="30"/><br/>
-                   <span id="birthplaceinfo" class="errorInfo"></span>
-                </p>
-                <p><label for="birthdistrict">Województwo urodzenia:</label>
-                   <input id="birthdistrict" type="text"  maxlength="40"/><br/>
-                   <span id="birthdistrictinfo" class="errorInfo"></span>
-                </p>
-                <p><label for="phone">Telefon:</label>
-                   <input id="phone" type="text"  maxlength="12"/><br/>
-                   <span id="phoneinfo" class="errorInfo"></span>
-                </p>
-                <p><label for="address">Adres:</label>
-                   <input id="address" maxlength="120"/><br/>
-                   <span id="addressinfo" class="errorInfo"></span>
-                </p>
-                
-                <p><input type="image" src="/images/previco.png" onclick="editForm.getPrevious();" id="preview"/>
-                    <input type="image"  src="/images/saveico.png"  id="save"/>
-                    <input type="image" src="/images/nextico.png" onclick="editForm.getNext();" id="next"/>
-                </p>
-                <p id="addInfo"></p>
-                </form>
-                </div>
 
 
+    </script>
+    <style>
+        #errorInfo { font-style: italic; font-weight: bold; color: red;}
+        .scratched td {text-decoration: line-through;}
+        input[readonly] {background: buttonface;}
+    </style>
+</head_merge>
 
-                <h3>Dane uczniów </h3><hr />
-                <div id="radio">
-        <input type="radio" id="radio1" name="radio" checked="checked" onclick="editForm.showMainData();" /><label for="radio1">Główne dane</label>
-        <input type="radio" id="radio2" name="radio"  onclick="editForm.showAddressData();"/><label for="radio2">Adres i telefon</label>
+<div class="container_12">
+    <div class="lift:register.ParentDataSn.choosenClass choosenclass">
+        <h1>Przeglądasz klasę: <span id="choosenclass">4C</span></h1>
     </div>
-              
-                
-                <table id="fullList" class="display" border="0" cellpadding="2" cellspacing="2" >
-                   
-                   <thead>
-                       <tr>
-                       <th>ID</th><th>Nr</th><th>Nazwisko i Imię</th>
-                        <th>Drugie imię</th><th>E-mail</th><th>PESEL</th>
-                                <th>Data urodzenia</th>
-                                <th>Miejsce urodzenia</th><th>Województwo urodzenia</th>
-                                 <th>Telefon</th><th>Adres</th>
-                       </tr>
-                   </thead>
 
-                    <tbody class="lift:register.PupilDataSn.dataTable">
-                        <tr >
-                            <td class="id"></td>
-                            <td class="number"></td>
-                            <td  class="reversefullname"></td>
-                            <td class="secondname"></td>
-                            <td class="email"></td>
-                            <td class="pesel"></td>
-                            <td class="birthdate"></td>
-                            <td class="birthplace"></td>
-                            <td class="birthdistrict"></td>
-                            <td class="phone"></td>
-                            <td class="address"></td>
-                        </tr>
-                    </tbody>
-                </table>
+
+    <div class="lift:register.PupilDataSn.editAjax" id="formAdd" style="display: none;" title="Dane uczniów">
+        <form method="POST" class="form-horizontal">
+
+            <div class="form-group">
+
+                <label for="number" class="col-sm-3 control-label">Numer w dzienniku:</label>
+
+                <div class="col-sm-3"><input id="number"  class="form-control"/></div>
+                <div class="col-sm-3">
+                    <label for="id" class="col-sm-3 control-label">Id:</label>
+                </div>
+                <div class="col-sm-3"><input id="id" type="text" class="form-control"/></div>
 
             </div>
-            <br/>
-            <div class="clear"></div>
-        </div>
-          
-    </body>
+            <div class="form-group">
+                <label for="reversefullname" class="col-sm-3 control-label">Nazwisko i imię:</label>
+
+                <div class="col-sm-9">
+                    <input id="reversefullname" type="text"  class="form-control" readonly="readonly"/>
+
+                </div>
+
+            </div>
+            <div class="form-group">
+                <label for="email" class="col-sm-3 control-label">E-mail:</label>
+
+                <div class="col-sm-9">
+                    <input id="email"  class="form-control" maxlength="50"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="pesel" class="col-sm-3 control-label">PESEL:</label>
+
+                <div class="col-sm-9">
+                    <input id="pesel" type="text" readonly="readonly"  class="form-control"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="birthdate" class="col-sm-3 control-label">Data urodzenia:</label>
+
+                <div class="col-sm-9">
+                    <input id="birthdate"  class="form-control" readonly>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="birthplace" class="col-sm-3 control-label">Miejsce urodzenia:</label>
+
+                <div class="col-sm-9">
+                    <input id="birthplace" type="text" maxlength="30"  class="form-control"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="birthdistrict" class="col-sm-3 control-label">Województwo urodzenia:</label>
+
+                <div class="col-sm-9">
+                    <input id="birthdistrict" type="text" maxlength="40"  class="form-control"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="phone" class="col-sm-3 control-label">Telefon:</label>
+
+                <div class="col-sm-9">
+                    <input id="phone" type="text" maxlength="12"  class="form-control"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="address" class="col-sm-3 control-label">Adres:</label>
+
+                <div class="col-sm-9">
+                    <input id="address" maxlength="120" class="form-control"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-2">
+                    <input type="image" src="/images/previco.png" onclick="editForm.getPrevious();" id="preview"/>
+                </div>
+                <div class="col-sm-2">
+                    <input type="image" src="/images/saveico.png" id="save"/>
+                </div>
+                <div class="col-sm-2">
+                    <input type="image" src="/images/nextico.png" onclick="editForm.getNext();" id="next"/>
+                </div>
+                <div class="col-sm-3"></div>
+            </div>
+            <p id="addInfo"></p>
+        </form>
+    </div>
+
+
+    <h3>Dane uczniów </h3>
+    <hr/>
+    <div id="radio">
+        <input type="radio" id="radio1" name="radio" checked="checked" onclick="editForm.showMainData();"/><label
+            for="radio1">Główne dane</label>
+        <input type="radio" id="radio2" name="radio" onclick="editForm.showAddressData();"/><label for="radio2">Adres i
+        telefon</label>
+    </div>
+
+
+    <table id="fullList" class="display" border="0" cellpadding="2" cellspacing="2">
+
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nr</th>
+            <th>Nazwisko i Imiona</th>
+            <th>E-mail</th>
+            <th>PESEL</th>
+            <th>Data urodzenia</th>
+            <th>Miejsce urodzenia</th>
+            <th>Województwo urodzenia</th>
+            <th>Telefon</th>
+            <th>Adres</th>
+        </tr>
+        </thead>
+
+        <tbody class="lift:register.PupilDataSn.dataTable">
+        <tr>
+            <td class="id"></td>
+            <td class="number"></td>
+            <td class="reversefullname"></td>
+            <td class="email"></td>
+            <td class="pesel"></td>
+            <td class="birthdate"></td>
+            <td class="birthplace"></td>
+            <td class="birthdistrict"></td>
+            <td class="phone"></td>
+            <td class="address"></td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+<br/>
+
+<div class="clear"></div>
+</div>
+
+</body>
 </html>
 
 

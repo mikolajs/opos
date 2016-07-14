@@ -7,7 +7,7 @@
 package pl.edu.osp.snippet.secretariat
 
 import _root_.net.liftweb.util._
-import _root_.net.liftweb.http.SHtml
+import net.liftweb.http.{SessionVar, S, SHtml}
 import _root_.net.liftweb.common._
 import _root_.net.liftweb.mapper.By
 import Helpers._
@@ -16,11 +16,14 @@ import _root_.pl.edu.osp.lib.Formater
 import _root_.net.liftweb.http.js.JsCmds._
 import _root_.net.liftweb.http.js.JE._
 
-class PupilSn {
+object ClassChoose extends SessionVar[Long](0L)
 
+class PupilSn {
+  val classList = ClassModel.findAll.map(classModel => (classModel.id.toString, classModel.classString()))
+  if(ClassChoose.get == 0L)  ClassChoose(classList.head._1.toLong)
   def pupilList() = {
 
-    val pupils = User.findAll(By(User.role, "u"))
+    val pupils = User.findAll(By(User.role, "u"), By(User.classId, ClassChoose.get))
     "tr" #> pupils.map(pupil => {
       "tr [class]" #> {
         if (pupil.scratched.get) "scratched" else ""
@@ -42,8 +45,18 @@ class PupilSn {
         </td> &
         ".pesel" #> <td>
           {pupil.pesel.get}
+        </td> &
+        ".email" #> <td>
+          {pupil.email.get}
         </td>
     })
+  }
+
+  def selectClass() = {
+     "#getClass" #> SHtml.ajaxSelect(classList, Full(ClassChoose.get.toString), (idClass:String) => {
+       ClassChoose(idClass.toLong)
+       S.redirectTo("/secretariat/pupils")
+     })
   }
 
   def editAjax() = {
@@ -53,6 +66,7 @@ class PupilSn {
     var birthDate = ""
     var pesel = ""
     var classId = ""
+    var email = ""
     var errorInfo = ""
 
     def save() = {
@@ -65,7 +79,7 @@ class PupilSn {
         case _ =>
       }
       pupil.birthDate(Formater.fromStringToDate(birthDate)).firstName(firstName).
-        lastName(lastName).pesel(pesel).scratched(false).role("u").
+        lastName(lastName).pesel(pesel).scratched(false).role("u").email(email).
         password(Helpers.randomString(10)).save
       if (id == "") {
         id = pupil.id.toString
@@ -87,14 +101,15 @@ class PupilSn {
         case _ => Alert("Nie ma takiego ucznia")
       }
     }
-    val classList = ClassModel.findAll.map(classModel => (classModel.id.toString, classModel.classString()))
+
 
     val form = "#id" #> SHtml.text(id, x => id = x.trim, "readonly" -> "readonly") &
       "#lastname" #> SHtml.text(lastName, x => lastName = x.trim) &
       "#firstname" #> SHtml.text(firstName, x => firstName = x.trim) &
       "#birthdate" #> SHtml.text(birthDate, x => birthDate = x.trim) &
       "#pesel" #> SHtml.text(pesel, x => pesel = x.trim) &
-      "#classInfo" #> SHtml.select(classList, Full(""), classId = _) &
+      "#classInfo" #> SHtml.select(classList, Full(ClassChoose.get.toString), classId = _) &
+    "#email" #> SHtml.text(email, x => email = x.trim) &
       "#addInfo *" #> errorInfo &
       "#delete" #> SHtml.ajaxSubmit("Usuń", delete, "type" -> "image",
         "onclick" -> "return confirm('Na pewno usunąć klasę?')") &
