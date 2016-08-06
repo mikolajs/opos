@@ -24,7 +24,7 @@ class BaseTeacher {
 
 
   protected def isBriningUp = {
-    val theClass = ClassModel.find(ClassChoose.is.toLong).openOr(ClassModel.create)
+    val theClass = ClassModel.find(ClassChoose.get).openOr(ClassModel.create)
     if (user.id.get == theClass.teacher.obj.get.id.get || user.role == "a") true
     else false
   }

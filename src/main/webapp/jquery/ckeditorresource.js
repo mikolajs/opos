@@ -18,6 +18,7 @@
 		  for (var i=0; i<n; i++)
 		    outnode.removeChild(outnode.firstChild);
 		  outnode.appendChild(document.createTextNode(str));
-		  AMprocessNode(outnode);
+		  //alert("node " + outnode.innerHTML +  " " + AMmathml);
+		  asciimath.AMprocesssNode(outnode);
 		}
 		//end ascii to math

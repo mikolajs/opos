@@ -59,9 +59,9 @@ class MainSn {
     }
     ".grid_3" #> mainPageLinks.links.map(linkGroup => {
       <div class="grid_3">
-        <h1>
+        <h3>
           {linkGroup.name}
-        </h1>
+        </h3>
         <ul>
           {linkGroup.links.map(link => <li>
           <a href={link.url}>

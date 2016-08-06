@@ -79,7 +79,6 @@ class TestData {
     val pupil = User.findAll(By(User.role, "u")).head
     val markL = MarkLine.create
     markL.subjectId = sub.id.is
-    markL.sem = 1
     markL.pupilId = pupil.id.get
     markL.save
   }
