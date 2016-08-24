@@ -28,10 +28,10 @@ class CoursesSn extends BaseResourceSn {
           {course.title}
         </h2> &
         "h3" #> <h3>
-          {course.subjectName}<span class="subjectId" style="display:none;">
+          {course.subjectName},<span class="subjectId" style="display:none;">
             {course.subjectId.toString}
           </span>
-          <span class="text-muted classInfo">, Klasy:
+          <span class="text-muted classInfo"> Klasy:
             {course.classInfo}
           </span>
           <span class="classIds" style="display:none;">

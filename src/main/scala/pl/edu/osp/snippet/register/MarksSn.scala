@@ -1,11 +1,10 @@
 package pl.edu.osp.snippet.register
 
 import java.util.Date
-import _root_.net.liftweb.util._
+import net.liftweb.util.Helpers._
 import _root_.net.liftweb.http.{SHtml, S}
 import _root_.net.liftweb.common._
 import _root_.net.liftweb.mapper.{By, OrderBy, Ascending}
-import Helpers._
 import pl.edu.osp.model._
 import org.bson.types.ObjectId
 import _root_.net.liftweb.json.JsonDSL._

@@ -37,7 +37,7 @@
         if($textBox != null && $imgBox != null) closeNews();
          $('#hiddenAjaxText').val(id).trigger('blur');
          var $ajaxNews = $('#ajaxNews');
-         $innerBox.before($ajaxNews);
+         $innerBox.append($ajaxNews);
          $textBox.hide();
          $imgBox.hide();
          $('#ajaxNews').show(100);
@@ -61,13 +61,11 @@
 
        .actualPage {color: #ccc !important;}
 
-
         label {
         font-weight: bold;
         font-size: 1.2em;
         padding-right: 20px;
         }
-
 
         .linkNewsA {
         padding: 5px 15px 5px 15px;
@@ -82,35 +80,41 @@
         color: #FF0000;
         }
 
-
         .pine-box {
         border: 1px solid #ddd;
         padding: 5px 10px 5px 10px;
         margin: 10px 0 10px 0;
         background-color: #fff;
-        -webkit-box-shadow: 2px 3px 4px 2px #667a7a;
-        box-shadow: 1px 2px 4px rgb(34, 25, 25, 0.4);
-
+        box-shadow: 4px 4px 4px rgb(70, 70, 80, 0.6);
         }
-        .pine-box h2 {
-        padding: 5px 4px 3px 30px;
-        margin-bottom: 6px;
+        .innerBox {
+         margin-left: 280px;
+         min-width: 280px;
+        }
+        .innerBox > h2 {
+        padding: 5px;
+        margin-bottom: 4px;
+        margin-top: 4px;
         font-size: 18px;
-        background: url(/images/pin.png) no-repeat left;
-        border-bottom: 1px dotted #ccc;
+        }
+
+        .footPrint {
+        padding: 3px;
+        border-bottom: 1px solid #ccc;
+        border-top: 1px solid #ccc;
+        }
+        span.fullname, span.date {
+         padding-right: 20px;
         }
 
         .imgBox {
-        text-align: center;
-        min-width: 280px;
-        float: left;
+            text-align: center;
+            min-width: 280px;
+            float: left;
         }
 
         .imgBox img {width: 270px; padding-right: 10px;}
 
-        .textBox {min-width: 280px;}
-
-        @media screen and (min-width:580px) { .textBox {margin-left: 280px;}}
 
         span.edit {float: right;}
 
@@ -230,14 +234,11 @@
 
                     <div id="ajaxNews">
                         <br/>
-
                     </div>
                 </div>
-
                 <ul class="pagination">
                     <li></li>
                 </ul>
-
                 </div>
 
                  <div class="row" id="articleCont">
@@ -251,16 +252,9 @@
                            <div id="depBody"></div>
                         </div>
                  </div>
-
-
-
                 </div>
-
             </div>
-
-
         </div>
-
     </div>
 
 

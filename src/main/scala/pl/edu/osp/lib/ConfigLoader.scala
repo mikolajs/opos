@@ -28,6 +28,7 @@ object ConfigLoader {
         case _ =>
       }
     }
+    //printInfo
   })
 
   def printInfo = "sqlPass: %s, sqlDB: %s, mongoDB: %s".format(sqlPassw, sqlDB, mongoDB)

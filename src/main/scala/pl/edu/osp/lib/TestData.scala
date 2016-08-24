@@ -25,7 +25,6 @@ class TestData {
       User.create.address(randomName(10)).phone(randomNumbers(9)).firstName(randomName(9)).secondName(randomName(9)).
         role("n").validated(true).lastName(randomName(9)).save
     }
-
   }
 
   def createClasses() {

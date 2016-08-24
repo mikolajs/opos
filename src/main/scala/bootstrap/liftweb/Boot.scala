@@ -56,8 +56,7 @@ class Boot {
     LiftRules.addToPackages("pl.edu.osp.snippet.secretariat")
     LiftRules.addToPackages("pl.edu.osp.snippet.doc")
 
-    Schemifier.schemify(true, Schemifier.infoF _, User,
-      ClassModel, MarkMap, SubjectName)
+    Schemifier.schemify(true, Schemifier.infoF _, User, ClassModel, MarkMap, SubjectName)
 
 
     LiftRules.statelessDispatch.append({

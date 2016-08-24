@@ -238,30 +238,33 @@ class MainSn {
   }
 
   private def createPinBox(news: ArticleHead) = {
-    <div class="pine-box new-bullet ">
-      <h2 onclick={"showNewsTitle('" + news._id + "', this)"}>
-        {news.title}
-      </h2>
+    <div class="pine-box">
+      <div class="imgBox">
+        <img src={news.thumbnailLink}/>
+      </div>
+
       <div class="innerBox">
-        <div class="imgBox">
-          <img src={news.thumbnailLink}/>
+        <h2 onclick={"showNewsTitle('" + news._id + "', this)"}>
+          {news.title}
+        </h2>
+        <div class="footPrint">
+          <span class="glyphicon glyphicon-user"></span>
+          <span class="fullname">
+            {news.authorName}
+          </span>
+          <span class="glyphicon glyphicon-calendar"></span>
+          <span class="date">
+            {Formater.formatDate(news._id.getDate())}
+          </span>
         </div>
         <div class="textBox">
-          <p class="pageinfo">
-            <span class="fullname">
-              {news.authorName}
-            </span>
-            <span class="date">
-              {Formater.formatDate(news._id.getDate())}
-            </span>
-          </p>
           <div class="introNews">
             {Unparsed(news.introduction)}
           </div>
           <span class="readMore" onclick={"return showNews('" + news._id + "', this)"}>Czytaj dalej</span>
-        </div>
-        <div style="clear:both;"></div>
       </div>
+    </div>
+      <div style="clear:both;"></div>
     </div>
   }
 

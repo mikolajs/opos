@@ -27,3 +27,6 @@ case class ArticleHead(var _id: ObjectId, var prior:Int, var title: String,
   extends MongoDocument[ArticleHead] {
   def meta = ArticleHead
 }
+
+// for perform events info:
+// var events: Boolean, var when: Long (date), var teacherOnly: Boolean

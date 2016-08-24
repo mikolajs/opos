@@ -19,7 +19,7 @@ import _root_.net.liftweb.util.Helpers._
 
 class EditLesson extends BaseLesson {
 
-  val subjectTeach = SubjectTeach.findAll(("authorId" -> user.id.get), ("$orderby" -> ("prior" -> 1)))
+  val subjectTeach = SubjectTeach.findAll(("authorId" -> user.id.get),  ("prior" -> 1))
   val subjectNow = subjectTeach.find(s => s.id == subjectId).getOrElse(subjectTeach.head)
 
   val departList = subjectNow.departments.map(d => (d.name -> d.name))

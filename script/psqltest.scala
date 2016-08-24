@@ -1,5 +1,4 @@
-#!/usr/bin/env scala
-!#
+
 
 import java.sql._
 import scala.collection.mutable._
@@ -11,9 +10,9 @@ class DBtest {
   //val url = "test1" //url może trzeba dodać hosta? ms?
 
   
-  val usr = "vregister"
-  val pwd = "qwerty"
-  val url = "jdbc:postgresql:vregister"
+  val usr = "osp"
+  val pwd = "123test456"
+  val url = "jdbc:postgresql:osp"
   var timeStart = System.currentTimeMillis
   //ustanowienie połączenia
   var conn:Connection = _
@@ -27,7 +26,7 @@ class DBtest {
     }
     catch {
       case e:Exception => println("Error: " + e.toString)
-        case _ => println("Nieznany błąd połączenia z bazą")
+        case _ : Throwable => println("Nieznany błąd połączenia z bazą")
     }
 
   }
@@ -38,7 +37,7 @@ class DBtest {
     }
     catch {
       case e:Exception => println("Error: " + e.toString)
-        case _ => println("Nieznany błąd zamykania bazy")
+        case _  : Throwable => println("Nieznany błąd zamykania bazy")
     }
   }
 
@@ -64,7 +63,7 @@ class DBtest {
     }
     catch {
        case e:Exception => println("Error: " + e.toString)
-        case _ => println("Nieznany błąd odczytu danych")
+        case _ : Throwable => println("Nieznany błąd odczytu danych")
     }
   }
 
