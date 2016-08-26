@@ -13,11 +13,12 @@
     <!--[if lt IE 7]>
     <link href="ie_style.css" rel="stylesheet" type="text/css" />
     <![endif]-->
-
+    <link href="/bootstrap/css/full-slider.css" rel="stylesheet">
 
     <title> Szkolny portal edukacyjny</title>
 
     <script src="/jquery/jquery.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
     <!-- Bootstrap -->
 
 
@@ -30,7 +31,7 @@
 </head>
 <body>
 
-<div class="navbar navbar-inverse" role="navigation">
+<nav class="navbar navbar-inverse" role="navigation">
     <div class="col-lg-12">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -43,8 +44,28 @@
         </div>
         <div class="collapse navbar-collapse" id="navBar">
             <ul class="nav navbar-nav "
-                data-lift="Menu.builder?linkToSelf=true;li_item:class=active;group=public;ul:class=nav navbar-nav"  ></ul>
-            <ul class="nav navbar-nav " ><li><a target="_blank" href="https://www.edu.gdansk.pl">UONET - Dziennik</a></li></ul>
+                data-lift="Menu.builder?linkToSelf=true;li_item:class=active;group=public;ul:class=nav navbar-nav"  >
+
+            </ul>
+
+
+            <ul class="nav navbar-nav " data-lift="page.MainSn.submenuTopArticles">
+                <li id="showSubmenu" role="presentation" class="dropdown" >
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                        Dropdown <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#kdl"> </a></li>
+                    </ul>
+                </li>
+                <li id="addNews"></li>
+                <li><a href="#linkarea">Linki</a> </li>
+            </ul>
+
+
+
+
+            <ul class="nav navbar-nav " ><li><a target="_blank" href="https://www.edu.gdansk.pl">UONET</a></li></ul>
             <ul class="nav navbar-nav " ><li><a href="/login">Aplikacje</a></li></ul>
             <ul data-lift="LoginSn.show" class="nav navbar-nav navbar-right ">
                 <li class="loginLi"> <a href=""  id="logInfo"  ></a></li>
@@ -53,8 +74,7 @@
         </div>
     </div>
 
-</div>
-
+</nav>
 
 
 <div  id="content">
@@ -66,9 +86,10 @@
     <p> Programmed by: <a href="http://osp.edu.pl">Mikołaj Sochacki, OpenSchoolPlatform</a> &copy; &nbsp; &nbsp;
         <span class="lift:Msgs?showAll=true"></span>  </p>
 </footer>
-<script src="/bootstrap/js/bootstrap.min.js"></script>
+
 <script src="/jqueryui/jquery-ui.min.js" type="text/javascript"></script>
 <script src="/jquery/logoandfavicon.js" type="text/javascript"></script>
+
 
 </body>
 </html>

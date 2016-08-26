@@ -43,13 +43,17 @@ class MainSn {
       <div class={"item" + (if (isFirst) {
         isFirst = false; " active"
       } else "")}>
-        <img src={slide.img} alt={slide.desc}/>
-
+        <div class="fill" style={"background-image:url('" + slide.img + "');"}></div>
         <div class="carousel-caption">
           {Unparsed(slide.html)}
         </div>
       </div>
-    })
+    }) &
+    ".carousel-indicators" #> <ol class="carousel-indicators"> {
+      for(n <- 0 until mpSlides.length)
+        yield <li data-target="#carousel-main" data-slide-to={n.toString} class={if(n == 0) "active" else ""}></li>
+      }
+    </ol>
   }
 
   def links = {
@@ -76,18 +80,18 @@ class MainSn {
 
 
   def submenuTopArticles() = {
-    val allTag = <li><a href="/index/a">Wszystkie</a></li>
-    val newsTags = allTag :: NewsTag.findAll.map(tag => <li><a href={"/index/t?tag=" + tag.tag}>
+    val allTag = <a href="/index/a">Wszystkie</a>
+    val newsTags = allTag :: NewsTag.findAll.map(tag => <a href={"/index/t?tag=" + tag.tag}>
       {tag.tag +
         " (" + tag.count.toString() + ")"}
-    </a></li>).toList
+    </a>).toList
     val menuNews = List(("Aktualności", newsTags))
 
 
     val menuDepCont = PageDepartment.findAll(Nil, ("nr" -> 1)).map(pageDep => {
-      <li><a href={"/index/b?d=" + pageDep._id.toString}>
+      <a href={"/index/b?d=" + pageDep._id.toString}>
         {pageDep.name}
-      </a></li>
+      </a>
     }).toList
     val menuDep = List(("O Szkole", menuDepCont))
     val menu = menuNews ++ menuDep

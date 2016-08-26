@@ -1,14 +1,42 @@
-<div class="lift:surround?with=page;at=content">
-<head_merge>
-    <link rel="stylesheet" href="/style/pages.css"/>
-    <link rel="stylesheet" href="/style/carousel.css"/>
+<!doctype HTML>
+<html>
 
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link id="favicon" href="/osp/favicon.png" type="image/png" rel="icon"/>
+    <link href="/style.css"  rel="stylesheet"/>
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/jqueryui/jquery-ui.css" />
+
+    <!--[if lt IE 7]>
+    <link href="ie_style.css" rel="stylesheet" type="text/css" />
+    <![endif]-->
+    <link href="/bootstrap/css/full-slider.css" rel="stylesheet">
+
+    <title> Szkolny portal edukacyjny</title>
+
+    <script src="/jquery/jquery.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Bootstrap -->
+
+
+
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" href="/style/pages.css"/>
+    <!--<link rel="stylesheet" href="/style/carousel.css"/> -->
+    <link href="/bootstrap/css/full-slider.css" rel="stylesheet">
     <script>
      var $imgBox = null;
      var $innerBox = null;
      var $textBox = null;
 
-     
+
    function showNews(id, elem){
              if($textBox != null && $imgBox != null) closeNews();
              $innerBox = $(elem).parent().parent();
@@ -17,7 +45,7 @@
             showNewsCommon(id);
             return false;
     };
-         
+
    function closeNews() {
        	 $textBox.show();
        	 $imgBox.show();
@@ -57,9 +85,9 @@
     </script>
     <style>
 
-       .secondNavbar {margin-top: -20px;}
+        #carousel-main {margin-top: -20px}
 
-       .actualPage {color: #ccc !important;}
+        .actualPage {color: #ccc !important;}
 
         label {
         font-weight: bold;
@@ -83,13 +111,13 @@
         .pine-box {
         border: 1px solid #ddd;
         padding: 5px 10px 5px 10px;
-        margin: 10px 0 10px 0;
+        margin: 15px 0 15px 0;
         background-color: #fff;
-        box-shadow: 4px 4px 4px rgb(70, 70, 80, 0.6);
+        box-shadow: 4px 4px 8px #999999;
         }
         .innerBox {
-         margin-left: 280px;
-         min-width: 280px;
+        margin-left: 280px;
+        min-width: 280px;
         }
         .innerBox > h2 {
         padding: 5px;
@@ -104,13 +132,13 @@
         border-top: 1px solid #ccc;
         }
         span.fullname, span.date {
-         padding-right: 20px;
+        padding-right: 20px;
         }
 
         .imgBox {
-            text-align: center;
-            min-width: 280px;
-            float: left;
+        text-align: center;
+        min-width: 280px;
+        float: left;
         }
 
         .imgBox img {width: 270px; padding-right: 10px;}
@@ -155,13 +183,32 @@
         background-color: black;
         }
 
+
     </style>
 
-</head_merge>
-    <div class="navbar navbar-inverse secondNavbar" role="navigation">
-        <div class="col-lg-1"></div>
-        <div class="col-lg-10">
-            <ul class="nav navbar-nav " style="margin-left:250px;" data-lift="page.MainSn.submenuTopArticles">
+
+</head>
+<body>
+
+<nav class="navbar navbar-inverse" role="navigation">
+    <div class="col-lg-12">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/"><img id="logopng" src="/osp/logo.png" /> </a>
+        </div>
+        <div class="collapse navbar-collapse" id="navBar">
+            <ul class="nav navbar-nav "
+                data-lift="Menu.builder?linkToSelf=true;li_item:class=active;group=public;ul:class=nav navbar-nav"  >
+
+            </ul>
+
+
+            <ul class="nav navbar-nav " data-lift="page.MainSn.submenuTopArticles">
                 <li id="showSubmenu" role="presentation" class="dropdown" >
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                         Dropdown <span class="caret"></span>
@@ -173,43 +220,52 @@
                 <li id="addNews"></li>
                 <li><a href="#linkarea">Linki</a> </li>
             </ul>
+
+
+
+
+            <ul class="nav navbar-nav " ><li><a target="_blank" href="https://www.edu.gdansk.pl">UONET</a></li></ul>
+            <ul class="nav navbar-nav " ><li><a href="/login">Aplikacje</a></li></ul>
+            <ul data-lift="LoginSn.show" class="nav navbar-nav navbar-right ">
+                <li class="loginLi"> <a href=""  id="logInfo"  ></a></li>
+
+            </ul>
             <ul class="nav navbar-nav navbar-right ">
                 <li class="loginLi">
                     <div class="navbar-form" role="search">
                         <div class="form-group">
                             <input type="text" class="form-control" onkeypress="pressEnter(event)" placeholder="Szukaj z Google" id="toSearch"/>
                         </div>
-                        <button type="submit" id="toSearchBut" class="btn btn-default" onclick="searchGoogle()">Zatwiedź</button>
+                        <button type="submit" id="toSearchBut" class="btn btn-default" onclick="searchGoogle()">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
                     </div>
-
                 </li>
-
-
-           </ul>
+            </ul>
         </div>
-        <div class="col-lg-1"></div>
+    </div>
 
+</nav>
+
+
+    <div id="carousel-main" class="carousel slide" data-ride="carousel" data-lift="page.MainSn.slides">
+
+        <div class="carousel-inner" >
+            <div class="item"></div>
+        </div>
+
+
+        <a class="left carousel-control" href="#carousel-main" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a class="right carousel-control" href="#carousel-main" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
+        <ol class="carousel-indicators"></ol>
     </div>
 
 
-<div class="row">
-<div id="carousel-main" class="carousel slide" data-ride="carousel">
 
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner" data-lift="page.MainSn.slides">
-        <div class="item"></div>
-    </div>
-
-    <!-- Controls -->
-    <a class="left carousel-control" href="#carousel-main" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left"></span>
-    </a>
-    <a class="right carousel-control" href="#carousel-main" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right"></span>
-    </a>
-    <ol class="carousel-indicator"></ol>
-</div>
-</div>
 
 <div class="row">
     <div class="col-lg-1"></div>
@@ -271,5 +327,21 @@
 </div>
 
 
-</div>
+<footer class="footer">
+    <p> Programmed by: <a href="http://osp.edu.pl">Mikołaj Sochacki, OpenSchoolPlatform</a> &copy; &nbsp; &nbsp;
+        <span class="lift:Msgs?showAll=true"></span>  <a href="#logopng">↑ Do góry ↑</a> </p>
+</footer>
+
+<script src="/jqueryui/jquery-ui.min.js" type="text/javascript"></script>
+<script src="/jquery/logoandfavicon.js" type="text/javascript"></script>
+<script src="/bootstrap/js/carousel.js" type="text/javascript"></script>
+<script>
+    $('.carousel').carousel({
+        interval: 5000 //changes the speed
+    })
+    </script>
+
+</body>
+</html>
+
 
