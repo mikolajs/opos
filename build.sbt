@@ -1,6 +1,6 @@
 name := "osp"
 
-version := "0.6.9"
+version := "0.7.0"
 
 organization := "pl.edu.osp"
 

@@ -182,8 +182,8 @@ class MainSn {
                   Edytuj</a>
               </span>
             }
-            else <span></span>}<span class="closeNewsButton" onclick="closeNews()">
-              <img src="/images/delico.png"/>
+            else <span></span>}<span class="btn btn-small btn-danger closeNewsButton" onclick="closeNews()">
+              <span class="glyphicon glyphicon-remove"></span>
               Zamknij</span>
             </div>
         }
@@ -242,12 +242,13 @@ class MainSn {
   }
 
   private def createPinBox(news: ArticleHead) = {
-    <div class="pine-box">
-      <div class="imgBox">
-        <img src={news.thumbnailLink}/>
+    <div class="row pine-box">
+      <div class="col-md-3">
+        <img  class="img-box featurette-image img-responsive" src="/images/empty.png"
+              style={"background-image: url('" + news.thumbnailLink+  "')"} />
       </div>
 
-      <div class="innerBox">
+      <div class="col-md-9 innerBox">
         <h2 onclick={"showNewsTitle('" + news._id + "', this)"}>
           {news.title}
         </h2>
@@ -265,7 +266,7 @@ class MainSn {
           <div class="introNews">
             {Unparsed(news.introduction)}
           </div>
-          <span class="readMore" onclick={"return showNews('" + news._id + "', this)"}>Czytaj dalej</span>
+          <span class="btn btn-small btn-info" onclick={"return showNews('" + news._id + "', this)"}>Czytaj dalej</span>
       </div>
     </div>
       <div style="clear:both;"></div>
