@@ -13,7 +13,7 @@ import _root_.net.liftweb.http.provider._
 import _root_.net.liftweb.sitemap._
 import _root_.net.liftweb.sitemap.Loc._
 import Helpers._
-import _root_.net.liftweb.mapper.{DB, By, ConnectionManager, ConnectionIdentifier, Schemifier, DefaultConnectionIdentifier}
+import _root_.net.liftweb.mapper.{DB, ConnectionManager,  ConnectionIdentifier, Schemifier, DefaultConnectionIdentifier}
 import java.sql.{Connection, DriverManager}
 import pl.edu.osp.model._
 import pl.edu.osp.api._
@@ -40,6 +40,8 @@ object DBVendor extends ConnectionManager {
   }
 }
 
+
+
 class Boot {
   def boot {
     CL.init
@@ -48,6 +50,7 @@ class Boot {
 
     MongoDB.defineDb(DefaultMongoIdentifier, MongoAddress(MongoHost("127.0.0.1", 27017), CL.mongoDB))
 
+    //MongoDB.defineDb(OtherMongoIdentifier, MongoAddress(MongoHost("127.0.0.1"), CL.mongoDB))
     // where to search snippet
     LiftRules.addToPackages("pl.edu.osp")
     LiftRules.addToPackages("pl.edu.osp.snippet.page")
@@ -186,6 +189,8 @@ class Boot {
         Menu("Edytuj dokument") / "educontent" / "editdocument" / ** >> LocGroup("extra") >> Hidden >> isTeacher,
         Menu("Indeksuj wideo") / "educontent" / "indexvideo" / ** >> LocGroup("extra") >> Hidden >> isTeacher,
         Menu("Slajdy") / "educontent" / "showlessonslides" / ** >> LocGroup("extra") >> Hidden >> isTeacher,
+        Menu("Otwarte kursy") / "public" / "index" >> LocGroup("pub"),
+        Menu("Otwarta lekcja") / "public" / "course" / ** >> LocGroup("pub"),
         Menu("GC") / "admin" / "gc" >> LocGroup("admin") >> isAdmin,
         Menu("Test") / "test1234qwerty" >> LocGroup("extra"),
         Menu("Static") / "static" / **) :::
@@ -243,6 +248,10 @@ class Boot {
       ParsePath("educontent" :: "course" :: courseId :: Nil, _, _, _), _, _) =>
         RewriteResponse(
           "educontent" :: "course" :: Nil, Map("id" -> courseId))
+      case RewriteRequest(
+      ParsePath("public" :: "course" :: courseId :: Nil, _, _, _), _, _) =>
+        RewriteResponse(
+          "public" :: "course" :: Nil, Map("id" -> courseId))
       case RewriteRequest(
       ParsePath("educontent" :: "editslide" :: subjectId :: Nil, _, _, _), _, _) =>
         RewriteResponse(

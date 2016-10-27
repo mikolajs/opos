@@ -22,34 +22,39 @@
       
     </head_merge>
   <div class="well"><h2>Twoje filmy</h2></div>
-  
- <div class="row">
-		<div class="col-lg-6">
-			<div class="form-inline">
-			<div class="input-group" data-lift="edu.VideoSn.subjectChoice">
-                    <div class="input-group-addon">Wybierz przedmiot:</div>
-                    <select id="subjectChoice" class="form-control"></select>
-             </div>
-             </div>
-		</div>
-		<div class="col-lg-6" data-lift="edu.VideoSn.fromServer">
-			<button type="button" class="btn btn-success btn-lg"  id="addTrigger">
-  <span class="glyphicon glyphicon-plus-sign"></span>Nowy z YouTube
-</button>
-<a type="button" class="btn btn-primary btn-lg"  href="/educontent/indexvideo">
-  <span class="glyphicon glyphicon-plus-sign"></span> Nowy z katalogu domowego serwera
-</a>
-		</div>
-	</div>
+    <div class="row">
+        <div class="col-lg-6" data-lift="edu.VideoSn.subjectAndDepartmentChoice">
+            <div  class="form-inline"
+                 method="POST">
+                <h2 id="subjectAndDepartment">Fizyka
+                     <span class="label label-default"> Dział</span>
+                    <big id="subjectNameLabel">Energia i praca</big></h2>
+                <hr />
+            </div>
+            <div class="input-group">
+                <div class="input-group-addon">Wybierz:</div>
+                <select id="subjectChoice" class="form-control"></select>
+            </div>
+        </div>
+        <div class="col-lg-6" data-lift="edu.VideoSn.fromServer">
+            <button type="button" class="btn btn-success btn-lg"  id="addTrigger">
+                <span class="glyphicon glyphicon-plus-sign"></span>Nowy z YouTube
+            </button>
+            <a type="button" class="btn btn-primary btn-lg"  href="/educontent/indexvideo">
+                <span class="glyphicon glyphicon-plus-sign"></span> Nowy z katalogu domowego serwera
+            </a>
+        </div>
+
+    </div>
   
 <br/><hr/>
 
 <div>
      <table id="dataTable"><thead><tr><th>Tytuł</th><th>Gdzie</th><th>Opis</th>
-            <th>Dział</th><th>Poziom</th><th>Edycja</th></tr></thead>
-     <tbody class="lift:edu.VideoSn.showVideos"><tr><td></td><td></td><td></td><td></td><td></td></tr></tbody>
+            <th>Poziom</th><th>Edycja</th></tr></thead>
+     <tbody class="lift:edu.VideoSn.showVideos"><tr><td></td><td></td><td></td><td></td></tr></tbody>
      <tfoot><tr><th>Tytuł</th><th>Gdzie</th><th>Opis</th>
-            <th>Dział</th><th>Poziom</th><th>Edycja</th></tr></tfoot>
+            <th>Poziom</th><th>Edycja</th></tr></tfoot>
      </table>
 </div>
    

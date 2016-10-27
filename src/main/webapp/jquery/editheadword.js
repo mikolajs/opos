@@ -22,7 +22,7 @@
 			if(this.slideSize == 0) this.slideSize = 1;
 			for( i = this.slideSize +1;  i <  this.slideMaxNr + 1;  i++){
 		    	$('#section_'+ i).hide();
-		    }		
+		    }
 		},
 		
 		createPage : function(){	

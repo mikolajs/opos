@@ -18,9 +18,8 @@ import java.util.Date
 
 class EditQuizSn extends BaseResourceSn {
 
-  var subjectId = tryo(S.param("s").openOr("0").toLong).getOrElse(0L)
+
   var quizId = S.param("id").openOr("0")
-  if (subjectId == 0L) subjectId = subjectTeach.head.id
 
   val userId = user.id.get
   val quiz = Quiz.find(quizId).getOrElse(Quiz.create)
@@ -176,6 +175,7 @@ class EditQuizSn extends BaseResourceSn {
         {f}
       </span>)}</div>
       <div class="questInfo">
+        <span class="nr">Nr: {quest.nr.toString} </span>  |
         <span class="department"> Dział:
           {quest.department}
         </span> |

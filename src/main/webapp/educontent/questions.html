@@ -100,6 +100,10 @@ span.label-info {margin: 0 10px;}
 			<div style="float: right; width: 400px;">
 				<input id="idQuest" style="display: none" type="text" />
 				<div class="input-group">
+					<div class="input-group-addon">Nr pytania:</div>
+					<input id="nrQuest" type="number" class="form-control" readonly="readonly"/>
+				</div>
+				<div class="input-group">
 					<div class="input-group-addon">Przedmiot:</div>
 					<input id="subjectQuest" class="form-control" readonly="readonly"/>
 				</div>
@@ -158,6 +162,7 @@ span.label-info {margin: 0 10px;}
 		<table id="datatable">
 			<thead>
 				<tr>
+					<th>Nr</th>
 					<th style="min-width:40%;">Pytanie</th>
 					<th>Prawidłowe</th>
 					<th>Błędne</th>
@@ -173,10 +178,12 @@ span.label-info {margin: 0 10px;}
 					<td></td>
 					<td></td>
 					<td></td>
+					<td></td>
 				</tr>
 			</tbody>
 			<tfoot>
 				<tr>
+					<th>Nr</th>
 					<th>Pytanie</th>
 					<th>Prawidłowe</th>
 					<th>Błędne</th>

@@ -69,7 +69,7 @@ class OptionsSn {
               subHead.head
             }
             subT.authorId = user.id.get
-            subT.name = sub.last
+            subT.name = sub.last.trim
             subT.id = id
             subT.prior = nr
             subT.save

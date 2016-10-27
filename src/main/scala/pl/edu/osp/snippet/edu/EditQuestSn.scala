@@ -16,8 +16,6 @@ import _root_.net.liftweb.http.js.JE._
 
 class EditQuestSn extends BaseResourceSn {
 
-  val subjectId = subjectNow.id
-
 
   def subjectChoice() = {
     super.subjectChoice("/educontent/questions")
@@ -31,17 +29,20 @@ class EditQuestSn extends BaseResourceSn {
     val userId = user.id.get
     val questionsList = if (departNr == -1) {
       if (subjectNow.departments.isEmpty) QuizQuestion.findAll(
-        ("authorId" -> userId) ~ ("subjectId" -> subjectId))
+        ("authorId" -> userId) ~ ("subjectId" -> subjectId),  ("nr" -> 1))
       else QuizQuestion.findAll(
-        ("authorId" -> userId) ~ ("subjectId" -> subjectId) ~ ("department" -> ("$nin" -> subjectNow.departments))
+        ("authorId" -> userId) ~ ("subjectId" -> subjectId)
+          ~ ("department" -> ("$nin" -> subjectNow.departments)),  ("nr" -> 1)
       )
     } else {
       QuizQuestion.findAll(
-        ("authorId" -> userId) ~ ("subjectId" -> subjectId) ~ ("department" -> departName)
+        ("authorId" -> userId) ~ ("subjectId" -> subjectId) ~ ("department" -> departName),
+        ("nr" -> 1)
       )
     }
     "tr" #> questionsList.map(quest => {
       <tr id={quest._id.toString}>
+        <td>{quest.nr.toString}</td>
         <td>
           {Unparsed(quest.question)}
         </td>
@@ -73,6 +74,7 @@ class EditQuestSn extends BaseResourceSn {
   //working ....
   def editQuest() = {
     var id = ""
+    var nr = 0
     var question = ""
     var level = ""
     var answer = ""
@@ -81,12 +83,27 @@ class EditQuestSn extends BaseResourceSn {
     var dificult = "2"
 
     def save(): JsCmd = {
-
+      //add nr of quest
+     // QuizQuestion.findAll(("subjectId" -> subjectId)~ ("department" -> department)
+    //  ~ ("authorId" -> userId)).map(qq => qq.nr).max
       val userId = user.id.get
       val quest = QuizQuestion.find(id).getOrElse(QuizQuestion.create)
       if (quest.authorId != 0L && quest.authorId != userId) return Alert("To nie twoje pytanie!")
       if (subjectNow.departments.isEmpty) return Alert("Musisz najpierw utworzyc dział w ustawieniach")
       quest.authorId = userId
+      if(nr == 0) {
+        val qi = QuestIndex.find(("authorId" ->  userId) ~ ("subjectId" -> subjectNow.id))
+          .getOrElse(QuestIndex.create(userId, subjectNow.id))
+        if(qi.nr == 0) {
+          nr = 1
+          qi.nr = 1
+        } else {
+          nr = qi.nr + 1
+          qi.nr = nr
+        }
+        qi.save
+      }
+      quest.nr = nr
       quest.answers = answer.split(";").toList.map(a => a.trim).filterNot(a => a.length() == 0)
       quest.fake = wrongAnswers.split(";").toList.map(a => a.trim).filterNot(a => a.length() == 0)
       quest.question = question
@@ -121,6 +138,7 @@ class EditQuestSn extends BaseResourceSn {
     val departments = subjectNow.departments.map(d => (d, d))
 
     val form = "#idQuest" #> SHtml.text(id, id = _) &
+      "#nrQuest" #> SHtml.text(nr.toString, x => nr = x.toInt) &
       "#questionQuest" #> SHtml.textarea(question, x => question = x.trim) &
       "#answerQuest" #> SHtml.text(answer, x => answer = x.trim) &
       "#subjectQuest" #> SHtml.text(subjectNow.name, x => Unit, "readonly" -> "readOonly") &

@@ -52,6 +52,7 @@ class CoursesSn extends BaseResourceSn {
     var descript = ""
     var subjectId = ""
     var subjectName = ""
+    var public = false
     var classInfo = ""
     var classesList: List[String] = List()
 
@@ -70,6 +71,7 @@ class CoursesSn extends BaseResourceSn {
       course.subjectId = tryo(subjectId.toLong).openOr(0L)
       course.subjectName = findSubjectName(course.subjectId)
       course.descript = descript
+      course.pub = public
       course.classList = classesList.map(s => tryo(s.toLong).openOr(0L))
       course.classInfo = classesWithLong.filter(cl => course.classList.exists(c => (c == cl._1))).map(c => c._2).mkString(", ")
       course.authorId = user.id.get
@@ -95,6 +97,7 @@ class CoursesSn extends BaseResourceSn {
       "#subjects" #> SHtml.select(subjects, Full(subjects.head._1), subjectId = _, "autocomplete" -> "off") &
       // "#thumbnail" #> SHtml.text(img,  img = _) &
       // "#thumbnailPreview [src]" #> img &
+      "#public" #> SHtml.checkbox_id(public, (x: Boolean) => public = x, Full("public")) &
       "#classesList" #> SHtml.multiSelect(classes, classesList, classesList = _) &
       "#descript" #> SHtml.textarea(descript, x => descript = x.trim) &
       "#save" #> SHtml.submit("Zapisz", save) &

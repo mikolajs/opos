@@ -20,10 +20,13 @@ trait BaseResourceSn {
 
   val user = User.currentUser.openOrThrowException("Niezalogowany nauczyciel")
   val subjectTeach = SubjectTeach.findAll(("authorId" -> user.id.get), ("prior" -> 1))
-  if (subjectTeach.isEmpty && S.uri.split("/").last != "options") S.redirectTo("/educontent/options")
+  if (subjectTeach.isEmpty && S.uri.split("/").last != "options")
+    S.redirectTo("/educontent/options")
   val subjId = S.param("s").openOr(subjectTeach.head.id.toString)
-  val subjectNow = subjectTeach.find(s => s.id.toString() == subjId).getOrElse(subjectTeach.head)
+  val subjectNow = subjectTeach.find(s =>
+    s.id.toString() == subjId).getOrElse(subjectTeach.head)
   //val levStr = S.param("l").openOr(subjectNow.lev.toString)
+  val subjectId = subjectNow.id
   val levList = List(("1", "podstawowy"), ("2", "średni"), ("3", "rozszerzony"))
   val levMap = levList.toMap
 
@@ -32,7 +35,7 @@ trait BaseResourceSn {
     case -1 => "Zgubione"
     case 0 => if(subjectNow.departments.isEmpty) "" else subjectNow.departments.head
     case nr:Int if(subjectNow.departments.length > nr ) =>   subjectNow.departments(nr)
-    case _ => ""
+    case _ => if(subjectNow.departments.isEmpty) "" else subjectNow.departments.head
   }
 
   def techerSubjects() = {
@@ -79,7 +82,8 @@ trait BaseResourceSn {
 
 
     "#subjectChoice" #> <select>{subjects}</select> &
-    "h2" #> <h2> <span class="label label-info"> {subjectNow.name}</span> {Unparsed(departName)}</h2>
+    "h2" #> <h2> <span class="label label-info"> {subjectNow.name}</span> Dział:
+      <big id="subjectNameLabel">{Unparsed(departName)}</big></h2>
   }
 
   /*

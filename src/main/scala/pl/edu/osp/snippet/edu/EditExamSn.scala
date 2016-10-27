@@ -16,9 +16,7 @@ import java.util.Date
 
 class EditExamSn extends BaseResourceSn {
 
-  var subjectId = tryo(S.param("s").openOr("0").toLong).getOrElse(0L)
   var examId = S.param("id").openOr("0")
-  if (subjectId == 0L) subjectId = subjectTeach.head.id
   val userId = user.id.get
   val exam = Exam.find(examId).getOrElse(Exam.create)
 

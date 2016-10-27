@@ -1,7 +1,8 @@
 
 var EditVideo = dejavu.Class.declare({
 	
-	oTable : null, 
+	oTable : null,
+	department: "",
 	
 	initialize  : function() {
 		
@@ -52,6 +53,11 @@ var EditVideo = dejavu.Class.declare({
                 '</select> wierszy'
             }
               });
+
+
+        this.department = $('#subjectAndDepartment').children('big').text().trim();
+        console.log("Depratment: " + this.department);
+        $('#subjectChoice').val(this.department);
 	}, 
 	
 	cutLink : function (){

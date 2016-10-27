@@ -20,18 +20,16 @@ import Helpers._
 class HeadWordsSn extends BaseResourceSn {
 
 
-  val subjectId = subjectNow.id
 
   def headWordsList() = {
 
-    val headWords = HeadWord.findAll(("authorId" -> user.id.get) ~ ("subjectId" -> subjectId))
+    val headWords = HeadWord.findAll(
+      ("authorId" -> user.id.get) ~ ("subjectId" -> subjectId) ~ ("department" -> departName))
     "tbody tr" #> headWords.map(headWord => {
       <tr>
         <td>
           {headWord.title}
-        </td> <td>
-        {headWord.department}
-      </td> <td>
+        </td>  <td>
         {levMap(headWord.lev.toString)}
       </td>
         <td>
@@ -44,7 +42,12 @@ class HeadWordsSn extends BaseResourceSn {
   }
 
   def newLink() = {
-    "a [href]" #> ("/educontent/editheadword/0?s=" + subjectId.toString)
+    "a [href]" #> ("/educontent/editheadword/0?s=" + subjectId.toString +
+      "&d=" + departNr)
+  }
+
+  def subjectAndDepartmentChoice() = {
+    super.subjectAndDepartmentChoice("/educontent/headwords")
   }
 
   def subjectChoice() = {

@@ -23,13 +23,13 @@ class DocumentsSn extends BaseResourceSn {
 
   def docList() = {
 
-    val documents = Document.findAll(("authorId" -> user.id.get) ~ ("subjectId" -> subjectNow.id))
+    val documents = Document.findAll(
+      ("authorId" -> user.id.get) ~ ("subjectId" -> subjectNow.id) ~("department" -> departName))
 
     "tbody tr" #> documents.map(doc => ".titleTd *" #> <strong>
       {doc.title}
     </strong> &
       ".descriptTd *" #> Text(doc.descript) &
-      ".departmentTd *" #> Text(doc.department) &
       ".levelTd *" #> Text(levMap(doc.lev.toString)) &
       ".editTd *" #> <a class="btn btn-success" href={"/educontent/editdocument/" + doc._id.toString}>
         <span class="glyphicon glyphicon-edit"></span>
@@ -38,12 +38,17 @@ class DocumentsSn extends BaseResourceSn {
   }
 
   def subjectForNew() = {
-    "a [href]" #> ("/educontent/editdocument/0?s=" + subjectNow.id.toString)
+    "a [href]" #> ("/educontent/editdocument/0?s=" + subjectNow.id.toString +
+      "&d=" + departNr)
   }
 
 
   def subjectChoice() = {
     super.subjectChoice("/educontent/documents")
   }
+  def subjectAndDepartmentChoice() = {
+    super.subjectAndDepartmentChoice("/educontent/documents")
+  }
+
 
 }

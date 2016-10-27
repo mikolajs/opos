@@ -35,9 +35,9 @@ class AdminAddSlidesSn {
     }
 
     def delete() {
-      MainPageData.find(id) match {
-        case Some(mainPageData) => mainPageData.delete
-        case _ =>
+      MainPageSlide.find(id) match {
+        case Some(mainPageSlide) => mainPageSlide.delete
+        case _ => println("not found sliders")
       }
     }
 
@@ -46,7 +46,8 @@ class AdminAddSlidesSn {
       "#htmlContent" #> SHtml.textarea(htmlContent, htmlContent = _) &
       "#description" #> SHtml.text(descript, descript = _) &
       "#save" #> SHtml.submit("Zapisz!", save) &
-      "#delete" #> SHtml.submit("Usuń!", delete)
+      "#delete" #> SHtml.submit("Usuń!", delete,
+        "onclick"-> "return prompt('Na pewno usunąć?');")
   }
 
   def slideList() = {

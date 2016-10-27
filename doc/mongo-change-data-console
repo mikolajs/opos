@@ -115,5 +115,10 @@ db.doctemplatehead.update({"_id" : ObjectId("54ddf79844ae2719b8c2e025")}, {$set:
 #add prior field
 db.articlehead.update({},{$set: {prior: 99}} , true, true, true);
 
+#add courses pub field as false:
+db.courses.update({},{$set: {pub: false}} , true, true, true);
+
+#add nr in quizQuestion, add nr. 
+db.questions.update({ },{$set: {nr: 0}} , true, true, true);
 
 

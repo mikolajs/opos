@@ -1,4 +1,4 @@
-
+//stange error first time not show question in ckeditor when click edit
 var EditQuest =  dejavu.Class.declare({
 	isOpen : false,
 	department : "",
@@ -97,8 +97,7 @@ var EditQuest =  dejavu.Class.declare({
 										+ '</select> wierszy'
 							}
 						});
-        this.department = $('#subjectAndDepartment').clone()
-                         .children().remove().end().text().trim();
+        this.department = $('#subjectAndDepartment').children('big').text().trim();
         $('#subjectChoice').val(this.department);
 
 	},
@@ -183,9 +182,12 @@ var EditQuest =  dejavu.Class.declare({
     		var $td = $(this);
     		switch (index) {
     		case 0:
+    		    $("#nrQuest").val($td.text());
+    		    break;
+    		case 1:
     			CKEDITOR.instances.questionQuest.setData($td.html().toString());
     			break;
-    		case 1:
+    		case 2:
     			var array = new Array();
     			$ul = $('#goodAnswerList');
     			$td.children('span.good').each(function(){
@@ -198,7 +200,7 @@ var EditQuest =  dejavu.Class.declare({
     			}
     			$('#answerQuest').val("");
     			break;
-    		case 2:
+    		case 3:
     			array = new Array();
     			$ul = $('#fakeAnswerList');
     			$td.children('span.wrong').each(function(){
@@ -211,14 +213,14 @@ var EditQuest =  dejavu.Class.declare({
     			}
     			$("#fakeQuest").val("");
     			break;
-    		case 3:	
+    		case 4:
     			$('#levelQuest option').each(function(index){
     				if(this.innerHTML == $td.text().trim() ) {
     				$('#levelQuest').val ((index + 1).toString());
     				}
     			});
     			break;
-    		case 4: 
+    		case 5:
     			$('#dificultQuest').val($td.text().trim());
     			break;
     		default:
@@ -262,6 +264,7 @@ var EditQuest =  dejavu.Class.declare({
     
     _getArrayFromForm : function() {
     	var array = new Array();
+    	array.push($('#nrQuest').val());
     	array.push($('#questionQuest').val());
     	var goodHTML = "";
     	var goods = this._getGoodAnswerStringFromInputs().split(';');

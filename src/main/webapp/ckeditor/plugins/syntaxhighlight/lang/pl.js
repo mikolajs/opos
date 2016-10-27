@@ -1,0 +1,22 @@
+CKEDITOR.plugins.setLang('syntaxhighlight', 'pl', {
+	title:'Dodaj albo odśwież kod',
+	contextTitle:'Edytuj kod źródłowy',
+	sourceTab:'Kod źródłowy',
+	langLbl:'Wybierz język',
+	sourceTextareaEmptyError:'Kod źródłowy nie może być pusty!.',
+	advancedTab:'Zawansowane',
+	hideGutter:'Ukryj ścieżki',
+	hideGutterLbl:'Ukryj ścieżki i numery linii',
+	hideControls:'Ukryj kontrolki',
+	hideControlsLbl:'Ukryj kontrolki na górze bloku kodu',
+	collapse:'Zapadnięcie',
+	collapseLbl:'Zapadnięcie bloku kodu domyślne (kontrolki muszą być włączone)',
+	codeTitleLbl:'Użyj tytułu kodu',
+	showColumns:'Pokaż kolumny',
+	showColumnsLbl:'Pokaż rzędy w pierwszej linii',
+	lineWrap:'Ukryj obramowanie linii',
+	lineWrapLbl:'Przłącz obramowanie linii.',
+	lineCount:'Domyślne liczenie linii',
+	highlight:'Podświetlenie linii',
+	highlightLbl:'Wprowadź linie oddzielone przcinkiem jeśli chcesz podświetlania, np.: <em style="font-style:italic">3,10,15</em>.'
+});

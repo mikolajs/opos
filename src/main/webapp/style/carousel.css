@@ -43,6 +43,7 @@
 .carousel-caption {
   z-index: 10;
   color: #eee;
+  text-shadow:2px 1px 1px #222;
 }
 
 /* Declare heights because of positioning of img element */

@@ -1,7 +1,8 @@
 
     	   var EditFile = dejavu.Class.declare({
     	   	
-    	   	oTable : null, 
+    	   	oTable : null,
+    	   	department: "",
     	   	
     	   	initialize  : function() {
     	   		
@@ -43,6 +44,8 @@
     	   		        '</select> wierszy'
     	   		    }
     	   		      });
+    	   		      this.department = $('#subjectAndDepartment').children('big').text().trim();
+                      $('#subjectChoice').val(this.department);
     	   	}, 
     	   	
     	   	cutLink : function (){
@@ -67,22 +70,19 @@
     	       	$tr.children('td').each(function(index){
     	       		switch(index){
     	       		case 0:
-    	       			document.getElementById('titleAdd').value = $(this).text();
+    	       			document.getElementById('titleAdd').value = $(this).text().trim();
     	       			link = self._getIdFromHref($(this).children('a').attr('href'));
     	       			break;
     	       		case 1:
-    	       			document.getElementById('descriptAdd').value = $(this).text();
+    	       			document.getElementById('descriptAdd').value = $(this).text().trim();
     	       			break;
-    	       		case 2: 
-    	       			self._setSelectOptionDepart(this.innerHTML);
-    	       			break;
-    	       		case 3: 
+    	       		case 2:
     	       			self._setSelectOptionLevel(this.innerHTML);
     	       		default: 
     	       			break;
     	       		}
     	       	});
-    	       	
+    	       	///self._setSelectOptionDepart();
     	       	$('#addNewItem').dialog('open');
     	       },
     	       
@@ -90,9 +90,11 @@
     	       	return confirm("Na pewno usunąć film?");
     	       },
     	       
-    	       _setSelectOptionDepart : function(innerOption){
+    	       _setSelectOptionDepart : function(){
+    	        var depart = $('#subjectChoice option:selected').val();
+    	        console.log(depart);
     	       	$('#departmentsAdd option').each(function() {
-    	   			if(innerOption != this.innerHTML) this.removeAttribute('selected');
+    	   			if(depart != this.innerHTML) this.removeAttribute('selected');
     	   			else {this.setAttribute('selected', true);}
     	   		});
     	       }, 

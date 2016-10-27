@@ -5,11 +5,9 @@
  */
 
 html,
-body {
-    height: 100%;
-}
 
-.carousel { height: 50%; background-color: #eee;}
+
+.carousel { height: 50%; background-color: #fff;}
 
 .item,
 .active {
@@ -31,7 +29,14 @@ body {
     background-size: cover;
     -o-background-size: cover;
     
-    opacity: 0.75;
+    opacity: 1;
+}
+
+.carousel-control.right {
+    background-image: none;
+}
+.carousel-control.left {
+    background-image: none;
 }
 
 .carousel-caption { font-size: 150%;}

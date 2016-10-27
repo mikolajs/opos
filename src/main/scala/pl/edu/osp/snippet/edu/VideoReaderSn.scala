@@ -28,7 +28,7 @@ class VideoReaderSn extends BaseResourceSn {
   println("start indexvideo")
   val parentPath = "/home/"
   val parentDir = new File(parentPath)
-  val userDirPath = parentPath + toASCIICharAndLower(user.firstName.is) + user.id.toString
+  val userDirPath = parentPath + toASCIICharAndLower(user.firstName.get) + user.id.toString
   // parentDir.listFiles()
 
   def getUserNames() = parentDir.listFiles().filter(f => f.isDirectory()).map(f => f.getName())

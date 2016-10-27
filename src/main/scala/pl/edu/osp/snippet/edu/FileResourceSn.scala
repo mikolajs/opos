@@ -21,7 +21,9 @@ import com.mongodb.gridfs._
 class FileResourceSn extends BaseResourceSn {
   def showMyFiles = {
 
-    "tr" #> FileResource.findAll(("authorId" -> user.id.get) ~ ("subjectId" -> subjectNow.id)).map(file => {
+    "tr" #> FileResource.findAll(
+      ("authorId" -> user.id.get) ~ ("subjectId" -> subjectNow.id) ~("department" -> departName))
+      .map(file => {
       <tr id={file._id.toString}>
         <td>
           <a href={"/file/" + file.fileId.toString + file.mime}>
@@ -30,9 +32,7 @@ class FileResourceSn extends BaseResourceSn {
         </td>
         <td>
           {file.descript}
-        </td> <td>
-        {file.department}
-      </td>
+        </td>
         <td>
           {levMap(file.lev.toString)}
         </td>
@@ -52,7 +52,7 @@ class FileResourceSn extends BaseResourceSn {
     var descript = ""
     var level = ""
     var subjectName = ""
-    var department = ""
+    var department = departName
     var mimeType = ""
     var fileName = ""
     var extension = ""
@@ -83,9 +83,12 @@ class FileResourceSn extends BaseResourceSn {
         MongoDB.use(DefaultMongoIdentifier) {
           db =>
             val fs = new GridFS(db)
-            val inputFile = fs.createFile(new ByteArrayInputStream(fileHold.get.file))
+            val fileGet = fileHold.openOrThrowException("Not file")
+            val inputFile = fs.createFile(new ByteArrayInputStream(
+              fileGet.file))
+
             inputFile.setContentType(mimeType)
-            inputFile.setFilename(fileHold.get.fileName)
+            inputFile.setFilename(fileGet.fileName)
             inputFile.save
             fileId = inputFile.getId().toString()
         }
@@ -98,8 +101,8 @@ class FileResourceSn extends BaseResourceSn {
         fileRes.subjectName = subjectNow.name
         fileRes.authorId = user.id.get
         fileRes.lev = tryo(level.toInt).openOr(1)
-        fileRes.title = title
-        fileRes.descript = descript
+        fileRes.title = title.trim
+        fileRes.descript = descript.trim
         fileRes.department = department
         fileRes.save
       }
@@ -123,10 +126,10 @@ class FileResourceSn extends BaseResourceSn {
     val departs = subjectNow.departments.map(d => (d, d))
 
     "#resourceId" #> SHtml.text(resourceId, resourceId = _) &
-      "#titleAdd" #> SHtml.text(title, x => title = x.trim) &
+      "#titleAdd" #> SHtml.text(title, title = _) &
       "#subjectAdd" #> SHtml.text(subjectNow.name, subjectName = _, "readonly" -> "readonly") &
       "#levelAdd" #> SHtml.select(levList, Full("1"), level = _) &
-      "#descriptAdd" #> SHtml.textarea(descript, x => descript = x.trim) &
+      "#descriptAdd" #> SHtml.textarea(descript, descript = _) &
       "#departmentsAdd" #> SHtml.select(departs, Full(department), department = _) &
       "#fileAdd" #> SHtml.fileUpload(x => fileHold = Full(x)) &
       "#deleteAdd" #> SHtml.submit("Usuń", delete) &
@@ -136,6 +139,10 @@ class FileResourceSn extends BaseResourceSn {
 
   def subjectChoice() = {
     super.subjectChoice("/educontent/files")
+  }
+
+  def subjectAndDepartmentChoice() = {
+    super.subjectAndDepartmentChoice("/educontent/files")
   }
 
 }

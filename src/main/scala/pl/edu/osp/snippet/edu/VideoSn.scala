@@ -20,12 +20,26 @@ import com.mongodb.gridfs._
 
 class VideoSn extends BaseResourceSn {
 
+
+
   def showVideos = {
    val pathVideo = S.hostAndPath.split('/').take(3).mkString("/").split(':').take(2).mkString(":") + "/osp/"
    //println("+++++++++++++++++ hostName Video: " + pathVideo)
+   val userId = user.id.get
+    println(s"++++++++++++ subject ${subjectId} department: ${departName} author: ${userId}")
+   val videoList = if (departNr == -1) {
+     if (subjectNow.departments.isEmpty) Video.findAll(
+       ("authorId" -> userId) ~ ("subjectId" -> subjectId))
+     else Video.findAll(
+       ("authorId" -> userId) ~ ("subjectId" -> subjectId) ~ ("department" -> ("$nin" -> subjectNow.departments))
+     )
+   } else {
+     Video.findAll(
+       ("authorId" -> userId) ~ ("subjectId" -> subjectId) ~ ("department" -> departName)
+     )
+   }
 
-    "tr" #> Video.findAll(("authorId" -> user.id.get) ~ ("subjectId" -> subjectNow.id)
-    ).map(video => {
+    "tr" #> videoList.map(video => {
       <tr id={video._id.toString}>
         <td>
           <a href={if (video.onServer)
@@ -42,9 +56,6 @@ class VideoSn extends BaseResourceSn {
           {video.descript}
         </td>
         <td>
-          {video.department}
-        </td>
-        <td>
           {levMap(video.lev.toString)}
         </td>
         <td>
@@ -56,7 +67,6 @@ class VideoSn extends BaseResourceSn {
     })
   }
 
-
   def add = {
 
     var title = ""
@@ -65,15 +75,14 @@ class VideoSn extends BaseResourceSn {
     var onserver = false
     var linkTube = ""
     var videoId = ""
-    var mimeType = ""
-    var fileName = ""
-    var depart = ""
+    var depart = departName
     var level = ""
 
 
     def save(): Unit = {
 
-      val video = if (videoId.length < 20) Video.create else Video.find(videoId).getOrElse(Video.create)
+      val video = if (videoId.length < 20) Video.create
+                  else Video.find(videoId).getOrElse(Video.create)
 
       if (video.authorId != 0L && video.authorId != user.id.get) return
 
@@ -82,9 +91,8 @@ class VideoSn extends BaseResourceSn {
         video.oldPath = ""
       }
       video.onServer = onserver
-      video.subjectId = findSubjectId(subjectName)
-      video.subjectName = subjectName
-      //val levId = levList.find(l => l._2 == level).getOrElse(levList.head)._1
+      video.subjectId = findSubjectId(subjectName.trim)
+      video.subjectName = subjectName.trim
       video.lev = tryo(level.toInt).openOr(1)
       video.title = title.replace( '\'','`')
       video.department = depart
@@ -131,6 +139,10 @@ class VideoSn extends BaseResourceSn {
 
   def subjectChoice() = {
     super.subjectChoice("/educontent/video")
+  }
+
+  def subjectAndDepartmentChoice() = {
+    super.subjectAndDepartmentChoice("/educontent/video")
   }
 
   //override  def autocompliteScript(in:NodeSeq) = super.autocompliteScript(in)

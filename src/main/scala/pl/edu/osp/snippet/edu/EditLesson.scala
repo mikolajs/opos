@@ -123,7 +123,7 @@ class EditLesson extends BaseLesson {
       itemCh match {
         case "q" => {
           val str = QuizQuestion.findAll(lookingQuest)
-            .map(q => "[ '" + q._id.toString + "',  '" + q.question + "', '" + q.department + "']")
+            .map(q => "[ '" + q._id.toString + "',  '" + q.nr.toString + "', '" + q.question + "']")
             .mkString(",")
           "[" + str + "]"
         }

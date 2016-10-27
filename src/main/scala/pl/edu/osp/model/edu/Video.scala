@@ -12,8 +12,9 @@ object Video extends MongoDocumentMeta[Video] {
   def create = new Video(ObjectId.get, "", "", "", 1, 0L, 0L, "", "", "", "", false)
 }
 
-case class Video(var _id: ObjectId, var link: String, var oldPath: String, var mime: String, var lev: Int,
-                 var authorId: Long, var subjectId: Long, var subjectName: String, var title: String, var department: String,
+case class Video(var _id: ObjectId, var link: String, var oldPath: String, var mime: String,
+                 var lev: Int, var authorId: Long, var subjectId: Long,
+                 var subjectName: String, var title: String, var department: String,
                  var descript: String, var onServer: Boolean) extends MongoDocument[Video] {
   def meta = Video
 }

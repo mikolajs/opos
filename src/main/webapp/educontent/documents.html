@@ -40,45 +40,35 @@
 																+ '</select> wierszy'
 													}
 												});
-
+                        var department = $('#subjectAndDepartment').children('big').text().trim();
+                        $('#subjectChoice').val(department);
 							});
-
-			function selectSubject(elem) {
-				var val = $(elem).children(':selected').val();
-				if (val != 'Wszystkie')
-					oTable.fnFilter(val, 2);
-				else
-					oTable.fnFilter('.+', 2, true);
-			}
-			function selectLevel(elem) {
-				var val = $(elem).children(':selected').val();
-				if (val != '0')
-					oTable.fnFilter(val, 3);
-				else
-					oTable.fnFilter('.+', 3, true);
-			}
 		</script> </head_merge>
 
 	<div class="well">
 		<h2>Twoje artykuły</h2>
 	</div>
 	<div class="row">
-		<div class="col-lg-9">
-			<div class="lift:edu.DocumentsSn.subjectChoice form-inline">
-				<div class="input-group">
-					<div class="input-group-addon">Wybierz przedmiot:</div>
-					<select id="subjectChoice" class="form-control"></select>
-				</div>
+		<div class="col-lg-6" data-lift="edu.DocumentsSn.subjectAndDepartmentChoice">
+			<div  class="form-inline">
+                    <h2 id="subjectAndDepartment">Fizyka
+                        <span class="label label-default"> Dział</span>
+                        <big id="subjectNameLabel">Energia i praca</big></h2>
+                    <hr />
+                <div class="input-group">
+                    <div class="input-group-addon">Wybierz:</div>
+                    <select id="subjectChoice" class="form-control"></select>
+                </div>
 			</div>
 		</div>
-		<div class="col-lg-3" data-lift="edu.DocumentsSn.subjectForNew">
+		<div class="col-lg-6" data-lift="edu.DocumentsSn.subjectForNew">
 			<a href="/educontent/editdocument/0"> <span
 				class="btn btn-success btn-lg" id="iconAddBook"> <span
 					class="glyphicon glyphicon-plus-sign"></span> Dodaj nowy artykuł
 			</span></a>
 		</div>
+    </div>
 
-	</div>
 	<br />
 	<hr />
 

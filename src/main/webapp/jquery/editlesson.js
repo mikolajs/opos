@@ -212,6 +212,7 @@ var LessonEditor = dejavu.Class
 				item.id = "_" + aData[0];
 				item.descript = aData[2];
 				item.what = $('#getItemType option:selected').val();
+				if(item.what === "q") item.title = "Zadanie " + item.title;
 				var str = self._createItem(item);
 				self.$listBody.append(str);
 			},

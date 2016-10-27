@@ -107,7 +107,7 @@ class MainSn {
         </li>)}
         </ul>
       }) &
-     "#addNews *" #>  (if(isTeacher) <a href="/editarticle/0" >Dodaj artykuł/stronę</a> else <span></span>)
+     "#addNews *" #>  (if(isTeacher) <a href="/editarticle/0" >Dodaj!</a> else <span></span>)
   }
 
 
@@ -140,7 +140,7 @@ class MainSn {
 
 
   def showNewses(newses: List[ArticleHead], tag: String) = {
-    val sizeP = 20
+    val sizeP = 10
     val page = S.param("p").getOrElse("1")
     val pageInt = tryo(page.toInt).getOrElse(1)
     val pages = newses.size / sizeP + (if (newses.size % sizeP > 0) 1 else 0)
@@ -244,12 +244,11 @@ class MainSn {
   private def createPinBox(news: ArticleHead) = {
     <div class="row pine-box">
       <div class="col-md-3">
-        <img  class="img-box featurette-image img-responsive" src="/images/empty.png"
-              style={"background-image: url('" + news.thumbnailLink+  "')"} />
+        <img  class="img-box featurette-image img-responsive" src={news.thumbnailLink} />
       </div>
 
       <div class="col-md-9 innerBox">
-        <h2 onclick={"showNewsTitle('" + news._id + "', this)"}>
+        <h2>
           {news.title}
         </h2>
         <div class="footPrint">

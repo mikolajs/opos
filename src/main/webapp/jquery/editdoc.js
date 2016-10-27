@@ -1,6 +1,7 @@
 
 
 var Document =  dejavu.Class.declare({
+    department: "",
 	
 	initialize : function(){
 		$('#docEdit').html($('#docContent').val());
@@ -27,6 +28,8 @@ var Document =  dejavu.Class.declare({
 						
 			  	]
 		});
+		 this.department = $('#subjectAndDepartment').children('big').text().trim();
+         $('#subjectChoice').val(this.department);
 	},
 	deleteDoc: function() 
 	{

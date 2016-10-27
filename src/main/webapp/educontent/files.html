@@ -17,18 +17,22 @@
       
     </head_merge>
   <div class="well"><h2>Twoje pliki</h2></div>
+
   
   <div class="row">
-		<div class="col-lg-9">
-			<div class="lift:edu.FileResourceSn.subjectChoice form-inline"
-				method="POST">
-				<div class="input-group">
-					<div class="input-group-addon">Wybierz przedmiot:</div>
-					<select id="subjectChoice" class="form-control"></select>
-				</div>	
-			</div>
+		<div class="col-lg-6" data-lift="edu.FileResourceSn.subjectAndDepartmentChoice">
+            <div  class="form-inline">
+                    <h2 id="subjectAndDepartment">Fizyka
+                        <span class="label label-default"> Dział</span>
+                        <big id="subjectNameLabel">Energia i praca</big></h2>
+                    <hr />
+                    <div class="input-group">
+                        <div class="input-group-addon">Wybierz:</div>
+                        <select id="subjectChoice" class="form-control"></select>
+                    </div>
+            </div>
 		</div>
-		<div class="col-lg-3">
+		<div class="col-lg-6">
 			<button type="button" class="btn btn-success btn-lg"  id="addTrigger">
   <span class="glyphicon glyphicon-plus-sign"></span>Wczytaj nowy plik
 </button>
@@ -40,10 +44,10 @@
 
 <div >
 	 <table id="dataTable"><thead><tr><th>Tytuł</th><th>Opis</th>
-	 		<th>Dział</th><th>Poziom</th><th>Edycja</th></tr></thead>
+	 		<th>Poziom</th><th>Edycja</th></tr></thead>
 	 <tbody class="lift:edu.FileResourceSn.showMyFiles"><tr><td></td><td></td><td></td><td></td><td></td></tr></tbody>
 	 <tfoot><tr><th>Tytuł</th><th>Opis</th>
-	 		<th>Dział</th><th>Poziom</th><th>Edycja</th></tr></tfoot>
+	 		<th>Poziom</th><th>Edycja</th></tr></tfoot>
 	 </table>
 </div>
    

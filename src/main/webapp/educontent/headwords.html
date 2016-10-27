@@ -35,8 +35,11 @@
                         '<option value="-1">całość</option>'+
                         '</select> wierszy'
                     }
-                      });            
-             });           
+                      });
+             var department = $('#subjectAndDepartment').children('big').text().trim();
+            $('#subjectChoice').val(department);
+             });
+
        </script>
       
     </head_merge>
@@ -44,33 +47,36 @@
  <div id="boxText">
   <div class="well"><h2>Wybór przedmiotu i poziomu</h2></div>
   
-  
-  
   <div class="row">
-		<div class="col-lg-9">
-        <div class="form-inline">
-            <div class="input-group" data-lift="edu.HeadWordsSn.subjectChoice">
-                    <div class="input-group-addon">Wybierz przedmiot:</div>
+		<div class="col-lg-6" data-lift="edu.HeadWordsSn.subjectAndDepartmentChoice">
+            <div  class="form-inline">
+                <h2 id="subjectAndDepartment">Fizyka
+                    <span class="label label-default"> Dział</span>
+                    <big id="subjectNameLabel">Energia i praca</big></h2>
+                <hr />
+                <div class="input-group">
+                    <div class="input-group-addon">Wybierz:</div>
                     <select id="subjectChoice" class="form-control"></select>
-             </div>
-             </div>
-  </div>
-		<div class="col-lg-3" data-lift="edu.HeadWordsSn.newLink">
+                </div>
+            </div>
+        </div>
+		<div class="col-lg-6" data-lift="edu.HeadWordsSn.newLink">
 		<a href="/educontent/editheadword/0"> <span class="btn btn-success btn-lg"  id="mkAddDepartment"  onclick="mkAddDepartment();">
   <span class="glyphicon glyphicon-plus-sign"></span> Dodaj nowe hasło
 </span></a>
-  </div></div>
+  </div>
+  </div>
   
   <br/><hr/>
  
   <div id="headWordsList" class="lift:edu.HeadWordsSn.headWordsList dataTable_wrapper">
             <table id="dataTable" class="display"  >
                 <thead>
-                <tr><th>Hasło</th><th>Dział</th><th>Poziom</th><th>Edytuj</th></tr>
+                <tr><th>Hasło</th><th>Poziom</th><th>Edytuj</th></tr>
                 </thead>
                 <tbody><tr><td><a href=""></a><td></td><td></td><td></td></tr></tbody>
                  <tfoot>
-                   <tr><th>Hasło</th><th>Dział</th><th>Poziom</th><th>Edytuj</th></tr>
+                   <tr><th>Hasło</th><th>Poziom</th><th>Edytuj</th></tr>
                  </tfoot>
             </table>
         </div>

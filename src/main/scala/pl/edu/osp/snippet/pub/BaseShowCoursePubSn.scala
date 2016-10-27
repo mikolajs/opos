@@ -1,4 +1,4 @@
-package pl.edu.osp.snippet
+package pl.edu.osp.snippet.pub
 
 import scala.xml.{Text,  Unparsed}
 import _root_.net.liftweb._
@@ -6,18 +6,12 @@ import http.S
 import common._
 import util._
 import pl.edu.osp.model.edu._
-import pl.edu.osp.model._
 import json.JsonDSL._
 import Helpers._
 
-class BaseShowCourseSn  {
+class BaseShowCoursePubSn  {
 
-  val basePath = "/view/course/"
-  lazy val  pathMedia =  S.hostAndPath.split('/').take(3).mkString("/").split(':').take(2).mkString(":")  + "/osp/"
-  val user = User.currentUser match {
-    case Full(user) => user
-    case _ => S.redirectTo("/login")
-  }
+  val basePath = "/course/"
 
   val courseId = S.param("id").openOr("0")
   var lessonId = S.param("l").openOr("0")
@@ -25,6 +19,7 @@ class BaseShowCourseSn  {
     case Some(course) => course
     case _ => Course.create
   }
+
   val lessons = LessonCourse.findAll(("courseId" -> course._id.toString), ("nr" -> 1));
   var currentLesson = lessons.find(les => les._id.toString == lessonId) match {
     case Some(foundLesson) => foundLesson
@@ -34,9 +29,6 @@ class BaseShowCourseSn  {
   protected def findChapterName(id: Int) = if (course.chapters.contains(id)) course.chapters(id) else "Brak nawy!"
 
   protected def showAsDocument(lesson: LessonCourse, admin: Boolean) = {
-    val infoError = "section" #> <section>
-      <h1>Błąd - nie znaleziono materiału</h1>
-    </section>
 
     val (headWords, restOf) = lesson.contents.partition(x => x.what == "w")
     val (quests, restOf2) = restOf.partition(x => x.what == "q")
@@ -77,13 +69,13 @@ class BaseShowCourseSn  {
                 </small>
               </p>{if (video.onServer) <div id={vidId}>Ładowanie filmu</div> ++
               <script type="text/javascript">
-                {Unparsed( """var _0x9b95="%s";
+                {Unparsed( """var _0x9b95="\x68\x74\x74\x70\x3A\x2F\x2F\x76\x69\x64\x65\x6F\x2E\x65\x70\x6F\x64\x72\x65\x63\x7A\x6E\x69\x6B\x2E\x65\x64\x75\x2E\x70\x6C\x2F";
                       jwplayer("%s").setup({
                     		file: (_0x9b95 + "%s"),
                     		width: 853,
                     		height:  480,
                         image: "/style/images/grafika_pod_video.png"
-                    	});""".format(pathMedia.toList.map((x:Char) => "\\x" + Integer.toHexString(x.toInt)).mkString, vidId,
+                    	});""".format(vidId,
                   video._id.toString + "." + video.link.split('.').last))}
               </script>
             else
@@ -98,7 +90,7 @@ class BaseShowCourseSn  {
         "<section class=\"document\"> <h1>" + docModel.title + "</h1>\n " + docModel.content + "</section>"
       }
       case "n" => {
-        <section class="notice well">{Unparsed(item.descript)}</section>
+        <section class="notice">{Unparsed(item.descript)}</section>
       }
       case _ => <h4>Błąd - nie ma takiego typu zawartości</h4>
     }).mkString("\n")
@@ -140,7 +132,7 @@ class BaseShowCourseSn  {
   }
 
   protected def createPlainQuest(quest: QuizQuestion) = {
-    mkQuestHTML('p', quest.question, quest.nr, "", scala.xml.NodeSeq.Empty)
+    mkQuestHTML('p', quest.question, "", scala.xml.NodeSeq.Empty)
   }
 
   protected def createSingleAnswerQuest(quest: QuizQuestion) = {
@@ -151,7 +143,7 @@ class BaseShowCourseSn  {
       </label>
     </li>)
     val correctString = quest.answers.mkString(";;;")
-    mkQuestHTML('s', quest.question, quest.nr,  correctString, <ul>
+    mkQuestHTML('s', quest.question, correctString, <ul>
       {all}
     </ul>)
   }
@@ -161,7 +153,7 @@ class BaseShowCourseSn  {
       <label>Odpowiedź:</label> <input type="text" name={quest._id.toString}/>
     </div>
     val correctString = quest.answers.mkString(";;;")
-    mkQuestHTML('i', quest.question, quest.nr,  correctString, all)
+    mkQuestHTML('i', quest.question, correctString, all)
   }
 
   protected def createMultiAnswerQuest(quest: QuizQuestion) = {
@@ -172,18 +164,17 @@ class BaseShowCourseSn  {
       </label>
     </li>)
     val correctString = quest.answers.mkString(";;;")
-    mkQuestHTML('m', quest.question, quest.nr,  correctString, <ul>
+    mkQuestHTML('m', quest.question, correctString, <ul>
       {all}
     </ul>)
   }
 
-  protected def mkQuestHTML(questType: Char, question: String, nr: Int,
-                            correct: String, answers: scala.xml.NodeSeq) = {
+  protected def mkQuestHTML(questType: Char, question: String, correct: String, answers: scala.xml.NodeSeq) = {
     <section class="question">
       <div class="panel panel-info">
         <div class="panel-heading questionMark">
           <span class="glyphicon glyphicon-question-sign"></span>
-          Zadanie {nr.toString}</div>
+          Zadanie </div>
         <div class="panel-body">
           <input type="hidden" class="questType" value={questType.toString}/>
           <input type="hidden" class="correct" value={correct}/>

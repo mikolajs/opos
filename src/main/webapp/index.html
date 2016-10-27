@@ -29,8 +29,7 @@
     <![endif]-->
 
     <link rel="stylesheet" href="/style/pages.css"/>
-    <!--<link rel="stylesheet" href="/style/carousel.css"/> -->
-    <link href="/bootstrap/css/full-slider.css" rel="stylesheet">
+    <link rel="stylesheet" href="/style/carousel.css"/>
     <script>
      var $imgBox = null;
      var $innerBox = null;
@@ -52,14 +51,6 @@
        	 $('#ajaxNews').hide().empty();
 
    };
-
-    function showNewsTitle(id, elem){
-        if($textBox != null && $imgBox != null) closeNews();
-        $textBox = $(elem).parent().children('div').children('div.textBox');
-        $innerBox = $(elem).parent().children('div.innerBox');
-        $imgBox = $(elem).parent().children('div').children('div.imgBox');
-        showNewsCommon(id);
-    };
 
     function showNewsCommon(id) {
         if($textBox != null && $imgBox != null) closeNews();
@@ -253,7 +244,6 @@
         </div>
         <div class="row">
 
-
             <div class="col-lg-12" data-lift="page.MainSn.switchContent">
 
                 <div id="newsCont">
@@ -286,6 +276,7 @@
                  </div>
                 </div>
             </div>
+        </div>
         </div>
     </div>
 
