@@ -32,8 +32,26 @@ class GCFiles {
       while (currsor.hasNext) {
         //val dbObject = currsor.next()
         val gfsFile = fs.find(currsor.next()).get(0)
-        pathImgList = "/image/" + gfsFile.getId().asInstanceOf[ObjectId].toString() +
-          gfsFile.getContentType() :: pathImgList
+        val mime = gfsFile.getContentType().toLowerCase
+        //println("MIME TYPE::::: " + mime)
+        //if(mime == ".jpg" || mime == ".png" || mime == ".gif") {
+          pathImgList = gfsFile.getId().asInstanceOf[ObjectId].toString()   :: pathImgList
+        //}
+      }
+  }
+
+  private def getImagesAll = MongoDB.use(DefaultMongoIdentifier) {
+    db =>
+      val fs = new GridFS(db)
+      val currsor = fs.getFileList()
+      while (currsor.hasNext) {
+        //val dbObject = currsor.next()
+        val gfsFile = fs.find(currsor.next()).get(0)
+        val mime = gfsFile.getContentType().toLowerCase
+        println("MIME TYPE::::: " + mime)
+        if(mime == "image/jpeg" || mime == "image/png" || mime == "image/gif") {
+        pathImgList = gfsFile.getId().asInstanceOf[ObjectId].toString()   :: pathImgList
+        }
       }
   }
 
@@ -47,7 +65,7 @@ class GCFiles {
 
   //for test
   def getAllInGridFS() = {
-    filesNotUsed
+    getImagesAll
     pathImgList
   }
 

@@ -1,38 +1,46 @@
-<!Doctype html>
+<!DOCTYPE html>
 <html>
- <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-       <link href="/images/flavicon.ico" type="image/png" rel="icon">
-       <link href="/style.css"  rel="stylesheet"/>
-  <title> XX LO w Gdańsku - portal edukacyjny </title>
-  
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <!-- Bootstrap -->
-    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<body class="lift:content_id=main">
+<div id="main" class="lift:surround?with=admin;at=content">
+    <head_merge>
+        <script>
+            function ifDelete(){
+                return confirm("Czy na pewno usunąć obrazek?");
+            }
+        </script>
+        <style>
+            .myImg {
+                max-width: 100%;
+            }
+            .delIcon {
+             position: absolute;
+             top: 20px; right: 20px;
+            }
+        .active a { color: white;}
+        </style>
 
- 
-  </head>
-<body>
-    <div class="navbar navbar-inverse" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#"><img src="/images/xxlo_logo.png" /> XX LO w Gdańsku</a>
+    </head_merge>
+
+    <div class="well">
+        <h3>Obrazki GC</h3>
+    </div>
+    <div data-lift="admin.AdminGC.allImages" class="imgList">
+    <div class="row">
+       <div class="col-lg-1"></div>
+        <div class="col-lg-10" style="position:relative;">
+            <img src="">
+            <a onclick="return ifDelete()" class="btn btn-danger delIcon" href="/admin/gc?del=">
+               <span class="glyphicon glyphicon-remove"></span>
+            </a>
+
         </div>
-        
-      
-      </div>
-    </div> 
-
-<div class="well"><h1>Funkcjonalność w trakcie budowy</h1></div>
-<footer class="footer">
-        <p> Programmed by: <a href="http://brosbit.pl">Mikołaj Sochacki - BrosBit.pl</a> &copy; &nbsp; &nbsp;
-         <span class="lift:Msgs?showAll=true"></span>  </p>
-      </footer>
-    <script src="/bootstrap/js/bootstrap.min.js"></script>
-      <script type="text/javascript" src="/jqueryui/jquery-ui.min.js"></script>
-</body>
-
-</html>
+        <div class="col-lg-1"></div>
+    </div>
+        <hr />
+        <ul class="pagination">
+            <li></li>
+        </ul>
+        <hr />
+    </div>
+</div>
+</body></html>
