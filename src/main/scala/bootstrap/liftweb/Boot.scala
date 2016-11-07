@@ -13,7 +13,8 @@ import _root_.net.liftweb.http.provider._
 import _root_.net.liftweb.sitemap._
 import _root_.net.liftweb.sitemap.Loc._
 import Helpers._
-import _root_.net.liftweb.mapper.{DB, ConnectionManager,  ConnectionIdentifier, Schemifier, DefaultConnectionIdentifier}
+import _root_.net.liftweb.mapper.{DB, ConnectionManager,
+  ConnectionIdentifier, Schemifier, DefaultConnectionIdentifier}
 import java.sql.{Connection, DriverManager}
 import pl.edu.osp.model._
 import pl.edu.osp.api._
@@ -66,7 +67,7 @@ class Boot {
       case Req("img" :: id :: Nil, _, GetRequest) => () => ImageLoader.image(id)
       case Req("file" :: id :: Nil, _, GetRequest) => () => FileLoader.file(id)
       case Req("getdocument" :: id :: Nil, _, GetRequest) => () => TemplateDocumentCreater.create(id)
-
+      case Req("getimgslide" :: Nil,  _, GetRequest) => () => SlideImg.create
     })
 
     LiftRules.dispatch.append({
@@ -118,6 +119,8 @@ class Boot {
         Menu("Kontakt") / "contact" >> LocGroup("public"),
         Menu("Forum") / "forum" >> LocGroup("extra"),
         Menu("Dział Slajdy") / "slidedep" >> LocGroup("extra"),
+        Menu("Slajdy z obrazków") / "slideimg" >> LocGroup("extra"),
+        Menu("Slajdy z obrazków") / "editslideimg" >> LocGroup("extra") >> isTeacher,
         Menu("Edycja wątku") / "editthread" / ** >> LocGroup("extra") >> loggedIn,
         Menu("Forum Post") / "forumpost" / ** >> LocGroup("extra"),
         Menu("Login") / "login" >> LocGroup("extra"),

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<body class="lift:content_id=main">
+<div id="main" class="lift:surround?with=admin;at=content">
+    <head_merge>
+        <script>
+        var thumbs = new Array();
+
+        function clearForm() {
+			document.getElementById('frm2').reset();
+			return false;
+			}
+
+
+
+	    $(function() {
+	        thumbs = $('#pictures').val().split(";");
+	        console.log(thumbs);
+	        var html = "";
+	        for(i in thumbs) {
+	            html += '<div style="position:relative; display:inline;"><img src="' +
+	            thumbs[i] + '" class="img-thumbnail" alt=""/>';
+                html += '<span class="glyphicon glyphicon-remove btn btn-sm btn-danger"';
+                html += ' style="position:absolute; right: 10px; top: -50px;"></span></div>';
+            }
+            $('#thumbnails').html(html);
+            $('#thumbnails').children('div').children('span').click(function() {
+                 var $div = $(this).parent();
+                 var src = $div.children('img').attr('src');
+                 var $pDel = $('#picturesDel');
+                 if($pDel.val() == "") $pDel.val($pDel.val()  + src);
+                 else $pDel.val($pDel.val() + ";" + src);
+                 console.log($pDel.val());
+                 $div.remove();
+            });
+	    });
+		</script>
+        <style>
+            #thumbnails {min-height: 300px;}
+            #thumbnails img {
+                max-width: 300px; height: auto; margin: 10px; padding: 10px;
+            }
+
+        </style>
+    </head_merge>
+    <div class="well">
+        <h3>Edycja zawartości telebimów</h3>
+    </div>
+
+    <div>
+        <div class="row">
+            <div class="col-lg-6">
+                <a href="/index" class="btn btn-warning">
+                <span class="glyphicon glyphicon-arrow-left"></span> Powrót do strony głównej </a>
+            </div>
+            <div class="col-lg-6">
+            <a href="/slideimg?t=A" class="btn btn-success">
+             Pokaż telebim <span class="glyphicon glyphicon-arrow-right"></span></a>
+            </div>
+        </div>
+        <form data-lift="SlideImgSn.edit" enctype="multipart/form-data" method="POST" id="frm2" ><br />
+            <fieldset><legend>Galeria</legend>
+                <p><label >Telebim:</label><select><option value="A">A</option></select></p>
+                <p> <label>Dodaj obrazki:</label><input type="file" name="img" multiple id="files"></p>
+                <input id="pictures"  style="display:none"/><input id="picturesDel"  style="display:none"/>
+                <p><input class="btn btn-success" id="save" />
+                    <input type="submit" class="btn btn-default" onclick="return clearForm()" value="Czyść!" />
+                </p>
+                <div class="alert alert-warning" role="alert">
+                    Dodanie obrazków, oraz ich usunięcie wymaga zapisania.
+                    <br> Najlepiej gdyby miały wymiar zbliżony do 1920x1080 pikseli
+
+                </div>
+
+            </fieldset>
+        </form>
+
+        <hr/>
+
+        <div id="thumbnails"></div>
+
+
+
+    </div>
+</div>
+</body>
+</html>
