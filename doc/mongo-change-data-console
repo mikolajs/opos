@@ -121,4 +121,10 @@ db.courses.update({},{$set: {pub: false}} , true, true, true);
 #add nr in quizQuestion, add nr. 
 db.questions.update({ },{$set: {nr: 0}} , true, true, true);
 
+#add departmentName to articlehead
+db.articlehead.update({}, {$set: {departmentName: ""}}, true, true, true);
+
+#add info and img link to pagedepartment
+db.pagedepartment.update({}, {$set: {info: "", img: ""}}, true, true, true);
+
 

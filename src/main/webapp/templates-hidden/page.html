@@ -27,52 +27,47 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <style>
+        #linkarea {
+        display: none; background-color: #ccc; min-height: 50px;
+        position: relative; z-index: 100;
+        }
+        .menuBar {color: #eee; background-color: #222; height: 30px; font-size: 20px;}
+        #main {margin: 0 15px;}
+    </style>
+<script>
+    function openMenu() {
+      $('#linkarea').show(100);
+    }
+    function closeMenu() {
+      $('#linkarea').hide(100);
+    }
 
+
+</script>
 </head>
 <body>
 
-<nav class="navbar navbar-inverse" role="navigation">
-    <div class="col-lg-12">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/"><img id="logopng" src="/osp/logo.png" /> </a>
-        </div>
-        <div class="collapse navbar-collapse" id="navBar">
-            <ul class="nav navbar-nav "
-                data-lift="Menu.builder?linkToSelf=true;li_item:class=active;group=public;ul:class=nav navbar-nav"  >
+<nav>
 
-            </ul>
+    <div class="menuBar" onclick="openMenu()" onmouseover="openMenu()">
+        <span><img id="logopng" src="/osp/logo.png" />
+            ZKPiG nr 26 w Gdańsku </span>
 
+        <span><span class="glyphicon glyphicon-list"></span> Menu</span>
+        <span href="" id="logInfo">
+            <span class="glyphicon glyphicon-user"></span>Mikołaj Sochacki
+        </span>
+    </div>
+    <div id="linkarea" onmouseout="closeMenu()" class="row">
 
-            <ul class="nav navbar-nav " data-lift="page.MainSn.submenuTopArticles">
-                <li id="showSubmenu" role="presentation" class="dropdown" >
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                        Dropdown <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#kdl"> </a></li>
-                    </ul>
-                </li>
-            </ul>
+            <span class="glyphicon glyphicon-remove" onclick="closeMenu()"></span>
 
-
-
-
-            <ul class="nav navbar-nav " ><li><a target="_blank" href="https://www.edu.gdansk.pl">UONET</a></li></ul>
-            <ul class="nav navbar-nav " ><li><a href="/login">Aplikacje</a></li></ul>
-            <ul data-lift="LoginSn.show" class="nav navbar-nav navbar-right ">
-                <li class="loginLi"> <a href=""  id="logInfo"  ></a></li>
-
-            </ul>
-        </div>
     </div>
 
 </nav>
+
+
 
 
 <div  id="content">

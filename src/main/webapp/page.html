@@ -1,0 +1,196 @@
+<!doctype HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link id="favicon" href="/osp/favicon.png" type="image/png" rel="icon"/>
+    <link href="/style.css"  rel="stylesheet"/>
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/jqueryui/jquery-ui.css" />
+
+    <!--[if lt IE 7]>
+    <link href="ie_style.css" rel="stylesheet" type="text/css" />
+    <![endif]-->
+
+    <title>
+        Szkolny portal edukacyjny</title>
+
+    <script src="/jquery/jquery.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Bootstrap -->
+
+
+
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" href="/style/pages.css"/>
+    <script>
+     var $imgBox = null;
+     var $innerBox = null;
+     var $textBox = null;
+
+
+   function showNews(id, elem){
+             if($textBox != null && $imgBox != null) closeNews();
+             $innerBox = $(elem).parent().parent();
+             $textBox = $(elem).parent();
+             $imgBox = $(elem).parent().parent().children('div.imgBox');
+            showNewsCommon(id);
+            return false;
+    };
+
+   function closeNews() {
+       	 $textBox.show();
+       	 $imgBox.show();
+       	 $('#ajaxNews').hide().empty();
+
+   };
+
+    function showNewsCommon(id) {
+        if($textBox != null && $imgBox != null) closeNews();
+         $('#hiddenAjaxText').val(id).trigger('blur');
+         var $ajaxNews = $('#ajaxNews');
+         $innerBox.append($ajaxNews);
+         $textBox.hide();
+         $imgBox.hide();
+         $('#ajaxNews').show(100);
+    }
+
+    </script>
+    <style>
+
+        .actualPage {color: #ccc !important;}
+
+        label {
+        font-weight: bold;
+        font-size: 1.2em;
+        padding-right: 20px;
+        }
+
+        .linkNewsA {
+        padding: 5px 15px 5px 15px;
+        color: #2da8f8;
+        }
+
+        .readMore,.pine-box h2 {
+        color: #2da8f8;
+        }
+
+        .readMore:hover,.linkNewsA:hover,.pine-box h2:hover {
+        color: #FF0000;
+        }
+
+        .pine-box {
+        padding: 20px 0px;
+        border-bottom: 1px dotted #ddd;
+        }
+
+        img.center-block {
+        width: 90%;
+        }
+
+        .innerBox > h2 {
+        padding-top: 2px;
+        margin-top: 2px;
+        }
+
+        .img-box {
+        background-repeat: no-repeat;
+        background-position: center;
+        }
+
+
+        .footPrint {
+        padding: 3px;
+        border-bottom: 1px solid #ccc;
+        border-top: 1px solid #ccc;
+        }
+        span.fullname, span.date {
+        padding-right: 20px;
+        }
+
+        span.edit {float: right;}
+
+        #slideImg {max-height: 600px;}
+        #slideInfo { position: absolute; bottom: 100px; width: 100%; color: white;
+        text-align: center; text-shadow: 2px 5px 5px #666;}
+
+
+
+
+
+    </style>
+
+
+</head>
+<body>
+<div data-lift="page.PageSn.slide" style="position: relative;">
+        <div id="slideInfo"></div>
+        <img  id="slideImg" src="/style/edukacja.jpg" style="width: 100%" />
+</div>
+
+
+<div class="row">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-10">
+        <div class="row">
+            <div class="col-lg-9" data-lift="page.PageSn.switchContent">
+
+                <div id="newsCont">
+                    <h1 style="text-align: center; margin: 15px;">Aktualności <small id="departmentInfo"></small></h1>
+
+                    <div class="newsInfo "></div>
+                    <div class="clear"></div>
+                    <div id="oneNews" class="lift:page.PageSn.showOneNews">
+                        <input id="hiddenAjaxText" style="display: none;"/>
+
+                        <div id="ajaxNews">
+                            <br/>
+                        </div>
+                    </div>
+                    <ul class="pagination">
+                        <li></li>
+                    </ul>
+                </div>
+
+                <div class="row" id="articleCont">
+                    <div class="col-lg-3">
+                        <h2 ><small id="depHeader"></small></h2>
+                        <div class="list-group">
+                            <a class="depMenu"></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-9">
+                        <div id="depBody"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <h3>Menu: </h3>
+                <div class="list-group" data-lift="page.PageSn.buildMenu">
+                    <a class="list-group-item" href="">Aktualności</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<footer class="footer">
+    <p> Programmed by: <a href="http://osp.edu.pl">Mikołaj Sochacki, OpenSchoolPlatform</a> &copy; &nbsp; &nbsp;
+        <span class="lift:Msgs?showAll=true"></span>  <a href="#logopng">↑ Do góry ↑</a> </p>
+</footer>
+
+<script src="/jqueryui/jquery-ui.min.js" type="text/javascript"></script>
+<script src="/jquery/logoandfavicon.js" type="text/javascript"></script>
+
+</body>
+</html>
+
+

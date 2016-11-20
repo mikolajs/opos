@@ -15,21 +15,19 @@ class AdminDepartmentsSn {
     var id = ""
     var nrStr = ""
     var name = ""
+    var img = ""
+    var info =""
 
     def addDepartment() {
-      PageDepartment.find(id.trim) match {
-        case Some(pageDepartment) => {
-          pageDepartment.name = name
-          pageDepartment.nr = tryo(nrStr.toInt).openOr(99)
-          pageDepartment.save
-        }
-        case _ => {
-          val pageDepartment = PageDepartment.create
-          pageDepartment.name = name
-          pageDepartment.nr = tryo(nrStr.toInt).openOr(99)
-          pageDepartment.save
-        }
+      val pageDepartment = PageDepartment.find(id.trim) match {
+        case Some(pageDepartment) => pageDepartment
+        case _ => PageDepartment.create
       }
+      pageDepartment.name = name.trim
+      pageDepartment.nr = tryo(nrStr.trim.toInt).openOr(99)
+      pageDepartment.img = img.trim
+      pageDepartment.info = info.trim
+      pageDepartment.save
       S.redirectTo("/admin/pages")
     }
 
@@ -43,8 +41,10 @@ class AdminDepartmentsSn {
     }
 
     "#id" #> SHtml.text(id, x => id = x, "style" -> "display:none;", "id" -> "id") &
-      "#order" #> SHtml.text(nrStr, x => nrStr = x.trim, "maxlength" -> "2") &
-      "#name" #> SHtml.text(name, x => name = x.trim, "maxlength" -> "40", "id" -> "name") &
+      "#order" #> SHtml.text(nrStr, nrStr = _, "maxlength" -> "2") &
+      "#name" #> SHtml.text(name, name = _, "maxlength" -> "40", "id" -> "name") &
+      "#info" #> SHtml.textarea(info, info = _,  "id" -> "info") &
+      "#link" #> SHtml.text(img, img = _ ) &
       "#save" #> SHtml.submit("Zapisz!", addDepartment, "onclick" -> "return validateForm()") &
       "#delete" #> SHtml.submit("Usuń!", delDepartment,
         "onclick" -> "return confirm('Na pewno chcesz usunąć dział i wszystkie strony działu?');")
@@ -52,14 +52,14 @@ class AdminDepartmentsSn {
 
   def departments(n: NodeSeq): NodeSeq = {
     val departments = PageDepartment.findAll
-    var node: NodeSeq = <tbody>
+    val node: NodeSeq = <tbody>
       {for (department <- departments) yield {
-        <tr ondblclick={"setData(this)"} id={department._id.toString()}>
-          <td>
-            {department.nr.toString}
-          </td> <td>
-          {department.name}
-        </td>
+        <tr ondblclick={"setData(this)"} title={"ID: " + department._id.toString}
+            id={department._id.toString()}>
+          <td> {department.nr.toString}</td>
+          <td>{department.name}</td>
+          <td><img src={department.img} style="width:200px;" /></td>
+          <td>{Unparsed(department.info)}</td>
         </tr>
       }}
     </tbody>

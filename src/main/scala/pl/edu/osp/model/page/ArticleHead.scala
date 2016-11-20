@@ -17,13 +17,13 @@ object ArticleHead extends MongoDocumentMeta[ArticleHead] {
   override def formats = super.formats + new ObjectIdSerializer + new DateSerializer
 
   def create = new ArticleHead(ObjectId.get, 9999, "", "", 0L, Nil, "", "", true,
-    new ObjectId("000000000000000000000000"), new ObjectId("000000000000000000000000"))
+    new ObjectId("000000000000000000000000"), new ObjectId("000000000000000000000000"), "")
 }
 
 case class ArticleHead(var _id: ObjectId, var prior:Int, var title: String,
                        var authorName: String, var authorId: Long, var tags: List[String],
                        var thumbnailLink: String, var introduction: String, var news: Boolean,
-                       var content: ObjectId, var departmentId: ObjectId)
+                       var content: ObjectId, var departmentId: ObjectId, var departmentName: String)
   extends MongoDocument[ArticleHead] {
   def meta = ArticleHead
 }

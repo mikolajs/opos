@@ -43,13 +43,17 @@ class FilesSn {
   var mimeTypeFull = ""
 
   def addImage() = {
-
+    val imgSize = S.param("s").getOrElse("n") match {
+      case "s" => 400
+      case "n" => 800
+      case "f" => 1600
+    } //normal size 800
     def isCorrect = readImage()
 
     def save() {
       if (isCorrect) {
         val imageBuf: BufferedImage = ImageIO.read(new ByteArrayInputStream(fileHold.get.file))
-        val resizedImageBuf = resizeImageWithProportion(imageBuf, 800)
+        val resizedImageBuf = resizeImageWithProportion(imageBuf, imgSize)
         val outputStream = new ByteArrayOutputStream()
         ImageIO.write(resizedImageBuf, mimeType.substring(1), outputStream)
         val inputStream = new ByteArrayInputStream(outputStream.toByteArray())

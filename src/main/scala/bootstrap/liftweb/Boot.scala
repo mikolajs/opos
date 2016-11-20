@@ -115,6 +115,7 @@ class Boot {
     def sitemap() = SiteMap(
       List(
         Menu("Strona główna") / "index" / ** >> LocGroup("public"),
+        Menu("Strony") / "page" / ** >> LocGroup("public"),
         Menu("Galeria") / "gallery" / ** >> LocGroup("public"),
         Menu("Kontakt") / "contact" >> LocGroup("public"),
         Menu("Forum") / "forum" >> LocGroup("extra"),
@@ -128,7 +129,7 @@ class Boot {
         Menu("Pokaz") / "showslide" / ** >> LocGroup("extra") >> Hidden,
         Menu("Maile kontaktowe") / "admin" / "index" >> LocGroup("admin") >> isAdmin,
         Menu("Dane kontaktowe") / "admin" / "contact" >> LocGroup("admin") >> isAdmin,
-        Menu("Działy BIP") / "admin" / "pages" >> LocGroup("admin") >> isAdmin,
+        Menu("Działy") / "admin" / "pages" >> LocGroup("admin") >> isAdmin,
         Menu("Tagi aktualności") / "admin" / "tags" >> LocGroup("admin") >> isAdmin,
         Menu("Linki") / "admin" / "links" >> LocGroup("admin") >> isAdmin,
         Menu("Slajdy") / "admin" / "slides" >> LocGroup("admin") >> isAdmin,
@@ -220,9 +221,9 @@ class Boot {
         RewriteResponse(
           "editthread" :: Nil, Map("id" -> id))
       case RewriteRequest(
-      ParsePath("editarticle" :: id :: Nil, _, _, _), _, _) =>
+      ParsePath("editarticle" :: d :: a :: Nil, _, _, _), _, _) =>
         RewriteResponse(
-          "editarticle" :: Nil, Map("id" -> id))
+          "editarticle" :: Nil, Map("d" -> d, "a" -> a))
       case RewriteRequest(
       ParsePath("register" :: "index" :: classSchool :: Nil, _, _, _), _, _) =>
         RewriteResponse(
@@ -247,6 +248,10 @@ class Boot {
       ParsePath("index" :: w :: Nil, _, _, _), _, _) =>
         RewriteResponse(
           "index" :: Nil, Map("w" -> w))
+      case RewriteRequest(
+      ParsePath("page" :: id :: Nil, _, _, _), _, _) =>
+        RewriteResponse(
+          "page" :: Nil, Map("id" -> id))
       case RewriteRequest(
       ParsePath("educontent" :: "course" :: courseId :: Nil, _, _, _), _, _) =>
         RewriteResponse(

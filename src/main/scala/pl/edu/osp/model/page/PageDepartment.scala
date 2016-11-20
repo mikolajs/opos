@@ -16,10 +16,11 @@ object PageDepartment extends MongoDocumentMeta[PageDepartment] {
 
   override def formats = super.formats + new ObjectIdSerializer + new DateSerializer
 
-  def create = PageDepartment(ObjectId.get, "", 99)
+  def create = PageDepartment(ObjectId.get, "", 99, "", "")
 }
 
-case class PageDepartment(var _id: ObjectId, var name: String, var nr: Int)
+case class PageDepartment(var _id: ObjectId, var name: String, var nr: Int,
+                         var img: String, var info: String)
   extends MongoDocument[PageDepartment] {
   def meta = PageDepartment
 }

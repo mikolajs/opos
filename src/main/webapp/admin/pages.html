@@ -5,6 +5,13 @@
     <head_merge>
           <script type="text/javascript" src="/jquery/mytables.js"></script>
         <script>
+        function getImageURLfromIFrame(elem){
+        	var innerDoc = elem.contentDocument || elem.contentWindow.document;
+        	var url  = innerDoc.getElementById('linkpath').innerHTML.trim();
+        	console.log("found url: " + url);
+        	$('#link').val(url);
+        }
+
         $(document).ready(function(){
             colorTables();
         });
@@ -23,6 +30,11 @@
             	 case 1: 
             		 document.getElementById('name').value = this.innerHTML.trim();
             		 break;
+                 case 2:
+                    document.getElementById('link').value = this.querySelector('img').getAttribute('src');
+                    break;
+                 case 3:
+                    document.getElementById('info').value = this.innerHTML.trim();
             	default:
             		break;
             	 }
@@ -52,6 +64,10 @@
 <p><input id="id" /></p>
 <p><label for="order">Kolejność:</label><input id="order"  class="form-control" type="text" style="width:40px;" /></p>
 <p><label for="name">Nazwa: </label><input id="name" class="form-control" /></p>
+    <p><label for="link">Obraz: </label><input id="link" readonly="readonly" class="form-control" /></p>
+    <p><label for="info">Zawartość: </label>
+        <textarea class="form-control" id="info" rows="5"></textarea>
+    </p>
 <p><input id="save" class="btn btn-success" />
  <input type="submit" class="btn btn-default" onclick="return clearForm()" value="Czyść!" />
     <input id="delete" class="btn btn-danger"/>
@@ -59,9 +75,12 @@
 <p id="notice"></p>
 </fieldset>
 </form>
+    <iframe onload="getImageURLfromIFrame(this)" src='/imgstorage?s=f' width='95%' height='170px'>
+        <p>Brak obsługi ifame!</p></iframe>
 <hr />
 <div class="tables">
-<table class="table table-striped"><thead><tr><th>Kolejność</th><th>Nazwa</th></tr></thead>
+<table class="table table-striped"><thead><tr><th>Kolejność</th><th>Nazwa</th>
+    <th>Obraz</th><th>Info</th></tr></thead>
     <tbody class="lift:admin.AdminDepartmentsSn.departments"> </tbody>
 </table>
 </div>

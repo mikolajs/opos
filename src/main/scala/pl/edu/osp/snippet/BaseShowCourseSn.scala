@@ -82,7 +82,7 @@ class BaseShowCourseSn  {
                     		file: (_0x9b95 + "%s"),
                     		width: 853,
                     		height:  480,
-                        image: "/style/images/grafika_pod_video.png"
+                        image: "/images/grafika_pod_video.png"
                     	});""".format(pathMedia.toList.map((x:Char) => "\\x" + Integer.toHexString(x.toInt)).mkString, vidId,
                   video._id.toString + "." + video.link.split('.').last))}
               </script>
