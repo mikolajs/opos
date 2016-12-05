@@ -1,0 +1,210 @@
+
+
+body {
+  background-color: #444;
+  overflow-x: hidden;
+  margin: 0 auto;
+}
+
+
+
+.titleSmall {
+    transform: scale(1.0, 1.0);
+    transition: all 20s;
+    transition-timing-function: linear;
+}
+
+
+.titleBig { transform: scale(1.2, 1.2);
+  transition: all 20s;
+  transition-timing-function: linear;
+}
+
+#fullImage {
+  background-color: #da4;
+  height: 100%;
+  min-height: 400px;
+  position: relative;
+  z-index: -10;
+}
+
+
+#titlePicture {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 30px; bottom:  0;
+  vertical-align: middle;
+  overflow: hidden;
+  margin: 0 auto;
+  text-align: center;
+  overflow: hidden;
+  z-index: -10;
+}
+
+
+
+section {
+         background-color: #f8f8f8;
+}
+
+.picture {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  padding: 0;
+}
+
+.imgBig {
+  position: relative;
+  width: calc(100% + 40px);
+  padding: 0;
+  margin: 0 -20px 0 -20px;;
+}
+
+.imgBigAnimate {
+  animation: shake infinite;
+  animation-timing-function: linear;
+  animation-duration: 5s;
+}
+
+
+
+.antract {
+  min-width: 200px;
+}
+
+#chooseSchool {
+width: 100%;
+text-align: center;
+background-color: transparent;
+position: absolute;
+top: 10%;
+z-index: 8;
+}
+
+#chooseSchool > h1 {
+  font-size: 4em;
+  padding: 10px 10%;
+  color: white;
+  text-shadow: 2px 2px 9px #444;
+  margin-bottom: 50px;
+}
+
+#mainSection {
+  height: 100%;
+  position: relative;
+  top:0;left: 0;
+}
+
+@keyframes shake {
+  0% {  transform: scale(1.0, 1.0);}
+  50% {  transform: scale(1.1, 1.1);}
+  100% {  transform: scale(1.0, 1.0);}
+}
+
+.schoolCards {
+  	animation: shake 1.5s infinite;
+  display: inline-block;
+  vertical-align: middle;
+
+padding: 20px;
+width:  250px;
+height: 250px;
+margin: 0 20px auto;
+text-align: center;
+color: #ededed;
+border: 4px solid #fff;
+border-radius: 250px;
+z-index: 10;
+}
+.schoolCardsD1 { animation-delay: 0.0s; background-color: rgba(0,0,165, 0.7);}
+.schoolCardsD2 { animation-delay: 0.3s; background-color: rgba(204,214,218, 0.7);}
+.schoolCardsD3 { animation-delay: 0.9s; background-color: rgba(254,143,0, 0.7);}
+
+.schoolCards h1 {
+  padding-top: 2px !important;
+  margin: 10px 0;
+  text-align: center;
+  display: block;
+  color: white; padding: 2px 0;
+  text-shadow: 3px 3px 4px gray;
+  text-decoration: none;
+}
+.schoolCards:hover, .schoolCards:visited, .schoolCards:link, .schoolCards:active
+{
+    text-decoration: none;
+}
+
+.schoolCardsD1:hover {
+  background-image: url(/images/zkpig/contact.png);
+}
+.schoolCardsD2:hover {
+  background-image: url(/images/zkpig/contact.png);
+}
+.schoolCardsD3:hover {
+  background-image: url(/images/zkpig/contact.png);
+}
+
+.schoolCards img { text-align: center;}
+
+#news {
+  position: relative;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#news ul {
+  padding-left: 0;
+  font-size: 1.5em;
+  margin: 0;
+  z-index: 0;
+}
+
+#news ul li {
+  display: inline-block;
+  margin: 0 15px;
+  padding: 15px;
+  border: 3px solid orange;
+  z-index: 0 ;
+  background-color: #f8f8f8;
+}
+
+#newsSP, #newsGim {
+  width: 60%;
+  margin: auto;
+  text-align: left;
+  border-top: 3px solid orange;
+  margin-top: -3px;
+  z-index: 10;
+  background-color: #f8f8f8;
+}
+
+#news ul li.newsActive {
+  box-shadow: inset 0 5px orange;
+  border-bottom: 3px solid #f8f8f8;
+  z-index: 100 !important;
+}
+
+
+
+.extraBox {
+  z-index: 1500;
+  position: absolute;
+  top: 100px; left: 0;
+}
+
+.extraBox a  img {
+  display: block;
+  width: 54px; height: 54px;
+  margin: 10px 0;
+  transition: all 0.3s;
+}
+.extraBox a img:hover {
+  width: 64px; height: 64px; margin: 5px 0;
+}
+
+/* poniżej wklejone ze strony głównej */
+

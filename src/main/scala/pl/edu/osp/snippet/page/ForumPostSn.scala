@@ -21,7 +21,7 @@ import org.bson.types.ObjectId
 import _root_.net.liftweb.json.JsonDSL._
 import page.ForumThreadHead
 
-class ForumPostSn extends UsersOperations with UpdateMainPageInfo with ForumBaseMenu {
+class ForumPostSn extends UsersOperations  with ForumBaseMenu {
 
   val id = S.param("id").getOrElse("")
   val threadHead: ForumThreadHead =
@@ -123,7 +123,6 @@ class ForumPostSn extends UsersOperations with UpdateMainPageInfo with ForumBase
         threadContent.delete
         performDownTagsData(threadHead.tags)
         threadHead.delete
-        deleteMainPageInfo(threadHead._id.toString)
         S.redirectTo("/forum")
       }
       if (clearComment != "") {

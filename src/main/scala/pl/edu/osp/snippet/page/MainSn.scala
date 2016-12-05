@@ -6,6 +6,8 @@
 
 package pl.edu.osp.snippet.page
 
+import net.liftweb.util.Mailer.{PlainMailBodyType, To, Subject, From}
+
 import scala.xml.{Unparsed}
 import _root_.net.liftweb._
 import util._
@@ -25,17 +27,112 @@ class MainSn {
 
   val user = User.currentUser
 
-  val isTeacher = if (user.isEmpty) false
-  else {
-    user.openOrThrowException("Niemożliwe").role.get match {
-      case "a" => true
-      case "n" => true
-      case "d" => true
-      case _ => false
+  val contactMails = ContactMail.findAll.map(contactMail =>
+    (contactMail.description -> contactMail.description))
+
+  val contactInfo = MapExtraData.getMapData("contactInfo")
+
+  def getData() = {
+    val contactMails = ContactMail.findAll
+    val contactMailsToForm = contactMails.map(contactMail =>
+      (contactMail.description -> contactMail.description))
+    var theme = ""
+    var content = ""
+    var mail = ""
+    var selectedMail = ""
+
+    def sendMail() {
+      val emailList = contactMails.filter(contactMail => {
+        contactMail.description == selectedMail
+      })
+      if (!emailList.isEmpty) {
+        val emailToSend = emailList.head.mailAddress
+        val body = content + "\n" + "----------\n Informacja wysłana ze strony przez: " + mail
+        Mailer.sendMail(From("zestrony@zkpig26.gda.pl"), Subject(theme),
+          To(emailToSend), PlainMailBodyType(body))
+        S.redirectTo("/contact")
+      }
+      else S.notice("Błędny email")
+
     }
+
+    "#theme" #> SHtml.text(theme, x => theme = x) &
+      "#mailcontent" #> SHtml.textarea(content, x => content = x) &
+      "#mail" #> SHtml.text(mail, x => mail = x) &
+      "#select" #> SHtml.select(contactMailsToForm, Empty, x => selectedMail = x) &
+      "#submit" #> SHtml.submit("Wyślij!", sendMail, "onclick" -> "return isValid();")
+
   }
 
-  //slider na głównej stronie
+  def mainInfo() = {
+
+    "#nameCont *" #> Unparsed((if(contactInfo.contains("name"))
+        addBRInsteadSemiColon(contactInfo("name")) else "")) &
+      "#patronCont *" #> (if(contactInfo.contains("patron")) contactInfo("patron") else "")  &
+      "#streetCont *" #> (if(contactInfo.contains("street")) contactInfo("street") else "")  &
+      "#cityCont *" #> (if(contactInfo.contains("city")) contactInfo("city") else "") &
+      "#phoneCont *" #> (if(contactInfo.contains("phone")) contactInfo("phone") else "") &
+      "#faxCont *" #> (if(contactInfo.contains("fax")) contactInfo("fax") else "") &
+      "#mailCont *" #> (if(contactInfo.contains("email")) contactInfo("email") else "") &
+      "iframe" #> (if(contactInfo.contains("maps")) <span>{Unparsed(contactInfo("maps"))}</span> else <span></span>)
+  }
+
+  private def addBRInsteadSemiColon(txt:String) = txt.split(';').mkString("<br/>")
+
+
+
+  def news() = {
+    val newses = ArticleHead.findAll(("news" -> true), ("_id" -> -1)).take(5)
+    val sizeP = 10
+    val page = S.param("p").getOrElse("1")
+    val pageInt = tryo(page.toInt).getOrElse(1)
+    val pages = newses.size / sizeP + (if (newses.size % sizeP > 0) 1 else 0)
+
+    val endNews = if (sizeP * pageInt > newses.size) newses.size else sizeP * pageInt
+    val beginNews = if (endNews - sizeP < 0) 0 else endNews - sizeP
+
+    val toShowNewses = newses.slice(beginNews, endNews)
+      ".newsInfo" #> <div>
+        {toShowNewses.map(news => createNewsBox(news))}
+      </div>
+
+  }
+
+  private def createNewsBox(news: ArticleHead) = {
+    <div class="row pine-box">
+      <div class="col-md-3">
+        <img  class="img-box featurette-image img-responsive" src={news.thumbnailLink} />
+      </div>
+
+      <div class="col-md-9 innerBox">
+        <h2>
+          {news.title}
+        </h2>
+        <div class="footPrint">
+          <span class="glyphicon glyphicon-user"></span>
+          <span class="fullname">
+            {news.authorName}
+          </span>
+          <span class="glyphicon glyphicon-calendar"></span>
+          <span class="date">
+            {Formater.formatDate(news._id.getDate())}
+          </span>
+        </div>
+        <div class="textBox">
+          <div class="introNews">
+            {Unparsed(news.introduction)}
+          </div>
+          <a href={"/page/" + news.departmentId } class="btn btn-small btn-info" >Czytaj całość </a>
+        </div>
+      </div>
+      <div style="clear:both;"></div>
+    </div>
+  }
+
+
+  ///========================== not used below =======================
+
+  //slider na głównej stronie - nie używam
   def slides = {
     val mpSlides = MainPageSlide.findAll
     var isFirst = true
@@ -54,27 +151,6 @@ class MainSn {
         yield <li data-target="#carousel-main" data-slide-to={n.toString} class={if(n == 0) "active" else ""}></li>
       }
     </ol>
-  }
-
-  def links = {
-    val mainPageLinks = MainPageLinks.findAll match {
-      case head :: list => head
-      case _ => MainPageLinks.create
-    }
-    ".grid_3" #> mainPageLinks.links.map(linkGroup => {
-      <div class="grid_3">
-        <h3>
-          {linkGroup.name}
-        </h3>
-        <ul>
-          {linkGroup.links.map(link => <li>
-          <a href={link.url}>
-            {link.title}
-          </a>
-        </li>)}
-        </ul>
-      </div>
-    })
   }
 
 
@@ -106,8 +182,7 @@ class MainSn {
           {ahref}
         </li>)}
         </ul>
-      }) &
-     "#addNews *" #>  (if(isTeacher) <a href="/editarticle/0" >Dodaj!</a> else <span></span>)
+      })
   }
 
 
@@ -193,40 +268,6 @@ class MainSn {
     "#hiddenAjaxText" #> SHtml.ajaxText("", id => SetHtml("ajaxNews", create(id)))
   }
 
-  def logIn() = {
-    var email = ""
-    var pass = ""
-    var pesel = ""
-
-    def mkLog() = {
-      if (user.isEmpty) {
-        User.findAll(By(User.email, email.trim)) match {
-          case u :: other => {
-            User.logUserIn(u)
-          }
-          case _ =>
-        }
-      }
-
-
-    }
-    user match {
-      case Full(u) => {
-        "form" #> <a title="WYLOGUJ!" href="/user_mgt/logout">
-          <button type="button" class="btn btn-info">
-            <span class="glyphicon glyphicon-log-out"></span>{u.getFullName}
-          </button>
-        </a>
-      }
-      case _ => {
-        "#email" #> SHtml.text(email, email = _) &
-          "#password" #> SHtml.password(pass, pass = _) &
-          "#pesel" #> SHtml.text(pesel, pesel = _) &
-          "#mkLog" #> SHtml.submit("Zaloguj", mkLog)
-      }
-    }
-
-  }
 
   def setScriptGoogleSearch() = {
     val code = ExtraData.getData("googlesearchcode")

@@ -16,19 +16,17 @@ import _root_.net.liftweb.util.Helpers._
 
 case class Link(url: String, title: String)
 
-case class LinkDepartment(name: String, links: List[Link])
-
-object MainPageLinks extends MongoDocumentMeta[MainPageLinks] {
-  override def collectionName = "mainpagelinks"
+object MainPageMenu extends MongoDocumentMeta[MainPageMenu] {
+  override def collectionName = "mainpagemenu"
 
   override def formats = super.formats + new ObjectIdSerializer + new DateSerializer
 
-  def create = MainPageLinks(ObjectId.get, Nil)
+  def create = MainPageMenu(ObjectId.get, "", Nil)
 }
 
-case class MainPageLinks(_id: ObjectId, var links: List[LinkDepartment])
-  extends MongoDocument[MainPageLinks] {
-  def meta = MainPageLinks
+case class MainPageMenu(_id: ObjectId, var name:String, var links: List[Link])
+  extends MongoDocument[MainPageMenu] {
+  def meta = MainPageMenu
 }
 
 

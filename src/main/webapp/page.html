@@ -6,9 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link id="favicon" href="/osp/favicon.png" type="image/png" rel="icon"/>
-    <link href="/style.css"  rel="stylesheet"/>
+    <link href="/style/pages.css"  rel="stylesheet"/>
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/jqueryui/jquery-ui.css" />
+    <link href="/style/menu.css" rel="stylesheet">
 
     <!--[if lt IE 7]>
     <link href="ie_style.css" rel="stylesheet" type="text/css" />
@@ -64,44 +65,13 @@
     </script>
     <style>
 
+
         .actualPage {color: #ccc !important;}
 
         label {
         font-weight: bold;
         font-size: 1.2em;
         padding-right: 20px;
-        }
-
-        .linkNewsA {
-        padding: 5px 15px 5px 15px;
-        color: #2da8f8;
-        }
-
-        .readMore,.pine-box h2 {
-        color: #2da8f8;
-        }
-
-        .readMore:hover,.linkNewsA:hover,.pine-box h2:hover {
-        color: #FF0000;
-        }
-
-        .pine-box {
-        padding: 20px 0px;
-        border-bottom: 1px dotted #ddd;
-        }
-
-        img.center-block {
-        width: 90%;
-        }
-
-        .innerBox > h2 {
-        padding-top: 2px;
-        margin-top: 2px;
-        }
-
-        .img-box {
-        background-repeat: no-repeat;
-        background-position: center;
         }
 
 
@@ -118,8 +88,20 @@
 
         #slideImg {max-height: 600px;}
         #slideInfo { position: absolute; bottom: 100px; width: 100%; color: white;
-        text-align: center; text-shadow: 2px 5px 5px #666;}
+        text-align: center;
+        text-shadow: -1px -1px 1px #555, 1px -1px 1px #555, -1px 1px 1px #555, 1px 1px 1px #555;
+        animation-name: example;
+        animation-duration: 6s;
+        }
 
+        @keyframes example {
+        0%   {bottom:500px;}
+        80% {bottom:80px;}
+        85% {bottom: 120px;}
+        90% {bottom: 90px;}
+        95% {bottom: 105px;}
+        100% {bottom: 100px;}
+        }
 
 
 
@@ -129,6 +111,49 @@
 
 </head>
 <body>
+<nav class="myNavbar" id="myNavbar" >
+    <div class="upperBar" onclick="openMenu()" onmouseover="openMenu()"
+         data-lift="page.MenuSn.upperMenu">
+
+      <span class="leftMenu">
+          <a href="#"><img src="/images/zkpig/logo.png" /></a>
+          <span id="schoolInfo"></span>
+
+      </span>
+			<span iv class="rightMenu">
+				<span><span class="glyphicon glyphicon-list"></span> Menu </span>
+				<span><span class="glyphicon glyphicon-user"></span>
+                    <span id="loginInfo">Mikołaj Sochacki</span>
+                </span>
+			</span>
+    </div>
+    <div class="menuItems" onmouseleave="closeMenu()">
+        <div class="row" id="linkarea" data-lift="page.MenuSn.menu">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-2 linkareaCol" ></div>
+            <div class="col-lg-2" data-lift="page.MenuSn.submenu">
+
+
+                <a href="/user_mgt/logout" class="login">
+                    Wyloguj
+                </a>
+
+                <hr/>
+                <div role="search" >
+                    <div class="form-group">
+                        <input id="toSearch" placeholder="Szukaj z Google" onkeypress="pressEnter(event)" class="form-control" type="text">
+                        <button onclick="searchGoogle()" class="btn btn-default"
+                                style="width:100%;" id="toSearchBut" type="submit">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-1"><span class="glyphicon glyphicon-remove menuCloseBtn" onclick="closeMenu()"></span></div>
+        </div>
+    </div>
+</nav>
+
 <div data-lift="page.PageSn.slide" style="position: relative;">
         <div id="slideInfo"></div>
         <img  id="slideImg" src="/style/edukacja.jpg" style="width: 100%" />
@@ -189,7 +214,7 @@
 
 <script src="/jqueryui/jquery-ui.min.js" type="text/javascript"></script>
 <script src="/jquery/logoandfavicon.js" type="text/javascript"></script>
-
+<script src="/jquery/menu.js" type="text/javascript"></script>
 </body>
 </html>
 

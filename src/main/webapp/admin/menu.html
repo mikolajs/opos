@@ -4,6 +4,12 @@
 <body class="lift:content_id=main">
 <div id="main" class="lift:surround?with=admin;at=content">
     <head_merge>
+        <style>
+            td button {
+            float: right;
+            }
+
+        </style>
         <script>
 
 
@@ -18,8 +24,14 @@
                      $url.val('');
                     $elem.parent().parent().parent().parent().children('tbody').append(
                     '<tr class="linkTr"><td class="nameLink">' + name + '</td><td class="urlLink">' + url +
-                    '</td><td><button class="btn btn-danger" onclick="delLink(this)" >' +
-                    '<span class="glyphicon glyphicon-remove"></span></button></td></tr>');
+                    '</td><td>' +
+                    '<button class="btn btn-info" onclick="downLink(this)" >' +
+                    '<span class="glyphicon glyphicon-arrow-down"></span></button>' +
+                    '<button class="btn btn-info" onclick="upLink(this)" >' +
+                    '<span class="glyphicon glyphicon-arrow-up"></span></button>' +
+                    '<button class="btn btn-danger" onclick="delLink(this)" >' +
+                    '<span class="glyphicon glyphicon-remove"></span></button>' +
+                    '</td></tr>');
                 } else alert("Za krótkia nazwa lub adres " + url + ' ' + name);
 
             }
@@ -61,6 +73,8 @@
                     return true;
                 }
                 else {
+                    var xml  = document.getElementById('xmlData').value;
+                    console.log('OK: ' + xml);
                     alert('Danych nie zapisano. Nieprawidłowe wpisy.');
                     return false;
                 }
@@ -107,13 +121,6 @@
                                     xmlStr += value;
                                     xmlStr += '" ';
                                     break;
-                                case 2:
-                                    if (error) {
-                                        this.innerHTML = "*Błąd";
-                                        isError = true;
-                                    }
-                                    else this.innerHTML = "";
-                                    break;
                                 default:
                                     break;
                             }
@@ -134,49 +141,60 @@
                 });
             }
 
-            function newDepartment() {
-
-                var divDep = '<fieldset class="divDepartment"> \
-                <div class="form-inline"> \
-                    <div class="form-group"><strong class="nameDepartment">Nazwa działu: </strong> \
-                    <input class="nameDep form-control" /> \
-                    <span class="nameError"></span> \
-                     <button class="btn btn-danger" onclick="deleteDepartment(this)"> \
-                    <span class="glyphicon glyphicon-remove"></span> Usuń cały dział \
-                </button></div> \
-                </div> \
-                <div class="tables"> \
-                <table class="table table-striped"> \
-                    <thead><tr><th>Nazwa</th><th>Link</th><th></th></tr></thead> \
-                    <tbody ></tbody> \
-                    <tfoot> \
-                        <tr><td><input type="text" class="addLinkNameInput form-control" /></td> \
-                <td><input type="text" class="addLinkUrlInput form-control" /></td> \
-                <td><button class="btn btn-success" onclick="addRow(this)" title="Dodaj"> \
-                    <span class="glyphicon glyphicon-plus"></span> \
-                </button> \
-                 <button class="btn btn-default" onclick="cleanRow(this)" title="Czyść"> \
-                        <span class="glyphicon glyphicon-erase"></span> \
-                 </button> \
-                </td> \
-            </tr></tfoot> \
-                </table> \
-                </div> \
-                </fieldset>';
-
-            $("#linksCont").prepend(divDep);
+            function downLink(elem) {
+                var $tr = $(elem).parent('td').parent('tr');
+                $tr.next().after($tr);
             }
+
+            function upLink(elem) {
+                var $tr = $(elem).parent('td').parent('tr');
+                $tr.prev().before($tr);
+            }
+
+            function changeVisibleDeparts() {
+                var x = document.getElementById("selectAuto").value
+                if(x == "d") document.getElementById("selectDepartsDiv").style.display = 'block';
+                else document.getElementById("selectDepartsDiv").style.display = 'none';
+            }
+
 	</script>
       
     </head_merge>
 
 	<div class="well">
-<h3>Edycja linków na stronie głównej</h3>
+<h3>Projektant menu na stronie głównej</h3>
 </div>
+    <div>
+        <h2>Projektant automatyczny</h2>
+        <form data-lift="admin.AdminEditMenuSn.mkLinks" id="autoMenu" method="POST">
+            <fieldset class="divDepartment">
+                <div>
+                    <div class="form-group"><label class="nameDepartment">Nazwa: </label>
+                        <input class="nameAuto form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label> Typ menu: </label>
+                        <select class="selectAuto form-control"  id="selectAuto"
+                                onchange="changeVisibleDeparts()"></select>
+                    </div>
+                    <div class="form-group" id="selectDepartsDiv">
+                        <label> Dział: </label>
+                        <select class="selectDeparts form-control"></select>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-success" id="mkAuto">
+                            <span class="glyphicon glyphicon-play"></span> Generuj
+                        </button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+
+    </div>
 
 	<div>
-            <h2>Edycja linków</h2><br/>
-            <div class="lift:admin.AdminEditLinksSn.showLinks" id="linksCont">
+            <h2>Projektant ręczny</h2><br/>
+            <div class="lift:admin.AdminEditMenuSn.showLinks" id="linksCont">
                 <fieldset class="divDepartment">
                 <div class="form-inline">
                     <div class="form-group"><strong class="nameDepartment">Nazwa działu: </strong>
@@ -201,23 +219,25 @@
                 </td>
             </tr></tfoot>
                     <tbody ><tr class="linkTr"><td class="nameLink"></td>
-                            <td class="urlLink"></td><td class="buttonLink"></td>
-                            <td><button class="btn btn-danger" onclick="delLink(this)" >
-                            <span class="glyphicon glyphicon-remove"></span></button></td>
+                            <td class="urlLink"></td><td class="buttonLink">
+                            <button class="btn btn-info" onclick="downLink(this)" >
+                                <span class="glyphicon glyphicon-arrow-down"></span></button>
+                            <button class="btn btn-info" onclick="upLink(this)" >
+                            <span class="glyphicon glyphicon-arrow-up"></span></button>
+                            <button class="btn btn-danger" onclick="delLink(this)" >
+                                <span class="glyphicon glyphicon-remove"></span></button>
+                        </td>
                              </tr>
                     </tbody>
                 </table>
                 </div>
                 </fieldset>
-                <br/>
-                <button class="btn btn-success" onclick="newDepartment()">
-                    <span class="glyphicon glyphicon-plus"></span> Dodaj dział linków
-                </button>
+
             </div>
         <hr/>
         <iframe src='/filestorage' width='95%' height='150px'><p>Brak obsługi ifame!</p></iframe>
         <hr />
-		<form class="lift:admin.AdminEditLinksSn.addLinks" method="POST" id="frm2">
+		<form class="lift:admin.AdminEditMenuSn.addLinks" method="POST" id="frm2">
 			<input id="xmlData"  />
 			<input id="submit" class="btn btn-success" />
                 </form>

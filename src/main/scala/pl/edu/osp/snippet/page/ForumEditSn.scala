@@ -20,7 +20,7 @@ import java.util.Date
 import _root_.net.liftweb.mongodb._
 import _root_.net.liftweb.json.JsonDSL._
 
-class ForumEditSn extends UsersOperations with UpdateMainPageInfo with ForumBaseMenu {
+class ForumEditSn extends UsersOperations  with ForumBaseMenu {
 
   def editThread() = {
     var id = ""
@@ -56,8 +56,6 @@ class ForumEditSn extends UsersOperations with UpdateMainPageInfo with ForumBase
         if (id == "") {
           threadHead.authorId = user.id.get
           threadHead.authorName = user.getFullName
-          super.updateForumInfo(Formater.formatTime(new Date(threadHead._id.getTime)),
-            title, threadHead._id.toString)
         }
         threadHead.content = threadContent._id
 
