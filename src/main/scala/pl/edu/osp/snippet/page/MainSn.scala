@@ -32,7 +32,7 @@ class MainSn {
 
   val contactInfo = MapExtraData.getMapData("contactInfo")
 
-  def getData() = {
+  def sendMail() = {
     val contactMails = ContactMail.findAll
     val contactMailsToForm = contactMails.map(contactMail =>
       (contactMail.description -> contactMail.description))
@@ -50,7 +50,7 @@ class MainSn {
         val body = content + "\n" + "----------\n Informacja wysłana ze strony przez: " + mail
         Mailer.sendMail(From("zestrony@zkpig26.gda.pl"), Subject(theme),
           To(emailToSend), PlainMailBodyType(body))
-        S.redirectTo("/contact")
+        S.redirectTo("/")
       }
       else S.notice("Błędny email")
 

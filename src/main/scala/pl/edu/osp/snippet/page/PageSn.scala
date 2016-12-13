@@ -46,14 +46,15 @@ class PageSn {
 
   def buildMenu() = {
     val pathStart = "/page/" + dep + "?w="
-    val addArticle = if(isTeacher) <a href={"/editarticle/" + dep + "/0"}
-                                      class="list-group-item"> Dodaj artykuł</a>
+    val addArticle = if(isTeacher) <a href={"/editarticle/0?d=" + dep}
+                                      class="list-group-item">
+      <span class="glyphicon glyphicon-plus"></span> Dodaj artykuł</a>
     else <span></span>
-    "a" #> (ArticleHead.findAll(("news" -> false)~("departmentId" -> dep), ("prior" -> 1)).map(
+    "a" #> (List(addArticle, <a href={pathStart + "n"} class="list-group-item"> Aktualności </a>) :::
+      (ArticleHead.findAll(("news" -> false)~("departmentId" -> dep), ("prior" -> 1)).map(
       art =>
         <a href={pathStart + art._id.toString} class="list-group-item">{art.title}</a>
-    ) ::: List( <a href={pathStart + "n"} class="list-group-item"> Aktualności </a>,
-      addArticle))
+      )))
   }
 
 

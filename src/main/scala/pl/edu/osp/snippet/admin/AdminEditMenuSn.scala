@@ -13,6 +13,7 @@ import _root_.net.liftweb.json.JsonDSL._
 
 class AdminEditMenuSn {
 
+  val departs = PageDepartment.findAll.map(pd => (pd._id.toString -> pd.name))
   def addLinks() = {
     var xmlDataStr = ""
     def add() {
@@ -28,7 +29,7 @@ class AdminEditMenuSn {
         })
         val mpm = MainPageMenu.create
         mpm.name = nameDep
-        mpm.links = linksList
+        mpm.links = linksList.reverse
         mpm.save
       })
       S.redirectTo("/admin/menu")
@@ -59,7 +60,7 @@ class AdminEditMenuSn {
     var dep = ""
     val listWhat = List( "d" ->"Dział", "a" -> "Wszystkie działy", "p" -> "Miejsca",
       "o" -> "Własny" )
-    val departs = PageDepartment.findAll.map(pd => (pd._id.toString -> pd.name))
+
 
     def mk(): Unit ={
       what match {
@@ -74,6 +75,12 @@ class AdminEditMenuSn {
     ".selectAuto" #> SHtml.select(listWhat, Full(what), what = _ ) &
     ".selectDeparts" #> SHtml.select(departs, Full(dep), dep = _) &
     "#mkAuto" #> SHtml.submitButton(mk, "value" -> "Dodaj!")
+  }
+
+  def showDeparts() = {
+    val depHtml = departs.map(d =>
+      <li class="list-group-item">{d._2} - <span> {"/page/" + d._1}</span></li>)
+    "li" #> depHtml
   }
 
   private def createDepartMenu(dep: String, name:String): Unit = {
@@ -102,7 +109,8 @@ class AdminEditMenuSn {
   private def createPlacesMenu( name:String): Unit = {
     val mpm = MainPageMenu.create
     mpm.name = name
-    val links = List(Link("/login", "Aplikacje"),
+    val links = List(Link("/", "Strona główna"),
+                    Link("/login", "Aplikacje"),
                     Link("/forum", "Forum"),
                     Link("/gallery", "Galeria"))
     mpm.links = links

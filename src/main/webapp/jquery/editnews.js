@@ -24,8 +24,7 @@ var EditArticle =  dejavu.Class.declare({
     });  
     
     CKEDITOR.config.forcePasteAsPlainText = true;
-       
-    $('#tagContainer').multiToButtons({'max':2});
+
     $('#departContainer').multiToButtons({'max':1});
  
     this.insertThumbnailPreviewSource();
@@ -78,17 +77,14 @@ var EditArticle =  dejavu.Class.declare({
 	},
 
     switchTagsDepart : function(elem) {
-		var $tags = $("#newsContainer");
-		var $depart = $("#departContainer");
+		var $news = $("#newsContainer");
 		var $prior = $('#priorContainer');
 		if(elem.value =="Aktualności") {
-			$tags.show();
-			$depart.hide();
 			$prior.hide();
+			$news.show();
 		} else {
-			$tags.hide();
-	        $depart.show();
 	        $prior.show();
+	        $news.hide();
 		}
 	},
 

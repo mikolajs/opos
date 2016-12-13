@@ -19,7 +19,7 @@
                 var name = $name.val().trim();
                 var $url = $elem.parent('td').parent('tr').children('td').children('input.addLinkUrlInput');
                 var url = $url.val().trim();
-                if(name.length > 2 && url.length > 8) {
+                if(name.length > 2 && url.length > 2) {
                      $name.val('');
                      $url.val('');
                     $elem.parent().parent().parent().parent().children('tbody').append(
@@ -237,10 +237,16 @@
         <hr/>
         <iframe src='/filestorage' width='95%' height='150px'><p>Brak obsługi ifame!</p></iframe>
         <hr />
-		<form class="lift:admin.AdminEditMenuSn.addLinks" method="POST" id="frm2">
+		<form data-lift="admin.AdminEditMenuSn.addLinks" method="POST" id="frm2">
 			<input id="xmlData"  />
 			<input id="submit" class="btn btn-success" />
                 </form>
+    </div>
+    <div>
+        <ul class="list-group" data-lift="admin.AdminEditMenuSn.showDeparts">
+            <li class="list-group-item"></li>
+        </ul>
+
     </div>
                
            

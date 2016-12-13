@@ -20,12 +20,13 @@ class ArticleEditSn {
 
   val pageTypes = Map(true -> "Aktualności", false -> "Artykuły")
   val thumbDefault = "/images/nothumb.png"
+
   def editPage() = {
 
-    var id = S.param("id").openOr("")
+    var id = S.param("id").openOr("0")
+    val dep = S.param("d").openOr("0")
     var title = ""
     var authorId = 0L
-    var tags: List[String] = Nil
     var departId = ""
     var thumbnailLink = ""
     var introduction = ""
@@ -35,12 +36,11 @@ class ArticleEditSn {
     var pageType = ""
 
     //wczytywanie danych wpisu
-    if (id.length > 11) ArticleHead.find(id) match {
+    ArticleHead.find(id) match {
       //stary wpis
       case Some(newsHead) => {
         val articleContent = ArticleContent.find(newsHead.content).getOrElse(ArticleContent.create)
         title = newsHead.title
-        tags = newsHead.tags
         departId = newsHead.departmentId.toString
         authorId = newsHead.authorId
         thumbnailLink = newsHead.thumbnailLink
@@ -51,15 +51,10 @@ class ArticleEditSn {
         pageType = pageTypes(news)
       }
       case _ => {
-        //nie znaleziono wpisu
+        departId = dep
         pageType = pageTypes(true)
         thumbnailLink = thumbDefault
       }
-    }
-    else {
-      //nowy wpis
-      pageType = pageTypes(true)
-      thumbnailLink = thumbDefault
     }
 
     def save() {
@@ -67,23 +62,15 @@ class ArticleEditSn {
       val newsHead = ArticleHead.find(id).getOrElse(ArticleHead.create)
       if (newsHead.authorId == 0L || isOwner(newsHead.authorId)) {
         newsHead.title = title
-        val newTags = tags.take(3)
         news = if (pageType == pageTypes(true)) true else false
         newsHead.news = news
-        if (news) {
-          val toAddTags = getToAddTagsByCompare(newTags, newsHead.tags)
-          val toDeleteTags = getToDeleteTagsByCompare(newTags, newsHead.tags)
-          newsHead.tags = newTags
-          updateNewsTags(toAddTags, toDeleteTags)
-          newsHead.introduction = introduction
-          newsHead.thumbnailLink = if (thumbnailLink.trim() == "") thumbDefault
+        newsHead.introduction = introduction
+        newsHead.thumbnailLink = if (thumbnailLink.trim() == "") thumbDefault
           else thumbnailLink.trim
-        } else {
-          if (departId.length() > 20) {
-            newsHead.departmentId = new org.bson.types.ObjectId(departId)
-            newsHead.prior = prior
-          }
-        }
+
+        newsHead.departmentId = new org.bson.types.ObjectId(departId)
+        newsHead.prior = prior
+
         val user = User.currentUser.openOrThrowException("Brak użytkownika")
         val articleContent = ArticleContent.find(newsHead.content).getOrElse(ArticleContent.create)
         articleContent.content = content
@@ -95,24 +82,20 @@ class ArticleEditSn {
         }
         newsHead.save
       }
-      if(!newsHead.news)
-        S.redirectTo("/index/b?d="+ newsHead.departmentId.toString + "&i=" + newsHead._id.toString )
-      else S.redirectTo("/index/a")
-
+      mkRedir(newsHead.news, departId, newsHead._id.toString)
     }
 
     def discard() {
-      S.redirectTo("/index")
+      mkRedir(news, departId, id)
     }
 
     def delete() {
       {
         if (id.length > 11) if (isOwner(authorId)) deleteObjectById(id)
       }
-      S.redirectTo("/index")
+      mkRedir(true, departId, "n")
     }
 
-    val tagsList = NewsTag.findAll.map(newsTag => (newsTag.tag, newsTag.tag))
     val departList = PageDepartment.findAll.map(dep => (dep._id.toString, dep.name))
     val typePages = pageTypes.values.toList
     var nrRadios = 0;
@@ -130,7 +113,6 @@ class ArticleEditSn {
       "#typePage" #> <div id="typePage">
         {choicePage}
       </div> &
-      "#tags" #> SHtml.multiSelect(tagsList, tags, tags = _) &
       "#departs" #> SHtml.select(departList, Full(departId), departId = _) &
       "#prior" #> SHtml.number(prior, prior = _, 1, 9999) &
       "#thumbnail" #> SHtml.text(thumbnailLink, in => thumbnailLink = in.trim, "style" -> "display:none;") &
@@ -190,6 +172,12 @@ class ArticleEditSn {
     //do implementacji z wykorzystaniem FilesSn  i wykorzystania przy zapisie
     url
   }
+
+  private def mkRedir(news: Boolean, dep: String, id: String) =
+    S.redirectTo(
+      if(news) {"/page/" + dep + "?w=n" }
+      else {"/page/" + dep + "?w=" + id}
+    )
 
 }
 

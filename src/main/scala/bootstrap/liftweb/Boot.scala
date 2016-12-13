@@ -117,7 +117,7 @@ class Boot {
         Menu("Strona główna") / "index" / ** >> LocGroup("public"),
         Menu("Strony") / "page" / ** >> LocGroup("public"),
         Menu("Galeria") / "gallery" / ** >> LocGroup("public"),
-        Menu("Kontakt") / "contact" >> LocGroup("public"),
+        //Menu("Kontakt") / "contact" >> LocGroup("public"),
         Menu("Forum") / "forum" >> LocGroup("extra"),
         Menu("Dział Slajdy") / "slidedep" >> LocGroup("extra"),
         Menu("Slajdy z obrazków") / "slideimg" >> LocGroup("extra"),
@@ -221,9 +221,9 @@ class Boot {
         RewriteResponse(
           "editthread" :: Nil, Map("id" -> id))
       case RewriteRequest(
-      ParsePath("editarticle" :: d :: a :: Nil, _, _, _), _, _) =>
+      ParsePath("editarticle" :: id :: Nil, _, _, _), _, _) =>
         RewriteResponse(
-          "editarticle" :: Nil, Map("d" -> d, "a" -> a))
+          "editarticle" :: Nil, Map("id" -> id))
       case RewriteRequest(
       ParsePath("register" :: "index" :: classSchool :: Nil, _, _, _), _, _) =>
         RewriteResponse(

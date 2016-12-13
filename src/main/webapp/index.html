@@ -93,103 +93,6 @@
 <section id="news" data-lift="page.MainSn.news">
     <h1>Aktualności <br/>
         <small> najnowsze wpisy</small></h1>
-    <!--
-    <ul>
-        <li class="newsActive" id="tab1"><span class="glyphicon glyphicon-blackboard"></span> Szkoła Podstawowa</li>
-        <li id="tab2"><span class="glyphicon glyphicon-education"></span> Gimnazjum</li>
-    </ul>
-    <div  id="newsSP"  >
-        <div class="row pine-box">
-            <div class="col-md-3">
-                <img class="img-box featurette-image img-responsive" src="http://zkpig26.gda.pl/img/580b9557e4b05fe491c7fa1b.jpeg">
-            </div>
-
-            <div class="col-md-9 innerBox">
-                <h2>
-                    Ogólnopolskie Otwarte Drużynowe Mistrzostwa Uczniowskich Klubów Sportowych we florecie
-                </h2>
-                <div class="footPrint">
-                    <span class="glyphicon glyphicon-user"></span>
-	          <span class="fullname">
-	            Mikołaj Sochacki
-	          </span>
-                    <span class="glyphicon glyphicon-calendar"></span>
-	          <span class="date">
-	            2016-11-23
-	          </span>
-                </div>
-                <div class="textBox">
-                    <div class="introNews">
-                        <p>W miniony weekend w Warszawie odbyły się "Ogólnopolskie Otwarte Drużynowe Mistrzostwa Uczniowskich Klubów Sportowych we florecie". Zawodnicy z roczników 2003-2005 ( i 2007:)</p><p>W sobotę z UKS ATENA Gdańsk walczyła jedna drużyna chłopców zdobywając pierwsze miejsce z 14 startujących drużyn ( drużyny z trzech klubów Warszawskich, dwóch z Wrocławia i Poznania) , w finale pokonując Wartę Muszkieterowie Poznań 36:16 ( skład drużyny Adam Jakubowski - trener R. Glonek, Piotr Kaśków - teraner F.Płocharski oraz Tomasz i Jakub Gorczyca - terner P. Papużyński.)</p>
-                    </div>
-                    <span class="btn btn-small btn-info" onclick="return showNews('58359ca8e4b01bca666b2dd1', this)">Czytaj dalej</span>
-                </div>
-            </div>
-            <div style="clear:both;"></div>
-        </div><div class="row pine-box">
-        <div class="col-md-3">
-            <img class="img-box featurette-image img-responsive" src="http://zkpig26.gda.pl/img/58346d51e4b01bca666b2dc7.jpeg">
-        </div>
-
-        <div class="col-md-9 innerBox">
-            <h2 onclick="showNewsTitle('58346e04e4b01bca666b2dcf', this)">
-                XXIII turniej „O Buzdygan JM Rektora AWFiS”
-            </h2>
-            <div class="footPrint">
-                <span class="glyphicon glyphicon-user"></span>
-	          <span class="fullname">
-	            Małgorzata Romanowska
-	          </span>
-                <span class="glyphicon glyphicon-calendar"></span>
-	          <span class="date">
-	            2016-11-22
-	          </span>
-            </div>
-            <div class="textBox">
-                <div class="introNews">
-                    <p><strong>Chcemy poinformować iż w najbliższą sobotę w Gdańskiej Szkole Floretu odbędzie się XXIII turniej „O Buzdygan JM Rektora AWFiS” – Puchar Polski Seniorów w obsadzie międzynarodowej, zaliczany do klasyfikacji PE U23. Udział w zawodach zapowiedzieli floreciści z Białorusi, Finlandii, Francji, Hiszpanii, Holandii, Kolumbii, Szwecji i Wielkiej Brytanii.</strong></p><p>Partner zawodów: Miasto Gdańsk, AWFiS Gdańsk</p>
-                </div>
-                <span class="btn btn-small btn-info" onclick="return showNews('58346e04e4b01bca666b2dcf', this)">Czytaj dalej</span>
-            </div>
-        </div>
-        <div style="clear:both;"></div>
-    </div><div class="row pine-box">
-        <div class="col-md-3">
-            <img class="img-box featurette-image img-responsive" src="http://zkpig26.gda.pl/img/58341891e4b01bca666b2dc3.jpeg">
-        </div>
-
-        <div class="col-md-9 innerBox">
-            <h2 onclick="showNewsTitle('583418e0e4b01bca666b2dc5', this)">
-                MIĘDZYNARODOWY DZIEŃ MISIA
-            </h2>
-            <div class="footPrint">
-                <span class="glyphicon glyphicon-user"></span>
-	          <span class="fullname">
-	            Joanna Luty
-	          </span>
-                <span class="glyphicon glyphicon-calendar"></span>
-	          <span class="date">
-	            2016-11-22
-	          </span>
-            </div>
-            <div class="textBox">
-                <div class="introNews">
-                    <p>Z okazji Międzynarodowego Dnia Misia w <strong>piątek</strong> 25.11.2016 każdy uczeń &nbsp;przynosi ze sobą PLUSZOWEGO <u>MISIA</u></p><p style="text-align: right;">Samorząd uczniowski</p>
-                </div>
-                <span class="btn btn-small btn-info" onclick="return showNews('583418e0e4b01bca666b2dc5', this)">Czytaj dalej</span>
-            </div>
-        </div>
-        <div style="clear:both;">
-        </div>
-    </div>
-
-    </div>
-
-
-    <div id="newsGim" style="display:none;">
-        sdfasdf
-    </div>
-    -->
     <div id="newsSP"><div class="newsInfo "></div></div>
 </section>
 
@@ -229,7 +132,7 @@
         <div class="col-lg-5">
 
             <h2 id="mailAnchor">Formularz kontaktowy</h2>
-            <form class="form-horizontal" id="contact_form" data-lift="page.MainSn.getData">
+            <form class="form-horizontal" id="contact_form" data-lift="page.MainSn.sendMail">
                 <div class="form-group"><label for="theme" class="col-md-3">Temat:</label>
                     <div class="col-md-9"> <input id="theme" class="form-control" name="F738931881107X4EB5J" type="text" value=""></div>
                 </div>
