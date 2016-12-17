@@ -25,6 +25,9 @@
     <a onclick="document.querySelector('#mailAnchor').scrollIntoView({ behavior: 'smooth'});">
         <img src="/images/zkpig/map.png" />
     </a>
+    <a href="http://www.facebook.com/51-lecie-Szko%C5%82y-Podstawowej-nr-70-w-Gda%C5%84sku-628140643912099/">
+        <img src="/images/zkpig/facebook.png" />
+    </a>
 </div>
 
 <div id="chooseSchool" >
@@ -41,12 +44,13 @@
         <img src="/images/zkpig/szermierz.png" >
         <h1>GSF</h1>
     </a>
+    
 </div>
 
 
 
 <nav class="myNavbar" id="myNavbar" >
-    <div class="upperBar" onclick="openMenu()" onmouseover="openMenu()"
+    <div class="upperBar"
          data-lift="page.MenuSn.upperMenu">
 
       <span class="leftMenu">
@@ -61,7 +65,7 @@
                 </span>
 			</span>
     </div>
-    <div class="menuItems" onmouseleave="closeMenu()">
+    <div class="menuItems" >
         <div class="row" id="linkarea" data-lift="page.MenuSn.menu">
             <div class="col-lg-1"></div>
             <div class="col-lg-2 linkareaCol" ></div>
@@ -83,7 +87,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-1"><span class="glyphicon glyphicon-remove menuCloseBtn" onclick="closeMenu()"></span></div>
+            <div class="col-lg-1">
+                <span class="glyphicon glyphicon-remove menuCloseBtn" id="closeButton"></span>
+            </div>
         </div>
     </div>
 </nav>
@@ -173,5 +179,6 @@
     <a onclick="document.querySelector('#myNavbar').scrollIntoView({ behavior: 'smooth'});">↑ Do góry ↑</a> </p>
 </footer>
 <script src="/jquery/mainpage.js"></script>
+<script src="/jquery/menu.js"></script>
 </body>
 </html>

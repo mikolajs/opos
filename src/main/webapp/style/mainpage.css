@@ -193,14 +193,21 @@ z-index: 10;
 .extraBox {
   z-index: 1500;
   position: absolute;
-  top: 100px; left: 0;
+  top: 100px; right: 0;
+  text-align: right;
+}
+.extraBox a {
+    text-align: right;
+    display: block;
 }
 
+
 .extraBox a  img {
-  display: block;
+  display: inline;
   width: 54px; height: 54px;
   margin: 10px 0;
   transition: all 0.3s;
+  right: 0;
 }
 .extraBox a img:hover {
   width: 64px; height: 64px; margin: 5px 0;

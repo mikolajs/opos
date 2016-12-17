@@ -12,6 +12,7 @@ jQuery.fn.multiToButtons = function(options) {
 		activeClass : 'selectedTag',
 		inactiveClass : 'unselectedTag',
 		maxSelection : options.max,
+		minSelection : options.min
 	}
 	plugin.working = false;
 
@@ -37,7 +38,7 @@ jQuery.fn.multiToButtons = function(options) {
 		plugin.multiSelect.children('option').each( function() {
 			var tab = document.createElement('span');
 			var option = $(this);
-			var value = option.val();
+			var value = option.html();
 			var label= option.text();
 			var addClass = "";
 			if (option.attr('selected') != undefined && option.attr('selected') == 'selected') {
@@ -51,15 +52,19 @@ jQuery.fn.multiToButtons = function(options) {
 
 		plugin.children('span').each( function() {
 			$(this).click(function() {
+
 				var $span = $(this);
 				var tag = $span.html();
                 var ID = plugin.mapOfTagValue[tag];
-               
+                //console.log(plugin.selectedValue.join(','));
 				if ($span.hasClass('selectedTag')) {
-					$span.removeClass('selectedTag').addClass('unselectedTag');
-					var i = plugin.selectedValue.indexOf(tag);
-					if (i > -1)	plugin.selectedValue.splice(i, 1);
-					plugin.unmarkSelected(ID);
+				    if(plugin.selectedValue.length > plugin.settings.minSelection){
+
+                        $span.removeClass('selectedTag').addClass('unselectedTag');
+                        var i = plugin.selectedValue.indexOf(tag);
+                        if (i > -1)	plugin.selectedValue.splice(i, 1);
+                        plugin.unmarkSelected(ID);
+					}
 				} else {
 					if(plugin.selectedValue.length >= plugin.settings.maxSelection) {
 						var toRemoveSpan = plugin.children('span.selectedTag').first();
@@ -67,21 +72,22 @@ jQuery.fn.multiToButtons = function(options) {
 						var toRemoveTag = toRemoveSpan.html();
                         var toRemoveID = plugin.mapOfTagValue[toRemoveTag];
 						var i = plugin.selectedValue.indexOf(toRemoveTag);
+						//console.log("i: " + i);
 						if (i > -1)	plugin.selectedValue.splice(i, 1);
 						plugin.unmarkSelected(toRemoveID);
 			        }
 				    plugin.selectedValue.push(tag);
     			    $span.removeClass('unselectedTag').addClass('selectedTag');
-				    plugin.markSelected(ID);		
+				    plugin.markSelected(ID);
 			    }
+			    //console.log("selectedTag length: " + plugin.selectedValue.length);
 			});
 		});
-
 	}
 
 	plugin.markSelected = function(value) {
 		plugin.multiSelect.children('option').each(function() {
-			if (this.value == value) {
+			if (this.innerHTML == value) {
 				//alert("Found tag " + tag + " and add selected");
 				$(this).attr('selected', "selected");
 			}
@@ -90,7 +96,7 @@ jQuery.fn.multiToButtons = function(options) {
 
 	plugin.unmarkSelected = function(value) {
 		plugin.multiSelect.children('option').each(function() {
-			if (this.value == value) {
+			if (this.innerHTML == value) {
 				//alert("Found tag " + tag + " and remove selected");
 				$(this).removeAttr('selected');
 			}
@@ -99,7 +105,7 @@ jQuery.fn.multiToButtons = function(options) {
 
     plugin.makeMapOfSelect = function() {
         plugin.multiSelect.children("option").each(function(){
-            plugin.mapOfTagValue[this.innerHTML] = this.value;
+            plugin.mapOfTagValue[this.innerHTML] = this.innerHTML;
         });
     }
 

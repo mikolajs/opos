@@ -113,6 +113,10 @@ class LoginSn {
     var registerC = "btn btn-default btn-lg"
     var docH = "#"
     var docC = "btn btn-default btn-lg"
+    var galH = "#"
+    var galC = "btn btn-default btn-lg"
+    var slideH = "#"
+    var slideC = "btn btn-default btn-lg"
     if (loged_?) {
       val user = userBox.openOrThrowException("Niemożliwe box nie jest pusty!")
       if (user.role == "n" || user.role == "a" || user.role == "d") {
@@ -122,6 +126,11 @@ class LoginSn {
         registerC = "btn btn-info btn-lg"
         docH = "/documents/index"
         docC = "btn btn-info btn-lg"
+        galH = "/galleries"
+        galC = "btn btn-info btn-lg"
+        slideH = "/editslideimg"
+        slideC = "btn btn-info btn-lg"
+
       }
       else {
         if (user.role == "u" || user.role == "r") {
@@ -143,7 +152,12 @@ class LoginSn {
       "#registerA [href]" #> registerH &
       "#registerA [class]" #> registerC &
       "#docA [href]" #> docH &
-      "#docA [class]" #> docC
+      "#docA [class]" #> docC &
+      "#slideimg [href]" #> slideH &
+      "#slideimg [class]" #> slideC &
+      "#galleries [href]" #> galH &
+      "#galleries [class]" #> galC
+
 
   }
 

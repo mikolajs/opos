@@ -25,7 +25,7 @@ var EditArticle =  dejavu.Class.declare({
     
     CKEDITOR.config.forcePasteAsPlainText = true;
 
-    $('#departContainer').multiToButtons({'max':1});
+    $('#departContainer').multiToButtons({'max':1, 'min':1});
  
     this.insertThumbnailPreviewSource();
     

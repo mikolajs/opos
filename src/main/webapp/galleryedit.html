@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<body class="lift:content_id=main">
+<div id="main" class="lift:surround?with=page;at=content">
+    <head_merge>
+        <script>
+        var thumbs = new Array();
+
+        function clearForm() {
+			document.getElementById('frm2').reset();
+			return false;
+			}
+
+	    $(function() {
+	        thumbs = $('#pictures').val().split(";");
+	        console.log(thumbs);
+	        var html = "";
+	        for(i in thumbs) {
+	            html += '<div style="position:relative; display:inline;"><img src="' + thumbs[i] + '" class="img-thumbnail" alt=""/>';
+                html += '<span class="glyphicon glyphicon-remove btn btn-sm btn-danger"';
+                html += ' style="position:absolute; right: 10px; top: -50px;"></span></div>';
+            }
+            $('#thumbnails').html(html);
+            $('#thumbnails').children('div').children('span').click(function() {
+                 var $div = $(this).parent();
+                 var src = $div.children('img').attr('src').split('/');
+                 var name = src[src.length -1];
+                 var $pDel = $('#picturesDel');
+                 if($pDel.val() == "") $pDel.val($pDel.val()  + name);
+                 else $pDel.val($pDel.val() + ";" + name);
+                 console.log($pDel.val());
+                 $div.remove();
+            });
+	    });
+		</script>
+        <style>
+            .img-thumbnail {margin: 10px;}
+
+        </style>
+    </head_merge>
+
+    <div class="row" style="margin-top: 80px;">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
+            <div class="well">
+                <h3>Edycja Galerii Zdjęć</h3>
+            </div>
+                <a href="/admin/galleries" class="btn btn-warning">
+                    <span class="glyphicon glyphicon-arrow-left"></span> Powrót do listy galerii</a>
+
+                <form data-lift="page.GalleryEditSn.editGallery" enctype="multipart/form-data" method="POST" id="frm2" ><br />
+                    <fieldset><legend>Galeria</legend>
+                        <p><label for="title">Tytuł:</label><input class="form-control" id="title" /></p>
+                        <p><label for="descript">Opis</label><textarea id="descript" class="form-control" rows="3"> </textarea></p>
+                        <p> <label>Dodaj obrazki:</label><input type="file" name="img" multiple id="files"></p>
+                        <input id="pictures"  style="display:none"/><input id="picturesDel"  style="display:none"/>
+                        <p><input class="btn btn-success" id="save" />
+                            <input type="submit" class="btn btn-default" onclick="return clearForm()" value="Czyść!" />
+                            <input id="delete" class="btn btn-danger" />
+                        </p>
+                        <div class="alert alert-warning" role="alert">Dodanie obrazków, oraz ich usunięcie wymaga zapisania.
+
+                        </div>
+
+                    </fieldset>
+                </form>
+
+                <hr/>
+                <div id="thumbnails" style="min-height: 300px;">
+
+                </div>
+
+        </div>
+        <div class="col-lg-2"></div>
+    </div>
+
+
+</div>
+</body></html>

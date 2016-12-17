@@ -1,25 +1,31 @@
-package pl.edu.osp.snippet.admin
+package pl.edu.osp.snippet.page
 
-import pl.edu.osp.model.page.{Photo, Gallery}
-import net.liftweb.util.Helpers._
-import java.io.{ByteArrayOutputStream, ByteArrayInputStream, File}
-import net.liftweb.http.{SHtml, S}
-import net.liftweb.common.{Full, Box, Empty}
-import net.liftweb.http.{FileParamHolder}
-import java.awt.image.BufferedImage
 import java.awt.Image
-import javax.imageio.ImageIO
+import java.awt.image.BufferedImage
+import java.io.{ByteArrayInputStream, ByteArrayOutputStream, File}
 import java.nio.file.{Files, Paths}
+import javax.imageio.ImageIO
 
-class AdminGallerySn {
+import net.liftweb.common.{Box, Empty, Full}
+import net.liftweb.http.{FileParamHolder, S, SHtml}
+import net.liftweb.util.Helpers._
+import pl.edu.osp.model.User
+import pl.edu.osp.model.page.{Gallery, Photo}
+import _root_.net.liftweb.json.JsonDSL._
+
+class GalleryEditSn {
+  val user = User.currentUser.openOrThrowException("No USER!")
   var videoItems: scala.collection.mutable.ListBuffer[File] = scala.collection.mutable.ListBuffer()
   println("start index photos")
   lazy val pathGallery = "/home/osp/"
-  lazy val  pathMedia =  S.hostAndPath.split('/').take(3).mkString("/").split(':').take(2).mkString(":")  + "/osp/"
+  lazy val  pathMedia =  S.hostAndPath.split('/').take(3)
+    .mkString("/").split(':').take(2).mkString(":")  + "/osp/"
 
  def listGallery() = {
-
-   "a" #> Gallery.findAll.map(g => <a href={"/admin/gallery/"+ g._id.toString}>{g.title }<br/><small>{g.description}</small></a>)
+   val gal = if(user.role.is == "a")  Gallery.findAll("owner" -> user.id.is)
+      else Gallery.findAll("owner" -> user.id.is)
+   "a" #> gal.map(g =>
+     <a href={"/admin/gallery/"+ g._id.toString}>{g.title }<br/><small>{g.description}</small></a>)
  }
 
  def editGallery() = {
@@ -31,13 +37,15 @@ class AdminGallerySn {
 
    var title = gal.title
    var descript = gal.description
-   var pictures = gal.photos.map(ph => pathMedia + gal._id.toString + "/" + ph.thumbnail).mkString(";")
+   var pictures = gal.photos.map(ph =>
+     pathMedia + gal._id.toString + "/" + ph.thumbnail).mkString(";")
 
 
    def save() {
      if(title.trim.isEmpty) return
      val files : List[FileParamHolder] = S.request.map(_.uploadedFiles) openOr Nil
-     val newPhotos = files.map(f => Photo("t_" + f.fileName, f.fileName )).filterNot(p => p.full.trim.isEmpty)
+     val newPhotos = files.map(f =>
+       Photo("t_" + f.fileName, f.fileName )).filterNot(p => p.full.trim.isEmpty)
      println("======Dodane: " + newPhotos.mkString)
      gal.title = title
      gal.description = descript

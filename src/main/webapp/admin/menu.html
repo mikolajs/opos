@@ -151,6 +151,16 @@
                 $tr.prev().before($tr);
             }
 
+             function downDep(elem) {
+                var $dep = $(elem).parent('div').parent('div').parent('fieldset');
+                $dep.next().after($dep);
+            }
+
+            function upDep(elem) {
+                var $dep = $(elem).parent('div').parent('div').parent('fieldset');
+                $dep.prev().before($dep);
+            }
+
             function changeVisibleDeparts() {
                 var x = document.getElementById("selectAuto").value
                 if(x == "d") document.getElementById("selectDepartsDiv").style.display = 'block';
@@ -202,7 +212,11 @@
                     <span class="nameError"></span>
                      <button class="btn btn-danger" onclick="deleteDepartment(this)">
                     <span class="glyphicon glyphicon-remove"></span> Usuń cały dział
-                </button></div>
+                </button><span style="margin: 0 50px;"></span>
+                        <button class="btn btn-info" onclick="downDep(this)" >
+                            <span class="glyphicon glyphicon-arrow-down"></span></button>
+                        <button class="btn btn-info" onclick="upDep(this)" >
+                            <span class="glyphicon glyphicon-arrow-up"></span></button></div>
                 </div>
                 <div class="tables">
                 <table class="table table-striped">

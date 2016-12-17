@@ -19,7 +19,7 @@
     <img src="" id="img" />
 </div>
 <script type="text/javascript">
-  var interval = 5000;
+  var interval = 10000;
   var reloadTime = 3600000;
 </script>
 
@@ -28,10 +28,7 @@
    var nr = 0;
    var interval = 5000;
    var reload = 0; //3580000;
-   var imgList = ["http://xxlo.pl/assets/Uploads/1.jpg",
-   "http://a2.files.fashionista.com/image/upload/c_fit,cs_srgb,dpr_1.0,h_1200,q_80,w_1200/MTI4NjQ2ODIyMDIwMjg5ODEw.jpg",
-   "https://upload.wikimedia.org/wikipedia/commons/b/bf/Blue_Tiger_Im_IMG_9450.jpg",
-   "https://i.theones2watch.com/wp-content/latest/gosee-ny-rachelnutt@img-irachernova4.jpg"];
+   var imgList = [];
    var img = document.getElementById('img');
 
    mkReload();
@@ -87,6 +84,8 @@
             //console.log(imgR);
             //ADD CODE TO INSERT DATA
             if(imgR.images.length > 0) imgList = imgR.images;
+            interval = imgR.time * 1000;
+            reload = imgR.reload * 1000;
         } else {console.log("not ready status: " + this.status)};
       };
       xmlhttp.open("GET", url, true);

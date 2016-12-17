@@ -17,21 +17,25 @@ import _root_.net.liftweb.json.JsonDSL._
 class SlideImgSn {
   val user = User.currentUser.openOr(User.create)
   val userId = user.id.get
+  var telebim = S.param("t").openOr("A")
    //teacher checked at Boot
   def edit() = {
-    var code = ""
+    var time = ""
+    var reload = ""
+
     var slides = if(user.isAdmin_? ) ImageSlides.findAll(
-        ("code" -> "A"), ("order" -> 1))
+        ("code" -> telebim), ("order" -> 1))
         .map(_.src).mkString(";")
       else ImageSlides.findAll(
-        ("code" -> "A")~("author" -> userId),
+        ("code" -> telebim)~("author" -> userId),
         ("order" -> 1))
         .map(_.src).mkString(";")
 
     var fileHold: Box[FileParamHolder] = Empty
     var picturesDel = ""
-
-
+    val timesData = MapExtraData.getMapData(telebim)
+     if(timesData.isDefinedAt("t")) time = timesData("t")
+     if(timesData.isDefinedAt("r")) reload = timesData("r")
     def run()  {
       //delete files
       val toDel = picturesDel.split(";")
@@ -46,6 +50,7 @@ class SlideImgSn {
       val files : List[FileParamHolder] = S.request.map(_.uploadedFiles) openOr Nil
       val newImages = files.map(f =>  f.fileName )
       println("======Dodane: " + newImages.mkString(", "))
+      var i = 1
       files.foreach(f => {
         val mime = if (f.mimeType.startsWith("image/"))
                       "." + f.mimeType.split('/').last.toLowerCase()
@@ -67,20 +72,23 @@ class SlideImgSn {
               src = "/img/" + inputFile.getId().toString() + mime
           }
           val imgSlide = ImageSlides.create
-          imgSlide.code = "A"
+          imgSlide.code = telebim
           imgSlide.src = src
-          imgSlide.order = 999
+          imgSlide.order = i
           imgSlide.author = userId
           imgSlide.save
+          i += 1
         }
       })
+      MapExtraData.setMapData(telebim, Map("r" -> reload, "t" -> time))
 
-      //order files
-      //later
     }
+     val telebims = List(("A","A"), ("B", "B"), ("C", "C"), ("D","D"))
 
-      "#slideDep" #> SHtml.text(code, code = _) &
       "#pictures" #> SHtml.text(slides, slides = _) &
+      "#telebim" #> SHtml.select(telebims, Full(telebim), telebim = _) &
+     "#time" #> SHtml.text(time, time = _) &
+     "#reload" #> SHtml.text(reload, reload = _ ) &
       "#picturesDel" #> SHtml.text(picturesDel, picturesDel = _) &
       "#files" #> SHtml.fileUpload(fileUploaded => fileHold = Full(fileUploaded)) &
       "#save" #> SHtml.submit("Zapisz", run)

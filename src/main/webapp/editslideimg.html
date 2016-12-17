@@ -33,7 +33,16 @@
                  console.log($pDel.val());
                  $div.remove();
             });
+            var letter = document.getElementById("telebim").value;
+            document.getElementById('showTele').setAttribute('href', "/slideimg?t=" + letter);
 	    });
+
+	    function redirectTo() {
+            var letter = document.getElementById("telebim").value;
+            var url = window.location.href.split('?')[0];
+            document.getElementById('showTele').setAttribute('href', "/slideimg?t=" + letter);
+            window.location.assign(url + "?t=" + letter);
+        }
 		</script>
         <style>
             #thumbnails {min-height: 300px;}
@@ -54,13 +63,19 @@
                 <span class="glyphicon glyphicon-arrow-left"></span> Powrót do strony głównej </a>
             </div>
             <div class="col-lg-6">
-            <a href="/slideimg?t=A" class="btn btn-success">
+            <a href="/slideimg?t=A" id="showTele" class="btn btn-success">
              Pokaż telebim <span class="glyphicon glyphicon-arrow-right"></span></a>
             </div>
         </div>
         <form data-lift="SlideImgSn.edit" enctype="multipart/form-data" method="POST" id="frm2" ><br />
             <fieldset><legend>Galeria</legend>
-                <p><label >Telebim:</label><select><option value="A">A</option></select></p>
+                <p><label >Telebim:</label>
+                    <select id="telebim" onchange="redirectTo()">
+
+                    </select>
+                </p>
+                <p><label>Czas pokazu:</label><input type="text" id="time"/></p>
+                <p><label>Czas przeładowania:</label><input type="text" id="reload"/></p>
                 <p> <label>Dodaj obrazki:</label><input type="file" name="img" multiple id="files"></p>
                 <input id="pictures"  style="display:none"/><input id="picturesDel"  style="display:none"/>
                 <p><input class="btn btn-success" id="save" />
