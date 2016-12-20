@@ -25,7 +25,7 @@ class GalleryEditSn {
    val gal = if(user.role.is == "a")  Gallery.findAll("owner" -> user.id.is)
       else Gallery.findAll("owner" -> user.id.is)
    "a" #> gal.map(g =>
-     <a href={"/admin/gallery/"+ g._id.toString}>{g.title }<br/><small>{g.description}</small></a>)
+     <a href={"/galleryedit/"+ g._id.toString}>{g.title }<br/><small>{g.description}</small></a>)
  }
 
  def editGallery() = {
@@ -42,24 +42,29 @@ class GalleryEditSn {
 
 
    def save() {
-     if(title.trim.isEmpty) return
-     val files : List[FileParamHolder] = S.request.map(_.uploadedFiles) openOr Nil
-     val newPhotos = files.map(f =>
-       Photo("t_" + f.fileName, f.fileName )).filterNot(p => p.full.trim.isEmpty)
-     println("======Dodane: " + newPhotos.mkString)
-     gal.title = title
-     gal.description = descript
-     gal.photos = newPhotos ++ rmFromList(gal.photos, picturesDel)
-     gal.save
-     deletePicturesFromDisk(getPhotosFromPicturesStr(picturesDel), gal._id.toString)
-     savePicturesOnDisk(files, gal._id.toString)
-     S.redirectTo("/admin/gallery/"+ gal._id.toString)
+     if(gal.owner == 0 || gal.owner == user.id.get || user.isAdmin_?){
+       if(title.trim.isEmpty) return
+       val files : List[FileParamHolder] = S.request.map(_.uploadedFiles) openOr Nil
+       val newPhotos = files.map(f =>
+         Photo("t_" + f.fileName, f.fileName )).filterNot(p => p.full.trim.isEmpty)
+       println("======Dodane: " + newPhotos.mkString)
+       gal.title = title.trim
+       gal.owner = user.id.get
+       gal.description = descript.trim
+       gal.photos = newPhotos ++ rmFromList(gal.photos, picturesDel)
+       gal.save
+       deletePicturesFromDisk(getPhotosFromPicturesStr(picturesDel), gal._id.toString)
+       savePicturesOnDisk(files, gal._id.toString)
+     }
+     S.redirectTo("/galleryedit/"+ gal._id.toString)
    }
 
    def delete() {
-    deleteDirOfPictures(gal._id.toString )
-    gal.delete
-    S.redirectTo("/admin/galleries")
+     if(gal.owner == 0 || gal.owner == user.id.is || user.isAdmin_?) {
+       deleteDirOfPictures(gal._id.toString )
+       gal.delete
+       S.redirectTo("/galleries")
+     }
    }
 
    "#title" #> SHtml.text(title, title = _) &
