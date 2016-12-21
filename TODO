@@ -1,3 +1,9 @@
-* przepisać dodawanie do galerii z aby każdy nauczyciel mógł utworzyć i skasować galerię
+
+* dodać codesnippets do oglądanych stron
+* dodać mathjx do oglądanych stron
 
 ROZPOZNANE BŁĘDY:
+w chromium educontent select nie przekierowywuje po wybraniu elementu np. w documents
+
+przejrzeć wyszystkie miejsca gdzie są edytory CKEditor i sprawdzić działanie
+dodać o

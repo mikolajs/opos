@@ -23,51 +23,22 @@ var EditQuest =  dejavu.Class.declare({
 			width : 500,
 			height : 240,
 			allowedContent : true,
-			extraPlugins : 'addImage,addFile,formula,symbol',
-			toolbar : [
-					{
-						name : 'clipboard',
-						items : [ 'PasteText',
-								'PasteFromWord',
-								'Undo', 'Redo' ]
-					},
-					{
-						name : 'links',
-						items : [ 'Link', 'Unlink',
-								'Anchor' ]
-					},
-					{
-						name : 'paragraph',
-						items : [ 'NumberedList',
-								'BulletedList',
-								'Outdent', 'Indent',
-								'Blockquote',
-								'JustifyLeft',
-								'JustifyCenter',
-								'JustifyRight',
-								'JustifyBlock' ]
-					},
-					{
-						name : 'insert',
-						items : [ 'AddImage', 'AddFile',
-								'Formula', 'YouTube',
-								'Table',
-								'HorizontalRule',
-								'Smiley', 'Symbol' ]
-					},
-					{
-						name : 'basicstyles',
-						items : [ 'Bold', 'Italic',
-								'Underline', 'Strike',
-								'Subscript',
-								'Superscript',
-								'RemoveFormat' ]
-					},
-					{
-						name : 'colors',
-						items : [ 'TextColor',
-								'BGColor' ]
-					} ]
+			language : 'pl',
+            toolbar: [
+               { name: 'document', items: [ 'Sourcedialog' ] },
+          { name: 'basicstyles', items: [ 'Bold','Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat' ]},
+           { name: 'edit', items: [ 'PasteText','PasteFromWord','Undo','Redo' ] },
+            { name: 'extraedit', items: [ 'Find','Replace','SelectAll' ]},
+                   			{ name: 'paragraph', items:
+                   			 [ 'NumberedList','BulletedList','-','Outdent','Indent','-',
+                   			 'Blockquote','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock',
+                 			 'BidiLtr','BidiRtl' ] },
+                    			{ name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ] },
+                       			{ name: 'insert', items: [ 'CodeSnippet', 'Mathjax', 'AddFile', 'AddImage', 'Table', 'Youtube','SpecialChar'] },
+                    			{ name: 'styles', items: [ 'Format', 'Styles', 'FontSize', 'Styles', 'TextColor','BGColor'] }
+             ],
+             extraPlugins: 'codesnippet,mathjax,youtube,addFile,addImage,sourcedialog,specialchar',
+             mathJaxLib : 'https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?config=TeX-AMS_HTML'
 		});
 		CKEDITOR.config.disableNativeSpellChecker = false;
 

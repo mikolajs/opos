@@ -2,44 +2,43 @@
 <html>
 
 <div class="lift:surround?with=educontent;at=content">
-	<head_merge> <script type="text/javascript"
-		src="/jquery/ASCIIMathML.js"></script> <script type="text/javascript"
-		src="/jquery/dejavu.js"></script> <script type="text/javascript"
-		src="/ckeditor/ckeditor.js"></script> <script type="text/javascript"
-		src="/jquery/ckeditorresource.js"></script> <script
-		type="text/javascript" src="/jquery/editdoc.js"></script> <script
-		src="/jquery/myvalidator.js"></script>
-	<link href="/deckjs/themes/style/swiss_ckeditor.css"
-		id="style-theme-link" type="text/css" rel="stylesheet">
+	<head_merge>  <script type="text/javascript"
+						  src="/ckeditor/ckeditor.js"></script>
+		<script type="text/javascript"	src="/jquery/ckeditorresource.js"></script>
+		<script type="text/javascript" src="/jquery/dejavu.js"></script>
+		<script type="text/javascript" src="/jquery/editdoc.js"></script> <script
+				src="/jquery/myvalidator.js"></script>
+		<link href="/deckjs/themes/style/swiss_ckeditor.css"
+			  id="style-theme-link" type="text/css" rel="stylesheet">
 
-	<script>
+		<script>
 var editDoc = new Object();
 $(document).ready(function(){
 	editDoc = new Document();
 	});
 
 </script>
-	<style>
-.jumbotron,form {
-	width: 950px;
-	margin: auto;
-}
+		<style>
+			.jumbotron,form {
+			width: 950px;
+			margin: auto;
+			}
 
-#articleWrapper {
-	margin-top: 100px;
-}
+			#articleWrapper {
+			margin-top: 100px;
+			}
 
-#docEdit {
-	width: 950px;
-	min-height: 400px;
-	padding: 20px;
-	border: 2px solid #ccc;
-}
+			#docEdit {
+			width: 950px;
+			min-height: 400px;
+			padding: 20px;
+			border: 2px solid #ccc;
+			}
 
-select {
-	padding-right: 10px;
-}
-</style>
+			select {
+			padding-right: 10px;
+			}
+		</style>
 	</head_merge>
 
 	<div class="jumbotron">
@@ -48,7 +47,7 @@ select {
 	<br />
 
 	<form class="lift:edu.EditDocumentSn.editData form-horizontal"
-		method="POST">
+		  method="POST">
 		<input id="docContent" type="text" style="display: none;" /> <input
 			id="docID" style="display: none;" />
 
@@ -80,7 +79,7 @@ select {
 			<label class="col-lg-2 control-label">Opis:</label>
 			<div class="col-lg-9">
 				<textarea id="docDescription" cols="3" style="width: 100%;"
-					class="form-control"></textarea>
+						  class="form-control"></textarea>
 			</div>
 		</div>
 
@@ -89,15 +88,15 @@ select {
 			<div class="col-lg-2"></div>
 			<div class="col-lg-3">
 				<input id="docSave" class="saveButton btn btn-success btn-lg"
-					onclick="return editDoc.saveDoc()" />
+					   onclick="return editDoc.saveDoc()" />
 			</div>
 			<div class="col-lg-3">
 				<input  value="Anuluj" type="button" class="btn btn-default btn-lg"
-					onclick="if(confirm('Porzucić niezapisany dokument?')) window.history.back()" />
+						onclick="if(confirm('Porzucić niezapisany dokument?')) window.history.back()" />
 			</div>
 			<div class="col-lg-3">
 				<input id="docDelete" class="deleteButton btn btn-danger btn-lg"
-					onclick="return editDoc.deleteDoc()" />
+					   onclick="return editDoc.deleteDoc()" />
 			</div>
 		</div>
 		<br />
