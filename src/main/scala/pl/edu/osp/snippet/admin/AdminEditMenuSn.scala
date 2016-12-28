@@ -18,6 +18,7 @@ class AdminEditMenuSn {
     var xmlDataStr = ""
     def add() {
       MainPageMenu.drop
+      println(xmlDataStr);
       val xmlData = XML.loadString(xmlDataStr)
       (xmlData \ "links").foreach(links => {
         val nameDep = (links \ "@name").toString
@@ -87,7 +88,7 @@ class AdminEditMenuSn {
     PageDepartment.find(dep).map(pd => {
       val mpm = MainPageMenu.create
       mpm.name = name
-      val links = ArticleHead.findAll(("departmentId" -> pd._id.toString) ~ ("news"->true),
+      val links = ArticleHead.findAll(("departmentId" -> pd._id.toString) ~ ("news"->false),
         ("prior" -> 1) ).map(ah =>
         Link( "/page/" + pd._id.toString  + "?a="  + ah._id.toString, ah.title )
       )

@@ -82,18 +82,10 @@ class MainSn {
 
 
   def news() = {
-    val newses = ArticleHead.findAll(("news" -> true), ("_id" -> -1)).take(5)
-    val sizeP = 10
-    val page = S.param("p").getOrElse("1")
-    val pageInt = tryo(page.toInt).getOrElse(1)
-    val pages = newses.size / sizeP + (if (newses.size % sizeP > 0) 1 else 0)
+    val newses = ArticleHead.findAll(("news" -> true), ("_id" -> -1)).take(10)
 
-    val endNews = if (sizeP * pageInt > newses.size) newses.size else sizeP * pageInt
-    val beginNews = if (endNews - sizeP < 0) 0 else endNews - sizeP
-
-    val toShowNewses = newses.slice(beginNews, endNews)
       ".newsInfo" #> <div>
-        {toShowNewses.map(news => createNewsBox(news))}
+        {newses.map(news => createNewsBox(news))}
       </div>
 
   }
@@ -131,7 +123,7 @@ class MainSn {
 
 
   ///========================== not used below =======================
-
+/*
   //slider na głównej stronie - nie używam
   def slides = {
     val mpSlides = MainPageSlide.findAll
@@ -363,6 +355,5 @@ class MainSn {
         </p>
       </div>
   }
-
-
+*/
 }

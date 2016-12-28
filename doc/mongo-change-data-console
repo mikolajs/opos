@@ -128,3 +128,6 @@ db.articlehead.update({}, {$set: {departmentName: ""}}, true, true, true);
 db.pagedepartment.update({}, {$set: {info: "", img: ""}}, true, true, true);
 
 
+
+
+

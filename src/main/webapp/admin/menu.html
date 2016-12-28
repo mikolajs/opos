@@ -94,7 +94,7 @@
                     }
                     else $(this).children('div.form-inline').children('div.form-group').children('.nameError').text('');
                     xmlStr += '<links name="';
-                    xmlStr += name;
+                    xmlStr += name.replace(/"/g, "'");
                     xmlStr += '">';
                     $(this).children('.tables').children('table').children('tbody').children('tr').each(function() {
                         xmlStr += '<link ';
@@ -103,7 +103,7 @@
                             switch(index){
                                 case 0:
                                     xmlStr +=  'title="';
-                                    value = this.innerHTML;
+                                    value = this.innerHTML.replace(/"/g, "'");
                                     value = jQuery.trim(value);
                                     if (value.length < 3) {
                                         error = true;
@@ -115,7 +115,7 @@
                                     xmlStr +=  'src="';
                                     value = this.innerHTML;
                                     value = jQuery.trim(value);
-                                    if (value.length < 10 ) {
+                                    if (value.length < 4 ) {
                                         error = true;
                                     }
                                     xmlStr += value;
