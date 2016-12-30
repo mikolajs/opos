@@ -29,14 +29,7 @@
         countNested: true
         });
 
-     if(!isFirefox()){
-    	 if(!isSupported()) alert("Zawartość może nie wyglądać najlepiej (szczególnie wzory) użyj przeglądarki Firefox.");
-     }
     });
-
-
-
-
 
 
     var styleId = 0;
@@ -58,21 +51,6 @@
     	default:
     	    break;
     	}
-    }
-
-
-    function isMSIE(){
-    	var userAgent = navigator.userAgent;
-    	var msie = userAgent.match(/MSIE/gi);
-    	if(msie != null && msie.length > 0) return true;
-		else return false;
-    }
-
-    function isChrome(){
-        var userAgent = navigator.userAgent;
-            	var chrome = userAgent.match(/Chrome/gi);
-            	if(chrome != null && chrome.length > 0) return true;
-        		else return false;
     }
 
     function goFull(){
@@ -103,47 +81,6 @@
     }
 
 
-    function isFirefox(){
-    	var userAgent = navigator.userAgent;
-    	var n = userAgent.match(/Firefox/gi);
-		if(n != null && n.length > 0) return true;
-		else return false;
-    }
-
-    function isSafari(){
-        var userAgent = navigator.userAgent;
-            	var n = userAgent.match(/Safari/gi);
-        		if(n != null && n.length > 0) return true;
-        		else return false;
-    }
-
-    function isSupported() {
-        return isSafari() || isFirefox();
-    }
-
-    function isOld(){
-    	var userAgent = navigator.userAgent;
-    	var msie = userAgent.match(/MSIE .\../gi);
-    	if (msie != null){
-    		var n=msie.match(/MSIE \d+\../gi);
-        	var w = "";
-        	if (n.lenght > 0){
-        		w = n[0];
-        		w = w.split(' ')[1].split('.')[0];
-            	if (parseInt(w) > 8) return false;
-            	else return true;
-        	}
-    	}
-
-    	n = userAgent.match(/Chrome/gi);
-    	if(n != null) return false;
-    	n = userAgent.match(/Safari/gi);
-    	if(n != null) return false;
-    	n = userAgent.match(/Opera/gi);
-    	if(n != null) return true;
-
-    	return true;
-    }
 
     function resetGoFull() {
     	 $('#large-slide').unbind('click');

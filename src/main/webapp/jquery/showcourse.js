@@ -5,7 +5,6 @@ var ShowCourse = dejavu.Class.declare({
 	$panelBody : null,
 	initialize : function() {
 		var self = this;
-		SyntaxHighlighter.all();
         $("#subjectsList").css('height', $(window).height());
 	},
 	
