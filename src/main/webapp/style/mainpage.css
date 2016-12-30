@@ -213,5 +213,8 @@ z-index: 10;
   width: 64px; height: 64px; margin: 5px 0;
 }
 
+form.gsc-search-box {display:none;}
+#searchBox {height: 0px; margin; 0px;}
+
 /* poniżej wklejone ze strony głównej */
 

@@ -121,6 +121,10 @@ class MainSn {
     </div>
   }
 
+  def setScriptGoogleSearch() = {
+    val code = ExtraData.getData("googlesearchcode")
+    "script *" #> code
+  }
 
   ///========================== not used below =======================
 /*
@@ -260,11 +264,6 @@ class MainSn {
     "#hiddenAjaxText" #> SHtml.ajaxText("", id => SetHtml("ajaxNews", create(id)))
   }
 
-
-  def setScriptGoogleSearch() = {
-    val code = ExtraData.getData("googlesearchcode")
-    "script *" #> code
-  }
 
 
   private def isOwner(idFromArticle: Long): Boolean = {

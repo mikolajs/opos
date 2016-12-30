@@ -112,7 +112,7 @@
 </head>
 <body>
 <nav class="myNavbar" id="myNavbar" >
-    <div class="upperBar" onclick="openMenu()" onmouseover="openMenu()"
+    <div class="upperBar" id="upperBar"
          data-lift="page.MenuSn.upperMenu">
 
       <span class="leftMenu">
@@ -149,7 +149,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-1"><span class="glyphicon glyphicon-remove menuCloseBtn" onclick="closeMenu()"></span></div>
+            <div class="col-lg-1">
+                <span class="glyphicon glyphicon-remove menuCloseBtn" id="closeButton"></span></div>
         </div>
     </div>
 </nav>

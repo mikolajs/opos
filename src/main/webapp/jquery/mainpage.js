@@ -14,6 +14,8 @@ setInterval(function(){
 		big = true;
 	}
 }, 20000);
+
+
 $(function(){
 	closeMenu();
 $('#news').children('ul').children('li').click(function(){
@@ -28,6 +30,7 @@ $('#news').children('ul').children('li').click(function(){
 	$('#news').children('ul').children('li').removeClass('newsActive');
 	this.setAttribute('class', 'newsActive');
 });
+
 });
 
 function closeMenu() {
@@ -43,3 +46,15 @@ function startAnimate(elem) {
 function stopAnimate(elem) {
 	$(elem).find('img.imgBig').removeClass('imgBigAnimate');
 }
+
+function searchGoogle() {
+      var search = $('#toSearch').val();
+      $('#gsc-i-id1').val(search);
+      $(".gsc-search-button").trigger('click');
+}
+
+ function pressEnter(e) {
+        if(e.keyCode == 13) {
+            document.getElementById('toSearchBut').click();
+        }
+ }

@@ -1,7 +1,22 @@
+var isMenuOpen = true;
+
 $(function(){
 	closeMenu();
 });
-;
+
+
+document.getElementById('closeButton').addEventListener('click', function(e){
+    e.stopPropagation();
+    closeMenu();
+});
+document.getElementById('upperBar').addEventListener("click", function(e) {
+    e.stopPropagation();
+    if(isMenuOpen) closeMenu();
+    else openMenu();
+});
+
+
+/*
 var isMenuOpen = true;
 var stopWork = false;
 
@@ -25,7 +40,6 @@ document.getElementById('myNavbar').addEventListener("mouseover",
             //console.log("mouseover navbar");
         }
     });
-
 document.addEventListener("mouseover",
     function(e) {
         e.stopPropagation();
@@ -34,6 +48,9 @@ document.addEventListener("mouseover",
             //console.log("mouseover body");
         }
     });
+
+*/
+
 
 
 function openMenu() {
