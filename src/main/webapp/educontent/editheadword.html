@@ -3,12 +3,12 @@
 		src="/ckeditor/ckeditor.js"></script> <script type="text/javascript"
 		src="/jquery/ckeditorresource.js"></script> <script
 		type="text/javascript" src="/jquery/dejavu.js"></script> <script
-		type="text/javascript" src="/jquery/editheadword.js"></script> <script
-		type="text/javascript" src="/jquery/ASCIIMathML.js"></script>
+		type="text/javascript" src="/jquery/editheadword.js"></script>
+
 	<link href="/deckjs/core/deck.core.css" rel="stylesheet">
 	<link href="/deckjs/themes/style/swiss_ckeditor.css"
 		id="style-theme-link" type="text/css" rel="stylesheet">
-		<link href="/ckeditor/plugins/codesnippet/lib/highlight/styles/default.css" rel="stylesheet">
+		<link href="/ckeditor/plugins/codesnippet/lib/highlight/styles/monokai_sublime.css" rel="stylesheet">
 		<script src="/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js"></script>
 	<script>
       
@@ -24,38 +24,21 @@
                 editor.config.disableNativeSpellChecker = false;
                 editor.config.language = 'pl';
                 editor.config.allowedContent = true;
-                editor.config.extraPlugins =  'youTube,addImage,addFile,syntaxhighlight,formula,symbol';
                 editor.config.toolbar = [
-                                  { name: 'document', groups: [ 'mode'], items: [ 'Source' ] },
-                                  { name: 'clipboard', groups: [ 'clipboard', 'undo' ], items: [ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ] },
-                                  { name: 'editing', groups: [ 'find', 'selection'], items: [ 'Find', 'Replace', '-', 'SelectAll' ] },
-                                  { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ] },
-                                  { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align' ], items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'] },
-                                  '/',
-                                  { name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ] },
-                                  { name: 'insert', items: [ 'AddImage', 'AddFile', 'Table', 'Syntaxhighlight',  'Formula',  'Symbol' ] },
-                                  { name: 'styles', items: [ 'Styles', 'Format', 'Font', 'FontSize' ] },
-                                  { name: 'colors', items: [ 'TextColor', 'BGColor' ] },
-                                  { name: 'tools', items: [ 'Maximize', 'ShowBlocks' ] },
-                                  { name: 'others', items: [ '-' ] }
-                              ];
-
-                editor.config.toolbarGroups = [
-                                               { name: 'document', groups: [  'mode' ] },
-                                               { name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
-                                               { name: 'editing', groups: [ 'find', 'selection', 'spellchecker' ] },
-                                               { name: 'forms' },
-                                               '/',
-                                               { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
-                                               { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
-                                               { name: 'links' },
-                                               { name: 'insert' },
-                                               '/',
-                                               { name: 'styles' },
-                                               { name: 'colors' },
-                                               { name: 'tools' },
-                                               { name: 'others' }
-                                           ];
+			{ name: 'document', items: [ 'Sourcedialog' ] },
+      { name: 'basicstyles', items: [ 'Bold','Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat' ]},
+			{ name: 'edit', items: [ 'Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo' ] },
+      { name: 'extraedit', items: [ 'Find','Replace','SelectAll' ]},
+			{ name: 'paragraph', items:
+			 [ 'NumberedList','BulletedList','-','Outdent','Indent','-',
+			 'Blockquote','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock',
+			 'BidiLtr','BidiRtl' ] },
+			'/',{ name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ] },
+			{ name: 'insert', items: [ 'CodeSnippet', 'Mathjax', 'AddFile', 'AddImage', 'Table', 'Youtube','SpecialChar'] },
+			{ name: 'styles', items: [ 'Format', 'Styles', 'FontSize', 'Styles', 'TextColor','BGColor'] }
+		];
+    editor.config.extraPlugins = 'codesnippet,mathjax,youtube,addFile,addImage,sourcedialog,specialchar';
+    editor.config.mathJaxLib = 'https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?config=TeX-AMS_HTML';
         });
        
        var slide = new EditHeadWord(6);
@@ -70,6 +53,7 @@
     
     </script>
 	<style>
+		pre {padding: 0px !important;}
 div#cffm {
 	background-color: #fff;
 	font: 12px sans-serif;

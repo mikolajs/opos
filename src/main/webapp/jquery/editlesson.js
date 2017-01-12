@@ -58,20 +58,18 @@ var LessonEditor = dejavu.Class
                 			width : 700,
                 			height : 230,
                 			allowedContent : true,
-                			extraPlugins: 'sourcedialog,addImage,addFile,syntaxhighlight,formula,symbol,image',
-                            format_tags : 'p;h2;h3;h4;h5;h6;pre;address',
+                			format_tags : 'p;h2;h3;h4;h5;h6;pre;address',
                             language : 'pl',
-                			toolbar: [
-                                [ 'Sourcedialog' ],
-                            	[ 'Cut', 'Copy','Paste', 'PasteText', 'PasteFromWord', '-','Undo', 'Redo' ],
-                            	[ 'AddImage', 'AddFile', 'Table','Syntaxhighlight','Formula', 'Symbol', "Image" ],
-                            	[ 'Link', 'Unlink',	'Anchor' ], 	'/',
-                            	[ 'Find', 'Replace','-', 'SelectAll' ],
-                            	[ 'Bold', 'Italic','Underline', 'Strike','Subscript',	'Superscript', '-','RemoveFormat' ],
-                            	[ 'NumberedList',	'BulletedList', '-','Outdent', 'Indent','-', 'Blockquote', '-','JustifyLeft',
-                            	'JustifyCenter','JustifyRight',	'JustifyBlock' ], 	'/',
-                            	[ 'Styles', 'Format',	'Font', 'FontSize' ]
-                            ]
+                			extraPlugins : 'youtube,addImage,addFile,codesnippet,mathjax,specialchar',
+                            toolbar : [ [ 'Sourcedialog' ],
+                                                            [ 'Link','Unlink','Anchor' ],[ 'Maximize', 'ShowBlocks','-','About' ] ,
+                                                [ 'Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo' ],
+                                                [ 'Find','Replace','-','SelectAll' ],
+                                                [ 'Bold','Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat' ],
+                                                [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','BidiLtr','BidiRtl' ],
+                                                [ 'AddImage',  'Youtube', 'AddFile', 'Mathjax', 'Table','HorizontalRule','SpecialChar','Iframe' ] ,
+                                                [ 'Styles','Format','FontSize','Font' ],
+                                                [ 'TextColor','BGColor' ] ]
                 		});
 
 

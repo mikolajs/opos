@@ -3,97 +3,37 @@
 <head>
 
     <meta name="viewport">
-    <script src="/jquery/jquery.min.js" ></script>
+    <script src="/jquery/jquery.min.js"></script>
     <style>
         body, #imgContener {width: 100%; height: 100%; background-color: #111;
         margin: 0 auto; overflow: hidden; position: relative;
         }
         #img { position: absolute;}
+        .showImg {
+        opacity:1;
+        transition: opacity 3s;
+        }
+
+        .fadeImg {
+        opacity:0;
+        transition: opacity 1s;
+        }
+        #loader {
+        z-index: 1000;
+        width: 100%;
+        height: 100%;
+        }
+
     </style>
 
 
 </head>
-<body >
+<body>
 
-<div class="imageContener" >
-    <img src="" id="img" />
+<div class="imageContener" id="imgContener">
 </div>
-<script type="text/javascript">
-  var interval = 10000;
-  var reloadTime = 3600000;
-</script>
+<div id="loader" style="margin: 0 auto; width: 100%;"><img src="/images/loader.gif" style="margin: 0 auto;"/></div>
+<script src="/jquery/slideimg.js"></script>
 
-<script>
-   var xmlhttp = new XMLHttpRequest();
-   var nr = 0;
-   var interval = 5000;
-   var reload = 0; //3580000;
-   var imgList = [];
-   var img = document.getElementById('img');
-
-   mkReload();
-
-   setInterval(function() {
-        nr++
-        if(nr >= imgList.length)  nr = 0;
-        img.setAttribute('src', imgList[nr]);
-        _resize();
-        reload += interval;
-        if(reload > reloadTime) {
-          mkReload();
-          reload = 0;
-        }
-    }, interval);
-
-    function _resize() {
-       var errorDelta = 0.2;
-    	 var h = parseFloat(screen.height);
-    	 var w = parseFloat(screen.width);
-
-    	 var nImg = new Image();
-    	 nImg.src = imgList[nr];
-
-       var propImg = nImg.naturalWidth / nImg.naturalHeight;
-       var propScreen = w / h;
-       var delta = propScreen - propImg;
-
-
-      if(Math.abs(delta) <= errorDelta) {
-        img.style.top = "0px";
-        img.style.left = "0px";
-        img.style.width = w.toString() + "px";
-     	  img.style.height = h.toString() + "px";
-      } else if(delta < 0) {
-        img.style.top = Math.floor(Math.abs((h - w*nImg.naturalHeight/nImg.naturalWidth)) / 2.0).toString() + "px";
-        img.style.left = "0px";
-        img.style.width = w.toString() + "px";
-     	  img.style.height = "auto";
-      } else {
-        img.style.top = "0px";
-        img.style.left = Math.floor(Math.abs((w - h*nImg.naturalWidth/nImg.naturalHeight)) / 2.0).toString() + "px";
-        img.style.width = "auto";
-     	  img.style.height = h.toString() + "px";
-      }
-    }
-
-    function mkReload() {
-      var url = "/getimgslide";
-      xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            var imgR = JSON.parse(this.responseText);
-            //console.log(imgR);
-            //ADD CODE TO INSERT DATA
-            if(imgR.images.length > 0) imgList = imgR.images;
-            interval = imgR.time * 1000;
-            reload = imgR.reload * 1000;
-        } else {console.log("not ready status: " + this.status)};
-      };
-      xmlhttp.open("GET", url, true);
-      xmlhttp.send();
-   }
-
-
-
-    </script>
 </body>
 </html>

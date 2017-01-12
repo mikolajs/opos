@@ -8,14 +8,16 @@ var InfoTeacher = dejavu.Class.declare({
        CKEDITOR.replace( 'writeMessage',{
        	    width : 660,
        	    height: 200,
-       	    extraPlugins : 'addImage,symbol,youTube,addFile',
-       	    toolbar : [
-               [ 'Link','Unlink','Anchor' ],
-               [ 'Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo' ],
-               [ 'Bold','Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat' ],
-               [ 'Styles' ], [ 'TextColor','BGColor' ],
-               [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock' ],
-               [ 'AddImage', 'AddFile', 'YouTube', 'Table', 'HorizontalRule', 'Smiley', 'Symbol'] ]
+       	    extraPlugins : 'youtube,addImage,addFile,codesnippet,mathjax,specialchar',
+            toolbar : [ [ 'Sourcedialog' ],
+                       [ 'Link','Unlink','Anchor' ],[ 'Maximize', 'ShowBlocks','-','About' ] ,
+                       [ 'Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo' ],
+                       [ 'Find','Replace','-','SelectAll' ],
+                       [ 'Bold','Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat' ],
+                       [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','BidiLtr','BidiRtl' ],
+                       [ 'AddImage',  'Youtube', 'AddFile', 'Mathjax', 'Table','HorizontalRule','SpecialChar','Iframe' ] ,
+                       [ 'Styles','Format','FontSize','Font' ],
+                       [ 'TextColor','BGColor' ] ]
        	});
 
 

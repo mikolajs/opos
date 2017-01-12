@@ -11,16 +11,16 @@ var EditArticle =  dejavu.Class.declare({
         width : 714, 
         height: 600,
         allowedContent : true,
-        extraPlugins : 'youTube,addImage,addFile,formula',
-        toolbar : [ [ 'Source' ],
-                    [ 'Link','Unlink','Anchor' ],[ 'Maximize', 'ShowBlocks','-','About' ] ,
-        [ 'Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo' ],
-        [ 'Find','Replace','-','SelectAll' ],
-        [ 'Bold','Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat' ],
-        [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','BidiLtr','BidiRtl' ],
-        [ 'AddImage',  'YouTube', 'AddFile', 'Formula', 'Table','HorizontalRule','SpecialChar','Iframe' ] ,
-        [ 'Styles','Format','FontSize','Font' ],
-        [ 'TextColor','BGColor' ] ]
+        extraPlugins : 'youtube,addImage,addFile,codesnippet,mathjax,specialchar,sourcedialog',
+        toolbar : [ [ 'Sourcedialog' ],
+           [ 'Link','Unlink','Anchor' ],[ 'Maximize', 'ShowBlocks','-','About' ] ,
+           [ 'Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo' ],
+           [ 'Find','Replace','-','SelectAll' ],
+           [ 'Bold','Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat' ],
+           [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','BidiLtr','BidiRtl' ],
+           [ 'AddImage',  'Youtube', 'AddFile', 'Mathjax', 'Table','HorizontalRule','SpecialChar','Iframe' ] ,
+           [ 'Styles','Format','FontSize','Font' ],
+           [ 'TextColor','BGColor' ] ]
     });  
     
     CKEDITOR.config.forcePasteAsPlainText = true;
