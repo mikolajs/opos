@@ -51,7 +51,7 @@ class PageSn {
       <span class="glyphicon glyphicon-plus"></span> Dodaj artykuł</a>
     else <span></span>
     "a" #> (List(addArticle, <a href={pathStart + "n"} class="list-group-item"> Aktualności </a>) :::
-      (ArticleHead.findAll(("news" -> false)~("departmentId" -> dep), ("prior" -> 1)).map(
+      (ArticleHead.findAll(("news" -> false)~("departmentId" -> dep), ("prior" -> -1)).map(
       art =>
         <a href={pathStart + art._id.toString} class="list-group-item">{art.title}</a>
       )))

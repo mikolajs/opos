@@ -5,7 +5,7 @@ import _root_.net.liftweb.util._
 
 import _root_.pl.edu.osp.model.page._
 import _root_.net.liftweb.http.{S, SHtml}
-
+import _root_.net.liftweb.json.JsonDSL._
 import Helpers._
 
 
@@ -51,7 +51,7 @@ class AdminDepartmentsSn {
   }
 
   def departments(n: NodeSeq): NodeSeq = {
-    val departments = PageDepartment.findAll
+    val departments = PageDepartment.findAll(Nil, "nr"->1)
     val node: NodeSeq = <tbody>
       {for (department <- departments) yield {
         <tr ondblclick={"setData(this)"} title={"ID: " + department._id.toString}

@@ -30,52 +30,67 @@
    var reload = 0; //3580000;
    var imgList = [];
    var img = document.getElementById('img');
+   var images = [];
 
    mkReload();
 
-   setInterval(function() {
-        nr++
-        if(nr >= imgList.length)  nr = 0;
-        img.setAttribute('src', imgList[nr]);
-        _resize();
-        reload += interval;
-        if(reload > reloadTime) {
-          mkReload();
-          reload = 0;
-        }
-    }, interval);
+    setInterval(getNext, interval);
 
-    function _resize() {
+   function getNext(){
+        if(nr >= images.length)  nr = 0;
+
+        img.style.top = images[nr].style.top;
+        img.style.left = images[nr].style.left;
+        img.style.width = images[nr].style.width;
+        img.style.height = images[nr].style.height;
+        img.setAttribute('src', images[nr].src);
+        console.log("nr " + nr + " refresed " + images[nr].src);
+        nr++;
+   }
+
+
+/*
+   function calculateSize(){
+      for(var i = 0; i < images.length; i++){
+         images[i] = resize(images[i]);
+      }
+   }
+*/
+/*
+    function resize(nImg) {
        var errorDelta = 0.2;
     	 var h = parseFloat(screen.height);
     	 var w = parseFloat(screen.width);
-
-    	 var nImg = new Image();
-    	 nImg.src = imgList[nr];
-
-       var propImg = nImg.naturalWidth / nImg.naturalHeight;
+         console.log("image: " + nImg.src + ", size: " + nImg.height + " : " + nImg.width);
+         console.log("natural" + nImg.naturalHeight);
+       var propImg = nImg.width / nImg.height;
        var propScreen = w / h;
        var delta = propScreen - propImg;
 
+       //console.log("screen W: " + w + " H: " + h);
+    	 //console.log("hImg W: " +  nImg.width + " hImg H: " +
+    	 // nImg.naturalHeight);
 
       if(Math.abs(delta) <= errorDelta) {
-        img.style.top = "0px";
-        img.style.left = "0px";
-        img.style.width = w.toString() + "px";
-     	  img.style.height = h.toString() + "px";
+        nImg.style.top = "0px";
+        nImg.style.left = "0px";
+        nImg.style.width = w.toString() + "px";
+     	  nImg.style.height = h.toString() + "px";
       } else if(delta < 0) {
-        img.style.top = Math.floor(Math.abs((h - w*nImg.naturalHeight/nImg.naturalWidth)) / 2.0).toString() + "px";
-        img.style.left = "0px";
-        img.style.width = w.toString() + "px";
-     	  img.style.height = "auto";
+        nImg.style.top = Math.floor(Math.abs((h - w*nImg.naturalHeight/nImg.naturalWidth)) / 2.0).toString() + "px";
+        nImg.style.left = "0px";
+        nImg.style.width = w.toString() + "px";
+     	  nImg.style.height = "auto";
       } else {
-        img.style.top = "0px";
-        img.style.left = Math.floor(Math.abs((w - h*nImg.naturalWidth/nImg.naturalHeight)) / 2.0).toString() + "px";
-        img.style.width = "auto";
-     	  img.style.height = h.toString() + "px";
+        nImg.style.top = "0px";
+        nImg.style.left = Math.floor(Math.abs((w - h*nImg.naturalWidth/nImg.naturalHeight)) / 2.0).toString() + "px";
+        nImg.style.width = "auto";
+     	  nImg.style.height = h.toString() + "px";
       }
+      console.log("top: " + nImg.style.top + " left " + nImg.style.left + " width: " + nImg.style.width + " height: " + nImg.style.height);
+      return {t: nImg.style.top, l: nImg.style.left, w: nImg.style.width, h: nImg.style.height};
     }
-
+*/
     function mkReload() {
       var url = "/getimgslide";
       xmlhttp.onreadystatechange = function() {
@@ -83,7 +98,47 @@
             var imgR = JSON.parse(this.responseText);
             //console.log(imgR);
             //ADD CODE TO INSERT DATA
-            if(imgR.images.length > 0) imgList = imgR.images;
+            if(imgR.images.length > 0) {
+                images = new Array(imgList.length);
+                for(var i = 0; i < imgR.images.length; i++){
+                  images[i] = new Image();
+                  images[i].onload = function(){
+                    var errorDelta = 0.2;
+    	            var h = parseFloat(screen.height);
+                	var w = parseFloat(screen.width);
+                    console.log("me" + this + " image: " + this.src + ", size: " + this.height + " : " + this.width);
+                    var propImg = this.width / this.height;
+                    var propScreen = w / h;
+                    var delta = propScreen - propImg;
+
+       //console.log("screen W: " + w + " H: " + h);
+    	 //console.log("hImg W: " +  this.width + " hImg H: " +
+    	 // this.naturalHeight);
+
+      if(Math.abs(delta) <= errorDelta) {
+        this.style.top = "0px";
+        this.style.left = "0px";
+        this.style.width = w.toString() + "px";
+     	  this.style.height = h.toString() + "px";
+      } else if(delta < 0) {
+        this.style.top = Math.floor(Math.abs((h - w*this.height/this.width)) / 2.0).toString() + "px";
+        this.style.left = "0px";
+        this.style.width = w.toString() + "px";
+     	this.style.height = "auto";
+      } else {
+        this.style.top = "0px";
+        this.style.left = Math.floor(Math.abs((w - h*this.width/this.height)) / 2.0).toString() + "px";
+        this.style.width = "auto";
+     	this.style.height = h.toString() + "px";
+      }
+      console.log("top: " + this.style.top + " left " + this.style.left + " width: " + this.style.width + " height: " + this.style.height);
+
+                  };
+                  images[i].src = imgR.images[i];
+                }
+                //calculateSize();
+                //console.log(imgPos);
+            }
             interval = imgR.time * 1000;
             reload = imgR.reload * 1000;
         } else {console.log("not ready status: " + this.status)};
