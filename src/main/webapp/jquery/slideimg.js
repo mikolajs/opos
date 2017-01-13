@@ -90,6 +90,8 @@ function showLoader(){
     load = true;
     document.getElementById("loader").style.display ="inline";
     document.getElementById("imgContener").style.display ="none";
+    document.getElementById("imgLoader").width = screen.width;
+    document.getElementById("imgLoader").height = screen.height;
 
 }
 function closeLoader(){
