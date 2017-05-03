@@ -51,9 +51,7 @@ class PerformExamSn extends BaseSnippet {
           "#test" #> <span style="display:none;"></span> &
           "#saveCode" #> SHtml.submit("Zatwierdź", saveCode)
     }
-    else
-    {
-
+    else {
     val idQuiz = if(exam.quizzes.isEmpty) "0" else exam.quizzes(getGroupInt).toString
     val quiz = Quiz.find(idQuiz).getOrElse(Quiz.create)
     if(quiz.questions.length < 1) S.redirectTo("/view/exams?Error")
@@ -147,11 +145,11 @@ class PerformExamSn extends BaseSnippet {
 
   private def checkCode(c: String):Boolean = {
 
-    if(findIfCodeExists(c))  false
-    else exam.keys.exists(k => k == c)
+     findIfCodeExists(c) && exam.keys.exists(k => k == c)
   }
-
-  private def findIfCodeExists(c:String) = !ExamAnswer.findAll("code" -> c).isEmpty
+//if code was already used
+  private def findIfCodeExists(c:String) =
+    !ExamAnswer.findAll(("code" -> c)~("exam" -> exam._id.toString)).isEmpty
 
   private def getGroupInt = {
     if(exAns.code.isEmpty) 0

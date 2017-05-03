@@ -33,7 +33,7 @@ class AdminExportPageSn {
     var title = ""
 
     def save() {
-      val user = User.currentUser.get
+      val user = User.currentUser.openOrThrowException("Must be logged in user")
       val articleHead = ArticleHead.create
       val articleContent = ArticleContent.create
       articleContent.content = createPageContentSwitcher

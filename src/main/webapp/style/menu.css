@@ -3,13 +3,14 @@
   z-index: 1000;
   top:0;
   width: 100%;
+  cursor: pointer;
 }
 
 .upperBar {
   color: white;
   font-size: 20px;
-  height: 35px;
-  line-height: 35px;
+  height: 40px;
+  line-height: 40px;
   background-color: #222;
 }
 .upperBar span { padding: 0 10px;}

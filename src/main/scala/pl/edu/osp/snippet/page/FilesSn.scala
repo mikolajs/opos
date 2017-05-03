@@ -44,16 +44,26 @@ class FilesSn {
 
   def addImage() = {
     val imgSize = S.param("s").getOrElse("n") match {
+      case "f" => 300
       case "s" => 400
       case "n" => 800
-      case "f" => 1600
+      case "l" => 1600
     } //normal size 800
     def isCorrect = readImage()
 
     def save() {
       if (isCorrect) {
+        var doResize = true
+        if(mimeType.substring(1).toLowerCase() == "gif") {
+          val imgReader = ImageIO.getImageReadersBySuffix("GIF").next()
+          val impStream = ImageIO.createImageInputStream(
+            fileHold.openOrThrowException("Pusty plik").file)
+          imgReader.setInput(impStream)
+          if(imgReader.getNumImages(true) > 1) doResize = false
+        }
         val imageBuf: BufferedImage = ImageIO.read(new ByteArrayInputStream(fileHold.get.file))
-        val resizedImageBuf = resizeImageWithProportion(imageBuf, imgSize)
+        val resizedImageBuf = if(doResize) resizeImageWithProportion(imageBuf, imgSize)
+          else imageBuf
         val outputStream = new ByteArrayOutputStream()
         ImageIO.write(resizedImageBuf, mimeType.substring(1), outputStream)
         val inputStream = new ByteArrayInputStream(outputStream.toByteArray())

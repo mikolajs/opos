@@ -7,11 +7,12 @@
     </head>
 <body>
 
-	<form data-lift="page.FilesSn.addImage" class="form-group" method="POST" enctype="multipart/form-data" >
-    <label>Wczytywanie grafiki:</label>
-	<input id="file" class="form-control" />
-	<input class="btn btn-info" id="submit" /><hr />
-        <p><em>link: </em> <span id="linkpath"></span> </p>
+	<form data-lift="page.FilesSn.addImage" class="form-inline" method="POST"
+          enctype="multipart/form-data" >
+        <div class="form-group">
+	<input id="file" class="form-control" /><input class="btn btn-info" id="submit" />
+        </div>
+        <small><em>link: </em> <span id="linkpath"></span> </small>
 	<lift:msgs/>
 	</form>
 </body>

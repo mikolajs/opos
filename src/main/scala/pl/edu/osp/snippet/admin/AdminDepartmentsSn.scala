@@ -1,6 +1,6 @@
 package pl.edu.osp.snippet.admin
 
-import scala.xml.{NodeSeq, Text, XML, Unparsed}
+import scala.xml.{NodeSeq, Unparsed}
 import _root_.net.liftweb.util._
 
 import _root_.pl.edu.osp.model.page._
@@ -17,6 +17,8 @@ class AdminDepartmentsSn {
     var name = ""
     var img = ""
     var info =""
+    var fimg = ""
+    var finfo = ""
 
     def addDepartment() {
       val pageDepartment = PageDepartment.find(id.trim) match {

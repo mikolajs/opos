@@ -1,23 +1,15 @@
 package pl.edu.osp.snippet.edu
 
-import java.util.Date
-import scala.xml.{Text, XML, Unparsed, Elem, Null, TopScope}
+
+import scala.xml.{Text}
 import _root_.net.liftweb._
 import http.{S, SHtml}
 import common._
 import util._
-import mapper.{OrderBy, Descending}
 import pl.edu.osp.model._
 import edu._
-import mapper.By
-import json.JsonDSL._
-import json.JsonAST.JObject
-import json.JsonParser
-import org.bson.types.ObjectId
 import Helpers._
-import http.js.{JsCmds, JsCmd}
-import http.js.JsCmds.{SetHtml, Alert, Run}
-import http.js.JE._
+
 
 class EditDocumentSn extends BaseResourceSn {
 
@@ -34,7 +26,7 @@ class EditDocumentSn extends BaseResourceSn {
     var docID = id
     var title = document.title
     var descript = document.descript
-    var subject = if (document.subjectId == 0L) subjectNow.name else document.subcjectName
+    val subject = if (document.subjectId == 0L) subjectNow.name else document.subcjectName
     var level = document.lev.toString
     var department = document.department
     var docContent = document.content
@@ -65,7 +57,7 @@ class EditDocumentSn extends BaseResourceSn {
     }
 
     //val subjects = this.subjectTeach.map(sub => (sub.id.toString, sub.name))
-    var departs = if (document.subjectId == 0L) subjectNow.departments.map(d => (d, d))
+    val departs = if (document.subjectId == 0L) subjectNow.departments.map(d => (d, d))
     else subjectTeach.find(s => s.id == document.subjectId).getOrElse(subjectNow)
       .departments.map(d => (d, d))
     "#docID" #> SHtml.text(docID, docID = _) &

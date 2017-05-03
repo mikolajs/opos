@@ -39,7 +39,8 @@ class CoursesSn extends BaseResourceSn {
           </span>
         </h3> &
         ".courseInfo *" #> course.descript &
-        ".editLessonButton [href]" #> ("/educontent/course/" + course._id.toString) //&
+        ".editLessonButton [href]" #> ("/educontent/course/" + course._id.toString) &
+        ".isPublic *" #> (if(course.pub) "Tak" else "Nie" )
       // ".img-responsive [src]" #> course.img
     })
   }

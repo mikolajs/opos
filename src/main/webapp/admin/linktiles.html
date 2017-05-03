@@ -1,0 +1,198 @@
+
+<!DOCTYPE html>
+<html>
+<body class="lift:content_id=main">
+<div id="main" class="lift:surround?with=admin;at=content">
+    <head_merge>
+        <style>
+            td button {
+            float: right;
+            }
+         td.imgLink img { max-width: 300px; height: auto; }
+        </style>
+        <script>
+
+        function getImageURLfromIFrame(elem){
+        	var innerDoc = elem.contentDocument || elem.contentWindow.document;
+        	var url  = innerDoc.getElementById('linkpath').innerHTML.trim();
+        	//console.log("found url: " + url);
+        	$('#img').val(url);
+        }
+
+            function addRow() {
+               var url = $("#url").val();
+               var img = $("#img").val();
+               if(url.length > 2 && img.length > 2) {
+                    clearForm();
+                    $("#linkTable").children('tbody').append(
+                    '<tr class="linkTr"><td class="imgLink"><img src="' + img + '" /></td><td class="urlLink">' + url +
+                    '</td><td>' +
+                    '<button class="btn btn-info" onclick="downLink(this)" >' +
+                    '<span class="glyphicon glyphicon-arrow-down"></span></button>' +
+                    '<button class="btn btn-info" onclick="upLink(this)" >' +
+                    '<span class="glyphicon glyphicon-arrow-up"></span></button>' +
+                    '<button class="btn btn-danger" onclick="delLink(this)" >' +
+                    '<span class="glyphicon glyphicon-remove"></span></button>' +
+                    '</td></tr>');
+                } else alert("Brak linku lub obrazka " + url + ' ' + img);
+            }
+
+            function clearForm(){
+              $("#url").val("");
+              $("#img").val("");
+            }
+
+
+            function delLink(elem){
+                var $tr = $(elem).parent().parent();
+                var $table = $tr.parent().parent();
+                var img = "";
+                var url = "";
+                $tr.children('td').each( function(index) {
+                   switch(index) {
+                    case 0:
+                     img = this.innerHTML.trim();
+                     break;
+                    case 1:
+                     url = this.innerHTML.trim();
+                     break;
+                    default:
+                     break;
+                   }
+                });
+                $tr.remove();
+                $("#url").val(url);
+                $("#img").val($(img).attr("src"));
+            }
+
+            function saveAll() {
+                if (saveAllHelper()) {
+                    var xml  = document.getElementById('xmlData').value;
+                    console.log('OK: ' + xml);
+                    return true;
+                }
+                else {
+                    var xml  = document.getElementById('xmlData').value;
+                    console.log('OK: ' + xml);
+                    alert('Danych nie zapisano. Nieprawidłowe wpisy.');
+                    return false;
+                }
+            }
+
+            function saveAllHelper() {
+                var isError = false;
+                var xmlStr = "<root>";
+                var value = "";
+
+                $('#linkTable').children('tbody').children('tr').each(function() {
+                   xmlStr += '<link ';
+                   var error = false;
+                   $(this).children('td').each(function(index) {
+                      switch(index){
+                       case 0:
+                         xmlStr +=  'img="';
+                         value = this.innerHTML.replace(/"/g, "'").trim();
+                         value = $(value).attr("src")
+                         if (value.length < 3) {
+                           isError = true;
+                         }
+                         xmlStr += value;
+                         xmlStr += '" ';
+                         break;
+                       case 1:
+                         xmlStr +=  'url="';
+                         value = this.innerHTML.trim();
+                         if (value.length < 4 ) {
+                            isError = true;
+                         }
+                         xmlStr += value;
+                         xmlStr += '" ';
+                         break;
+                       default:
+                         break;
+                       }
+                    });
+                        xmlStr += '/>\n';
+                   });
+                xmlStr += '</root>';
+                $('#xmlData').val(xmlStr);
+                if(isError) alert("Nieprawidłowe adresy obrazków lub linki");
+                return !isError;
+            }
+
+            function downLink(elem) {
+                var $tr = $(elem).parent('td').parent('tr');
+                $tr.next().after($tr);
+            }
+
+            function upLink(elem) {
+                var $tr = $(elem).parent('td').parent('tr');
+                $tr.prev().before($tr);
+            }
+
+
+	</script>
+
+    </head_merge>
+
+    <div class="well">
+        <h3>Kafelki linków na stronie głównej</h3>
+    </div>
+
+<div>
+    <fieldset>
+            <p><label for="url">Link: </label><input class="form-control" id="url"/></p>
+
+            <p><label for="img">Obrazek: </label>
+                <input class="form-control"  id="img"/>
+            </p>
+
+            <p><button class="btn btn-info" onclick="addRow()">
+                <span class="glyphicon glyphicon-add-sign"></span>
+                Dodaj</button>
+            </p>
+
+            <p id="notice">Aby utrwalić zmiany musisz kliknąć przycisk Zapisz</p>
+    </fieldset>
+    <iframe onload="getImageURLfromIFrame(this)"
+            src='/imgstorage?s=f' width='95%' height='90px'><p>Brak obsługi ifame!</p></iframe>
+    <hr/>
+    <form data-lift="admin.AdminLinkTilesSn.addLinks" method="POST" id="frm2" onsubmit="return saveAll()">
+        <input id="xmlData"  />
+        <input id="submit" class="btn btn-success" />
+    </form>
+</div>
+
+
+
+    <div>
+        <div class="lift:admin.AdminLinkTilesSn.showLinks" id="linksCont">
+            <div class="divDepartment">
+                <div class="tables">
+                    <table class="table table-striped" id="linkTable">
+                        <thead><tr><th>Obrazek</th><th>Link</th><th>Akcje</th></tr></thead>
+
+                        <tbody ><tr class="linkTr"><td class="imgLink"></td>
+                            <td class="urlLink"></td><td class="buttonLink">
+                                <button class="btn btn-info" onclick="downLink(this)" >
+                                    <span class="glyphicon glyphicon-arrow-down"></span></button>
+                                <button class="btn btn-info" onclick="upLink(this)" >
+                                    <span class="glyphicon glyphicon-arrow-up"></span></button>
+                                <button class="btn btn-danger" onclick="delLink(this)" >
+                                    <span class="glyphicon glyphicon-remove"></span></button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+</div>
+</body></html>
+
