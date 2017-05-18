@@ -17,23 +17,21 @@
 
 package pl.edu.osp.model
 
-import net.liftweb.mapper._
-import _root_.net.liftweb.util._
-import _root_.net.liftweb.common._
+import net.liftweb.mongodb.{MongoDocument, DateSerializer, ObjectIdSerializer, MongoDocumentMeta}
+import org.bson.types.ObjectId
 
-class SubjectName extends LongKeyedMapper[SubjectName] with IdPK {
-  def getSingleton = SubjectName
 
-  object name extends MappedString(this, 40)
+object SubjectName extends  MongoDocumentMeta[SubjectName] {
+  override def collectionName = "SubjectName"
+  override def connectionIdentifier = pl.edu.osp.config.MyMongoIdentifier
+  override def mongoIdentifier = pl.edu.osp.config.MyMongoIdentifier
+  override def formats = super.formats + new ObjectIdSerializer + new DateSerializer
 
-  object short extends MappedString(this, 5)
-
-  object nr extends MappedInt(this)
-
-  object scratched extends MappedBoolean(this)
-
+  def create = SubjectName(ObjectId.get, "", "", 0, false, 0L)
 }
 
-object SubjectName extends SubjectName with LongKeyedMetaMapper[SubjectName] {
-
+case class SubjectName(var _id: ObjectId, name: String, short: String, nr: Int,
+                       scratched: Boolean, id: Long
+                  ) extends MongoDocument[SubjectName] {
+  def meta = SubjectName
 }

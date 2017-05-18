@@ -17,20 +17,22 @@
 
 package pl.edu.osp.model
 
-import net.liftweb.mapper._
-import _root_.net.liftweb.util._
-import _root_.net.liftweb.common._
+import net.liftweb.mongodb.{MongoDocument, DateSerializer, ObjectIdSerializer, MongoDocumentMeta}
+import org.bson.types.ObjectId
 
-class MarkMap extends LongKeyedMapper[MarkMap] with IdPK {
-  def getSingleton = MarkMap
 
-  object name extends MappedString(this, 2)
+object MarkMap extends  MongoDocumentMeta[MarkMap] {
+  override def collectionName = "markmap"
+  override def connectionIdentifier = pl.edu.osp.config.MyMongoIdentifier
+  override def mongoIdentifier = pl.edu.osp.config.MyMongoIdentifier
+  override def formats = super.formats + new ObjectIdSerializer + new DateSerializer
 
-  object value extends MappedInt(this)
-
+  def create = MarkMap(ObjectId.get, "",  0.0)
 }
 
-object MarkMap extends MarkMap with LongKeyedMetaMapper[MarkMap] {
-  override def fieldOrder = List(id, name, value)
+case class MarkMap(var _id: ObjectId, sym: String, value: Double
+                  ) extends MongoDocument[MarkMap] {
+  def meta = MarkMap
 }
+
 

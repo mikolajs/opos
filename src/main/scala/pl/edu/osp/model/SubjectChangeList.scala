@@ -6,23 +6,22 @@
 
 package pl.edu.osp.model
 
-import net.liftweb.mapper._
-import _root_.net.liftweb.util._
-import _root_.net.liftweb.common._
+import net.liftweb.mongodb.{MongoDocument, DateSerializer, ObjectIdSerializer, MongoDocumentMeta}
+import org.bson.types.ObjectId
 
-class SubjectChangeList extends LongKeyedMapper[SubjectChangeList] with IdPK {
-  def getSingleton = SubjectChangeList
 
-  object name extends MappedString(this, 40)
+object SubjectChangeList extends  MongoDocumentMeta[SubjectChangeList] {
+  override def collectionName = "subjectchangelist"
+  override def connectionIdentifier = pl.edu.osp.config.MyMongoIdentifier
+  override def mongoIdentifier = pl.edu.osp.config.MyMongoIdentifier
+  override def formats = super.formats + new ObjectIdSerializer + new DateSerializer
 
-  object short extends MappedString(this, 5)
-
-  object nr extends MappedInt(this)
-
-  object date extends MappedDate(this)
-
+  def create = SubjectChangeList(ObjectId.get, "", "", 0, 0L)
 }
 
-object SubjectChangeList extends SubjectChangeList with LongKeyedMetaMapper[SubjectChangeList] {
-
+case class SubjectChangeList(var _id: ObjectId, name: String, short: String,
+                            nr: Int, date: Long
+                  ) extends MongoDocument[SubjectChangeList] {
+  def meta = SubjectChangeList
 }
+

@@ -6,29 +6,28 @@
 
 package pl.edu.osp.model
 
-import net.liftweb.mapper._
-import _root_.net.liftweb.util._
-import _root_.net.liftweb.common._
 
-class ClassModel extends LongKeyedMapper[ClassModel] with IdPK {
-  def getSingleton = ClassModel
+import net.liftweb.mongodb.{MongoDocument, DateSerializer, ObjectIdSerializer, MongoDocumentMeta}
+import org.bson.types.ObjectId
 
-  object level extends MappedInt(this)
 
-  object division extends MappedString(this, 2)
+object ClassModel extends  MongoDocumentMeta[ClassModel] {
+  override def collectionName = "classmodel"
+  override def connectionIdentifier = pl.edu.osp.config.MyMongoIdentifier
+  override def mongoIdentifier = pl.edu.osp.config.MyMongoIdentifier
+  override def formats = super.formats + new ObjectIdSerializer + new DateSerializer
 
-  object descript extends MappedString(this, 50)
-
-  object teacher extends MappedLongForeignKey(this, User)
-
-  object scratched extends MappedBoolean(this)
-
-  def classString(): String = level.is.toString + division.is
-
-  def shortInfo(): String = classString() + " [" + id.is.toString + "]"
+  def create = ClassModel(ObjectId.get, 0, "", "", 0L, false)
 }
 
-object ClassModel extends ClassModel with LongKeyedMetaMapper[ClassModel] {
+case class ClassModel(var _id: ObjectId, level: Int, division: String, descr: String,
+                     teacher: Long, scratched: Boolean
+                  ) extends MongoDocument[ClassModel] {
+  def meta = ClassModel
+  def classString(): String = level + division
+
+  def shortInfo(): String = classString() + " [" + _id.toString + "]"
 
 }
+
 
