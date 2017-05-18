@@ -7,6 +7,8 @@ import org.bson.types.ObjectId
 
 object ContactMail extends MongoDocumentMeta[ContactMail] {
   override def collectionName = "contactmail"
+  override def connectionIdentifier = pl.edu.osp.config.MyMongoIdentifier
+  override def mongoIdentifier = pl.edu.osp.config.MyMongoIdentifier
 
   override def formats = super.formats + new ObjectIdSerializer + new DateSerializer
 

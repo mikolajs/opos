@@ -12,6 +12,8 @@ import org.bson.types.ObjectId
 
 object ForumThreadHead extends MongoDocumentMeta[ForumThreadHead] {
   override def collectionName = "forumthreadhead"
+  override def connectionIdentifier = pl.edu.osp.config.MyMongoIdentifier
+  override def mongoIdentifier = pl.edu.osp.config.MyMongoIdentifier
 
   override def formats = super.formats + new ObjectIdSerializer + new DateSerializer
 

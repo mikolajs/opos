@@ -16,6 +16,8 @@ case class Comment(id: ObjectId, authorName: String, authorId: String, date: Str
 
 object ForumThreadContent extends MongoDocumentMeta[ForumThreadContent] {
   override def collectionName = "forumthreadcontent"
+  override def connectionIdentifier = pl.edu.osp.config.MyMongoIdentifier
+  override def mongoIdentifier = pl.edu.osp.config.MyMongoIdentifier
 
   override def formats = super.formats + new ObjectIdSerializer + new DateSerializer
 

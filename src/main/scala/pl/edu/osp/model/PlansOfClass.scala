@@ -14,7 +14,8 @@ case class Lesson(subject: String, info: String, room: String)
 
 object PlansOfClass extends MongoDocumentMeta[PlansOfClass] {
   override def collectionName = "plansofclass"
-
+  override def connectionIdentifier = pl.edu.osp.config.MyMongoIdentifier
+  override def mongoIdentifier = pl.edu.osp.config.MyMongoIdentifier
   override def formats = super.formats + new ObjectIdSerializer + new DateSerializer
 
   def create = new PlansOfClass(ObjectId.get, 0L, 0L, 0L, "", Nil, Nil, Nil, Nil, Nil)

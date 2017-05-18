@@ -17,6 +17,8 @@ import _root_.net.liftweb.util.Helpers._
 case class Link(url: String, title: String)
 
 object MainPageMenu extends MongoDocumentMeta[MainPageMenu] {
+  override def connectionIdentifier = pl.edu.osp.config.MyMongoIdentifier
+  override def mongoIdentifier = pl.edu.osp.config.MyMongoIdentifier
   override def collectionName = "mainpagemenu"
 
   override def formats = super.formats + new ObjectIdSerializer + new DateSerializer

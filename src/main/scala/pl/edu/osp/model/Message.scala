@@ -14,7 +14,8 @@ case class MessageChunk(var authorId: String, var author: String, var date: Stri
 
 object Message extends MongoDocumentMeta[Message] {
   override def collectionName = "Message"
-
+  override def connectionIdentifier = pl.edu.osp.config.MyMongoIdentifier
+  override def mongoIdentifier = pl.edu.osp.config.MyMongoIdentifier
   override def formats = super.formats + new ObjectIdSerializer + new DateSerializer
 
   def create = Message(ObjectId.get, false, Nil, "", Nil, false, 0L)

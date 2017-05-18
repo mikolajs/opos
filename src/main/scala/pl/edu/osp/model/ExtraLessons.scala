@@ -14,7 +14,8 @@ import _root_.net.liftweb.json.JsonDSL._
 
 object ExtraLessons extends MongoDocumentMeta[ExtraLessons] {
   override def collectionName = "extralessons"
-
+  override def connectionIdentifier = pl.edu.osp.config.MyMongoIdentifier
+  override def mongoIdentifier = pl.edu.osp.config.MyMongoIdentifier
   override def formats = super.formats + new ObjectIdSerializer + new DateSerializer
 
   def create = ExtraLessons(ObjectId.get, "", "", "", "", 0L)

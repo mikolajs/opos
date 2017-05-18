@@ -33,7 +33,7 @@ libraryDependencies ++= {
     "ch.qos.logback" % "logback-classic" % "1.0.6",
     "org.jsoup" % "jsoup" % "1.8.3",
      "net.liftweb" %% "lift-mongodb" % liftVersion % "compile",
-    "postgresql" % "postgresql" % "9.1-901.jdbc4" % "compile")
+    "com.h2database" % "h2" % "1.4.195" % "compile")
 }
 
 port in container.Configuration := 9090

@@ -6,6 +6,8 @@ import _root_.net.liftweb.json.JsonDSL._
 
 object PSO extends MongoDocumentMeta[PSO] {
   override def collectionName = "PSO"
+  override def connectionIdentifier = pl.edu.osp.config.MyMongoIdentifier
+  override def mongoIdentifier = pl.edu.osp.config.MyMongoIdentifier
   override def formats = super.formats + new ObjectIdSerializer + new DateSerializer
   def create = PSO(ObjectId.get, Nil, "", "", "", 0L)
 }

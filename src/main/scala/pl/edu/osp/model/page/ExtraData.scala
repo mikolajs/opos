@@ -17,6 +17,8 @@ object ExtraDataKeys extends Enumeration {
 
 object ExtraData extends MongoDocumentMeta[ExtraData] {
   override def collectionName = "extradata"
+  override def connectionIdentifier = pl.edu.osp.config.MyMongoIdentifier
+  override def mongoIdentifier = pl.edu.osp.config.MyMongoIdentifier
 
   override def formats = super.formats + new ObjectIdSerializer + new DateSerializer
 

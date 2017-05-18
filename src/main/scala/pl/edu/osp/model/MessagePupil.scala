@@ -6,7 +6,8 @@ import org.bson.types.ObjectId
 
 object MessagePupil extends MongoDocumentMeta[MessagePupil] {
   override def collectionName = "MessagePupil"
-
+  override def connectionIdentifier = pl.edu.osp.config.MyMongoIdentifier
+  override def mongoIdentifier = pl.edu.osp.config.MyMongoIdentifier
   override def formats = super.formats + new ObjectIdSerializer + new DateSerializer
 
   def create = MessagePupil(ObjectId.get, 0L, 0L, "", 0L, "", "", false, "", false)

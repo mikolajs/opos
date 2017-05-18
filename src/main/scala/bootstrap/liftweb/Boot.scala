@@ -23,13 +23,14 @@ import _root_.net.liftweb.mongodb._
 import pl.edu.osp.comet.CronActor
 
 import pl.edu.osp.lib.{ConfigLoader => CL}
+import pl.edu.osp.config.MongoConfig
 
 object DBVendor extends ConnectionManager {
   def newConnection(name: ConnectionIdentifier): Box[Connection] = {
     try {
-      //Class.forName(classOf[org.postgresql.Driver].getName)
-      Class.forName("org.postgresql.Driver")
-      val dm = DriverManager.getConnection("jdbc:postgresql:osp", CL.sqlDB, CL.sqlPassw)
+
+      Class.forName("org.h2.Driver")
+      val dm = DriverManager.getConnection("jdbc:h2:./osp")
       Full(dm)
     } catch {
       case e: Exception => e.printStackTrace; Empty
@@ -42,16 +43,12 @@ object DBVendor extends ConnectionManager {
 }
 
 
-
 class Boot {
   def boot {
-    CL.init
 
     DB.defineConnectionManager(DefaultConnectionIdentifier, DBVendor)
+    MongoConfig.init()
 
-    MongoDB.defineDb(DefaultMongoIdentifier, MongoAddress(MongoHost("127.0.0.1", 27017), CL.mongoDB))
-
-    //MongoDB.defineDb(OtherMongoIdentifier, MongoAddress(MongoHost("127.0.0.1"), CL.mongoDB))
     // where to search snippet
     LiftRules.addToPackages("pl.edu.osp")
     LiftRules.addToPackages("pl.edu.osp.snippet.page")

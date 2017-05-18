@@ -7,7 +7,8 @@ import _root_.net.liftweb.json.JsonDSL._
 
 object DocTemplate extends MongoDocumentMeta[DocTemplate] {
   override def collectionName = "DocTemplate"
-
+  override def connectionIdentifier = pl.edu.osp.config.MyMongoIdentifier
+  override def mongoIdentifier = pl.edu.osp.config.MyMongoIdentifier
   override def formats = super.formats + new ObjectIdSerializer + new DateSerializer
 
   def create = DocTemplate(ObjectId.get, false, "", "", "")

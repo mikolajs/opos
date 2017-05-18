@@ -12,6 +12,8 @@ import org.bson.types.ObjectId
 
 object ForumTag extends MongoDocumentMeta[ForumTag] {
   override def collectionName = "forumtag"
+  override def connectionIdentifier = pl.edu.osp.config.MyMongoIdentifier
+  override def mongoIdentifier = pl.edu.osp.config.MyMongoIdentifier
 
   override def formats = super.formats + new ObjectIdSerializer + new DateSerializer
 

@@ -6,6 +6,8 @@ import _root_.net.liftweb.json.JsonDSL._
 
 object BellsData extends MongoDocumentMeta[BellsData] {
   override def collectionName = "bellsdata"
+  override def connectionIdentifier = pl.edu.osp.config.MyMongoIdentifier
+  override def mongoIdentifier = pl.edu.osp.config.MyMongoIdentifier
 
   override def formats = super.formats + new ObjectIdSerializer + new DateSerializer
 

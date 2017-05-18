@@ -5,8 +5,9 @@ import org.bson.types.ObjectId
 
 
 object MainPageSlide extends MongoDocumentMeta[MainPageSlide] {
+  override def connectionIdentifier = pl.edu.osp.config.MyMongoIdentifier
+  override def mongoIdentifier = pl.edu.osp.config.MyMongoIdentifier
   override def collectionName = "MainPageSlide"
-
   override def formats = super.formats + new ObjectIdSerializer + new DateSerializer
 
   def create = MainPageSlide(ObjectId.get, "", "", "")

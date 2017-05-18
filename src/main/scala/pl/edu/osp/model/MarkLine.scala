@@ -12,7 +12,8 @@ case class Mark(var time: Long, var teacher: String, var mark: String) {
 
 object MarkLine extends MongoDocumentMeta[MarkLine] {
   override def collectionName = "MarkLine"
-
+  override def connectionIdentifier = pl.edu.osp.config.MyMongoIdentifier
+  override def mongoIdentifier = pl.edu.osp.config.MyMongoIdentifier
   override def formats = super.formats + new ObjectIdSerializer + new DateSerializer
 
   def create = {

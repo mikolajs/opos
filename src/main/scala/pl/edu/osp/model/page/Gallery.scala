@@ -14,6 +14,8 @@ case class Photo(val thumbnail: String, val full: String)
 
 object Gallery extends MongoDocumentMeta[Gallery] {
   override def collectionName = "galleries"
+  override def connectionIdentifier = pl.edu.osp.config.MyMongoIdentifier
+  override def mongoIdentifier = pl.edu.osp.config.MyMongoIdentifier
 
   override def formats = super.formats + new ObjectIdSerializer + new DateSerializer
 
