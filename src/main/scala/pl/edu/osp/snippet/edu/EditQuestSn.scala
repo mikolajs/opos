@@ -80,7 +80,7 @@ class EditQuestSn extends BaseResourceSn {
     var answer = ""
     var wrongAnswers = ""
     var department = ""
-    var dificult = "2"
+    var difficult = "1"
 
     def save(): JsCmd = {
       //add nr of quest
@@ -110,7 +110,7 @@ class EditQuestSn extends BaseResourceSn {
       quest.subjectId = subjectNow.id
       quest.subjectName = subjectNow.name
       quest.department = department
-      quest.dificult = tryo(dificult.toInt).openOr(9)
+      quest.dificult = tryo(difficult.toInt).openOr(9)
       quest.lev = tryo(level.toInt).openOr(1)
       quest.save
       JsFunc("editQuest.insertQuestion", quest._id.toString).cmd
@@ -131,10 +131,7 @@ class EditQuestSn extends BaseResourceSn {
       }
     }
 
-    val dificults = 1 to 9 map (i => {
-      val iS = i.toString;
-      (iS, iS)
-    })
+    val difficultList = List(("1", "Normalne"),("2", "Trudniejsze"),("3", "Bardzo trudne"))
     val departments = subjectNow.departments.map(d => (d, d))
 
     val form = "#idQuest" #> SHtml.text(id, id = _) &
@@ -145,7 +142,7 @@ class EditQuestSn extends BaseResourceSn {
       "#levelQuest" #> SHtml.select(levList, Full(subjectNow.lev.toString), level = _) &
       "#wrongQuest" #> SHtml.text(wrongAnswers, x => wrongAnswers = x.trim) &
       "#departmentQuest" #> SHtml.select(departments, Full(departName), department = _) &
-      "#dificultQuest" #> SHtml.select(dificults, Full(dificult), dificult = _) &
+      "#dificultQuest" #> SHtml.select(difficultList, Full(difficult), difficult = _) &
       "#saveQuest" #> SHtml.ajaxSubmit("Zapisz", save) &
       "#deleteQuest" #> SHtml.ajaxSubmit("Usuń", delete) andThen SHtml.makeFormsAjax
 

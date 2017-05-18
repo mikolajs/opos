@@ -63,8 +63,7 @@ class LoginSn {
               if (user.password.match_?(pass.trim)) {
                 User.logUserIn(user)
                 S.redirectTo(redirectUrl)
-              }
-              else message = " Błędny PESEL "
+              } else message = " Błędne hasło "
             } else message = " Będąc nauczycielem wpisz email jako login"
           }
           case _ => message = " Nie znaleziono PESELu. "

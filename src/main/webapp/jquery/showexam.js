@@ -92,6 +92,10 @@ var ShowExam =  dejavu.Class.declare({
                     $('#fixedButton').removeClass('btn-success').addClass('btn-danger');
                     window.onbeforeunload = beforeUnload;
          });
+         $('textarea').on("paste", function() {
+                             $('#fixedButton').removeClass('btn-success').addClass('btn-danger');
+                             window.onbeforeunload = beforeUnload;
+         });
 	}
 
 

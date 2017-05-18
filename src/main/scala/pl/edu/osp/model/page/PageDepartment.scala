@@ -7,7 +7,6 @@
 package pl.edu.osp.model.page
 
 import _root_.net.liftweb.mongodb._
-import java.util.Date
 import org.bson.types.ObjectId
 
 

@@ -6,21 +6,20 @@
 
 package pl.edu.osp.snippet.page
 
+import net.liftweb.http.js.JsCmds.SetHtml
+import pl.edu.osp.lib.Formater
+
 import scala.xml.{Unparsed}
-import _root_.net.liftweb._
-import util._
-import common._
-import _root_.pl.edu.osp._
-import model.page._
-import model._
-import lib._
+import _root_.net.liftweb.util._
+import net.liftweb.json.JsonDSL._
+import net.liftweb.common._
+import pl.edu.osp.model.page._
+import pl.edu.osp.model.User
 import _root_.net.liftweb.http.{S, SHtml}
 import Helpers._
-import _root_.net.liftweb.json.JsonDSL._
-import http.js.JsCmds.SetHtml
 
 
-class PageSn {
+class PageSn extends FlashTileSn {
 
   val user = User.currentUser
 
@@ -40,8 +39,10 @@ class PageSn {
 
   //adding slide for department
   def slide = {
+      val tile =  appendTile("/page/" + dep)
       "#slideImg [src]" #>  pageDep.img &
-      "#slideInfo *" #> Unparsed(pageDep.info)
+      "#slideInfo *" #> Unparsed(pageDep.info) &
+      "#flashTile" #> tile
   }
 
   def buildMenu() = {
@@ -51,17 +52,17 @@ class PageSn {
       <span class="glyphicon glyphicon-plus"></span> Dodaj artykuł</a>
     else <span></span>
     "a" #> (List(addArticle, <a href={pathStart + "n"} class="list-group-item"> Aktualności </a>) :::
-      (ArticleHead.findAll(("news" -> false)~("departmentId" -> dep), ("prior" -> 1)).map(
+      ArticleHead.findAll(("news" -> false)~("departmentId" -> dep), "prior" -> 1).map(
       art =>
         <a href={pathStart + art._id.toString} class="list-group-item">{art.title}</a>
-      )))
+      ))
   }
 
 
   def switchContent() = {
     what match {
       case "n" => {
-        val newses = ArticleHead.findAll(("news" -> true)~("departmentId" -> dep), ("_id" -> -1))
+        val newses = ArticleHead.findAll(("news" -> true)~("departmentId" -> dep), "_id" -> -1)
         showNewses(newses)
       }
       case idArt:String => {
@@ -130,7 +131,7 @@ class PageSn {
 
   private def isOwner(idFromArticle: Long): Boolean = {
     User.currentUser match {
-      case Full(user) => (idFromArticle == user.id.get || user.role.get == "a")
+      case Full(u) => idFromArticle == u.id.get || u.role.get == "a"
       case _ => false
     }
   }
@@ -152,7 +153,7 @@ class PageSn {
           </span>
           <span class="glyphicon glyphicon-calendar"></span>
           <span class="date">
-            {Formater.formatDate(news._id.getDate())}
+            {Formater.formatDate(news._id.getDate)}
           </span>
         </div>
         <div class="textBox">
@@ -185,7 +186,7 @@ class PageSn {
             {articleHead.authorName}
           </span>
           <span class="date">
-            {Formater.formatTime(articleHead._id.getDate())}
+            {Formater.formatTime(articleHead._id.getDate)}
           </span>{if (isOwner(articleHead.authorId)) <span class="edit">
           <a href={"/editarticle/" + articleHead._id.toString} class="btn btn-info">
             <span class="glyphicon glyphicon-pencil"></span>Edytuj</a>

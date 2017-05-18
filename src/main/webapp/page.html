@@ -62,6 +62,7 @@
          $('#ajaxNews').show(100);
     }
 
+
     </script>
     <style>
 
@@ -104,8 +105,6 @@
         }
 
 
-
-
     </style>
 
 
@@ -116,7 +115,7 @@
          data-lift="page.MenuSn.upperMenu">
 
       <span class="leftMenu">
-          <a href="#"><img src="/images/zkpig/logo.png" /></a>
+          <a href="/"><img src="/images/zkpig/logo.png" /></a>
           <span id="schoolInfo"></span>
 
       </span>
@@ -158,6 +157,7 @@
 <div data-lift="page.PageSn.slide" style="position: relative;">
         <div id="slideInfo"></div>
         <img  id="slideImg" src="/style/edukacja.jpg" style="width: 100%" />
+        <span id="flashTile"></span>
 </div>
 
 
@@ -185,13 +185,7 @@
                 </div>
 
                 <div class="row" id="articleCont">
-                    <div class="col-lg-3">
-                        <h2 ><small id="depHeader"></small></h2>
-                        <div class="list-group">
-                            <a class="depMenu"></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-9">
+                    <div class="col-lg-12">
                         <div id="depBody"></div>
                     </div>
                 </div>
@@ -216,6 +210,20 @@
 <script src="/jqueryui/jquery-ui.min.js" type="text/javascript"></script>
 <script src="/jquery/logoandfavicon.js" type="text/javascript"></script>
 <script src="/jquery/menu.js" type="text/javascript"></script>
+<script>
+    document.getElementById("closeFlash").addEventListener("click", function(event){
+        event.stopPropagation();
+        $("#flashTilesContainer").hide(200);
+    });
+   function redirectToPage(path) {
+    var ar = window.location.href.split('/');
+    var newPath = ar[0]+ "//" + ar[2] + path;
+    window.location.assign(newPath);
+   }
+   setTimeout( function(){
+        $("#flashTilesContainer").hide(200);
+   }, 20000);
+</script>
 </body>
 </html>
 

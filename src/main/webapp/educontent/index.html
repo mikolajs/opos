@@ -66,6 +66,10 @@
 					var descript = $courseItem.children('p.courseInfo').text().trim();
 					$('#descript').val(descript);
 
+					var public = $courseItem.children('p').children('span.isPublic').text().trim();
+					if(public == 'Tak') $('#public').attr('checked', true);
+					else $('#public').attr('checked', false);
+
 					$('#addNewItem').dialog('open');
 				});
 			});
@@ -106,6 +110,7 @@ Usunięcie zadziała tylko po usunięciu wszystkich lekcji w kursie.');
           <p class="courseInfo"></p>
           <p> <a class="btn btn-info editLessonButton" href="#"  role="button"  >Edycja lekcji</a>
           <span class="btn btn-danger editCourseButton"   >Edycja  kursu</span></p>
+         <p><span>Publiczny: </span><span class="isPublic"></span></p>
    
         </li>
     </ul>

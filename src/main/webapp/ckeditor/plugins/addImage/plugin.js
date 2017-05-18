@@ -17,8 +17,8 @@ CKEDITOR.plugins.add( 'addImage',
     {
       return {
         title : 'Dodaj obrazek',
-        minWidth : 600,
-        minHeight : 500,
+        minWidth : 800,
+        minHeight : 600,
         contents :
         [
           {
@@ -38,12 +38,11 @@ CKEDITOR.plugins.add( 'addImage',
               },
 	          {
 	            type : 'html',
-	            html : '<iframe id="imageLoaderFrame" src="/imgstorage"  style="width:100%;min-height:180px;" frameborder="0" onload="getImageURLfromIFrame(this)" ></iframe>'
+	            html : '<iframe id="imageLoaderFrame" src="/imgstorage"  style="width:100%;min-height:80px;" frameborder="0" onload="getImageURLfromIFrame(this)" ></iframe>'
 	          },
-              {
-                  type: 'html',
-                  html: '<img src="" id="imagePreview" style="max-height:250px;%;width:auto;"/>'
-                },
+              {    type: 'html',
+                 html: '<img src="" id="imagePreview" style="max-height:300px;width:auto;margin:auto;"/>'
+              }
             ]
           },
           
@@ -51,27 +50,22 @@ CKEDITOR.plugins.add( 'addImage',
 	
         onOk : function()
         {
-	  var imageNode = null;
-				if ( !this.fakeImage )
-				{
-					imageNode = new CKEDITOR.dom.element( 'img', editor.document );
-				}
-				else
-				{
-					imageNode = this.iImageNode;
-				}
-				
-				 var dialog = this;
-		      var url = dialog.getValueOf('tab1','url');
+	        var imageNode = null;
+			if ( !this.fakeImage )	{
+				imageNode = new CKEDITOR.dom.element( 'img', editor.document );
+			}
+			else {
+				imageNode = this.iImageNode;
+			}
+			var dialog = this;
+		    var url = dialog.getValueOf('tab1','url');
 			imageNode.setAttribute('src',url);
-					editor.insertElement( imageNode );
-        
-        },
-       
+			editor.insertElement( imageNode );
+            document.getElementById("imagePreview").setAttribute("src", "");
+        }
       };
     } );
-               
-             
+
             }
           } );
  

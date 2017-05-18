@@ -60,3 +60,63 @@ th  {
         background-repeat: no-repeat;
         background-position: center;
      }
+
+     div#flashTilesContainer {
+                 position: fixed;
+                 top: 50px; left: 5px;
+                 width: 300px; height: auto;
+                 z-index: 2000;
+                 box-shadow: 3px 3px 5px #434;
+             }
+
+             div#flashTile {
+             position: relative;
+             width: 300px; height: 300px;
+             background-color: #fefefe;
+             background-repeat: no-repeat;
+             background-position: center;
+             background-size: 300px 300px;
+             }
+
+             div#flashTile .trans-box {
+             background-color: #222;
+             opacity: 0.8;
+             width: 100%;
+             z-index: 2001;
+             bottom: 0px;
+             position: absolute;
+             }
+
+             div#flashTile .trans-box h1,
+             div#flashTile .trans-box h2,
+             div#flashTile .trans-box h3,
+             div#flashTile .trans-box h4 {
+             opacity: 1.0;
+             color: white;
+             text-transform: uppercase;
+             text-align: center;
+             padding: 10px 4px;
+             margin: 2px;
+
+             }
+
+             div#flashTile .trans-box h1 {  font-size: 1.7em; }
+             div#flashTile .trans-box h2 {  font-size: 1.4em; }
+             div#flashTile .trans-box h3 { font-size: 1.2em; }
+             div#flashTile .trans-box h4 {  font-size: 1em; }
+
+             #closeFlash span {
+             position: absolute;
+             color: #bbb;
+             z-index: 3000;
+             cursor: pointer;
+             top: 5px; right: 5px;
+             font-size: 25px;
+             font-weight: normal;
+             transition: all 1s;
+             }
+
+             #closeFlash span:hover {
+             color: #d55;
+             transform: rotate(90deg);
+             }

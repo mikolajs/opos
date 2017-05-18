@@ -140,7 +140,7 @@ class BaseShowCourseSn  {
   }
 
   protected def createPlainQuest(quest: QuizQuestion) = {
-    mkQuestHTML('p', quest.question, quest.nr, "", scala.xml.NodeSeq.Empty)
+    mkQuestHTML('p', quest.question, quest.nr, quest.dificult, "", scala.xml.NodeSeq.Empty)
   }
 
   protected def createSingleAnswerQuest(quest: QuizQuestion) = {
@@ -151,7 +151,7 @@ class BaseShowCourseSn  {
       </label>
     </li>)
     val correctString = quest.answers.mkString(";;;")
-    mkQuestHTML('s', quest.question, quest.nr,  correctString, <ul>
+    mkQuestHTML('s', quest.question, quest.nr, quest.dificult, correctString, <ul>
       {all}
     </ul>)
   }
@@ -161,7 +161,7 @@ class BaseShowCourseSn  {
       <label>Odpowiedź:</label> <input type="text" name={quest._id.toString}/>
     </div>
     val correctString = quest.answers.mkString(";;;")
-    mkQuestHTML('i', quest.question, quest.nr,  correctString, all)
+    mkQuestHTML('i', quest.question, quest.nr, quest.dificult, correctString, all)
   }
 
   protected def createMultiAnswerQuest(quest: QuizQuestion) = {
@@ -172,13 +172,18 @@ class BaseShowCourseSn  {
       </label>
     </li>)
     val correctString = quest.answers.mkString(";;;")
-    mkQuestHTML('m', quest.question, quest.nr,  correctString, <ul>
+    mkQuestHTML('m', quest.question, quest.nr, quest.dificult, correctString, <ul>
       {all}
     </ul>)
   }
 
-  protected def mkQuestHTML(questType: Char, question: String, nr: Int,
+  protected def mkQuestHTML(questType: Char, question: String, nr: Int, difficult: Int,
                             correct: String, answers: scala.xml.NodeSeq) = {
+    val star = difficult match {
+      case 2 => <span class="glyphicon glyphicon-star-empty" title="Trudne"></span>
+      case 3 => <span class="glyphicon glyphicon-star" title="Bardzo trudne"></span>
+      case _ => <span></span>
+    }
     <section class="question">
       <div class="panel panel-info">
         <div class="panel-heading questionMark">

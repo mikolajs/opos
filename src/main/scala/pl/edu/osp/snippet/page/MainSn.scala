@@ -16,26 +16,24 @@ import _root_.pl.edu.osp._
 import model.page._
 import model._
 import lib._
-import _root_.net.liftweb.mapper.By
 import _root_.net.liftweb.http.{S, SHtml}
 import Helpers._
 import _root_.net.liftweb.json.JsonDSL._
-import http.js.JsCmds.SetHtml
 
 
-class MainSn {
+class MainSn extends FlashTileSn {
 
   val user = User.currentUser
 
   val contactMails = ContactMail.findAll.map(contactMail =>
-    (contactMail.description -> contactMail.description))
+    contactMail.description -> contactMail.description)
 
   val contactInfo = MapExtraData.getMapData("contactInfo")
 
   def sendMail() = {
     val contactMails = ContactMail.findAll
     val contactMailsToForm = contactMails.map(contactMail =>
-      (contactMail.description -> contactMail.description))
+      contactMail.description -> contactMail.description)
     var theme = ""
     var content = ""
     var mail = ""
@@ -45,7 +43,7 @@ class MainSn {
       val emailList = contactMails.filter(contactMail => {
         contactMail.description == selectedMail
       })
-      if (!emailList.isEmpty) {
+      if (emailList.nonEmpty) {
         val emailToSend = emailList.head.mailAddress
         val body = content + "\n" + "----------\n Informacja wysłana ze strony przez: " + mail
         Mailer.sendMail(From("zestrony@zkpig26.gda.pl"), Subject(theme),
@@ -66,8 +64,8 @@ class MainSn {
 
   def mainInfo() = {
 
-    "#nameCont *" #> Unparsed((if(contactInfo.contains("name"))
-        addBRInsteadSemiColon(contactInfo("name")) else "")) &
+    "#nameCont *" #> Unparsed(if(contactInfo.contains("name"))
+        addBRInsteadSemiColon(contactInfo("name")) else "") &
       "#patronCont *" #> (if(contactInfo.contains("patron")) contactInfo("patron") else "")  &
       "#streetCont *" #> (if(contactInfo.contains("street")) contactInfo("street") else "")  &
       "#cityCont *" #> (if(contactInfo.contains("city")) contactInfo("city") else "") &
@@ -88,6 +86,10 @@ class MainSn {
         {newses.map(news => createNewsBox(news))}
       </div>
 
+  }
+
+  def cards() = {
+    "#flashTile" #> appendTile("/index")
   }
 
   private def createNewsBox(news: ArticleHead) = {
@@ -124,6 +126,15 @@ class MainSn {
   def setScriptGoogleSearch() = {
     val code = ExtraData.getData("googlesearchcode")
     "script *" #> code
+  }
+
+
+  def imgLinks() = {
+    "li" #> LinkTilesMainPage.findAll(Nil, "order" -> 1).map(
+      lt =>
+        <li><a href={lt.url} target="_blank"><img src={lt.img} /></a></li>
+    )
+
   }
 
   ///========================== not used below =======================
