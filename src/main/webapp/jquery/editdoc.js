@@ -2,7 +2,7 @@
 
 var Document =  dejavu.Class.declare({
     department: "",
-	
+	editor: null,
 	initialize : function(){
 		$('#docEdit').html($('#docContent').val());
 		CKEDITOR.disableAutoInline = true;
@@ -11,6 +11,7 @@ var Document =  dejavu.Class.declare({
 		this.editor = CKEDITOR.inline( 'docEdit', {
 			format_tags : 'p;h2;h3;h4;h5;h6;pre;address',
 			allowedContent : true,
+			removePlugins : 'dragdrop,basket',
 			disableNativeSpellChecker : false,
 			language : 'pl',
 			 toolbar: [
@@ -37,7 +38,7 @@ var Document =  dejavu.Class.declare({
 		return confirm("Jesteś pewien, że chcesz skasować cały dokument?");
 	},
     saveDoc : function() {
-    	$('#docContent').val($('#docEdit').html());
+    	$('#docContent').val(this.editor.getData());
     	return true;
     }
 	

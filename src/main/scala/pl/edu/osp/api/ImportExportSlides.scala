@@ -53,14 +53,14 @@ object ImportExportSlides {
         var name = ""
         val idChange = scala.collection.mutable.Map[String, String]()
         var slidesStr = ""
-        val pathDir = "/home/ms/Pobrane/test/"
+        //val pathDir = "/home/ms/Pobrane/test/"
 
         var entry = zis.getNextEntry
         while(entry != null && !entry.isDirectory) {
 
           name = entry.getName
 
-          val date =  new java.util.Date(entry.getTime())
+          val date =  new java.util.Date(entry.getTime)
           println(s"Zip entry name: $name compresed size size: ${entry.getCompressedSize} size: ${entry.getSize} time: $date " )
           println("ZIP comment " + entry.getComment)
           if( !entry.isDirectory) {
@@ -108,7 +108,7 @@ object ImportExportSlides {
     val zos = new ZipOutputStream(baos)
     val crc = new CRC32
     zos.setLevel(9)
-    val slides = Slide.findAll(("authorId" -> user.id.get)).map(sh => {
+    val slides = Slide.findAll("authorId" -> user.id.get).map(sh => {
       val sc = SlideContent.find(sh.slides).getOrElse(SlideContent.create)
       val reg = """ src=\"(.*)\"""".r
       val srcs = reg.findAllIn(sc.slides)
@@ -125,7 +125,7 @@ object ImportExportSlides {
             val array = p(2).split('.')
             val outStream = getImages(array(0))
             val e = new ZipEntry(array.mkString("."))
-            val binary = outStream.toByteArray()
+            val binary = outStream.toByteArray
             if(binary.length > 100) {
               crc.reset()
               crc.update(binary)
@@ -166,7 +166,7 @@ object ImportExportSlides {
   }
 
   private def getImages(id: String) = {
-    var outputStream = new ByteArrayOutputStream()
+    val outputStream = new ByteArrayOutputStream()
     if (id.nonEmpty) {
       MongoDB.use(DefaultMongoIdentifier) { db =>
         val fs = new GridFS(db)
@@ -193,10 +193,9 @@ object ImportExportSlides {
 
     fileHold match {
 
-      case Full(FileParamHolder(_, mime, _, _)) => {
+      case Full(FileParamHolder(_, mime, _, _)) =>
         if(mime == "application/zip") true
         else false
-      }
       case Full(_) => {
         println("Error, File import failed")
         false
@@ -219,7 +218,7 @@ object ImportExportSlides {
         inputFile.setContentType(mimeType)
         inputFile.setFilename(name)
         inputFile.save
-        fileId = inputFile.getId().toString()
+        fileId = inputFile.getId.toString
     }
     fileId
   }

@@ -25,6 +25,7 @@ class EditExamSn extends BaseResourceSn {
 
     var quizzes = exam.quizzes.map(q => q.toString).mkString(";")
     var multi = exam.multi
+    var attach = exam.attach
     var description = exam.description
     var keys = exam.keys.mkString(";")
     var startExam = Formater.strForDateTimePicker(if(exam.start == 0L) new Date() else new Date(exam.start))
@@ -44,6 +45,7 @@ class EditExamSn extends BaseResourceSn {
       exam.subjectId = tryo(subjectId).openOr(0L)
       exam.subjectName = findSubjectName(exam.subjectId)
       exam.multi = multi
+      exam.attach = attach
       exam.quizzes = quizzes.split(';').map(q => new ObjectId(q)).toList
       exam.keys = keys.split(';').toList
       exam.start = Formater.fromStringDataTimeToDate(startExam).getTime
@@ -73,6 +75,7 @@ class EditExamSn extends BaseResourceSn {
       "#keysList" #> SHtml.text(keys, x =>  keys = x.trim) &
       "#classExam" #> SHtml.select(classes, Full(classId), classId = _ ) &
       "#multiExam" #> SHtml.checkbox(multi, multi = _) &
+      "#attachExam" #> SHtml.checkbox(attach, attach = _) &
       "#startExam" #> SHtml.text(startExam, x =>  startExam = x.trim) &
       "#endExam" #> SHtml.text(endExam, x =>  endExam = x.trim) &
       "#saveExam" #> SHtml.submit("Zapisz", save) &

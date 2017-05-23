@@ -3,6 +3,7 @@ var EditQuest =  dejavu.Class.declare({
 	isOpen : false,
 	department : "",
 	oTable : $(),
+	editor: null,
 	
 	initialize : function() {
 		
@@ -19,7 +20,7 @@ var EditQuest =  dejavu.Class.declare({
 			}
 		});
 
-		CKEDITOR.replace('questionQuest', {
+		this.editor = CKEDITOR.replace('questionQuest', {
 			width : 500,
 			height : 240,
 			allowedContent : true,

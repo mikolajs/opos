@@ -10,15 +10,15 @@
 		//var formula = document.getElementById("formulaEditor");
 		translateOnLoad=false;
 		function displayFormula() {
-
-		  var str = document.getElementById("formulaEditor").value;
-		  str = "`" + str + "`";
-		  var outnode = document.getElementById("formulaDisplay");
-		  var n = outnode.childNodes.length;
-		  for (var i=0; i<n; i++)
-		    outnode.removeChild(outnode.firstChild);
-		  outnode.appendChild(document.createTextNode(str));
-		  //alert("node " + outnode.innerHTML +  " " + AMmathml);
-		  asciimath.AMprocesssNode(outnode);
+//
+//		  var str = document.getElementById("formulaEditor").value;
+//		  str = "`" + str + "`";
+//		  var outnode = document.getElementById("formulaDisplay");
+//		  var n = outnode.childNodes.length;
+//		  for (var i=0; i<n; i++)
+//		    outnode.removeChild(outnode.firstChild);
+//		  outnode.appendChild(document.createTextNode(str));
+//		  //alert("node " + outnode.innerHTML +  " " + AMmathml);
+//		  asciimath.AMprocesssNode(outnode);
 		}
 		//end ascii to math

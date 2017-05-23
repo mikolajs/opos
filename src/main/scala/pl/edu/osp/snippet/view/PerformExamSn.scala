@@ -38,8 +38,6 @@ class PerformExamSn extends BaseSnippet {
         S.notice("Nieprawidłowy kod")
         S.redirectTo("/view/showquiz/" + exam._id.toString)
       }
-
-
     }
 
     if(exam.quizzes.length > 1 && exAns.code.isEmpty) {
@@ -55,23 +53,23 @@ class PerformExamSn extends BaseSnippet {
     val idQuiz = if(exam.quizzes.isEmpty) "0" else exam.quizzes(getGroupInt).toString
     val quiz = Quiz.find(idQuiz).getOrElse(Quiz.create)
     if(quiz.questions.length < 1) S.redirectTo("/view/exams?Error")
-    println("=========  quiz: " + quiz.title + " ; length:  " + quiz.questions.length.toString)
+    //println("=========  quiz: " + quiz.title + " ; length:  " + quiz.questions.length.toString)
     val questMap = quiz.questions.map(qi => ( qi.q.toString -> qi.p)).toMap
 
     val questions = QuizQuestion.findAll("_id" -> ("$in" -> questMap.keySet.toList))
     val questionsItems = questions.map(qu =>  (qu, questMap(qu._id.toString)))
-    println("=========  questions: " + questions.length.toString)
+    //println("=========  questions: " + questions.length.toString)
     "form" #> <span style="display:none;"></span> &
       "#descript *" #> exam.description &
       "#subject *" #> exam.subjectName &
       "#endTime *" #> Formater.formatDate(new Date(exam.end)) &
+      "#attachLink" #>  <input id="attachLink" type="text" readonly="readonly" value={exAns.attach}/> &
       "#test" #> questionsItems.map( q => "div" #> mkQuestHTML(q._1, q._2))
     }
   }
 
 
   def getAnswers() = {
-
 
     val answers = "[" + exAns.answers.map(_.json).mkString(",") + "]"
     println("========= answers: " + answers)
@@ -116,8 +114,8 @@ class PerformExamSn extends BaseSnippet {
 
     val name = "quest_" + nr.toString
 
-    if(fake.length == 0) {
-      if(good.length > 0)  <input type="text" class="form-control" value=""  name={name} />
+    if(fake.isEmpty) {
+      if(good.nonEmpty)  <input type="text" class="form-control" value=""  name={name} />
       else  <textarea class="form-control" name={name} rows="10"></textarea>
     }
     else {
@@ -149,7 +147,7 @@ class PerformExamSn extends BaseSnippet {
   }
 //if code was already used
   private def findIfCodeExists(c:String) =
-    !ExamAnswer.findAll(("code" -> c)~("exam" -> exam._id.toString)).isEmpty
+    ExamAnswer.findAll(("code" -> c)~("exam" -> exam._id.toString)).nonEmpty
 
   private def getGroupInt = {
     if(exAns.code.isEmpty) 0

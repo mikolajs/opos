@@ -6,8 +6,34 @@
 		$slideChoice : null,
 		slideSize : 0,
 		$listItem : null,
+		editor: null,
 		
 		initialize : function(maxSize) {
+		    this.editor = CKEDITOR.on( 'instanceCreated', function( event ) {
+                                      var editor = event.editor,
+                                          element = editor.element;
+                                          //editor.dataProcessor.writer.selfClosingEnd = '/>';
+                                          editor. config.format_tags = 'p;h2;h3;h4;h5;h6;pre;address';
+                                          editor.config.disableNativeSpellChecker = false;
+                                          editor.config.language = 'pl';
+                                          editor.config.allowedContent = true;
+                                          editor.config.toolbar = [
+                          			{ name: 'document', items: [ 'Sourcedialog' ] },
+                                { name: 'basicstyles', items: [ 'Bold','Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat' ]},
+                          			{ name: 'edit', items: [ 'Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo' ] },
+                                { name: 'extraedit', items: [ 'Find','Replace','SelectAll' ]},
+                          			{ name: 'paragraph', items:
+                          			 [ 'NumberedList','BulletedList','-','Outdent','Indent','-',
+                          			 'Blockquote','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock',
+                          			 'BidiLtr','BidiRtl' ] },
+                          			'/',{ name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ] },
+                          			{ name: 'insert', items: [ 'CodeSnippet', 'Mathjax', 'AddFile', 'AddImage', 'Table', 'Youtube','SpecialChar'] },
+                          			{ name: 'styles', items: [ 'Format', 'Styles', 'FontSize', 'Styles', 'TextColor','BGColor'] }
+                          		];
+                              editor.config.extraPlugins = 'codesnippet,mathjax,youtube,addFile,addImage,sourcedialog,specialchar';
+                              editor.config.mathJaxLib = 'https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?config=TeX-AMS_HTML';
+                                  });
+
 			this.slideMaxNr = maxSize;
 			this.$slidesHTML = jQuery($.parseHTML('<div>'+$('#headWordsData').val()+'</div>'));
 			//alert(this.$slidesHTML.html());

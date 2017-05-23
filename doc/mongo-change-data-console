@@ -127,6 +127,15 @@ db.articlehead.update({}, {$set: {departmentName: ""}}, true, true, true);
 #add info and img link to pagedepartment
 db.pagedepartment.update({}, {$set: {info: "", img: ""}}, true, true, true);
 
+#add exam attach boolean field:
+db.Exams.update({}, {$set: {attach: false}}, true, true, true);
+
+#add examsanswer attach link string field:
+db.examanswers.update({}, {$set: {attach: ""}}, true, true, true);
+
+#presentations changes
+db.slides.update({}, {$set: {subjectId: 1, subjectName: "fizyka", lev: 1, department: "" }}, true, true, true)
+
 
 
 

@@ -8,13 +8,13 @@ object Exam extends MongoDocumentMeta[Exam] {
 
   override def formats = super.formats + new ObjectIdSerializer + new DateSerializer
 
-  def create = new Exam(ObjectId.get, 0L, "", 0L, "", 0L, "",  Nil, Nil, 0L, 0L, false)
+  def create = new Exam(ObjectId.get, 0L, "", 0L, "", 0L, "",  Nil, Nil, 0L, 0L, false, false)
 }
 
 case class Exam(var _id: ObjectId, var authorId: Long,  var description: String,
                     var subjectId: Long, var subjectName: String,
                     var classId: Long, var className:String, var quizzes: List[ObjectId],
-                    var keys: List[String], var start: Long, var end: Long, var multi: Boolean)
-  extends MongoDocument[Exam] {
+                    var keys: List[String], var start: Long, var end: Long, var multi: Boolean,
+                var attach: Boolean) extends MongoDocument[Exam] {
   def meta = Exam
 }

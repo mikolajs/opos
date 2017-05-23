@@ -4,6 +4,9 @@
  */
 
 CKEDITOR.editorConfig = function( config ) {
+    config.allowedContent = true;
+    config.removePlugins = 'dragdrop,basket';
+	console.log("configuration CKEDITOR");
 	// Define changes to default configuration here. For example:
 	// config.language = 'fr';
 	// config.uiColor = '#AADC6E';

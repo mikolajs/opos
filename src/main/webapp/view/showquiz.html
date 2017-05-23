@@ -21,8 +21,15 @@
         var showExam = new Object();
         $(document).ready(function() {
             showExam = new ShowExam();
-
         });
+
+        function getURLfromIFrame(elem){
+			var innerDoc = elem.contentDocument || elem.contentWindow.document;
+			var url  = innerDoc.getElementById('linkpath').innerHTML.trim();
+			console.log(url);
+			if(url.length > 0)
+			    $('#attachLink').val(url);
+		}
 
     </script>
     </head_merge>
@@ -32,6 +39,13 @@
         <div class="well"><h3 id="descript"></h3>
             <h4>Zakończenie: <small id="endTime"></small></h4>
         </div>
+        <frameset class="attach">
+            <legend>Dodawanie załącznika</legend>
+            <label for="attachLink">Plik załącznika:</label>
+            <input id="attachLink" type="text" readonly="readonly" value="Brak"/><br/>
+            <iframe  frameborder="0" src="/filestorage"
+                     width="600" height="80" onload="getURLfromIFrame(this)"></iframe>
+        </frameset>
         <form class="form-inline col-lg-offset-3 col-lg-9" class="row" method="POST">
             <h2>Wpisz otrzymany kod</h2>
             <label>KOD: </label><input id="code"  class="form-control" />

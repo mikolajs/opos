@@ -32,7 +32,7 @@ trait BaseResourceSn {
 
   val departNr = tryo(S.param("d").openOr("0").toInt).openOr(0)
   val departName = departNr match {
-    case -1 => "Zgubione"
+    case -1 => ""
     case 0 => if(subjectNow.departments.isEmpty) "" else subjectNow.departments.head
     case nr:Int if(subjectNow.departments.length > nr ) =>   subjectNow.departments(nr)
     case _ => if(subjectNow.departments.isEmpty) "" else subjectNow.departments.head
@@ -76,14 +76,14 @@ trait BaseResourceSn {
           n += 1
           <option value={d} onclick={redirect(s.id.toString, n.toString)} >
             {d}</option>
-        })} ++ <option value="Zgubione" onclick={redirect(s.id.toString, (-1).toString)}>Zgubione</option>
+        })} ++ <option value="Wszystkie" onclick={redirect(s.id.toString, (-1).toString)}>Wszystkie</option>
       </optgroup>
     })
 
 
     "#subjectChoice" #> <select>{subjects}</select> &
     "h2" #> <h2> <span class="label label-info"> {subjectNow.name}</span> Dział:
-      <big id="subjectNameLabel">{Unparsed(departName)}</big></h2>
+      <big id="subjectNameLabel">{if(departName.isEmpty) "Wszystkie" else Unparsed(departName)}</big></h2>
   }
 
   /*

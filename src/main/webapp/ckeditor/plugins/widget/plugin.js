@@ -10,7 +10,7 @@
 'use strict';
 
 ( function() {
-	var DRAG_HANDLER_SIZE = 15;
+	var DRAG_HANDLER_SIZE = 0;
 
 	CKEDITOR.plugins.add( 'widget', {
 		// jscs:disable maximumLineLength
