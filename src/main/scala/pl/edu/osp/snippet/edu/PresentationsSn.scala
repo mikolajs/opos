@@ -17,7 +17,7 @@ class PresentationsSn extends BaseResourceSn {
     "tbody tr" #> slides.map(slide => {
       <tr>
         <td>
-          {slide.title}
+         <a href={"/showslide/" + slide._id.toString} target="_blank"> {slide.title} </a>
         </td>  <td>
         {levMap(slide.lev.toString)}
       </td>

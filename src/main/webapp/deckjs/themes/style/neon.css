@@ -1,51 +1,65 @@
 .deck-container {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
   font-size: 2em;
-  color: #999;
+  color: #aaa;
   background: #000;
 }
-.deck-container .slide {
+.deck-container {
   background: #000;
 }
-.deck-container .slide h1 {
+.deck-container  h1 {
   color: #0af;
   font-weight: normal;
+  margin: 20px 0;
   font-weight: 100;
   text-shadow: 0 0 50px #0af, 0 0 3px #fff;
+  font-size: 2.6em;
 }
-.deck-container .slide h2 {
+.deck-container  h2 {
   color: #af0;
   border-bottom-color: #ccc;
   font-weight: normal;
   font-weight: 100;
   text-shadow: 0 0 15px #af0, 0 0 2px #fff;
   border-bottom: 1px solid #333;
+  font-size: 1.7em;
 }
-.deck-container .slide h3 {
-  color: #fff;
+.deck-container h3 {
+  color: #f90;
   font-weight: normal;
   font-weight: 100;
-  text-shadow: 0 0 10px #fff, 0 0 2px #fff;
+  text-shadow: 0 0 5px #aaa, 0 0 2px #aaa;
+   border-bottom: 1px solid #333;
+  font-size: 1.4em;
 }
-.deck-container .slide pre {
+.deck-container pre {
   border-color: #333;
 }
-.deck-container .slide pre code {
+
+.deck-container h4 {
+    color: #26d;
+    font-size: 1.2em;
+    font-weight: normal;
+    font-weight: 100;
+    text-shadow: 0 0 7px #aaa, 0 0 2px #aaa;
+    border-bottom: 1px solid #333;
+}
+.deck-container pre code {
   color: #fff;
 }
-.deck-container .slide code {
+.deck-container code {
   color: #f0a;
 }
-.deck-container .slide blockquote {
+.deck-container blockquote {
   font-size: 2em;
   padding: 1em 2em;
   color: #fff;
   border-left: 5px solid #fff;
 }
-.deck-container .slide blockquote p {
+.deck-container blockquote p {
   margin: 0;
 }
-.deck-container .slide blockquote cite {
+.deck-container blockquote cite {
   font-size: .5em;
   font-style: normal;
   font-weight: normal;
@@ -53,17 +67,17 @@
   color: #aaa;
   text-shadow: 0 0 15px #fff, 0 0 2px #fff;
 }
-.deck-container .slide ::-moz-selection {
+.deck-container ::-moz-selection {
   background: #a0f;
 }
-.deck-container .slide ::selection {
+.deck-container ::selection {
   background: #a0f;
 }
-.deck-container .slide a, .deck-container .slide a:hover, .deck-container .slide a:focus, .deck-container .slide a:active, .deck-container .slide a:visited {
+.deck-container a, .deck-container a:hover, .deck-container a:focus, .deck-container a:active, .deck-container a:visited {
   color: #f0a;
   text-decoration: none;
 }
-.deck-container .slide a:hover, .deck-container .slide a:focus {
+.deck-container a:hover, .deck-container a:focus {
   text-decoration: underline;
 }
 .deck-container .deck-prev-link, .deck-container .deck-next-link {
@@ -91,7 +105,7 @@
 .deck-container .goto-form label {
   color: #fff;
 }
-.deck-container.deck-menu .slide {
+.deck-container.deck-menu {
   background: #333;
 }
 .deck-container.deck-menu .deck-current {

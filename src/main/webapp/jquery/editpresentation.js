@@ -16,7 +16,7 @@
             CKEDITOR.disableAutoInline = true;
 		//document.getElementById('docEdit').innerHTML = $('#extraText').val();
 		    this.editor = CKEDITOR.inline( 'slideEdit', {
-			format_tags : 'p;h2;h3;h4;h5;h6;pre;address',
+			format_tags : 'p;h1;h2;h3;h4;pre;address',
 			allowedContent : true,
 			removePlugins : 'dragdrop,basket',
 			disableNativeSpellChecker : false,

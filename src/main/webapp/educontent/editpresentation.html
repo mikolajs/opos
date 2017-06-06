@@ -4,10 +4,12 @@
                                                                        src="/jquery/ckeditorresource.js"></script> <script
             type="text/javascript" src="/jquery/dejavu.js"></script> <script
             type="text/javascript" src="/jquery/editpresentation.js"></script>
-
+        <link href="/deckjs/themes/style/swiss_ckeditor.css"
+              id="style-theme-link" type="text/css" rel="stylesheet">
 
         <link href="/ckeditor/plugins/codesnippet/lib/highlight/styles/monokai_sublime.css" rel="stylesheet">
         <script src="/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js"></script>
+
         <script>
      var editPresentation;
     $(document).ready(function(){
@@ -173,6 +175,15 @@ input[type=submit] {
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label for="description" class="col-sm-3 control-label">Opis:</label>
+                                <div class="col-sm-9">
+                                    <textarea class="form-control" rows="3" cols="90" id="description"></textarea>
+                                </div>
+                            </div>
+                            <br />  <br /><br />
+
+
+                            <div class="form-group">
 
                                 <div class="col-lg-3"></div>
                                 <div class="col-lg-3">
@@ -195,6 +206,13 @@ input[type=submit] {
 
 
         <br /> <br /> <br /> <br />
+        <div class="row">
+            <div class="col-lg-12" data-lift="edu.EditPresentationSn.show">
+            <a href="">Pokaż prezentację <img src="/images/fullscreen.png" /></a>
+            </div>
+        </div>
+        <br /> <br />
+
         <div id="slidesView">
 
         </div>
@@ -215,7 +233,7 @@ input[type=submit] {
                 <div class="buttonsAction">
                 <button type="button" class="btn btn-danger btn-lg"
                         id="delSlideAction" style="margin: 10px 50px;">
-                    <span class="glyphicon glyphicon-trash"></span> Usuń
+                    <span class="glyphicon glyphicon-trash"></span> Usuń slajd
                 </button>
                 <button type="button" class="btn btn-default btn-lg"
                         id="cancelSlideAction" style="margin: 10px 50px;">
@@ -223,7 +241,7 @@ input[type=submit] {
                 </button>
                 <button type="button" class="btn btn-success btn-lg"
                         id="saveSlideAction" style="margin: 10px 50px;">
-                    <span class="glyphicon glyphicon-plus"></span> Zapisz
+                    <span class="glyphicon glyphicon-plus"></span> Gotowe
                 </button>
                 </div>
             </div>

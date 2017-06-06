@@ -38,26 +38,29 @@ class BaseShowCourseSn  {
       <h1>Błąd - nie znaleziono materiału</h1>
     </section>
 
-    val (headWords, restOf) = lesson.contents.partition(x => x.what == "w")
+    val (presentations, restOf) = lesson.contents.partition(x => x.what == "p")
     val (quests, restOf2) = restOf.partition(x => x.what == "q")
     val (notes, restOf3) = restOf2.partition(x => x.what == "n")
     val (docum, videos) = restOf3.partition(x => x.what == "d")
 
-    val listHWid = headWords.map(hw => hw.id.drop(1))
+    val listHWid = presentations.map(hw => hw.id.drop(1))
     val listQid = quests.map(q => q.id.drop(1))
     val listVideos = videos.map(v => v.id.drop(1))
     val listDocs = docum.map(d => d.id.drop(1))
 
     val vs = Video.findAll(("_id" -> ("$in" -> listVideos)))
-    val hws = HeadWord.findAll(("_id" -> ("$in" -> listHWid)))
+    val ps = Slide.findAll(("_id" -> ("$in" -> listHWid)))
     val qts = QuizQuestion.findAll(("_id" -> ("$in" -> listQid)))
     val docs = Document.findAll(("_id" -> ("$in" -> listDocs)))
 
     val content = lesson.contents.map(item => item.what match {
-      case "w" => {
-        val headW = hws.find(i => i._id.toString == item.id.drop(1)).
-          getOrElse(HeadWord.create)
-        "<section class=\"headword\">" + headW.content + "</section>"
+      case "p" => {
+        val slide = ps.find(i => i._id.toString == item.id.drop(1)).
+          getOrElse(Slide.create)
+        val slideCont = SlideContent.find(slide.slides).getOrElse(SlideContent.create)
+        val link = "<div class=\"slideLink\"><a href=\"/showslide/" + slide._id.toString +
+          "\" target=\"_blank\"><img src=\"/images/fullscreen.png\" /> </a><div>"
+        "<section class=\"presentation\">" + link + slideCont.slides + "</section>"
       }
       case "q" => {
         createQuest(qts.find(q => q._id.toString == item.id.drop(1)).

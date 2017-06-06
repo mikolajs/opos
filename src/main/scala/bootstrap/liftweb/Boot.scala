@@ -181,8 +181,8 @@ class Boot {
         Menu("Zadania") / "educontent" / "questions" >> LocGroup("edu") >> isTeacher,
         Menu("Pliki") / "educontent" / "files" >> LocGroup("edu") >> isTeacher,
         Menu("Filmy") / "educontent" / "video" >> LocGroup("edu") >> isTeacher,
-        Menu("Prezentacje") / "educontent" / "slides" >> LocGroup("edu") >> isTeacher,
-        Menu("Prezentacje2") / "educontent" / "presentations" >> LocGroup("edu") >> isTeacher,
+        //Menu("Prezentacje stare") / "educontent" / "slides" >> LocGroup("edu") >> isTeacher,
+        Menu("Prezentacje") / "educontent" / "presentations" >> LocGroup("edu") >> isTeacher,
         Menu("Ustawienia") / "educontent" / "options" >> LocGroup("edu") >> isTeacher,
         Menu("Lekcje") / "educontent" / "course" / ** >> LocGroup("extra") >> isTeacher,
         Menu("Sprawdziany edycja") / "educontent" / "editexam" / ** >> LocGroup("extra") >> isTeacher,
@@ -190,8 +190,8 @@ class Boot {
         Menu("Sprawdzian sprawdzanie") / "educontent" / "checkexam" / ** >> LocGroup("extra") >> isTeacher,
         Menu("Edycja lekcji") / "educontent" / "editlesson" / ** >> LocGroup("extra") >> Hidden >> isTeacher,
         Menu("Edycja tematów") / "educontent" / "editheadword" / ** >> LocGroup("extra") >> Hidden >> isTeacher,
-        Menu("Edycja tematów") / "educontent" / "editpresentation" / ** >> LocGroup("extra") >> Hidden >> isTeacher,
-        Menu("Edycja Slajdów") / "educontent" / "editslide" / ** >> LocGroup("extra") >> Hidden >> isTeacher,
+        Menu("Edycja prezentacji") / "educontent" / "editpresentation" / ** >> LocGroup("extra") >> Hidden >> isTeacher,
+        //Menu("Edycja Slajdów") / "educontent" / "editslide" / ** >> LocGroup("extra") >> Hidden >> isTeacher,
         Menu("Edycja quizów") / "educontent" / "editquiz" / ** >> LocGroup("extra") >> Hidden >> isTeacher,
         Menu("Edytuj dokument") / "educontent" / "editdocument" / ** >> LocGroup("extra") >> Hidden >> isTeacher,
         Menu("Indeksuj wideo") / "educontent" / "indexvideo" / ** >> LocGroup("extra") >> Hidden >> isTeacher,
@@ -267,10 +267,10 @@ class Boot {
       ParsePath("public" :: "course" :: courseId :: Nil, _, _, _), _, _) =>
         RewriteResponse(
           "public" :: "course" :: Nil, Map("id" -> courseId))
-      case RewriteRequest(
-      ParsePath("educontent" :: "editslide" :: subjectId :: Nil, _, _, _), _, _) =>
-        RewriteResponse(
-          "educontent" :: "editslide" :: Nil, Map("id" -> subjectId))
+//      case RewriteRequest(
+//      ParsePath("educontent" :: "editslide" :: subjectId :: Nil, _, _, _), _, _) =>
+//        RewriteResponse(
+//          "educontent" :: "editslide" :: Nil, Map("id" -> subjectId))
       case RewriteRequest(
       ParsePath("educontent" :: "editheadword" :: subjectId :: Nil, _, _, _), _, _) =>
         RewriteResponse(

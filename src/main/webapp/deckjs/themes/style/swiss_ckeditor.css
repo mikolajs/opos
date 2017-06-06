@@ -1,6 +1,6 @@
-.slide {
+#slideEdit, .slide {
   font-family: "Helvetica Neue", sans-serif;
-  font-size: 1.3em;
+  font-size: 2em;
    background: #fff;
   position: relative;
   margin: 0 auto;
@@ -8,34 +8,40 @@
  
 }
 
-.slide  p, .slide  span {
+#slideEdit p, #slideEdit, span, .slide  p, .slide  span {
 	 line-height : 1em !important;
 }
 
-.slide  h1 {
+#slideEdit h1, .slide  h1 {
   color: #000;
   margin-bottom: 10px;
+  font-size: 2.6em;
 }
-.slide  h2 {
+#slideEdit h2, .slide  h2 {
   color: #c00;
   border-bottom-color: #ccc;
   margin-bottom: 20px;
+  font-size: 1.7em;
 }
-.slide  h3 {
+#slideEdit h3, .slide  h3 {
   color: #4a4;
   margin-bottom: 10px;
+  font-size: 1.4em;
 }
-.slide h4 {
+#slideEdit h4, .slide h4 {
     color: #000099;
-    margin-bottom: 10px;
+    font-size: 1.2em;
 }
-.slide  pre {
+.deck-container h2, .deck-container h3, .deck-container h4 {
+    border-bottom: 1px solid #aaa; font-weight: 550;
+}
+#slideEdit pre, .slide  pre {
   border-color: #ccc;
 }
-.slide  code {
+#slideEdit code, .slide  code {
   color: #888;
 }
-.slide  blockquote {
+#slideEdit blockquote, .slide  blockquote {
   font-size: 2em;
   font-style: italic;
   padding: 1em 2em;
@@ -43,27 +49,25 @@
   border-left: 5px solid #ccc;
 }
 
-.slide  blockquote p {
+#slideEdit blockquote p, .slide  blockquote p {
   margin: 0;
 }
 
-.slide  blockquote cite {
+#slideEdit blockquote cite, .slide  blockquote cite {
   font-size: .5em;
   font-style: normal;
   font-weight: bold;
   color: #888;
 }
 
-.slide  ::-moz-selection {
-  background: #c00;
-  color: #fff;
-}
 
+#slideEdit a, #slideEdit a:hover, #slideEdit a:focus, #slideEdit a:active, #slideEdit a:visited,
 .slide  a,.slide  a:hover,.slide  a:focus,.slide  a:active,.slide  a:visited {
   color: #c00;
   text-decoration: none;
 }
-.slide  a:hover,.slide  a:focus {
+#slideEdit a:hover, #slideEdit a:focus, .slide  a:hover, .slide  a:focus {
   text-decoration: underline;
 }
+
 

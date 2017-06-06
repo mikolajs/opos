@@ -127,8 +127,8 @@ class EditLesson extends BaseLesson {
             .mkString(",")
           "[" + str + "]"
         }
-        case "w" => {
-          val str = HeadWord.findAll(lookingQuest)
+        case "p" => {
+          val str = Slide.findAll(lookingQuest)
             .map(h => "[ '" + h._id.toString + "',  '" + h.title + "', '" + "']")
             .mkString(",")
           "[" + str + "]"
@@ -155,7 +155,7 @@ class EditLesson extends BaseLesson {
       SetValById("jsonForDataTable", getData) & Run("refreshTab();")
     }
 
-    val itemTypes = List(("w" -> "Hasła"), ("d" -> "Artykuły"),
+    val itemTypes = List(("p" -> "Prezentacje"), ("d" -> "Artykuły"),
       ("q" -> "Zadania"), ("v" -> "Filmy"), ("n" -> "Notatka"))
 
     val form = "#getItemType" #> SHtml.select(itemTypes, Full(itemCh), itemCh = _) &

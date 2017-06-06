@@ -4,8 +4,7 @@
 <div class="lift:surround?with=educontent;at=content">
 	<head_merge> <script src="/jquery/dejavu.js"></script> <script
 		type="text/javascript" src="/ckeditor/ckeditor.js"></script> <script
-		src="/jquery/editlesson.js"></script> <script type="text/javascript"
-		src="/jquery/ASCIIMathML.js"></script>
+		src="/jquery/editlesson.js"></script>
         <script type="text/javascript" src="/jquery/ckeditorresource.js"></script>
 	<link href="/deckjs/core/deck.core.css" rel="stylesheet" />
 	<link href="/deckjs/themes/style/swiss_ckeditor.css"
@@ -13,12 +12,15 @@
 	<script src="/jquery/jquery.dataTables.min.js"></script>
 	<link rel="stylesheet" type="text/css"
 		href="/style/jquery.dataTables.css" />
-
+		<link href="/ckeditor/plugins/codesnippet/lib/highlight/styles/monokai_sublime.css" rel="stylesheet">
+		<script src="/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js"></script>
+		<script type="text/javascript"
+				src="/MathJax/MathJax.js?config=TeX-AMS_HTML-full">
+		</script>
 	<script>
 		var lessonEditor = new Object();
 		var oTable = new Object();
-	</script>
-	<script>
+
 		$(document)
 				.ready(
 						function() {

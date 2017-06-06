@@ -56,20 +56,26 @@ var LessonEditor = dejavu.Class
 
 				this.editor = CKEDITOR.replace('noticeEditor', {
                 			width : 700,
-                			height : 230,
+                			height : 220,
                 			allowedContent : true,
                 			format_tags : 'p;h2;h3;h4;h5;h6;pre;address',
-                            language : 'pl',
+                			language : 'pl',
                 			extraPlugins : 'youtube,addImage,addFile,codesnippet,mathjax,specialchar',
-                            toolbar : [ [ 'Sourcedialog' ],
-                                                            [ 'Link','Unlink','Anchor' ],[ 'Maximize', 'ShowBlocks','-','About' ] ,
-                                                [ 'Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo' ],
-                                                [ 'Find','Replace','-','SelectAll' ],
-                                                [ 'Bold','Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat' ],
-                                                [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','BidiLtr','BidiRtl' ],
-                                                [ 'AddImage',  'Youtube', 'AddFile', 'Mathjax', 'Table','HorizontalRule','SpecialChar','Iframe' ] ,
-                                                [ 'Styles','Format','FontSize','Font' ],
-                                                [ 'TextColor','BGColor' ] ]
+                            toolbar: [
+                               { name: 'document', items: [ 'Sourcedialog' ] },
+                          { name: 'basicstyles', items: [ 'Bold','Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat' ]},
+                           { name: 'edit', items: [ 'PasteText','PasteFromWord','Undo','Redo' ] },
+                            { name: 'extraedit', items: [ 'Find','Replace','SelectAll' ]},
+                                   			{ name: 'paragraph', items:
+                                   			 [ 'NumberedList','BulletedList','-','Outdent','Indent','-',
+                                   			 'Blockquote','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock',
+                                 			 'BidiLtr','BidiRtl' ] },
+                                    			{ name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ] },
+                                       			{ name: 'insert', items: [ 'CodeSnippet', 'Mathjax', 'AddFile', 'AddImage', 'Table', 'Youtube','SpecialChar'] },
+                                    			{ name: 'styles', items: [ 'Format', 'Styles', 'FontSize', 'Styles', 'TextColor','BGColor'] }
+                             ],
+                             extraPlugins: 'codesnippet,mathjax,youtube,addFile,addImage,sourcedialog,specialchar',
+                             mathJaxLib : 'https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?config=TeX-AMS_HTML'
                 		});
 
 
@@ -169,7 +175,7 @@ var LessonEditor = dejavu.Class
 			_createItem : function(item) {
 				var mapIco = {
 					q : "quiz.png",
-					w : "presentation.png",
+					p : "presentation.png",
 					v : "video.png",
 					d : "document.png",
 					n : "notice.png"

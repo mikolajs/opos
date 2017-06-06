@@ -21,7 +21,7 @@ class EditPresentationSn {
   val subIdLong = if (slideHead.subjectId == 0L) subId.toLong else slideHead.subjectId
   var subjectNow = SubjectTeach.findAll(("id" -> subIdLong) ~ ("authorId" -> user.id.get)) match {
     case sub :: list => sub
-    case _ => S.redirectTo("/educontent/slides")
+    case _ => S.redirectTo("/educontent/presentations")
   }
 
   //for showSlides - viewer
@@ -45,6 +45,7 @@ class EditPresentationSn {
     var subjectLev = slideHead.lev.toString
     var contentString = slideCont.slides
     var department = slideHead.department
+    var description = slideHead.descript
     //println("------------headWords data -----------------\n" +headWordsData)
 
     val departments = subjectNow.departments.map(s => {
@@ -64,6 +65,7 @@ class EditPresentationSn {
         slideHead.lev = subjectLev.toInt
         slideHead.department = department
         slideHead.authorId = userId
+        slideHead.descript = description
         slideCont.slides = contentString
         slideHead.save
         slideCont.save
@@ -77,11 +79,11 @@ class EditPresentationSn {
           slideHead.delete
           slideCont.delete
       }
-      S.redirectTo("/educontent/slides")
+      S.redirectTo("/educontent/presentations")
     }
 
     def cancelAction() {
-      S.redirectTo("/educontent/slides")
+      S.redirectTo("/educontent/presentations")
     }
 
 
@@ -90,10 +92,14 @@ class EditPresentationSn {
       "#subject" #> SHtml.text(subjectNow.name, subjectName = _, "readonly" -> "readonly") &
       "#subjectLevel" #> SHtml.select(levList, Full(subjectLev), subjectLev = _) &
       "#department" #> SHtml.select(departments, Full(department), department = _) &
+      "#description" #> SHtml.textarea(description, description = _) &
       "#slidesData" #> SHtml.textarea(contentString, contentString = _) &
       "#save" #> SHtml.button(<span class="glyphicon glyphicon-floppy-save"></span> ++ Text(" Zapisz"), saveData, "title" -> "Zapisz") &
       "#delete" #> SHtml.button(<span class="glyphicon glyphicon-trash"></span> ++ Text(" Usuń "), deleteData, "title" -> "Usuń") &
       "#cancel" #> SHtml.button(<span class="glyphicon glyphicon-share-alt"></span> ++ Text(" Anuluj "), cancelAction, "title" -> "Anuluj")
   }
 
+  def show() = {
+    "a [href]" #> ("/showslide/" + id)
+  }
 }

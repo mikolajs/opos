@@ -24,34 +24,47 @@
 .deck-container .slide h1, .deck-container .slide h2, .deck-container .slide h3, .deck-container .slide h4, .deck-container .slide h5, .deck-container .slide h6 {
   font-family: "Hoefler Text", Constantia, Palatino, "Palatino Linotype", "Book Antiqua", Georgia, serif;
 }
-.deck-container .slide h1 {
+.deck-container h1 {
   color: #08455f;
+  margin:  20px 0;
+  font-size: 2.6em;
 }
-.deck-container .slide h2 {
-  color: #0b7495;
-  border-bottom: 0;
+.deck-container h2 {
+  color: #161;
+  font-size: 1.7em;
 }
-.cssreflections .deck-container .slide h2 {
+.deck-container h3 {
+  color: #e51;
+
+  font-size: 1.4em;
+}
+
+.deck-container h4 {
+    color: #444;
+    font-size: 1.2em;
+}
+.deck-container h2, .deck-container h3, .deck-container h4 {
+    border-bottom: 1px solid #aaa; font-weight: 550;
+}
+.cssreflections .deck-container h2 {
   line-height: 1;
   -webkit-box-reflect: below -0.556em -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0.3, transparent), color-stop(0.7, rgba(255, 255, 255, 0.1)), to(transparent));
   -moz-box-reflect: below -0.556em -moz-linear-gradient(top, transparent 0%, transparent 30%, rgba(255, 255, 255, 0.3) 100%);
 }
-.deck-container .slide h3 {
-  color: #000;
-}
-.deck-container .slide pre {
+
+.deck-container pre {
   border-color: #cde;
   background: #fff;
   position: relative;
   z-index: auto;
   /* http://nicolasgallagher.com/css-drop-shadows-without-images/ */
 }
-.borderradius .deck-container .slide pre {
+.borderradius .deck-container pre {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
-.csstransforms.boxshadow .deck-container .slide pre > :first-child:before {
+.csstransforms.boxshadow .deck-container pre > :first-child:before {
   content: "";
   position: absolute;
   z-index: -1;
@@ -61,7 +74,7 @@
   left: 0;
   right: 0;
 }
-.csstransforms.boxshadow .deck-container .slide pre:before, .csstransforms.boxshadow .deck-container .slide pre:after {
+.csstransforms.boxshadow .deck-container pre:before, .csstransforms.boxshadow .deck-container pre:after {
   content: "";
   position: absolute;
   z-index: -2;
@@ -73,7 +86,7 @@
   -moz-box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
   box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
 }
-.csstransforms.boxshadow .deck-container .slide pre:before {
+.csstransforms.boxshadow .deck-container pre:before {
   left: 10px;
   -webkit-transform: rotate(-3deg);
   -moz-transform: rotate(-3deg);
@@ -81,7 +94,7 @@
   -o-transform: rotate(-3deg);
   transform: rotate(-3deg);
 }
-.csstransforms.boxshadow .deck-container .slide pre:after {
+.csstransforms.boxshadow .deck-container pre:after {
   right: 10px;
   -webkit-transform: rotate(3deg);
   -moz-transform: rotate(3deg);
@@ -89,10 +102,10 @@
   -o-transform: rotate(3deg);
   transform: rotate(3deg);
 }
-.deck-container .slide code {
+.deck-container code {
   color: #789;
 }
-.deck-container .slide blockquote {
+.deck-container blockquote {
   font-family: "Hoefler Text", Constantia, Palatino, "Palatino Linotype", "Book Antiqua", Georgia, serif;
   font-size: 2em;
   padding: 1em 2em .5em 2em;
@@ -102,12 +115,12 @@
   border: 1px solid #cde;
   z-index: auto;
 }
-.borderradius .deck-container .slide blockquote {
+.borderradius .deck-container blockquote {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
-.boxshadow .deck-container .slide blockquote > :first-child:before {
+.boxshadow .deck-container blockquote > :first-child:before {
   content: "";
   position: absolute;
   z-index: -1;
@@ -117,7 +130,7 @@
   left: 0;
   right: 0;
 }
-.boxshadow .deck-container .slide blockquote:after {
+.boxshadow .deck-container blockquote:after {
   content: "";
   position: absolute;
   z-index: -2;
@@ -131,16 +144,16 @@
   -moz-box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
 }
-.deck-container .slide blockquote p {
+.deck-container blockquote p {
   margin: 0;
 }
-.deck-container .slide blockquote cite {
+.deck-container blockquote cite {
   font-size: .5em;
   font-style: normal;
   font-weight: bold;
   color: #888;
 }
-.deck-container .slide blockquote:before {
+.deck-container blockquote:before {
   content: "“";
   position: absolute;
   top: 0;
@@ -150,19 +163,19 @@
   color: #ccf0f0;
   z-index: 1;
 }
-.deck-container .slide ::-moz-selection {
+.deck-container ::-moz-selection {
   background: #08455f;
   color: #fff;
 }
-.deck-container .slide ::selection {
+.deck-container ::selection {
   background: #08455f;
   color: #fff;
 }
-.deck-container .slide a, .deck-container .slide a:hover, .deck-container .slide a:focus, .deck-container .slide a:active, .deck-container .slide a:visited {
+.deck-container a, .deck-container a:hover, .deck-container a:focus, .deck-container a:active, .deck-container a:visited {
   color: #599;
   text-decoration: none;
 }
-.deck-container .slide a:hover, .deck-container .slide a:focus {
+.deck-container a:hover, .deck-container a:focus {
   text-decoration: underline;
 }
 .deck-container .deck-prev-link, .deck-container .deck-next-link {
@@ -179,13 +192,13 @@
 .deck-container .deck-status {
   font-size: 0.6666em;
 }
-.deck-container.deck-menu .slide {
+.deck-container.deck-menu {
   background: transparent;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
-.rgba .deck-container.deck-menu .slide {
+.rgba .deck-container.deck-menu {
   background: rgba(0, 0, 0, 0.1);
 }
 .deck-container.deck-menu .slide.deck-current, .rgba .deck-container.deck-menu .slide.deck-current, .no-touch .deck-container.deck-menu .slide:hover {
