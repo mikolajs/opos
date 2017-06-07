@@ -16,6 +16,8 @@ import json.JsonParser
 import org.bson.types.ObjectId
 import Helpers._
 
+////DO USUNIĘCIA
+
 class EditSlideSn extends BaseResourceSn {
 
   val id = S.param("id").openOr("0")

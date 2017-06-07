@@ -143,13 +143,13 @@ class MarksSn extends BaseTeacher {
     marks match {
       case Nil => <td></td>
       case ms => {
-        <td title={marks.map(marksToHTMLHelps(_)).mkString("\n")} >{ms.head.mark}</td>
+        <td title={marks.map(marksToHTMLHelps(_)).mkString("\n")} >{ms.head.m}</td>
       }
     }
   }
 
   private def marksToHTMLHelps(mark:Mark) =
-    mark.mark + "  nauczyciel: " + mark.teacher + " data: " + Formater.formatTime(new Date(mark.time))
+    mark.m + "  nauczyciel: " + mark.T + " data: " + Formater.formatTime(new Date(mark.t))
 
   private def produceCols() = (1 to 25).toList.map(n => <th>{n.toString}</th>)
 }

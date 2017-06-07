@@ -24,7 +24,7 @@ object ExamAnswer extends MongoDocumentMeta[ExamAnswer] {
 
 case class ExamAnswer(var _id: ObjectId, var exam:ObjectId, var code:String, var max:Int,
                       var authorId: Long,  var authorName : String, var answers: List[AnswerItem],
-                      attach: String ) extends MongoDocument[ExamAnswer] {
+                      var attach: String ) extends MongoDocument[ExamAnswer] {
   def meta = ExamAnswer
 
 }

@@ -71,12 +71,16 @@ class PerformExamSn extends BaseSnippet {
 
   def getAnswers() = {
 
-    val answers = "[" + exAns.answers.map(_.json).mkString(",") + "]"
+    val answers =  exAns.attach + ";[" +  exAns.answers.map(_.json).mkString(",") + "]"
     println("========= answers: " + answers)
    "#answers" #> SHtml.ajaxText(answers, (data) => {
       println("========== get Answers acctions: " + data)
-      exAns.answers = createFromJsonList(data)
+     val arr =  data.split(';')
+     val link =  arr(0)
+     val json = arr(1)
+     exAns.answers = createFromJsonList(json)
       exAns.exam = exam._id
+      exAns.attach = link
       exAns.authorId = user.id.get
       exAns.authorName = user.getFullName
       if( (exam.end + 30000L) >= new Date().getTime) exAns.save

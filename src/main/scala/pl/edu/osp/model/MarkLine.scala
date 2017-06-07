@@ -2,11 +2,12 @@ package pl.edu.osp.model
 
 import _root_.net.liftweb.mongodb._
 import org.bson.types.ObjectId
-import _root_.net.liftweb.json.JsonDSL._
+import java.util.Date
 
-case class Mark(var time: Long, var teacher: String, var mark: String) {
-  def mapString = Map[String, String](("time" -> time.toString), ("teacher" -> teacher),
-    ("mark" -> mark))
+case class Mark(var t: Long, var T: String, var m: String, var w:Int, var c:String, var i:String) {
+  def mapString = Map[String, String](("time" -> t.toString), ("teacher" -> T),
+    ("mark" -> m), ("weight" -> w.toString), ("color" -> c), ("info" -> i))
+  override def toString() = "%s : %s : %s  : %s ".format(m, T, new Date(t).toLocaleString(), i )
 }
 
 
@@ -30,5 +31,6 @@ case class MarkLine(var _id: ObjectId, var subjectId: Long, var pupilId: Long,
   extends MongoDocument[MarkLine] {
   def meta = MarkLine
 }
+
 
 

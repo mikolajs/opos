@@ -15,10 +15,13 @@ var ShowExam =  dejavu.Class.declare({
 	    var id = "";
 	    var $ansDiv = null;
 	    var answ = "";
+	    var attach = document.getElementById("attachLink").value;
 	    var arrayAll = [];
 	    var arrayTmp = [];
 	    var elems = [];
 	    var nr = 0;
+
+
 
         $('section').each(function(){
          id = this.id;
@@ -37,7 +40,7 @@ var ShowExam =  dejavu.Class.declare({
          arrayTmp = [];
         });
 
-        $("#answers").val(JSON.stringify(arrayAll));
+        $("#answers").val(attach + ";" + JSON.stringify(arrayAll));
         //alert($("#answers").val());
         document.getElementById("answers").onblur();
         window.onbeforeunload = null;
@@ -46,8 +49,11 @@ var ShowExam =  dejavu.Class.declare({
 	},
 
 	_getJsonData : function(){
-	    var json = $('#answers').val();
+	    var ans = $('#answers').val();
 	    console.log("JSON answers: " + json);
+	    var array = ans.split(";");
+	    var json = array[1];
+	    document.getElementById("attachLink").value = array[0];
 	    var data = JSON.parse(json);
 	    var qi = {};
 	    for(i in data) {

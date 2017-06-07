@@ -63,7 +63,7 @@ class CheckExamSn {
       //println( "========== json data: " + str);
       val newData = createFromJsonList(str)
       val ansNew = ansEx.answers.map(a => {
-
+  //find the same question and give points else return old points
         a.p = newData.find(ae => ae.q == a.q) match {
           case Some(ansIt) => ansIt.p
           case _ => a.p
@@ -76,6 +76,14 @@ class CheckExamSn {
       ansEx.save
     })
 
+  }
+
+  def showFileLink() = {
+     if(ansEx.attach.isEmpty) {
+       "div" #> ""
+     } else {
+       "a [href]" #> ansEx.attach
+     }
   }
 
   private def getGroupInt = {
