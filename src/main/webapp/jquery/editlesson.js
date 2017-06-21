@@ -42,14 +42,7 @@ var LessonEditor = dejavu.Class
 												+ '<option value="-1">całość</option>'
 												+ '</select> wierszy'
 									},
-									"aaSorting" : [ [ 1, "asc" ] ],
-									"aoColumnDefs" : [ {
-										"bSearchable" : false,
-										"aTargets" : [ 0 ]
-									}, {
-										"bVisible" : false,
-										"aTargets" : [ 0 ]
-									} ]
+									"aaSorting" : [ [ 1, "asc" ] ]
 								});
 				
 				CKEDITOR.disableAutoInline = true;
@@ -171,7 +164,7 @@ var LessonEditor = dejavu.Class
 					this.$listBody.append(strItem);
 				}
 			},
-
+            ///change to mk notice and convert from datatable element to list element
 			_createItem : function(item) {
 				var mapIco = {
 					q : "quiz.png",
@@ -195,30 +188,68 @@ var LessonEditor = dejavu.Class
 				return '<li class="list-group-item">' + what + title + del + edit
 						+ '<br/>' + descript + '</li>';
 			},
+                //item for create in datatable
+			_createItemNoClose : function(item) {
+            				var mapIco = {
+            					q : "quiz.png",
+            					p : "presentation.png",
+            					v : "video.png",
+            					d : "document.png"
+            				};
+            				var title = '<span class="title" name="_' + item.id + '">'
+            						+ item.title + '</span>';
+            				var descript = '<div class="descript">' + item.descript + '</div>';
+            				var what = '<span class="what"><img src="/images/'
+            						+ mapIco[item.what] + '" name="' + item.what
+            						+ '" title="' + item.what + '" /></span>';
+            				var edit = "";
+            				return '<li class="list-group-item">' + what + title
+            						+ '<br/>' + descript + '</li>';
+            			},
 
 
 			refreshDataTable : function() {
-				console.log("begin refresh " + this.$name);
 				var data = $('#jsonForDataTable').val();
 				this.table.fnClearTable();
 			    var array = eval( data );
-				this.table.fnAddData(array);
+			    console.log(JSON.stringify(array));
+				this.table.fnAddData(this._insertItemToDataTable(array));
 				this.table.fnDraw();
 				this._bindInsertData();
 
+			},
+
+			_insertItemToDataTable : function(array) {
+			    var itemTable = [];
+			    for(var i = 0; i < array.length; i++){
+			        var item = new Object();
+			        item.title = array[i][1];
+			        var id = array[i][0];
+			        item.id = array[i][0];
+			        item.descript = array[i][2];
+			        item.what = $('#getItemType option:selected').val();
+			        if(item.what === "q") item.title = "Zadanie " + item.title;
+                    itemTable.push(this._createItemNoClose(item))
+			    }
+			    return itemTable;
 			},
 
 			createNewItem : function(tr, self) {
 				//alert("createNewItem");
 				var item = new Object();
 				var aData = self.table.fnGetData(tr);
-				item.title = aData[1];
-				item.id = "_" + aData[0];
-				item.descript = aData[2];
-				item.what = $('#getItemType option:selected').val();
-				if(item.what === "q") item.title = "Zadanie " + item.title;
-				var str = self._createItem(item);
-				self.$listBody.append(str);
+
+				var $obj = jQuery(aData[0]);
+				var what = $obj.children('span.what').children('img').attr('name');
+				var del = '<button class="btn btn-danger imgDel" onclick="lessonEditor.deleteData(this);">' +
+                				   '<span class="glyphicon glyphicon-remove-sign" ></span></button>';
+                var edit = "";
+
+                $obj.children('span.title').after(del + edit);
+
+				//if(item.what === "q") item.title = "Zadanie " + item.title;
+				//var str = self._createItem(item);
+				self.$listBody.append($obj);
 			},
 
 			addNotice : function() {
@@ -260,6 +291,7 @@ var LessonEditor = dejavu.Class
 			},
 
 			deleteData : function(elem) {
+			    //alert($(elem).parent("li").get(0).innerHTML);
 				$(elem).parent('li').remove();
 			},
 

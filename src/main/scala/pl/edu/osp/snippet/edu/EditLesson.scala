@@ -129,7 +129,7 @@ class EditLesson extends BaseLesson {
         }
         case "p" => {
           val str = Slide.findAll(lookingQuest)
-            .map(h => "[ '" + h._id.toString + "',  '" + h.title + "', '" + "']")
+            .map(h => "[ '" + h._id.toString + "',  '" + h.title + "', '" + h.descript + "']")
             .mkString(",")
           "[" + str + "]"
         }
@@ -156,7 +156,7 @@ class EditLesson extends BaseLesson {
     }
 
     val itemTypes = List(("p" -> "Prezentacje"), ("d" -> "Artykuły"),
-      ("q" -> "Zadania"), ("v" -> "Filmy"), ("n" -> "Notatka"))
+      ("q" -> "Zadania"), ("v" -> "Filmy"))
 
     val form = "#getItemType" #> SHtml.select(itemTypes, Full(itemCh), itemCh = _) &
       //"#getLevel" #> SHtml.select(levList, Full(level), level = _) &
