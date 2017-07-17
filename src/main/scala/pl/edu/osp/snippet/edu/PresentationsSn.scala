@@ -10,8 +10,6 @@ import Helpers._
 class PresentationsSn extends BaseResourceSn {
 
   def slidesList() = {
-    val query = if(departName.isEmpty) (("authorId" -> user.id.get) ~ ("subjectId" -> subjectId))
-      else (("authorId" -> user.id.get) ~ ("subjectId" -> subjectId) ~ ("department" -> departName))
 
     val slides = Slide.findAll(query)
     "tbody tr" #> slides.map(slide => {

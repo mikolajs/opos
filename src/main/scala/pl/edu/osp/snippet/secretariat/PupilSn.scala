@@ -56,8 +56,10 @@ class PupilSn {
      "#getClass" #> SHtml.ajaxSelect(classList, Full(ClassChoose.get.toString), (idClass:String) => {
        ClassChoose(idClass.toLong)
        S.redirectTo("/secretariat/pupils")
-     })
+     }) &
+       "#csv [href]" #> ("/secretariat/classimport?id=" + ClassChoose.get.toString)
   }
+
 
   def editAjax() = {
     var id = ""

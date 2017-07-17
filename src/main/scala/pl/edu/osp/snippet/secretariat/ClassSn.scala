@@ -50,8 +50,8 @@ class ClassSn extends {
         ".level" #> <td>
           {theClass.level.get.toString}
         </td> &
-        ".division" #> <td>
-          {theClass.division.get}
+        ".division" #> <td> {if(theClass.level.get > -1) theClass.division.get
+        else "Absolwenci"}
         </td> &
         ".teacher" #> <td>
           {theClass.teacher.obj match {
@@ -79,8 +79,16 @@ class ClassSn extends {
       val teacherModel = User.find(teacherId).openOr(User.create)
       if (teacherModel.role.get == "n") {
         val levelInt = tryo(level.toInt).openOr(0)
-        theClass.level(levelInt).descript(description).division(division).
-          teacher(teacherModel.id.get).scratched(false).save
+        if(levelInt > -1) {
+          theClass.level(levelInt).descript(description).division(division).
+            teacher(teacherModel.id.get).scratched(false).save
+          changeAllPupils(theClass.id.get, levelInt, levelInt.toString + division)
+        }
+        else {
+          theClass.level(levelInt).descript(description).division("--").
+            teacher(teacherModel.id.get).scratched(true).save
+          changeAllPupils(theClass.id.get, levelInt, "-ab")
+        }
         if (id == "") {
           id = theClass.id.get.toString
           JsFunc("editForm.insertRowAndClear", id).cmd
@@ -108,8 +116,14 @@ class ClassSn extends {
       }
     }
 
+    def changeAllPupils(idClass: Long, lev:Int, desc: String): Unit ={
+      User.findAll(By(User.classId, idClass)).map( u =>
+        u.classNumber(lev).classInfo(desc).save
+      )
+    }
+
     val teacherPairList = teachers()
-    val levels = (0 to 6).toList.map(level => (level.toString, level.toString))
+    val levels = (0 to 6).toList.map(level => (level.toString, level.toString)) ::: List(("-1", "Absolwenci"))
 
     val form = "#id" #> SHtml.text(id, x => id = x.trim, "readonly" -> "readonly") &
       "#level" #> SHtml.select(levels, Full("0"), level = _) &
@@ -117,9 +131,8 @@ class ClassSn extends {
       "#teacher" #> SHtml.select(teacherPairList, Full(""), teacher = _) &
       "#description" #> SHtml.text(description, x => description = x.trim) &
       "#addInfo *" #> errorInfo &
-      "#delete" #> SHtml.ajaxSubmit("Usuń", delete, "type" -> "image",
-        "onclick" -> "return confirm('Na pewno usunąć klasę?')") &
-      "#save" #> SHtml.ajaxSubmit("Zapisz", save, "type" -> "image") andThen SHtml.makeFormsAjax
+      "#save" #> SHtml.ajaxSubmit("Zapisz", save, "type" -> "image",
+        "onclick" -> "return confirm('Na pewno wprowadzić zmiany?')") andThen SHtml.makeFormsAjax
 
     "form" #> (in => form(in))
   }

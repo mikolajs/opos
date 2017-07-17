@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<body class="lift:content_id=main">
+<div id="main" class="lift:surround?with=secret;at=content">
+    <head_merge>
+        <script type="text/javascript" charset="utf-8" src="/jquery/datatableone.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/jquery/editformdiv.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/jquery/select_operations.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/jquery/myvalidation.js"></script>
+        <script type="text/javascript" charset="utf-8">
+
+				var editFrom = new Object();
+
+				function peselToBirth() {
+                    var p = document.getElementById('pesel').value.slice(0,6);
+                    var num = parseInt(p.slice(0, 2));
+                    var date = "";
+                    if(num > 60) (date += "19" + p.slice(0, 2));
+                    else date += ("20" + p.slice(0, 2));
+                    date += "-";
+                    num = parseInt(p.slice(2,4));
+                    if(num > 20)  num -= 20;
+                    if(num > 9) date += num.toString();
+                    else date += ("0" + num.toString());
+                    date  += ("-" + p.slice(4, 6));
+                     document.getElementById('birthdate').value = date;
+                }
+
+                EditFormDiv.prototype.putDataToForm = function(array){
+                	document.getElementById('id').value = array[0];
+                     document.getElementById('lastname').value = array[1];
+                     document.getElementById('firstname').value = array[2];
+                     document.getElementById('birthdate').value = array[3];
+                     document.getElementById('pesel').value =array[4];
+                     var select = document.getElementById('classInfo');
+                     setSelectedIndexWithInner(select,array[5]);
+                     document.getElementById('email').value = array[6]
+            	}
+
+                EditFormDiv.prototype.getData = function(){
+                	   var array = new Array();
+                       array[0] = document.getElementById('id').value;
+                       array[1] = document.getElementById('lastname').value;
+                       array[2] = document.getElementById('firstname').value;
+                       array[3] = document.getElementById('birthdate').value;
+                       array[4] = document.getElementById('pesel').value;
+                       var select = document.getElementById('classInfo');
+                       array[5] = select.options[select.selectedIndex].innerHTML;
+                       array[6] = document.getElementById('email').value;
+            		return array;
+            	}
+
+                EditFormDiv.prototype.addNewItemInfo = 'Dodawanie ucznia';
+                EditFormDiv.prototype.editItemInfo = 'Edycja ucznia';
+
+                EditFormDiv.prototype.validate = function(){
+                    //alert("validate");
+                	return true;
+                }
+
+                $(document).ready(function(){
+
+                	editForm = new EditFormDiv();
+                	editForm.init(500,550);
+
+                });
+
+
+                </script>
+        <style >
+                    #errorInfo { font-style: italic; font-weight: bold; color: red;}
+                    .scratched td {text-decoration: line-through;}
+                    label {width: 150px;}
+                </style>
+    </head_merge>
+
+    <div class="submenu">
+    </div>
+    <div class="container_12">
+
+        <h2>Przegląd i edycja uczniów</h2><hr />
+        <p> Kolejność: imię, nazwisko, email, pesel, telefon, oddzielone średnikami w osobych linich</p>
+        <div class="row" >
+            <form data-lift="secretariat.PupilImportSn.insertPupils" method="post"
+                  enctype="multipart/form-data">
+
+                <div class="col-lg-4">
+                    <p id="confirm >
+                    <span class="glyphicon glyphicon-plus"></span> Potwierdź dodanie do klasy:
+                    <span id="classInfo"></span>
+                    </p>
+
+                </div>
+                <div class="col-lg-6">
+                    <input id="fileAdd" />
+                   <input id="add" />
+                </div>
+                <div class="col-lg-4">
+                    <a href="/secretariat/pupils" id="csv" class="btn btn-warning">Anuluj</a>
+                </div>
+
+            </form>
+
+
+        </div>
+
+
+
+        <table id="fullList" class="display" border="0" cellpadding="2" cellspacing="2" >
+            <thead>
+            <tr><th>ID</th><th>Nazwisko</th><th>Imię</th>
+                <th>Data urodzenia</th><th>PESEL</th><th>Klasa</th><th>Email</th>
+            </tr>
+            </thead>
+
+            <tbody data-lift="secretariat.PupilImportSn.pupilList">
+            <tr >
+                <td class="id"></td>
+                <td  class="lastname"></td>
+                <td  class="firstname"></td>
+                <td class="birthdate"></td>
+                <td class="pesel"></td>
+                <td class="classInfo"></td>
+                <td class="email"></td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr><th>ID</th><th>Nazwisko</th><th>Imię</th>
+                <th>Data urodzenia</th><th>PESEL</th><th>Klasa</th><th>Email</th>
+            </tr>
+            </tfoot>
+        </table>
+
+    </div>
+    <div class="clear"></div>
+</div>
+</body>
+</html>

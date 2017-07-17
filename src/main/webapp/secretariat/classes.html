@@ -15,7 +15,9 @@
             		document.getElementById('id').value = array[0];
             		var select = document.getElementById('level');
                     setSelectedIndexWithInner(select,array[1]);
-                    document.getElementById('division').value = array[2];
+                    if(array[2].length < 4)
+                        document.getElementById('division').value = array[2];
+                    else document.getElementById('division').value = '-ab';
                     select = document.getElementById('teacher');
                     setSelectedIndexWithInner(select, array[3]);
                     document.getElementById('description').value = array[4];
@@ -26,7 +28,9 @@
             		array[0] = document.getElementById('id').value;
             		var select = document.getElementById('level');
                     array[1] =select.options[select.selectedIndex].value;
-                    array[2] = document.getElementById('division').value;
+                    var des = document.getElementById('division').value;
+                    if(des == '-ab') array[2] = 'Absolwenci';
+                     else array[2] = des;
                     select = document.getElementById('teacher');
                     array[3] = select.options[select.selectedIndex].value;
                     array[4] = document.getElementById('description').value;
@@ -59,7 +63,7 @@
 </div>
             <div class="container_12">              
                 
-                <div class="lift:secretariat.ClassSn.editAjax" id="formAdd" style="display: none;">
+                <div data-lift="secretariat.ClassSn.editAjax" id="formAdd" style="display: none;">
                 <form  method="POST">
                <p><label for="id">Id:</label>
                   <input id="id" type="text" />
@@ -82,16 +86,25 @@
                    <span id="descriptioninfo" class="errorInfo"></span>
                 </p>
                 <p>
-                    <input type="image"  src="/images/saveico.png"  id="save"/>
-                    <input type="image" src="/images/delico.png" id="delete"/>
+                    <input type="image"  src="/images/saveico.png"  class="btn btn-dafault"
+                           style="float:right" id="save"/>
+
                 </p>
                 <p id="addInfo"></p>
                 </form>
                 </div>
 
                 <h3>Edycja oddziałów </h3><hr />
-                <label for="newadd">Nowa klasa:</label>
-                <input id="newadd" type="image" src="/images/addico.png"/>
+                <div class="row">
+                    <div class="col-md-6"> <label for="newadd">Nowa klasa:</label>
+                        <input id="newadd" type="image" src="/images/addico.png"/>
+                    </div>
+                    <div class="col-md-6">
+                        <a href="/secretariat/classimport" class="btn btn-info">Import z CSV</a>
+
+                    </div>
+                </div>
+
                 <table id="fullList" class="display" border="0" cellpadding="2" cellspacing="2" >
                     <thead>
                         <tr><th>ID</th><th>Poziom</th><th>Oddział</th><th>Wychowawca</th><th>Opis</th></tr>

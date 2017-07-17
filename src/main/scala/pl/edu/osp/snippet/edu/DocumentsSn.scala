@@ -23,8 +23,7 @@ class DocumentsSn extends BaseResourceSn {
 
   def docList() = {
 
-    val documents = Document.findAll(
-      ("authorId" -> user.id.get) ~ ("subjectId" -> subjectNow.id) ~("department" -> departName))
+    val documents = Document.findAll(query)
 
     "tbody tr" #> documents.map(doc => ".titleTd *" #> <strong>
       {doc.title}

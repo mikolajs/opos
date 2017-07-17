@@ -16,7 +16,9 @@ import json.JsonParser
 import org.bson.types.ObjectId
 import Helpers._
 
-
+/*
+ @depreciated: not used
+ */
 class HeadWordsSn extends BaseResourceSn {
 
 

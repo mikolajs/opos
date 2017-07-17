@@ -1,315 +1,190 @@
-<!doctype HTML>
 <html>
-
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link id="favicon" href="/osp/favicon.png" type="image/png" rel="icon"/>
-    <link href="/style.css"  rel="stylesheet"/>
+    <meta charset="utf-8" />
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="/jqueryui/jquery-ui.css" />
-
-    <!--[if lt IE 7]>
-    <link href="ie_style.css" rel="stylesheet" type="text/css" />
-    <![endif]-->
-    <link href="/bootstrap/css/full-slider.css" rel="stylesheet">
-
-    <title> Szkolny portal edukacyjny</title>
-
-    <script src="/jquery/jquery.min.js"></script>
-    <script src="/bootstrap/js/bootstrap.min.js"></script>
-    <!-- Bootstrap -->
-
-
-
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    <link rel="stylesheet" href="/style/pages.css"/>
-    <link rel="stylesheet" href="/style/carousel.css"/>
-    <script>
-     var $imgBox = null;
-     var $innerBox = null;
-     var $textBox = null;
-
-
-   function showNews(id, elem){
-             if($textBox != null && $imgBox != null) closeNews();
-             $innerBox = $(elem).parent().parent();
-             $textBox = $(elem).parent();
-             $imgBox = $(elem).parent().parent().children('div.imgBox');
-            showNewsCommon(id);
-            return false;
-    };
-
-   function closeNews() {
-       	 $textBox.show();
-       	 $imgBox.show();
-       	 $('#ajaxNews').hide().empty();
-
-   };
-
-    function showNewsCommon(id) {
-        if($textBox != null && $imgBox != null) closeNews();
-         $('#hiddenAjaxText').val(id).trigger('blur');
-         var $ajaxNews = $('#ajaxNews');
-         $innerBox.append($ajaxNews);
-         $textBox.hide();
-         $imgBox.hide();
-         $('#ajaxNews').show(100);
-    }
-
-    function searchGoogle() {
-      var search = $('#toSearch').val();
-      $('#gsc-i-id1').val(search);
-      $(".gsc-search-button").trigger('click');
-    }
-
-    function pressEnter(e) {
-        if(e.keyCode == 13) {
-            document.getElementById('toSearchBut').click();
-        }
-    }
-    </script>
+    <link href="/style/mainpage.css" rel="stylesheet">
+    <link href="/style/pages.css" rel="stylesheet">
+    <link href="/style/menu.css" rel="stylesheet">
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js"></script>
     <style>
 
-        #carousel-main {margin-top: -20px}
-
-        .actualPage {color: #ccc !important;}
-
-        label {
-        font-weight: bold;
-        font-size: 1.2em;
-        padding-right: 20px;
-        }
-
-        .linkNewsA {
-        padding: 5px 15px 5px 15px;
-        color: #2da8f8;
-        }
-
-        .readMore,.pine-box h2 {
-        color: #2da8f8;
-        }
-
-        .readMore:hover,.linkNewsA:hover,.pine-box h2:hover {
-        color: #FF0000;
-        }
-
-        .pine-box {
-            padding: 20px 0px;
-            border-bottom: 1px dotted #ddd;
-        }
-
-        img.center-block {
-          width: 90%;
-        }
-
-        .innerBox > h2 {
-          padding-top: 2px;
-          margin-top: 2px;
-        }
-
-        .img-box {
-        background-repeat: no-repeat;
-        background-position: center;
-     }
-
-
-        .footPrint {
-        padding: 3px;
-        border-bottom: 1px solid #ccc;
-        border-top: 1px solid #ccc;
-        }
-        span.fullname, span.date {
-        padding-right: 20px;
-        }
-
-        span.edit {float: right;}
-
-
-        #accordion ul {min-height: 150px;}
-        #accordion h3 {min-height: 35px; font-size: 20px; padding: 4px 10px 4px 30px;}
-
-        #linkarea {color:#FFF; padding:10px 0; background-color: #222;}
-        #linkarea h1 {text-shadow: 0px 1px 1px #000000;}
-        #linkarea ul {margin-top:10px;list-style:none;}
-        #linkarea ul li{ list-style:none; border-top:solid 1px #414141; padding: 3px 0;}
-
-        .navbar {border-radius: 0px;}
-
-        #searchBox {width:0px; height:0px; }
-        form.gsc-search-box {display:none;}
-
-        .gsc-control-cse {
-        padding: 0 !important;
-        margin: 0 !important;
-        background-color: black;
-        }
-
-
+        .schoolCardsD1:hover {
+  background-image: url(/images/xxlo/xxlo_tapeta.png) !important;
+}
+.schoolCardsD2:hover {
+  background-image:  url(/images/xxlo/xxlo_tapeta.png) !important;
+}
+.schoolCardsD3:hover {
+  background-image:  url(/images/xxlo/xxlo_tapeta.png) !important;
+}
     </style>
-
-
 </head>
 <body>
+<div id="fullImage" >
+    <img id="titlePicture" src="/images/xxlo/xxlo_tapeta.png" />
+</div>
+<div class="extraBox">
+    <a  onclick="document.querySelector('#contactAnchor').scrollIntoView({ behavior: 'smooth'});">
+        <img src="/images/zkpig/address.png" />
+    </a>
+    <a onclick="document.querySelector('#contactAnchor').scrollIntoView({ behavior: 'smooth'});">
+        <img src="/images/zkpig/mail.png" />
+    </a>
+    <a onclick="document.querySelector('#contactAnchor').scrollIntoView({ behavior: 'smooth'});">
+        <img src="/images/zkpig/map.png" />
+    </a>
+    <a href="https://www.facebook.com/XXLOGdansk/">
+        <img src="/images/zkpig/facebook.png" />
+    </a>
+</div>
 
-<nav class="navbar navbar-inverse" role="navigation">
-    <div class="col-lg-12">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/"><img id="logopng" src="/osp/logo.png" /> </a>
-        </div>
-        <div class="collapse navbar-collapse" id="navBar">
-            <!--
-            <ul class="nav navbar-nav "
-                data-lift="Menu.builder?linkToSelf=true;li_item:class=active;group=public;ul:class=nav navbar-nav"  >
+<div id="chooseSchool" data-lift="page.MainSn.cards">
+    <h1>XX LO w Gdańsku <br/> Portal Edukacyjny</h1>
+    <a class="schoolCards schoolCardsD1" href="/login">
+        <img src="/images/zkpig/biret.png" >
+        <h1> Logownie <br/>  Aplikacje </h1>
+    </a>
+    <a class="schoolCards schoolCardsD2" href="http://xxlo.pl">
+        <img src="/images/xxlo/home.png" >
+        <h1> Strona <br /> szkoły</h1>
+    </a>
 
-            </ul>
-            -->
+    <span id="flashTile"></span>
 
-            <ul class="nav navbar-nav " data-lift="page.MainSn.submenuTopArticles">
-                <li id="showSubmenu" role="presentation" class="dropdown" >
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                        Dropdown <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#kdl"> </a></li>
-                    </ul>
-                </li>
-                <li id="addNews"></li>
-                <li><a href="#linkarea">Linki</a> </li>
-            </ul>
-
-
-
-
-            <ul class="nav navbar-nav " ><li><a target="_blank" href="https://www.edu.gdansk.pl">UONET</a></li></ul>
-            <ul class="nav navbar-nav " ><li><a href="/login">Aplikacje</a></li></ul>
-            <ul data-lift="LoginSn.show" class="nav navbar-nav navbar-right ">
-                <li class="loginLi"> <a href=""  id="logInfo"  ></a></li>
-
-            </ul>
-            <ul class="nav navbar-nav navbar-right ">
-                <li class="loginLi">
-                    <div class="navbar-form" role="search">
-                        <div class="form-group">
-                            <input type="text" class="form-control" onkeypress="pressEnter(event)" placeholder="Szukaj z Google" id="toSearch"/>
-                        </div>
-                        <button type="submit" id="toSearchBut" class="btn btn-default" onclick="searchGoogle()">
-                            <span class="glyphicon glyphicon-search"></span>
-                        </button>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-</nav>
-
-
-    <div id="carousel-main" class="carousel slide" data-ride="carousel" data-lift="page.MainSn.slides">
-
-        <div class="carousel-inner" >
-            <div class="item"></div>
-        </div>
-
-
-        <a class="left carousel-control" href="#carousel-main" role="button" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left"></span>
-        </a>
-        <a class="right carousel-control" href="#carousel-main" role="button" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right"></span>
-        </a>
-        <ol class="carousel-indicators"></ol>
-    </div>
-
-
-
-
-<div class="row">
-    <div class="col-lg-1"></div>
-    <div class="col-lg-10">
-
-        <div id="searchBox" data-lift="page.MainSn.setScriptGoogleSearch">
-            <script></script>
-            <gcse:search></gcse:search>
-        </div>
-        <div class="row">
-
-            <div class="col-lg-12" data-lift="page.MainSn.switchContent">
-
-                <div id="newsCont">
-                <h1 style="text-align: center; margin: 15px;">Aktualności <small id="departmentInfo"></small></h1>
-
-                <div class="newsInfo "></div>
-                <div class="clear"></div>
-                <div id="oneNews" class="lift:page.MainSn.showOneNews">
-                    <input id="hiddenAjaxText" style="display: none;"/>
-
-                    <div id="ajaxNews">
-                        <br/>
-                    </div>
-                </div>
-                <ul class="pagination">
-                    <li></li>
-                </ul>
-                </div>
-
-                 <div class="row" id="articleCont">
-                        <div class="col-lg-3">
-                         <h2 ><small id="depHeader"></small></h2>
-                         <div class="list-group">
-                            <a class="depMenu"></a>
-                         </div>
-                        </div>
-                        <div class="col-lg-9">
-                           <div id="depBody"></div>
-                        </div>
-                 </div>
-                </div>
-            </div>
-        </div>
-        </div>
-    </div>
-
-
-<div  data-lift="page.MainSn.links" class="row" id="linkarea">
-    <div class="col-lg-1"></div>
-    <div class="col-lg-2 grid_3">
-        <h3>Our Favorites</h3>
-        <ul>
-            <li><a href="#">Test link 1</a></li>
-
-        </ul>
-    </div>
-    <div class="col-lg-1"></div>
 </div>
 
 
+
+
+
+<nav class="myNavbar" id="myNavbar" >
+    <div class="upperBar" id="upperBar"
+         data-lift="page.MenuSn.upperMenu">
+
+      <span class="leftMenu">
+          <a href="#"><img src="/images/zkpig/logo.png" /></a>
+          <span id="schoolInfo"></span>
+
+      </span>
+        <span iv class="rightMenu">
+				<span><span class="glyphicon glyphicon-list"></span> Menu </span>
+				<span><span class="glyphicon glyphicon-user"></span>
+                    <span id="loginInfo"></span>
+                </span>
+			</span>
+    </div>
+    <div class="menuItems" onmouseleave="closeMenu()" >
+        <div class="row" id="linkarea" data-lift="page.MenuSn.menu" style="display:none;">
+
+            <div class="col-lg-1"></div>
+            <div class="col-lg-2 linkareaCol" ></div>
+            <div class="col-lg-2" data-lift="page.MenuSn.submenu">
+
+
+                <a href="/user_mgt/logout" class="login">
+                    Wyloguj
+                </a>
+
+                <hr/>
+                <div role="search" >
+                    <div class="form-group">
+                        <input id="toSearch" placeholder="Szukaj z Google" onkeypress="pressEnter(event)" class="form-control" type="text"/>
+                        <button onclick="searchGoogle()" class="btn btn-default"
+                                style="width:100%;" id="toSearchBut" type="submit">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-1">
+                <span class="glyphicon glyphicon-remove menuCloseBtn" id="closeButton"></span>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+
+
+
+<section id="news" class="row">
+    <div class="col-lg-9" data-lift="page.MainSn.news">
+        <h1>Aktualności <br/>
+            <small> najnowsze wpisy</small></h1>
+        <div id="newsSP"><div class="newsInfo "></div></div>
+    </div>
+    <div class="col-lg-3" data-lift="page.MainSn.imgLinks">
+        <ul class="linkTiles">
+            <li></li>
+        </ul>
+    </div>
+
+</section>
+
+
+
+<section class="antract contact">
+
+    <div class="row" style="background-color: #eee;"
+         onmouseover="startAnimate(this)" onmouseleave="stopAnimate(this)">
+        <div class="col-lg-6">
+            <div class="picture">
+                <img src="/images/xxlo/xxlo_mapa.png" class="imgBig"/>
+            </div>
+        </div>
+        <div class="col-lg-5" styl="text-align:center;"  data-lift="page.MainSn.mainInfo">
+            <h1 id="contactAnchor">Kontakt</h1>
+            <h3 id="nameCont">XX LO w Gdańsku</h3>
+
+            <h3 id="streetCont">ul Dobrowolskiego 6</h3>
+            <h3 id="cityCont">80-287 Gdańsk</h3>
+
+            <p><img alt="Telefon" src="/images/phone.png" class="contact">
+                <span id="phoneCont">58 347-97-12 </span>
+            </p>
+            <p><img alt="Email" src="/images/email.png" class="contact">
+                <span id="mailCont">xxlo@xxlo.pl </span>
+            </p>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+
+    <div id="searchBox" data-lift="page.MainSn.setScriptGoogleSearch">
+        <script></script>
+        <gcse:search></gcse:search>
+    </div>
+
+</section>
+
+
+<div class="row" id="bottomlinkarea" data-lift="page.MenuSn.bottomMenu">
+    <div class="col-lg-2"></div>
+    <div class="bottomLinks col-lg-2">
+
+    </div>
+    <div class="col-lg-2"></div>
+</div>
 <footer class="footer">
-    <p> Programmed by: <a href="http://osp.edu.pl">Mikołaj Sochacki, OpenSchoolPlatform</a> &copy; &nbsp; &nbsp;
-        <span class="lift:Msgs?showAll=true"></span>  <a href="#logopng">↑ Do góry ↑</a> </p>
+    <p> Programmed by: <a href="http://osp.edu.pl">Mikołaj Sochacki, OpenSchoolPlatform</a> ©
+    <div id="lift__noticesContainer__"></div>
+    <a onclick="document.querySelector('#myNavbar').scrollIntoView({ behavior: 'smooth'});">↑ Do góry ↑</a> </p>
 </footer>
-
-<script src="/jqueryui/jquery-ui.min.js" type="text/javascript"></script>
-<script src="/jquery/logoandfavicon.js" type="text/javascript"></script>
-<script src="/bootstrap/js/carousel.js" type="text/javascript"></script>
+<script src="/jquery/mainpage.js"></script>
+<script src="/jquery/menu.js"></script>
 <script>
-    $('.carousel').carousel({
-        interval: 5000 //changes the speed
-    })
-    </script>
-
+    document.getElementById("closeFlash").addEventListener("click", function(event){
+        event.stopPropagation();
+        $("#flashTilesContainer").hide(200);
+    });
+   function redirectToPage(path) {
+    var ar = window.location.href.split('/');
+    var newPath = ar[0]+ "//" + ar[2] + path;
+    window.location.assign(newPath);
+   }
+   setTimeout( function(){
+        $("#flashTilesContainer").hide(200);
+   }, 20000);
+</script>
 </body>
 </html>
-
 

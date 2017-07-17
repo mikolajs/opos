@@ -38,6 +38,12 @@ trait BaseResourceSn {
     case _ => if(subjectNow.departments.isEmpty) "" else subjectNow.departments.head
   }
 
+  val query =
+    if(departNr < 0)
+      ("authorId" -> user.id.get) ~ ("subjectId" -> subjectNow.id)
+    else
+      ("authorId" -> user.id.get) ~ ("subjectId" -> subjectNow.id) ~("department" -> departName)
+
   def techerSubjects() = {
     val subj = subjectTeach.map(s => (s.id, s.name))
     "#subjectSelect" #> subj.map(s =>

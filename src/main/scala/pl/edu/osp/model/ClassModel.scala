@@ -15,7 +15,7 @@ class ClassModel extends LongKeyedMapper[ClassModel] with IdPK {
 
   object level extends MappedInt(this)
 
-  object division extends MappedString(this, 2)
+  object division extends MappedString(this, 3)
 
   object descript extends MappedString(this, 50)
 
@@ -23,9 +23,9 @@ class ClassModel extends LongKeyedMapper[ClassModel] with IdPK {
 
   object scratched extends MappedBoolean(this)
 
-  def classString(): String = level.is.toString + division.is
+  def classString(): String = level.get.toString + division.get
 
-  def shortInfo(): String = classString() + " [" + id.is.toString + "]"
+  def shortInfo(): String = classString() + " [" + id.get.toString + "]"
 }
 
 object ClassModel extends ClassModel with LongKeyedMetaMapper[ClassModel] {

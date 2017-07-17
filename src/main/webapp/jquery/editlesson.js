@@ -212,19 +212,34 @@ var LessonEditor = dejavu.Class
 				var data = $('#jsonForDataTable').val();
 				this.table.fnClearTable();
 			    var array = eval( data );
-			    console.log(JSON.stringify(array));
-				this.table.fnAddData(this._insertItemToDataTable(array));
+			    var itemHTMLArray = [""];
+			    for(var i = 0; i < array.length; i++){
+			        itemHTMLArray[0] = this._getItemHTML(array[i]);
+			        this.table.fnAddData(itemHTMLArray);
+			        //console.log(itemTable);
+			    }
 				this.table.fnDraw();
 				this._bindInsertData();
-
 			},
 
-			_insertItemToDataTable : function(array) {
+			_getItemHTML: function(row) {
+			    var item = new Object();
+			    item.id = row[0];
+			    item.title = row[1];
+			    item.descript = row[2];
+			    item.what = $('#getItemType option:selected').val();
+			    if(item.what === "q") item.title = "Zadanie " + item.title;
+                return this._createItemNoClose(item)
+			},
+
+
+//delete this function!!!!!!
+			_insertItemToDataTable : function(data) {
 			    var itemTable = [];
 			    for(var i = 0; i < array.length; i++){
+			        console.log("item " + i + " title " + array[i][1]);
 			        var item = new Object();
 			        item.title = array[i][1];
-			        var id = array[i][0];
 			        item.id = array[i][0];
 			        item.descript = array[i][2];
 			        item.what = $('#getItemType option:selected').val();

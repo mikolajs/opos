@@ -27,19 +27,12 @@ class EditQuestSn extends BaseResourceSn {
 
   def showQuests() = {
     val userId = user.id.get
-    val questionsList = if (departNr == -1) {
-      if (subjectNow.departments.isEmpty) QuizQuestion.findAll(
-        ("authorId" -> userId) ~ ("subjectId" -> subjectId),  ("nr" -> 1))
-      else QuizQuestion.findAll(
-        ("authorId" -> userId) ~ ("subjectId" -> subjectId)
-          ~ ("department" -> ("$nin" -> subjectNow.departments)),  ("nr" -> 1)
-      )
-    } else {
+    val questionsList =
       QuizQuestion.findAll(
-        ("authorId" -> userId) ~ ("subjectId" -> subjectId) ~ ("department" -> departName),
+        query,
         ("nr" -> 1)
       )
-    }
+    
     "tr" #> questionsList.map(quest => {
       <tr id={quest._id.toString}>
         <td>{quest.nr.toString}</td>

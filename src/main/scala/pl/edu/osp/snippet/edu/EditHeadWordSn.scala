@@ -1,21 +1,18 @@
 package pl.edu.osp.snippet.edu
 
-import java.util.Date
-import scala.xml.{Text, XML, Unparsed, Source}
+import scala.xml.{Text, Unparsed}
 import _root_.net.liftweb._
 import http.{S, SHtml}
 import common._
 import util._
-import mapper.{OrderBy, Descending}
 import pl.edu.osp.model._
 import edu._
-import mapper.By
 import json.JsonDSL._
-import json.JsonAST.JObject
-import json.JsonParser
-import org.bson.types.ObjectId
 import Helpers._
 
+/*
+ @depreciated: not used
+ */
 class EditHeadWordSn {
 
   val user = User.currentUser.openOrThrowException("Niezalogowany nauczyciel")

@@ -21,8 +21,7 @@ import com.mongodb.gridfs._
 class FileResourceSn extends BaseResourceSn {
   def showMyFiles = {
 
-    "tr" #> FileResource.findAll(
-      ("authorId" -> user.id.get) ~ ("subjectId" -> subjectNow.id) ~("department" -> departName))
+    "tr" #> FileResource.findAll(query)
       .map(file => {
       <tr id={file._id.toString}>
         <td>

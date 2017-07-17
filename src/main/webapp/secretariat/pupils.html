@@ -137,14 +137,18 @@
                 </div>
 
                 <h2>Przegląd i edycja uczniów</h2><hr />
-                <div class="row">
-                    <div class="col-lg-6">
+                <div class="row" data-lift="secretariat.PupilSn.selectClass">
+                    <div class="col-lg-4">
                     <button id="newadd" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Dodaj ucznia</button>
-                        </div>
-                    <div class="col-lg-6 form-inline"><div class="form-group" data-lift="secretariat.PupilSn.selectClass">
+
+                    </div>
+                    <div class="col-lg-4 form-inline"><div class="form-group" ></div>
                         <labe for="getClas">Wybierz klasę: </label><select id="getClass" class="form-control"></select>
-                    </div></div>
-                </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <a href="/secretariat/classimport" id="csv" class="btn btn-info">Import z CSV</a>
+                    </div>
+                    </div>
 
                 
                 

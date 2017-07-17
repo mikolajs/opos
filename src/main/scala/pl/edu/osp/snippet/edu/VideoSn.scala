@@ -26,18 +26,8 @@ class VideoSn extends BaseResourceSn {
    val pathVideo = S.hostAndPath.split('/').take(3).mkString("/").split(':').take(2).mkString(":") + "/osp/"
    //println("+++++++++++++++++ hostName Video: " + pathVideo)
    val userId = user.id.get
-    println(s"++++++++++++ subject ${subjectId} department: ${departName} author: ${userId}")
-   val videoList = if (departNr == -1) {
-     if (subjectNow.departments.isEmpty) Video.findAll(
-       ("authorId" -> userId) ~ ("subjectId" -> subjectId))
-     else Video.findAll(
-       ("authorId" -> userId) ~ ("subjectId" -> subjectId) ~ ("department" -> ("$nin" -> subjectNow.departments))
-     )
-   } else {
-     Video.findAll(
-       ("authorId" -> userId) ~ ("subjectId" -> subjectId) ~ ("department" -> departName)
-     )
-   }
+
+   val videoList =  Video.findAll(query)
 
     "tr" #> videoList.map(video => {
       <tr id={video._id.toString}>

@@ -36,6 +36,8 @@ object Formater {
     sfd.format(t)
   }
 
+  /* @parm strDate: example 2015-08-12 10:33
+   */
   def fromStringToDate(strDate: String): Date = {
     val listDate = strDate.split("-")
     if (listDate.length == 3) {
@@ -47,7 +49,9 @@ object Formater {
 
   }
 
-  // 12.08.2015 10:33
+  /* @parm strDate: example 12.08.2015 10:33
+  *
+   */
   def fromStringDataTimeToDate(strDate: String): Date = {
     val listDateTime = strDate.split(" ").map(_.trim).filter(s => (s.length > 1))
     if(listDateTime.length == 2 ) {

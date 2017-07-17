@@ -17,6 +17,8 @@ import Mailer._
 object User extends User with MetaMegaProtoUser[User] {
   override def dbTableName = "users" // define the DB table name
 
+  //override def dbIndexes=UniqueIndex(pesel)::super.dbIndexes
+
   // define the order fields will appear in forms and output
   override def fieldOrder = List(id, firstName, lastName, email,
     locale, timezone, password, role)
@@ -77,11 +79,11 @@ class User extends MegaProtoUser[User] {
 
   object mather extends MappedLongForeignKey(this, User)
 
-  def getFullName = firstName.is + " " + lastName.is
+  def getFullName = firstName.get + " " + lastName.get
 
-  def getFullNameReverse = lastName.is + " " + firstName.is
+  def getFullNameReverse = lastName.get + " " + firstName.get
 
-  def shortInfo = getFullName + " [" + id.is.toString + "]"
+  def shortInfo = getFullName + " [" + id.get.toString + "]"
 
   def isAdmin_? = this.role.get == "a"
   def isTeacher_? = this.role.get == "n" || this.role.get == 's' || this.role.get == "d"

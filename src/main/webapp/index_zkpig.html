@@ -6,10 +6,6 @@
     <link href="/style/pages.css" rel="stylesheet">
     <link href="/style/menu.css" rel="stylesheet">
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js"></script>
-    <style>
-
-
-    </style>
 </head>
 <body>
 <div id="fullImage" >
@@ -30,7 +26,7 @@
     </a>
 </div>
 
-<div id="chooseSchool" >
+<div id="chooseSchool" data-lift="page.MainSn.cards">
     <h1>Zespół Kształcenia Podstawowego i&nbsp;Gimnazjalnego nr&nbsp;26 w&nbsp;Gdańsku</h1>
     <a class="schoolCards schoolCardsD1" href="/page/50390215e4b005766349bb58?w=n">
         <img src="/images/zkpig/children.png" >
@@ -45,7 +41,11 @@
         <h1>GSF</h1>
     </a>
 
+    <span id="flashTile"></span>
+
 </div>
+
+
 
 
 
@@ -58,15 +58,16 @@
           <span id="schoolInfo"></span>
 
       </span>
-			<span iv class="rightMenu">
+        <span iv class="rightMenu">
 				<span><span class="glyphicon glyphicon-list"></span> Menu </span>
 				<span><span class="glyphicon glyphicon-user"></span>
-                    <span id="loginInfo">Mikołaj Sochacki</span>
+                    <span id="loginInfo"></span>
                 </span>
 			</span>
     </div>
-    <div class="menuItems" onmouseleave="closeMenu()">
-        <div class="row" id="linkarea" data-lift="page.MenuSn.menu">
+    <div class="menuItems" onmouseleave="closeMenu()" >
+        <div class="row" id="linkarea" data-lift="page.MenuSn.menu" style="display:none;">
+
             <div class="col-lg-1"></div>
             <div class="col-lg-2 linkareaCol" ></div>
             <div class="col-lg-2" data-lift="page.MenuSn.submenu">
@@ -96,10 +97,20 @@
 
 
 
-<section id="news" data-lift="page.MainSn.news">
-    <h1>Aktualności <br/>
-        <small> najnowsze wpisy</small></h1>
-    <div id="newsSP"><div class="newsInfo "></div></div>
+
+
+<section id="news" class="row">
+    <div class="col-lg-9" data-lift="page.MainSn.news">
+        <h1>Aktualności <br/>
+            <small> najnowsze wpisy</small></h1>
+        <div id="newsSP"><div class="newsInfo "></div></div>
+    </div>
+    <div class="col-lg-3" data-lift="page.MainSn.imgLinks">
+        <ul class="linkTiles">
+            <li></li>
+        </ul>
+    </div>
+
 </section>
 
 
@@ -166,6 +177,8 @@
     </div>
 
 </section>
+
+
 <div class="row" id="bottomlinkarea" data-lift="page.MenuSn.bottomMenu">
     <div class="col-lg-2"></div>
     <div class="bottomLinks col-lg-2">
@@ -180,5 +193,19 @@
 </footer>
 <script src="/jquery/mainpage.js"></script>
 <script src="/jquery/menu.js"></script>
+<script>
+    document.getElementById("closeFlash").addEventListener("click", function(event){
+        event.stopPropagation();
+        $("#flashTilesContainer").hide(200);
+    });
+   function redirectToPage(path) {
+    var ar = window.location.href.split('/');
+    var newPath = ar[0]+ "//" + ar[2] + path;
+    window.location.assign(newPath);
+   }
+   setTimeout( function(){
+        $("#flashTilesContainer").hide(200);
+   }, 20000);
+</script>
 </body>
 </html>
