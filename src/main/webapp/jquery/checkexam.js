@@ -8,6 +8,11 @@ var CheckExam =  dejavu.Class.declare({
 	initialize : function() {
 	    //this._getJsonData();
         this._reCountData();
+        $("input[type=number]").each(function(){
+            $(this).change(function(){
+                $('#fixedButton').removeClass('btn-success').addClass('btn-danger');
+            });
+        });
 	},
 
 	pressedSave : function() {
@@ -24,6 +29,7 @@ var CheckExam =  dejavu.Class.declare({
          window.onbeforeunload = null;
          document.getElementById("pointsGain").onblur();
          this.saved = true;
+         $('#fixedButton').removeClass('btn-danger').addClass('btn-success');
 	},
 
 	reCountData : function() {

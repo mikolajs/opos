@@ -12,7 +12,7 @@ var EditQuest =  dejavu.Class.declare({
 		
 		$('#questEditor').dialog({
 			autoOpen : false,
-			height : 550,
+			height : 650,
 			width : 950,
 			modal : false,
 			close : function() {
@@ -22,7 +22,7 @@ var EditQuest =  dejavu.Class.declare({
 
 		this.editor = CKEDITOR.replace('questionQuest', {
 			width : 500,
-			height : 240,
+			height : 340,
 			allowedContent : true,
 			language : 'pl',
             toolbar: [
@@ -157,9 +157,13 @@ var EditQuest =  dejavu.Class.declare({
     		    $("#nrQuest").val($td.text());
     		    break;
     		case 1:
-    			CKEDITOR.instances.questionQuest.setData($td.html().toString());
-    			break;
+                CKEDITOR.instances.questionQuest.setData($td.html().toString());
+                break;
     		case 2:
+    		    $("#infoQuest").val($td.text().trim());
+    		    break;
+
+    		case 3:
     			var array = new Array();
     			$ul = $('#goodAnswerList');
     			$td.children('span.good').each(function(){
@@ -172,7 +176,7 @@ var EditQuest =  dejavu.Class.declare({
     			}
     			$('#answerQuest').val("");
     			break;
-    		case 3:
+    		case 4:
     			array = new Array();
     			$ul = $('#fakeAnswerList');
     			$td.children('span.wrong').each(function(){
@@ -185,14 +189,14 @@ var EditQuest =  dejavu.Class.declare({
     			}
     			$("#fakeQuest").val("");
     			break;
-    		case 4:
+    		case 5:
     			$('#levelQuest option').each(function(index){
     				if(this.innerHTML == $td.text().trim() ) {
     				$('#levelQuest').val ((index + 1).toString());
     				}
     			});
     			break;
-    		case 5:
+    		case 6:
     			$('#dificultQuest').val($td.text().trim());
     			break;
     		default:
@@ -238,6 +242,7 @@ var EditQuest =  dejavu.Class.declare({
     	var array = new Array();
     	array.push($('#nrQuest').val());
     	array.push($('#questionQuest').val());
+    	array.push($('#infoQuest').val());
     	var goodHTML = "";
     	var goods = this._getGoodAnswerStringFromInputs().split(';');
     	for(i in goods) goodHTML += '<span class="good">' + goods[i] + '</span>'; 

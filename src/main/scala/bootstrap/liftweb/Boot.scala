@@ -195,7 +195,7 @@ class Boot {
         Menu("Otwarte kursy") / "public" / "index" >> LocGroup("pub"),
         Menu("Otwarta lekcja") / "public" / "course" / ** >> LocGroup("pub"),
         Menu("GC") / "admin" / "gc" >> LocGroup("admin") >> isAdmin,
-        Menu("Test") / "test1234qwerty" >> LocGroup("extra"),
+        //Menu("Test") / "test1234qwerty" >> LocGroup("extra"),
         Menu("Static") / "static" / **) :::
         // Menu entries for the User management stuff
         User.sitemap: _*)

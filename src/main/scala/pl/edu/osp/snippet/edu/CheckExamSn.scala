@@ -78,6 +78,14 @@ class CheckExamSn {
 
   }
 
+
+  def getInfo() = {
+    "#info" #> SHtml.ajaxTextarea(ansEx.info, (info) =>{
+      ansEx.info = info
+      ansEx.save
+    })
+  }
+
   def showFileLink() = {
      if(ansEx.attach.isEmpty) {
        "div" #> ""

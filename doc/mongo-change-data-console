@@ -136,6 +136,11 @@ db.examanswers.update({}, {$set: {attach: ""}}, true, true, true);
 #presentations changes
 db.slides.update({}, {$set: {subjectId: 1, subjectName: "fizyka", lev: 1, department: "" }}, true, true, true)
 
+#add info member for question
+db.questions.update({}, {$set: {info: "" }}, true, true, true)
+
+#add info member for question
+db.examanswers.update({}, {$set: {info: "" }}, true, true, true)
 
 
 

@@ -33,7 +33,7 @@ class ExamsSn extends BaseSnippet  {
     val exams = Exam.findAll(("classId" -> user.classId.get)~( "end" -> ("$lt" -> nowL )))
     val answers = ExamAnswer.findAll({"authorId" -> user.id.get})
 
-    println("============== exmas found: " + exams.length.toString)
+    //println("============== exmas found: " + exams.length.toString)
     "#nowDate *" #> nowString &
       ".col-lg-4" #> exams.map(ex => {
         mkAnsDiv(ex, answers.find(a => a.exam == ex._id).getOrElse(ExamAnswer.create))
@@ -66,8 +66,11 @@ class ExamsSn extends BaseSnippet  {
       <p>Przedmiot: <strong>{ex.subjectName}</strong></p>
       <p><em>Start: </em> { Formater.strForDateTimePicker(new Date(ex.start))} <br/>
         <em>Koniec: </em> { Formater.strForDateTimePicker(new Date(ex.end))}</p>
-        <div class="alert alert-info"> Wynik:  {points.toString + " / " + an.max.toString  + " : " +
-          scala.math.round(percent).toString}</div>
+        <div class="alert alert-info"> Wynik:  {points.toString + " / " +
+          an.max.toString  + " : " + scala.math.round(percent).toString} %
+        <hr/>
+          {an.info}
+        </div>
     </div>
   }
 

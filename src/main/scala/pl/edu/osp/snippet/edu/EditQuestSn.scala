@@ -32,12 +32,15 @@ class EditQuestSn extends BaseResourceSn {
         query,
         ("nr" -> 1)
       )
-    
+
     "tr" #> questionsList.map(quest => {
       <tr id={quest._id.toString}>
         <td>{quest.nr.toString}</td>
         <td>
           {Unparsed(quest.question)}
+        </td>
+        <td>
+          {Unparsed(quest.info)}
         </td>
         <td>
           {quest.answers.map(f => <span class="good">
@@ -74,6 +77,7 @@ class EditQuestSn extends BaseResourceSn {
     var wrongAnswers = ""
     var department = ""
     var difficult = "1"
+    var info = ""
 
     def save(): JsCmd = {
       //add nr of quest
@@ -100,6 +104,7 @@ class EditQuestSn extends BaseResourceSn {
       quest.answers = answer.split(";").toList.map(a => a.trim).filterNot(a => a.length() == 0)
       quest.fake = wrongAnswers.split(";").toList.map(a => a.trim).filterNot(a => a.length() == 0)
       quest.question = question
+      quest.info = info
       quest.subjectId = subjectNow.id
       quest.subjectName = subjectNow.name
       quest.department = department
@@ -129,6 +134,7 @@ class EditQuestSn extends BaseResourceSn {
 
     val form = "#idQuest" #> SHtml.text(id, id = _) &
       "#nrQuest" #> SHtml.text(nr.toString, x => nr = x.toInt) &
+      "#infoQuest" #> SHtml.text(info, info = _) &
       "#questionQuest" #> SHtml.textarea(question, x => question = x.trim) &
       "#answerQuest" #> SHtml.text(answer, x => answer = x.trim) &
       "#subjectQuest" #> SHtml.text(subjectNow.name, x => Unit, "readonly" -> "readOonly") &
