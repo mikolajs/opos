@@ -6,47 +6,39 @@
     <link href="/style/pages.css" rel="stylesheet">
     <link href="/style/menu.css" rel="stylesheet">
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js"></script>
-    <style>
-
-        .schoolCardsD1:hover {
-  background-image: url(/images/xxlo/xxlo_tapeta.png) !important;
-}
-.schoolCardsD2:hover {
-  background-image:  url(/images/xxlo/xxlo_tapeta.png) !important;
-}
-.schoolCardsD3:hover {
-  background-image:  url(/images/xxlo/xxlo_tapeta.png) !important;
-}
-    </style>
 </head>
 <body>
 <div id="fullImage" >
-    <img id="titlePicture" src="/images/xxlo/xxlo_tapeta.png" />
+    <img id="titlePicture" src="/images/zkpig/mainslide.png" />
 </div>
 <div class="extraBox">
     <a  onclick="document.querySelector('#contactAnchor').scrollIntoView({ behavior: 'smooth'});">
         <img src="/images/zkpig/address.png" />
     </a>
-    <a onclick="document.querySelector('#contactAnchor').scrollIntoView({ behavior: 'smooth'});">
+    <a onclick="document.querySelector('#mailAnchor').scrollIntoView({ behavior: 'smooth'});">
         <img src="/images/zkpig/mail.png" />
     </a>
-    <a onclick="document.querySelector('#contactAnchor').scrollIntoView({ behavior: 'smooth'});">
+    <a onclick="document.querySelector('#mailAnchor').scrollIntoView({ behavior: 'smooth'});">
         <img src="/images/zkpig/map.png" />
     </a>
-    <a href="https://www.facebook.com/XXLOGdansk/">
+    <a href="http://www.facebook.com/51-lecie-Szko%C5%82y-Podstawowej-nr-70-w-Gda%C5%84sku-628140643912099/">
         <img src="/images/zkpig/facebook.png" />
     </a>
 </div>
 
 <div id="chooseSchool" data-lift="page.MainSn.cards">
-    <h1>XX LO w Gdańsku <br/> Portal Edukacyjny</h1>
-    <a class="schoolCards schoolCardsD1" href="/login">
-        <img src="/images/zkpig/biret.png" >
-        <h1> Logownie <br/>  Aplikacje </h1>
+    <h1>Szkoła Podstawowa nr&nbsp;70 z&nbsp;klasami sportowymi w&nbsp;Gdańsku</h1>
+    <a class="schoolCards schoolCardsD1" href="/page/50390215e4b005766349bb58?w=n">
+        <img src="/images/zkpig/children.png" >
+        <h1>SP <br> nr 70</h1>
     </a>
-    <a class="schoolCards schoolCardsD2" href="http://xxlo.pl">
-        <img src="/images/xxlo/home.png" >
-        <h1> Strona <br /> szkoły</h1>
+    <a class="schoolCards schoolCardsD2" href="/page/585e4564e4b0a46858b7a9e2?w=n">
+        <img src="/images/zkpig/biret.png" >
+        <h1>Gimnazjum  <br></h1>
+    </a>
+    <a class="schoolCards schoolCardsD3" href="/page/53d950a5e4b084cc5aabf042?w=n">
+        <img src="/images/zkpig/szermierz.png" >
+        <h1>GSF</h1>
     </a>
 
     <span id="flashTile"></span>
@@ -62,8 +54,7 @@
          data-lift="page.MenuSn.upperMenu">
 
       <span class="leftMenu">
-          <a href="#"><img src="/images/zkpig/logo.png" /></a>
-          <span id="schoolInfo"></span>
+           <a class="navbar-brand" href="/"><img id="logopng" src="/osp/logo.png" /></a>
 
       </span>
         <span iv class="rightMenu">
@@ -129,26 +120,56 @@
          onmouseover="startAnimate(this)" onmouseleave="stopAnimate(this)">
         <div class="col-lg-6">
             <div class="picture">
-                <img src="/images/xxlo/xxlo_mapa.png" class="imgBig"/>
+                <img src="/images/zkpig/contact.png" class="imgBig"/>
             </div>
         </div>
         <div class="col-lg-5" styl="text-align:center;"  data-lift="page.MainSn.mainInfo">
             <h1 id="contactAnchor">Kontakt</h1>
-            <h3 id="nameCont">XX LO w Gdańsku</h3>
+            <h3 id="nameCont">Zespół Kształcenia Podstawowego i Gimnazjalnego nr 26</h3>
+            <h3 id="patronCont">Szkoła Podstawowa nr 70, Gimnazjum nr 46, Gdańska Szkoła Floretu</h3>
 
-            <h3 id="streetCont">ul Dobrowolskiego 6</h3>
-            <h3 id="cityCont">80-287 Gdańsk</h3>
+            <h3 id="streetCont">ul VII Dwór 7</h3>
+            <h3 id="cityCont">80-301 Gdańsk</h3>
 
-            <p><img alt="Telefon" src="/images/phone.png" class="contact">
-                <span id="phoneCont">58 347-97-12 </span>
-            </p>
-            <p><img alt="Email" src="/images/email.png" class="contact">
-                <span id="mailCont">xxlo@xxlo.pl </span>
-            </p>
+            <p><img alt="Telefon" src="/images/phone.png" class="contact"> <span id="phoneCont">58 556 00 14</span></p>
+            <p><img alt="Email" src="/images/email.png" class="contact"> <span id="mailCont">sekretariat.zkpig26@poczta.internetdsl.pl </span></p>
         </div>
         <div class="col-lg-1"></div>
     </div>
 
+    <div class="row" style="background-color: #bbb;"
+         onmouseover="startAnimate(this)" onmouseleave="stopAnimate(this)">
+        <div class="col-lg-6">
+            <div class="picture">
+                <a href="https://www.google.com/maps/d/viewer?mid=1ymzp3QplspMTyTzqrdK_CvLYDvo&hl=pl" target="_blank">
+                    <img src="/images/zkpig/mapa_zkpig.png" class="imgBig" ></a>
+            </div>
+        </div>
+        <div class="col-lg-5">
+
+            <h2 id="mailAnchor">Formularz kontaktowy</h2>
+            <form class="form-horizontal" id="contact_form" data-lift="page.MainSn.sendMail">
+                <div class="form-group"><label for="theme" class="col-md-3">Temat:</label>
+                    <div class="col-md-9"> <input id="theme" class="form-control"  type="text" value=""></div>
+                </div>
+                <div class="form-group"><label for="select" class="col-md-3">Do kogo:</label>
+                    <div class="col-md-9"> <select type="text" id="select" class="form-control" ><option value="sekretariat">sekretariat</option><option value="administrator">administrator</option><option value="Gda&#x0144;ska Szko&#x0142;a Floretu">Gdańska Szkoła Floretu</option></select></div>
+                </div>
+                <div class="form-group"><label for="mailcontent" class="col-md-3">Treść:</label>
+                    <div class="col-md-9">
+                        <textarea cols="20" rows="5" class="form-control" id="mailcontent" ></textarea></div>
+                </div>
+                <div class="form-group"><label for="mail" class="col-md-3">Twój email:</label>
+                    <div class="col-md-9"><input class="form-control" id="mail"  type="text" value=""></div>
+                </div>
+                <div class="form-group"><div class="col-md-3"></div>
+                    <div class="col-md-9"><input class="btn btn-lg btn-success" id="submit"  type="submit" onclick="return isValid();" value="Wy&#x015b;lij!"></div>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-lg-1"></div>
+    </div>
     <div id="searchBox" data-lift="page.MainSn.setScriptGoogleSearch">
         <script></script>
         <gcse:search></gcse:search>
@@ -187,4 +208,3 @@
 </script>
 </body>
 </html>
-

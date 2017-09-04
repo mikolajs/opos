@@ -53,20 +53,28 @@ class FilesSn {
 
     def save() {
       if (isCorrect) {
-        var doResize = true
+        var isAnimation = false
         if(mimeType.substring(1).toLowerCase() == "gif") {
           val imgReader = ImageIO.getImageReadersBySuffix("GIF").next()
           val impStream = ImageIO.createImageInputStream(
-            fileHold.openOrThrowException("Pusty plik").file)
+            fileHold.openOrThrowException("Pusty plik").fileStream)
           imgReader.setInput(impStream)
-          if(imgReader.getNumImages(true) > 1) doResize = false
+          if(imgReader.getNumImages(true) > 1) {
+            isAnimation = true
+          }
         }
-        val imageBuf: BufferedImage = ImageIO.read(new ByteArrayInputStream(fileHold.get.file))
-        val resizedImageBuf = if(doResize) resizeImageWithProportion(imageBuf, imgSize)
-          else imageBuf
-        val outputStream = new ByteArrayOutputStream()
-        ImageIO.write(resizedImageBuf, mimeType.substring(1), outputStream)
-        val inputStream = new ByteArrayInputStream(outputStream.toByteArray())
+        val inputStream = if (isAnimation){
+          //no resize!!!
+          fileHold.openOrThrowException("Pusty plik").fileStream
+        } else {
+          val imageBuf: BufferedImage = ImageIO.read(
+            fileHold.openOrThrowException("Brak pliku").fileStream)
+          val resizedImageBuf = resizeImageWithProportion(imageBuf, imgSize)
+          val outputStream = new ByteArrayOutputStream()
+          ImageIO.write(resizedImageBuf, mimeType.substring(1), outputStream)
+          new ByteArrayInputStream(outputStream.toByteArray())
+        }
+
         MongoDB.use(DefaultMongoIdentifier) {
           db =>
             val fs = new GridFS(db)
@@ -93,7 +101,8 @@ class FilesSn {
 
     def save() {
       if (isCorrect) {
-        val imageBuf: BufferedImage = ImageIO.read(new ByteArrayInputStream(fileHold.get.file))
+        val imageBuf: BufferedImage = ImageIO.read(new ByteArrayInputStream(
+          fileHold.openOrThrowException("Brak pliku").file))
         val resizedImageBuf = resizeImageWithFixWidth(imageBuf, 270)
         var outputStream = new ByteArrayOutputStream()
         ImageIO.write(resizedImageBuf, mimeType.substring(1), outputStream)
@@ -144,7 +153,8 @@ class FilesSn {
         if (mime.startsWith("image/")) {
           mimeType = "." + mime.split("/").last
           mimeTypeFull = mime.toString.toLowerCase()
-          fullFileName = fileHold.get.fileName.split('.').dropRight(1).mkString("") + mimeType
+          fullFileName = fileHold.openOrThrowException("Brak pliku").
+            fileName.split('.').dropRight(1).mkString("") + mimeType
           println("mimetype is good")
           true
         } else {
@@ -240,7 +250,8 @@ class FilesSn {
         MongoDB.use(DefaultMongoIdentifier) {
           db =>
             val fs = new GridFS(db)
-            val inputFile = fs.createFile(fileHold.get.fileStream)
+            val inputFile = fs.createFile(fileHold.openOrThrowException("Brak pliku")
+              .fileStream)
             inputFile.setContentType(mimeType)
             inputFile.setFilename(fullFileName)
             inputFile.save
@@ -261,11 +272,12 @@ class FilesSn {
 
     def save() {
       if (isCorrect) {
-        val fileName = fileHold.get.fileName
+        val fileName = fileHold.openOrThrowException("Brak pliku").fileName
         MongoDB.use(DefaultMongoIdentifier) {
           db =>
             val fs = new GridFS(db)
-            val inputFile = fs.createFile(fileHold.get.fileStream)
+            val inputFile = fs.createFile(fileHold.openOrThrowException("Brak pliku").
+              fileStream)
             inputFile.setContentType(mimeTypeFull)
             inputFile.setFilename(fileName)
             inputFile.save
