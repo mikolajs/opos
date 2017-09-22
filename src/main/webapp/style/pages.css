@@ -120,3 +120,7 @@ th  {
              color: #d55;
              transform: rotate(90deg);
              }
+
+             #logopng {
+                 padding: 5x 5px !important;
+              }

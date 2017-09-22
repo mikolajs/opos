@@ -1,9 +1,5 @@
 
-* dodać codesnippets do oglądanych stron
-* dodać mathjx do oglądanych stron
 
 ROZPOZNANE BŁĘDY:
-w chromium educontent select nie przekierowywuje po wybraniu elementu np. w documents
 
-przejrzeć wyszystkie miejsca gdzie są edytory CKEditor i sprawdzić działanie
-dodać o
+* po dodaniu slajdu w edytorze slajdów nie można go edytować. 

@@ -61,10 +61,10 @@ class MenuSn {
       case Full(u) => u.getFullName
       case _ => "Niezalogowany"
     }
-    val schoolInfo = MapExtraData.getMapData("schoolname")
-    val nameSchool = if(schoolInfo.contains("name")) schoolInfo("name")
-    else "ZKPiG nr 26 w Gdańsku"
-    "#schoolInfo *" #> nameSchool &
+    //val schoolInfo = MapExtraData.getMapData("schoolname")
+    //val nameSchool = if(schoolInfo.contains("name")) schoolInfo("name")
+   // else "ZKPiG nr 26 w Gdańsku"
+    //"#schoolInfo *" #> nameSchool &
     "#loginInfo *" #> fullname
   }
 

@@ -4,25 +4,11 @@
 <div class="lift:surround?with=viewer;at=content">
 	<head_merge>
 	<link rel="stylesheet" href="/style/course.css">
-	<script type="text/javascript" src="/syntaxhighlighter/shCore.js"></script>
-	<script type="text/javascript" src="/syntaxhighlighter/shBrushBash.js"></script>
-	<script type="text/javascript" src="/syntaxhighlighter/shBrushCpp.js"></script>
-	<script type="text/javascript" src="/syntaxhighlighter/shBrushCss.js"></script>
-	<script type="text/javascript" src="/syntaxhighlighter/shBrushJava.js"></script>
-	<script type="text/javascript"
-		src="/syntaxhighlighter/shBrushJScript.js"></script> <script
-		type="text/javascript" src="/syntaxhighlighter/shBrushPhp.js"></script>
-	<script type="text/javascript" src="/syntaxhighlighter/shBrushPlain.js"></script>
-	<script type="text/javascript"
-		src="/syntaxhighlighter/shBrushPython.js"></script> <script
-		type="text/javascript" src="/syntaxhighlighter/shBrushRuby.js"></script>
-	<script type="text/javascript" src="/syntaxhighlighter/shBrushScala.js"></script>
-	<script type="text/javascript" src="/syntaxhighlighter/shBrushSql.js"></script>
-	<script type="text/javascript" src="/syntaxhighlighter/shBrushXml.js"></script>
-	<link type="text/css" rel="stylesheet"
-		href="/syntaxhighlighter/shCore.css" />
-	<link type="text/css" rel="stylesheet"
-		href="/syntaxhighlighter/shThemeDefault.css" />
+
+		<link href="/ckeditor/plugins/codesnippet/lib/highlight/styles/tomorrow.css" rel="stylesheet">
+		<script src="/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js"></script>
+
+
 		<script type="text/javascript" src="/jwplayer/jwplayer.js"></script>
 	<script src="/jquery/dejavu.js"></script> <script
 		type="text/javascript" src="/jquery/showcourse.js"></script>
@@ -55,6 +41,9 @@ section.notice {
         border-radius: 5px;
         border: 1px solid #ededed;
         padding: 10px 5px;
+}
+pre > code {
+    font-size: 1.4em;
 }
 
 </style>
