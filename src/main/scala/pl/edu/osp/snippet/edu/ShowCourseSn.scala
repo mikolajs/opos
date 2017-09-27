@@ -5,11 +5,18 @@ import _root_.net.liftweb._
 import http.{S, SHtml}
 import util._
 import Helpers._
+import net.liftweb.common.Full
+import pl.edu.osp.model.User
 import pl.edu.osp.snippet.BaseShowCourseSn
 
 class ShowCourseSn extends BaseShowCourseSn {
 
   override val basePath = "/educontent/course/"
+
+  val user = User.currentUser match {
+    case Full(user) => user
+    case _ => S.redirectTo("/login")
+  }
 
   def show() = {
     if (course.authorId != user.id.get) S.redirectTo("/educontent/index")

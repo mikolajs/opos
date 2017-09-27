@@ -4,9 +4,11 @@ package pl.edu.osp.snippet.pub
 
 import net.liftweb.util.Helpers._
 
+import pl.edu.osp.snippet.BaseShowCourseSn
 
-class ShowCourseSn extends BaseShowCoursePubSn {
+class ShowCourseSn extends BaseShowCourseSn {
 
+  override val basePath = "/public/course/"
 //controla czy można oglądać kurs
   def show() = {
 

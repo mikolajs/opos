@@ -4,25 +4,11 @@
 <div class="lift:surround?with=viewer;at=content">
 	<head_merge>
 	<link rel="stylesheet" href="/style/course.css">
-	<script type="text/javascript" src="/syntaxhighlighter/shCore.js"></script>
-	<script type="text/javascript" src="/syntaxhighlighter/shBrushBash.js"></script>
-	<script type="text/javascript" src="/syntaxhighlighter/shBrushCpp.js"></script>
-	<script type="text/javascript" src="/syntaxhighlighter/shBrushCss.js"></script>
-	<script type="text/javascript" src="/syntaxhighlighter/shBrushJava.js"></script>
-	<script type="text/javascript"
-		src="/syntaxhighlighter/shBrushJScript.js"></script> <script
-		type="text/javascript" src="/syntaxhighlighter/shBrushPhp.js"></script>
-	<script type="text/javascript" src="/syntaxhighlighter/shBrushPlain.js"></script>
-	<script type="text/javascript"
-		src="/syntaxhighlighter/shBrushPython.js"></script> <script
-		type="text/javascript" src="/syntaxhighlighter/shBrushRuby.js"></script>
-	<script type="text/javascript" src="/syntaxhighlighter/shBrushScala.js"></script>
-	<script type="text/javascript" src="/syntaxhighlighter/shBrushSql.js"></script>
-	<script type="text/javascript" src="/syntaxhighlighter/shBrushXml.js"></script>
-	<link type="text/css" rel="stylesheet"
-		href="/syntaxhighlighter/shCore.css" />
-	<link type="text/css" rel="stylesheet"
-		href="/syntaxhighlighter/shThemeDefault.css" />
+		<link href="/ckeditor/plugins/codesnippet/lib/highlight/styles/tomorrow.css" rel="stylesheet">
+		<script src="/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js"></script>
+		<script type="text/javascript" async
+				src="https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?config=TeX-AMS_HTML">
+		</script>
 		<script type="text/javascript" src="/jwplayer/jwplayer.js"></script>
 	<script src="/jquery/dejavu.js"></script> <script
 		type="text/javascript" src="/jquery/showcourse.js"></script>
@@ -58,6 +44,10 @@ section.notice {
 }
 
 		#subjectListLinks { width: 100%;}
+		pre {
+		padding: 0px !important;
+		font-size: 1em;
+		}
 </style>
 	</head_merge>
 
@@ -105,7 +95,7 @@ section.notice {
 			</div>
 		</div>
 	</div>
-
+	<script>hljs.initHighlightingOnLoad();</script>
 </div>
 
 

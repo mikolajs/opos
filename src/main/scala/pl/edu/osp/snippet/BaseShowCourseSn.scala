@@ -14,10 +14,7 @@ class BaseShowCourseSn  {
 
   val basePath = "/view/course/"
   lazy val  pathMedia =  S.hostAndPath.split('/').take(3).mkString("/").split(':').take(2).mkString(":")  + "/osp/"
-  val user = User.currentUser match {
-    case Full(user) => user
-    case _ => S.redirectTo("/login")
-  }
+
 
   val courseId = S.param("id").openOr("0")
   var lessonId = S.param("l").openOr("0")

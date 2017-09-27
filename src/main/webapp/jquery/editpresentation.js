@@ -73,7 +73,7 @@
 		addSlideAction : function(){
 		    console.log("Add action " + this.slideMaxNr + " " + this.slideSize);
 		    if(this.slideMaxNr >  this.slideSize) {
-			    var node = $.parseHTML('<div class="slide"><section></section></div>');
+			    var node = $.parseHTML('<div class="slide" onclick="editPresentation.editSlide(this)"><section></section></div>');
 
                 this.slideSize++;
                 $('#slidesView').append(node);

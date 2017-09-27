@@ -14,6 +14,10 @@ import net.liftweb.common.Full
 
 class ShowCourseSn extends BaseShowCourseSn {
 
+  val user = User.currentUser match {
+    case Full(user) => user
+    case _ => S.redirectTo("/login")
+  }
 
   def show() = {
     if (!canView) S.redirectTo("/view/courses")
