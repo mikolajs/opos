@@ -225,8 +225,7 @@ class FilesSn {
       case Full(FileParamHolder(_, mime, fileNameIn, data)) => {
         fullFileName = fileNameIn
         mimeType = mime.toString.toLowerCase()
-        println("load FILE not IMAGE fullName: %s, mimeType: %s")
-        if (data.length < 10000000) true
+        if (data.length < 30000000) true
         else {
           println("Za duży plik!")
           S.error("Za duży plik!")
