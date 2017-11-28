@@ -36,22 +36,22 @@ class AddTeacherSn {
 
     "tr" #> teachers.map(teacher => {
       "tr [class]" #> {
-        if (teacher.scratched.is) "scratched" else ""
+        if (teacher.scratched.get) "scratched" else ""
       } &
         ".id" #> <td>
-          {teacher.id.is.toString}
+          {teacher.id.get.toString}
         </td> &
         ".firstname" #> <td>
-          {teacher.firstName.is}
+          {teacher.firstName.get}
         </td> &
         ".lastname" #> <td>
-          {teacher.lastName.is}
+          {teacher.lastName.get}
         </td> &
         ".email" #> <td>
-          {teacher.email.is}
+          {teacher.email.get}
         </td> &
         ".phone" #> <td>
-          {teacher.phone.is}
+          {teacher.phone.get}
         </td>
     })
 

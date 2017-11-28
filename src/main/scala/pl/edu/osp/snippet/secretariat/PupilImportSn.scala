@@ -78,7 +78,7 @@ class PupilImportSn {
         }
       }
 
-      val csv = new String( fileHold.get.file)
+      val csv = new String( fileHold.openOrThrowException("File holder not Found").file)
       csv.split("\n").map(s => s.trim).map(s => {
         val array = s.split(";").map(_.trim)
         if(validateArray(array)) {
