@@ -23,6 +23,14 @@ class EditPresentationSn {
     case sub :: list => sub
     case _ => S.redirectTo("/educontent/presentations")
   }
+  var departNr= tryo(S.param("d").openOr("0").toInt).getOrElse(0);
+  var departName = departNr match {
+    case -1 => ""
+    case 0 => if(subjectNow.departments.isEmpty) "" else subjectNow.departments.head
+    case nr:Int if(subjectNow.departments.length > nr ) =>   subjectNow.departments(nr)
+    case _ => if(subjectNow.departments.isEmpty) "" else subjectNow.departments.head
+  }
+
 
   //for showSlides - viewer
   def slidesData() = {
@@ -44,7 +52,8 @@ class EditPresentationSn {
     var subjectName = ""
     var subjectLev = slideHead.lev.toString
     var contentString = slideCont.slides
-    var department = slideHead.department
+    var department = if(slideHead.department.isEmpty)  departName
+                      else slideHead.department
     var description = slideHead.descript
     //println("------------headWords data -----------------\n" +headWordsData)
 

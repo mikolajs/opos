@@ -63,7 +63,8 @@ class PerformExamSn extends BaseSnippet {
       "#descript *" #> exam.description &
       "#subject *" #> exam.subjectName &
       "#endTime *" #> Formater.formatDate(new Date(exam.end)) &
-      "#attachLink" #>  <input id="attachLink" type="text" readonly="readonly" value={exAns.attach}/> &
+      "#attachLink" #>  (if(exam.attach) <input id="attachLink" type="text" readonly="readonly" value={exAns.attach}/>
+        else <span id=""></span>) &
       "#test" #> questionsItems.map( q => "div" #> mkQuestHTML(q._1, q._2))
     }
   }

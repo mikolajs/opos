@@ -50,6 +50,12 @@
             } 
             else return true;
         }
+
+        function switchEditImg(){
+            var link = document.getElementById("link");
+            if(link.hasAttribute("readonly")) link.removeAttribute("readonly");
+             else link.setAttribute("readonly", "");
+        }
         </script>
     </head_merge>
 
@@ -64,7 +70,18 @@
 <p><input id="id" /></p>
 <p><label for="order">Kolejność:</label><input id="order"  class="form-control" type="text" style="width:40px;" /></p>
 <p><label for="name">Nazwa: </label><input id="name" class="form-control" /></p>
-    <p><label for="link">Obraz slajdu: </label><input id="link" readonly="readonly" class="form-control" /></p>
+
+
+    <div class="form-group">
+        <label for="link">Obraz slajdu: </label>
+        <div class="row">
+            <div class="col-md-10"> <input id="link" readonly="readonly" class="form-control"  /></div>
+            <div class="col-md-2"> <span class="glyphicon glyphicon-edit btn btn-sm btn-warning" onclick="switchEditImg()"></span></div>
+            </div>
+    </div>
+
+
+
     <p><label for="info">Zawartość: </label>
         <textarea class="form-control" id="info" rows="5"></textarea>
     </p>

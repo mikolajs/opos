@@ -28,7 +28,8 @@ class EditDocumentSn extends BaseResourceSn {
     var descript = document.descript
     val subject = if (document.subjectId == 0L) subjectNow.name else document.subcjectName
     var level = document.lev.toString
-    var department = document.department
+    var department = if(document.department.isEmpty) departName
+        else document.department
     var docContent = document.content
 
     def save() {
@@ -71,6 +72,10 @@ class EditDocumentSn extends BaseResourceSn {
         ++ Text(" Zapisz"), save, "title" -> "Zapisz") &
       "#docDelete" #> SHtml.button(<span class="glyphicon glyphicon-trash"></span>
         ++ Text(" Usuń "), delete, "title" -> "Usuń")
+  }
+
+  private def findDepart(): Unit ={
+
   }
 
 }

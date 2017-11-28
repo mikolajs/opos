@@ -2,20 +2,28 @@
 function beforeUnload() { return "Nie zapisano zmian, opuścić stronę?";}
 
 var ShowExam =  dejavu.Class.declare({
-
+    attachL : true,
+    notSaved : false,
 
 
 	initialize : function() {
+	    var att = document.getElementById("attachLink");
+        if(att == null) {
+            this.attachL = false;
+            document.getElementById("attachFrame").innerHTML = "";
+        }
         this._getJsonData();
         this.startClock();
         this._bindIsChanged();
+
 	},
 
 	pressedSave : function() {
 	    var id = "";
 	    var $ansDiv = null;
 	    var answ = "";
-	    var attach = document.getElementById("attachLink").value;
+	    var attach = "";
+	    if(this.attachL) attach = document.getElementById("attachLink").value
 	    var arrayAll = [];
 	    var arrayTmp = [];
 	    var elems = [];
@@ -44,16 +52,17 @@ var ShowExam =  dejavu.Class.declare({
         //alert($("#answers").val());
         document.getElementById("answers").onblur();
         window.onbeforeunload = null;
+        this.notSaved = false;
         $('#fixedButton').removeClass('btn-danger').addClass('btn-success');
 
 	},
 
 	_getJsonData : function(){
 	    var ans = $('#answers').val();
-	    console.log("JSON answers: " + json);
+	    //console.log("JSON answers: " + json);
 	    var array = ans.split(";");
 	    var json = array[1];
-	    document.getElementById("attachLink").value = array[0];
+	    if(this.attachL) document.getElementById("attachLink").value = array[0];
 	    var data = JSON.parse(json);
 	    var qi = {};
 	    for(i in data) {
@@ -90,19 +99,29 @@ var ShowExam =  dejavu.Class.declare({
 	},
 
 	_bindIsChanged : function() {
+	    var self = this;
         $('input').change(function() {
-            $('#fixedButton').removeClass('btn-success').addClass('btn-danger');
-            window.onbeforeunload = beforeUnload;
+            self.setUnsaved();
         });
+        $('input').keyup(function(){self.setUnsaved();});
+
          $('textarea').change(function() {
-                    $('#fixedButton').removeClass('btn-success').addClass('btn-danger');
-                    window.onbeforeunload = beforeUnload;
+            self.setUnsaved();
          });
          $('textarea').on("paste", function() {
-                             $('#fixedButton').removeClass('btn-success').addClass('btn-danger');
-                             window.onbeforeunload = beforeUnload;
+            self.setUnsaved();
          });
+         $('textarea').keyup(function(){self.setUnsaved();});
+	},
+
+	setUnsaved : function() {
+	    if(!this.notSaved){
+	        $('#fixedButton').removeClass('btn-success').addClass('btn-danger');
+            this.notSaved = true;
+            window.onbeforeunload = beforeUnload;
+	    }
 	}
+
 
 
 

@@ -34,7 +34,7 @@ class AdminFlashTileSn {
         case Some(flashTile) => flashTile.delete
         case _ =>
       }
-      S.redirectTo("/admin/flashtiles")
+      S.redirectTo("/admin/flashtile")
     }
 
     "#id" #> SHtml.text(id, x => id = x, "style" -> "display:none;", "id" -> "id") &
