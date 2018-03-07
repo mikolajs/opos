@@ -28,7 +28,7 @@ CKEDITOR.plugins.add( 'addFile',
             [
               {
                 type : 'html',
-                html : '<h2>URL obrazka:</h2>'
+                html : '<h2>URL pliku:</h2>'
               },
               {
                 type : 'text',

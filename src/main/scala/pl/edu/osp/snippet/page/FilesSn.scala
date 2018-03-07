@@ -64,12 +64,12 @@ class FilesSn {
           }
         }
         val inputStream = if (isAnimation){
-          //no resize!!!
+          //no resize because is GIF!
           fileHold.openOrThrowException("Pusty plik").fileStream
         } else {
           val imageBuf: BufferedImage = ImageIO.read(
             fileHold.openOrThrowException("Brak pliku").fileStream)
-          val resizedImageBuf = resizeImageWithProportion(imageBuf, imgSize)
+          val resizedImageBuf = resizeImageWithFixWidth(imageBuf, imgSize)
           val outputStream = new ByteArrayOutputStream()
           ImageIO.write(resizedImageBuf, mimeType.substring(1), outputStream)
           new ByteArrayInputStream(outputStream.toByteArray())

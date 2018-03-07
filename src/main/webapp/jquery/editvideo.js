@@ -78,6 +78,7 @@ var EditVideo = dejavu.Class.declare({
     	var self = this;
     	var $tr = $(elem).parent().parent();
     	document.getElementById('videoId').value = $tr.attr('id');
+    	document.getElementById('departmentsAdd').value = self.department;
     	var link = "";
     	$tr.children('td').each(function(index){
     		switch(index){
@@ -101,11 +102,9 @@ var EditVideo = dejavu.Class.declare({
     		case 2: 
     			document.getElementById('descriptAdd').value = $(this).text().trim();
     			break;
-    		case 3: 
-    			self._setSelectOptionDepart(this.innerHTML);
-    			break;
-    		case 4: 
+    		case 3:
     			self._setSelectOptionLevel(this.innerHTML);
+    			break;
     		default: 
     			break;
     		}
@@ -118,16 +117,11 @@ var EditVideo = dejavu.Class.declare({
     	return confirm("Na pewno usunąć film?");
     },
     
-    _setSelectOptionDepart : function(innerOption){
-    	$('#departmentsAdd option').each(function() {
-			if(innerOption != this.innerHTML) this.removeAttribute('selected');
-			else {this.setAttribute('selected', true);}
-		});
-    }, 
-    
     _setSelectOptionLevel :  function(innerOption) {
+        innerOption = innerOption.trim();
 		$('#levelAdd option').each(function() {
-			if(innerOption != this.innerHTML) this.removeAttribute('selected');
+		    //console.log(this.innerHTML.trim() + " =? " + innerOption) ;
+			if(innerOption != this.innerHTML.trim()) this.removeAttribute('selected');
 			else {this.setAttribute('selected', true);}
 		});
 	}

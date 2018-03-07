@@ -72,20 +72,20 @@ class PerformExamSn extends BaseSnippet {
 
   def getAnswers() = {
 
-    val answers =  exAns.attach + ";[" +  exAns.answers.map(_.json).mkString(",") + "]"
-    println("========= answers: " + answers)
+    val answers =  exAns.attach + "##;;@@!![" +  exAns.answers.map(_.json).mkString(",") + "]"
+    //println("========= answers: " + answers)
    "#answers" #> SHtml.ajaxText(answers, (data) => {
-      println("========== get Answers acctions: " + data)
-     val arr =  data.split(';')
-     val link =  arr(0)
-     val json = arr(1)
-     exAns.answers = createFromJsonList(json)
-      exAns.exam = exam._id
-      exAns.attach = link
-      exAns.authorId = user.id.get
-      exAns.authorName = user.getFullName
-      if( (exam.end + 30000L) >= new Date().getTime) exAns.save
-  })
+        //println("========== get Answers acctions: " + data)
+        val arr =  data.split("##;;@@!!")
+        val link =  arr(0)
+        val json = arr(1)
+        exAns.answers = createFromJsonList(json)
+        exAns.exam = exam._id
+        exAns.attach = link
+        exAns.authorId = user.id.get
+        exAns.authorName = user.getFullName
+        if( (exam.end + 30000L) >= new Date().getTime) exAns.save
+      })
  }
 
 
@@ -148,7 +148,7 @@ class PerformExamSn extends BaseSnippet {
 
   private def checkCode(c: String):Boolean = {
 
-     findIfCodeExists(c) && exam.keys.exists(k => k == c)
+     !findIfCodeExists(c) && exam.keys.exists(k => k == c)
   }
 //if code was already used
   private def findIfCodeExists(c:String) =

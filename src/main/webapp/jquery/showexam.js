@@ -48,7 +48,7 @@ var ShowExam =  dejavu.Class.declare({
          arrayTmp = [];
         });
 
-        $("#answers").val(attach + ";" + JSON.stringify(arrayAll));
+        $("#answers").val(attach + "##;;@@!!" + JSON.stringify(arrayAll));
         //alert($("#answers").val());
         document.getElementById("answers").onblur();
         window.onbeforeunload = null;
@@ -60,7 +60,7 @@ var ShowExam =  dejavu.Class.declare({
 	_getJsonData : function(){
 	    var ans = $('#answers').val();
 	    //console.log("JSON answers: " + json);
-	    var array = ans.split(";");
+	    var array = ans.split("##;;@@!!");
 	    var json = array[1];
 	    if(this.attachL) document.getElementById("attachLink").value = array[0];
 	    var data = JSON.parse(json);

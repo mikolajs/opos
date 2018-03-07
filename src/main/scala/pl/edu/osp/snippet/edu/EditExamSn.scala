@@ -63,6 +63,11 @@ class EditExamSn extends BaseResourceSn {
       println("========= delete quiz ========")
       if (exam.authorId != 0L || userId == exam.authorId) {
         //dodać wyszukiwanie sprawdzianów  uczniów i informację o konieczności ich skasowania
+        ExamAnswer.findAll(("exam" -> examId)).foreach(exAn => {
+          println(exAn.authorName)
+          exAn.delete
+        }
+        )
         exam.delete
         S.redirectTo("/educontent/quizzes")
       } else S.warning("Nie jesteś autorem lub sprawdzianu jeszcze nie ma.")
