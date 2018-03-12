@@ -39,7 +39,7 @@ var ShowCourse = dejavu.Class.declare({
 	_checkMulti : function(corrects) {
          var $answers = this.$panelBody.children('ul').children("li").children('input:checked');
          if($answers.length != corrects.length) {
-         this._setInfo($panelBody, false);
+         this._setInfo(false);
          return false;
          }
          var foundAll = true;

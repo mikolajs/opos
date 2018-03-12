@@ -28,7 +28,7 @@ class EditQuizSn extends BaseResourceSn {
 
     val data = mkQuestBoxWithPoints(quiz.questions)
 
-    ".dropselected *" #> data
+    ".quizElement" #> data
   }
 
   //working ....
@@ -50,7 +50,7 @@ class EditQuizSn extends BaseResourceSn {
       quiz.title = title
       quiz.subjectId = tryo(subjectId).openOr(0L)
       quiz.subjectName = findSubjectName(quiz.subjectId)
-      quiz.questions = questions.split(';').toList.map(qe => {
+      quiz.questions = questions.split(';').toList.distinct.map(qe => {
         val elem = qe.split(',')
         QuestElem(new ObjectId(elem(0)), tryo(elem(1).toInt).getOrElse(1))
       })
@@ -81,16 +81,31 @@ class EditQuizSn extends BaseResourceSn {
     val departs = subjectNow.departments.map(d => (d, d))
     var depart = if(subjectNow.departments.isEmpty) "" else subjectNow.departments.head
 
-    def getData():JsCmd = {
-      println("======= getData depart: " + depart )
-      val data = mkQuestBox(QuizQuestion.findAll(
-        ("authorId" -> userId) ~ ("subjectId" -> subjectId) ~ ("department" -> depart)
-      ))
-       SetHtml("allquestions", data) & Run("editQuiz.removeDuplicate();")
+//    def getData():JsCmd = {
+//      println("======= getData depart: " + depart )
+//      val data = mkQuestBox(QuizQuestion.findAll(
+//        ("authorId" -> userId) ~ ("subjectId" -> subjectId) ~ ("department" -> depart)
+//      ))
+//       SetHtml("allquestions", data) & Run("editQuiz.removeDuplicate();")
+//    }
+
+    def getDataNew = {
+      val lookingQuest =  ("authorId" -> userId) ~ ("subjectId" -> subjectId) ~ ("department" -> depart)
+      val str = QuizQuestion.findAll(lookingQuest)
+        .map(q => "[ '" + q._id.toString + "',  '" + q.nr.toString + "', '" +
+           q.question + "',  '" + q.info + "',  '" +
+            q.lev + "',  '"  + q.dificult + "']")
+        .mkString(",")
+      "[" + str + "]"
+    }
+
+    def refreshData(): JsCmd = {
+
+      SetValById("jsonForDataTable", getDataNew) & Run("refreshTab();")
     }
 
     val form = "#departments" #> SHtml.select(departs, Full(depart), depart = _) &
-    "#getDeparts" #> SHtml.ajaxSubmit("Wybierz", getData ) andThen SHtml.makeFormsAjax
+    "#getDeparts" #> SHtml.ajaxSubmit("Wybierz", refreshData ) andThen SHtml.makeFormsAjax
 
     "form" #> ((in:NodeSeq) => form(in))
   }
@@ -165,23 +180,27 @@ class EditQuizSn extends BaseResourceSn {
 
   private def mkBox(quest: QuizQuestion, p:Int) = {
     <li id={quest._id.toString}>
+      <div class="infoText">{"[" + quest.info + "]"}</div>
       <div class="question">
         {Unparsed(quest.question)}
       </div>
-      <div class="answers">
-        <span class="rightAnswer"> ODP:
-          {quest.answers.mkString("; ")}
-        </span>{quest.fake.map(f => <span class="wrong">
-        {f}
-      </span>)}</div>
       <div class="questInfo">
-        <span class="nr">Nr: {quest.nr.toString} </span>  |
-        <span class="department"> Dział:
+        <span class="nr">{quest.nr.toString} </span>  |
+        <span class="department">
           {quest.department}
         </span> |
-        <strong title="poziom trudności">
-          {quest.dificult}
-        </strong> | Pukty:
+        <span class="level">
+          {(quest.lev match {
+          case 1 => "podstawowy"
+          case 2 => "średni"
+          case 3 => "rozszerzony"
+          case _ => "-"
+        }) + " " +
+        (quest.dificult match {
+          case 3 => "★★"
+          case 2 => "★"
+          case _ => " "})}</span>
+         | Pukty:
         <input class="points" type="number" value={p.toString} />
         <span class="btn btn-sm btn-danger" onclick="editQuiz.removeLi(this);">
           <span class="glyphicon glyphicon-remove"></span>
