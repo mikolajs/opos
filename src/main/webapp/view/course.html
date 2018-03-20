@@ -49,19 +49,21 @@ pre > code {
 </style>
 	</head_merge>
 
-	<div class="lift:view.ShowCourseSn.show">
-		<div class="row">
-            <div class="openSidebar">
+	<div class="row" data-lift="view.ShowCourseSn.show">
+
+            <div id="sidebar" class="col-lg-4">
+            <div class="openSidebar" >
                 <button type="button" class="btn btn-info btn-lg"
                         onclick="showCourse.hideSidebar()">
                     <span class="glyphicon glyphicon-list"></span>
                 </button>
             </div>
-            <div class="sidebar" id="subjectsList" style="display:none;">
-                <div style="margin: 10px;" class="panel-heading">
-                    <h4 style="display:inline;">Lista tematów:</h3>
-                    <span class="btn glyphicon glyphicon-remove"
+            <div class="sidebar" id="subjectsList" >
+                <div style="margin: 5px;" class="panel-heading">
+                    <span class="btn btn-danger glyphicon glyphicon-remove"
                           style="float:right;"   onclick="showCourse.hideSidebar()"></span>
+                    <h3 style="display:inline;">Lista tematów:</h3>
+
 
                 </div>
                 <div class="overflowBar">
@@ -72,7 +74,8 @@ pre > code {
                     </div>
                 </div>
             </div>
-			<div class="main ">
+                </div>
+			<div class="main col-lg-8">
 				<div id="courseInfo"></div>
 				<div class="content ">
 					<div class="row alert alert-info">
@@ -91,7 +94,7 @@ pre > code {
 					</div>
 				</div>
 			</div>
-		</div>
+
 	</div>
 	
 	<div style="width:920px; margin: auto; padding-top: 20px;">	

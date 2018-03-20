@@ -4,28 +4,23 @@ body {
 
 
 .openSidebar {
-    position: fixed;
-    top: 60px;
-    left: 0;
+    position: absolute;
+    top: 40px;
+    left: 20px;
     z-index: 100;
     padding: 10px;
  }
  .sidebar {
       background-color: white;
       border: 2px solid #ccc;
-      position:fixed;
-      display:block;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      z-index: 1000;
-      width: 350px;
-
+      position:relative;
+      width: 100%;
+      z-index: 101;
  }
 
 .overflowBar {
 
-       position: absolute;
+      position: absolute;
        top: 50px;
        bottom: 0;
        overflow: auto;
@@ -36,13 +31,12 @@ body {
 
 
 
-
 .main {
  min-height: 600px;
-  width: 920px !important;
   background-image: none;
   background-color: white;
   margin: auto;
+  border: 2px solid #ccc;
 }
 @media (min-width: 768px) {
   .main {

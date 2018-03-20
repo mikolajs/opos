@@ -82,14 +82,15 @@ pre > code {
 
 
 	<div class="lift:edu.ShowCourseSn.show">
-		<div class="row">
+
+			<div id="sidebar" class="col-lg-4">
             <div class="openSidebar">
                 <button type="button" class="btn btn-info btn-lg"
                         onclick="showCourse.hideSidebar()">
                     <span class="glyphicon glyphicon-list"></span>
                 </button>
             </div>
-			<div class="sidebar" id="subjectsList" style="display:none;">
+			<div class="sidebar" id="subjectsList" >
                 <div style="margin: 10px;" class="panel-heading">
                     <h4 style="display:inline;">Lista tematów:</h3>
                     <span class="btn glyphicon glyphicon-remove"
@@ -116,7 +117,8 @@ pre > code {
                 </div>
 				</div>
 			</div>
-			<div class="main ">
+				</div>
+			<div class="main col-lg-8">
 				<div id="courseInfo"></div>
 				<div class="content ">
 					<div class="row alert alert-info">
@@ -136,7 +138,6 @@ pre > code {
 					</div>
 				</div>
 			</div>
-		</div>
 	</div>
 	
 	<div id="lessonComments" style="display:none;">

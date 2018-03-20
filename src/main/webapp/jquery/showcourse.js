@@ -1,6 +1,6 @@
 
 var ShowCourse = dejavu.Class.declare({
-	isHideSidebar : true,
+	isHideSidebar : false,
 	isOpenForm : false,
 	$panelBody : null,
 	initialize : function() {
@@ -12,10 +12,14 @@ var ShowCourse = dejavu.Class.declare({
 		if (this.isHideSidebar) {
 			$("#subjectsList").show();
 			this.isHideSidebar = false;
+			$("#sidebar").removeClass("col-lg-1").addClass("col-lg-4");
+			$(".main").removeClass("col-lg-10").addClass("col-lg-8");
 
 		} else {
 			$("#subjectsList").hide();
 			this.isHideSidebar = true;
+			$("#sidebar").removeClass("col-lg-4").addClass("col-lg-1");
+			$(".main").removeClass("col-lg-8").addClass("col-lg-10");
 		}
 	},
 

@@ -1,12 +1,13 @@
+<!doctype HTML>
+<html>
 
-	<div id="main" class="lift:surround?with=viewer;at=content">
+<div id="main" class="lift:surround?with=viewer;at=content">
 		<head_merge>
             <style>
             .msg {
             border-bottom: solid 1px #ccc;
             }
 
-            .row { margin: 0px !important; }
 
             .msg-blue {
             border-left: 8px solid #00e;
@@ -66,15 +67,17 @@
 
         </head_merge>
 
-
 		<div class="jumbotron">
+
 			<h1>Wiadomości, uwagi i ogłoszenia</h1>
 		</div>
+
         <div class="mainRow row">
-        <div class="col-lg-6">
+            <div class="col-lg-1"></div>
+        <div class="col-lg-5">
             <h2>Uwagi i ogłoszenia</h2>
             <div class="msg-grp" data-lift="view.MainSn.showPupilMessages">
-                <div class="row msg">
+                <div class="msg">
                     <div class="msg-cont"></div>
                     <div class="messegeSign">
                         <span class="glyphicon glyphicon-user"></span>
@@ -86,7 +89,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-5">
             <h2>Wiadomości od nauczycieli</h2>
             <div>
             <span class="btn btn-lg btn-info" onclick="infoPupil.newMessage()">
@@ -94,7 +97,7 @@
             </div>
             <hr/>
             <div class="msg-grp" data-lift="view.MainSn.showMessages">
-                <div class="row msg">
+                <div class="msg">
                     <div class="msg-cont"></div>
                     <div class="messegeSign">
                         <span class="glyphicon glyphicon-user"></span>
@@ -104,7 +107,7 @@
                     </div>
 
                 </div>
-                <div class="msg-answer row">
+                <div class="msg-answer">
                     <div class="col-sm-9"><span>Użytkownicy: </span><span class="toWhoMessage"></span></div>
                     <div class="col-sm-3">
                         <span class="btn btn-success btn-sm"
@@ -115,7 +118,7 @@
                 </div>
             </div>
         </div>
-
+            <div class="col-lg-1"></div>
 
         </div>
 
@@ -163,8 +166,8 @@
             </form>
         </div>
 
+        </div>
 
 
-	</div>
 
-
+</html>
