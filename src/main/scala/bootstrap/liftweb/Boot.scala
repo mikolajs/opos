@@ -178,7 +178,7 @@ class Boot {
         Menu("Artykuły") / "educontent" / "documents" >> LocGroup("edu") >> isTeacher,
         Menu("Testy") / "educontent" / "quizzes" >> LocGroup("edu") >> isTeacher,
         Menu("Zadania") / "educontent" / "questions" >> LocGroup("edu") >> isTeacher,
-        Menu("Pliki") / "educontent" / "files" >> LocGroup("edu") >> isTeacher,
+        //Menu("Pliki") / "educontent" / "files" >> LocGroup("edu") >> isTeacher,
         Menu("Filmy") / "educontent" / "video" >> LocGroup("edu") >> isTeacher,
         Menu("Prezentacje") / "educontent" / "presentations" >> LocGroup("edu") >> isTeacher,
         Menu("Ustawienia") / "educontent" / "options" >> LocGroup("edu") >> isTeacher,

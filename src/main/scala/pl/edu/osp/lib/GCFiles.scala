@@ -7,7 +7,12 @@ import mongodb._
 import com.mongodb.gridfs._
 import com.mongodb.DBCursor
 import org.bson.types.ObjectId
+import pl.edu.osp.model.page.ArticleContent
 
+/* to CLear files not used:
+ *  look all: lessons notes, articles, slides and exercises, exams answers with paths of anchor for /img or /file
+ *  ?? forum, massages
+ */
 
 class GCFiles {
   var pathImgList: List[String] = Nil
@@ -48,23 +53,49 @@ class GCFiles {
         //val dbObject = currsor.next()
         val gfsFile = fs.find(currsor.next()).get(0)
         val mime = gfsFile.getContentType().toLowerCase
-        println("MIME TYPE::::: " + mime)
+        //println("MIME TYPE::::: " + mime)
         if(mime == "image/jpeg" || mime == "image/png" || mime == "image/gif") {
         pathImgList = gfsFile.getId().asInstanceOf[ObjectId].toString()   :: pathImgList
         }
       }
   }
 
-  private def getAllImagesInSlides(): List[String] = {
+  private def getAllFilesInSlides(): List[String] = {
     var imgSlides: List[String] = Nil
     val set: Set[String] = Set()
     val slidesStr = SlideContent.findAll.map(_.slides)
-    //use regex to find all images /image/\d{12}\.[a-z]{3,4}
+    //use regex to find all images /img/\d{12}\.[a-z]{3,4}
+    slidesStr.foreach(str => {
+      imgSlides = imgSlides ++ extractIDFilse(str)
+    })
+    println("SLIDES FILE ID: " + imgSlides.mkString("\n"))
     imgSlides
+  }
+
+  private def getAllFilesInArticles() = {
+    var dataStr: List[String] = Nil
+    val slidesStr = ArticleContent.findAll.map(_.content)
+    //use regex to find all images /img/\d{12}\.[a-z]{3,4}
+    slidesStr.foreach(str => {
+      dataStr = dataStr ++ extractIDFilse(str)
+    })
+    println("SLIDES FILE ID: " + dataStr.mkString("\n"))
+    dataStr
+  }
+
+  private def extractIDFilse(dataStr:String): List[String] ={
+    val reg = "/img/[a-z,0-9]{24}".r
+    reg.findAllIn(dataStr).toList.map(s => s.split('/')(2))
+
   }
 
   //for test
   def getAllInGridFS() = {
+   // getAllFilesInSlides()
+    //getAllFilesInArticles()
+    //notes
+    //files in answer students
+    //wi
     getImagesAll
     pathImgList
   }
