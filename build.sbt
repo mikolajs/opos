@@ -1,7 +1,5 @@
 name := "osp"
-
 version := "0.8.8"
-
 
 organization := "pl.edu.osp"
 
@@ -33,7 +31,7 @@ libraryDependencies ++= {
     "ch.qos.logback" % "logback-classic" % "1.0.6",
     "org.jsoup" % "jsoup" % "1.8.3",
      "net.liftweb" %% "lift-mongodb" % liftVersion % "compile",
-    "postgresql" % "postgresql" % "9.1-901.jdbc4" % "compile")
+    "org.postgresql" % "postgresql" % "42.2.5")
 }
 
 port in container.Configuration := 9090

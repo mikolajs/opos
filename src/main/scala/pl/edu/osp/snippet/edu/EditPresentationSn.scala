@@ -62,12 +62,10 @@ class EditPresentationSn {
     })
     val levList = List(("1", "podstawowy"), ("2", "średni"), ("3", "rozszerzony"))
 
-    //poprawić - uwzględnić fak, że new HeadWord już istnieje - chyba, że potrzebujemy kopi
     def saveData() {
       val userId = User.currentUser.openOrThrowException("NOT LOGGED USER").id.get
       if (slideHead.authorId == 0L || slideHead.authorId == userId) {
-        val contentHtml = Unparsed(contentString)
-
+        //val contentHtml = Unparsed(contentString)
         slideHead.title = title
         slideHead.subjectId = subjectNow.id
         slideHead.subjectName = subjectNow.name
@@ -76,6 +74,7 @@ class EditPresentationSn {
         slideHead.authorId = userId
         slideHead.descript = description
         slideCont.slides = contentString
+        slideHead.slides = slideCont._id
         slideHead.save
         slideCont.save
       }
