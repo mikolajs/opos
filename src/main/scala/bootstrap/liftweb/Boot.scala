@@ -50,8 +50,6 @@ class Boot {
     DB.defineConnectionManager(DefaultConnectionIdentifier, DBVendor)
 
     MongoDB.defineDb(DefaultMongoIdentifier, MongoAddress(MongoHost("127.0.0.1", 27017), CL.mongoDB))
-
-    //MongoDB.defineDb(OtherMongoIdentifier, MongoAddress(MongoHost("127.0.0.1"), CL.mongoDB))
     // where to search snippet
     LiftRules.addToPackages("pl.edu.osp")
     LiftRules.addToPackages("pl.edu.osp.snippet.page")

@@ -1,6 +1,8 @@
 name := "osp"
 version := "0.8.8"
 
+enablePlugins(ScalaJSPlugin)
+
 organization := "pl.edu.osp"
 
 scalaVersion := "2.11.7"
@@ -13,9 +15,7 @@ resolvers ++= Seq("snapshots" at "http://oss.sonatype.org/content/repositories/s
 
 unmanagedResourceDirectories in Test <+= (baseDirectory) { _ / "src/main/webapp" }
 
-
 seq(webSettings :_*)
-
 
 scalacOptions ++= Seq("-deprecation", "-unchecked")
 
@@ -31,7 +31,10 @@ libraryDependencies ++= {
     "ch.qos.logback" % "logback-classic" % "1.0.6",
     "org.jsoup" % "jsoup" % "1.8.3",
      "net.liftweb" %% "lift-mongodb" % liftVersion % "compile",
-    "org.postgresql" % "postgresql" % "42.2.5")
+    "org.postgresql" % "postgresql" % "42.2.5",
+    "org.scala-js" %%% "scalajs-dom" % "0.9.7"
+  )
+
 }
 
 port in container.Configuration := 9090

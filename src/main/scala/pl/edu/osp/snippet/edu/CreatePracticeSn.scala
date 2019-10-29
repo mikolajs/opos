@@ -19,7 +19,7 @@ import Helpers._
 import _root_.net.liftweb.http.js.JsCmds._
 import _root_.net.liftweb.http.js.JsCmd
 import _root_.net.liftweb.http.js.JE._
-import com.sun.org.omg.CORBA._IDLTypeStub
+//import com.sun.org.omg.CORBA._IDLTypeStub
 
 //pokazuje i edytuje quizy i pytania
 class CreatePracticeSn {
