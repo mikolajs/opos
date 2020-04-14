@@ -16,13 +16,13 @@ import Helpers._
 import _root_.net.liftweb.mapper.{DB, ConnectionManager,
   ConnectionIdentifier, Schemifier, DefaultConnectionIdentifier}
 import java.sql.{Connection, DriverManager}
-import pl.edu.osp.model._
-import pl.edu.osp.api._
-import pl.edu.osp.lib.MailConfig
+import eu.brosbit.opos.model._
+import eu.brosbit.opos.api._
+import eu.brosbit.opos.lib.MailConfig
 import _root_.net.liftweb.mongodb._
-import pl.edu.osp.comet.CronActor
+import eu.brosbit.opos.comet.CronActor
 
-import pl.edu.osp.lib.{ConfigLoader => CL}
+import eu.brosbit.opos.lib.{ConfigLoader => CL}
 
 object DBVendor extends ConnectionManager {
   def newConnection(name: ConnectionIdentifier): Box[Connection] = {
@@ -51,12 +51,12 @@ class Boot {
 
     MongoDB.defineDb(DefaultMongoIdentifier, MongoAddress(MongoHost("127.0.0.1", 27017), CL.mongoDB))
     // where to search snippet
-    LiftRules.addToPackages("pl.edu.osp")
-    LiftRules.addToPackages("pl.edu.osp.snippet.page")
-    LiftRules.addToPackages("pl.edu.osp.snippet.edu")
-    LiftRules.addToPackages("pl.edu.osp.snippet.register")
-    LiftRules.addToPackages("pl.edu.osp.snippet.secretariat")
-    LiftRules.addToPackages("pl.edu.osp.snippet.doc")
+    LiftRules.addToPackages("eu.brosbit.opos")
+    LiftRules.addToPackages("eu.brosbit.opos.snippet.page")
+    LiftRules.addToPackages("eu.brosbit.opos.snippet.edu")
+    LiftRules.addToPackages("eu.brosbit.opos.snippet.register")
+    LiftRules.addToPackages("eu.brosbit.opos.snippet.secretariat")
+    LiftRules.addToPackages("eu.brosbit.opos.snippet.doc")
 
     Schemifier.schemify(true, Schemifier.infoF _, User, ClassModel, MarkMap, SubjectName)
 
@@ -152,9 +152,7 @@ class Boot {
         Menu("Wybór dziennika") / "register" / "index" / ** >> LocGroup("register") >> isTeacher,
         Menu("Uczniowie") / "register" / "pupil_data" >> LocGroup("register") >> isTeacher,
         Menu("Rodzice") / "register" / "parent_data" >> LocGroup("register") >> isTeacher,
-        //Menu("Tematy") / "register" / "themes" >> LocGroup("register") >> isTeacher,
-        //Menu("Obecności") / "register" / "absents"  >> LocGroup("register") >> isTeacher,
-        Menu("Oceny") / "register" / "marks" / ** >> LocGroup("register") >> isTeacher,
+//        Menu("Oceny") / "register" / "marks" / ** >> LocGroup("register") >> isTeacher,
         Menu("Ogłoszenia") / "register" / "anounces" >> LocGroup("register") >> isTeacher,
         Menu("Uwagi") / "register" / "opinions" >> LocGroup("register") >> isTeacher,
         Menu("Plan") / "register" / "class_plan" >> LocGroup("register") >> isTeacher,
@@ -166,24 +164,26 @@ class Boot {
         Menu("Szablon") / "documents" / "createtemplate" / ** >> LocGroup("extra") >> isAdmin,
         Menu("Kolejność") / "documents" / "orderdoc" / ** >> LocGroup("extra") >> isAdmin,
         Menu("Wiadomości") / "view" / "index" >> LocGroup("view") >> loggedIn,
-        //Menu("Oceny") / "view" / "marks" >> LocGroup("view") >> loggedIn,
-        //Menu("Nieobecności") / "view" / "absents" >> LocGroup("view") >> loggedIn,
         Menu("Lekcje") / "view" / "courses" >> LocGroup("view") >> loggedIn,
         Menu("Zobacz lekcję") / "view" / "course" / ** >> LocGroup("extra") >> loggedIn,
         Menu("Prace") / "view" / "exams" >> LocGroup("view") >> loggedIn,
         Menu("Quiz") / "view" / "showquiz" / ** >> LocGroup("extra") >> Hidden >> loggedIn,
+        Menu("Works") / "view" / "showwork" / ** >> LocGroup("extra") >> Hidden >> loggedIn,
         Menu("Kursy") / "educontent" / "index" >> LocGroup("edu") >> isTeacher,
-        Menu("Artykuły") / "educontent" / "documents" >> LocGroup("edu") >> isTeacher,
-        Menu("Testy") / "educontent" / "quizzes" >> LocGroup("edu") >> isTeacher,
+        Menu("Prace") / "educontent" / "works" >> LocGroup("edu") >> isTeacher,
+        Menu("Sprawdziany") / "educontent" / "quizzes" >> LocGroup("edu") >> isTeacher,
         Menu("Zadania") / "educontent" / "questions" >> LocGroup("edu") >> isTeacher,
-        //Menu("Pliki") / "educontent" / "files" >> LocGroup("edu") >> isTeacher,
+        Menu("Artykuły") / "educontent" / "documents" >> LocGroup("edu") >> isTeacher,
         Menu("Filmy") / "educontent" / "video" >> LocGroup("edu") >> isTeacher,
         Menu("Prezentacje") / "educontent" / "presentations" >> LocGroup("edu") >> isTeacher,
         Menu("Ustawienia") / "educontent" / "options" >> LocGroup("edu") >> isTeacher,
         Menu("Lekcje") / "educontent" / "course" / ** >> LocGroup("extra") >> isTeacher,
         Menu("Sprawdziany edycja") / "educontent" / "editexam" / ** >> LocGroup("extra") >> isTeacher,
+        Menu("Praca edycja") / "educontent" / "editwork" / ** >> LocGroup("extra") >> isTeacher,
         Menu("Lista odpowiedzi") / "educontent" / "showexams" / ** >> LocGroup("extra") >> isTeacher,
+        Menu("Praca odpowiedzi") / "educontent" / "showworks" / ** >> LocGroup("extra") >> isTeacher,
         Menu("Sprawdzian sprawdzanie") / "educontent" / "checkexam" / ** >> LocGroup("extra") >> isTeacher,
+        Menu("Praca sprawdzanie") / "educontent" / "checkwork" / ** >> LocGroup("extra") >> isTeacher,
         Menu("Edycja lekcji") / "educontent" / "editlesson" / ** >> LocGroup("extra") >> Hidden >> isTeacher,
         Menu("Edycja prezentacji") / "educontent" / "editpresentation" / ** >> LocGroup("extra") >> Hidden >> isTeacher,
         Menu("Edycja quizów") / "educontent" / "editquiz" / ** >> LocGroup("extra") >> Hidden >> isTeacher,

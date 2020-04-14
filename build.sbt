@@ -1,7 +1,7 @@
-name := "osp"
-version := "0.8.8.1"
+name := "opos"
+version := "0.8.8.2"
 
-organization := "pl.edu.osp"
+organization := "brosbit.eu"
 
 scalaVersion := "2.11.7"
 
