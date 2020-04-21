@@ -50,6 +50,7 @@ class Boot {
     DB.defineConnectionManager(DefaultConnectionIdentifier, DBVendor)
 
     MongoDB.defineDb(DefaultMongoIdentifier, MongoAddress(MongoHost("127.0.0.1", 27017), CL.mongoDB))
+
     // where to search snippet
     LiftRules.addToPackages("eu.brosbit.opos")
     LiftRules.addToPackages("eu.brosbit.opos.snippet.page")
@@ -289,6 +290,10 @@ class Boot {
       ParsePath("educontent" :: "editexam" :: examId :: Nil, _, _, _), _, _) =>
         RewriteResponse(
           "educontent" :: "editexam" :: Nil, Map("id" -> examId))
+      case RewriteRequest(
+      ParsePath("educontent" :: "editwork" :: workId :: Nil, _, _, _), _, _) =>
+        RewriteResponse(
+          "educontent" :: "editwork" :: Nil, Map("id" -> workId))
       case RewriteRequest(
       ParsePath("educontent" :: "showexams" :: examId :: Nil, _, _, _), _, _) =>
         RewriteResponse(

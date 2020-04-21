@@ -20,6 +20,11 @@ class EditWorkSn extends BaseResourceSn {
   val userId = user.id.get
   val work = LessonWork.find(workId).getOrElse(LessonWork.create)
   val lessonOpt = LessonCourse.find(work.lessonId)
+  val classes = ClassModel.findAll().map(cl => (cl.id.toString, cl.classString()))
+  val courses = Course.findAll("authorId"->userId).map(co => (co._id.toString, co.title))
+  var courseId =lessonOpt.map(_.courseId).getOrElse(ZeroObjectId.get).toString
+  var lessonId = lessonOpt.map(_._id).getOrElse(ZeroObjectId.get).toString
+  val lessons = LessonCourse.findAll("courseId"-> courseId.toString).map(le => (le._id.toString, le.title))
 
   //working ....
   def editWork() = {
@@ -29,18 +34,16 @@ class EditWorkSn extends BaseResourceSn {
     var endWork = Formater.strForDateTimePicker(if(work.end == 0L) new Date() else new Date(work.end))
     var classId = work.classId.toString
     var lessonTitle = lessonOpt.map(lesson => lesson.title).getOrElse("")
-    var lessonId = lessonOpt.map(_._id).getOrElse(ZeroObjectId.get)
+    var lessonId = lessonOpt.map(_._id).getOrElse(ZeroObjectId.get).toString
+    var courseId =lessonOpt.map(_.courseId).getOrElse(ZeroObjectId.get).toString
 
-
-    //find exam and initiate pools
-    val classes = ClassModel.findAll().map(cl => (cl.id.toString, cl.classString()))
 
 
     def save()  {
       println("========= save lesson work ========")
       if (work.teacherId != 0L && work.teacherId != userId) return
       if (work.teacherId == 0L) work.teacherId = userId
-      work.lessonId = lessonId
+      work.lessonId = new ObjectId(lessonId)
       work.lessonTitle = lessonTitle
       work.start = Formater.fromStringDataTimeToDate(startWork).getTime
       work.end = Formater.fromStringDataTimeToDate(endWork).getTime
@@ -56,7 +59,7 @@ class EditWorkSn extends BaseResourceSn {
     def delete() {
       println("========= delete work ========")
       if (work.teacherId != 0L || userId == work.teacherId) {
-        //dodać wyszukiwanie sprawdzianów  uczniów i informację o konieczności ich skasowania
+        //dodać wyszukiwanie prac uczniów i informację o konieczności ich skasowania
 //        LessonWorkAnswer.findAll(("exam" -> examId)).foreach(exAn => {
 //          println(exAn.authorName)
 //          exAn.delete
@@ -66,23 +69,25 @@ class EditWorkSn extends BaseResourceSn {
       } else S.warning("Nie jesteś autorem prac lub pracy jeszcze nie ma.")
     }
 
-
-
-    "#descriptionExam" #> SHtml.textarea(description, x => description = x.trim) &
-      "#testsList" #> SHtml.text(quizzes, x =>  quizzes = x.trim) &
-      "#keysList" #> SHtml.text(keys, x =>  keys = x.trim) &
-      "#classExam" #> SHtml.select(classes, Full(classId), classId = _ ) &
-      "#multiExam" #> SHtml.checkbox(multi, multi = _) &
-      "#attachExam" #> SHtml.checkbox(attach, attach = _) &
-      "#startExam" #> SHtml.text(startExam, x =>  startExam = x.trim) &
-      "#endExam" #> SHtml.text(endExam, x =>  endExam = x.trim) &
-      "#saveExam" #> SHtml.submit("Zapisz", save) &
-      "#deleteExam" #> SHtml.submit("Usuń", delete)
-
+      "#coursesId" #> SHtml.select(courses, Full(courseId), courseId = _) &
+      "#lessonId" #> SHtml.select(lessons, Full(lessonId), lessonId = _ ) &
+      "#classWork" #> SHtml.select(classes, Full(classId), classId = _ ) &
+      "#startWork" #> SHtml.text(startWork, x =>  startWork = x.trim) &
+      "#endWork" #> SHtml.text(endWork, x =>  endWork = x.trim) &
+      "#saveWork" #> SHtml.submit("Zapisz", save) &
+      "#deleteWork" #> SHtml.submit("Usuń", delete)
 
   }
 
-  def showInfo = "span *" #> subjectNow.name
+  def choiceLesson() = {
+    def choice(): Unit = {
+      S.redirectTo(s"/educontent/editwork/0?c=$courseId")
+    }
+      ".choiceCourse" #> SHtml.select(courses, Full(courseId), courseId = _) &
+      ".changeLesson" #> SHtml.submit("Wybierz", choice)
+
+
+  }
 
 
   def showQuestions() = {
@@ -93,7 +98,6 @@ class EditWorkSn extends BaseResourceSn {
       "div [id]" #> quest._id.toString &
         ".contentQuest * " #> quest.question
     })
-
   }
 
 

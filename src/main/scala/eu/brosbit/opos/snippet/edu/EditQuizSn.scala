@@ -40,7 +40,6 @@ class EditQuizSn extends BaseResourceSn {
     var title = quiz.title
     val userId = user.id.get
 
-
     def save()  {
       println("========= save quiz ========")
       if (quiz.authorId != 0L && quiz.authorId != userId) return

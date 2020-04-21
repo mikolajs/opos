@@ -19,7 +19,7 @@ object LessonWorkAnswer extends MongoDocumentMeta[LessonWorkAnswer] {
 
   override def formats = super.formats + new ObjectIdSerializer + new DateSerializer
 
-  def create = new LessonWorkAnswer.(ObjectId.get, ObjectId.get, "", 0, 0L, "", Nil, "", "")
+  def create = new LessonWorkAnswer(ObjectId.get, ObjectId.get, "", 0, 0L, "", Nil, "", "")
 }
 
 case class LessonWorkAnswer(var _id: ObjectId, var exam:ObjectId, var code:String, var max:Int,
