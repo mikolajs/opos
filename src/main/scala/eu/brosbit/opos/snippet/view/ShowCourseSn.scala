@@ -19,7 +19,7 @@ class ShowCourseSn extends BaseShowCourseSn {
     case _ => S.redirectTo("/login")
   }
 
-  def show() = {
+  def show(): CssSel = {
     if (!canView) S.redirectTo("/view/courses")
 
     if (course.title != "") {
@@ -35,7 +35,7 @@ class ShowCourseSn extends BaseShowCourseSn {
     } else ".main *" #> <h1>Nie ma takiego kursu lub brak lekcji</h1>
   }
 
-  def sendMessage() = {
+  def sendMessage():CssSel = {
 
     var msg = ""
     def send() {

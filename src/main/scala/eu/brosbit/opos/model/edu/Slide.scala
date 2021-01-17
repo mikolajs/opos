@@ -18,4 +18,8 @@ case class Slide(var _id: ObjectId, var authorId: Long, var subjectId: Long,
                  var title: String, var descript: String, var slides: ObjectId)
   extends MongoDocument[Slide] {
   def meta = Slide
+  def exportJsonString =
+    s""" "_id":"${_id.toString}", "title":"${title}", "descript":"$descript", "subjectName":"$subjectName",
+       |"department":"$department", "slides":"${slides.toString}", "lev":"$lev",
+       |""".stripMargin
 }

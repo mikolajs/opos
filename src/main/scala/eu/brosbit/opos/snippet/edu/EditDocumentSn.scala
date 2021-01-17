@@ -26,7 +26,7 @@ class EditDocumentSn extends BaseResourceSn {
     var docID = id
     var title = document.title
     var descript = document.descript
-    val subject = if (document.subjectId == 0L) subjectNow.name else document.subcjectName
+    val subject = if (document.subjectId == 0L) subjectNow.name else document.subjectName
     var level = document.lev.toString
     var department = if(document.department.isEmpty) departName
         else document.department
@@ -39,7 +39,7 @@ class EditDocumentSn extends BaseResourceSn {
         document.descript = descript
         if (document.subjectId == 0L) document.subjectId = subjectNow.id
         document.lev = level.toInt
-        document.subcjectName = findSubjectName(document.subjectId)
+        document.subjectName = findSubjectName(document.subjectId)
         document.authorId = user.id.get
         document.authorName = user.getFullName
         document.content = docContent

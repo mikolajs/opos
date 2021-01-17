@@ -17,3 +17,6 @@
     psql osp < nazwa_pliku
     
 6. skopiowanie plików video do /home/osp
+
+7. Packowenie katalogu z backupem:
+ 	tar -czvf file.tar.gz directory

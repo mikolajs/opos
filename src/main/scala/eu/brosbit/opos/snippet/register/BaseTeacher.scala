@@ -17,7 +17,7 @@ import eu.brosbit.opos.model._
 class BaseTeacher {
   val user = User.currentUser.openOrThrowException("Nauczyciel musi być zalogowany!")
 
-  def choosenClass() = {
+  def choosenClass():CssSel = {
     if (ClassChoose.is == 0) S.redirectTo("/register/index")
     else "#choosenclass *" #> ClassString.is
   }

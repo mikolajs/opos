@@ -17,4 +17,7 @@ object SlideContent extends MongoDocumentMeta[SlideContent] {
 case class SlideContent(var _id: ObjectId, var slides: String
                         ) extends MongoDocument[SlideContent] {
   def meta = SlideContent
+  def exportJsonString =
+    s""" "_id":"${_id.toString}","slides":"${slides.trim}"
+     |""".stripMargin
 }

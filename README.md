@@ -18,6 +18,7 @@ platforma edukacyjna do tworzenia i udostępniania kursów i materiałów
  * tworzenie zadań do pracy na lekcji
  * tworzenie sprawdzianu
  * komunikacja tekstowa z uczniami
+ * tematy lekcji
 
 ## Strona internetowa:
 

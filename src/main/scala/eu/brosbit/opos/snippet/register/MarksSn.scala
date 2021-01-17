@@ -2,7 +2,7 @@ package eu.brosbit.opos.snippet.register
 
 import java.util.Date
 import net.liftweb.util.Helpers._
-import _root_.net.liftweb.http.{SHtml, S}
+import _root_.net.liftweb.http.S
 import _root_.net.liftweb.common._
 import _root_.net.liftweb.mapper.{By, OrderBy, Ascending}
 import eu.brosbit.opos.model._

@@ -220,7 +220,7 @@ var EditQuest =  dejavu.Class.declare({
 		inInput = jQuery.trim(inInput);
 		if(inInput.length > 0) fakeList.push(inInput);
 		
-		var fakeStr = fakeList.join(';');
+		var fakeStr = fakeList.join(';#;;#;');
 		return fakeStr;
     },
     
@@ -234,7 +234,7 @@ var EditQuest =  dejavu.Class.declare({
 		inInput = jQuery.trim(inInput);
 		if(inInput.length > 0) goodList.push(inInput);
 		
-		var goodStr = goodList.join(';');
+		var goodStr = goodList.join(';#;;#;');
 		return goodStr;
     },
     
@@ -244,11 +244,11 @@ var EditQuest =  dejavu.Class.declare({
     	array.push($('#questionQuest').val());
     	array.push($('#infoQuest').val());
     	var goodHTML = "";
-    	var goods = this._getGoodAnswerStringFromInputs().split(';');
+    	var goods = this._getGoodAnswerStringFromInputs().split(';#;;#;');
     	for(i in goods) goodHTML += '<span class="good">' + goods[i] + '</span>'; 
     	array.push(goodHTML);
     	var fakeHTML = "";
-    	var fakes = this._getFakeAnswerStringFromInputs().split(';');
+    	var fakes = this._getFakeAnswerStringFromInputs().split(';#;;#;');
     	for(i in fakes) fakeHTML += '<span class="wrong">' + fakes[i] + '</span>'; 
     	array.push(fakeHTML);
     	array.push($('#levelQuest option:selected').text());

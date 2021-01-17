@@ -24,7 +24,7 @@ object Formater {
     sfd.format(t)
   }
 
-  def pretyDate(t: Date): String = {
+  def prettyDate(t: Date): String = {
     val l = new Locale("pl")
     val sfd = new SimpleDateFormat("EEE, dd MMM yyyy", l)
     sfd.format(t)

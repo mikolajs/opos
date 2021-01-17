@@ -18,6 +18,10 @@ object Document extends MongoDocumentMeta[Document] {
 
 case class Document(var _id: ObjectId, var title: String, var descript: String, var department: String,
                     var content: String, var authorId: Long, var authorName: String, var subjectId: Long,
-                    var subcjectName: String, var lev: Int) extends MongoDocument[Document] {
+                    var subjectName: String, var lev: Int) extends MongoDocument[Document] {
   def meta = Document
+  def exportJsonString =
+    s""" "_id":"${_id.toString}", "title":"${title}", "descript":"$descript", "subjectName":"$subjectName",
+       |"department":"$department", "content":"${content.trim}", "lev":"$lev",
+       |""".stripMargin
 }

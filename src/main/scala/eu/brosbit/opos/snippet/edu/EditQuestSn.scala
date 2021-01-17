@@ -1,6 +1,6 @@
 package eu.brosbit.opos.snippet.edu
 
-import scala.xml.Unparsed
+import scala.xml.{NodeSeq, Unparsed}
 import _root_.net.liftweb._
 import http.SHtml
 import common._
@@ -9,7 +9,6 @@ import eu.brosbit.opos.model._
 import edu._
 import Helpers._
 import json.JsonDSL._
-
 import _root_.net.liftweb.http.js.JsCmds._
 import _root_.net.liftweb.http.js.JsCmd
 import _root_.net.liftweb.http.js.JE._
@@ -101,14 +100,14 @@ class EditQuestSn extends BaseResourceSn {
         qi.save
       }
       quest.nr = nr
-      quest.answers = answer.split(";").toList.map(a => a.trim).filterNot(a => a.length() == 0)
-      quest.fake = wrongAnswers.split(";").toList.map(a => a.trim).filterNot(a => a.length() == 0)
-      quest.question = question
-      quest.info = info
+      quest.answers = answer.split(getSeparator).toList.map(a => a.trim).filterNot(a => a.length() == 0)
+      quest.fake = wrongAnswers.split(getSeparator).toList.map(a => a.trim).filterNot(a => a.length() == 0)
+      quest.question = question.trim
+      quest.info = info.trim
       quest.subjectId = subjectNow.id
       quest.subjectName = subjectNow.name
-      quest.department = department
-      quest.dificult = tryo(difficult.toInt).openOr(9)
+      quest.department = department.trim
+      quest.dificult = tryo(difficult.toInt).openOr(1)
       quest.lev = tryo(level.toInt).openOr(1)
       quest.save
       JsFunc("editQuest.insertQuestion", quest._id.toString).cmd
@@ -145,7 +144,7 @@ class EditQuestSn extends BaseResourceSn {
       "#saveQuest" #> SHtml.ajaxSubmit("Zapisz", save) &
       "#deleteQuest" #> SHtml.ajaxSubmit("Usuń", delete) andThen SHtml.makeFormsAjax
 
-    "form" #> (in => form(in))
+    "form" #> ((in:NodeSeq) => form(in))
 
   }
 

@@ -50,7 +50,7 @@ class PupilDataSn extends BaseTeacher {
     })
   }
 
-  def editAjax() = {
+  def editAjax(): CssSel = {
     var id = ""
     var number = ""
     var email = ""
@@ -66,6 +66,7 @@ class PupilDataSn extends BaseTeacher {
           pupil.address(address.trim).birthPlace(birthPlace.trim).
             birthDisctrict(birthDistrict.trim).
             email(email.trim).classNumber(tryo(number.toInt).openOr(0)).phone(phone.trim).validated(true).save
+          pupil.validate
           id = pupil.id.toString
           JsFunc("editForm.editRow", id).cmd
         }
@@ -86,7 +87,7 @@ class PupilDataSn extends BaseTeacher {
       "#save" #> SHtml.ajaxSubmit("Zapisz", save, "type" -> "image",
         "onclick" -> "return validateForm();") andThen SHtml.makeFormsAjax
 
-    "form" #> (in => form(in))
+    "form" #> ((in:NodeSeq) => form(in))
   }
 
 

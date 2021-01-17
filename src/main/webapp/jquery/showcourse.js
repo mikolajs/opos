@@ -25,7 +25,7 @@ var ShowCourse = dejavu.Class.declare({
 
 	checkAnswer : function(elem) {
 		this.$panelBody = $(elem).parent();
-		var corrects = this.$panelBody.children("input.correct").val().split(';;;');
+		var corrects = this.$panelBody.children("input.correct").val().split(';#;;#;');
 		var questType = this.$panelBody.children("input.questType").val();
 		console.log('prawidłowe: ' + corrects.join(', ') + " questType " + questType );
 		var info = "";

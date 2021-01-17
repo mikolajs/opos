@@ -1,0 +1,87 @@
+<!doctype HTML>
+<html>
+
+<div class="lift:surround?with=viewer;at=content">
+    <head_merge>
+        <style>
+            p.courseInfo {font-weight: bold;}
+            #subjectInfo {font-weight: bold; color: green;}
+            span.isRed {
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                background-color: green;
+            }
+            span.notRed {
+                display: inline-block;
+                width: 20px;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                background-color: red;
+            }
+        </style>
+        <link href="/style/jquery.dataTables.css" type="text/css" rel="stylesheet">
+        <script type="text/javascript" charset="utf-8" src="/style/common_users.js"></script>
+        <script src="/jquery/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/jquery/datatableone.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            var datatable;
+            $(document).ready(() => {
+              datatable = new DataTableOne();
+              datatable.init();
+              datatable.dTable.fnSort([[1,'desc']]);
+            });
+
+        </script>
+
+    </head_merge>
+    <br/>
+
+    <div class="col-lg-12">
+        <div  data-lift="view.ThemesSn.chosenSubject">
+            <div class="well"><h2>Tematy zajęć </h2>
+<!--                <h3>Przedmiot: <span id="subjectInfo"></span></h3>-->
+            </div>
+        </div>
+
+       <!--  na razie wszystkie przedmioty <div data-lift="view.ThemesSn.showSubjects">
+            <h3>Wybierz przedmiot</h3>
+            <button></button>
+        </div>-->
+
+        <table id="fullList" class="display" border="0" cellpadding="2" cellspacing="2">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Data</th>
+                <th>Temat</th>
+                <th>Zmiany</th>
+                <th>Otwórz</th>
+            </tr>
+            </thead>
+
+            <tbody data-lift="view.ThemesSn.showThemes">
+            <tr>
+                <td class="workId"></td>
+                <td class="lessonDate"></td>
+                <td class="theme"></td>
+                <td class="changes"></td>
+                <td class="open"></td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <th>ID</th>
+                <th>Data</th>
+                <th>Temat</th>
+                <th>Zmiany</th>
+                <th>Otwórz</th>
+            </tr>
+            </tfoot>
+        </table>
+
+    </div>
+</div>
+</html>

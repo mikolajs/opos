@@ -10,11 +10,8 @@ import util._
 import mapper.{OrderBy, Ascending}
 import http.{S, SHtml}
 import json.JsonDSL._
-import json.JsonAST.JObject
-import json.JsonParser
-import http.js.JsCmds.{SetHtml, Alert}
+import http.js.JsCmds.SetHtml
 import http.js.JsCmd
-import org.bson.types.ObjectId
 import Helpers._
 import eu.brosbit.opos.snippet._
 
@@ -26,7 +23,7 @@ class OptionsSn {
   val levList = List(("1", "podstawowy"), ("2", "średni"), ("3", "rozszerzony"))
   val levMap = levList.toMap
 
-  def showAllSubjects() = {
+  def showAllSubjects(): CssSel = {
     val subjectsAll = SubjectName.findAll(OrderBy(SubjectName.nr, Ascending))
       .filter(s => !subjectTeach.exists(t => t.id == s.id.get))
     "li *" #> subjectsAll.map(s =>
@@ -38,7 +35,7 @@ class OptionsSn {
       </span>))
   }
 
-  def showMySubjects() = {
+  def showMySubjects(): CssSel = {
 
     "li" #> subjectTeach.map(s => (<li class="list-group-item">
       <button class="btn btn-danger" onclick="subjects.removeSubject(this)">
@@ -50,7 +47,7 @@ class OptionsSn {
     </li>))
   }
 
-  def formEdit() = {
+  def formEdit(): CssSel = {
     var data = ""
     def save() {
       var notdeleted = true
@@ -83,7 +80,7 @@ class OptionsSn {
       "#save" #> SHtml.button(<span class="glyphicon glyphicon-floppy-save">Zapisz zmiany!</span>, save, "class" -> "btn btn-success btn-lg")
   }
 
-  def deleteDepartment() = {
+  def deleteDepartment(): CssSel = {
     var department = ""
     var subjectId = ""
     def delete() {
@@ -100,9 +97,9 @@ class OptionsSn {
       "#subject" #> SHtml.text(subjectId, subjectId = _)
   }
 
-  def showDepartments() = {
+  def showDepartments(): CssSel = {
     var depart = ""
-    var subjID = 0L
+    val subjID = 0L
     if (subjectTeach.length > 0) {
 
       var subjectNow = subjectTeach.find(s => subjID == s.id).getOrElse(subjectTeach.head)
@@ -156,7 +153,7 @@ class OptionsSn {
           "li" #> depLI &
           "#saveDep" #> SHtml.ajaxSubmit("Zapisz", saveDep) andThen SHtml.makeFormsAjax
 
-      "form" #> (in => form(in))
+      "form" #> ((in: NodeSeq) => form(in))
     }
     else "form" #> <span></span>
   }

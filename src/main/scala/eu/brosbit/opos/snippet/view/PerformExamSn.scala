@@ -43,6 +43,7 @@ class PerformExamSn extends BaseSnippet {
     if(exam.quizzes.length > 1 && exAns.code.isEmpty) {
 
          "#code" #> SHtml.text(enterCode, enterCode = _) &
+          "#attachFrame" #> <span style="display:none;"></span> &
           "#descript" #> <span style="display:none;"></span> &
           "#subject" #> <span style="display:none;"></span> &
           "#endTime *" #> Formater.formatDate(new Date(exam.end)) &

@@ -150,7 +150,7 @@ class BaseShowCourseSn  {
         {s}
       </label>
     </li>)
-    val correctString = quest.answers.mkString(";;;")
+    val correctString = quest.answers.mkString(getSeparator)
     mkQuestHTML('s', quest.question, quest.nr, quest.dificult, correctString, <ul>
       {all}
     </ul>)
@@ -160,7 +160,7 @@ class BaseShowCourseSn  {
     val all = <div>
       <label>Odpowiedź:</label> <input type="text" name={quest._id.toString}/>
     </div>
-    val correctString = quest.answers.mkString(";;;")
+    val correctString = quest.answers.mkString(getSeparator)
     mkQuestHTML('i', quest.question, quest.nr, quest.dificult, correctString, all)
   }
 
@@ -171,7 +171,7 @@ class BaseShowCourseSn  {
         {s}
       </label>
     </li>)
-    val correctString = quest.answers.mkString(";;;")
+    val correctString = quest.answers.mkString(getSeparator)
     mkQuestHTML('m', quest.question, quest.nr, quest.dificult, correctString, <ul>
       {all}
     </ul>)
@@ -263,5 +263,7 @@ class BaseShowCourseSn  {
   protected def printInfo {
     println("idCourse = " + course._id.toString + " course title = " + course.title)
   }
+
+  private def getSeparator = ";#;;#;"
 
 }

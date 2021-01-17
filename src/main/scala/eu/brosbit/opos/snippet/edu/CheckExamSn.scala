@@ -132,7 +132,7 @@ class CheckExamSn {
       else  <div  name="open" class="well"><pre>{ans}</pre></div>
     }
     else {
-      val ansList = ans.split(",;;,")
+      val ansList = ans.split(getSeparator)
       val all = fake.map(s => {
         val isAns = ansList.exists(_ == s)
         val addC = if(isAns) " glyphicon-check" else " glyphicon-unchecked"
@@ -173,5 +173,5 @@ class CheckExamSn {
     } catch {case _ : Throwable => println("ERROR PARSER JSON PERFORMEXAMS")}
     data
   }
-
+  private def getSeparator = ";#;;#;"
 }

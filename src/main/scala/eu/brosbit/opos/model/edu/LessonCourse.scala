@@ -16,7 +16,7 @@ case class LessonContent(what: String, id: String, title: String, descript: Stri
 // what: headword - h,  quest - q
 
 
-case class LessonItem(what: String, id: String, title: String, descript: String)
+//case class LessonItem(what: String, id: String, title: String, descript: String)
 
 object LessonCourse extends MongoDocumentMeta[LessonCourse] {
   override def collectionName = "lessons"
@@ -30,6 +30,10 @@ object LessonCourse extends MongoDocumentMeta[LessonCourse] {
 case class LessonCourse(var _id: ObjectId, var nr: Int, var authorId: Long,
                         var chapter: String, var title: String,
                         var descript: String, var courseId: ObjectId, var contents: List[LessonContent])
-  extends MongoDocument[LessonCourse] {
+  extends MongoDocument[LessonCourse] with ListToJsonString {
   def meta = LessonCourse
+  def exportJsonString =
+    s""" "_id":"${_id.toString}", "title":"${title}", "descript":"$descript", "chapter":"$chapter",
+       |"courseId":"$courseId", "contents": [${contents.map(_.forJSONStr).mkString(",")}], "nr":"$nr",
+       |""".stripMargin
 }

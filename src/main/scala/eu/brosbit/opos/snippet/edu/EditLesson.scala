@@ -1,31 +1,33 @@
 package eu.brosbit.opos.snippet.edu
 
-import scala.xml.{Text, XML, Unparsed, NodeSeq}
+import scala.xml.{NodeSeq, Text}
 import _root_.net.liftweb._
 import _root_.net.liftweb.http.{S, SHtml}
 import _root_.net.liftweb.common._
 import eu.brosbit.opos.model.edu._
 import eu.brosbit.opos.lib.DataTableOption._
-import eu.brosbit.opos.lib.{DataTable}
+import eu.brosbit.opos.lib.DataTable
 import json.DefaultFormats
 import json.JsonDSL._
 import json.JsonParser._
 import _root_.net.liftweb.http.js.JsCmds._
 import _root_.net.liftweb.http.js.JsCmd
 import _root_.net.liftweb.util.Helpers._
+import net.liftweb.util.CssSel
 
 
 //case class TestJ(l: String, t: String)
 
 class EditLesson extends BaseLesson {
 
-  val subjectTeach = SubjectTeach.findAll(("authorId" -> user.id.get),  ("prior" -> 1))
-  val subjectNow = subjectTeach.find(s => s.id == subjectId).getOrElse(subjectTeach.head)
+  private val subjectTeach = SubjectTeach.findAll("authorId" -> user.id.get,  "prior" -> 1)
+  private val subjectNow = subjectTeach.find(s => s.id == subjectId).getOrElse(subjectTeach.head)
 
-  val departList = subjectNow.departments.map(d => (d.name -> d.name))
+  private val departList = subjectNow.departments.map(d => {d.name -> d.name})
 
 
-  def showCourseInfo() = {
+
+  def showCourseInfo():CssSel = {
     if (courseOption.isEmpty) {
       "h2" #> (<h2>Nie znaleziono kursu!</h2> ++
         <p>Utwórz najpierw kurs, a następnie kliknij na edycję i dodaj lekcję.
@@ -44,7 +46,7 @@ class EditLesson extends BaseLesson {
 
   }
 
-  def editLesson() = {
+  def editLesson(): CssSel = {
 
     var id = idPar
 
@@ -60,7 +62,7 @@ class EditLesson extends BaseLesson {
     val userId = user.id.get
 
     def save() {
-      if ((!courseOption.isEmpty) && (lesson.authorId == 0L || lesson.authorId == userId)) {
+      if (courseOption.isDefined && (lesson.authorId == 0L || lesson.authorId == userId)) {
         lesson.title = title
         lesson.authorId = userId
         lesson.nr = nr
@@ -70,7 +72,7 @@ class EditLesson extends BaseLesson {
           newChapter = newChapter.trim
           if (newChapter.length > 1) {
             chapters.find(ch => ch == newChapter) match {
-              case Some(chap) => Unit
+              case Some(_) => Unit
               case _ => {
                 cour.chapters = cour.chapters ++ List(newChapter)
                 cour.save
@@ -85,7 +87,7 @@ class EditLesson extends BaseLesson {
       }
 
       deleteChapterIfLast(chapterOld)
-      S.redirectTo("/educontent/course/" + lesson.courseId.toString + "?l=" + lesson._id.toString())
+      S.redirectTo("/educontent/course/" + lesson.courseId.toString + "?l=" + lesson._id.toString)
     }
 
     def delete() {
@@ -95,8 +97,8 @@ class EditLesson extends BaseLesson {
       S.redirectTo("/educontent/course/" + lesson.courseId.toString)
     }
 
-    val subj = subjectTeach.find(s =>
-      courseOption.getOrElse(Course.create).subjectId == s.id).getOrElse(subjectTeach.head)
+    //val subj = subjectTeach.find(s =>
+    //  courseOption.getOrElse(Course.create).subjectId == s.id).getOrElse(subjectTeach.head)
     //val departs = subj.departments.map(d => (d, d))
     "#ID" #> SHtml.text(id, id = _) &
       "#title" #> SHtml.text(title, x => title = x.trim) &
@@ -111,7 +113,7 @@ class EditLesson extends BaseLesson {
         delete, "onclick" -> "return confirm('Na pewno usunąć całą lekcję?')")
   }
 
-  def ajaxText = {
+  def ajaxText: CssSel = {
 
     var itemCh = ""
     //var level = ""
@@ -151,13 +153,10 @@ class EditLesson extends BaseLesson {
     }
 
     def refreshData(): JsCmd = {
-      println("[AppINFO]:: Ajax Hidden text refresh; itemType= " +
-        itemCh  + " depart= " + department)
       SetValById("jsonForDataTable", getData) & Run("refreshTab();")
     }
 
-    val itemTypes = List(("p" -> "Prezentacje"), ("d" -> "Artykuły"),
-      ("q" -> "Zadania"), ("v" -> "Filmy"))
+    val itemTypes = List("p" -> "Prezentacje", "d" -> "Artykuły", "q" -> "Zadania", "v" -> "Filmy")
 
     val form = "#getItemType" #> SHtml.select(itemTypes, Full(itemCh), itemCh = _) &
       //"#getLevel" #> SHtml.select(levList, Full(level), level = _) &
@@ -165,10 +164,10 @@ class EditLesson extends BaseLesson {
       "#getItems" #> SHtml.ajaxSubmit("Pokaż", () => refreshData,
         "class" -> "btn btn-lg btn-success", "type" -> "submit") andThen SHtml.makeFormsAjax
 
-    "form" #> (in => form(in))
+    "form" #> ((in:NodeSeq) => form(in))
   }
 
-  def renderLinkAndScript(html: NodeSeq) = DataTable.mergeSources(html)
+  def renderLinkAndScript(html: NodeSeq): NodeSeq = DataTable.mergeSources(html)
 
   def dataTableScript(xhtml: NodeSeq): NodeSeq = {
     val col = List("Id", "Tytul", "Dzial")
@@ -192,11 +191,11 @@ class EditLesson extends BaseLesson {
     json.extract[List[LessonContent]]
   }
 
-  private def deleteChapterIfLast(chapter: String) = {
-    if (!courseOption.isEmpty) {
+  private def deleteChapterIfLast(chapter: String): Unit = {
+    if (courseOption.isDefined) {
       val course = courseOption.get
       val lessons =
-        LessonCourse.findAll(("courseId" -> course._id.toString()) ~ ("chapter" -> chapter))
+        LessonCourse.findAll(("courseId" -> course._id.toString) ~ ("chapter" -> chapter))
       if (lessons.isEmpty)
         course.chapters = course.chapters.filterNot(ch => ch == chapter)
       println("[AppINFO:::::: on delete lesson delete chapters if last == " + lessons.length.toString)

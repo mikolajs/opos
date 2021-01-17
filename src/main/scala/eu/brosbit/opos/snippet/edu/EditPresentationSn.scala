@@ -1,7 +1,7 @@
 package eu.brosbit.opos.snippet.edu
 
 
-import scala.xml.{Text, Unparsed}
+import scala.xml.Text
 import _root_.net.liftweb._
 import http.{S, SHtml}
 import common._
@@ -13,27 +13,27 @@ import Helpers._
 
 class EditPresentationSn {
 
-  val user = User.currentUser.openOrThrowException("Niezalogowany nauczyciel")
-  val id = S.param("id").openOr("0")
-  val subId = S.param("s").openOr("0")
-  var slideHead = if (id == "0") Slide.create else Slide.find(id).getOrElse(Slide.create)
-  var slideCont = SlideContent.find(slideHead.slides.toString).getOrElse(SlideContent.create)
-  val subIdLong = if (slideHead.subjectId == 0L) subId.toLong else slideHead.subjectId
-  var subjectNow = SubjectTeach.findAll(("id" -> subIdLong) ~ ("authorId" -> user.id.get)) match {
-    case sub :: list => sub
+  private val user = User.currentUser.openOrThrowException("Niezalogowany nauczyciel")
+  private val id = S.param("id").openOr("0")
+  private val subId = S.param("s").openOr("0")
+  private val slideHead = if (id == "0") Slide.create else Slide.find(id).getOrElse(Slide.create)
+  private val slideCont = SlideContent.find(slideHead.slides.toString).getOrElse(SlideContent.create)
+  private val subIdLong = if (slideHead.subjectId == 0L) subId.toLong else slideHead.subjectId
+  private val subjectNow = SubjectTeach.findAll(("id" -> subIdLong) ~ ("authorId" -> user.id.get)) match {
+    case sub :: _ => sub
     case _ => S.redirectTo("/educontent/presentations")
   }
-  var departNr= tryo(S.param("d").openOr("0").toInt).getOrElse(0);
-  var departName = departNr match {
+  private val departNr = tryo(S.param("d").openOr("0").toInt).getOrElse(0)
+  private val departName = departNr match {
     case -1 => ""
     case 0 => if(subjectNow.departments.isEmpty) "" else subjectNow.departments.head
-    case nr:Int if(subjectNow.departments.length > nr ) =>   subjectNow.departments(nr)
+    case nr:Int if subjectNow.departments.length > nr  =>   subjectNow.departments(nr)
     case _ => if(subjectNow.departments.isEmpty) "" else subjectNow.departments.head
   }
 
 
   //for showSlides - viewer
-  def slidesData() = {
+  def slidesData(): CssSel = {
     "#title" #> <span>
       {slideHead.title}
     </span> &
@@ -45,7 +45,7 @@ class EditPresentationSn {
 
 
   //edit headWords
-  def formEdit() = {
+  def formEdit(): CssSel = {
 
     var ID = slideHead._id.toString
     var title = slideHead.title
@@ -107,7 +107,7 @@ class EditPresentationSn {
       "#cancel" #> SHtml.button(<span class="glyphicon glyphicon-share-alt"></span> ++ Text(" Anuluj "), cancelAction, "title" -> "Anuluj")
   }
 
-  def show() = {
+  def show(): CssSel = {
     "a [href]" #> ("/showslide/" + id)
   }
 }

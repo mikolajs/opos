@@ -5,7 +5,8 @@ import net.liftweb.util.Helpers._
 import eu.brosbit.opos.model._
 import eu.brosbit.opos.lib.Formater
 import net.liftweb.json.JsonDSL._
-import scala.xml.{Unparsed, Text}
+
+import scala.xml.{NodeSeq, Text, Unparsed}
 import net.liftweb.mapper._
 import net.liftweb.http.js.JE.{JsFunc, JsRaw}
 import net.liftweb.common.Full
@@ -13,6 +14,7 @@ import net.liftweb.mapper.ByList
 import net.liftweb.http.js.JsCmd
 import net.liftweb.json.JsonAST.JValue
 import java.util.Date
+
 import net.liftweb.http.js.JsCmds.SetHtml
 
 class MainDocSn extends BaseDoc {
@@ -127,7 +129,7 @@ class MainDocSn extends BaseDoc {
       "#writeComment" #> SHtml.textarea(body, body = _) &
       "#addComment" #> SHtml.ajaxSubmit("Dodaj", add) andThen SHtml.makeFormsAjax
 
-    "form" #> (in => form(in))
+    "form" #> ((in:NodeSeq) => form(in))
   }
 
 

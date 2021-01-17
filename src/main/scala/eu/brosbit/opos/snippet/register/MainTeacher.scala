@@ -21,13 +21,13 @@ object ClassString extends SessionVar[String]("Nie wybrano!")
 class MainTeacher {
 
 
-  def classList() = {
+  def classList():CssSel = {
     val classParamStr = S.param("class").openOr("0")
     val paramClass = tryo(classParamStr.toInt).getOrElse(0)
-    val classes = ClassModel.findAll(OrderBy(ClassModel.level, Ascending)).filter(!_.scratched.is)
+    val classes = ClassModel.findAll(OrderBy(ClassModel.level, Ascending)).filter(!_.scratched.get)
     if (paramClass != 0) {
-      val choosenClass = classes.filter(theClass => theClass.id.get == paramClass)
-      choosenClass match {
+      val chosenClass = classes.filter(theClass => theClass.id.get == paramClass)
+      chosenClass match {
         case Nil =>
         case list => {
           val theClass = list.head

@@ -92,6 +92,8 @@ trait BaseResourceSn {
       <big id="subjectNameLabel">{if(departName.isEmpty) "Wszystkie" else Unparsed(departName)}</big></h2>
   }
 
+  def getSeparator = ";#;;#;"
+
   /*
    def choiceSubjectAndLevel(basePath:String) = {
      val subjects = subjectTeach.map(s => (s.id.toString, s.name))

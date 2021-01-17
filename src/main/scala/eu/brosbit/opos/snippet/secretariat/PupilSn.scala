@@ -7,7 +7,7 @@
 package eu.brosbit.opos.snippet.secretariat
 
 import _root_.net.liftweb.util._
-import net.liftweb.http.{SessionVar, S, SHtml}
+import net.liftweb.http.{S, SHtml, SessionVar}
 import _root_.net.liftweb.common._
 import _root_.net.liftweb.mapper.By
 import Helpers._
@@ -16,12 +16,14 @@ import _root_.eu.brosbit.opos.lib.Formater
 import _root_.net.liftweb.http.js.JsCmds._
 import _root_.net.liftweb.http.js.JE._
 
+import scala.xml.NodeSeq
+
 object ClassChoose extends SessionVar[Long](0L)
 
 class PupilSn {
-  val classList = ClassModel.findAll.map(classModel => (classModel.id.toString, classModel.classString()))
+  private val classList = ClassModel.findAll.map(classModel => (classModel.id.toString, classModel.classString()))
   if(ClassChoose.get == 0L)  ClassChoose(classList.head._1.toLong)
-  def pupilList() = {
+  def pupilList(): CssSel = {
 
     val pupils = User.findAll(By(User.role, "u"), By(User.classId, ClassChoose.get))
     "tr" #> pupils.map(pupil => {
@@ -52,7 +54,7 @@ class PupilSn {
     })
   }
 
-  def selectClass() = {
+  def selectClass(): CssSel = {
      "#getClass" #> SHtml.ajaxSelect(classList, Full(ClassChoose.get.toString), (idClass:String) => {
        ClassChoose(idClass.toLong)
        S.redirectTo("/secretariat/pupils")
@@ -61,7 +63,7 @@ class PupilSn {
   }
 
 
-  def editAjax() = {
+  def editAjax(): CssSel = {
     var id = ""
     var firstName = ""
     var lastName = ""
@@ -82,7 +84,7 @@ class PupilSn {
       }
       pupil.birthDate(Formater.fromStringToDate(birthDate)).firstName(firstName).
         lastName(lastName).pesel(pesel).scratched(false).role("u").email(email).
-        password(Helpers.randomString(10)).save
+        password(Helpers.randomString(10)).validated(true).save
       if (id == "") {
         id = pupil.id.toString
         JsFunc("editForm.insertRowAndClear", id).cmd
@@ -94,15 +96,13 @@ class PupilSn {
 
     }
 
-    def delete() = {
-      User.find(id) match {
+    def delete() = User.find(id) match {
         case Full(user) => {
           user.scratched(true).email("").save
           JsFunc("editForm.scratchRow", id).cmd
         }
         case _ => Alert("Nie ma takiego ucznia")
       }
-    }
 
 
     val form = "#id" #> SHtml.text(id, x => id = x.trim, "readonly" -> "readonly") &
@@ -118,7 +118,7 @@ class PupilSn {
       "#save" #> SHtml.ajaxSubmit("Zapisz", save, "type" -> "image",
         "onclick" -> "return validateForm();") andThen SHtml.makeFormsAjax
 
-    "form" #> (in => form(in))
+    "form" #> ((in:NodeSeq) => form(in))
   }
 
 }

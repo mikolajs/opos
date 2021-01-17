@@ -17,4 +17,9 @@ case class Video(var _id: ObjectId, var link: String, var oldPath: String, var m
                  var subjectName: String, var title: String, var department: String,
                  var descript: String, var onServer: Boolean) extends MongoDocument[Video] {
   def meta = Video
+  def exportJsonString =
+    s""" "_id":"${_id.toString}", "title":"${title}", "descript":"$descript", "subjectName":"$subjectName",
+       |"department":"$department", "link":"${link}", "lev":"$lev", "onServer": "$onServer"
+       |"mime": "$mime", "oldPath": "$oldPath"
+       |""".stripMargin
 }

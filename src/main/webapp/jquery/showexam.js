@@ -42,7 +42,7 @@ var ShowExam =  dejavu.Class.declare({
          }
          var objJson = {};
          objJson.q = id;
-         objJson.a = arrayTmp.join(',;;,');
+         objJson.a = arrayTmp.join(';#;;#;');
          objJson.p = 0;
          arrayAll.push(objJson)
          arrayTmp = [];
@@ -59,7 +59,7 @@ var ShowExam =  dejavu.Class.declare({
 
 	_getJsonData : function(){
 	    var ans = $('#answers').val();
-	    //console.log("JSON answers: " + json);
+	    console.log("JSON answers: " + json);
 	    var array = ans.split("##;;@@!!");
 	    var json = array[1];
 	    if(this.attachL) document.getElementById("attachLink").value = array[0];
@@ -71,7 +71,7 @@ var ShowExam =  dejavu.Class.declare({
             $sec.find('textarea').each(function(){
                 this.value = qi.a;
             });
-            var a = qi.a.split(',;;,');
+            var a = qi.a.split(';#;;#;');
             $sec.find('input').each(function(){
                if(this.type == 'text') this.value = qi.a;
                else {
@@ -101,9 +101,11 @@ var ShowExam =  dejavu.Class.declare({
 	_bindIsChanged : function() {
 	    var self = this;
         $('input').change(function() {
-            self.setUnsaved();
+            if(this.id != "code") self.setUnsaved();
         });
-        $('input').keyup(function(){self.setUnsaved();});
+        $('input').keyup(function(){
+            if(this.id != "code") self.setUnsaved();
+        });
 
          $('textarea').change(function() {
             self.setUnsaved();

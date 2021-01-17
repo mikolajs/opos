@@ -6,8 +6,8 @@ import java.util.Date
 
 object EduLevels extends Enumeration(1) {
   type EduLevels = Value
-  val Elementary, Middle, Extended = Value
-  val polishNames = Array("podstawowy", "rozszerzony")
+  val Elementary, Extended, Competition = Value
+  val polishNames = Array("podstawowy", "rozszerzony", "konkursowy")
 
   def getMaped = EduLevels.values.map(lev => (lev.id -> EduLevels.polishNames(lev.id - 1))).toMap
 
@@ -30,4 +30,5 @@ case class Course(var _id: ObjectId, var title: String, var subjectId: Long,
   def meta = Course
 
   def getInfo = title + " - " + subjectName + ", klasa " + classInfo
+
 }

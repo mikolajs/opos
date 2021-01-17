@@ -143,6 +143,18 @@ db.questions.update({}, {$set: {info: "" }}, true, true, true)
 db.examanswers.update({}, {$set: {info: "" }}, true, true, true)
 
 
+#change name of member subcjectName to subjectName
+
+var cursor = db.documents.find();
+while(cursor.hasNext()) {
+    var doc = cursor.next();   
+    var subName = doc.subcjectName;
+    print(doc._id + ": " + doc._id + " name: " + subName);  
+    db.documents.update({'_id' : doc._id}, {$set: {"subjectName": subName}}, true, true, true);  
+    db.documents.update({'_id' : doc._id}, {$unset: {"subcjectName": ""}}, true, true, true); 
+}
+
+
 
 
 

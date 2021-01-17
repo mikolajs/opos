@@ -2,23 +2,23 @@
     <head_merge>
 
         <script type="text/javascript" src="/jquery/dejavu.js"></script>
-        <script type="text/javascript" src="/jquery/editexam.js"></script>
+        <script type="text/javascript" src="/jquery/editwork.js"></script>
         <script type="text/javascript" src="/bootstrap/js/moment.js" charset="UTF-8"></script>
         <script type="text/javascript" src="/bootstrap/js/bootstrap-datetimepicker.min.js" charset="UTF-8"></script>
         <script type="text/javascript" src="/bootstrap/js/moment_pl.js" charset="UTF-8"></script>
         <script type="text/javascript">
-        var editExam = Object();
+        var editWork = Object();
       $(function () {
-          editExam = new EditExam();
-          $('#startExam').datetimepicker({ locale: 'pl'});
-          $('#endExam').datetimepicker({ locale: 'pl'});
-          $("#startExam").on("dp.change", function (e) {
-            var $end = $('#endExam').data("DateTimePicker");
+          editWork = new EditWork();
+          $('#startWork').datetimepicker({ locale: 'pl'});
+          $('#endWork').datetimepicker({ locale: 'pl'});
+          $("#startWork").on("dp.change", function (e) {
+            var $end = $('#endWork').data("DateTimePicker");
              if(e.date._d.getTime() > $end.date()._d.getTime() )
               $end.date(e.date);
           });
-          $("#endExam").on("dp.change", function (e) {
-            var $start = $('#startExam').data("DateTimePicker");
+          $("#endWork").on("dp.change", function (e) {
+            var $start = $('#startWork').data("DateTimePicker");
              if(e.date._d.getTime() < $start.date()._d.getTime() )
               $start.date(e.date);
           });
@@ -30,7 +30,17 @@
         <style>
             label {padding-right: 20px;}
             span.keysShow {font-weight: bold; font-family: mono; font-size: 20px; padding: 10px; margin: 0 10px;}
+            .msg-grp {
 
+              margin-bottom: 10px;
+             border-top: solid 1px #ccc;
+             border-bottom: solid 1px #ccc;
+             border-right: solid 1px #ccc;
+            }
+            .msg-blue {
+                border-left: 8px solid #04e;
+                margin-left: 10px;
+            }
         </style>
 
         <style media="print">
@@ -46,42 +56,40 @@
     <br/>
 
     <div id="questEditor" title="Edycja pytania">
-        <div class="row">
-            <div class="form-group">
 
-                    <div  class="form-group">
-                        <div class='col-md-4'>
-                        <div class="input-group">
-                            <div class="input-group-addon">Wybierz Kurs:</div>
-                            <select id="courseChoice" class="form-control"></select>
-                        </div>
-                        </div>
-                        <div class='col-md-4'>
-                        <div class="input-group">
-                            <div class="input-group-addon">Lekcja:</div>
-                            <select type="text" id="lessonWork" class="form-control"></select>
-                        </div>
-                        </div>
-                        <div class='col-md-4'>
-                        <div class="input-group">
-                            <div class="input-group-addon">Klasa:</div>
-                            <select type="text" id="classWork" class="form-control"></select>
-                        </div>
-                        </div>
-                    </div>
-            </div>
-        </div>
         <div class="row">
             <form data-lift="edu.EditWorkSn.editWork" method="POST">
-                <input id="testsList" type="text" style="display: none;"/>
-                <input id="keysList" type="text" style="display: none;"/>
+                <input id="lessonWorkId" type="text" style="display:none;"/>
+                <div class="row">
+                    <div class="form-group">
 
-
+                        <div  class="form-group">
+                            <div class='col-md-4'>
+                                <div class="input-group">
+                                    <div class="input-group-addon">Wybierz Kurs:</div>
+                                    <select id="coursesWork" class="form-control"></select>
+                                </div>
+                            </div>
+                            <div class='col-md-4'>
+                                <div class="input-group">
+                                    <div class="input-group-addon">Lekcja:</div>
+                                    <select type="text" id="lessonWorkSelect" class="form-control"></select>
+                                </div>
+                            </div>
+                            <div class='col-md-4'>
+                                <div class="input-group">
+                                    <div class="input-group-addon">Klasa:</div>
+                                    <select type="text" id="classWork" class="form-control"></select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="form-group">
-                    <label for="descriptionExam" class="control-label">Informacje:</label>
+                    <label for="infoWork" class="control-label">Informacje dla ucznia:</label>
 
                     <div class="">
-                            <textarea type="text" class="form-control" id="descriptionExam"
+                            <textarea type="text" class="form-control" id="infoWork"
                                       rows="3" cols="75"></textarea>
                     </div>
                 </div>
@@ -91,7 +99,7 @@
                         <div class="form-group">
                             <div class='input-group date' id='datetimepicker1'>
                                 <span class="input-group-addon">Początek: </span>
-                                <input type='text' id="startExam" class="form-control" />
+                                <input type='text' id="startWork" class="form-control" />
 
                             </div>
                         </div>
@@ -100,7 +108,7 @@
                         <div class="form-group">
                             <div class='input-group date' id='datetimepicker2'>
                                 <span class="input-group-addon">Koniec: </span>
-                                <input type='text' id="endExam" class="form-control" />
+                                <input type='text' id="endWork" class="form-control" />
 
                             </div>
                         </div>
@@ -113,11 +121,11 @@
                 <div class="row">
                     <div class="form-group">
                         <div class="col-md-6">
-                            <input id="saveExam" onclick="return editExam.prepareData();"
+                            <input id="saveWork"
                                    class="btn btn-success" type="submit"/>
                         </div>
                         <div class="col-md-6">
-                            <input id="deleteExam" onclick="return confirm('Na pewno usunąć sprawdzian?');"
+                            <input id="deleteWork" onclick="return confirm('Na pewno usunąć sprawdzian?');"
                                    class="btn btn-danger" type="submit"/>
                         </div>
                     </div>
@@ -126,14 +134,16 @@
         </div>
         <br/>
         <hr/>
+        <div data-lift="edu.EditWorkSn.showLessons">
+            <input id="courseWorkId" type="text" style="display:none;"/>
+        </div>
     </div>
 
     <div class="row">
         <h3>Pytania</h3>
         <div class="col-lg-12" data-lift="edu.EditWorkSn.showQuestions">
-
-            <div class="questList" >
-                    <div class="contentQuest"></div>
+            <input type="text" id="triggerLesson" style="display:none;" />
+            <div id="questList" >
             </div>
        </div>
     </div>
