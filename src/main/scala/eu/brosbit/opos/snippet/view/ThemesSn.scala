@@ -1,9 +1,8 @@
 package eu.brosbit.opos.snippet.view
 
   import java.util.Date
-
   import eu.brosbit.opos.lib.Formater
-  import eu.brosbit.opos.model.edu.{Work, WorkAnswer}
+  import eu.brosbit.opos.model.edu.{Course, Groups, Work, WorkAnswer}
   import eu.brosbit.opos.model.{LessonThemes, SubjectName}
   import net.liftweb.http.S
   import net.liftweb.util.Helpers._
@@ -12,15 +11,15 @@ package eu.brosbit.opos.snippet.view
 
   class ThemesSn extends BaseSnippet {
     private val idSub = S.param("idS").map(id => tryo(id.toInt).getOrElse(-1)).openOr(-1)
-    private val classId = user.classId.get
     private val subjects = SubjectName.findAll()
     private val subject = subjects.find(s => idSub == s.id.get) match {
       case Some(sub) => sub
       case _ => subjects.headOption.getOrElse(SubjectName.create)
     }
+    private val groups = Groups.findAll.filter(gr => gr.students.exists(s => s.id == user.id.get)).map("_" + _._id)
 
     def showThemes():CssSel = {
-      val works = Work.findAll("classId"-> user.classId.get)
+      val works = Work.findAll(("groupId"-> ("$in" -> groups)) ~ ("subjectId" -> subject.id.get))
           .sortWith((lt1, lt2) => lt1.start > lt2.start)
       val answers = WorkAnswer.findAll("authorId"->user.id.get)
       "tr" #> works.map(w => {

@@ -18,7 +18,7 @@ class ShowWorksSn extends BaseResourceSn {
     "tr"  #> Work.findAll(("teacherId" -> userId)~("subjectId" -> subjectId),
       "start" -> -1).map(work => {
       ".col1 *" #> work.lessonTitle &
-        ".col2 *" #> work.className &
+        ".col2 *" #> work.groupName &
         ".col3 *" #> Formater.formatDate(new Date(work.start)) &
         ".col4 *" #> Formater.formatDate(new Date(work.end)) &
         ".col5 *" #> <a href={"/educontent/showworks/" + work._id.toString}

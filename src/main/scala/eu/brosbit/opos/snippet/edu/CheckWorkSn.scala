@@ -30,7 +30,7 @@ class CheckWorkSn extends BaseSnippet with WorkCommon {
    "#descript *" #> Unparsed(mkDescription(work.description)) &
    "#subject *" #> work.subjectName &
    "#namePupil *" #> answer.authorName &
-   "#classInfo *" #> work.className &
+   "#classInfo *" #> work.groupName &
    "#questions" #> createQuestions(lesson.contents, answer)
  }
 

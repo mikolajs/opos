@@ -5,7 +5,7 @@ import _root_.net.liftweb.util._
 import Helpers._
 import net.liftweb.json.JsonDSL._
 import eu.brosbit.opos.lib.{Formater, ZeroObjectId}
-import eu.brosbit.opos.model.edu.{AnswerWorkItem, LessonCourse, Work, WorkAnswer}
+import eu.brosbit.opos.model.edu.{AnswerWorkItem, Groups, LessonCourse, Work, WorkAnswer}
 import eu.brosbit.opos.snippet.common.WorkCommon
 import net.liftweb.http.js.JsCmd
 import net.liftweb.http.js.JsCmds.Run
@@ -17,9 +17,9 @@ import scala.xml.{NodeSeq, Unparsed}
 class PerformWorkSn extends  BaseSnippet  with WorkCommon {
   private val id = S.param("id").getOrElse("")
   private val work = Work.find(id).getOrElse(Work.create)
-  if(user.classId.get != work.classId || work.teacherId == 0L) {
-    S.redirectTo("/view/exams?Error")
-  }
+  private val groups = Groups.findAll.filter( gr => gr.students.exists(s => s.id == user.id.get))
+    .map(gr => ("_" + gr._id.toString, gr.name))
+  if(!groups.exists(gr => gr._1 == work.groupId)  || work.teacherId == 0L) S.redirectTo("/view/showwork?Error")
   private val answer = WorkAnswer.findAll(("work"->work._id.toString)~("authorId"->user.id.get)).headOption
     .getOrElse(WorkAnswer.create)
   if(answer.work.toString == ZeroObjectId.get.toString){

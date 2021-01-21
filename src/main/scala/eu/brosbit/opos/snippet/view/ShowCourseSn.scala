@@ -9,8 +9,10 @@ import eu.brosbit.opos.model._
 import Helpers._
 import eu.brosbit.opos.snippet.BaseShowCourseSn
 import eu.brosbit.opos.lib.Formater
+import eu.brosbit.opos.model.edu.Groups
 import net.liftweb.mapper.By
 import net.liftweb.common.Full
+import json.JsonDSL._
 
 class ShowCourseSn extends BaseShowCourseSn {
 
@@ -18,6 +20,7 @@ class ShowCourseSn extends BaseShowCourseSn {
     case Full(user) => user
     case _ => S.redirectTo("/login")
   }
+  private val groupsIds = Groups.findAll.filter(gr => gr.students.exists(s => s.id == user.id.get)).map("_" + _._id)
 
   def show(): CssSel = {
     if (!canView) S.redirectTo("/view/courses")
@@ -48,12 +51,11 @@ class ShowCourseSn extends BaseShowCourseSn {
         message.lastDate = d.getTime
         message.body = List(mc)
         User.find(By(User.id, course.authorId)) match {
-          case Full(u) => {
+          case Full(u) =>
             message.people = u.getFullName
             message.who = List(u.id.get, user.id.get)
             message.people = u.getFullName + " " + user.getFullName
             message.save
-          }
           case _ =>
         }
       }
@@ -63,6 +65,6 @@ class ShowCourseSn extends BaseShowCourseSn {
       "#sendMessage" #> SHtml.button(<span class="glyphicon glyphicon-send"></span> ++ Text("Wyślij"), send)
   }
 
-  private def canView = (course.authorId == user.id.get || course.classList.exists(x => x == user.classId.get))
+  private def canView =  course.groupsList.exists(gr => groupsIds.contains(gr))
 
 }

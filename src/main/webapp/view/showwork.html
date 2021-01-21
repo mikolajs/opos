@@ -4,6 +4,7 @@
 <div class="lift:surround?with=viewer;at=content">
     <head_merge>
         <script type="text/javascript" src="/jquery/performwork.js"></script>
+        <script type="text/javascript" src="/jquery/workcommon.js"></script>
         <style>
             p.courseInfo {font-weight: bold;}
             .checkbox, .radio {
@@ -41,14 +42,15 @@
             border: 1px solid #eee;
             color: #777;
             }
-
+            .quizHint { float: right; cursor: pointer;}
         </style>
         <script type="text/javascript">
         var performWork = new Object();
+        var workCommon = new Object();
         $(document).ready(function() {
             performWork = new PerformWork();
+			workCommon = new WorkCommon();
         });
-
     </script>
         <script type="text/javascript"
                 src="/MathJax/MathJax.js?config=TeX-AMS_HTML-full">
@@ -88,6 +90,10 @@
             <input type="text" id="link"><br>
             <input type="submit" id="send">
         </form>
+    </div>
+
+    <div id="hintWindow" title="Podpowiedź do zadania" style="display: none;">
+        <div id="hintWindowText"></div>
     </div>
 
 </div>

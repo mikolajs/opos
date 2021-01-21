@@ -12,7 +12,7 @@ object Groups extends MongoDocumentMeta[Groups] {
 
   def create = new Groups(ObjectId.get, 0L, "", "", Nil)
 }
-case class Groups(var _id: ObjectId, var authorId: Long,  var name: String, var description: String,
+case class Groups( _id: ObjectId, var authorId: Long,  var name: String, var description: String,
                   var students: List[StudentInfo]) extends MongoDocument[Groups] {
   def meta = Groups
 }

@@ -2,12 +2,13 @@
     <head_merge>
 
         <script type="text/javascript" src="/jquery/checkwork.js"></script>
+        <script type="text/javascript" src="/jquery/workcommon.js"></script>
         <script>
-
 			var checkWork = Object();
-
+			var workCommon = Object();
 			$(document).ready(function() {
-                checkWork = new CheckWork();
+			checkWork = new CheckWork();
+			workCommon = new WorkCommon();
 			});
 
 			function beforeUnload(e) {return "Na pewno opuścić stronę?";}
@@ -53,6 +54,7 @@
             color: #777;
             }
             h2 > span { font-weight: bold }
+            .quizHint { float: right; cursor: pointer;}
 
         </style>
 
@@ -90,6 +92,10 @@
             <input type="submit" id="send">
         </form>
     </div>
+    <div id="hintWindow" title="Podpowiedź do zadania" style="display: none;">
+        <div id="hintWindowText"></div>
+    </div>
+
     <br />
     <br />
 </div>

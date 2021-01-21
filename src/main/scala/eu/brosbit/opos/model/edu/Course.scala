@@ -25,10 +25,10 @@ object Course extends MongoDocumentMeta[Course] {
 
 case class Course(var _id: ObjectId, var title: String, var subjectId: Long,
                   var chapters: List[String], var pub: Boolean, var subjectName: String,
-                  var descript: String, var img: String, var classInfo: String,
-                  var classList: List[Long], var authorId: Long) extends MongoDocument[Course] {
+                  var descript: String, var img: String, var groupsInfo: String,
+                  var groupsList: List[String], var authorId: Long) extends MongoDocument[Course] {
   def meta = Course
 
-  def getInfo = title + " - " + subjectName + ", klasa " + classInfo
+  def getInfo = title + " - " + subjectName + ", grupy: " + groupsInfo
 
 }

@@ -8,9 +8,7 @@ import net.liftweb.http.js.JsCmds.{Run, SetHtml}
 import net.liftweb.http.{S, SHtml}
 import net.liftweb.util.CssSel
 import net.liftweb.util.Helpers._
-import net.liftweb.json.JsonDSL._
 import net.liftweb.util.CanBind._
-
 import scala.util.Try
 import scala.xml.{Text, Unparsed}
 
@@ -19,10 +17,9 @@ class GroupEditSn {
 
   private val groupId = S.param("id").getOrElse("0")
   private val user = User.currentUser.openOrThrowException("Nie jesteś zalogowany")
-  private val group = Groups.find("_id" -> groupId).getOrElse(Groups.create)
+  private val group = Groups.find(groupId).getOrElse(Groups.create)
   private val classes = ClassModel.findAll()
   //private val classId = Try(S.param("c").getOrElse("0").toLong).getOrElse(0L)
-
 
 def groupInfo: CssSel = {
     var groupName = group.name
@@ -38,14 +35,15 @@ def groupInfo: CssSel = {
       group.students = getStudentsInfo(studentsId)
       //println("Students: " + group.students.mkString(","))
       group.save
-      S.redirectTo("/educontent/groups")
-    }
+      if(groupId == "0") S.redirectTo("/educontent/groupedit/" + group._id.toString)
+}
     def delete(): Unit = {
       if(group.authorId != 0L && group.authorId == user.id.get) {
         group.delete
       }
       S.redirectTo("/educontent/groups")
     }
+    //println("WORKSEDIT grupaId:  " + groupId + " user: " + user.id.get + " autor: " + group.authorId)
     if(groupId != "0" && user.id.get != group.authorId) {
       S.redirectTo("/educontent/groups")
     } else {
@@ -66,7 +64,7 @@ def groupInfo: CssSel = {
       //println("STUDENTS: \n" + students)
       SetHtml("studentsList", Text(students)) & Run("groupEdit.reloadClassStudents()")
     }
-    val options: List[(String, String)] = classes.map(c => (c.id.get.toString, c.shortInfo()))
+    val options: List[(String, String)] = classes.map(c => (c.id.get.toString, c.classString()))
     "select" #> SHtml.ajaxSelect(options, Empty, insertCmd) &
     "#studentsList *" #> Unparsed(usersToJson(getStudentsFormClass(classes.head.id.get.toString)))
   }

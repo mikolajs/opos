@@ -1,15 +1,14 @@
 //stange error first time not show question in ckeditor when click edit
-var EditQuest =  dejavu.Class.declare({
-	isOpen : false,
-	department : "",
-	oTable : $(),
-	editor: null,
-	
-	initialize : function() {
-		
-		var self = this;
-
-		
+ class EditQuest {
+   constructor(){
+    this.isOpen = false;
+    this.department = "";
+    this.oTable = $();
+    this.editor = null;
+    this.initialize();
+   }
+   initialize() {
+		let self = this;
 		$('#questEditor').dialog({
 			autoOpen : false,
 			height : 650,
@@ -19,10 +18,9 @@ var EditQuest =  dejavu.Class.declare({
 				self.isOpen = false;
 			}
 		});
-
 		this.editor = CKEDITOR.replace('questionQuest', {
 			width : 500,
-			height : 340,
+			height : 335,
 			allowedContent : true,
 			language : 'pl',
             toolbar: [
@@ -72,21 +70,21 @@ var EditQuest =  dejavu.Class.declare({
         this.department = $('#subjectAndDepartment').children('big').text().trim();
         $('#subjectChoice').val(this.department);
 
-	},
-	
-	deleteQuestion : function(id) {
+	}
+
+	deleteQuestion(id) {
 		this._deleteRow(id);
 		this.isOpen = false;
 		$('#questEditor').dialog('close');
-	}, 
+	}
 	
-	insertQuestion : function(id) {
+	insertQuestion(id) {
 		//alert("insertQuestion:" + id);
-		var array = this._getArrayFromForm();
-		var idForm = $('#idQuest').val();
+		let array = this._getArrayFromForm();
+		let idForm = $('#idQuest').val();
 		console.log("id: " + id);
 		if(idForm == "0" || jQuery.trim(idForm) == "") {
-			var nodeTr = this._insertNewRow(array, id);
+			let nodeTr = this._insertNewRow(array, id);
 			nodeTr.setAttribute('id', id);
 			console.log(nodeTr.innerHTML +  " id: " + id );
 		}
@@ -95,20 +93,20 @@ var EditQuest =  dejavu.Class.declare({
 		}
 		this.isOpen = false;
 		$('#questEditor').dialog('close');
-	},
+	}
 	
-	prepareToSave : function() {
+	prepareToSave() {
 		this._insertDataFromCKEditorToTextarea();
-		var goodStr = this._getGoodAnswerStringFromInputs();
+		let goodStr = this._getGoodAnswerStringFromInputs();
 		$("#answerQuest").val(goodStr);
-		var fakeStr = this._getFakeAnswerStringFromInputs();	
+		let fakeStr = this._getFakeAnswerStringFromInputs();
 		$('#wrongQuest').val(fakeStr);
 		$('#saveQuest').trigger('click');
 		return false;
-	},
+	}
 	
-    addFakeAnswer : function() {
-    	var fake = $('#fakeAdd').val();
+    addFakeAnswer() {
+    	let fake = $('#fakeAdd').val();
     	fake = jQuery.trim(fake);
     	if(fake.length > 0) {
     		$('#fakeAnswerList').append('<li>'+ 
@@ -116,11 +114,10 @@ var EditQuest =  dejavu.Class.declare({
     				'<span class="glyphicon glyphicon-remove-sign"></span></button>' + fake + '</li>');
     		$('#fakeAdd').val("");
     	}
-    	
-    },
+    }
     
-    addGoodAnswer : function(){
-    	var good = $('#goodAdd').val();
+    addGoodAnswer(){
+    	let good = $('#goodAdd').val();
     	good = jQuery.trim(good);
     	if(good.length > 0) {
     		$('#goodAnswerList').append('<li>'+ 
@@ -128,30 +125,32 @@ var EditQuest =  dejavu.Class.declare({
     				'<span class="glyphicon glyphicon-remove-sign"></span></button>' + good + '</li>');
     		$('#goodAdd').val("");
     	}
-    },
+    }
     
-    delFakeAnswer : function(elem) {
+    delFakeAnswer(elem) {
     	$(elem).parent('li').remove();
-    },
+    }
     
-    startNewQuest : function() {
+    startNewQuest() {
     	if(this.isOpen) return;
     	this.isOpen = true;
     	this._resetFormEdit();
     	CKEDITOR.instances.questionQuest.setData();
     	$('#questEditor').dialog('open');
-    },
+    }
     
-    editQuestion : function(elem) {
+    editQuestion(elem) {
     	if(this.isOpen) return;
     	this.isOpen = true;
     	this._resetFormEdit();
-    	var $tr = $(elem).parent('td').parent('tr');
-    	var id = $tr.attr('id');
+    	let $tr = $(elem).parent('td').parent('tr');
+    	let id = $tr.attr('id');
     	$('#idQuest').val(id);
     	
     	$tr.children('td').each(function(index){
-    		var $td = $(this);
+    		let $td = $(this);
+    		let array = new Array();
+    		let $ul;
     		switch (index) {
     		case 0:
     		    $("#nrQuest").val($td.text());
@@ -164,12 +163,12 @@ var EditQuest =  dejavu.Class.declare({
     		    break;
 
     		case 3:
-    			var array = new Array();
+    			array = [];
     			$ul = $('#goodAnswerList');
     			$td.children('span.good').each(function(){
     				array.push($(this).text());
     			});
-    			for(i in array){
+    			for(let i in array){
     				$ul.append('<li>'+ 
     	    				'<button class="btn btn-danger" onclick="editQuest.delFakeAnswer(this)">' + 
     	    				'<span class="glyphicon glyphicon-remove-sign"></span></button>' + array[i] + '</li>');
@@ -177,12 +176,12 @@ var EditQuest =  dejavu.Class.declare({
     			$('#answerQuest').val("");
     			break;
     		case 4:
-    			array = new Array();
+    		   array = [];
     			$ul = $('#fakeAnswerList');
     			$td.children('span.wrong').each(function(){
     				array.push($(this).text());
     			});
-    			for(i in array){
+    			for(let i in array){
     				$ul.append('<li>' + 
     				'<button class="btn btn-danger" onclick="editQuest.delFakeAnswer(this)">' + 
     				'<span class="glyphicon glyphicon-remove-sign"></span></button>' + array[i] + '</li>');
@@ -190,13 +189,16 @@ var EditQuest =  dejavu.Class.declare({
     			$("#fakeQuest").val("");
     			break;
     		case 5:
+                $('#hintQuest').val($td.text().trim());
+    		    break;
+    		case 6:
     			$('#levelQuest option').each(function(index){
     				if(this.innerHTML == $td.text().trim() ) {
     				$('#levelQuest').val ((index + 1).toString());
     				}
     			});
     			break;
-    		case 6:
+    		case 7:
     			$('#dificultQuest').val($td.text().trim());
     			break;
     		default:
@@ -204,88 +206,93 @@ var EditQuest =  dejavu.Class.declare({
     		}
     	});
     	$('#questEditor').dialog('open');
-    },
+    }
+
+    addHintChange() {
+        $('#hintQuestDiv').toggle();
+        $('#questionQuestDiv').toggle();
+        $('#saveQuestVisible').toggle();
+        $('#deleteQuest').toggle();
+    }
     
-    _insertDataFromCKEditorToTextarea : function() {
+    _insertDataFromCKEditorToTextarea() {
     	$('#questionQuest').val(CKEDITOR.instances.questionQuest.getData());
-    },
+    }
     
-    _getFakeAnswerStringFromInputs : function() {
-    	var fakeList = [];
-		var fakes = $('#fakeAnswerList').children('li').each(function(){
+    _getFakeAnswerStringFromInputs() {
+    	let fakeList = [];
+		let fakes = $('#fakeAnswerList').children('li').each(function(){
 			fakeList.push($(this).text());
 		});
 		
-		var inInput = $('#fakeAdd').val();
+		let inInput = $('#fakeAdd').val();
 		inInput = jQuery.trim(inInput);
 		if(inInput.length > 0) fakeList.push(inInput);
 		
-		var fakeStr = fakeList.join(';#;;#;');
+		let fakeStr = fakeList.join(';#;;#;');
 		return fakeStr;
-    },
+    }
     
-    _getGoodAnswerStringFromInputs : function() {
-    	var goodList = [];
-		var goods = $('#goodAnswerList').children('li').each(function(){
+    _getGoodAnswerStringFromInputs() {
+    	let goodList = [];
+		let goods = $('#goodAnswerList').children('li').each(function(){
 			goodList.push($(this).text());
 		});
 		
-		var inInput = $('#goodAdd').val();
+		let inInput = $('#goodAdd').val();
 		inInput = jQuery.trim(inInput);
 		if(inInput.length > 0) goodList.push(inInput);
 		
-		var goodStr = goodList.join(';#;;#;');
+	    let goodStr = goodList.join(';#;;#;');
 		return goodStr;
-    },
+    }
     
-    _getArrayFromForm : function() {
-    	var array = new Array();
+    _getArrayFromForm() {
+    	let array = new Array();
     	array.push($('#nrQuest').val());
     	array.push($('#questionQuest').val());
     	array.push($('#infoQuest').val());
-    	var goodHTML = "";
-    	var goods = this._getGoodAnswerStringFromInputs().split(';#;;#;');
-    	for(i in goods) goodHTML += '<span class="good">' + goods[i] + '</span>'; 
+    	let goodHTML = "";
+    	let goods = this._getGoodAnswerStringFromInputs().split(';#;;#;');
+    	for(let i in goods) goodHTML += '<span class="good">' + goods[i] + '</span>';
     	array.push(goodHTML);
-    	var fakeHTML = "";
-    	var fakes = this._getFakeAnswerStringFromInputs().split(';#;;#;');
-    	for(i in fakes) fakeHTML += '<span class="wrong">' + fakes[i] + '</span>'; 
+    	let fakeHTML = "";
+    	let fakes = this._getFakeAnswerStringFromInputs().split(';#;;#;');
+    	for(let i in fakes) fakeHTML += '<span class="wrong">' + fakes[i] + '</span>';
     	array.push(fakeHTML);
+    	array.push($('#hintQuest').val());
     	array.push($('#levelQuest option:selected').text());
     	array.push($('#dificultQuest option:selected').val());
     	array.push('<button class="btn btn-success" onclick="editQuest.editQuestion(this);"><span class="glyphicon glyphicon-edit"></span></button>');
     	return array;
-    },
+    }
     
-    _resetFormEdit : function() {
+    _resetFormEdit() {
     	$('#questEditor').children('form').get(0).reset();
     	$('#fakeAnswerList').empty();
     	$('#goodAnswerList').empty();
-    },
+    }
     
-    _getTrNodeContainsId : function (id) {
-		var trNodes = this.oTable.fnGetNodes();
-		for (i in trNodes) {	
+    _getTrNodeContainsId(id) {
+		let trNodes = this.oTable.fnGetNodes();
+		for(let i in trNodes) {
 			if (trNodes[i].id == id)
 				return trNodes[i];
 		}
-	},
+	}
  
-    _deleteRow : function(id) {
-		var tr = this._getTrNodeContainsId(id);
+    _deleteRow(id) {
+		let tr = this._getTrNodeContainsId(id);
 		this.oTable.fnDeleteRow(tr);
-	},
+	}
  
-	_insertNewRow : function(array, id){
-		var indexes = this.oTable.fnAddData(array);
+	_insertNewRow(array, id){
+		let indexes = this.oTable.fnAddData(array);
 		return this.oTable.fnGetNodes(indexes[0]);
-	},
- 
- 
-	_editRow : function(array, id) {  
-		var tr = this._getTrNodeContainsId(id);
+	}
+
+	_editRow(array, id) {
+		let tr = this._getTrNodeContainsId(id);
 		if (tr) this.oTable.fnUpdate(array, tr);  
 	}
-    
-	
-});
+}

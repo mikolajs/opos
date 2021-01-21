@@ -5,15 +5,11 @@
         <script src="/jquery/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="/jquery/ckeditorresource.js"></script>
         <script type="text/javascript" src="/jquery/ASCIIMathML.js"></script>
-        <script	type="text/javascript" src="/jquery/dejavu.js"></script>
 	<script type="text/javascript" src="/jquery/editquest.js"></script>
 
         <script>
 			var editQuest = Object();
-
-			$(document).ready(function() {
-								editQuest = new EditQuest();
-			});
+			$(document).ready(function() {editQuest = new EditQuest();});
 		</script>
 	<style>
 #fakeAnswerList li button, #goodAnswerList li button {
@@ -32,6 +28,11 @@
 	padding-left: 5px;
 	display: block;
 }
+#hintQuest {
+	width: 500px;
+	height: 450px;
+}
+#hintQuestDiv { display: none; }
 span.label-info {margin: 0 10px;}
 </style>
 
@@ -50,6 +51,8 @@ span.label-info {margin: 0 10px;}
 		(lub kilka możliwych) i żadnej prawidłowej</li>
 		</ol>
 		</p>
+		<p>Możemy dodać odpowiedź po kliknięciu przycisku Odpowiedź w edytorze zadania,
+			gdy chcemy, a by uczeń mógł pracować samodzielnie i odczytać wynik dostępny tylko w Pracach </p>
 	</div>
 
 	<div class="row">
@@ -75,24 +78,37 @@ span.label-info {margin: 0 10px;}
                 </div>
 			</div>
 		</div>
-
 	</div>
-
 	<br />
 	<hr />
 	<div id="questEditor" title="Edycja pytania" style="display: none;">
 		<form class="lift:edu.EditQuestSn.editQuest" method="POST">
 			<div style="padding-bottom: 10px; float: left;">
+				<div id="questionQuestDiv">
 				<textarea id="questionQuest" class="ckeditor"></textarea>
+				</div>
+				<div id="hintQuestDiv">
+					<h3>Podpowiedź lub rozwiązanie</h3>
+				<textarea id="hintQuest" class="goodHint"></textarea>
+				</div>
 				<div class="form-online">
 					<br />
-					<div class="input-group">
+					<div class="input-group" style="display:inline">
+						<div class="col-sm-4">
 						<input id="saveQuestVisible" class="btn btn-lg btn-success"
 							value="Zapisz!" type="submit"
 							onclick="return editQuest.prepareToSave();" /> <input
 							id="saveQuest" value="Zapisz" type="submit" style="display: none;" />
+						</div>
+						<div class="col-sm-4">
 						<input id="deleteQuest" class="btn btn-lg btn-danger" value="Usuń"
 							type="submit" />
+						</div>
+						<div class="col-sm-4">
+							<button class="btn btn-lg btn-warning" id="showHintQuest"
+							onclick="editQuest.addHintChange();" title="Podpowiedź">
+								<span class="glyphicon glyphicon-refresh"></span></button>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -171,6 +187,7 @@ span.label-info {margin: 0 10px;}
 					<th>Info</th>
 					<th>Prawidłowe</th>
 					<th>Błędne</th>
+					<th>Podpowiedź</th>
 					<th>Poziom</th>
 					<th>Trudność</th>
 					<th>Edycja</th>
@@ -178,6 +195,7 @@ span.label-info {margin: 0 10px;}
 			</thead>
 			<tbody class="lift:edu.EditQuestSn.showQuests">
 				<tr>
+					<td></td>
 					<td></td>
 					<td></td>
 					<td></td>
@@ -193,6 +211,7 @@ span.label-info {margin: 0 10px;}
 					<th>Info</th>
 					<th>Prawidłowe</th>
 					<th>Błędne</th>
+					<th>Podpowiedź</th>
 					<th>Poziom</th>
 					<th>Trudność</th>
 					<th>Edycja</th>

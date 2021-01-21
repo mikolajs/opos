@@ -18,16 +18,12 @@ import java.util.Date
 
 class EditQuizSn extends BaseResourceSn {
 
-
   var quizId = S.param("id").openOr("0")
-
   val userId = user.id.get
   val quiz = Quiz.find(quizId).getOrElse(Quiz.create)
 
   def questionList() = {
-
     val data = mkQuestBoxWithPoints(quiz.questions)
-
     ".quizElement" #> data
   }
 
@@ -72,8 +68,6 @@ class EditQuizSn extends BaseResourceSn {
         "#publicQuiz" #> SHtml.checkbox(public, public = _, "id" -> "publicQuest") &
         "#saveQuiz" #> SHtml.submit("Zapisz", save) &
         "#deleteQuiz" #> SHtml.submit("Usuń", delete)
-
-
   }
 
   def choiceDepart() = {
@@ -144,7 +138,7 @@ class EditQuizSn extends BaseResourceSn {
     <div class="col-lg-4">
       <h4 class="text-info"> {ex.description} </h4>
 
-      <p>klasa: <strong> {ex.className} </strong> grupy: <strong> {ex.quizzes.length.toString} </strong> </p>
+      <p>Grupa: <strong> {ex.groupName} </strong> rzędy: <strong> {ex.quizzes.length.toString} </strong> </p>
       <p><em>Start: </em> { Formater.strForDateTimePicker(new Date(ex.start))} <br/>
         <em>Koniec: </em> { Formater.strForDateTimePicker(new Date(ex.end))}</p>
       <p>
@@ -191,8 +185,8 @@ class EditQuizSn extends BaseResourceSn {
         <span class="level">
           {(quest.lev match {
           case 1 => "podstawowy"
-          case 2 => "średni"
-          case 3 => "rozszerzony"
+          case 2 => "rozszerzony"
+          case 3 => "konkursowy"
           case _ => "-"
         }) + " " +
         (quest.dificult match {

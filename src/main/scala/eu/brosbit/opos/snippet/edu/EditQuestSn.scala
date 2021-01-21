@@ -50,6 +50,7 @@ class EditQuestSn extends BaseResourceSn {
           {f}
         </span>)}
       </td>
+        <td><small> {Unparsed(quest.hint)} </small></td>
         <td>
           {levMap(quest.lev.toString)}
         </td>
@@ -67,7 +68,7 @@ class EditQuestSn extends BaseResourceSn {
   }
 
   //working ....
-  def editQuest() = {
+  def editQuest(): CssSel = {
     var id = ""
     var nr = 0
     var question = ""
@@ -77,6 +78,7 @@ class EditQuestSn extends BaseResourceSn {
     var department = ""
     var difficult = "1"
     var info = ""
+    var hint = ""
 
     def save(): JsCmd = {
       //add nr of quest
@@ -100,8 +102,8 @@ class EditQuestSn extends BaseResourceSn {
         qi.save
       }
       quest.nr = nr
-      quest.answers = answer.split(getSeparator).toList.map(a => a.trim).filterNot(a => a.length() == 0)
-      quest.fake = wrongAnswers.split(getSeparator).toList.map(a => a.trim).filterNot(a => a.length() == 0)
+      quest.answers = answer.split(getSeparator).toList.map(a => a.trim).filterNot(_.isEmpty)
+      quest.fake = wrongAnswers.split(getSeparator).toList.map(a => a.trim).filterNot(_.isEmpty)
       quest.question = question.trim
       quest.info = info.trim
       quest.subjectId = subjectNow.id
@@ -109,12 +111,13 @@ class EditQuestSn extends BaseResourceSn {
       quest.department = department.trim
       quest.dificult = tryo(difficult.toInt).openOr(1)
       quest.lev = tryo(level.toInt).openOr(1)
+      quest.hint = hint
       quest.save
       JsFunc("editQuest.insertQuestion", quest._id.toString).cmd
     }
 
     def delete(): JsCmd = {
-      println("+++++++++++++++++++ Del QUEST ")
+      //println("+++++++++++++++++++ Del QUEST ")
       val userId = user.id.get
       QuizQuestion.find(id) match {
         case Some(quest) => {
@@ -136,10 +139,11 @@ class EditQuestSn extends BaseResourceSn {
       "#infoQuest" #> SHtml.text(info, info = _) &
       "#questionQuest" #> SHtml.textarea(question, x => question = x.trim) &
       "#answerQuest" #> SHtml.text(answer, x => answer = x.trim) &
-      "#subjectQuest" #> SHtml.text(subjectNow.name, x => Unit, "readonly" -> "readOonly") &
+      "#subjectQuest" #> SHtml.text(subjectNow.name, x => Unit, "readonly" -> "readonly") &
       "#levelQuest" #> SHtml.select(levList, Full(subjectNow.lev.toString), level = _) &
       "#wrongQuest" #> SHtml.text(wrongAnswers, x => wrongAnswers = x.trim) &
       "#departmentQuest" #> SHtml.select(departments, Full(departName), department = _) &
+      "#hintQuest"#> SHtml.textarea(hint, x => hint = x) &
       "#dificultQuest" #> SHtml.select(difficultList, Full(difficult), difficult = _) &
       "#saveQuest" #> SHtml.ajaxSubmit("Zapisz", save) &
       "#deleteQuest" #> SHtml.ajaxSubmit("Usuń", delete) andThen SHtml.makeFormsAjax

@@ -154,7 +154,28 @@ while(cursor.hasNext()) {
     db.documents.update({'_id' : doc._id}, {$unset: {"subcjectName": ""}}, true, true, true); 
 }
 
+#change courses with groups
 
+db.courses.update({}, {$set: {"groupsInfo": ""}}, true, true, true);  
+db.courses.update({}, {$unset: {"classInfo": ""}}, true, true, true); 
+db.courses.update({}, {$set: {"groupsList": []}}, true, true, true);  
+db.courses.update({}, {$unset: {"classList": []}}, true, true, true); 
 
+#change works with groups
 
+db.Works.update({}, {$set: {"groupName": ""}}, true, true, true);
+db.Works.update({}, {$unset: {"className": ""}}, true, true, true);
+db.Works.update({}, {$set: {"groupId": ""}}, true, true, true);
+db.Works.update({}, {$unset: {"classId": ""}}, true, true, true);
+
+#change Exams with groups
+
+db.Exams.update({}, {$set: {"groupName": ""}}, true, true, true);
+db.Exams.update({}, {$unset: {"className": ""}}, true, true, true);
+db.Exams.update({}, {$set: {"groupId": ""}}, true, true, true);
+db.Exams.update({}, {$unset: {"classId": ""}}, true, true, true);
+
+#change question add good answer
+
+db.questions.update({}, {$set: {"hint":""}}, true, true, true)
 

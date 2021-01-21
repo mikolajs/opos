@@ -9,58 +9,53 @@ import scala.xml.Unparsed
 import net.liftweb.json.DefaultFormats
 import net.liftweb.json.JsonParser._
 import eu.brosbit.opos.model.edu.AnswerItem
-import scala.Some
 import eu.brosbit.opos.model.edu.QuestElem
 
 
 class CheckExamSn {
-  val ansId = S.param("id").openOr("")
+  private val ansId = S.param("id").openOr("")
   if(ansId.isEmpty) S.redirectTo("/educontent/exams")
-
-  val ansEx = ExamAnswer.find(ansId).getOrElse(ExamAnswer.create)
-  val exam = Exam.find(ansEx.exam.toString).getOrElse(Exam.create)
-  val group = getGroupInt
+  private val ansEx = ExamAnswer.find(ansId).getOrElse(ExamAnswer.create)
+  private val exam = Exam.find(ansEx.exam.toString).getOrElse(Exam.create)
+  private val group = getGroupInt
   //println("GROUP CHeck exam: " + group)
-  val quiz = Quiz.find(exam.quizzes(group)).getOrElse(Quiz.create)
+  private val quiz = Quiz.find(exam.quizzes(group)).getOrElse(Quiz.create)
   //println("quizID exam: " + quiz._id.toString + " " + quiz.title)
-  val questList = quiz.questions.map(qi => qi.q.toString )
+  private val questList = quiz.questions.map(qi => qi.q.toString )
   //println("Quest List exam: " + questList.mkString(", "))
-  val questions = QuizQuestion.findAll("_id" -> ("$in" -> questList))
+  private val questions = QuizQuestion.findAll("_id" -> ("$in" -> questList))
 
 
   //question, answers, points gained, points max
-  val questItems = questions.map(quest => {
+  private val questItems = questions.map(quest => {
    val idStr = quest._id.toString
    val itemAns = findAnswerItem(ansEx.answers, idStr)
-
     (quest, itemAns._1, itemAns._2 , findPointsFromQuiz(quiz.questions, idStr))
   })
 
-  var nr = 0
+  private var nr = 0
 
-  var maxPoints = questItems.map(_._4).foldLeft(0)((a,b) => a+b)
+  private val maxPoints = questItems.map(_._4).sum
 
- def showAnswers() = {
+ def showAnswers(): CssSel = {
    "div" #>  questItems.map(q =>
    "section" #> mkQuestHTML(q._1, q._2, q._3, q._4) )
  }
 
- def showPupil() = {
+ def showPupil(): CssSel = {
 
    "em *" #> exam.description &
    "a [href]" #> ("/educontent/showexams/" + exam._id.toString) &
    "#namePupil *" #>  ansEx.authorName &
    "#codeGroup *" #> ansEx.code &
-   "small *" #> exam.className &
+   "#groupName *" #> exam.groupName &
    "#max [value]" #> maxPoints.toString
  }
 
-  def getPoints() = {
+  def getPoints(): CssSel = {
     val data = "[" + ansEx.answers.map(_.json).mkString(",") + "]"
 
-    "#pointsGain" #> SHtml.ajaxText(data, (str) => {
-
-      //println( "========== json data: " + str);
+    "#pointsGain" #> SHtml.ajaxText(data, str => {
       val newData = createFromJsonList(str)
       val ansNew = ansEx.answers.map(a => {
   //find the same question and give points else return old points
@@ -70,23 +65,20 @@ class CheckExamSn {
         }
         a
       })
-
       ansEx.answers = ansNew
       ansEx.max = maxPoints
       ansEx.save
     })
-
   }
 
-
-  def getInfo() = {
-    "#info" #> SHtml.ajaxTextarea(ansEx.info, (info) =>{
+  def getInfo(): CssSel = {
+    "#info" #> SHtml.ajaxTextarea(ansEx.info, info =>{
       ansEx.info = info
       ansEx.save
     })
   }
 
-  def showFileLink() = {
+  def showFileLink(): CssSel = {
      if(ansEx.attach.isEmpty) {
        "div" #> ""
      } else {
@@ -122,8 +114,6 @@ class CheckExamSn {
   }
 
   protected def createAnswers(good:List[String], fake:List[String], ans:String) = {
-
-
     if(fake.length == 0) {
       if(good.length > 0)  {
         val addC = if(good.exists(_ == ans)) " alert-success" else " alert-danger"
@@ -148,7 +138,6 @@ class CheckExamSn {
 
       <div class="answerBox" name="test"><ul class="list-group">{all}</ul></div>
     }
-
   }
 
   private def findAnswerItem(answs: List[AnswerItem], idStr:String) =

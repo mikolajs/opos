@@ -4,15 +4,10 @@
         <script type="text/javascript" src="/jquery/dejavu.js"></script>
         <script type="text/javascript" src="/jquery/checkexam.js"></script>
         <script>
-
 			var checkExam = Object();
-
 			$(document).ready(function() {
                 checkExam = new CheckExam();
-
-
 			});
-
 			function beforeUnload(e) {return "Na pewno opuścić stronę?";}
 		</script>
         <script type="text/javascript"
@@ -21,16 +16,14 @@
         <style>
             input[type="number"] {width : 50px;}
             #fixedButton { position: fixed; top: 50px; right: 2px; }
-
         </style>
-
     </head_merge>
 
     <div  class="well" data-lift="edu.CheckExamSn.showPupil">
         <h2>Sprawdzian: <em>treść</em> <a href="" class="btn btn-warning">
             <span class="glyphicon glyphicon-arrow-left"></span> Powrót</a> </h2>
         <h2>Uczeń: <span id="namePupil" style="color: navy;"></span></h2>
-        <h3>Klasa: <small></small></h3>
+        <h3>Grupa: <small id="groupName"></small></h3>
         <h3>Kod: <small id="codeGroup"></small></h3>
         <p><label>Maksymalnie punktów: <input type="text" readonly id="max" value="30"></label></p>
            <p> <label>Przyznane punkty: <input type="text"  readonly id="sum"></label>
@@ -53,16 +46,13 @@
     </div>
 
     <div data-lift="edu.CheckExamSn.showAnswers" >
-
         <div class="row">
        <section></section>
         </div>
     </div>
 
-
     <div style="display:none" data-lift="edu.CheckExamSn.getPoints">
         <input id="pointsGain" type="text" />
-
     </div>
 
     <button id="fixedButton"  class="btn btn-lg btn-success"

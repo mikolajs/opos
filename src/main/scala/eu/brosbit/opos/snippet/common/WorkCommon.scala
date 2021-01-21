@@ -21,6 +21,8 @@ trait WorkCommon {
       <div class="panel panel-info">
         <div class="panel-heading">
           <span class="quizNr">Zadanie {question.nr.toString}</span>
+          <a class="quizHint" onclick="workCommon.showHint(this);">
+            <span class="glyphicon glyphicon-info-sign"></span> Pomoc</a>
         </div>
         <div class="panel-body">
           <div class="questionText">

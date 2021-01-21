@@ -9,35 +9,34 @@ import edu._
 import Helpers._
 import json.JsonDSL._
 import org.bson.types.ObjectId
-import eu.brosbit.opos.lib.{Formater, ZeroObjectId}
+import eu.brosbit.opos.lib.Formater
 import java.util.Date
-
 import net.liftweb.http.js.JsCmd
-import net.liftweb.http.js.JsCmds.{Run, SetHtml, SetValById}
+import net.liftweb.http.js.JsCmds.{Run, SetHtml}
 
 import scala.xml.Unparsed
 
 
 class EditWorkSn extends BaseResourceSn {
 
-  val userId = user.id.get
-  val courses = Course.findAll("authorId"->userId).map(co => (co._id.toString, co.title))
-  val classes = ClassModel.findAll().map(cl => (cl.id.toString, cl.classString()))
+  private val userId = user.id.get
+  private val courses = Course.findAll("authorId"->userId).map(co => (co._id.toString, co.title))
+  private val groups = Groups.findAll("authorId" -> userId).map(gr => ("_" + gr._id.toString, gr.name))
 
-  val workId = S.param("id").openOr("0")
-  val work = Work.find(workId).getOrElse(Work.create)
+  private val workId = S.param("id").openOr("0")
+  private val work = Work.find(workId).getOrElse(Work.create)
 
-  var courseId = if( work.teacherId == 0L) courses.head._1 else  work.courseId.toString
-  val lessons = LessonCourse.findAll("courseId"-> courseId.toString).map(le => (le._id.toString, le.title))
-  var lessonId = if(work.teacherId == 0L) lessons.head._1 else work.lessonId.toString
+  private var courseId = if( work.teacherId == 0L) courses.head._1 else  work.courseId.toString
+  private val lessons = LessonCourse.findAll("courseId"-> courseId).map(le => (le._id.toString, le.title))
+  private var lessonId = if(work.teacherId == 0L) lessons.head._1 else work.lessonId.toString
 //  val lesson = LessonCourse.find(lessonId).getOrElse(LessonCourse.create)
 
   //working ....
-  def editWork() = {
+  def editWork(): CssSel = {
 
     var startWork = Formater.strForDateTimePicker(if(work.start == 0L) new Date() else new Date(work.start))
     var endWork = Formater.strForDateTimePicker(if(work.end == 0L) new Date() else new Date(work.end))
-    var classId = work.classId.toString
+    var groupId = work.groupId
     var info = work.description
 
     def save()  {
@@ -53,9 +52,9 @@ class EditWorkSn extends BaseResourceSn {
       work.description = info
       work.start = Formater.fromStringDataTimeToDate(startWork).getTime
       work.end = Formater.fromStringDataTimeToDate(endWork).getTime
-      work.classId = tryo(classId.toLong).getOrElse(0)
-      work.className = classes.filter(c => c._1 == classId) match {
-        case cl :: rest => cl._2
+      work.groupId = groupId
+      work.groupName = groups.filter(g => g._1 == groupId) match {
+        case cl :: _ => cl._2
         case _ => "Brak"
       }
       work.save
@@ -76,9 +75,9 @@ class EditWorkSn extends BaseResourceSn {
     }
 
       "#coursesWork" #> SHtml.select(courses, Full(courseId), courseId = _, "onchange" -> "editWork.refreshedCourse();") &
-      "#lessonWorkSelect" #> SHtml.select(lessons, Full(lessonId), (l) => Unit , "onchange" -> "editWork.refreshedLesson();") &
+      "#lessonWorkSelect" #> SHtml.select(lessons, Full(lessonId), _ => Unit , "onchange" -> "editWork.refreshedLesson();") &
       "#lessonWorkId" #> SHtml.text(lessonId, lessonId = _) &
-      "#classWork" #> SHtml.select(classes, Full(classId), classId = _ ) &
+      "#classWork" #> SHtml.select(groups, Full(groupId), groupId = _ ) &
       "#infoWork" #> SHtml.textarea(info, x => info = x.trim ) &
       "#startWork" #> SHtml.text(startWork, x =>  startWork = x.trim) &
       "#endWork" #> SHtml.text(endWork, x =>  endWork = x.trim) &
@@ -95,18 +94,18 @@ class EditWorkSn extends BaseResourceSn {
       SetHtml("lessonWorkSelect", html) & Run("editWork.refreshedLesson();")
     }
 
-    "#courseWorkId" #> SHtml.ajaxText(courseId, process(_))
+    "#courseWorkId" #> SHtml.ajaxText(courseId, process)
   }
 
   def showQuestions(): CssSel = {
 
     def process(lessId: String): JsCmd = {
       val less  = LessonCourse.find(lessId).map(_.contents.filter(p => p.what == "q")).getOrElse(Nil)
-      val html = <div>{less.map(q => <div id={q.id} class="msg-grp msg-blue"> {q.title} <br/> {Unparsed(q.descript)} </div>)}</div>
+      val html = <div>{less.map(q => <div id={q.id} class="msg-grp msg-blue"> {q.title} <br/> {Unparsed(q.descript)}</div>)}</div>
       //println(s"set quizzes in lessonId = $lessId:\n" + html.toString())
       SetHtml("questList", html)
     }
-    "#triggerLesson" #> SHtml.ajaxText(lessonId, process(_))
+    "#triggerLesson" #> SHtml.ajaxText(lessonId, process)
   }
 
 

@@ -36,8 +36,8 @@ class EditLesson extends BaseLesson {
       val course = courseOption.get
       "h2" #>
         (<h2>
-          {course.title}<span class="mutted">- klasy:
-            {course.classInfo}
+          {course.title}<span class="mutted">- grupy:
+            {course.groupsInfo}
           </span>
         </h2> ++ <p>
           {course.descript}<br/> <span class="mutted">Przedmiot:</span>{course.subjectName}

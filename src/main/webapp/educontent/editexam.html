@@ -41,7 +41,8 @@
     </head_merge>
 
     <div class="well" data-lift="edu.EditExamSn.showInfo">
-        <h2>Edycja sprawdzianu: <span style="color: navy;"></span></h2>
+        <h2>Edycja sprawdzianu: <span id="subject" style="color: navy;"></span></h2>
+        <a href="/educontent/quizzes" class="btn btn-warning"><span class="glyphicon glyphicon-arrow-left"></span> Powrót</a>
     </div>
     <br/>
 
@@ -97,7 +98,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-inline">
-                                <label for="classExam" class="control-label">Klasa: </label>
+                                <label for="classExam" class="control-label">Grupa: </label>
                                 <select type="text" id="classExam" class="form-control"></select>
                             </div>
                         </div>
@@ -132,7 +133,7 @@
 
     <div class="row">
         <div class="col-lg-6">
-            <h3>Grupy (max 4)</h3>
+            <h3>Rzędy (max 4)</h3>
             <ol class="groupsExam" style="list-style-type: upper-alpha;" data-lift="edu.EditExamSn.showExamQuizzes">
                 <li class="" id="">
                     <span class="titleQuiz"></span>
