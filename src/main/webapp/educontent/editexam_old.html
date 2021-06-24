@@ -1,0 +1,178 @@
+<div class="lift:surround?with=educontent;at=content">
+  <head_merge>
+
+    <script type="text/javascript" src="/jquery/dejavu.js"></script>
+    <script type="text/javascript" src="/jquery/editexam.js"></script>
+    <script type="text/javascript" src="/bootstrap/js/moment.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="/bootstrap/js/bootstrap-datetimepicker.min.js" charset="UTF-7"></script>
+    <script type="text/javascript" src="/bootstrap/js/moment_pl.js" charset="UTF-8"></script>
+    <script type="text/javascript">
+        var editExam = Object();
+      $(function () {
+          editExam = new EditExam();
+          $('#startExam').datetimepicker({ locale: 'pl'});
+          $('#endExam').datetimepicker({ locale: 'pl'});
+          $("#startExam").on("dp.change", function (e) {
+            var $end = $('#endExam').data("DateTimePicker");
+             if(e.date._d.getTime() > $end.date()._d.getTime() )
+              $end.date(e.date);
+          });
+          $("#endExam").on("dp.change", function (e) {
+            var $start = $('#startExam').data("DateTimePicker");
+             if(e.date._d.getTime() < $start.date()._d.getTime() )
+              $start.date(e.date);
+          });
+
+      });
+
+    </script>
+    <link href="/bootstrap/css/bootstrap-datetimepicker.min.css" type="text/css" rel="stylesheet"/>
+    <style>
+            label {padding-right: 20px;}
+            span.keysShow {font-weight: bold; font-family: mono; font-size: 20px; padding: 10px; margin: 0 10px;}
+
+        </style>
+
+    <style media="print">
+        div.well, #questEditor, footer, div.navbar, h3, ol, ul, div.panel-heading {display:none;}
+
+        </style>
+
+  </head_merge>
+
+  <div class="well" data-lift="edu.EditExamSn.showInfo">
+    <h2>Edycja sprawdzianu: <span id="subject" style="color: navy;"></span></h2>
+    <a href="/educontent/quizzes" class="btn btn-warning"><span class="glyphicon glyphicon-arrow-left"></span> Powrót</a>
+  </div>
+  <br/>
+
+  <div id="questEditor" title="Edycja pytania">
+
+
+
+    <div class="row">
+      <form data-lift="edu.EditExamSn.editExam" method="POST">
+        <input id="testsList" type="text" style="display: none;"/>
+        <input id="keysList" type="text" style="display: none;"/>
+        <div class="form-group">
+          <label for="descriptionExam" class="control-label">Opis:</label>
+
+          <div class="">
+                            <textarea type="text" class="form-control" id="descriptionExam"
+                                      rows="3" cols="75"></textarea>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class='col-md-6'>
+            <div class="form-group">
+              <div class='input-group date' id='datetimepicker1'>
+                <span class="input-group-addon">Początek: </span>
+                <input type='text' id="startExam" class="form-control" />
+
+              </div>
+            </div>
+          </div>
+          <div class='col-md-6'>
+            <div class="form-group">
+              <div class='input-group date' id='datetimepicker2'>
+                <span class="input-group-addon">Koniec: </span>
+                <input type='text' id="endExam" class="form-control" />
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group">
+            <div class="col-md-6">
+              <div class="form-inline">
+                <label for="multiExam" class="control-label">Test wielokrotnego wyboru: </label>
+                <input type="checkbox" id="multiExam" class="form-control"/>
+              </div>
+              <div class="form-inline">
+                <label for="attachExam" class="control-label">Dołączenie pliku: </label>
+                <input type="checkbox" id="attachExam" class="form-control"/>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-inline">
+                <label for="classExam" class="control-label">Grupa: </label>
+                <select type="text" id="classExam" class="form-control"></select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br /><br />
+
+        <div class="row">
+          <div class="form-group">
+            <div class="col-md-6">
+              <input id="saveExam" onclick="return editExam.prepareData();"
+                     class="btn btn-success" type="submit"/>
+            </div>
+            <div class="col-md-6">
+              <input id="deleteExam" onclick="return confirm('Na pewno usunąć sprawdzian?');"
+                     class="btn btn-danger" type="submit"/>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <br/>
+    <hr/>
+
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6">
+      <h3>Rzędy (max 4)</h3>
+      <ol class="groupsExam" style="list-style-type: upper-alpha;" data-lift="edu.EditExamSn.showExamQuizzes">
+        <li class="" id="">
+          <span class="titleQuiz"></span>
+          <span class="glyphicon glyphicon-remove btn text-danger"
+                onclick="editExam.removeTest(this);"></span></li>
+      </ol>
+
+      <div class="panel panel-default" id="keysPanel">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-md-6">
+              <h4> Klucze:</h4>
+
+            </div>
+            <div class="col-md-6">
+                            <span class="btn btn-success" onclick="editExam.genRandomStrings();">
+                                <span class="glyphicon glyphicon-refresh"></span> Generuj
+                            </span>
+              <span class="btn btn-info" onclick="editExam.print();">
+                                <span class="glyphicon glyphicon-save"> Drukuj
+                            </span>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="panel-body">
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <h3>Testy do wyboru</h3>
+      <ul class="list-group examsList" data-lift="edu.EditExamSn.showAllQuizzes">
+        <li class="list-group-item btn" onclick="editExam.appendTest(this);"
+            id="m">
+          <span class="glyphicon glyphicon-plus addItem"></span>
+          <span class="titleQuiz"></span></li>
+      </ul>
+    </div>
+
+  </div>
+
+
+  <br/>
+  <br/>
+
+  <br/><br/>
+</div>

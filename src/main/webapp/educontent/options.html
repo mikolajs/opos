@@ -2,7 +2,9 @@
 <html>
 
 <div class="lift:surround?with=educontent;at=content">
-	<head_merge> <script src="/jquery/dejavu.js"></script> <script>
+	<head_merge>
+		<script src="/jquery/dejavu.js"></script>
+		<script>
 		var Subjects = dejavu.Class
 				.declare({
 					subArr : new Array(),
@@ -132,7 +134,7 @@ span.subjectName {
 		</div>
 		<div class="col-lg-2"></div>
 		<div class="col-lg-4">
-			<div class="panel panel-info"">
+			<div class="panel panel-info">
 				<div class="panel-heading">Domyślne poziomy przedmiotów</div>
 				<div class="panel-body">
 					<ul class="list-group" data-lift="edu.OptionsSn.showSubjetsLev"><li class="list-group-item"></li></ul>
@@ -163,8 +165,20 @@ span.subjectName {
 
 	</div>
 
+  <div class="row">
+    <div class="col-lg-1"></div>
+	  <div class="col-lg-10">
+		  <h3>Import i eksport: Artykułów, Prezentacji, Filmów (linki) i Zadań</h3>
+		   <div class="form-group">
+			   <a class="btn btn-lg btn-primary" title="pobranie danych w pliku" href="/export">
+				   <span class="glyphicon glyphicon-export"></span> Eksport</a>
+		   <a href="/educontent/import" class="btn btn btn-lg btn-info" style="float:right"
+				  title="wczytywanie danych"><span class="glyphicon glyphicon-import"></span> Import</a>
 
-
+		   </div>
+	  </div>
+	  <div class="col-lg-1"></div>
+  </div>
 </div>
 
 </html>

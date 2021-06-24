@@ -123,7 +123,7 @@ class LoginSn {
         educontentC = "btn btn-info btn-lg"
         registerH = "/register/index"
         registerC = "btn btn-info btn-lg"
-        docH = "/documents/index"
+        docH = "/documents/doctemplate"
         docC = "btn btn-info btn-lg"
         galH = "/galleries"
         galC = "btn btn-info btn-lg"
@@ -133,7 +133,7 @@ class LoginSn {
       }
       else {
         if (user.role == "u" || user.role == "r") {
-          viewH = "/view"
+          viewH = "/view/themes"
           viewC = "btn btn-info btn-lg"
         }
       }

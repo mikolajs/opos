@@ -5,6 +5,7 @@
     <head_merge>
         <link rel="stylesheet" type="text/css" href="/style/jquery.dataTables.css" />
         <script src="/jquery/jquery.dataTables.min.js" ></script>
+        <script src="/jquery/redirecttoselect.js" ></script>
         <script>
        var oTable = $();
        var oTablePrivate = $();
@@ -12,9 +13,9 @@
             oTable = $('#datatable').dataTable({
     			"sPaginationType": "two_button",
     			"bFilter": true,
-    			"iDisplayLength": 50,
+    			"iDisplayLength": 20,
     			"bLengthChange": true,
-    		    "order": [[ 0, "desc" ]], ///todo: change Order!!!
+    			"order": [[ 0, "desc" ]], ///todo: change Order!!!
     		    "oLanguage": {
     		        "sSearch": "Filtruj wiersze: ",
     		        "sZeroRecords": "Brak danych do wyświetlenia",
@@ -40,47 +41,37 @@
        </script>
     </head_merge>
     <div>
-        <div class="well"><h2>Prace na lekcji</h2></div>
+        <div class="well"><h2>Twoje testy</h2></div>
         <br/>
         <div class="row">
-            <form class="col-lg-9" data-lift="edu.ShowWorksSn.subjectChoice" method="post">
-                <div  class=" form-inline">
+            <div class="col-lg-8">
+                <div data-lift="edu.ShowAllExamsSn.subjectChoice" class=" form-inline">
                     <div class="input-group">
                         <div class="input-group-addon">Wybierz przedmiot:</div>
                         <select id="subjectChoice" class="form-control"></select>
                     </div>
                 </div>
-            </form>
-            <div class="col-lg-3" >
-                <a href="/educontent/editwork/0"> <span
-                        class="btn btn-success" id="iconAddBook"> <span
-                        class="glyphicon glyphicon-plus-sign"></span> Dodaj pracę
-			</span></a>
             </div>
-
+            <div class="col-lg-4"  >
+                <a href="/educontent/editexam/0">
+                    <span class="btn btn-success" id="iconAddBook">
+                        <span class="glyphicon glyphicon-plus"></span> Dodaj sprawdzian</span>
+                </a>
+            </div>
         </div>
-
-        <br/><br/>
-
+        <br/>
         <table id="datatable">
             <thead>
-            <tr><th>Start</th><th>Temat</th><th>Grupa</th><th>Sprawdź</th><th>Edycja</th></tr>
+            <tr><th>Start</th><th>Koniec</th><th>Opis</th><th>Grupa</th><th>Sprawdź</th><th>Edycja</th></tr>
             </thead>
-            <tbody class="lift:edu.ShowWorksSn.showWorks">
-            <tr><td class="col1"></td><td class="col2"></td><td class="col3"></td><td class="col4"></td>
-                <td class="col5"></td></tr>
+            <tbody class="lift:edu.ShowAllExamsSn.showAllUserExams">
+            <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
             </tbody>
             <tfoot>
-            <tr><th>Start</th><th>Temat</th><th>Grupa</th><th>Sprawdź</th><th>Edycja</th></tr>
+            <tr><th>Start</th><th>Koniec</th><th>Opis</th><th>Grupa</th><th>Sprawdź</th><th>Edycja</th></tr>
             </tfoot>
         </table>
         <br/><br/>
-
-
     </div>
-
-    <br/><br/>
-
 </div>
-
 </html>

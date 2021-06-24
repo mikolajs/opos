@@ -29,7 +29,8 @@ libraryDependencies ++= {
     "ch.qos.logback" % "logback-classic" % "1.0.6",
     "org.jsoup" % "jsoup" % "1.8.3",
      "net.liftweb" %% "lift-mongodb" % liftVersion % "compile",
-    "org.postgresql" % "postgresql" % "42.2.5"
+    "org.postgresql" % "postgresql" % "42.2.5",
+  "com.sun.xml.messaging.saaj" % "saaj-impl" % "2.0.0"
   )
 
 }

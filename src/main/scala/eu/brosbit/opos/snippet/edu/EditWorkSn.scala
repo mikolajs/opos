@@ -35,7 +35,6 @@ class EditWorkSn extends BaseResourceSn {
   def editWork(): CssSel = {
 
     var startWork = Formater.strForDateTimePicker(if(work.start == 0L) new Date() else new Date(work.start))
-    var endWork = Formater.strForDateTimePicker(if(work.end == 0L) new Date() else new Date(work.end))
     var groupId = work.groupId
     var info = work.description
 
@@ -51,7 +50,6 @@ class EditWorkSn extends BaseResourceSn {
       work.subjectName = name
       work.description = info
       work.start = Formater.fromStringDataTimeToDate(startWork).getTime
-      work.end = Formater.fromStringDataTimeToDate(endWork).getTime
       work.groupId = groupId
       work.groupName = groups.filter(g => g._1 == groupId) match {
         case cl :: _ => cl._2
@@ -80,7 +78,6 @@ class EditWorkSn extends BaseResourceSn {
       "#classWork" #> SHtml.select(groups, Full(groupId), groupId = _ ) &
       "#infoWork" #> SHtml.textarea(info, x => info = x.trim ) &
       "#startWork" #> SHtml.text(startWork, x =>  startWork = x.trim) &
-      "#endWork" #> SHtml.text(endWork, x =>  endWork = x.trim) &
       "#saveWork" #> SHtml.submit("Zapisz", save) &
       "#deleteWork" #> SHtml.submit("Usuń", delete)
 

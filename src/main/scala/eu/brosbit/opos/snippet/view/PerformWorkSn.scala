@@ -38,7 +38,6 @@ class PerformWorkSn extends  BaseSnippet  with WorkCommon {
     "#descript *" #> Unparsed(mkDescription(work.description)) &
     "#subject *" #>  work.subjectName &
     "#lesson *" #> work.lessonTitle &
-    "#endTime *" #> Formater.formatDate(new Date(work.end)) &
     "#questions" #> createQuestions(lesson.contents, answer)
   }
 

@@ -27,7 +27,7 @@ class ShowExamsSn extends BaseResourceSn {
   def showExamAnswers() = {
     val exAns = ExamAnswer.findAll("exam" -> exam._id.toString)
 
-    "tr" #>  exAns.map(ea => {
+    "tr" #>  exAns.sortWith(_.authorName < _.authorName).map(ea => {
       val gain = if(!ea.answers.isEmpty) ea.answers.map(_.p).reduce((f, n) => f + n) else 0
       val percent = if(ea.max == 0) 0.0F else ((100.0F* gain.toFloat) / ea.max.toFloat)
       ".col1 *" #> ea.authorName &

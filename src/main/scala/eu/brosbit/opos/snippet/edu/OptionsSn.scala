@@ -146,7 +146,7 @@ class OptionsSn {
           {SHtml.a(() => deleteDep(d), <span class="glyphicon glyphicon-remove-sign"></span>)}
         </span>
         </li>)
-      println("SubjectNOW=== " + subjectNow.name + " id: " + subjectNow.id.toString + "\n LIST: \n" + depLI.mkString(" "))
+      //println("SubjectNOW=== " + subjectNow.name + " id: " + subjectNow.id.toString + "\n LIST: \n" + depLI.mkString(" "))
       val form =
         "#selectEdit" #> SHtml.ajaxSelect(subjectsList, Full(subjectNow.id.toString), ID => redirect(ID)) &
           "#addInput" #> SHtml.text(depart, depart = _) &

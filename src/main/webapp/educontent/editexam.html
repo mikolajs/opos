@@ -4,8 +4,11 @@
         <script type="text/javascript" src="/jquery/dejavu.js"></script>
         <script type="text/javascript" src="/jquery/editexam.js"></script>
         <script type="text/javascript" src="/bootstrap/js/moment.js" charset="UTF-8"></script>
-        <script type="text/javascript" src="/bootstrap/js/bootstrap-datetimepicker.min.js" charset="UTF-8"></script>
+        <script type="text/javascript" src="/bootstrap/js/bootstrap-datetimepicker.min.js" charset="UTF-7"></script>
         <script type="text/javascript" src="/bootstrap/js/moment_pl.js" charset="UTF-8"></script>
+        <script src="/jquery/jquery.dataTables.min.js"></script>
+        <link rel="stylesheet" type="text/css"
+              href="/style/jquery.dataTables.css" />
         <script type="text/javascript">
         var editExam = Object();
       $(function () {
@@ -22,15 +25,20 @@
              if(e.date._d.getTime() < $start.date()._d.getTime() )
               $start.date(e.date);
           });
-
+          $("#allQuizList").sortable();
+		  $("#choosedQuizList").sortable();
       });
+
+	   function refreshTab() {
+			editExam.refreshDataTable();
+		}
 
     </script>
         <link href="/bootstrap/css/bootstrap-datetimepicker.min.css" type="text/css" rel="stylesheet"/>
         <style>
             label {padding-right: 20px;}
             span.keysShow {font-weight: bold; font-family: mono; font-size: 20px; padding: 10px; margin: 0 10px;}
-
+         .extra-tabs { padding-right: 30px;}
         </style>
 
         <style media="print">
@@ -120,59 +128,110 @@
                     </div>
                 </form>
             </div>
-
-
-
         <br/>
         <hr/>
 
 
+    </div>
+    <div class="row">
+        <h3>Wzorzec:</h3>
+        <button class="btn btn-success">Wczytaj wzorzec</button>
+        <button class="btn btn-info">Zapisz wzorzec</button>
 
+    </div>
+    <br/>
+    <hr/>
 
+    <div class="row">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="btn-group" role="group" aria-label="..." id="groups-buttons">
+                            <button type="button" class="btn btn-info">Grupa A</button>
+                            <button type="button" class="btn btn-default">Grupa B</button>
+                            <button type="button" class="btn btn-default">Grupa C</button>
+                    </div>
+                </div>
+                <div class="col-md-4 extra-tabs">
+                    <button type="button" class="btn btn-success" title="dodaj rząd">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                    <button type="button" class="btn btn-danger" title="usuń rząd">
+                        <span class="glyphicon glyphicon-minus"></span>
+                    </button>
+                    <button type="button" class="btn btn-info" title="zobacz klucze">
+                        <span class="glyphicon glyphicon-cog"></span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-6">
+            <form class="form-group" data-lift="edu.EditQuizSn.choiceDepart">
+                <div class="form-inline">
+                    <div class="input-group">
+                        <div class="input-group-addon">Wybierz dział: </div>
+                        <select id="departments" class="form-control"></select>
+                    </div>
+                    <div class="input-group">
+                        <button class="btn btn-success" id="getDeparts">
+                            <span class="glyphicon glyphicon-plus"></span> Wybierz
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 
     <div class="row">
-        <div class="col-lg-6">
-            <h3>Rzędy (max 4)</h3>
-            <ol class="groupsExam" style="list-style-type: upper-alpha;" data-lift="edu.EditExamSn.showExamQuizzes">
-                <li class="" id="">
-                    <span class="titleQuiz"></span>
-                <span class="glyphicon glyphicon-remove btn text-danger"
-                      onclick="editExam.removeTest(this);"></span></li>
-            </ol>
-
-            <div class="panel panel-default" id="keysPanel">
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h4> Klucze:</h4>
-
-                        </div>
-                        <div class="col-md-6">
-                            <span class="btn btn-success" onclick="editExam.genRandomStrings();">
+        <div class="col-md-5">
+            <div id="groupsAndKeysTab">
+                <div class="panel panel-default" id="keysPanel">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h4> Klucze:</h4>
+                            </div>
+                            <div class="col-md-8">
+                <span class="btn btn-success" onclick="editExam.genRandomStrings();">
                                 <span class="glyphicon glyphicon-refresh"></span> Generuj
                             </span>
-                            <span class="btn btn-info" onclick="editExam.print();">
-                                <span class="glyphicon glyphicon-save"> Drukuj
+                                <span class="btn btn-info" onclick="editExam.print();">
+                                <span class="glyphicon glyphicon-print"> Drukuj
                             </span>
+              </span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="panel-body">
+                    <div class="panel-body">
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-lg-6">
-            <h3>Testy do wyboru</h3>
-            <ul class="list-group examsList" data-lift="edu.EditExamSn.showAllQuizzes">
-                <li class="list-group-item btn" onclick="editExam.appendTest(this);"
-                    id="">
-                    <span class="glyphicon glyphicon-plus addItem"></span>
-                    <span class="titleQuiz"></span></li>
-            </ul>
-        </div>
 
+        <div class="col-md-7">
+            <div id="listColumns" class="row" data-lift="edu.EditQuizSn.questionList">
+
+                    <table id="choiceTable" class="datatable">
+                        <thead>
+                        <th>Nr</th><th>Treść pytania</th><th>Info</th><th>Poziom i trudność</th>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                        <tfoot>
+                        <th>Nr</th><th>Treść pytania</th><th>Info</th><th>Poziom i trudność</th>
+                        </tfoot>
+                    </table>
+
+            </div>
+
+
+
+        </div>
     </div>
+
+
 
 
     <br/>

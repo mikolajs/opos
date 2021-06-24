@@ -23,6 +23,7 @@ trait WorkCommon {
           <span class="quizNr">Zadanie {question.nr.toString}</span>
           <a class="quizHint" onclick="workCommon.showHint(this);">
             <span class="glyphicon glyphicon-info-sign"></span> Pomoc</a>
+          <input style="display:none;" value={question.hint} />
         </div>
         <div class="panel-body">
           <div class="questionText">

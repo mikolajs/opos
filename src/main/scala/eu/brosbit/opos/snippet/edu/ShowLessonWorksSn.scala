@@ -15,7 +15,6 @@ class ShowLessonWorksSn {
   def showInfo(): CssSel = {
     "span *" #> work.groupName &
       "h3 *" #> work.lessonTitle &
-      "small *" #> ("od " + Formater.formatTime(new Date(work.start)) +
-        " do " + Formater.formatTime(new Date(work.end)))
+      "small *" #> ("od " + Formater.formatTime(new Date(work.start)))
   }
 }

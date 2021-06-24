@@ -1,8 +1,8 @@
 package eu.brosbit.opos.model.edu
 
 import _root_.net.liftweb.mongodb._
-import java.util.Date
 import org.bson.types.ObjectId
+import scala.util.parsing.json.JSONFormat._
 
 case class LessonContent(what: String, id: String, title: String, descript: String) {
   import net.liftweb.json.Serialization.write
@@ -32,8 +32,14 @@ case class LessonCourse(var _id: ObjectId, var nr: Int, var authorId: Long,
                         var descript: String, var courseId: ObjectId, var contents: List[LessonContent])
   extends MongoDocument[LessonCourse] with ListToJsonString {
   def meta = LessonCourse
-  def exportJsonString =
-    s""" "_id":"${_id.toString}", "title":"${title}", "descript":"$descript", "chapter":"$chapter",
-       |"courseId":"$courseId", "contents": [${contents.map(_.forJSONStr).mkString(",")}], "nr":"$nr",
+  def strJson =
+    s"""{"_id":"${_id.toString}", "title":"${quoteString(title)}", "descript":"${quoteString(descript)}", "chapter":"${quoteString(chapter)}",
+       |"courseId":"$courseId", "contents": [${contents.map(_.forJSONStr).mkString(",")}], "nr":"$nr"}
        |""".stripMargin
+  def json = {
+    import net.liftweb.json.Serialization.write
+    import net.liftweb.json.DefaultFormats
+    implicit val formats = DefaultFormats
+    write(this)
+  }
 }

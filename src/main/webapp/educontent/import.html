@@ -1,0 +1,40 @@
+<!doctype HTML>
+<html>
+
+<div class="lift:surround?with=educontent;at=content">
+    <head_merge>
+    </head_merge>
+
+    <div class="well">
+        <h2>Import</h2>
+        <p>Należy wczytać plik z wyeksportowanych danych</p>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+        <form  data-lift="edu.ImportSn.test" method="post" enctype="multipart/form-data">
+            <fieldset>
+                <label>Wczytaj plik:<input type="file" id="filezip" /></label>
+                <input type="submit" class="btn btn-lg btn-success" value="Wczytaj" id="save" />
+            </fieldset>
+        </form>
+            <h3>Wczytano:</h3>
+            <ul class="list-group" style="width: 300px;">
+                <li class="list-group-item">Dokumentów: <span id="docs"></span></li>
+                <li class="list-group-item">Prezentacji: <span id="presentations"></span></li>
+                <li class="list-group-item">Filmów (linków): <span id="videos"></span></li>
+                <li class="list-group-item">Zadań: <span id="questions"></span></li>
+                <li class="list-group-item">Lekcji: <span id="lessons"></span></li>
+                <li class="list-group-item">Plików: <span id="files"></span></li>
+            </ul>
+            <div class="error" id="error"></div>
+
+            <hr/>
+        </div>
+    </div>
+
+    <br />
+    <hr />
+    <div id="lift__noticesContainer__"></div>
+</div>
+
+</html>

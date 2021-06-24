@@ -16,11 +16,11 @@ class ShowWorkAnswersSn {
 
   def showInfo(): CssSel = {
     "span *" #> work.lessonTitle &
-    "small *" #> Formater.formatTime(new Date(work.end))
+    "small *" #> Formater.formatTime(new Date(work.start))
   }
 
   def showWorkAnswers(): CssSel = {
-    "tr" #>  workAns.map(wa => {
+    "tr" #>  workAns.sortWith(_.authorName < _.authorName).map(wa => {
       println(s"${wa.authorName}, answers: ${wa.answers.length}")
       ".col1 *" #> wa.authorName &
         ".col2 *" #> (if(wa.pupilChanged) <span class="isRed"></span> else <span class="notRed"></span>) &

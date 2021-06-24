@@ -2,8 +2,8 @@
 package eu.brosbit.opos.model.edu
 
 import _root_.net.liftweb.mongodb._
-import java.util.Date
 import org.bson.types.ObjectId
+import scala.util.parsing.json.JSONFormat._
 
 object Slide extends MongoDocumentMeta[Slide] {
   override def collectionName = "slides"
@@ -18,8 +18,8 @@ case class Slide(var _id: ObjectId, var authorId: Long, var subjectId: Long,
                  var title: String, var descript: String, var slides: ObjectId)
   extends MongoDocument[Slide] {
   def meta = Slide
-  def exportJsonString =
-    s""" "_id":"${_id.toString}", "title":"${title}", "descript":"$descript", "subjectName":"$subjectName",
-       |"department":"$department", "slides":"${slides.toString}", "lev":"$lev",
+  def strJson =
+    s"""{"_id":"${_id.toString}", "title":"${quoteString(title)}", "descript":"${quoteString(descript)}", "subjectName":"${quoteString(subjectName)}",
+       |"department":"${quoteString(department)}", "slides":"${slides.toString}", "lev":"$lev"}
        |""".stripMargin
 }

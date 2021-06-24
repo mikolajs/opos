@@ -1,11 +1,8 @@
 package eu.brosbit.opos.model.edu
 
 import _root_.net.liftweb.mongodb._
-
-//import org.bson.types.ObjectId
-
-import java.util.Date
 import org.bson.types.ObjectId
+import scala.util.parsing.json.JSONFormat._
 
 
 object Document extends MongoDocumentMeta[Document] {
@@ -20,8 +17,14 @@ case class Document(var _id: ObjectId, var title: String, var descript: String, 
                     var content: String, var authorId: Long, var authorName: String, var subjectId: Long,
                     var subjectName: String, var lev: Int) extends MongoDocument[Document] {
   def meta = Document
-  def exportJsonString =
-    s""" "_id":"${_id.toString}", "title":"${title}", "descript":"$descript", "subjectName":"$subjectName",
-       |"department":"$department", "content":"${content.trim}", "lev":"$lev",
+  def strJson =
+    s""" {"_id":"${_id.toString}", "title":"${quoteString(title)}", "descript":"${quoteString(descript)}", "subjectName":"${quoteString(subjectName)}",
+       |"department":"${quoteString(department)}", "content":"${quoteString(content.trim)}", "lev":"$lev"}
        |""".stripMargin
+  def json = {
+         import net.liftweb.json.Serialization.write
+         import net.liftweb.json.DefaultFormats
+         implicit val formats = DefaultFormats
+         write(this)
+       }
 }

@@ -16,14 +16,13 @@ class ShowWorksSn extends BaseResourceSn {
   def showWorks():CssSel = {
     val userId = User.currentUser.map(_.id.get).getOrElse(-1L)
     "tr"  #> Work.findAll(("teacherId" -> userId)~("subjectId" -> subjectId),
-      "start" -> -1).map(work => {
-      ".col1 *" #> work.lessonTitle &
-        ".col2 *" #> work.groupName &
-        ".col3 *" #> Formater.formatDate(new Date(work.start)) &
-        ".col4 *" #> Formater.formatDate(new Date(work.end)) &
-        ".col5 *" #> <a href={"/educontent/showworks/" + work._id.toString}
+      "start" -> -1).sortWith(_.start > _.start).map(work => {
+      ".col1 *" #> Formater.formatDate(new Date(work.start)) &
+        ".col2 *" #> work.lessonTitle &
+        ".col3 *" #> work.groupName &
+        ".col4 *" #> <a href={"/educontent/showworks/" + work._id.toString}
                         class="btn btn-small btn-info"><span class="glyphicon glyphicon-check"></span>Sprawdź</a> &
-      ".col6 *" #> <a href={"/educontent/editwork/" + work._id.toString}
+      ".col5 *" #> <a href={"/educontent/editwork/" + work._id.toString}
                       class="btn btn-small btn-success"><span class="glyphicon glyphicon-check"></span>Edytuj</a>
     })
   }

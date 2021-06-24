@@ -11,18 +11,12 @@
       $(function () {
           editWork = new EditWork();
           $('#startWork').datetimepicker({ locale: 'pl'});
-          $('#endWork').datetimepicker({ locale: 'pl'});
+
           $("#startWork").on("dp.change", function (e) {
             var $end = $('#endWork').data("DateTimePicker");
              if(e.date._d.getTime() > $end.date()._d.getTime() )
               $end.date(e.date);
           });
-          $("#endWork").on("dp.change", function (e) {
-            var $start = $('#startWork').data("DateTimePicker");
-             if(e.date._d.getTime() < $start.date()._d.getTime() )
-              $start.date(e.date);
-          });
-
       });
 
     </script>
@@ -66,23 +60,37 @@
                     <div class="form-group">
 
                         <div  class="form-group">
-                            <div class='col-md-4'>
+                            <div class='col-md-6'>
                                 <div class="input-group">
                                     <div class="input-group-addon">Wybierz Kurs:</div>
                                     <select id="coursesWork" class="form-control"></select>
                                 </div>
                             </div>
-                            <div class='col-md-4'>
+                            <div class='col-md-6'>
                                 <div class="input-group">
                                     <div class="input-group-addon">Lekcja:</div>
                                     <select type="text" id="lessonWorkSelect" class="form-control"></select>
                                 </div>
                             </div>
-                            <div class='col-md-4'>
+
+                        </div>
+                    </div>
+                </div> <br/>
+                <div class="row">
+                    <div class='col-md-6'>
+                        <div class="form-group">
                                 <div class="input-group">
                                     <div class="input-group-addon">Klasa:</div>
                                     <select type="text" id="classWork" class="form-control"></select>
                                 </div>
+                        </div>
+                    </div>
+                    <div class='col-md-6'>
+                        <div class="form-group">
+                            <div class='input-group date' id='datetimepicker1'>
+                                <span class="input-group-addon">Początek: </span>
+                                <input type='text' id="startWork" class="form-control" />
+
                             </div>
                         </div>
                     </div>
@@ -96,29 +104,7 @@
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class='col-md-6'>
-                        <div class="form-group">
-                            <div class='input-group date' id='datetimepicker1'>
-                                <span class="input-group-addon">Początek: </span>
-                                <input type='text' id="startWork" class="form-control" />
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class='col-md-6'>
-                        <div class="form-group">
-                            <div class='input-group date' id='datetimepicker2'>
-                                <span class="input-group-addon">Koniec: </span>
-                                <input type='text' id="endWork" class="form-control" />
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <br /><br />
+                <br />
 
                 <div class="row">
                     <div class="form-group">
