@@ -1,0 +1,37 @@
+<div class="lift:surround?with=educontent;at=content">
+    <head_merge>
+        <link rel="stylesheet" type="text/css" href="/style/jquery.dataTables.css" />
+        <script src="/jquery/jquery.dataTables.min.js" ></script>
+        <script type="text/javascript" src="/jquery/groups.js"></script>
+        <script>
+			var groups = Object();
+			$(document).ready(function() {
+                groups = new Groups();
+			});
+		</script>
+    </head_merge>
+    <div class="well">
+        <h2>Organizacja grup</h2>
+        <p>Zdefiniuj grupę i dodaj do niej uczniów</p>
+    </div>
+    <div class="row">
+        <div class="col-lg-8"></div>
+        <div class="col-lg-4">
+            <a href="/educontent/groupedit/0"> <span class="btn btn-success">
+          <span class="glyphicon glyphicon-plus-sign"></span> Dodaj nową grupę</span></a>
+        </div>
+    </div>
+    <hr/>
+  <div class="row">
+    <div data-lift="edu.GroupsSn.showGroups" class="col-lg-12">
+        <label>Twoje grupy:</label>
+            <table id="datatable">
+                <thead><tr><th>Skrót grupy</th><th>Opis grupy</th><th>Ilość osób w grupie</th><th>Edytuj</th></tr></thead>
+                <tbody><tr id="tbody"></tr></tbody>
+                <tfoot><tr><th>Skrót grupy</th><th>Opis grupy</th><th>Ilość osób w grupie</th><th>Edytuj</th></tr></tfoot>
+            </table>
+    </div>
+  </div>
+
+    <br /><br />
+</div>

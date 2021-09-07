@@ -1,0 +1,49 @@
+<div class="lift:surround?with=educontent;at=content">
+    <head_merge>
+
+        <style>
+            span.isRed {
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                background-color: red;
+            }
+            span.notRed {
+                display: inline-block;
+                width: 20px;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                background-color: green;
+            }
+            td, th {
+                text-align: center;
+                margin: 0 auto;
+            }
+
+        </style>
+
+    </head_merge>
+
+    <div  class="well" data-lift="edu.ShowWorkAnswersSn.showInfo">
+        <h2>Temat: <span style="color: navy;"></span></h2>
+        <h3>Planowane zakończenie: <small></small></h3>
+    </div>
+    <br />
+    <div >
+        <table class="table table-striped">
+            <thead><tr><th>Uczeń: Nazwisko i imię</th><th>Uczeń dodał</th><th>Ilość postów</th><th>Sprawdź</th></tr></thead>
+            <tbody data-lift="edu.ShowWorkAnswersSn.showWorkAnswers">
+            <tr><td class="col1"></td><td class="col2"></td><td class="col3"></td><td class="col4"></td></tr>
+            </tbody>
+        </table>
+
+    </div>
+
+
+
+    <br />
+    <br />
+    <br /><br />
+</div>

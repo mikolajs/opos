@@ -1,0 +1,85 @@
+<!doctype HTML>
+<html>
+
+<div class="lift:surround?with=educontent;at=content">
+    <head_merge>
+        <link rel="stylesheet" type="text/css" href="/style/jquery.dataTables.css" />
+        <script src="/jquery/jquery.dataTables.min.js" ></script>
+        <script>
+       var oTable = $();
+       var oTablePrivate = $();
+       $(document).ready(function() {
+            oTable = $('#datatable').dataTable({
+    			"sPaginationType": "two_button",
+    			"bFilter": true,
+    			"iDisplayLength": 50,
+    			"bLengthChange": true,
+    		    "oLanguage": {
+    		        "sSearch": "Filtruj wiersze: ",
+    		        "sZeroRecords": "Brak danych do wyświetlenia",
+    		        "sInfoEmpty": "Brak danych do wyświetlenia",
+    		        "sEmptyTable": "Brak danych do wyświetlenia",
+    		        "sInfo": "Widzisz wiersze od _START_ do _END_  z wszystkich _TOTAL_",
+    		        "oPaginate": {
+    		        	"sPrevious": "Poprzednie",
+    			        "sNext": "Następne",
+    			        "sFirst": "Początek",
+    			        "sLast": "Koniec",
+    		        },
+    		        "sInfoFiltered": " - odfiltrowano z _MAX_ wierszy",
+    		        "sLengthMenu": 'Pokaż <select>'+
+    		        '<option value="20">20</option>'+
+    		        '<option value="50">50</option>'+
+    		        '<option value="100">100</option>'+
+    		        '<option value="-1">całość</option>'+
+    		        '</select> wierszy'
+    		    }
+    		      });
+       });
+       </script>
+    </head_merge>
+    <div>
+        <div class="well"><h2>Prace na lekcji</h2></div>
+        <br/>
+        <div class="row">
+            <form class="col-lg-9" data-lift="edu.ShowWorksSn.subjectChoice" method="post">
+                <div  class=" form-inline">
+                    <div class="input-group">
+                        <div class="input-group-addon">Wybierz przedmiot:</div>
+                        <select id="subjectChoice" class="form-control"></select>
+                    </div>
+                </div>
+            </form>
+            <div class="col-lg-3" >
+                <a href="/educontent/editwork/0"> <span
+                        class="btn btn-success" id="iconAddBook"> <span
+                        class="glyphicon glyphicon-plus-sign"></span> Dodaj pracę
+			</span></a>
+            </div>
+
+        </div>
+
+        <br/><br/>
+
+        <table id="datatable">
+            <thead>
+            <tr><th>Temat</th><th>Klasa</th><th>Start</th><th>Koniec</th><th>Sprawdź</th><th>Edycja</th></tr>
+            </thead>
+            <tbody class="lift:edu.ShowWorksSn.showWorks">
+            <tr><td class="col1"></td><td class="col2"></td><td class="col3"></td><td class="col4"></td>
+                <td class="col5"></td> <td class="col6"></td></tr>
+            </tbody>
+            <tfoot>
+            <tr><th>Temat</th><th>Klasa</th><th>Start</th><th>Koniec</th><th>Sprawdź</th><th>Edycja</th></tr>
+            </tfoot>
+        </table>
+        <br/><br/>
+
+
+    </div>
+
+    <br/><br/>
+
+</div>
+
+</html>

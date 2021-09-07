@@ -13,16 +13,15 @@ import _root_.net.liftweb.http.provider._
 import _root_.net.liftweb.sitemap._
 import _root_.net.liftweb.sitemap.Loc._
 import Helpers._
-import _root_.net.liftweb.mapper.{DB, ConnectionManager,
-  ConnectionIdentifier, Schemifier, DefaultConnectionIdentifier}
+import _root_.net.liftweb.mapper.{ConnectionIdentifier, ConnectionManager, DB, DefaultConnectionIdentifier, Schemifier}
 import java.sql.{Connection, DriverManager}
-import pl.edu.osp.model._
-import pl.edu.osp.api._
-import pl.edu.osp.lib.MailConfig
-import _root_.net.liftweb.mongodb._
-import pl.edu.osp.comet.CronActor
 
-import pl.edu.osp.lib.{ConfigLoader => CL}
+import eu.brosbit.opos.model._
+import eu.brosbit.opos.api._
+import eu.brosbit.opos.lib.MailConfig
+import _root_.net.liftweb.mongodb._
+import eu.brosbit.opos.comet.CronActor
+import eu.brosbit.opos.lib.{ConfigLoader => CL}
 
 object DBVendor extends ConnectionManager {
   def newConnection(name: ConnectionIdentifier): Box[Connection] = {
@@ -50,13 +49,15 @@ class Boot {
     DB.defineConnectionManager(DefaultConnectionIdentifier, DBVendor)
 
     MongoDB.defineDb(DefaultMongoIdentifier, MongoAddress(MongoHost("127.0.0.1", 27017), CL.mongoDB))
+
+
     // where to search snippet
-    LiftRules.addToPackages("pl.edu.osp")
-    LiftRules.addToPackages("pl.edu.osp.snippet.page")
-    LiftRules.addToPackages("pl.edu.osp.snippet.edu")
-    LiftRules.addToPackages("pl.edu.osp.snippet.register")
-    LiftRules.addToPackages("pl.edu.osp.snippet.secretariat")
-    LiftRules.addToPackages("pl.edu.osp.snippet.doc")
+    LiftRules.addToPackages("eu.brosbit.opos")
+    LiftRules.addToPackages("eu.brosbit.opos.snippet.page")
+    LiftRules.addToPackages("eu.brosbit.opos.snippet.edu")
+    LiftRules.addToPackages("eu.brosbit.opos.snippet.register")
+    LiftRules.addToPackages("eu.brosbit.opos.snippet.secretariat")
+    LiftRules.addToPackages("eu.brosbit.opos.snippet.doc")
 
     Schemifier.schemify(true, Schemifier.infoF _, User, ClassModel, MarkMap, SubjectName)
 
@@ -66,10 +67,11 @@ class Boot {
       case Req("file" :: id :: Nil, _, GetRequest) => () => FileLoader.file(id)
       case Req("getdocument" :: id :: Nil, _, GetRequest) => () => TemplateDocumentCreater.create(id)
       case Req("getimgslide" :: Nil,  _, GetRequest) => () => SlideImg.create
+      case Req("exportedu"  :: Nil, _, GetRequest) => () => Exports.export()
     })
 
     LiftRules.dispatch.append({
-      case Req("export" :: what :: Nil, _, GetRequest) => () =>  Exports.slides(what)
+      case Req("export" ::  Nil, _, GetRequest) => () =>  Exports.export()
 
     })
 
@@ -152,9 +154,8 @@ class Boot {
         Menu("Wybór dziennika") / "register" / "index" / ** >> LocGroup("register") >> isTeacher,
         Menu("Uczniowie") / "register" / "pupil_data" >> LocGroup("register") >> isTeacher,
         Menu("Rodzice") / "register" / "parent_data" >> LocGroup("register") >> isTeacher,
-        //Menu("Tematy") / "register" / "themes" >> LocGroup("register") >> isTeacher,
-        //Menu("Obecności") / "register" / "absents"  >> LocGroup("register") >> isTeacher,
-        Menu("Oceny") / "register" / "marks" / ** >> LocGroup("register") >> isTeacher,
+        Menu("Tematy") / "register" / "themes" / ** >> LocGroup("register") >> isTeacher,
+//        Menu("Oceny") / "register" / "marks" / ** >> LocGroup("register") >> isTeacher,
         Menu("Ogłoszenia") / "register" / "anounces" >> LocGroup("register") >> isTeacher,
         Menu("Uwagi") / "register" / "opinions" >> LocGroup("register") >> isTeacher,
         Menu("Plan") / "register" / "class_plan" >> LocGroup("register") >> isTeacher,
@@ -166,29 +167,36 @@ class Boot {
         Menu("Szablon") / "documents" / "createtemplate" / ** >> LocGroup("extra") >> isAdmin,
         Menu("Kolejność") / "documents" / "orderdoc" / ** >> LocGroup("extra") >> isAdmin,
         Menu("Wiadomości") / "view" / "index" >> LocGroup("view") >> loggedIn,
-        //Menu("Oceny") / "view" / "marks" >> LocGroup("view") >> loggedIn,
-        //Menu("Nieobecności") / "view" / "absents" >> LocGroup("view") >> loggedIn,
-        Menu("Lekcje") / "view" / "courses" >> LocGroup("view") >> loggedIn,
+        Menu("Kursy") / "view" / "courses" >> LocGroup("view") >> loggedIn,
+        Menu("Tematy") / "view" / "themes" / ** >> LocGroup("view") >> loggedIn,
+        Menu("Sprawdziany") / "view" / "exams" >> LocGroup("view") >> loggedIn,
         Menu("Zobacz lekcję") / "view" / "course" / ** >> LocGroup("extra") >> loggedIn,
-        Menu("Prace") / "view" / "exams" >> LocGroup("view") >> loggedIn,
         Menu("Quiz") / "view" / "showquiz" / ** >> LocGroup("extra") >> Hidden >> loggedIn,
+        Menu("Works") / "view" / "showwork" / ** >> LocGroup("extra") >> Hidden >> loggedIn,
         Menu("Kursy") / "educontent" / "index" >> LocGroup("edu") >> isTeacher,
-        Menu("Artykuły") / "educontent" / "documents" >> LocGroup("edu") >> isTeacher,
-        Menu("Testy") / "educontent" / "quizzes" >> LocGroup("edu") >> isTeacher,
+        Menu("Prace") / "educontent" / "works" >> LocGroup("edu") >> isTeacher,
+        Menu("Sprawdziany") / "educontent" / "quizzes" >> LocGroup("edu") >> isTeacher,
         Menu("Zadania") / "educontent" / "questions" >> LocGroup("edu") >> isTeacher,
-        //Menu("Pliki") / "educontent" / "files" >> LocGroup("edu") >> isTeacher,
+        Menu("Artykuły") / "educontent" / "documents" >> LocGroup("edu") >> isTeacher,
         Menu("Filmy") / "educontent" / "video" >> LocGroup("edu") >> isTeacher,
         Menu("Prezentacje") / "educontent" / "presentations" >> LocGroup("edu") >> isTeacher,
+        Menu("Grupy") / "educontent" / "groups" >> LocGroup("edu") >> isTeacher,
         Menu("Ustawienia") / "educontent" / "options" >> LocGroup("edu") >> isTeacher,
         Menu("Lekcje") / "educontent" / "course" / ** >> LocGroup("extra") >> isTeacher,
         Menu("Sprawdziany edycja") / "educontent" / "editexam" / ** >> LocGroup("extra") >> isTeacher,
+        Menu("Praca edycja") / "educontent" / "editwork" / ** >> LocGroup("extra") >> isTeacher,
         Menu("Lista odpowiedzi") / "educontent" / "showexams" / ** >> LocGroup("extra") >> isTeacher,
+        Menu("Praca odpowiedzi") / "educontent" / "showworks" / ** >> LocGroup("extra") >> isTeacher,
         Menu("Sprawdzian sprawdzanie") / "educontent" / "checkexam" / ** >> LocGroup("extra") >> isTeacher,
+        Menu("Praca sprawdzanie") / "educontent" / "checkwork" / ** >> LocGroup("extra") >> isTeacher,
         Menu("Edycja lekcji") / "educontent" / "editlesson" / ** >> LocGroup("extra") >> Hidden >> isTeacher,
         Menu("Edycja prezentacji") / "educontent" / "editpresentation" / ** >> LocGroup("extra") >> Hidden >> isTeacher,
         Menu("Edycja quizów") / "educontent" / "editquiz" / ** >> LocGroup("extra") >> Hidden >> isTeacher,
+        Menu("Edycja grup") / "educontent" / "groupedit" / ** >> LocGroup("extra") >> Hidden >> isTeacher,
         Menu("Edytuj dokument") / "educontent" / "editdocument" / ** >> LocGroup("extra") >> Hidden >> isTeacher,
         Menu("Indeksuj wideo") / "educontent" / "indexvideo" / ** >> LocGroup("extra") >> Hidden >> isTeacher,
+        Menu("Eksport") / "educontent" / "export" / ** >> LocGroup("extra") >> Hidden >> isTeacher,
+        Menu("Import") / "educontent" / "import" / ** >> LocGroup("extra") >> Hidden >> isTeacher,
         Menu("Slajdy") / "educontent" / "showlessonslides" / ** >> LocGroup("extra") >> Hidden >> isTeacher,
         Menu("Otwarte kursy") / "public" / "index" >> LocGroup("pub"),
         Menu("Otwarta lekcja") / "public" / "course" / ** >> LocGroup("pub"),
@@ -230,6 +238,10 @@ class Boot {
         RewriteResponse(
           "register" :: "marks" :: Nil, Map("idS" -> subjectId))
       case RewriteRequest(
+      ParsePath("register" :: "themes" :: subjectId :: Nil, _, _, _), _, _) =>
+        RewriteResponse(
+          "register" :: "themes" :: Nil, Map("idS" -> subjectId))
+      case RewriteRequest(
       ParsePath("documents" :: "doctemplate" :: id :: Nil, _, _, _), _, _) =>
         RewriteResponse(
           "documents" :: "doctemplate" :: Nil, Map("id" -> id))
@@ -253,6 +265,10 @@ class Boot {
       ParsePath("galleryedit" :: galId :: Nil, _, _, _), _, _) =>
         RewriteResponse(
           "galleryedit" :: Nil, Map("id" -> galId))
+      case RewriteRequest(
+      ParsePath("view" :: "themes" :: subjectId :: Nil, _, _, _), _, _) =>
+        RewriteResponse(
+          "view" :: "themes" :: Nil, Map("idS" -> subjectId))
       case RewriteRequest(
       ParsePath("educontent" :: "course" :: courseId :: Nil, _, _, _), _, _) =>
         RewriteResponse(
@@ -290,17 +306,37 @@ class Boot {
         RewriteResponse(
           "educontent" :: "editexam" :: Nil, Map("id" -> examId))
       case RewriteRequest(
+      ParsePath("educontent" :: "editwork" :: workId :: Nil, _, _, _), _, _) =>
+        RewriteResponse(
+          "educontent" :: "editwork" :: Nil, Map("id" -> workId))
+      case RewriteRequest(
+      ParsePath("educontent" :: "groupedit" :: groupId :: Nil, _, _, _), _, _) =>
+        RewriteResponse(
+          "educontent" :: "groupedit" :: Nil, Map("id" -> groupId))
+      case RewriteRequest(
       ParsePath("educontent" :: "showexams" :: examId :: Nil, _, _, _), _, _) =>
         RewriteResponse(
           "educontent" :: "showexams" :: Nil, Map("id" -> examId))
+      case RewriteRequest(
+      ParsePath("educontent" :: "showworks" :: workId  :: Nil, _, _, _), _, _) =>
+        RewriteResponse(
+          "educontent" :: "showworks" :: Nil, Map("id" -> workId))
       case RewriteRequest(
       ParsePath("educontent" :: "checkexam" :: examId :: Nil, _, _, _), _, _) =>
         RewriteResponse(
           "educontent" :: "checkexam" :: Nil, Map("id" -> examId))
       case RewriteRequest(
+      ParsePath("educontent" :: "checkwork" :: workId :: Nil, _, _, _), _, _) =>
+        RewriteResponse(
+          "educontent" :: "checkwork" :: Nil, Map("id" -> workId))
+      case RewriteRequest(
       ParsePath("view" :: "showquiz" :: quizId :: Nil, _, _, _), _, _) =>
         RewriteResponse(
           "view" :: "showquiz" :: Nil, Map("id" -> quizId))
+      case RewriteRequest(
+      ParsePath("view" :: "showwork" :: workId :: Nil, _, _, _), _, _) =>
+        RewriteResponse(
+          "view" :: "showwork" :: Nil, Map("id" -> workId))
       case RewriteRequest(
       ParsePath("view" :: "course" :: lessonId :: Nil, _, _, _), _, _) =>
         RewriteResponse(

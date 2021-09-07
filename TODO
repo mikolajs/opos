@@ -1,5 +1,16 @@
 
 
-ROZPOZNANE BŁĘDY:
+#ROZPOZNANE BŁĘDY:
 
-* po dodaniu slajdu w edytorze slajdów nie można go edytować. 
+
+
+
+#Praca nad EXPORT/IMPORT
+Do wyeksportowania:
+ 1.Kursy
+ 2.Dokumenty(artykuły)
+ 3.Prezentacje
+ 4.Zadania
+ 5.Filmy
+ +Pobieranie wszystkich obrazków zawartych w eksportowanych danych a znajdującyc się na serwerze. 
+ + w przypadku filmów na serwerze ręczne kopiowanie ich do backupu

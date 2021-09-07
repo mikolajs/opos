@@ -18,4 +18,7 @@
 6.Odzysk postgres:
     psql osp < nazwa_pliku
     
-7. skopiowanie plików video do /home/osp
+6. skopiowanie plików video do /home/osp
+
+7. Packowenie katalogu z backupem:
+ 	tar -czvf file.tar.gz directory

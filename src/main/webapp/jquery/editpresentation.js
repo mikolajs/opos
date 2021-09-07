@@ -55,6 +55,7 @@
 
 			if(this.slideSize == 0) this.slideSize = 1;
 			$('#slideEditor').hide();
+			$("#slidesView").sortable();
 		},
 
 		createPage : function(){
@@ -63,7 +64,7 @@
 				var $this = $(this);
 				//alert($('#slideInfo_'+ (index + 1) +  ' input:first').attr('checked'));
 				var node = $.parseHTML(
-				'<div class="slide" onclick="editPresentation.editSlide(this)" ><section>' +
+				'<div class="slide" ondblclick="editPresentation.editSlide(this)" ><section>' +
 				$this.html() + '</section></div>');
 				this.slideSize++;
 			    $('#slidesView').append(node);
@@ -73,7 +74,7 @@
 		addSlideAction : function(){
 		    console.log("Add action " + this.slideMaxNr + " " + this.slideSize);
 		    if(this.slideMaxNr >  this.slideSize) {
-			    var node = $.parseHTML('<div class="slide" onclick="editPresentation.editSlide(this)"><section></section></div>');
+			    var node = $.parseHTML('<div class="slide" ondblclick="editPresentation.editSlide(this)"><section></section></div>');
 
                 this.slideSize++;
                 $('#slidesView').append(node);

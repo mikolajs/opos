@@ -1,0 +1,94 @@
+<!doctype HTML>
+<html>
+
+<div class="lift:surround?with=viewer;at=content">
+    <head_merge>
+        <script type="text/javascript" src="/jquery/performwork.js"></script>
+        <style>
+            p.courseInfo {font-weight: bold;}
+            .checkbox, .radio {
+                border: 1px solid #E3E3E3;
+                border-radius: 4px;
+                background-color: #F5F5F5;
+                box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05);
+                padding: 5px;
+            }
+            #fixedButton { position: fixed; top: 50px; right: 2px; }
+            #timeToEnd {font-weight: bold; }
+            .mboxr { float: right;}
+            .writeMessage { width: 100%; resize: none; }
+            .question { margin-bottom: 30px;}
+            .bg {
+                margin-bottom: 4px;
+                border-top: solid 1px #ccc;
+                border-bottom: solid 1px #ccc;
+            }
+            .bg > p {
+              padding: 4px;
+            }
+            .bg-green {
+                 border-left: 8px solid #0e0;
+                 border-right: solid 1px #ccc;
+            }
+            .bg-blue {
+            border-right: 8px solid #00e;
+            border-left: solid 1px #ccc;
+            }
+            .messegeSign {
+            font-size: 80%;
+            padding: 1px 5px;
+            margin: 2px 0px;
+            border: 1px solid #eee;
+            color: #777;
+            }
+
+        </style>
+        <script type="text/javascript">
+        var performWork = new Object();
+        $(document).ready(function() {
+            performWork = new PerformWork();
+        });
+
+    </script>
+        <script type="text/javascript"
+                src="/MathJax/MathJax.js?config=TeX-AMS_HTML-full">
+        </script>
+    </head_merge>
+    <br/>
+    <div  data-lift="view.PerformWorkSn.showWork">
+
+        <div class="well"><h3>Temat: <span id="lesson"></span><br/>Przedmiot: <span id="subject"></span></h3>
+            <h4>Planowane zakończenie: <small id="endTime"></small></h4>
+            <h4>Informacje:</h4>
+            <pre id="descript"></pre>
+            <a class="btn btn-warning" href="/view/themes"><span class="glyphicon glyphicon-arrow-left"></span> Powrót </a>
+        </div>
+        <div class="row " id="showQuestions">
+
+        </div>
+        <div id="questions"></div>
+    </div>
+
+    <div id="linkWindow" >
+        <div id="attachFrame">
+            <frameset class="attach" >
+                <input id="attachLink"  style="display:none;" type="text"  value=""/><br/>
+                <iframe  frameborder="0" src="/filestorage"
+                         width="600" height="80" onload="performWork.getURLfromIFrame(this)"></iframe>
+            </frameset>
+        </form>
+        </div>
+
+    </div>
+
+    <div data-lift="view.PerformWorkSn.addMessage" class="row" style="display:none;">
+        <form class="form-inline  col-lg-9" class="row" >
+            <textarea id="comment"></textarea><br>
+            <input type="text" id="quizId"><br>
+            <input type="text" id="link"><br>
+            <input type="submit" id="send">
+        </form>
+    </div>
+
+</div>
+</html>

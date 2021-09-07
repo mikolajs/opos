@@ -1,9 +1,7 @@
-name := "osp"
-version := "0.8.8"
+name := "opos"
+version := "0.9.1"
 
-enablePlugins(ScalaJSPlugin)
-
-organization := "pl.edu.osp"
+organization := "brosbit.eu"
 
 scalaVersion := "2.11.7"
 
@@ -31,8 +29,7 @@ libraryDependencies ++= {
     "ch.qos.logback" % "logback-classic" % "1.0.6",
     "org.jsoup" % "jsoup" % "1.8.3",
      "net.liftweb" %% "lift-mongodb" % liftVersion % "compile",
-    "org.postgresql" % "postgresql" % "42.2.5",
-    "org.scala-js" %%% "scalajs-dom" % "0.9.7"
+    "org.postgresql" % "postgresql" % "42.2.5"
   )
 
 }

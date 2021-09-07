@@ -1,0 +1,78 @@
+<div class="lift:surround?with=educontent;at=content">
+    <head_merge>
+        <link rel="stylesheet" type="text/css" href="/style/jquery.dataTables.css" />
+        <script src="/jquery/jquery.dataTables.min.js" ></script>
+        <script type="text/javascript" src="/jquery/groupedit.js"></script>
+        <script>
+			var groupEdit = Object();
+			$(document).ready(function() {
+                groupEdit = new GroupEdit();
+			});
+			function beforeUnload(e) {return "Na pewno opuścić stronę?";}
+		</script>
+    </head_merge>
+    <div class="well">
+        <h2>Edycja lub tworzenie grupy</h2>
+    </div>
+    <div class="row" >
+        <form data-lift="edu.GroupEditSn.groupInfo" method="post">
+        <input id="idGroup" style="display:none;" type="text" value="">
+     <div class="form-group">
+         <label for="name">Nazwa skrótowa: </label>
+         <input id="name" class="form-control"  maxlength="15" type="text" value="">
+     </div>
+     <div class="form-group">
+        <label for="description">Pełna nazwa: </label>
+        <textarea id="description" class="form-control"  value=""></textarea>
+     </div>
+        <input id="jsonGroupList" type="text" style="display:none;"/>
+        <input id="groupListIds" type="text" style="display:none;"/>
+
+         <div class="form-group">
+             <div class="col-sm-2"></div>
+             <div class="col-sm-3">
+                 <span id="saveGroupVisible" onclick="groupEdit.prepareData();" class="btn btn-success">Zapisz</span>
+                 <input id="saveGroup"  type="submit" value="hidden" style="display:none;"/>
+             </div>
+             <div class="col-sm-3">
+                 <a href="/educontent/groups">
+                 <span id="cancelAddGroup" onclick="return groupEdit.cancelAndRedirect();"
+                       class="btn btn-default">Powrót</span>
+                 </a>
+             </div>
+             <div class="col-sm-3">
+                 <input id="deleteGroup" onclick="return confirm('Na pewno usunąć grupę?');"
+                        class="btn btn-danger" type="submit" value="Usuń"/>
+             </div>
+             <div class="col-sm-1"></div>
+         </div>
+        </form>
+    </div>
+    <div class="row">
+        <div  class="col-lg-7" >
+            <h2 style="margin-top:70px;">Uczniowie w grupie: </h2>
+            <table id="datatableleft">
+                <thead><tr><th>Imię</th><th>Nazwisko</th><th>Email</th><th>Klasa</th><th>Usuń</th></tr></thead>
+                <tbody></tbody>
+                <tfoot><tr><th>Imię</th><th>Nazwisko</th><th>Email</th><th>Klasa</th><th>Usuń</th></tr></tfoot>
+            </table>
+        </div>
+        <br />
+        <div class="col-lg-5" >
+                <div class="form-group" data-lift="edu.GroupEditSn.studentsInClass">
+                    <label>Klasy:</label><select id="getClasses"><option></option></select>
+                    <div id="studentsList"  style="display:none;" ></div>
+                </div>
+
+                <div><h2>Uczniowie w klasie:</h2></div>
+                <table id="datatableright">
+                    <thead><tr><th>Imię</th><th>Nazwisko</th><th>email</th><th>Dodaj</th></tr></thead>
+                    <tbody></tbody>
+                    <tfoot><tr><th>Imię</th><th>Nazwisko</th><th>email</th><th>Dodaj</th></tr></tfoot>
+                </table>
+
+        </div>
+    </div>
+
+    <br /><br />
+</div>

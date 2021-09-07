@@ -3,27 +3,113 @@
     <body class="lift:content_id=main">
         <div id="main" class="lift:surround?with=register;at=content">
             <head_merge>
-                <script type="text/javascript" charset="utf-8" src="/style/common_users.js"></script>
-                
+                <script type="text/javascript" charset="utf-8" src="/jquery/datatableone.js"></script>
+                <script type="text/javascript" charset="utf-8" src="/jquery/editformdiv.js"></script>
+                <script type="text/javascript" src="/bootstrap/js/moment.js" charset="UTF-8"></script>
+                <script type="text/javascript" src="/bootstrap/js/bootstrap-datetimepicker.min.js" charset="UTF-8"></script>
+                <script type="text/javascript" src="/bootstrap/js/moment_pl.js" charset="UTF-8"></script>
+                <script type="text/javascript" charset="utf-8" src="/jquery/editthemes.js"></script>
+
+                <script type="text/javascript"  charset="utf-8">
+                    var editThemes;
+                    $(document).ready(function(){
+                      editThemes = new EditThemes();
+                    });
+                </script>
+
             </head_merge>
 
-            <div id="centrum">
-                <div id="infoHead">
-                    <div class="lift:MainTeacher.logedInUser userName" style="width:200px;display: inline;">Jesteś zalogowany jako: <p id="username"></p></div>
-                   
-                </div> <!--inofhead-->
-                <br  />
+            <div id="container">
+                <div data-lift="register.ThemesSn.chosenClass" class="chosenClass">
+                    <h1>Przeglądasz klasę: <span id="chosenClass"></span></h1>
+                </div>
 
+                <button class="btn btn-success" id="newadd">Dodaj temat</button>
 
+                <div >
+                <h3 data-lift="register.ThemesSn.chosenSubject">Tematy lekcji: <span id="subjectNameInfo"></span></h3>
+                <h4 data-lift="register.ThemesSn.showSubjects">Wybierz przedmiot: <button></button></h4>
+                </div>
+                <table id="fullList" class="display" border="0" cellpadding="2" cellspacing="2">
 
-                <h3>Tematy lekcji - w budowie </h3><hr />
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Data</th>
+                        <th>Temat</th>
+                        <th>Polecenia</th>
+                        <th>Opis</th>
+                    </tr>
+                    </thead>
+
+                    <tbody data-lift="register.ThemesSn.showThemes">
+                    <tr>
+                        <td class="themeId"></td>
+                        <td class="lessonDate"></td>
+                        <td class="theme"></td>
+                        <td class="directing"></td>
+                        <td class="description"></td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <th>ID</th>
+                        <th>Data</th>
+                        <th>Temat</th>
+                        <th>Polecenia</th>
+                        <th>Opis</th>
+                    </tr>
+                    </tfoot>
+                </table>
+
+                <hr />
                 <br/><br/><br/>
-                
-                
-                
                     <p id="addInfo"></p>
                 </div>
                 <br  />
+
+            <div class="lift:register.ThemesSn.editAjax" id="formAdd" style="display: none;" title="Tematy Lekcji">
+            <form method="POST" class="form-horizontal">
+                <input id="themeId"  style="display:none"/>
+                <div class="form-group">
+                    <label for="theme" class="col-sm-3 control-label">Temat:</label>
+                    <div class="col-sm-9"><input id="theme"  class="form-control" /></div>
+                </div>
+                <div class="form-group">
+                    <label for="lessonDate" class="col-sm-3 control-label">Data lekcji:</label>
+                    <div class="col-sm-9">
+                        <input id="lessonDate"  class="form-control" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="directing" class="col-sm-3 control-label">Polecenie dla ucznia:</label>
+                    <div class="col-sm-9">
+                        <textarea id="directing" type="text"  class="form-control"> </textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="description" class="col-sm-3 control-label">Info:</label>
+                    <div class="col-sm-9">
+                        <textarea id="description" type="text"  class="form-control"> </textarea>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-3">
+                        <input type="submit" class="btn btn-default" id="discard" value="Anuluj"/>
+                    </div>
+                    <div class="col-sm-3">
+                        <input type="submit" class="btn btn-success" id="save" value="Zapisz"/>
+                    </div>
+                    <div class="col-sm-3">
+                        <input type="submit" class="btn btn-danger" id="delete" value="Usuń"/>
+                    </div>
+                    <div class="col-sm-1"></div>
+                </div>
+            </form>
+        </div>
 
         </div>
     </body>

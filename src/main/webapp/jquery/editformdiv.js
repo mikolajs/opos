@@ -14,12 +14,13 @@ function EditFormDiv(){
 			width : widthForm,
 			modal : true
 		});
+		$('#newadd').click(function(){
+        			self.openNew();
+        });
 		this.dataTable = new DataTableOne();
 		this.dataTable.init();
 
-		$('#newadd').click(function(){
-			self.openNew();
-		});	
+
 		var trNodes = this.dataTable.dTable.fnGetNodes();
 		for(i in trNodes){
 			var tr = trNodes[i];
@@ -38,7 +39,7 @@ function EditFormDiv(){
 	}
    //button add 
 	this.openNew = function(){
-		self.editDiv.dialog({title: self.addNewItemInfo}); 
+		self.editDiv.dialog({title: self.addNewItemInfo});
 		self.editDiv.dialog('open');
 		self.reset();
 		$('#delete').hide();
@@ -71,6 +72,11 @@ function EditFormDiv(){
 	this.scratchRow = function(id){
 		self.dataTable.scratchRow(id);
 		self.close();
+	}
+
+	this.deleteRow = function(id){
+	    self.dataTable.deleteRow(id);
+	    self.close();
 	}
 
 	this.insertNewRow = function(id){
