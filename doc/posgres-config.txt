@@ -1,3 +1,11 @@
+Tworzenie bazy danych:
+Zalogowanie: sudo su postgres
+Utworzenie bazy: createdb osp
+Wejście do bazy danych: psql osp
+Uruchomienie skryptów:
+Create user osp with password '123test456';
+GRANT ALL ON DATABASE osp TO osp;
+
 w katalogu /etc/osp musi znajdować się plik do odczytu config.cfg z zawartością:
 
 sqlpassword=jakieśhasło

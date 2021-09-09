@@ -16,6 +16,9 @@ import net.liftweb.http.js.JE.JsRaw
 import eu.brosbit.opos.lib.Formater
 import java.util.Date
 
+
+
+//TODO: DELETE SNIPPET after change all code
 class EditQuizSn extends BaseResourceSn {
 
   var quizId = S.param("id").openOr("0")

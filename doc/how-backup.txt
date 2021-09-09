@@ -2,7 +2,7 @@
 
 1. Backup bazy danej mongo (sprawdzić nazwę bazy danych!)
  Używamy mongodump: 
-    mongodump  --db baza --out /sciezka/do/katalogu/wynikowego
+    mongodump  --db osp2 --out /sciezka/do/katalogu/wynikowego
     
 2. Kopia plików wideo z katalogu /home/osp
 
@@ -13,8 +13,9 @@
 4. Odzysk Mongo: 
     mongorestore --db osp /sciezka/do/katalogu
  
-5.Odzysk postgres:
+5.Odzysk postgres (na uruchomionym postgres jako postges user):
     psql osp < nazwa_pliku
+    ///skasować wszystkie table wcześniej
     
 6. skopiowanie plików video do /home/osp
 

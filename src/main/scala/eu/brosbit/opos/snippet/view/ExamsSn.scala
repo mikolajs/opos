@@ -6,17 +6,20 @@ import _root_.net.liftweb.util._
 import Helpers._
 import net.liftweb.json.JsonDSL._
 import eu.brosbit.opos.lib.{Formater, ZeroObjectId}
-import java.util.Date
 
-import eu.brosbit.opos.model.edu.{Exam, ExamAnswer, Work, WorkAnswer}
+import java.util.Date
+import eu.brosbit.opos.model.edu.{Exam, ExamAnswer, Groups, Work, WorkAnswer}
 
 class ExamsSn extends BaseSnippet  {
+
+  private val groups = Groups.findAll.filter(gr => gr.students.exists(s => s.id == user.id.get)).map("_" + _._id.toString)
 
   def showExams():CssSel = {
     val now = new Date()
     val nowString = Formater.formatTime(now)
     val nowL = now.getTime
-    val exams = Exam.findAll(("classId" -> user.classId.get)~( "start" -> ("$lt" -> nowL ))~("end" -> ("$gt" -> nowL)))
+    //println(groups)
+    val exams = Exam.findAll(("groupId" -> ("$in" -> groups))~( "start" -> ("$lt" -> nowL ))~("end" -> ("$gt" -> nowL)))
 
     "#nowDate *" #> nowString &
     ".col-lg-6" #> exams.map(ex => {

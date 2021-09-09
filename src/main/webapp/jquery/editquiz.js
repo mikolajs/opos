@@ -4,7 +4,7 @@
 var EditQuiz =  dejavu.Class.declare({
 
     table : null,
-	
+
 	initialize : function() {
 		 $( "ul.dropselected" ).sortable({
 			 connectWith: "ul"
@@ -60,7 +60,7 @@ var EditQuiz =  dejavu.Class.declare({
             if(ids[i] == this.id) $(this).remove();
            }
         });
-		
+
 	},
 
 	removeLi : function(elem) {
@@ -164,6 +164,6 @@ var EditQuiz =  dejavu.Class.declare({
         });
         return array.join(';');
     }
-    
-	
+
+
 });

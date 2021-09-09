@@ -179,3 +179,12 @@ db.Exams.update({}, {$unset: {"classId": ""}}, true, true, true);
 
 db.questions.update({}, {$set: {"hint":""}}, true, true, true)
 
+#change after add groups
+
+db.courses.update({}, {$set: {"groupsInfo": ""}}, true, true, true);
+db.courses.update({}, {$set: {"groupsList": []}}, true, true, true);
+db.Works.update({}, {$set: {"groupId":""}}, true, true, true);
+db.Works.update({}, {$set: {"groupName":""}}, true, true, true);
+db.Exams.update({}, {$set: {"groupId":""}}, true, true, true);
+db.Exams.update({}, {$set: {"groupName":""}}, true, true, true);
+

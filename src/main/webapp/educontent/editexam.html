@@ -1,7 +1,6 @@
 <div class="lift:surround?with=educontent;at=content">
     <head_merge>
 
-        <script type="text/javascript" src="/jquery/dejavu.js"></script>
         <script type="text/javascript" src="/jquery/editexam.js"></script>
         <script type="text/javascript" src="/bootstrap/js/moment.js" charset="UTF-8"></script>
         <script type="text/javascript" src="/bootstrap/js/bootstrap-datetimepicker.min.js" charset="UTF-7"></script>
@@ -10,7 +9,7 @@
         <link rel="stylesheet" type="text/css"
               href="/style/jquery.dataTables.css" />
         <script type="text/javascript">
-        var editExam = Object();
+        var editExam = null;
       $(function () {
           editExam = new EditExam();
           $('#startExam').datetimepicker({ locale: 'pl'});
@@ -25,8 +24,7 @@
              if(e.date._d.getTime() < $start.date()._d.getTime() )
               $start.date(e.date);
           });
-          $("#allQuizList").sortable();
-		  $("#choosedQuizList").sortable();
+          $(".dropselected").sortable();
       });
 
 	   function refreshTab() {
@@ -39,6 +37,25 @@
             label {padding-right: 20px;}
             span.keysShow {font-weight: bold; font-family: mono; font-size: 20px; padding: 10px; margin: 0 10px;}
          .extra-tabs { padding-right: 30px;}
+         .dropselected {
+            max-height: 600px;
+            overflow-y: scroll;
+            list-style-type: none;
+	        background: #eeeeee;
+	        border: 1px solid navy;
+            padding-left: 2px !important;
+            padding-right: 2px !important;
+            width: 100%;
+         }
+        .quizElement {
+	       background: #fff;
+	       border: dotted 1px #555;
+	       padding: 2px; margin: 2px;
+        }
+
+        .dropselected input { width: 50px;}
+        .questInfo span.btn { float:right;}
+
         </style>
 
         <style media="print">
@@ -50,21 +67,19 @@
 
     <div class="well" data-lift="edu.EditExamSn.showInfo">
         <h2>Edycja sprawdzianu: <span id="subject" style="color: navy;"></span></h2>
-        <a href="/educontent/quizzes" class="btn btn-warning"><span class="glyphicon glyphicon-arrow-left"></span> Powrót</a>
+        <a href="/educontent/exams" class="btn btn-warning"><span class="glyphicon glyphicon-arrow-left"></span> Powrót</a>
     </div>
     <br/>
 
     <div id="questEditor" title="Edycja pytania">
 
-
-
-            <div class="row">
+           <div class="row">
                 <form data-lift="edu.EditExamSn.editExam" method="POST">
                     <input id="testsList" type="text" style="display: none;"/>
+                    <input id="questsJson" type="text" style="display: none;"/>
                     <input id="keysList" type="text" style="display: none;"/>
                     <div class="form-group">
                         <label for="descriptionExam" class="control-label">Opis:</label>
-
                         <div class="">
                             <textarea type="text" class="form-control" id="descriptionExam"
                                       rows="3" cols="75"></textarea>
@@ -117,8 +132,10 @@
                     <div class="row">
                     <div class="form-group">
                         <div class="col-md-6">
-                            <input id="saveExam" onclick="return editExam.prepareData();"
-                                   class="btn btn-success" type="submit"/>
+                            <span id="saveExamOpen" onclick="editExam.prepareData();"
+                                   class="btn btn-success">Zapisz</span>
+                            <input id="saveExam" value="Hidden Save" style="display:none;"
+                                   class="btn" type="submit"/>
                         </div>
                         <div class="col-md-6">
                             <input id="deleteExam" onclick="return confirm('Na pewno usunąć sprawdzian?');"
@@ -130,36 +147,25 @@
             </div>
         <br/>
         <hr/>
-
-
     </div>
-    <div class="row">
-        <h3>Wzorzec:</h3>
-        <button class="btn btn-success">Wczytaj wzorzec</button>
-        <button class="btn btn-info">Zapisz wzorzec</button>
-
-    </div>
-    <br/>
-    <hr/>
 
     <div class="row">
         <div class="col-md-6">
             <div class="row">
                 <div class="col-md-8">
                     <div class="btn-group" role="group" aria-label="..." id="groups-buttons">
-                            <button type="button" class="btn btn-info">Grupa A</button>
-                            <button type="button" class="btn btn-default">Grupa B</button>
-                            <button type="button" class="btn btn-default">Grupa C</button>
+                            <button type="button" class="btn btn-info"  id="groupButtonA"
+                                    onclick="editExam.showGroup('A');">Grupa A</button>
                     </div>
                 </div>
                 <div class="col-md-4 extra-tabs">
-                    <button type="button" class="btn btn-success" title="dodaj rząd">
+                    <button type="button" class="btn btn-success" title="dodaj grupę" onclick="editExam.addNewGroup();">
                         <span class="glyphicon glyphicon-plus"></span>
                     </button>
-                    <button type="button" class="btn btn-danger" title="usuń rząd">
+                    <button type="button" class="btn btn-danger" title="usuń ostatnią grupę" onclick="editExam.delExistsGroup();">
                         <span class="glyphicon glyphicon-minus"></span>
                     </button>
-                    <button type="button" class="btn btn-info" title="zobacz klucze">
+                    <button type="button" class="btn btn-info" title="zobacz klucze" onclick="editExam.showKeys();">
                         <span class="glyphicon glyphicon-cog"></span>
                     </button>
                 </div>
@@ -187,7 +193,26 @@
     <div class="row">
         <div class="col-md-5">
             <div id="groupsAndKeysTab">
-                <div class="panel panel-default" id="keysPanel">
+
+                <div class="panel panel-default" id="groupA">
+                    <ul class="dropselected">
+                    </ul>
+                </div>
+                <div class="panel panel-default" id="groupB" style="display:none;">
+                    <ul class="dropselected">
+                    </ul>
+                </div>
+                <div class="panel panel-default" id="groupC" style="display:none;">
+                    <ul class="dropselected">
+                    </ul>
+                </div>
+                <div class="panel panel-default" id="groupD" style="display:none;">
+                    <ul class="dropselected">
+                    </ul>
+                </div>
+
+
+                <div class="panel panel-default" id="keysPanel" style="display:none;">
                     <div class="panel-heading">
                         <div class="row">
                             <div class="col-md-4">
@@ -226,16 +251,9 @@
 
             </div>
 
-
-
         </div>
     </div>
+    <input id="jsonForDataTable" style="display:none;" value="" />
 
-
-
-
-    <br/>
-    <br/>
-
-    <br/><br/>
+    <br/><br/><br/><br/>
 </div>

@@ -19,9 +19,10 @@ class CheckExamSn {
   private val exam = Exam.find(ansEx.exam.toString).getOrElse(Exam.create)
   private val group = getGroupInt
   //println("GROUP CHeck exam: " + group)
-  private val quiz = Quiz.find(exam.quizzes(group)).getOrElse(Quiz.create)
+//  private val quiz = Quiz.find(exam.quizzes(group)).getOrElse(Quiz.create)
   //println("quizID exam: " + quiz._id.toString + " " + quiz.title)
-  private val questList = quiz.questions.map(qi => qi.q.toString )
+  private val questElemList = exam.quizzes(group)
+  private val questList = questElemList.map(_.q.toString)
   //println("Quest List exam: " + questList.mkString(", "))
   private val questions = QuizQuestion.findAll("_id" -> ("$in" -> questList))
 
@@ -30,7 +31,7 @@ class CheckExamSn {
   private val questItems = questions.map(quest => {
    val idStr = quest._id.toString
    val itemAns = findAnswerItem(ansEx.answers, idStr)
-    (quest, itemAns._1, itemAns._2 , findPointsFromQuiz(quiz.questions, idStr))
+    (quest, itemAns._1, itemAns._2 , findPointsFromQuestions( idStr))
   })
 
   private var nr = 0
@@ -146,8 +147,8 @@ class CheckExamSn {
       case _ => ("Błąd", 0)
     }
 
-  private def findPointsFromQuiz(quests: List[QuestElem], idStr:String) =
-    quests.find(q => q.q.toString == idStr) match {
+  private def findPointsFromQuestions(idStr:String) =
+      questElemList.find(q => q.q.toString == idStr) match {
       case Some(q) => q.p
       case _ => -1
     }

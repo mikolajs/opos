@@ -1,0 +1,11 @@
+import sys.process._
+import scala.language.postfixOps
+
+"g++ -o gra /home/ms/Dokumenty/gra.cpp" !
+"./gra" !
+"./gra" #> new File("/home/ms/gra.txt") !
+
+val sb = new StringBuffer
+("ls" run BasicIO(false, sb, None)).exitValue
+println(sb)
+sb.setLength(0)

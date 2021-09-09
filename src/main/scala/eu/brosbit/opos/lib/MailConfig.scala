@@ -11,6 +11,7 @@ import javax.mail.internet._
 import _root_.net.liftweb.util._
 import _root_.net.liftweb.common._
 import _root_.eu.brosbit.opos.model.MapExtraData
+import net.liftweb.util.Mailer.{PlainPlusBodyType, To}
 
 
 class MailConfig {
@@ -22,12 +23,17 @@ class MailConfig {
       this.port = port
       this.password = password
       mkConfig()
+
    }  
    
    /** For configure in bootstrap if database contain data configuration*/
     def autoConfigure(){
      loadConfig()
      mkConfig()
+      println("\n\n Sending Email \n\n" )
+      Thread.sleep(5000)
+      Mailer.sendMail(Mailer.From("20logdansk@gmail.com"), Mailer.Subject("restarted app OPOS"),
+        PlainPlusBodyType("Started", "utf-8"), To("mikolajsochacki@gmail.com"))
    }
   
    def getConfig() = {
@@ -50,8 +56,8 @@ class MailConfig {
 
    
   private def mkConfig(){
-    /*
     println("[App Info]: mkConfig in Mailer user %s password %s host %s port %s".format(user, password, host, port))
+    /*
          // Enable TLS support
       System.setProperty("mail.smtp.starttls.enable", "true");
       // Set the host name
@@ -61,10 +67,16 @@ class MailConfig {
       println("HOST NAME ::::: " + System.getProperty("mail.smtp.host") + " PORT ::: " + System.getProperty("mail.smtp.port"))
       */
      Mailer.customProperties = Map(
-          "mail.smtp.host" -> "smtp.gmail.com",
-          "mail.smtp.port" -> "587",
+          "mail.smtp.host" -> host,
+          "mail.smtp.port" -> port,
           "mail.smtp.auth" -> "true",
-          "mail.smtp.starttls.enable" -> "true")
+       //"mail.smtp.ssl.trust" -> "smtp.gmail.com",
+       "mail.smtp.ssl.protocols" ->"TLSv1.2",
+      // "mail.smtp.socketFactory.port" -> "465",
+      //"mail.smtp.socketFactory.class" -> "javax.net.ssl.SSLSocketFactory",
+       //"mail.smtp.ssl.enable" -> "true",
+       "mail.smtp.starttls.enable" -> "true"
+     )
        // Provide a means for authentication. Pass it a Can, which can either be Full or Empty
      Mailer.authenticator = Full(new Authenticator {
        override def getPasswordAuthentication = new PasswordAuthentication( user, password)

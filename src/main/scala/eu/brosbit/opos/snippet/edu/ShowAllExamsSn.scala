@@ -28,6 +28,10 @@ class ShowAllExamsSn  extends  BaseResourceSn {
           <a class="btn btn-success" href={"/educontent/editexam/" + ex._id.toString}>
             <span class="glyphicon glyphicon-pencil"></span></a>
         </td>
+        <td>
+          <a class="btn btn-warning" href={"/educontent/editexam?c=" + ex._id.toString }>
+            <span class="glyphicon glyphicon-open"></span></a>
+        </td>
       </tr>
     })
   }

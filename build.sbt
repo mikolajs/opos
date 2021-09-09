@@ -1,5 +1,5 @@
 name := "opos"
-version := "0.9.1"
+version := "0.10.2"
 
 organization := "brosbit.eu"
 
@@ -24,13 +24,15 @@ libraryDependencies ++= {
     "net.liftweb" %% "lift-mapper" % liftVersion % "compile",
     "net.liftweb" %% "lift-actor" % liftVersion % "compile",
     "net.liftmodules" % "lift-jquery-module_2.6_2.11" % "2.8",
-     "org.eclipse.jetty" % "jetty-webapp" % "9.1.0.v20131115" % "container",
-    "org.eclipse.jetty" % "jetty-plus"   % "9.1.0.v20131115" % "container",
+     //"org.eclipse.jetty" % "jetty-webapp" % "9.1.0.v20131115" % "container",
+    //"org.eclipse.jetty" % "jetty-plus"   % "9.1.0.v20131115" % "container",
+    "org.eclipse.jetty" % "jetty-webapp" % "9.2.30.v20200428" % "container",
+    "org.eclipse.jetty" % "jetty-plus"   % "9.2.30.v20200428" % "container",
     "ch.qos.logback" % "logback-classic" % "1.0.6",
     "org.jsoup" % "jsoup" % "1.8.3",
      "net.liftweb" %% "lift-mongodb" % liftVersion % "compile",
     "org.postgresql" % "postgresql" % "42.2.5",
-  "com.sun.xml.messaging.saaj" % "saaj-impl" % "2.0.0"
+    "com.sun.xml.messaging.saaj" % "saaj-impl" % "2.0.1"
   )
 
 }

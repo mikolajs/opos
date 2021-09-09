@@ -51,11 +51,12 @@ class PerformExamSn extends BaseSnippet {
           "#saveCode" #> SHtml.submit("Zatwierdź", saveCode)
     }
     else {
-    val idQuiz = if(exam.quizzes.isEmpty) "0" else exam.quizzes(getGroupInt).toString
-    val quiz = Quiz.find(idQuiz).getOrElse(Quiz.create)
-    if(quiz.questions.length < 1) S.redirectTo("/view/exams?Error")
-    //println("=========  quiz: " + quiz.title + " ; length:  " + quiz.questions.length.toString)
-    val questMap = quiz.questions.map(qi => ( qi.q.toString -> qi.p)).toMap
+      println(exam.quizzes)  //TODO: make exam perform – quizzes are list of list of object!!!
+    val quizzes = if(exam.quizzes.isEmpty) Nil else exam.quizzes(getGroupInt)
+    //val quiz = Quiz.find(idQuiz).getOrElse(Quiz.create)
+     // println("=========  quiz: " + quiz.title + " ; length:  " + quiz.questions.length.toString)
+    if(quizzes.length < 1) S.redirectTo("/view/exams?Error=empty")
+    val questMap = quizzes.map(qi => ( qi.q.toString -> qi.p)).toMap
 
     val questions = QuizQuestion.findAll("_id" -> ("$in" -> questMap.keySet.toList))
     val questionsItems = questions.map(qu =>  (qu, questMap(qu._id.toString)))

@@ -23,6 +23,7 @@ class EditExamSn_old extends BaseResourceSn {
 
   private val groups = Groups.findAll.filter( gr => gr.authorId == userId).map(gr => ("_" + gr._id.toString, gr.name))
   //working ....
+  /*
   def editExam(): CssSel = {
 
     var quizzes = exam.quizzes.map(q => q.toString).mkString(";")
@@ -102,6 +103,8 @@ class EditExamSn_old extends BaseResourceSn {
     })
 
   }
+
+   */
 
 
 }

@@ -4,8 +4,9 @@ package eu.brosbit.opos.model.edu
 import _root_.net.liftweb.mongodb._
 import org.bson.types.ObjectId
 
-case class QuestElem(q:ObjectId, p:Int)
 //authors - last is older
+
+///!!! TO DELETE!!!!
 object Quiz extends MongoDocumentMeta[Quiz] {
   override def collectionName = "quizzes"
 
