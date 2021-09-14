@@ -30,10 +30,10 @@ class MailConfig {
     def autoConfigure(){
      loadConfig()
      mkConfig()
-      println("\n\n Sending Email \n\n" )
-      Thread.sleep(5000)
-      Mailer.sendMail(Mailer.From("20logdansk@gmail.com"), Mailer.Subject("restarted app OPOS"),
-        PlainPlusBodyType("Started", "utf-8"), To("mikolajsochacki@gmail.com"))
+      //println("\n\n Sending Email \n\n" )
+      //Thread.sleep(5000)
+      //Mailer.sendMail(Mailer.From("20logdansk@gmail.com"), Mailer.Subject("restarted app OPOS"),
+        //PlainPlusBodyType("Started", "utf-8"), To("mikolajsochacki@gmail.com"))
    }
   
    def getConfig() = {

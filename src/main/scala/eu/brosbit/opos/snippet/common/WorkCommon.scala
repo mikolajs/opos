@@ -13,7 +13,9 @@ trait WorkCommon {
   protected def createQuestions(items: List[LessonContent], answer: WorkAnswer):List[Elem] = {
     val questionsInLesson = items.filter(_.what == "q").map(_.id.substring(1))
     val questions = QuizQuestion.findAll( "_id" -> ("$in" -> questionsInLesson))
-    questions.map(q => mkQuestion(q, answer))
+    questionsInLesson.map(qinl => questions.find(_._id.toString == qinl)).filter(_.isDefined)
+      .map(_.get).map(q => mkQuestion(q, answer))
+    //questions.map(q => mkQuestion(q, answer))
   }
 
   protected def mkQuestion(question:QuizQuestion, answer:WorkAnswer): Elem = {
@@ -23,7 +25,7 @@ trait WorkCommon {
           <span class="quizNr">Zadanie {question.nr.toString}</span>
           <a class="quizHint" onclick="workCommon.showHint(this);">
             <span class="glyphicon glyphicon-info-sign"></span> Pomoc</a>
-          <input style="display:none;" value={question.hint} />
+          <textarea id="questHint" style="display:none;">{Unparsed(question.hint)}</textarea>
         </div>
         <div class="panel-body">
           <div class="questionText">
