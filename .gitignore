@@ -30,6 +30,8 @@ test-output
 
 /page_school/target
 /sekretariat/target
+judge/target
+judge/project
 
 # sbt
 target
