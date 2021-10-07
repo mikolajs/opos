@@ -48,14 +48,16 @@ class ControlDir(id:String):
     sb.toString
      
   
-  def readFile(fileName:String) = 
+  def readFile(fileName:String):String =
     val path = mkPathObject(mkFilePath(fileName = fileName))
+    //println(path.toFile.getPath)
     if Files.exists(path) then
-      val ar = String(Files.readAllBytes(path), StandardCharsets.UTF_8).split('\n').map(_.trim)
+      val ar = String(Files.readAllBytes(path), StandardCharsets.UTF_8).split('\n').map(_.trim).mkString
       ar
     else 
       ""
-      
+
+
   def mkRootDir = ControlDir.mainDir + id
   def mkFilePath (extension:String = "", fileName:String = "test") =
     val r = mkRootDir + "/" + fileName 

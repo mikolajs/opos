@@ -5,7 +5,7 @@ import java.nio.file.Paths
 
 object CDD:
   val dataFile:String = "4 5 78 23 55 66 75 23 567 123"
-  val id = "1234544"
+  val id = "1234554"
   val cpp = "cpp"
   val cppFile:String =
     """
@@ -37,12 +37,13 @@ object CDD:
 class ControlDirSpec extends AnyFlatSpec with Matchers:
 
   val dirControler = ControlDir(CDD.id)
-  dirControler.deleteDir
+  if(dirControler.mkPathObject(dirControler.mkRootDir).toFile.exists()) dirControler.deleteDir
 
   behavior of "Directory controler"
 
   it should "create test dir" in {
     dirControler.createDir
+    Thread.sleep(100)
     val p = Paths.get(dirControler.mkRootDir)
     p.toFile.exists() should be(true)
   }
@@ -67,12 +68,12 @@ class ControlDirSpec extends AnyFlatSpec with Matchers:
 
   it should "run compiled program" in {
     val output = dirControler.runCpp
-    //println(output)
     output.trim should be("suma = 1019")
   }
 
   it should "read file data" in {
-    true
+    val dataContent = dirControler.readFile("wynik.txt").split('\n').map(_.trim).mkString
+    dataContent.size should be(26)
   }
 
 end ControlDirSpec
