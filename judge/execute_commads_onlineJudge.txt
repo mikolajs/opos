@@ -2,6 +2,7 @@ import sys.process._
 import scala.language.postfixOps
 
 "g++ -o gra /home/ms/Dokumenty/gra.cpp" !
+g++ -o /home/ms/Dokumenty/dir_12345644/test /home/ms/Dokumenty/dir_12345644/test.cpp
 "./gra" !
 "./gra" #> new File("/home/ms/gra.txt") !
 

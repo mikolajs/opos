@@ -1,49 +1,67 @@
 package eu.brosbit
 
+import java.nio.charset
 import java.nio.file.*
 import java.nio.charset.StandardCharsets
 
-class ControlDir:
-  val mainDir = "/home/ms/Dokumenty/dir_"
-  def createFile(id:String) = Files.createDirectory(Paths.get(mainDir+id))
-  def deleteFile(id:String) = 
-    val p = Paths.get(mainDir+id)
+object ControlDir:
+  val mainDir = "/home/ms/Dokumenty/dir_" 
+
+class ControlDir(id:String):
+  
+  def createDir = Files.createDirectory(mkPathObject(mkRootDir))
+  def deleteDir = 
+    val p = mkPathObject(mkRootDir)
     val l = Files.list(p)
     l.forEach(file => Files.delete(file))
     Files.delete(p)
 
-  def createFile(id:String, source:String, extension:String) = 
-    val p = Paths.get(mainDir+id+"/test."+extension)
+  def createSourceFile(source:String, extension:String) =
+    val p = mkPathObject(mkFilePath(extension))
     Files.createFile(p)
     val file = Files.write(p, source.getBytes)
     file
 
-  def compileCpp(id:String, extension:String) = 
-    val op = mainDir+id+"/test."+extension
-    val compile = "g++ -o "+mainDir+id+ "/test " + op
+  def createDataFile(fileName:String, content:String) =
+    val p = mkPathObject(mkFilePath("txt", fileName))
+    Files.createFile(p)
+    val file = Files.write(p, content.getBytes)
+    file
+
+  def compileCpp(extension:String) = 
+    val compile = "g++ -o "+ mkFilePath() + " " + mkFilePath(extension)
     import sys.process._
     val sb = StringBuffer()
     val outInfo = (compile run BasicIO(false, sb, None)).exitValue
-    println(outInfo)
+    //println(outInfo)
     sb.toString
 
-  def runCpp(id:String) = 
-    val exec = mainDir+id+"/test"
+  def runCpp = 
+    val exec = mkRootDir + "/test"
+    //println(exec)
     import sys.process._
     val sb = StringBuffer()
-    val outInfo = (exec run BasicIO(false, sb, None)).exitValue
-    println(outInfo)
+    val basicIO = BasicIO(false, sb, None)
+    val outInfo2 = Process(exec, java.io.File(mkRootDir)).run(basicIO).exitValue()
+   // val outInfo = (exec run BasicIO(true, sb, None)).exitValue
+    //println(sb.toString)
     sb.toString
      
   
-  def readFile(id:String, fileName:String) = 
-    val path = Paths.get(mainDir+id+"/" + fileName)
+  def readFile(fileName:String) = 
+    val path = mkPathObject(mkFilePath(fileName = fileName))
     if Files.exists(path) then
-      val ar = Files.readAllBytes(path).split('\n').map(_.trim)
-       String(ar, StandardCharsets.UTF_8)
+      val ar = String(Files.readAllBytes(path), StandardCharsets.UTF_8).split('\n').map(_.trim)
+      ar
     else 
       ""
-
+      
+  def mkRootDir = ControlDir.mainDir + id
+  def mkFilePath (extension:String = "", fileName:String = "test") =
+    val r = mkRootDir + "/" + fileName 
+    if extension.isEmpty then r else r + "." + extension
+  def mkPathObject(filePath:String) = Paths.get(filePath)
+    
 
 
 
