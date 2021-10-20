@@ -60,7 +60,7 @@ trait WorkCommon {
   }
   private def mkMessage(item: AnswerWorkItem) = {
     <div class={if(item.t) "bg bg-blue" else "bg bg-green" } name={"qr" + item.qId}>
-      <p>{if(item.l) <a href={Unparsed(item.m)} target="_blank">PLIK</a> else item.m}</p>
+      <pre>{if(item.l) <a href={Unparsed(item.m)} target="_blank">PLIK</a> else Unparsed(item.m)}</pre>
       <div class="messegeSign">
         <span class="glyphicon glyphicon-user"></span>
         <span class="msg-name">{item.a}</span>

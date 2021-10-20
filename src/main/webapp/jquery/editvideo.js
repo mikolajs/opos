@@ -30,7 +30,7 @@ var EditVideo = dejavu.Class.declare({
 		this.oTable = $('#dataTable').dataTable({
             "sPaginationType": "two_button",
             "bFilter": true,
-            "iDisplayLength": 20,
+            "iDisplayLength": 50,
             "bLengthChange": true,
             "oLanguage": {
                 "sSearch": "Filtruj wiersze: ",
@@ -55,8 +55,7 @@ var EditVideo = dejavu.Class.declare({
               });
 
 
-        this.department = $('#subjectAndDepartment').children('big').text().trim();
-        console.log("Depratment: " + this.department);
+        this.department = $('#subjectAndDepartment').children('small').text().trim();
         $('#subjectChoice').val(this.department);
 	}, 
 	

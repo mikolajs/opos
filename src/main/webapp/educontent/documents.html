@@ -6,7 +6,7 @@
 		<link rel="stylesheet" type="text/css"
 			  href="/style/jquery.dataTables.css" />
 		<script src="/jquery/jquery.dataTables.min.js"></script>
-		<script src="/jquery/redirecttoselect.js"></script>
+		<script src="/jquery/redirectdepartmentselect.js"></script>
 		<script>
 			
 			var oTable = $();
@@ -41,9 +41,10 @@
 																+ '</select> wierszy'
 													}
 												});
-                        var department = $('#subjectAndDepartment').children('big').text().trim();
+                        var department = $('#subjectAndDepartment').children('small').text().trim();
                         $('#subjectChoice').val(department);
 							});
+
 		</script> </head_merge>
 
 	<div class="well">
@@ -54,11 +55,13 @@
 			<div  class="form-inline">
 				<h2 id="subjectAndDepartment">Fizyka
 					<span class="label label-default"> Dział</span>
-					<big id="subjectNameLabel">Energia i praca</big></h2>
+					<big id="subjectNameLabel">Energia i praca</big>
+					<small style="display:none;"></small>
+				</h2>
 				<hr />
 				<div class="input-group">
 					<div class="input-group-addon">Wybierz:</div>
-					<select id="subjectChoice" class="form-control"></select>
+					<select id="subjectChoice" onchange="redirectDepartment()" class="form-control"></select>
 				</div>
 			</div>
 		</div>
@@ -83,6 +86,7 @@
 				<tr>
 					<th>Tytuł</th>
 					<th>Opis</th>
+					<th>Dział</th>
 					<th>Poziom</th>
 					<th>Edycja</th>
 				</tr>
@@ -91,6 +95,7 @@
 				<tr>
 					<td class="titleTd"></td>
 					<td class="descriptTd"></td>
+					<td class="departTd"></td>
 					<td class="levelTd"></td>
 					<td class="editTd"></td>
 				</tr>
@@ -99,6 +104,7 @@
 				<tr>
 					<th>Tytuł</th>
 					<th>Opis</th>
+					<th>Dział</th>
 					<th>Poziom</th>
 					<th>Edycja</th>
 				</tr>

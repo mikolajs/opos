@@ -5,7 +5,7 @@
     <head_merge>
         <script src="/jquery/jquery.dataTables.min.js" ></script>
         <link rel="stylesheet" type="text/css" href="/style/jquery.dataTables.css" />
-        <script src="/jquery/redirecttoselect.js" ></script>
+        <script src="/jquery/redirectdepartmentselect.js" ></script>
         <script>
            var oTable = $();
            var oTablePrivate = $();
@@ -36,7 +36,7 @@
                         '</select> wierszy'
                     }
                       });
-             var department = $('#subjectAndDepartment').children('big').text().trim();
+             var department = $('#subjectAndDepartment').children('small').text().trim();
             $('#subjectChoice').val(department);
              });
 
@@ -56,7 +56,7 @@
                     <hr />
                     <div class="input-group">
                         <div class="input-group-addon">Wybierz:</div>
-                        <select id="subjectChoice" class="form-control"></select>
+                        <select id="subjectChoice" onchange="redirectDepartment()" class="form-control"></select>
                     </div>
                 </div>
             </div>
@@ -73,11 +73,11 @@
         <div id="headWordsList" data-lift="edu.PresentationsSn.slidesList" class="dataTable_wrapper">
             <table id="dataTable" class="display"  >
                 <thead>
-                <tr><th>Hasło</th><th>Poziom</th><th>Edytuj</th></tr>
+                <tr><th>Hasło</th><th>Dział</th><th>Poziom</th><th>Edytuj</th></tr>
                 </thead>
-                <tbody><tr><td><a href=""></a><td></td><td></td><td></td></tr></tbody>
+                <tbody><tr></tr></tbody>
                 <tfoot>
-                <tr><th>Hasło</th><th>Poziom</th><th>Edytuj</th></tr>
+                <tr><th>Hasło</th><th>Dział</th><th>Poziom</th><th>Edytuj</th></tr>
                 </tfoot>
             </table>
         </div>

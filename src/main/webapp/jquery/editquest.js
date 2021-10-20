@@ -67,7 +67,7 @@
 										+ '</select> wierszy'
 							}
 						});
-        this.department = $('#subjectAndDepartment').children('big').text().trim();
+        this.department = $('#subjectAndDepartment').children('small').text().trim();
         $('#subjectChoice').val(this.department);
 
 	}

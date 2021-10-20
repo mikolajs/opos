@@ -73,23 +73,25 @@ trait BaseResourceSn {
   }
 
   def subjectAndDepartmentChoice(basePath: String) = {
-    def redirect(sub: String, depNr: String): String = {
-      "window.location='" + basePath + "?s=" + sub + "&d=" + depNr + "'"
+    def redirectPath(sub: String, depNr: String): String = {
+      basePath + "?s=" + sub + "&d=" + depNr
     }
     val subjects = subjectTeach.map(s => {
       <optgroup label={s.name}>
         { var n = -1; s.departments.map(d => {
           n += 1
-          <option value={d} onclick={redirect(s.id.toString, n.toString)} >
+          <option value={redirectPath(s.id.toString, n.toString)}  >
             {d}</option>
-        })} ++ <option value="Wszystkie" onclick={redirect(s.id.toString, (-1).toString)}>Wszystkie</option>
+        })} ++ <option value={redirectPath(s.id.toString, (-1).toString)} >Wszystkie</option>
       </optgroup>
     })
 
 
     "#subjectChoice" #> <select>{subjects}</select> &
     "h2" #> <h2> <span class="label label-info"> {subjectNow.name}</span> Dział:
-      <big id="subjectNameLabel">{if(departName.isEmpty) "Wszystkie" else Unparsed(departName)}</big></h2>
+      <big id="subjectNameLabel">{if(departName.isEmpty) "Wszystkie" else Unparsed(departName)}</big>
+      <small style="display:none;">{redirectPath(subjectNow.id.toString, departNr.toString)}</small>
+    </h2>
   }
 
   def getSeparator = ";#;;#;"

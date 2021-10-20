@@ -5,6 +5,7 @@
         <script src="/jquery/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="/jquery/ckeditorresource.js"></script>
         <script type="text/javascript" src="/jquery/ASCIIMathML.js"></script>
+		<script src="/jquery/redirectdepartmentselect.js"></script>
 	<script type="text/javascript" src="/jquery/editquest.js"></script>
 
         <script>
@@ -65,7 +66,7 @@ span.label-info {margin: 0 10px;}
                     <div class="col-md-6">
 				<div class="input-group">
 					<div class="input-group-addon">Wybierz:</div>
-					<select id="subjectChoice" class="form-control"></select>
+					<select id="subjectChoice" onchange="redirectDepartment()" class="form-control"></select>
 				</div>
                     </div>
                 <div class="col-md-6">

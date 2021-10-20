@@ -14,7 +14,7 @@ import Helpers._
 class CoursesSn extends BaseResourceSn {
 
   def showMyCourses(): CssSel = {
-    ".courseItem" #> Course.findAll("authorId" -> user.id.get).map(course => {
+    ".courseItem" #> Course.findAll("authorId" -> user.id.get).sortWith(_.title < _.title).map(course => {
       ".courseId" #> SHtml.text(course._id.toString, x => Unit) &
         "h2" #> <h2>
           {course.title}

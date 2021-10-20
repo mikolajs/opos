@@ -6,7 +6,7 @@
     <script src="/jquery/dejavu.js"></script>
      <link rel="stylesheet" type="text/css" href="/style/jquery.dataTables.css" />
     <script src="/jquery/jquery.dataTables.min.js" ></script>
-    <script src="/jquery/redirecttoselect.js" ></script>
+    <script src="/jquery/redirectdepartmentselect.js"></script>
     <script src="/jquery/editvideo.js"></script>
        <script>
        var editVideo = Object();
@@ -33,7 +33,7 @@
             </div>
             <div class="input-group">
                 <div class="input-group-addon">Wybierz:</div>
-                <select id="subjectChoice" class="form-control"></select>
+                <select id="subjectChoice" onchange="redirectDepartment()" class="form-control"></select>
             </div>
         </div>
         <div class="col-lg-6" data-lift="edu.VideoSn.fromServer">
@@ -50,10 +50,10 @@
 <br/><hr/>
 
 <div>
-     <table id="dataTable"><thead><tr><th>Tytuł</th><th>Gdzie</th><th>Opis</th>
+     <table id="dataTable"><thead><tr><th>Tytuł</th><th>Gdzie</th><th>Opis</th><th>Dział</th>
             <th>Poziom</th><th>Edycja</th></tr></thead>
-     <tbody class="lift:edu.VideoSn.showVideos"><tr><td></td><td></td><td></td><td></td></tr></tbody>
-     <tfoot><tr><th>Tytuł</th><th>Gdzie</th><th>Opis</th>
+     <tbody class="lift:edu.VideoSn.showVideos"><tr><td></td><td></td><td></td><td></td><td></td></tr></tbody>
+     <tfoot><tr><th>Tytuł</th><th>Gdzie</th><th>Opis</th><th>Dział</th>
             <th>Poziom</th><th>Edycja</th></tr></tfoot>
      </table>
 </div>

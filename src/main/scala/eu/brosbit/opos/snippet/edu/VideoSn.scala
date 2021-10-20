@@ -45,6 +45,7 @@ class VideoSn extends BaseResourceSn {
         <td>
           {video.descript}
         </td>
+        <td>{video.department}</td>
         <td>
           {levMap(video.lev.toString)}
         </td>
