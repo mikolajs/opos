@@ -17,8 +17,10 @@
 		-->
 		<link href="/ckeditor/plugins/codesnippet/lib/highlight/styles/tomorrow.css" rel="stylesheet">
 		<script src="/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js"></script>
+		<script type="text/javascript" src="/jquery/workcommon.js"></script>
 	<script type="text/javascript">
     var showCourse = new Object();
+    var worksCommon;
     
     function saveSorted(){
     	var sortedChapters = "";
@@ -49,6 +51,8 @@
     	$('#sortChaptersButton').click(function(){
             $('#sortChapters').dialog('open');
         });
+
+        worksCommon = new WorkCommon();
     	
     });
 
@@ -76,7 +80,8 @@ section.notice {
 pre > code {
     font-size: 1.4em;
 }
-
+#hintWindowText { background-color: white; border: none;}
+.quizHint { float: right; cursor: pointer;}
 </style>
 	</head_merge>
 
@@ -167,7 +172,9 @@ pre > code {
          
    </form>
    </div>
-	
+	<div id="hintWindow" title="Podpowiedź do zadania" style="display: none;">
+			<pre id="hintWindowText"></pre>
+	</div>
 
 </div>
 

@@ -140,7 +140,7 @@ class BaseShowCourseSn  {
   }
 
   protected def createPlainQuest(quest: QuizQuestion) = {
-    mkQuestHTML('p', quest.question, quest.nr, quest.dificult, "", scala.xml.NodeSeq.Empty)
+    mkQuestHTML('p', quest.question, quest.nr, quest.dificult, "", scala.xml.NodeSeq.Empty, quest.hint)
   }
 
   protected def createSingleAnswerQuest(quest: QuizQuestion) = {
@@ -153,7 +153,7 @@ class BaseShowCourseSn  {
     val correctString = quest.answers.mkString(getSeparator)
     mkQuestHTML('s', quest.question, quest.nr, quest.dificult, correctString, <ul>
       {all}
-    </ul>)
+    </ul>, quest.hint)
   }
 
   protected def createInputQuest(quest: QuizQuestion) = {
@@ -161,7 +161,7 @@ class BaseShowCourseSn  {
       <label>Odpowiedź:</label> <input type="text" name={quest._id.toString}/>
     </div>
     val correctString = quest.answers.mkString(getSeparator)
-    mkQuestHTML('i', quest.question, quest.nr, quest.dificult, correctString, all)
+    mkQuestHTML('i', quest.question, quest.nr, quest.dificult, correctString, all, quest.hint)
   }
 
   protected def createMultiAnswerQuest(quest: QuizQuestion) = {
@@ -174,11 +174,11 @@ class BaseShowCourseSn  {
     val correctString = quest.answers.mkString(getSeparator)
     mkQuestHTML('m', quest.question, quest.nr, quest.dificult, correctString, <ul>
       {all}
-    </ul>)
+    </ul>, quest.hint)
   }
 
   protected def mkQuestHTML(questType: Char, question: String, nr: Int, difficult: Int,
-                            correct: String, answers: scala.xml.NodeSeq) = {
+                            correct: String, answers: scala.xml.NodeSeq, hint: String) = {
     val star = difficult match {
       case 2 => <span class="glyphicon glyphicon-star-empty" title="Trudne"></span>
       case 3 => <span class="glyphicon glyphicon-star" title="Bardzo trudne"></span>
@@ -187,8 +187,17 @@ class BaseShowCourseSn  {
     <section class="question">
       <div class="panel panel-info">
         <div class="panel-heading questionMark">
-          <span class="glyphicon glyphicon-question-sign"></span>
-          Zadanie {nr.toString}</div>
+          <span class="quizNr"> Zadanie {nr.toString}</span>{if (hint.trim.isEmpty) {
+          <span></span>
+        } else {
+          <a class="quizHint" onclick="worksCommon.showHint(this);">
+            <span class="glyphicon glyphicon-info-sign"></span>
+            Pomoc</a>
+            <textarea id="questHint" style="display:none;">
+              {Unparsed(hint)}
+            </textarea>
+        }}
+        </div>
         <div class="panel-body">
           <input type="hidden" class="questType" value={questType.toString}/>
           <input type="hidden" class="correct" value={correct}/>

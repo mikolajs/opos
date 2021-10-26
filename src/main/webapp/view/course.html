@@ -14,13 +14,16 @@
 		<script type="text/javascript" src="/jwplayer/jwplayer.js"></script>
 	<script src="/jquery/dejavu.js"></script> <script
 		type="text/javascript" src="/jquery/showcourse.js"></script>
+		<script type="text/javascript" src="/jquery/workcommon.js"></script>
  <script
 		type="text/javascript">
 		
     var showCourse = new Object();
+    var worksCommon;
 
     $(document).ready(function(){
-    	showCourse = new ShowCourse();	
+    	showCourse = new ShowCourse();
+    	worksCommon = new WorkCommon();
     });
     
 
@@ -47,7 +50,8 @@ section.notice {
 pre > code {
     font-size: 1.4em;
 }
-
+#hintWindowText { background-color: white; border: none;}
+.quizHint { float: right; cursor: pointer;
 </style>
 	</head_merge>
 
@@ -98,7 +102,9 @@ pre > code {
 			</div>
 
 	</div>
-	
+	<div id="hintWindow" title="Podpowiedź do zadania" style="display: none;">
+		<pre id="hintWindowText"></pre>
+	</div>
 </div>
 
 
