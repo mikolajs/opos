@@ -177,6 +177,7 @@ class Boot {
         Menu("Kursy") / "view" / "courses" >> LocGroup("view") >> loggedIn,
         Menu("Sprawdziany") / "view" / "exams" >> LocGroup("view") >> loggedIn,
         Menu("Zobacz lekcję") / "view" / "course" / ** >> LocGroup("extra") >> loggedIn,
+        Menu("MassagesWork") / "view" / "showmessageswork" / ** >> LocGroup("extra") >> loggedIn,
         Menu("Quiz") / "view" / "showquiz" / ** >> LocGroup("extra") >> Hidden >> loggedIn,
         Menu("Works") / "view" / "showwork" / ** >> LocGroup("extra") >> Hidden >> loggedIn,
         Menu("Kursy") / "educontent" / "index" >> LocGroup("edu") >> isTeacher,
@@ -194,6 +195,7 @@ class Boot {
         Menu("Praca edycja") / "educontent" / "editwork" / ** >> LocGroup("extra") >> isTeacher,
         Menu("Lista odpowiedzi") / "educontent" / "showexams" / ** >> LocGroup("extra") >> isTeacher,
         Menu("Praca odpowiedzi") / "educontent" / "showworks" / ** >> LocGroup("extra") >> isTeacher,
+        Menu("MassagesWork") / "educontent" / "showmessageswork" / ** >> LocGroup("extra") >> isTeacher,
         Menu("Sprawdzian sprawdzanie") / "educontent" / "checkexam" / ** >> LocGroup("extra") >> isTeacher,
         Menu("Praca sprawdzanie") / "educontent" / "checkwork" / ** >> LocGroup("extra") >> isTeacher,
         Menu("Edycja lekcji") / "educontent" / "editlesson" / ** >> LocGroup("extra") >> Hidden >> isTeacher,
@@ -328,6 +330,10 @@ class Boot {
         RewriteResponse(
           "educontent" :: "showworks" :: Nil, Map("id" -> workId))
       case RewriteRequest(
+      ParsePath("educontent" :: "showmessageswork" :: workId  :: Nil, _, _, _), _, _) =>
+        RewriteResponse(
+          "educontent" :: "showmessageswork" :: Nil, Map("id" -> workId))
+      case RewriteRequest(
       ParsePath("educontent" :: "checkexam" :: examId :: Nil, _, _, _), _, _) =>
         RewriteResponse(
           "educontent" :: "checkexam" :: Nil, Map("id" -> examId))
@@ -347,6 +353,10 @@ class Boot {
       ParsePath("view" :: "course" :: lessonId :: Nil, _, _, _), _, _) =>
         RewriteResponse(
           "view" :: "course" :: Nil, Map("id" -> lessonId))
+      case RewriteRequest(
+      ParsePath("view" :: "showmessageswork" :: workId  :: Nil, _, _, _), _, _) =>
+        RewriteResponse(
+          "view" :: "showmessageswork" :: Nil, Map("id" -> workId))
     })
 
     //DataTable.init

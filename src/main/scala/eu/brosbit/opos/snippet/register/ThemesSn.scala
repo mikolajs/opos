@@ -117,5 +117,4 @@ class ThemesSn extends BaseTeacher {
       "#infoSubject *" #> subject.name
   }
 
-
 }

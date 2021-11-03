@@ -1,6 +1,6 @@
 package eu.brosbit.opos.snippet.common
 
-import eu.brosbit.opos.model.edu.{AnswerWorkItem, LessonContent, QuizQuestion, WorkAnswer}
+import eu.brosbit.opos.model.edu.{AnswerWorkItem, LessonContent, MessageItem, QuizQuestion, WorkAnswer}
 
 import scala.xml.{Elem, Unparsed}
 import net.liftweb.json.JsonDSL._
@@ -39,7 +39,7 @@ trait WorkCommon {
           <textarea name="text"  style="overflow:hidden;" placeholder="Napisz odpowiedź lub wczytaj plik..."
                     class="writeMessage"
                     oninput='this.style.height = "";this.style.height = this.scrollHeight + "px";'></textarea>
-          <div class="questMassagesActionsBox">
+          <div class="questMessagesActionsBox">
             <button class="btn btn-primary mboxl"> <span class="glyphicon glyphicon-paperclip"></span></button>
             <button class="btn btn-success mboxr" > <span class="glyphicon glyphicon-send"></span></button>
           </div>
@@ -48,6 +48,20 @@ trait WorkCommon {
     </section>
   }
 
+  def createAllMessages(items: List[MessageItem]):Elem = {
+    <section class="messages" >
+        <div class="questMessages">{items.map(mkMessage)}</div>
+        <div class="questMessagesForm">
+          <textarea name="text"  style="overflow:hidden;" placeholder="Napisz odpowiedź lub wczytaj plik..."
+                    class="writeMessage"
+                    oninput='this.style.height = "";this.style.height = this.scrollHeight + "px";'></textarea>
+          <div class="questMessagesActionsBox">
+            <button class="btn btn-primary mboxl"> <span class="glyphicon glyphicon-paperclip"></span></button>
+            <button class="btn btn-success mboxr" > <span class="glyphicon glyphicon-send"></span></button>
+          </div>
+       </div>
+    </section>
+  }
   protected def mkDescription(description:String) = {
     description.replace('\r', ' ').replace("\n", "<br/>")
   }
@@ -60,6 +74,18 @@ trait WorkCommon {
   }
   private def mkMessage(item: AnswerWorkItem) = {
     <div class={if(item.t) "bg bg-blue" else "bg bg-green" } name={"qr" + item.qId}>
+      <pre>{if(item.l) <a href={Unparsed(item.m)} target="_blank">PLIK</a> else Unparsed(item.m)}</pre>
+      <div class="messegeSign">
+        <span class="glyphicon glyphicon-user"></span>
+        <span class="msg-name">{item.a}</span>
+        <span class="glyphicon glyphicon-calendar"></span>
+        <span class="msg-date">{item.date}</span>
+      </div>
+    </div>
+  }
+
+  private def mkMessage(item: MessageItem) = {
+    <div class={if(item.t) "bg bg-blue" else "bg bg-green" } >
       <pre>{if(item.l) <a href={Unparsed(item.m)} target="_blank">PLIK</a> else Unparsed(item.m)}</pre>
       <div class="messegeSign">
         <span class="glyphicon glyphicon-user"></span>

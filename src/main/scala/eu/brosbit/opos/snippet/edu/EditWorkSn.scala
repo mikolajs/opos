@@ -37,6 +37,7 @@ class EditWorkSn extends BaseResourceSn {
     var startWork = Formater.strForDateTimePicker(if(work.start == 0L) new Date() else new Date(work.start))
     var groupId = work.groupId
     var info = work.description
+    var theme = work.theme
 
     def save()  {
       //println("========= save lesson work ========")
@@ -44,6 +45,7 @@ class EditWorkSn extends BaseResourceSn {
       if (work.teacherId == 0L) work.teacherId = userId
       work.lessonId = new ObjectId(lessonId)
       work.lessonTitle = LessonCourse.find(work.lessonId).map(_.title).getOrElse("Nie ma takiej lekcji!")
+      work.theme = theme
       work.courseId = new ObjectId(courseId)
       val (id, name) = Course.find(courseId).map(l => (l.subjectId, l.subjectName)).getOrElse((0L, ""))
       work.subjectId = id
@@ -73,6 +75,7 @@ class EditWorkSn extends BaseResourceSn {
     }
 
       "#coursesWork" #> SHtml.select(courses, Full(courseId), courseId = _, "onchange" -> "editWork.refreshedCourse();") &
+      "#themeWork" #> SHtml.ajaxText(theme, x => theme = x.trim) &
       "#lessonWorkSelect" #> SHtml.select(lessons, Full(lessonId), _ => Unit , "onchange" -> "editWork.refreshedLesson();") &
       "#lessonWorkId" #> SHtml.text(lessonId, lessonId = _) &
       "#classWork" #> SHtml.select(groups, Full(groupId), groupId = _ ) &

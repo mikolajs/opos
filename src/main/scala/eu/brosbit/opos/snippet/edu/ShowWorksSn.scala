@@ -18,11 +18,13 @@ class ShowWorksSn extends BaseResourceSn {
     "tr"  #> Work.findAll(("teacherId" -> userId)~("subjectId" -> subjectId),
       "start" -> -1).sortWith(_.start > _.start).map(work => {
       ".col1 *" #> Formater.formatDate(new Date(work.start)) &
-        ".col2 *" #> work.lessonTitle &
-        ".col3 *" #> work.groupName &
-        ".col4 *" #> <a href={"/educontent/showworks/" + work._id.toString}
-                        class="btn btn-small btn-info"><span class="glyphicon glyphicon-check"></span>Sprawdź</a> &
-      ".col5 *" #> <a href={"/educontent/editwork/" + work._id.toString}
+        ".col2 *" #> work.theme &
+        ".col3 *" #> work.lessonTitle &
+        ".col4 *" #> work.groupName &
+        ".col5 *" #> (if(work.lastNews == 0) "Brak" else Formater.formatDate(new Date(work.lastNews))) &
+        ".col6 *" #> <a href={"/educontent/showmessageswork/" + work._id.toString}
+                        class="btn btn-small btn-info"><span class="glyphicon glyphicon-envelope"></span>Sprawdź</a> &
+      ".col7 *" #> <a href={"/educontent/editwork/" + work._id.toString}
                       class="btn btn-small btn-success"><span class="glyphicon glyphicon-check"></span>Edytuj</a>
     })
   }

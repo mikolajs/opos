@@ -2,8 +2,8 @@ package eu.brosbit.opos.snippet.view
 
   import java.util.Date
   import eu.brosbit.opos.lib.Formater
-  import eu.brosbit.opos.model.edu.{Course, Groups, Work, WorkAnswer}
-  import eu.brosbit.opos.model.{LessonThemes, SubjectName}
+  import eu.brosbit.opos.model.edu.{Groups, Work, WorkAnswer}
+  import eu.brosbit.opos.model.SubjectName
   import net.liftweb.http.S
   import net.liftweb.util.Helpers._
   import net.liftweb.json.JsonDSL._
@@ -23,16 +23,14 @@ package eu.brosbit.opos.snippet.view
           .sortWith((lt1, lt2) => lt1.start > lt2.start)
       val answers = WorkAnswer.findAll("authorId"->user.id.get)
       "tr" #> works.map(w => {
-        val change = answers.find(a => a.work.toString == w._id.toString)
-          .map(wa => wa.teacherChanged).getOrElse(false)
         ".workId *" #> w._id.toString &
           ".theme *" #> w.lessonTitle &
+          ".course *" #> <a href={"/view/course/" + w.courseId.toString} target="_blank">LINK</a> &
           ".lessonDate *" #> Formater.formatDate(new Date(w.start)) &
-          ".changes *" #> (if(change) <span class="isRed"></span> else <span class="notRed"></span>) &
-          ".open * " #>  <a href={"/view/showwork/" + w._id.toString}> <span class="btn btn-info" >
-            <span class="glyphicon glyphicon-edit"></span> Otwórz</span></a>
+          ".changes *" #> Formater.formatDate(new Date(w.lastNews)) &
+          ".open * " #>  <a href={"/view/showmessageswork/" + w._id.toString}> <span class="btn btn-info" >
+            <span class="glyphicon glyphicon-envelope"></span> Otwórz</span></a>
       })
-
     }
 
     def showSubjects():CssSel = {

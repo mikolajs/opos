@@ -5,7 +5,7 @@ import _root_.net.liftweb.mongodb._
 import eu.brosbit.opos.lib.ZeroObjectId
 import net.liftweb.json.{Formats, JsonAST}
 import org.bson.types.ObjectId
-
+//old to delete!!!!
 case class AnswerWorkItem (date: String, a: String, t: Boolean, qId:String, m: String, l: Boolean) {
   import net.liftweb.json.JsonDSL._
   def toJson :JsonAST.JObject = ("date" -> date) ~ ("a"->a) ~ ("t"->t) ~ ("qId" -> qId) ~ ("m" -> m) ~ ("l" -> l)
