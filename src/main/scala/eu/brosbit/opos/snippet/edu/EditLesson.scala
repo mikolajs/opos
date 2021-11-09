@@ -6,7 +6,7 @@ import _root_.net.liftweb.http.{S, SHtml}
 import _root_.net.liftweb.common._
 import eu.brosbit.opos.model.edu._
 import eu.brosbit.opos.lib.DataTableOption._
-import eu.brosbit.opos.lib.DataTable
+import eu.brosbit.opos.lib.{DataTable, Formater}
 import json.DefaultFormats
 import json.JsonDSL._
 import json.JsonParser._
@@ -14,6 +14,8 @@ import _root_.net.liftweb.http.js.JsCmds._
 import _root_.net.liftweb.http.js.JsCmd
 import _root_.net.liftweb.util.Helpers._
 import net.liftweb.util.CssSel
+
+import java.util.Date
 
 
 //case class TestJ(l: String, t: String)
@@ -125,7 +127,7 @@ class EditLesson extends BaseLesson {
       itemCh match {
         case "q" => {
           val str = QuizQuestion.findAll(lookingQuest)
-            .map(q => "[ '" + q._id.toString + "',  '" + q.nr.toString + "', '" +
+            .map(q => "[ '" + q._id.toString + "',  '" + Formater.mkLongExerciseNumber(q.nr) + "', '" +
             "[" + q.info + "] " + q.question + "']")
             .mkString(",")
           "[" + str + "]"

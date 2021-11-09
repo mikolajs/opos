@@ -9,24 +9,19 @@
 
     </head_merge>
     <br/>
-        <div  data-lift="view.ExamsSn.showExams">
-            <div class="well"><h2>Sprawdziany i kartkówki <small class id="nowDate"></small></h2>
-
-            </div>
+        <div  >
+            <div class="well" data-lift="view.ExamsSn.nowTime"><h2>Sprawdziany i kartkówki <small class id="nowDate"></small></h2></div>
             <div class="row ">
-                <div class="col-lg-6"></div>
-
+                <div class="col-lg-6" data-lift="view.ExamsSn.showExams"><div>
+                    <h1>Teraz</h1>
+                    <span id="contentHere"></span>
+                </div></div>
+                <div class="col-lg-6" data-lift="view.ExamsSn.showChecked"><div>
+                    <h1>Zakończone</h1>
+                    <span id="contentHere"></span>
+                </div></div>
             </div>
         </div>
-
-        <div data-lift="view.ExamsSn.showChecked">
-            <div class="row ">
-                <div class="col-lg-4"></div>
-
-            </div>
-        </div>
-
-
 
 
 </div>

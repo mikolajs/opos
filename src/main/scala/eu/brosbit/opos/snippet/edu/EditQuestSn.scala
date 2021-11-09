@@ -12,6 +12,7 @@ import json.JsonDSL._
 import _root_.net.liftweb.http.js.JsCmds._
 import _root_.net.liftweb.http.js.JsCmd
 import _root_.net.liftweb.http.js.JE._
+import eu.brosbit.opos.lib.Formater
 
 class EditQuestSn extends BaseResourceSn {
 
@@ -34,7 +35,7 @@ class EditQuestSn extends BaseResourceSn {
 
     "tr" #> questionsList.map(quest => {
       <tr id={quest._id.toString}>
-        <td>{quest.nr.toString}</td>
+        <td>{Formater.mkLongExerciseNumber(quest.nr)}</td>
         <td>
           {Unparsed(quest.question)}
         </td>

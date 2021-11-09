@@ -25,7 +25,7 @@ package eu.brosbit.opos.snippet.view
       "tr" #> works.map(w => {
         ".workId *" #> w._id.toString &
           ".theme *" #> w.lessonTitle &
-          ".course *" #> <a href={"/view/course/" + w.courseId.toString} target="_blank">LINK</a> &
+          ".course *" #> <a href={"/view/course/" + w.courseId.toString + "?l=" + w.lessonId.toString} target="_blank">LINK</a> &
           ".lessonDate *" #> Formater.formatDate(new Date(w.start)) &
           ".changes *" #> Formater.formatDate(new Date(w.lastNews)) &
           ".open * " #>  <a href={"/view/showmessageswork/" + w._id.toString}> <span class="btn btn-info" >

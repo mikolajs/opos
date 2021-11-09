@@ -180,6 +180,7 @@ class Boot {
         Menu("MassagesWork") / "view" / "showmessageswork" / ** >> LocGroup("extra") >> loggedIn,
         Menu("Quiz") / "view" / "showquiz" / ** >> LocGroup("extra") >> Hidden >> loggedIn,
         Menu("Works") / "view" / "showwork" / ** >> LocGroup("extra") >> Hidden >> loggedIn,
+        Menu("CheckedExam") / "view" / "showcheckedexam" / ** >> LocGroup("extra") >> Hidden >> loggedIn,
         Menu("Kursy") / "educontent" / "index" >> LocGroup("edu") >> isTeacher,
         Menu("Tematy") / "educontent" / "works" >> LocGroup("edu") >> isTeacher,
         Menu("Sprawdziany") / "educontent" / "exams" >> LocGroup("edu") >> isTeacher,
@@ -349,6 +350,10 @@ class Boot {
       ParsePath("view" :: "showwork" :: workId :: Nil, _, _, _), _, _) =>
         RewriteResponse(
           "view" :: "showwork" :: Nil, Map("id" -> workId))
+      case RewriteRequest(
+      ParsePath("view" :: "showcheckedexam" :: id :: Nil, _, _, _), _, _) =>
+        RewriteResponse(
+          "view" :: "showcheckedexam" :: Nil, Map("id" -> id))
       case RewriteRequest(
       ParsePath("view" :: "course" :: lessonId :: Nil, _, _, _), _, _) =>
         RewriteResponse(

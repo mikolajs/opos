@@ -16,10 +16,10 @@ class ShowAllExamsSn  extends  BaseResourceSn {
     "tr" #> Exam.findAll(("authorId" -> user.id.get) ~ ("subjectId" -> subjectNow.id))
       .map(ex => {
       <tr>
-        <td>{Formater.strForDateTimePicker(new Date(ex.start))}</td>
-        <td>{Formater.strForDateTimePicker(new Date(ex.end))}</td>
-        <td> {ex.description}   </td>
-        <td> {ex.groupName}</td>
+        <td>{Formater.formatTimeForSort(new Date(ex.start))}</td>
+        <td>{Formater.formatTimeForSort(new Date(ex.end))}</td>
+        <td>{ex.description}</td>
+        <td>{ex.groupName}</td>
         <td>
           <a class="btn btn-success" href={"/educontent/showexams/" + ex._id.toString}>
             <span class="glyphicon glyphicon-edit"></span></a>

@@ -14,6 +14,8 @@ class ExamsSn extends BaseSnippet  {
 
   private val groups = Groups.findAll.filter(gr => gr.students.exists(s => s.id == user.id.get)).map("_" + _._id.toString)
 
+  def nowTime():CssSel = {"#nowDate *" #> Formater.formatTime(new Date())}
+
   def showExams():CssSel = {
     val now = new Date()
     val nowString = Formater.formatTime(now)
@@ -21,21 +23,18 @@ class ExamsSn extends BaseSnippet  {
     //println(groups)
     val exams = Exam.findAll(("groupId" -> ("$in" -> groups))~( "start" -> ("$lt" -> nowL ))~("end" -> ("$gt" -> nowL)))
 
-    "#nowDate *" #> nowString &
-    ".col-lg-6" #> exams.map(ex => {
+    "#contentHere" #> exams.map(ex => {
       mkExamDiv(ex)
     })
   }
 
   def showChecked():CssSel = {
     val now = new Date()
-    val nowString = Formater.formatTime(now)
     val nowL = now.getTime
-    val exams = Exam.findAll(("classId" -> user.classId.get)~( "end" -> ("$lt" -> nowL )))
+    val exams = Exam.findAll(("groupId" -> ("$in" -> groups))~( "end" -> ("$lt" -> nowL ))).sortWith((e1, e2) => e1.end > e2.end)
     val answers = ExamAnswer.findAll({"authorId" -> user.id.get})
 
-    "#nowDate *" #> nowString &
-      ".col-lg-6" #> exams.map(ex => {
+    "#contentHere" #> exams.map(ex => {
         mkAnsDiv(ex, answers.find(a => a.exam == ex._id).getOrElse(ExamAnswer.create))
       })
   }
@@ -43,7 +42,7 @@ class ExamsSn extends BaseSnippet  {
 
 
   private def mkExamDiv(ex:Exam) = {
-    <div class="col-lg-6">
+    <div class="examBox">
       <h4 class="text-info"> {ex.description} </h4>
       <p>Przedmiot: <strong>{ex.subjectName}</strong></p>
       <p>kod: <strong> {if(ex.quizzes.length > 1) "TAK" else "NIE"} </strong> </p>
@@ -61,15 +60,14 @@ class ExamsSn extends BaseSnippet  {
   private def mkAnsDiv(ex: Exam, an: ExamAnswer) = {
     val points = an.answers.map(_.p).sum
     val percent = if(an.max == 0) 0.0F else (100.0F* points.toFloat) / an.max.toFloat
-    <div class="col-lg-6">
+    <div class="examBox">
       <h4 class="text-info"> {ex.description} </h4>
       <p>Przedmiot: <strong>{ex.subjectName}</strong></p>
       <p><em>Start: </em> { Formater.strForDateTimePicker(new Date(ex.start))} <br/>
         <em>Koniec: </em> { Formater.strForDateTimePicker(new Date(ex.end))}</p>
         <div class="alert alert-info"> Wynik:  {points.toString + " / " +
           an.max.toString  + " : " + scala.math.round(percent).toString} %
-        <hr/>
-          {an.info}
+          <a class="btn btn-warning" style="float:right;" href={"/view/showcheckedexam/"+an._id.toString}>Pokaż</a>
         </div>
     </div>
   }

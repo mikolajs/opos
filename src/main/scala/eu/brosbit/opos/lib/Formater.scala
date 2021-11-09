@@ -18,6 +18,12 @@ object Formater {
     sfd.format(t)
   }
 
+  def formatTimeForSort(t: Date): String = {
+    val l = new Locale("pl")
+    val sfd = new SimpleDateFormat("yyyy.MM.dd, HH:mm")
+    sfd.format(t);
+  }
+
   def strForDateTimePicker(t: Date): String = {
     val l = new Locale("pl")
     val sfd = new SimpleDateFormat("dd.MM.yyyy, HH:mm", l)
@@ -61,4 +67,7 @@ object Formater {
       gregorianCal.getTime
     } else {println("========= nieprawwidłowa data"); new Date() }
   }
+  //
+  def mkLongExerciseNumber(nr:Long) = (1000000+nr).toString.substring(1)
+
 }

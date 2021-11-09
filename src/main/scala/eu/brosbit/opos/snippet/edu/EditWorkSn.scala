@@ -27,7 +27,10 @@ class EditWorkSn extends BaseResourceSn {
   private val work = Work.find(workId).getOrElse(Work.create)
 
   private var courseId = if( work.teacherId == 0L) courses.head._1 else  work.courseId.toString
-  private val lessons = LessonCourse.findAll("courseId"-> courseId).map(le => (le._id.toString, le.title))
+  private val lessons = LessonCourse.findAll("courseId"-> courseId)
+      .sortWith((le1, le2) => if(le1.chapter != le2.chapter) le1.chapter < le2.chapter else le1.nr < le2.nr)
+      .map(le => (le._id.toString, le.title +  " (" + le.nr.toString + ") [" + le.chapter  + "]"))
+
   private var lessonId = if(work.teacherId == 0L) lessons.head._1 else work.lessonId.toString
 //  val lesson = LessonCourse.find(lessonId).getOrElse(LessonCourse.create)
 

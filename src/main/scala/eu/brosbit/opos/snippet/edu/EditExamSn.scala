@@ -64,7 +64,7 @@ class EditExamSn extends BaseResourceSn {
           exAn.delete
         })
         exam.delete
-        S.redirectTo("/educontent/quizzes")
+        S.redirectTo("/educontent/exams")
       } else S.warning("Nie jesteś autorem lub sprawdzianu jeszcze nie ma.")
     }
 
