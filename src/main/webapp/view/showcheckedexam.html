@@ -13,7 +13,8 @@
                 padding: 5px;
             }
             #fixedButton { position: fixed; top: 50px; right: 2px; }
-            #timeToEnd {font-weight: bold; }
+            .leftPkt {background-color: green !important; }
+            .yourAns {background-color: #eee; padding: 5px; }
         </style>
 
 
@@ -24,6 +25,7 @@
     <br/>
       <div data-lift="view.ShowCheckedExam.showExamAnswer">
         <div class="well" >
+            <a href="/view/exams" class="btn btn-warning"><span class="glyphicon glyphicon-arrow-left"> </span> Powrót</a>
             <h3 ><small>Sprawdzian: </small><span id="descript"></span></h3>
             <h3><small>Przedmiot: </small><span id="subject"></span></h3>
             <h3><small>Zakończony: </small> <span id="endTime"></span></h3>
