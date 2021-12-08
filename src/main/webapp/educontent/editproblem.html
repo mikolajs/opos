@@ -1,0 +1,74 @@
+<div class="lift:surround?with=educontent;at=content">
+    <head_merge>
+
+        <script type="text/javascript" src="/jquery/editproblems.js"></script>
+        <script>
+            var editProblems;
+			$(document).ready(function() {
+			  editProblems = new EditProblems();
+			});
+		</script>
+        <style>
+        </style>
+
+    </head_merge>
+
+    <div  class="jumbotron"><h2>Edycja problemu</h2>
+        <a href="/educontent/problems" class="btn btn-warning"><span class="glyphicon glyphicon-arrow-left"></span> Powrót</a>
+    </div>
+    <br />
+    <div id="questEditor" title="Edycja pytania">
+
+        <form class="lift:edu.EditProblemSn.edit" method="POST">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <label for="titleProblem"  class="control-label">Tytuł:</label>
+                        <input type="text" id="titleProblem" class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="infoProblem"  class="control-label">Dział:</label>
+                        <input type="text" id="infoProblem" class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <input id="saveProblem"  onclick="return editQuiz.prepareData();"
+                                   class="btn btn-success" type="submit" />
+                        </div>
+                        <div class="col-md-6">
+                            <input id="deleteProblem" onclick="return confirm('Na pewno usunąć test?');"
+                                   class="btn btn-danger" type="submit" />
+                        </div>
+                    </div>
+                    <input id="inputData" />
+                    <input id="outputDataExpected" />
+                    <hr/>
+                    <div class="form-group">
+                        <label for="descriptionProblem" class="control-label">Treść problemu:</label>
+                        <div class="">
+                    <textarea type="text" class="form-control" id="descriptionProblem"
+                              rows="3" cols="75"></textarea>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+            <hr/>
+            <div class="row">
+                <div class="col-lg-6">
+                 <input class="inputData_1">
+                </div>
+                <div class="col-lg-6">
+                    <input class="outputData_1">
+                </div>
+
+            </div>
+            <button class="btn btn-success">Dodaj test</button>
+            <br />
+            <hr />
+        <input id="jsonForDataTable" style="display:none;" value="" />
+    </div>
+
+    <br /><br />
+</div>

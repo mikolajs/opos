@@ -189,6 +189,7 @@ class Boot {
         Menu("Artykuły") / "educontent" / "documents" >> LocGroup("edu") >> isTeacher,
         Menu("Filmy") / "educontent" / "video" >> LocGroup("edu") >> isTeacher,
         Menu("Prezentacje") / "educontent" / "presentations" >> LocGroup("edu") >> isTeacher,
+        Menu("Problemy") / "educontent" / "problems" >> LocGroup("edu") >> isTeacher,
         Menu("Grupy") / "educontent" / "groups" >> LocGroup("edu") >> isTeacher,
         Menu("Ustawienia") / "educontent" / "options" >> LocGroup("edu") >> isTeacher,
         Menu("Lekcje") / "educontent" / "course" / ** >> LocGroup("extra") >> isTeacher,
@@ -207,6 +208,7 @@ class Boot {
         Menu("Indeksuj wideo") / "educontent" / "indexvideo" / ** >> LocGroup("extra") >> Hidden >> isTeacher,
         Menu("Import") / "educontent" / "import" / ** >> LocGroup("extra") >> Hidden >> isTeacher,
         Menu("Slajdy") / "educontent" / "showlessonslides" / ** >> LocGroup("extra") >> Hidden >> isTeacher,
+        Menu("Edycja problemów") / "educontent" / "editproblem" / ** >> LocGroup("extra") >> Hidden >> isTeacher,
         Menu("Otwarte kursy") / "public" / "index" >> LocGroup("pub"),
         Menu("Otwarta lekcja") / "public" / "course" / ** >> LocGroup("pub"),
         Menu("GC") / "admin" / "gc" >> LocGroup("admin") >> isAdmin,
@@ -342,6 +344,10 @@ class Boot {
       ParsePath("educontent" :: "checkwork" :: workId :: Nil, _, _, _), _, _) =>
         RewriteResponse(
           "educontent" :: "checkwork" :: Nil, Map("id" -> workId))
+      case RewriteRequest(
+      ParsePath("educontent" :: "editproblem" :: id :: Nil, _, _, _), _, _) =>
+        RewriteResponse(
+          "educontent" :: "editproblem" :: Nil, Map("id" -> id))
       case RewriteRequest(
       ParsePath("view" :: "showquiz" :: quizId :: Nil, _, _, _), _, _) =>
         RewriteResponse(

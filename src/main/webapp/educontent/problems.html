@@ -1,0 +1,64 @@
+<html>
+<div class="lift:surround?with=educontent;at=content">
+    <head_merge>
+        <link rel="stylesheet" type="text/css" href="/style/jquery.dataTables.css" />
+        <script src="/jquery/jquery.dataTables.min.js" ></script>
+        <script>
+           class Problems {
+
+             constructor(){
+                this._mkOTable();
+             }
+             _mkOTable(){
+              var oTable = $();
+              console.log("oTable start");
+            	oTable = $('#dataTable').dataTable({
+            "sPaginationType": "two_button",
+            "bFilter": true,
+            "iDisplayLength": 50,
+            "bLengthChange": true,
+            "oLanguage": {
+                "sSearch": "Filtruj wiersze: ",
+                "sZeroRecords": "Brak danych do wyświetlenia",
+                "sInfoEmpty": "Brak danych do wyświetlenia",
+                "sEmptyTable": "Brak danych do wyświetlenia",
+                "sInfo": "Widzisz wiersze od _START_ do _END_  z wszystkich _TOTAL_",
+                "oPaginate": {
+                    "sPrevious": "Poprzednie",
+                    "sNext": "Następne",
+                    "sFirst": "Początek",
+                    "sLast": "Koniec",
+                },
+                "sInfoFiltered": " - odfiltrowano z _MAX_ wierszy",
+                "sLengthMenu": 'Pokaż <select>'+
+                '<option value="20">20</option>'+
+                '<option value="50">50</option>'+
+                '<option value="100">100</option>'+
+                '<option value="-1">całość</option>'+
+                '</select> wierszy'
+               }
+              });
+              }
+           }
+           let problems;
+           $(function(){
+              problems = new Problems();
+           });
+        </script>
+    </head_merge>
+    <div class="well">
+      <h2>Lista problemów</h2>
+        <a href="/educontent/editproblem/0" class="btn btn-success" style="float:right;"><span class="glyphicon glyphicon-plus"></span> Dodaj problem</a>
+        <br/>
+    </div>
+    <br/>
+    <div>
+        <table id="dataTable">
+            <thead><tr><th>Problem</th><th>Opis</th><th>Edycja</th></tr></thead>
+            <tbody data-lift="edu.ProblemsListSn.showProblems"><tr><td class="col1"></td><td class="col2"></td>
+                <td class="col3"></td></tr></tbody>
+            <tfoot><tr><th>Problem</th><th>Opis</th><th>Edycja</th></tr></tfoot>
+        </table>
+    </div>
+</div>
+</html>

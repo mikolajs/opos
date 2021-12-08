@@ -1,0 +1,14 @@
+
+sudo snap install docker docker-ls
+
+sudo addgroup --system docker
+sudo adduser $USER docker
+newgrp docker
+sudo snap disable docker
+sudo snap enable docker
+
+newgrp docker – za każdym razem gdy zaczynam pracę w konsoli?
+
+docker build -t test-docker .
+docker run test-docker
+

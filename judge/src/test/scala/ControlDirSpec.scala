@@ -3,6 +3,7 @@ import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 import java.nio.file.Paths
 
+//TODO: change to use only input cin and output cout???????
 object CDD:
   val dataFile:String = "4 5 78 23 55 66 75 23 567 123"
   val id = "1234554"
