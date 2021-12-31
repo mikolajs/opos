@@ -1,6 +1,8 @@
 package eu.brosbit.opos.model
 
 import eu.brosbit.opos.lib.ZeroObjectId
+import net.liftweb.json.DefaultFormats
+import net.liftweb.json.Serialization.write
 import net.liftweb.mongodb.{DateSerializer, MongoDocument, MongoDocumentMeta, ObjectIdSerializer}
 import org.bson.types.ObjectId
 
@@ -13,4 +15,8 @@ object Problems extends MongoDocumentMeta[Problems] {
 case class Problems(var _id: ObjectId, var description: String, var title: String, var info: String, var author: Long,
                     var inputs: List[String], var expectedOutputs: List[String]) extends MongoDocument[Problems] {
   def meta = Problems
+  import net.liftweb.json.DefaultFormats
+  import net.liftweb.json.Serialization.write
+  implicit val format = DefaultFormats
+  def testsToJson = s""" {"input": ${write(inputs)}, "output": ${write(expectedOutputs)}} """
 }

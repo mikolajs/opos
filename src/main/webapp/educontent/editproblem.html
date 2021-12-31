@@ -1,20 +1,39 @@
 <div class="lift:surround?with=educontent;at=content">
     <head_merge>
-
+        <script type="text/javascript"
+                src="/ckeditor/ckeditor.js"></script>
+        <script type="text/javascript"	src="/jquery/ckeditorresource.js"></script>
         <script type="text/javascript" src="/jquery/editproblems.js"></script>
+        <link href="/deckjs/themes/style/swiss_ckeditor.css"
+              id="style-theme-link" type="text/css" rel="stylesheet">
+        <link href="/ckeditor/plugins/codesnippet/lib/highlight/styles/tomorrow.css" rel="stylesheet">
+        <script src="/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js"></script>
         <script>
-            var editProblems;
+            var editProblem;
 			$(document).ready(function() {
-			  editProblems = new EditProblems();
+			  editProblem = new EditProblem();
 			});
 		</script>
         <style>
+            	#descriptionProblemEdit {
+			width: 95%;
+			min-height: 400px;
+			padding: 20px;
+			border: 2px solid #ccc;
+			}
+      .testsData {
+        width: 100%;
+        padding: 20px;
+      }
+      #aHrefCheck { float: right; }
         </style>
 
     </head_merge>
 
     <div  class="jumbotron"><h2>Edycja problemu</h2>
         <a href="/educontent/problems" class="btn btn-warning"><span class="glyphicon glyphicon-arrow-left"></span> Powrót</a>
+        <a href="/educontent/checkproblem/" class="btn btn-info" id="aHrefCheck">
+            <span class="glyphicon glyphicon-search"></span> Sprawdź</a>
     </div>
     <br />
     <div id="questEditor" title="Edycja pytania">
@@ -23,6 +42,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="form-group">
+                        <input type="text" id="idProblem"  style="display:none;"/>
                         <label for="titleProblem"  class="control-label">Tytuł:</label>
                         <input type="text" id="titleProblem" class="form-control"/>
                     </div>
@@ -32,23 +52,23 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-6">
-                            <input id="saveProblem"  onclick="return editQuiz.prepareData();"
-                                   class="btn btn-success" type="submit" />
+                            <input id="saveProblem" style="display:none;" type="submit" />
+                            <span class="btn btn-success" onclick="editProblem.saveProblem();">
+                              <span class="glyphicon glyphicon-save"></span> Zapisz</span>
                         </div>
                         <div class="col-md-6">
-                            <input id="deleteProblem" onclick="return confirm('Na pewno usunąć test?');"
-                                   class="btn btn-danger" type="submit" />
+                            <input id="deleteProblem" style="display:none;" type="submit" />
+                            <span class="btn btn-danger" onclick="editProblem.deleteProblem();">
+                              <span class="glyphicon glyphicon-remove"></span> Usuń</span>
                         </div>
                     </div>
-                    <input id="inputData" />
-                    <input id="outputDataExpected" />
-                    <hr/>
+                    <input id="inOutData"  style="display:none;"/>
                     <div class="form-group">
-                        <label for="descriptionProblem" class="control-label">Treść problemu:</label>
-                        <div class="">
-                    <textarea type="text" class="form-control" id="descriptionProblem"
-                              rows="3" cols="75"></textarea>
-                        </div>
+                    <hr/><br /><br />
+                        <label for="descriptionProblemEdit" class="control-label">Treść problemu:</label>
+                        <textarea type="text" class="form-control" id="descriptionProblem" style="display:none;">
+                        </textarea>
+                            <div id="descriptionProblemEdit" class="slide" contenteditable="true"></div>
                     </div>
 
                 </div>
@@ -56,19 +76,19 @@
         </form>
             <hr/>
             <div class="row">
-                <div class="col-lg-6">
-                 <input class="inputData_1">
-                </div>
-                <div class="col-lg-6">
-                    <input class="outputData_1">
-                </div>
-
+              <div class="col-lg-6"><h2>Wejście</h2></div>
+              <div class="col-lg-6"><h2>Wyjście</h2></div>
+              <div class="col-lg-12" id="testsDataDiv">  </div>
             </div>
-            <button class="btn btn-success">Dodaj test</button>
+            <div class="row">
+              <div class="col-lg-8">
+              </div>
+              <div class="col-lg-4">
+                  <button class="btn btn-success" onclick="editProblem.addTest()">
+                    <span class="glyphicon glyphicon-plus"></span> Dodaj test
+                    </button>
+              </div>
+            </div>
             <br />
-            <hr />
-        <input id="jsonForDataTable" style="display:none;" value="" />
     </div>
-
-    <br /><br />
 </div>
