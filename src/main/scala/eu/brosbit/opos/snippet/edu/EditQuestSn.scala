@@ -35,8 +35,8 @@ class EditQuestSn extends BaseResourceSn {
 
     "tr" #> questionsList.map(quest => {
       <tr id={quest._id.toString}>
-        <td>{Formater.mkLongExerciseNumber(quest.nr)}</td>
-        <td>
+        <td onclick="editQuest.showUsing(this);">{Formater.mkLongExerciseNumber(quest.nr)}</td>
+        <td class="question">
           {Unparsed(quest.question)}
         </td>
         <td>
@@ -51,7 +51,8 @@ class EditQuestSn extends BaseResourceSn {
           {f}
         </span>)}
       </td>
-        <td><small> {Unparsed(quest.hint)} </small></td>
+        <td>{if(quest.hint.trim.size > 0) "TAK" else "NIE" }
+          <small style="word-break: break-word;"> {Unparsed(quest.hint)} </small></td>
         <td>
           {levMap(quest.lev.toString)}
         </td>
@@ -112,7 +113,7 @@ class EditQuestSn extends BaseResourceSn {
       quest.department = department.trim
       quest.dificult = tryo(difficult.toInt).openOr(1)
       quest.lev = tryo(level.toInt).openOr(1)
-      quest.hint = hint
+      quest.hint = hint.trim
       quest.save
       JsFunc("editQuest.insertQuestion", quest._id.toString).cmd
     }
@@ -144,13 +145,33 @@ class EditQuestSn extends BaseResourceSn {
       "#levelQuest" #> SHtml.select(levList, Full(subjectNow.lev.toString), level = _) &
       "#wrongQuest" #> SHtml.text(wrongAnswers, x => wrongAnswers = x.trim) &
       "#departmentQuest" #> SHtml.select(departments, Full(departName), department = _) &
-      "#hintQuest"#> SHtml.textarea(hint, x => hint = x) &
+      "#hintQuest"#> SHtml.textarea(hint, x => hint = x.trim) &
       "#dificultQuest" #> SHtml.select(difficultList, Full(difficult), difficult = _) &
       "#saveQuest" #> SHtml.ajaxSubmit("Zapisz", save) &
       "#deleteQuest" #> SHtml.ajaxSubmit("Usuń", delete) andThen SHtml.makeFormsAjax
 
     "form" #> ((in:NodeSeq) => form(in))
 
+  }
+
+  def showUsing():CssSel = {
+    var nr = ""
+    val form =
+    "#nrOfQuest" #> SHtml.text(nr, nr = _) &
+    "#buttonQuest" #> SHtml.ajaxSubmit("Pokaż",() => {
+      val info = lookingQuestUsing("_" + nr)
+      SetHtml("usingQuestInfo", <div>{Unparsed(info)}</div>)
+      //JsFunc("editQuest.showQuestInfo").cmd
+    }, "style" -> "display:none;") andThen SHtml.makeFormsAjax
+
+    "form" #> ((in:NodeSeq) => form(in))
+  }
+
+  private def lookingQuestUsing(nr:String): String = {
+    val s = LessonCourse.findAll.filter(k => k.contents.exists(w => w.id == nr)).map(k =>
+        k.title + " - <i>" + k.chapter + "</i> <span>nr: " + k.nr  + "</span>").mkString("<br>")
+   // println("LOOKING using questions/n " + s)
+    s
   }
 
 

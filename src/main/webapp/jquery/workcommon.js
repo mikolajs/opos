@@ -19,8 +19,8 @@ class WorkCommon {
          $('#hintWindow').dialog('open');
          this.isOpen = true;
         }
-        let hint = $(elem).parent().children('textarea#questHint').val();
-        $('#hintWindowText').text(hint);
+        let hint = $(elem).parent().children('.questHint').val();
+        $('#hintWindowText').text(hint.trim());
     }
     closeHint(){
         $('#hintWindow').dialog('close');

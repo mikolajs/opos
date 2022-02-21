@@ -24,7 +24,7 @@
         height: 100%;
       }
       #aHrefCheck { float: right; }
-
+       #titleProblem { color: black; font-weight: bold;}
       .aDotColorRed { background-color: red; }
       .aDotColorGreen { background-color: green; }
       .aDot { height: 20px; width: 20px;  border-radius: 50%; display: inline-block;}
@@ -34,11 +34,7 @@
    <div class="aBody">
    <div data-lift="edu.CheckProblemSn.show">
     <div  class="jumbotron alert alert-info"><h2>Rozwiązywanie problemu</h2>
-      <h4>Tytuł: <span id="titleProblem"></span></h4>
-        <a href="/educontent/problems" class="btn btn-warning">
-            <span class="glyphicon glyphicon-refresh"></span> Odśwież</a>
-        <span class="btn btn-success" onclick="checkProblem.saveProblem();">
-          <span class="glyphicon glyphicon-ok"></span> Zapisz</span>
+      <h3>Tytuł: <span id="titleProblem"></span></h3>
     </div>
        <section id="descriptionProblem">
 
@@ -57,6 +53,8 @@
             <pre id="codeSolveProblemShow">
             </pre>
           </div>
+            <span class="btn btn-success" onclick="checkProblem.saveProblem();" title="Sprawdź kod">
+          <span class="glyphicon glyphicon-ok"></span> Sprawdź</span>
         </div>
       </div>
             <hr/>
@@ -68,18 +66,23 @@
       	</div>
        </div>
        <form method="POST" data-lift="edu.CheckProblemSn.runCode">
-           <input type="text" id="idProblem"  style="display:none;"/>
+           <input type="text" id="idP"  style="display:none;"/>
            <textarea type="text" id="codeSolveProblemHidden" style="display:none;"> </textarea>
            <input id="runCode" style="display:none;" type="submit" />
        </form>
-    <div id="applications">
+    <div id="applications" data-lift="edu.CheckProblemSn.showLastTests">
+        <div style=" ">
+        <a href="/educontent/problems" class="btn btn-warning" title="Odśwież listę zgłoszeń"
+           id="refreshProblemAnchor" style="float:right; margin-right: 20%;" >
+        <span class="glyphicon glyphicon-refresh"></span> Odśwież</a></div>
       <h3>Lista Twoich zgłoszeń:</h3>
       <div class="row">
         <div class="col-lg-12">
-          <table class="table table-stripped">
+          <table class="table table-stripped" id="check">
               <tr><th>Data</th><th>Testy</th><th>Zakończone</th><th>Pokaż kod</th></tr>
-              <tr><td>2021.12.21 12:40</td><td>4/5</td><td><span class="aDot aDotColorRed"> </span></td>
-                  <td><span class="btn btn-info"><span class="glyphicon glyphicon-search"></span> Kod</span></td>
+              <tr><td class="col1">2021.12.21 12:40</td><td class="col2">4/5</td>
+                  <td class="col3"><span class="aDot aDotColorRed"> </span></td>
+                  <td class="col4"><span class="btn btn-info"><span class="glyphicon glyphicon-search"></span> Kod</span></td>
               </tr>
           </table>
         </div>

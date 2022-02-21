@@ -18,6 +18,15 @@
 				self.isOpen = false;
 			}
 		});
+	    $('#showUsing').dialog({
+        	autoOpen : false,
+        	height : 450,
+        	width : 600,
+        	modal : false,
+        	close : function() {
+        	self.isOpen = false;
+        	}
+        });
 		this.editor = CKEDITOR.replace('questionQuest', {
 			width : 500,
 			height : 335,
@@ -189,7 +198,7 @@
     			$("#fakeQuest").val("");
     			break;
     		case 5:
-                $('#hintQuest').val($td.text().trim());
+                $('#hintQuest').val($td.children('small').text().trim());
     		    break;
     		case 6:
     			$('#levelQuest option').each(function(index){
@@ -213,6 +222,14 @@
         $('#questionQuestDiv').toggle();
         $('#saveQuestVisible').toggle();
         $('#deleteQuest').toggle();
+    }
+
+    showUsing(elem) {
+        let v = $(elem).parent('tr').attr('id');
+        document.getElementById('nrOfQuest').value = v;
+        document.getElementById('usingQuestInfo').innerHTML = "";
+        $('#showUsing').dialog('open');
+        $('#buttonQuest').trigger('click');
     }
     
     _insertDataFromCKEditorToTextarea() {
@@ -260,7 +277,10 @@
     	let fakes = this._getFakeAnswerStringFromInputs().split(';#;;#;');
     	for(let i in fakes) fakeHTML += '<span class="wrong">' + fakes[i] + '</span>';
     	array.push(fakeHTML);
-    	array.push($('#hintQuest').val());
+    	let h = $('#hintQuest').val();
+    	let s = "";
+    	if(h.trim().length > 0) s = "TAK"; else s = "NIE";
+    	array.push(s+'<small style="word-break: break-word;">'+h+'</small>');
     	array.push($('#levelQuest option:selected').text());
     	array.push($('#dificultQuest option:selected').val());
     	array.push('<button class="btn btn-success" onclick="editQuest.editQuestion(this);"><span class="glyphicon glyphicon-edit"></span></button>');

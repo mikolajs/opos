@@ -1,10 +1,14 @@
 package eu.brosbit.opos.snippet.edu
 
-import eu.brosbit.opos.model.{Problems, User}
+import eu.brosbit.opos.lib.{Formater, TestProblemRunner}
+import eu.brosbit.opos.model.{Problems, TestProblemTry, User}
 import net.liftweb.util.CssSel
 import net.liftweb.util.Helpers._
 import net.liftweb.http.{S, SHtml}
+import net.liftweb.json.JsonDSL._
 
+import java.util.Date
+import java.util.zip.DataFormatException
 import scala.xml.{Text, Unparsed}
 
 class CheckProblemSn {
@@ -30,14 +34,29 @@ class CheckProblemSn {
     var codeTest = ""
     var lang = "cpp"
     def runCode(): Unit = {
-
+      val test = TestProblemTry.create
+      test.code = codeTest
+      test.lang = lang
+      test.aDate = (new Date()).getTime
+      test.author = user.id.get
+      test.problem = problem._id
+      test.save
+      TestProblemRunner.run(test)
     }
     "#idP" #> SHtml.text(idP, idP = _) &
     "#codeSolveProblemHidden" #> SHtml.textarea(codeTest, codeTest = _) &
     "#runCode" #> SHtml.submit("Run", runCode, "style" -> "display: none")
   }
   def showLastTests:CssSel = {
-
-    "#check" #> ""
+    val aTrays = TestProblemTry.findAll(("problem" -> problem._id.toString)~("author" -> user.id.get) )
+    "#check" #> aTrays.map(aTray =>
+      "tr [id]" #> aTray._id.toString &
+        ".col1 *" #> Formater.formatTimeForSort(new Date(aTray.aDate)) &
+      ".col2 *" #> (aTray.good.filter(_ == true).size.toString + "/" + aTray.good.size.toString ) &
+      ".col3 *" #> (if(aTray.checked)  <span class="aDot aDotColorGreen"></span>
+        else <span class="aDot aDotColorRed"></span>) &
+      ".col4 *" #> aTray.code
+    ) &
+    "#refreshProblemAnchor [href]" #> ("educontent/problem/" + id)
   }
 }

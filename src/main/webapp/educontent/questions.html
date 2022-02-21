@@ -35,6 +35,11 @@
 }
 #hintQuestDiv { display: none; }
 span.label-info {margin: 0 10px;}
+.question { word-break: break-word; }
+small { display: none; }
+#usingQuestInfo { font: 1.5em bold; }
+#usingQuestInfo > div > i { color: #333; font-size: 0.8em; }
+#usingQuestInfo > div > span { color: #530; font-size: 0.9em; padding-left: 10px;}
 </style>
 
 	</head_merge>
@@ -220,6 +225,14 @@ span.label-info {margin: 0 10px;}
 			</tfoot>
 		</table>
 
+	</div>
+
+	<div id="showUsing" data-lift="edu.EditQuestSn.showUsing" title="Tematy lekcji gdzie występuje zadanie">
+		<form >
+			<input id="nrOfQuest" type="text" style="display:none;">
+			<div id="usingQuestInfo"></div>
+			<input id="buttonQuest" style="visible:none;">
+		</form>
 	</div>
 
 </div>

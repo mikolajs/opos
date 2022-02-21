@@ -193,9 +193,7 @@ class BaseShowCourseSn  {
           <a class="quizHint" onclick="worksCommon.showHint(this);">
             <span class="glyphicon glyphicon-info-sign"></span>
             Pomoc</a>
-            <textarea id="questHint" style="display:none;">
-              {Unparsed(hint)}
-            </textarea>
+            <textarea class="questHint" style="display:none;">{Unparsed(hint)}</textarea>
         }}
         </div>
         <div class="panel-body">
