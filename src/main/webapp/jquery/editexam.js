@@ -217,7 +217,7 @@ class EditExam {
         });
         depart = $("#departments").children('option:selected').text();
 
-        let htmlLi = this._mkQuestItem(id, info, quest, nr, depart, lev);
+        let htmlLi = this._mkQuestItem(id, info, quest, nr, depart, lev, 1);
        let groupId = '#group'+String.fromCharCode(this.currentGroup + 64);
          $(groupId).children('ul.dropselected').append(htmlLi);
     }

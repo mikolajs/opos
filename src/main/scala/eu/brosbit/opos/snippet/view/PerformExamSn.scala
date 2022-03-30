@@ -31,7 +31,7 @@ class PerformExamSn extends BaseSnippet {
         exAns.code = enterCode
         exAns.exam = exam._id
         exAns.authorId = user.id.get
-        exAns.authorName = user.getFullName
+        exAns.authorName = user.getFullNameReverse
         exAns.save
       }
       else {
@@ -85,7 +85,7 @@ class PerformExamSn extends BaseSnippet {
         exAns.exam = exam._id
         exAns.attach = link
         exAns.authorId = user.id.get
-        exAns.authorName = user.getFullName
+        exAns.authorName = user.getFullNameReverse
         if( (exam.end + 30000L) >= new Date().getTime) exAns.save
       })
  }

@@ -1,5 +1,5 @@
 name := "opos"
-version := "0.10.8"
+version := "0.10.9"
 
 organization := "brosbit.eu"
 

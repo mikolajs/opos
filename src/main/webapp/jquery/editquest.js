@@ -170,7 +170,6 @@
     		case 2:
     		    $("#infoQuest").val($td.text().trim());
     		    break;
-
     		case 3:
     			array = [];
     			$ul = $('#goodAnswerList');

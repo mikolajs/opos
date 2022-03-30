@@ -43,7 +43,7 @@ class EditExamSn extends BaseResourceSn {
       exam.quizzes = quizzes.split('|').map(_.trim).filter(_.nonEmpty).map(groupRows =>
         groupRows.split(';').map(_.trim).filter(_.nonEmpty).map(q => {
          val elem = q.split(',')
-          if(elem.size == 2) QuestElem(new ObjectId(elem(0)), elem(1).toInt)
+          if(elem.size == 2) QuestElem(new ObjectId(elem(0)), tryo(elem(1).toInt).getOrElse(1))
           else QuestElem(new ObjectId(""), -1)
        }).filter(_.p > 0).toList).toList
       exam.keys = keys.split(';').toList
