@@ -11,7 +11,8 @@ object ConfigLoader {
   var emailPassw = ""
   var emailPort = ""
   var emailSMTP = ""
-  val f = new File("/etc/osp/config.cfg")
+  var judgeDir = ""
+  val f = new File("/etc/opos/config.cfg")
   val lines = Source.fromFile(f).getLines().toList
 
   def init = lines.map(line => {
@@ -25,6 +26,7 @@ object ConfigLoader {
         case "emailpassword" => emailPassw = opt.last
         case "emailport" => emailPort = opt.last
         case "emailsmtp" => emailSMTP  = opt.last
+        case "judgeDir" => judgeDir = opt.last
         case _ =>
       }
     }

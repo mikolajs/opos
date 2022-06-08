@@ -32,18 +32,18 @@ class CronActor extends LiftActor {
     println("Uruchomiono sendMessages")
 
     var userInfo: scala.collection.mutable.Map[Long, Int] = scala.collection.mutable.Map()
-    var anouncesCount = 0
+    var announcesCount = 0
     var noticesInfo: scala.collection.mutable.Map[Long, Int] = scala.collection.mutable.Map()
-    var anouncesClass: scala.collection.mutable.Map[Long, Int] = scala.collection.mutable.Map()
+    var announcesClass: scala.collection.mutable.Map[Long, Int] = scala.collection.mutable.Map()
     User.findAll.map(u => {
       userInfo += (u.id.get -> 0)
     })
 
-    //messages and teacher anounces
+    //messages and teacher announces
     {
       val messages = Message.findAll("mailed" -> false)
       messages.map(mess => {
-        if (mess.all) anouncesCount += 1
+        if (mess.all) announcesCount += 1
         else mess.who.map(id => {
           if (userInfo.isDefinedAt(id)) {
             userInfo(id) += 1
@@ -52,15 +52,15 @@ class CronActor extends LiftActor {
         Message.update("_id" -> mess._id.toString, ("$set" -> ("mailed" -> true)))
       })
     }
-    //pupil notices and anounces
+    //pupil notices and announces
     {
       MessagePupil.findAll("mailed" -> false).map(mp => {
         if (mp.opinion) {
           if (noticesInfo.isDefinedAt(mp.pupilId)) noticesInfo(mp.pupilId) += 1
           else noticesInfo += (mp.pupilId -> 1)
         } else {
-          if (anouncesClass.isDefinedAt(mp.classId)) anouncesClass(mp.classId) += 1
-          else anouncesClass += (mp.classId -> 1)
+          if (announcesClass.isDefinedAt(mp.classId)) announcesClass(mp.classId) += 1
+          else announcesClass += (mp.classId -> 1)
         }
 
         MessagePupil.update("_id" -> mp._id.toString, ("$set" -> ("mailed" -> true)))
@@ -85,14 +85,14 @@ class CronActor extends LiftActor {
             have = true;
             textInfoMess.format(userInfo(u.id.get))
           } else "") +
-          (if (anouncesClass.isDefinedAt(u.classId.get)) {
-            have = true; textInfoClassAnoun.format(anouncesClass(u.classId.get))
+          (if (announcesClass.isDefinedAt(u.classId.get)) {
+            have = true; textInfoClassAnoun.format(announcesClass(u.classId.get))
           }) +
           "Możesz przeczytać informacje na stronie http://edu.epodrecznik.edu.pl/view/index \n "
 
       } else {
-        (if (anouncesCount > 0) {
-          have = true; textInfoAnounce.format(anouncesCount)
+        (if (announcesCount > 0) {
+          have = true; textInfoAnounce.format(announcesCount)
         } else "") +
           (if (userInfo.isDefinedAt(u.id.get) && userInfo(u.id.get) > 0) {
             have = true; textInfoMess.format(userInfo(u.id.get))

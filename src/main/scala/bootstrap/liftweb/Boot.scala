@@ -21,7 +21,7 @@ import eu.brosbit.opos.api._
 import eu.brosbit.opos.lib.MailConfig
 import _root_.net.liftweb.mongodb._
 import com.mongodb.MongoClient
-import eu.brosbit.opos.comet.CronActor
+import eu.brosbit.opos.comet.{CronActor, JudgeCronActor}
 import eu.brosbit.opos.lib.{ConfigLoader => CL}
 
 object DBVendor extends ConnectionManager {
@@ -397,7 +397,7 @@ class Boot {
 
     //cron jobs for find zastepstwa
     //val cron = new CronActor()
-
+    val cronJudge = new JudgeCronActor()
 
     S.addAround(DB.buildLoanWrapper)
   }

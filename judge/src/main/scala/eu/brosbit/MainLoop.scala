@@ -1,4 +1,6 @@
 package eu.brosbit
+import akka.stream.scaladsl.JavaFlowSupport.Source
+
 import scala.collection.mutable.Queue
 import java.nio.charset
 import java.nio.file.*
@@ -9,7 +11,8 @@ case class CodeToTest(id:String, code:String, lang:String, testDataInput:List[St
 
 class MainLoop {
   val toTestQueue:Queue[CodeToTest] = Queue()
-  val mainPath = "/home/ms/Dokumenty/forJudgeDir/"
+  
+  val mainPath = getPathForTestFiles 
 
   def addTest(id: String, code:String, lang: String, testDataInput:List[String]) =
     toTestQueue += CodeToTest(id, code, lang, testDataInput)
@@ -43,6 +46,11 @@ class MainLoop {
       else d.listFiles.filter(_.isDirectory).toList
     else List[File]()
 
-
+  private def getPathForTestFiles:String =
+    scala.io.Source.fromFile("/etc/osp/judge.cfg").getLines().map(line =>
+      val arr = line.split('=')
+      if(arr.size == 2 && arr(0) == "path") return arr(1)
+    )
+    return "/home/admin/judge"
 
 }
