@@ -18,6 +18,8 @@ class CheckProblemSn {
   val problem = if(id == "0") Problems.create else Problems.find(id).getOrElse(Problems.create)
   if(problem.author != 0 && problem.author != user.id.get ) S.redirectTo("/educontent/problems")
   else if(problem.author == 0L) problem.author = user.id.get
+  val aTrays = TestProblemTry.findAll(("problem" -> problem._id.toString)~("author" -> user.id.get) ).sortWith((t1, t2) => t1.aDate > t2.aDate)
+
   def show:CssSel = {
     var titleP = problem.title
     var infoP = problem.info
@@ -29,6 +31,13 @@ class CheckProblemSn {
       "#titleProblem *" #> titleP  &
       "#descriptionProblem *" #> descriptionP
   }
+
+  def getLastCode:CssSel = {
+    val t = S.param("t").getOrElse("0")
+    val tpt = aTrays.find(_._id.toString == t).getOrElse(TestProblemTry.create)
+    "#codeSolveProblemEdit *" #> tpt.code
+  }
+
   def runCode:CssSel = {
     var idP = problem._id.toString
     var codeTest = ""
@@ -44,19 +53,19 @@ class CheckProblemSn {
       TestProblemRunner.run(test)
     }
     "#idP" #> SHtml.text(idP, idP = _) &
-    "#codeSolveProblemHidden" #> SHtml.textarea(codeTest, codeTest = _) &
+    "#langCode" #> lang &
+    "#sendCode" #> SHtml.textarea(codeTest, codeTest = _) &
     "#runCode" #> SHtml.submit("Run", runCode, "style" -> "display: none")
   }
   def showLastTests:CssSel = {
-    val aTrays = TestProblemTry.findAll(("problem" -> problem._id.toString)~("author" -> user.id.get) )
-    "#check" #> aTrays.map(aTray =>
+    "#checkTr *" #> aTrays.map(aTray =>
       "tr [id]" #> aTray._id.toString &
         ".col1 *" #> Formater.formatTimeForSort(new Date(aTray.aDate)) &
       ".col2 *" #> (aTray.good.filter(_ == true).size.toString + "/" + aTray.good.size.toString ) &
       ".col3 *" #> (if(aTray.checked)  <span class="aDot aDotColorGreen"></span>
         else <span class="aDot aDotColorRed"></span>) &
-      ".col4 *" #> aTray.code
+      ".col4 a [href]" #> ("/educontent/checkproblem/" + problem._id.toString + "?t=" + aTray._id.toString)
     ) &
-    "#refreshProblemAnchor [href]" #> ("educontent/problem/" + id)
+    "#refreshProblemAnchor [href]" #> ("/educontent/checkproblem/" + id)
   }
 }

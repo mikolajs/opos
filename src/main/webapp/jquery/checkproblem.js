@@ -11,15 +11,17 @@ class CheckProblem {
             self.isOpen = false;
         }
      });
-        this.codeEdit = $('#codeSolveProblemEdit');
+        this.codeEditor = $('#codeSolveProblemEdit');
         this.codeShow = $('#codeSolveProblemShow');
-        this.codeHidden = $('#codeSolveProblemHidden');
-        console.log(this.codeEdit.val());
-        this.codeEditorJS = this.codeEdit.get(0);
+        console.log(this.codeEditor.val());
+        this.codeEditorJS = this.codeEditor.get(0);
         this.codeShowJS = this.codeShow.get(0);
 
         console.log(this.codeEditorJS.value);
-        this.codeEdit.val(this.codeHidden.val());
+        document.getElementById("showCodeEditor").addEventListener('click', (e) => {
+          this.showHint(e);
+        });
+        //this.codeEditor.val(this.codeHidden.val());
         //console.log('Numbers tests before check: ' + this.testsNumbs);
         this.lang = 'cpp';
         this.refresh();
@@ -27,30 +29,44 @@ class CheckProblem {
 
     refresh(){
       let d = hljs.highlight(this.codeEditorJS.value, {language: this.lang}).value;
-      console.log(d);
       this.codeShow.html(d);
-      this.codeHidden.val(d);
     }
 
     selectedLang(){
       this.lang = document.getElementById('langChoice').value;
+      this.refresh();
     }
 
-    showHint(elem){
+    showHint(e){
+        console.log("Open HINT");
         if(!this.isOpen) {
          $('#hintWindow').dialog('open');
+         e.stopPropagation();
          this.isOpen = true;
         }
     }
 
     closeHint(){
+      console.log("start close hint");
         $('#hintWindow').dialog('close');
         this.isOpen = false;
     }
 
+    closeEditor(elem){
+      console.log("Start close Editor");
+        if(this.isOpen){
+            this.isOpen = false;
+            this.refresh();
+            $('#hintWindow').dialog('close');
+        }
+    }
+
     saveProblem(){
        console.log($("#idP").val());
-       console.log(this.codeHidden.val());
-      //$("#runCode").trigger('click');
+       console.log(this.lang);
+       console.log(this.codeEditorJS.value);
+       $("#sendCode").val(this.codeEditorJS.value);
+       $("#langCode").val(this.lang);
+      $("#runCode").trigger('click');
     }
 }

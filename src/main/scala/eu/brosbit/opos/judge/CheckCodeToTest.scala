@@ -2,6 +2,7 @@ package eu.brosbit.opos.judge
 
 import java.io.File
 import scala.collection.mutable
+import eu.brosbit.opos.lib.ConfigLoader
 
 case class CodeToTest(id:String, code:String, lang:String, testDataInput:List[String])
 
@@ -44,7 +45,6 @@ class CheckCodeToTest {
     s
   }
 
-
   private def getListOfFiles(d: File, onlyFiles: Boolean = true):List[File] = {
     if (d.exists && d.isDirectory)
       if (onlyFiles)  d.listFiles.filter(_.isFile).toList
@@ -52,20 +52,5 @@ class CheckCodeToTest {
     else List[File]()
   }
 
-
-  private def getPathForTestFiles:String = {
-    val s = scala.io.Source.fromFile("/etc/opos/judge.cfg")
-      s.getLines().foreach(line => {
-      val arr = line.split('=')
-      if (arr.length == 2 && arr(0) == "path") {
-        s.close()
-        return arr(1)
-      }
-    })
-    s.close()
-    "/home/admin/judge"
-  }
-
-
-
+  private def getPathForTestFiles:String = ConfigLoader.judgeDir
 }

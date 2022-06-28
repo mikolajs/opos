@@ -12,7 +12,9 @@ object ConfigLoader {
   var emailPort = ""
   var emailSMTP = ""
   var judgeDir = ""
+  println("LOAD OPOS")
   val f = new File("/etc/opos/config.cfg")
+
   val lines = Source.fromFile(f).getLines().toList
 
   def init = lines.map(line => {

@@ -14,7 +14,7 @@ class ProblemsListSn {
       ".col1 *" #> p.title &
       ".col2 *" #> p.info &
       ".col3 *" #> <a href={"/educontent/editproblem/"+p._id.toString} class="btn btn-success"><span></span> Edytuj</a>
-    })
+   })
   }
 
 }
