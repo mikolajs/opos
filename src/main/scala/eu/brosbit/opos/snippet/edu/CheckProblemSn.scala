@@ -1,7 +1,7 @@
 package eu.brosbit.opos.snippet.edu
 
 import eu.brosbit.opos.lib.{Formater, TestProblemRunner}
-import eu.brosbit.opos.model.{Problems, TestProblemTry, User}
+import eu.brosbit.opos.model.{TestProblem, TestProblemTry, User}
 import net.liftweb.util.CssSel
 import net.liftweb.util.Helpers._
 import net.liftweb.http.{S, SHtml}
@@ -15,15 +15,15 @@ class CheckProblemSn {
   var id = S.param("id").getOrElse("0")
   var user = User.currentUser.getOrElse(S.redirectTo("/login"))
   println("im a user " + user.id.get)
-  val problem = if(id == "0") Problems.create else Problems.find(id).getOrElse(Problems.create)
+  val problem = if(id == "0") TestProblem.create else TestProblem.find(id).getOrElse(TestProblem.create)
   if(problem.author != 0 && problem.author != user.id.get ) S.redirectTo("/educontent/problems")
   else if(problem.author == 0L) problem.author = user.id.get
   val aTrays = TestProblemTry.findAll(("problem" -> problem._id.toString)~("author" -> user.id.get) ).sortWith((t1, t2) => t1.aDate > t2.aDate)
 
   def show:CssSel = {
-    var titleP = problem.title
-    var infoP = problem.info
-    var descriptionP = problem.description
+    val titleP = problem.title
+    //var infoP = problem.info
+    val descriptionP = problem.description
     def saveProblem() {
       problem.description = descriptionP
       problem.title = titleP

@@ -18,11 +18,10 @@ import _root_.net.liftweb.mapper.{ConnectionIdentifier, ConnectionManager, DB, D
 import java.sql.{Connection, DriverManager}
 import eu.brosbit.opos.model._
 import eu.brosbit.opos.api._
-import eu.brosbit.opos.lib.MailConfig
+import eu.brosbit.opos.lib.{MailConfig, TestProblemRunner, ConfigLoader => CL}
 import _root_.net.liftweb.mongodb._
 import com.mongodb.MongoClient
 import eu.brosbit.opos.comet.{CronActor, JudgeCronActor}
-import eu.brosbit.opos.lib.{ConfigLoader => CL}
 
 object DBVendor extends ConnectionManager {
   def newConnection(name: ConnectionIdentifier): Box[Connection] = {
@@ -398,6 +397,7 @@ class Boot {
     //cron jobs for find zastepstwa
     //val cron = new CronActor()
     val cronJudge = new JudgeCronActor()
+    TestProblemRunner.init(cronJudge)
 
     S.addAround(DB.buildLoanWrapper)
   }
