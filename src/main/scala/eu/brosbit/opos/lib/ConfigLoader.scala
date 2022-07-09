@@ -11,7 +11,7 @@ object ConfigLoader {
   var emailPassw = ""
   var emailPort = ""
   var emailSMTP = ""
-  val f = new File("/etc/osp/config.cfg")
+  val f = new File("/etc/opos/config.cfg")
   val lines = Source.fromFile(f).getLines().toList
 
   def init = lines.map(line => {

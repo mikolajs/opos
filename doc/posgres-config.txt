@@ -1,4 +1,4 @@
-w katalogu /etc/osp musi znajdować się plik do odczytu config.cfg z zawartością:
+w katalogu /etc/opos musi znajdować się plik do odczytu config.cfg z zawartością:
 
 sqlpassword=jakieśhasło
 sqldatabase=osp lub inna
@@ -7,6 +7,7 @@ emailaddress=emailadres@g.pl
 emailpassword=jakieśhaslo
 emailsmpt=smtp.g.pl
 emailport=587
+judger=/sciezka/do/katalogu/testow
 
 
 Właściciela pliku można ustawić jako www-data i tylko temu użytkownikowi nadać prawa do odczytu. 
