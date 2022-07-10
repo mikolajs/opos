@@ -28,7 +28,7 @@ object DBVendor extends ConnectionManager {
     try {
       //Class.forName(classOf[org.postgresql.Driver].getName)
       Class.forName("org.postgresql.Driver")
-      val dm = DriverManager.getConnection("jdbc:postgresql:osp", CL.sqlDB, CL.sqlPassw)
+      val dm = DriverManager.getConnection("jdbc:postgresql:opos", CL.sqlDB, CL.sqlPassw)
       Full(dm)
     } catch {
       case e: Exception => e.printStackTrace; Empty
@@ -50,9 +50,11 @@ class Boot {
 
     DB.defineConnectionManager(DefaultConnectionIdentifier, DBVendor)
 
-    MongoDB.defineDb(DefaultMongoIdentifier, MongoAddress(MongoHost("127.0.0.1", 27017), CL.mongoDB))
+    MongoDB.defineDb(DefaultMongoIdentifier, MongoAddress(MongoHost("127.0.0.1", 32017), CL.mongoDB))
+    //mongo32 have 32017 port insted of 27017
 //    val mongoClient = new MongoClient("127.0.0.1", 27017)
 //    MongoDB.defineDb(OtherConnectionIdentifier, mongoClient, CL.mongoDB)
+ 
 
     // where to search snippet
     LiftRules.addToPackages("eu.brosbit.opos")

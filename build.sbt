@@ -34,7 +34,10 @@ libraryDependencies ++= {
     "org.jsoup" % "jsoup" % "1.8.3",
      "net.liftweb" %% "lift-mongodb" % liftVersion % "compile",
     "org.postgresql" % "postgresql" % "42.2.5",
-    "com.sun.xml.messaging.saaj" % "saaj-impl" % "2.0.1"
+    "com.sun.xml.messaging.saaj" % "saaj-impl" % "2.0.1",
+    "org.scalactic" %% "scalactic" % "3.2.12",
+    "org.scalatest" %% "scalatest" % "3.2.12" % "test"
+
   )
 
 }

@@ -10,14 +10,18 @@
  jako użytkownik postgres wykonaj (nadaj prawo do zapisu temu użytkownikowi w danym katalogu):
     pg_dump osp > nazwa_pliku
     
-4. Odzysk Mongo: 
+4. Kompresja: tar -czvf name-of-archive.tar.gz katalog/
+    
+5. Odzysk Mongo: 
     mongorestore --db osp /sciezka/do/katalogu
  
-5.Odzysk postgres (na uruchomionym postgres jako postges user):
+
+6.Odzysk postgres (na uruchomionym postgres jako postges user):
+
     psql osp < nazwa_pliku
     ///skasować wszystkie table wcześniej
     
-6. skopiowanie plików video do /home/osp
+7. skopiowanie plików video do /home/osp
 
-7. Packowenie katalogu z backupem:
+8. Packowenie katalogu z backupem:
  	tar -czvf file.tar.gz directory
