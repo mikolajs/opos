@@ -29,7 +29,9 @@ libraryDependencies ++= {
     "ch.qos.logback" % "logback-classic" % "1.0.6",
     "org.jsoup" % "jsoup" % "1.8.3",
      "net.liftweb" %% "lift-mongodb" % liftVersion % "compile",
-    "org.postgresql" % "postgresql" % "42.2.5"
+    "org.postgresql" % "postgresql" % "42.2.5",
+    "org.scalactic" %% "scalactic" % "3.2.12",
+    "org.scalatest" %% "scalatest" % "3.2.12" % "test"
   )
 
 }
