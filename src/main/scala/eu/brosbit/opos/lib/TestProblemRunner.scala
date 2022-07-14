@@ -20,7 +20,8 @@ object TestProblemRunner {
   }
   //it must insert code to directory
   def run() = {
-    val testProblemTries = TestProblemTry.findAll("checked" -> false, "running" -> false).sortWith((tpt1, tpt2) => tpt1.aDate < tpt2.aDate)
+    val testProblemTries = TestProblemTry.findAll( ("checked" -> false)~( "running" -> false))
+      .sortWith((tpt1, tpt2) => tpt1.aDate < tpt2.aDate)
     testProblemTries.foreach( tpt => {
       tpt.running = true
       tpt.timeRun = new Date().getTime
@@ -29,11 +30,17 @@ object TestProblemRunner {
       if(last >= maxTestSimultaneously) last = 0
       runnerActorTable(last) ! tpt
     })
+    clearNotEndedProblems()
   }
 
   def clearNotEndedProblems(): Unit = {
     val d = new Date().getTime
-    val testProblemTries = TestProblemTry.findAll("checked" -> false, "running" -> true)
-      .filter(tpt => (d - tpt.timeRun) > 60000L)
+    val testProblemTries = TestProblemTry.findAll(("checked" -> false)~( "running" -> true))
+      .filter(tpt => tpt.timeRun != 0L && (d - tpt.timeRun) > 60000L)
+    testProblemTries.foreach( tpt => {
+      tpt.running = false
+      tpt.timeRun = 0L
+      tpt.save
+    })
   }
 }

@@ -3,12 +3,16 @@ sudo snap install docker docker-ls
 
 sudo addgroup --system docker
 sudo adduser $USER docker
-newgrp docker
+//newgrp docker bez zmiany użytkownika
 sudo snap disable docker
 sudo snap enable docker
+sudo chown #USER  /var/run/docker.sock
 
 newgrp docker – za każdym razem gdy zaczynam pracę w konsoli?
 
-docker build -t test-docker .
-docker run test-docker
+docker pull ubuntu:jammy
+//run in this directory that create new image
+docker build -t opos-ubuntu .
+//??????
+docker run opos-ubuntu
 

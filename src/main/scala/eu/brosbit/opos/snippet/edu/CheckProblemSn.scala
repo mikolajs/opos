@@ -29,7 +29,7 @@ class CheckProblemSn {
       problem.title = titleP
     }
       "#titleProblem *" #> titleP  &
-      "#descriptionProblem *" #> descriptionP
+      "#descriptionProblem *" #> Unparsed(descriptionP)
   }
 
   def getLastCode:CssSel = {
@@ -46,11 +46,10 @@ class CheckProblemSn {
       val test = TestProblemTry.create
       test.code = codeTest
       test.lang = lang
-      test.aDate = (new Date()).getTime
+      test.aDate = new Date().getTime
       test.author = user.id.get
       test.problem = problem._id
       test.save
-      TestProblemRunner.run(test)
     }
     "#idP" #> SHtml.text(idP, idP = _) &
     "#langCode" #> lang &

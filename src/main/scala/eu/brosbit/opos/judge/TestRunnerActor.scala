@@ -12,7 +12,7 @@ class TestRunnerActor(parent:LiftActor)  extends  LiftActor {
       if(testProblem.expectedOutputs.isEmpty) {
         info = "Error Main: no test data to check"
       } else {
-        val controlDir = new ControlDir(tpt._id.toString, tpt.code, tpt.lang, testProblem.expectedOutputs)
+        val controlDir = new ControlDir(tpt._id.toString, tpt.code, tpt.lang, testProblem.inputs, testProblem.expectedOutputs)
         info = controlDir.run
       }
       tpt.running = false

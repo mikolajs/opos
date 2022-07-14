@@ -1,5 +1,5 @@
 
-FROM opos-ubuntu 
+FROM opos-ubuntu-jammy
 
 COPY . . 
 

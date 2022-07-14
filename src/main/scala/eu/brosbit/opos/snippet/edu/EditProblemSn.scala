@@ -22,7 +22,7 @@ class EditProblemSn {
     var infoP = problem.info
     var descriptionP = problem.description
     var jsonStr = problem.testsToJson
-    println(jsonStr);
+    //println(jsonStr)
     def deleteProblem() {
       problem.delete
     }
@@ -33,7 +33,7 @@ class EditProblemSn {
       if(titleP.trim.isEmpty) titleP = "Brak nazwy!!!!"
       problem.info = infoP
       problem.description = descriptionP
-      println(jsonStr)
+      //println(jsonStr)
       val json = read[InputOutputTest](jsonStr)
       problem.inputs = json.input
       problem.expectedOutputs = json.output

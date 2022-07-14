@@ -1,5 +1,5 @@
 
-FROM ubuntu:20.04 
+FROM ubuntu:jammy
 
 COPY . . 
 
@@ -7,7 +7,5 @@ RUN apt-get update && \
     apt-get install -y python3 && \
     apt-get clean
 
-
-EXPOSE 5000
 
 CMD ["./test", "<",  "dane1.txt"]

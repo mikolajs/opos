@@ -72,6 +72,7 @@ class EditProblem {
       let json = this._readInputOutputTests();
       $('#inOutData').val(JSON.stringify(json));
       //console.log($('#inOutData').val());
+      $('#descriptionProblem').val($('#descriptionProblemEdit').html());
       $("#saveProblem").trigger('click');
     }
     deleteProblem(){

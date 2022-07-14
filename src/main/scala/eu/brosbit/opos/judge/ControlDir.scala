@@ -1,87 +1,86 @@
 package eu.brosbit.opos.judge
 
-import java.nio.charset
 import java.io.File
-
-import java.nio.charset.StandardCharsets
 import eu.brosbit.opos.lib.ConfigLoader
 import java.io.FileWriter
 import java.io.PrintWriter
 
-object ControlDir {
-  val mainDir = if(ConfigLoader.judgeDir.last == '/') ConfigLoader.judgeDir  else ConfigLoader.judgeDir + "/"
-}
 
 /*
   Temporary it serve for one data for test in expected list!
  */
-class ControlDir(id: String, source:String, extension:String, expected:List[String]){
+class ControlDir(id: String, source:String, extension:String, data:List[String], expected:List[String]){
 
-  val dockerImageName = "opos-image-" + id
-  val fullPath = ControlDir.mainDir + "test_" + id
+  val mainDir = if(ConfigLoader.judgeDir.last == '/') ConfigLoader.judgeDir  else ConfigLoader.judgeDir + "/"
+  val dockerImageName = "opos-ubuntu-" + id
+  val fullPath = mainDir + "test_" + id
   val timeTest = 3
 
 
   def run:String = {
-    createDir
-    val info = runHelper
     deleteDir
+    val info = runHelper
+    //deleteDir
     info
   }
 
   private def runHelper:String = {
     if(!createDir) return "Error: cannot create dir, connect with administrator"
-    val sourceFile = createSourceFile()
+    val sourceFile = createFile("test."+extension, source)
     if(!sourceFile.exists()) return "Error: cannot create source file, connect with administrator"
-    val dataFile = createDataFile("test", expected.head)
+    val dataFile = createFile("dane.txt", data.head)
     if(!dataFile.exists()) return "Error: cannot create source file, connection with administrator"
     if(extension == "cpp") {
-      val compileInfo = compileCpp(source).toLowerCase()
-      if(compileInfo.contains("error")) return "Error: compilation error source file"
+      //println("COMPILE")
+      val compileInfo = compileCpp(extension).toLowerCase()
+       //println("COMPILE INFO: " + compileInfo)
+      if(compileInfo.contains("error")) return "Error: compilation error source file, " + compileInfo
     }
-    val dockerFile = createDockerfile(1, extension)
+    val dockerFile = createDockerfile(1)
     if(!dockerFile.exists()) return  "Error: cannot create docker file";
     val imageInfo = runBuildDockerImage //Errors??
-    if(!imageInfo.toLowerCase().contains("succesfully")) return "Error: cannot build docker image"
+    if(!imageInfo.toLowerCase().contains("successfully")) return "Error: cannot build docker image"
 
     val output = runTestProgramInDocker
     runDeleteDockerImage
     output
   }
 
-  private def createDir: Boolean = new File(fullPath).mkdir()
-
-  private def deleteDir = {
+  private def createDir: Boolean = {
     val f = new File(fullPath)
+    f.mkdir()
+  }
+
+  private def deleteDir:Boolean = {
+    val f = new File(fullPath)
+    if(f.isDirectory) {
+      f.list().foreach(fileName => {
+        val file = new File(fullPath + "/" + fileName)
+        if(file.exists()) file.delete()
+      })
+    }
     if(f.exists() && f.isDirectory) f.delete() else false
   }
 
-  def createSourceFile() = {
-    val p = mkFilePath(extension)
+  private def createFile(fileName: String, content: String) = {
+    val p = mkFilePath(fileName)
     val f = new File(p)
     f.createNewFile()
     val fileWriter: FileWriter = new FileWriter(p)
     val printWriter: PrintWriter = new PrintWriter(fileWriter)
-    printWriter.print(source.getBytes)
-    f
-  }
-
-  def createDataFile(fileName: String, content: String) = {
-    val p = mkFilePath("txt", fileName)
-    val f = new File(p)
-    f.createNewFile()
-    val fileWriter: FileWriter = new FileWriter(p)
-    val printWriter: PrintWriter = new PrintWriter(fileWriter)
-    printWriter.print(content.getBytes)
+    printWriter.write(content)
+    printWriter.close()
+    fileWriter.close()
     f
   }
 
   def compileCpp(extension: String) = {
-    val compile = "g++ -o " + mkFilePath() + " " + mkFilePath(extension)
+    val compile = "g++ -o " + mkFilePath("test") + " " + mkFilePath("test."+extension)
     import sys.process._
     val sb = new StringBuffer()
     val outInfo = (compile run BasicIO(false, sb, None)).exitValue
-    //println(outInfo)
+    //println("COMPILE COMMAND: " + compile)
+    println(outInfo)
     sb.toString
   }
 
@@ -98,22 +97,26 @@ class ControlDir(id: String, source:String, extension:String, expected:List[Stri
   }
 
   //ONLY ONE DATA FILE?
-  private def createDockerfile(nr: Int, lang: String) = {
-    var dockerfile = "FROM opos-ubuntu\n\n"
+  private def createDockerfile(nr:Int) = {
+    var dockerfile = "FROM opos-ubuntu-jammy\n\n"
     dockerfile += "COPY . . \n\n"
-    val typeLang = if (lang == "cpp") "" else lang
-    dockerfile += s"CMD timeout --signal=SIGKILL $timeTest ./test${typeLang} < dane${nr}.txt"
-    val p = mkFilePath("", "Dockerfile")
+    dockerfile += s"CMD timeout --signal=SIGKILL $timeTest "
+    if (extension == "cpp") dockerfile += "./test"
+    else if(extension == "py") dockerfile += "python3 test.py"
+    else if(extension == "js") dockerfile += "node test.js"
+    val p = mkFilePath("Dockerfile")
     val f = new File(p)
     f.createNewFile()
     val fileWriter: FileWriter = new FileWriter(p)
     val printWriter: PrintWriter = new PrintWriter(fileWriter)
-    printWriter.print(dockerfile.getBytes)
+    printWriter.write(dockerfile)
+    printWriter.close()
+    fileWriter.close()
     f
   }
 
   private def runBuildDockerImage = {
-    val exec = s"docker build $fullPath -t $dockerImageName "
+    val exec = s"docker build $fullPath -t $dockerImageName"
     execCommand(exec)
   }
 
@@ -123,7 +126,7 @@ class ControlDir(id: String, source:String, extension:String, expected:List[Stri
   }
 
   private def runDeleteDockerImage = {
-    val exec = s"docker image rm $dockerImageName"
+    val exec = s"docker image rm -f $dockerImageName"
     execCommand(exec)
   }
 
@@ -149,10 +152,7 @@ class ControlDir(id: String, source:String, extension:String, expected:List[Stri
     } else ""
   }
 
-  private def mkFilePath(extension: String = "", fileName: String = "test") = {
-    val r = fullPath + "/" + fileName
-    if (extension.isEmpty) r else r + "." + extension
-  }
+  private def mkFilePath(fileName:String) = fullPath + "/" + fileName
 
   private def execCommand(command: String) = {
     import sys.process._
@@ -160,7 +160,8 @@ class ControlDir(id: String, source:String, extension:String, expected:List[Stri
     val basicIO = BasicIO(false, sb, None)
     val outInfo2 = Process(command, Some(new File(fullPath))).run(basicIO).exitValue()
     // val outInfo = (exec run BasicIO(true, sb, None)).exitValue
-    //println(sb.toString)
+    //println( "SB: " + sb.toString)
+    //println("Out " + outInfo2.toString)
     sb.toString
   }
 
