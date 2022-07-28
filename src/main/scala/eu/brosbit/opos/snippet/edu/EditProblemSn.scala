@@ -7,7 +7,6 @@ import net.liftweb.http.{S, SHtml}
 
 import scala.xml.{Text, Unparsed}
 
-case class InputOutputTest(input:List[String], output:List[String])
 
 class EditProblemSn {
   var id = S.param("id").getOrElse("0")
@@ -21,10 +20,12 @@ class EditProblemSn {
     var titleP = problem.title
     var infoP = problem.info
     var descriptionP = problem.description
-    var jsonStr = problem.testsToJson
+    var inData = problem.inputs
+    var outData = problem.expectedOutputs
     //println(jsonStr)
     def deleteProblem() {
       problem.delete
+      S.redirectTo("/educontent/problems")
     }
     def saveProblem() {
       import net.liftweb.json.DefaultFormats
@@ -34,17 +35,18 @@ class EditProblemSn {
       problem.info = infoP
       problem.description = descriptionP
       //println(jsonStr)
-      val json = read[InputOutputTest](jsonStr)
-      problem.inputs = json.input
-      problem.expectedOutputs = json.output
+      problem.inputs = inData
+      problem.expectedOutputs = outData
       problem.title = titleP
       problem.save
+      S.redirectTo("/educontent/editproblem/"+problem._id.toString)
     }
     "#idProblem" #> SHtml.text(idP, idP = _) &
     "#titleProblem" #> SHtml.text(titleP, titleP = _ ) &
     "#infoProblem" #> SHtml.text(infoP, infoP = _) &
     "#descriptionProblem" #> SHtml.textarea(descriptionP, descriptionP = _) &
-    "#inOutData" #> SHtml.text(jsonStr, jsonStr = _) &
+    "#inData" #> SHtml.textarea(inData, inData = _) &
+    "#outData" #> SHtml.textarea(outData, outData = _) &
     "#deleteProblem" #> SHtml.button(Text("Usuń"), deleteProblem, "title" -> "Usuń", "style" -> "display:none") &
     "#saveProblem" #> SHtml.submit("Zapisz", saveProblem, "title" -> "Zapisz", "style" -> "display:none")
   }

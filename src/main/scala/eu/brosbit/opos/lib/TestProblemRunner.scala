@@ -10,6 +10,7 @@ import net.liftweb.json.JsonDSL._
 import java.util.Date
 
 object TestProblemRunner {
+  var clearingCounter = 0
   val maxTestSimultaneously = 5
   val path = eu.brosbit.opos.lib.ConfigLoader.judgeDir
   val toTestQueue:mutable.Queue[CodeToTest] = mutable.Queue[CodeToTest]()
@@ -23,6 +24,7 @@ object TestProblemRunner {
     val testProblemTries = TestProblemTry.findAll( ("checked" -> false)~( "running" -> false))
       .sortWith((tpt1, tpt2) => tpt1.aDate < tpt2.aDate)
     testProblemTries.foreach( tpt => {
+      println("START TEST: " + tpt._id.toString)
       tpt.running = true
       tpt.timeRun = new Date().getTime
       tpt.save
@@ -30,10 +32,17 @@ object TestProblemRunner {
       if(last >= maxTestSimultaneously) last = 0
       runnerActorTable(last) ! tpt
     })
-    clearNotEndedProblems()
+    clearingCounter += 1
+    if(clearingCounter > 50) {
+      clearNotEndedProblems()
+      clearNotUserDockerImages()
+      clearingCounter = 0
+    }
+
   }
 
   def clearNotEndedProblems(): Unit = {
+    println("START CLEAR PROBLEMS")
     val d = new Date().getTime
     val testProblemTries = TestProblemTry.findAll(("checked" -> false)~( "running" -> true))
       .filter(tpt => tpt.timeRun != 0L && (d - tpt.timeRun) > 60000L)
@@ -43,4 +52,9 @@ object TestProblemRunner {
       tpt.save
     })
   }
+  //TODO: implement!
+  def clearNotUserDockerImages():Unit = {
+
+  }
 }
+

@@ -32,7 +32,7 @@
     </head_merge>
     <div>
    <div class="aBody" onclick="checkProblem.closeEditor(this);">
-   <div data-lift="edu.CheckProblemSn.show">
+   <div data-lift="edu.CheckProblemTeacherSn.show">
     <div  class="jumbotron alert alert-info"><h2>Rozwiązywanie problemu</h2>
       <h3>Tytuł: <span id="titleProblem"></span></h3>
     </div>
@@ -64,13 +64,13 @@
         </div>
 
        </div>
-       <form method="POST" data-lift="edu.CheckProblemSn.runCode">
+       <form method="POST" data-lift="edu.CheckProblemTeacherSn.runCode">
            <input type="text" id="idP"  style="display:none;"/>
            <input type="text" id="langCode" style="display:none;">
            <textarea type="text" id="sendCode" style="display:none;"> </textarea>
            <input id="runCode" style="display:none;" type="submit" />
        </form>
-    <div id="applications" data-lift="edu.CheckProblemSn.showLastTests">
+    <div id="applications" data-lift="edu.CheckProblemTeacherSn.showLastTests">
         <div style=" ">
         <a href="/educontent/problems" class="btn btn-warning" title="Odśwież listę zgłoszeń"
            id="refreshProblemAnchor" style="float:right; margin-right: 20%;" >
@@ -89,7 +89,7 @@
       </div>
     </div>
    </div>
-    <div id="hintWindow" title="Wklej kod lub edytuj kod" style="display: none;" data-lift="edu.CheckProblemSn.getLastCode">
+    <div id="hintWindow" title="Wklej kod lub edytuj kod" style="display: none;" data-lift="edu.CheckProblemTeacherSn.getLastCode">
               <textarea type="text" class="code language-cpp"
                         id="codeSolveProblemEdit" onchange="checkProblem.refresh();">
               </textarea>

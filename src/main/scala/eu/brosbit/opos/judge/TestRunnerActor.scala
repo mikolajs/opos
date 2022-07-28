@@ -8,16 +8,21 @@ class TestRunnerActor(parent:LiftActor)  extends  LiftActor {
   override protected def messageHandler = {
     case tpt:TestProblemTry => {
       val testProblem = TestProblem.find(tpt.problem).getOrElse(TestProblem.create)
-      var info = ""
-      if(testProblem.expectedOutputs.isEmpty) {
-        info = "Error Main: no test data to check"
+      val info = if(testProblem.expectedOutputs.isEmpty) {
+         CodeOutput(4, "Error Main: no test data to check")
       } else {
-        val controlDir = new ControlDir(tpt._id.toString, tpt.code, tpt.lang, testProblem.inputs, testProblem.expectedOutputs)
-        info = controlDir.run
+        val controlDir = new ControlDir(tpt._id.toString, tpt.code, tpt.lang, testProblem.inputs)
+         controlDir.run
       }
       tpt.running = false
-      tpt.outputs = List(info)
-      if(tpt.outputs.head.take(5) != "Error") tpt.good = List(true) else tpt.good = List(false)
+      tpt.checked = true
+      if(info.code > 1) {
+        tpt.outputs = TestValidator.info(info.code)
+        tpt.good = false
+      } else {
+        tpt.good = TestValidator.validate(info.result, testProblem.expectedOutputs)
+        tpt.outputs = if(tpt.good) TestValidator.info(0) else TestValidator.info(1)
+      }
       tpt.save
     }
     case _ => println("ERROR: Sent not proper data")

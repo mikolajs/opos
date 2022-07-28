@@ -1,9 +1,9 @@
 <html>
-<div class="lift:surround?with=educontent;at=content">
-    <head_merge>
-        <link rel="stylesheet" type="text/css" href="/style/jquery.dataTables.css" />
-        <script src="/jquery/jquery.dataTables.min.js" ></script>
-        <script>
+<div class="lift:surround?with=viewer;at=content">
+  <head_merge>
+    <link rel="stylesheet" type="text/css" href="/style/jquery.dataTables.css" />
+    <script src="/jquery/jquery.dataTables.min.js" ></script>
+    <script>
            class Problems {
 
              constructor(){
@@ -45,20 +45,18 @@
               problems = new Problems();
            });
         </script>
-    </head_merge>
-    <div class="well">
-      <h2>Lista problemów</h2>
-        <a href="/educontent/editproblem/0" class="btn btn-success" style="float:right;"><span class="glyphicon glyphicon-plus"></span> Dodaj problem</a>
-        <br/>
-    </div>
-    <br/>
-    <div>
-        <table id="dataTable">
-            <thead><tr><th>Problem</th><th>Opis</th><th>Edycja</th><th>Rozwiązania</th></tr></thead>
-            <tbody data-lift="edu.ProblemsListSn.showProblems"><tr><td class="col1"></td><td class="col2"></td>
-                <td class="col3"></td><td class="col4"></td></tr></tbody>
-            <tfoot><tr><th>Problem</th><th>Opis</th><th>Edycja</th><th>Rozwiązania</th></tr></tfoot>
-        </table>
-    </div>
+  </head_merge>
+  <div class="well">
+    <h2>Lista problemów</h2>
+  </div>
+  <br/>
+  <div>
+    <table id="dataTable">
+      <thead><tr><th>Problem</th><th>Opis</th><th>Zgłaszanie</th></tr></thead>
+      <tbody data-lift="view.ProblemsListSn.showProblems"><tr><td class="col1"></td><td class="col2"></td>
+        <td class="col3"></td></tr></tbody>
+      <tfoot><tr><th>Problem</th><th>Opis</th><th>Zgłaszanie</th></tr></tfoot>
+    </table>
+  </div>
 </div>
 </html>

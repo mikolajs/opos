@@ -177,6 +177,8 @@ class Boot {
         Menu("Tematy") / "view" / "themes" / ** >> LocGroup("view") >> loggedIn,
         Menu("Kursy") / "view" / "courses" >> LocGroup("view") >> loggedIn,
         Menu("Sprawdziany") / "view" / "exams" >> LocGroup("view") >> loggedIn,
+        Menu("Problemy") / "view" / "problems" >> LocGroup("view") >> loggedIn,
+        Menu("Uruchom test problemu") / "view" / "checkproblem" / ** >> LocGroup("extra") >> loggedIn,
         Menu("Zobacz lekcję") / "view" / "course" / ** >> LocGroup("extra") >> loggedIn,
         Menu("MassagesWork") / "view" / "showmessageswork" / ** >> LocGroup("extra") >> loggedIn,
         Menu("Quiz") / "view" / "showquiz" / ** >> LocGroup("extra") >> Hidden >> loggedIn,
@@ -195,6 +197,7 @@ class Boot {
         Menu("Grupy") / "educontent" / "groups" >> LocGroup("edu") >> isTeacher,
         Menu("Ustawienia") / "educontent" / "options" >> LocGroup("edu") >> isTeacher,
         Menu("Lekcje") / "educontent" / "course" / ** >> LocGroup("extra") >> isTeacher,
+        Menu("Przegląd rozwiązań problemów") / "educontent" / "showproblemresults" / ** >> LocGroup("extra") >> isTeacher,
         Menu("Sprawdziany edycja") / "educontent" / "editexam" / ** >> LocGroup("extra") >> isTeacher,
         Menu("Praca edycja") / "educontent" / "editwork" / ** >> LocGroup("extra") >> isTeacher,
         Menu("Lista odpowiedzi") / "educontent" / "showexams" / ** >> LocGroup("extra") >> isTeacher,
@@ -315,6 +318,10 @@ class Boot {
         RewriteResponse(
           "educontent" :: "checkproblem" :: Nil, Map("id" -> problemId))
       case RewriteRequest(
+      ParsePath("educontent" :: "showproblemresults" :: problemId :: groupId :: Nil, _, _, _), _, _) =>
+        RewriteResponse(
+          "educontent" :: "showproblemresults" :: Nil, Map("problemId" -> problemId, "groupId" -> groupId))
+      case RewriteRequest(
       ParsePath("educontent" :: "showlessonslides" :: lessonId :: Nil, _, _, _), _, _) =>
         RewriteResponse(
           "educontent" :: "showlessonslides" :: Nil, Map("id" -> lessonId))
@@ -370,6 +377,10 @@ class Boot {
       ParsePath("view" :: "course" :: lessonId :: Nil, _, _, _), _, _) =>
         RewriteResponse(
           "view" :: "course" :: Nil, Map("id" -> lessonId))
+      case RewriteRequest(
+      ParsePath("view" :: "checkproblem" :: problemId :: Nil, _, _, _), _, _) =>
+        RewriteResponse(
+          "view" :: "checkproblem" :: Nil, Map("id" -> problemId))
       case RewriteRequest(
       ParsePath("view" :: "showmessageswork" :: workId  :: Nil, _, _, _), _, _) =>
         RewriteResponse(

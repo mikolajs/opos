@@ -17,7 +17,7 @@ object ConfigLoader {
 
   val lines = Source.fromFile(f).getLines().toList
 
-  def init = lines.map(line => {
+  def init:Unit = lines.map(line => {
     val opt = line.split('=').map(x => x.trim)
     if (opt.length == 2) {
       opt.head match {
@@ -32,9 +32,10 @@ object ConfigLoader {
         case _ =>
       }
     }
-    //printInfo
+   //println(printInfo)
   })
 
-  def printInfo = "sqlPass: %s, sqlDB: %s, mongoDB: %s".format(sqlPassw, sqlDB, mongoDB)
+  def printInfo = "sqlPass: %s, sqlDB: %s, mongoDB: %s emailSMTP %s"
+    .format(sqlPassw, sqlDB, mongoDB, emailSMTP)
 
 }

@@ -5,45 +5,48 @@ import eu.brosbit.opos.lib.ConfigLoader
 import java.io.FileWriter
 import java.io.PrintWriter
 
+case class CodeOutput(code:Int, result:String)
 
 /*
   Temporary it serve for one data for test in expected list!
  */
-class ControlDir(id: String, source:String, extension:String, data:List[String], expected:List[String]){
+class ControlDir(id: String, source:String, extension:String, data:String){
 
   val mainDir = if(ConfigLoader.judgeDir.last == '/') ConfigLoader.judgeDir  else ConfigLoader.judgeDir + "/"
   val dockerImageName = "opos-ubuntu-" + id
   val fullPath = mainDir + "test_" + id
   val timeTest = 3
 
+  println("CONTROLDIR RUN with Extension: " + extension)
+  println(source)
 
-  def run:String = {
+  def run: CodeOutput = {
     deleteDir
     val info = runHelper
-    //deleteDir
+    deleteDir
     info
   }
 
-  private def runHelper:String = {
-    if(!createDir) return "Error: cannot create dir, connect with administrator"
+  private def runHelper:CodeOutput = {
+    if(!createDir) return CodeOutput(4, "Error: cannot create dir, connect with administrator")
     val sourceFile = createFile("test."+extension, source)
-    if(!sourceFile.exists()) return "Error: cannot create source file, connect with administrator"
-    val dataFile = createFile("dane.txt", data.head)
-    if(!dataFile.exists()) return "Error: cannot create source file, connection with administrator"
+    if(!sourceFile.exists()) return CodeOutput(4, "Error: cannot create source file, connect with administrator")
+    val dataFile = createFile("dane.txt", data)
+    if(!dataFile.exists()) return CodeOutput(4, "Error: cannot create source file, connection with administrator")
     if(extension == "cpp") {
       //println("COMPILE")
-      val compileInfo = compileCpp(extension).toLowerCase()
-       //println("COMPILE INFO: " + compileInfo)
-      if(compileInfo.contains("error")) return "Error: compilation error source file, " + compileInfo
+      val compileInfo = compileCpp(extension)
+       println("COMPILE INFO: " + compileInfo)
+      if(compileInfo._2 != 0) return CodeOutput(3, "Error: compilation error source file, " + compileInfo)
     }
     val dockerFile = createDockerfile(1)
-    if(!dockerFile.exists()) return  "Error: cannot create docker file";
+    if(!dockerFile.exists()) return  CodeOutput(4, "Error: cannot create docker file")
     val imageInfo = runBuildDockerImage //Errors??
-    if(!imageInfo.toLowerCase().contains("successfully")) return "Error: cannot build docker image"
+    if(!imageInfo.toLowerCase().contains("successfully")) return CodeOutput(4, "Error: cannot build docker image")
 
     val output = runTestProgramInDocker
     runDeleteDockerImage
-    output
+    CodeOutput(0, output)
   }
 
   private def createDir: Boolean = {
@@ -78,10 +81,9 @@ class ControlDir(id: String, source:String, extension:String, data:List[String],
     val compile = "g++ -o " + mkFilePath("test") + " " + mkFilePath("test."+extension)
     import sys.process._
     val sb = new StringBuffer()
-    val outInfo = (compile run BasicIO(false, sb, None)).exitValue
+    val exitVal = (compile run BasicIO(false, sb, None)).exitValue()
     //println("COMPILE COMMAND: " + compile)
-    println(outInfo)
-    sb.toString
+    (sb.toString, exitVal)
   }
 
   def runCpp = {

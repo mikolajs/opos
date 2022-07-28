@@ -13,17 +13,23 @@ class CheckProblem {
      });
         this.codeEditor = $('#codeSolveProblemEdit');
         this.codeShow = $('#codeSolveProblemShow');
-        console.log(this.codeEditor.val());
+        //console.log(this.codeEditor.val());
         this.codeEditorJS = this.codeEditor.get(0);
         this.codeShowJS = this.codeShow.get(0);
 
-        console.log(this.codeEditorJS.value);
+        //console.log(this.codeEditorJS.value);
         document.getElementById("showCodeEditor").addEventListener('click', (e) => {
           this.showHint(e);
         });
         //this.codeEditor.val(this.codeHidden.val());
         //console.log('Numbers tests before check: ' + this.testsNumbs);
-        this.lang = 'cpp';
+        let ll = document.getElementById("lastLang").value;
+        console.log('Loaded lastLang: ' + ll);
+        if(ll == '') this.lang = 'cpp';
+        else {
+            this.lang = ll;
+            document.getElementById('langChoice').value = ll;
+        }
         this.refresh();
     }
 
@@ -38,7 +44,6 @@ class CheckProblem {
     }
 
     showHint(e){
-        console.log("Open HINT");
         if(!this.isOpen) {
          $('#hintWindow').dialog('open');
          e.stopPropagation();
@@ -47,13 +52,11 @@ class CheckProblem {
     }
 
     closeHint(){
-      console.log("start close hint");
         $('#hintWindow').dialog('close');
         this.isOpen = false;
     }
 
     closeEditor(elem){
-      console.log("Start close Editor");
         if(this.isOpen){
             this.isOpen = false;
             this.refresh();
@@ -62,9 +65,6 @@ class CheckProblem {
     }
 
     saveProblem(){
-       console.log($("#idP").val());
-       console.log(this.lang);
-       console.log(this.codeEditorJS.value);
        $("#sendCode").val(this.codeEditorJS.value);
        $("#langCode").val(this.lang);
       $("#runCode").trigger('click');

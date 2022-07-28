@@ -10,13 +10,14 @@ import _root_.net.liftweb.mapper._
 import _root_.net.liftweb.util._
 import _root_.net.liftweb.common._
 import Mailer._
+import eu.brosbit.opos.lib.ConfigLoader
 
 /**
  * The singleton that has methods for accessing the database
  */
 object User extends User with MetaMegaProtoUser[User] {
   override def dbTableName = "users" // define the DB table name
-
+  override def emailFrom = ConfigLoader.emailAddr
   //override def dbIndexes=UniqueIndex(pesel)::super.dbIndexes
 
   // define the order fields will appear in forms and output
@@ -44,6 +45,7 @@ object User extends User with MetaMegaProtoUser[User] {
  */
 class User extends MegaProtoUser[User] {
   def getSingleton = User
+
 
   // what's the "meta" server
 
