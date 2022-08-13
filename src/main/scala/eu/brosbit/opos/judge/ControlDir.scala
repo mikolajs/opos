@@ -17,8 +17,8 @@ class ControlDir(id: String, source:String, extension:String, data:String){
   val fullPath = mainDir + "test_" + id
   val timeTest = 3
 
-  println("CONTROLDIR RUN with Extension: " + extension)
-  println(source)
+  //println("CONTROLDIR RUN with Extension: " + extension)
+  //println(source)
 
   def run: CodeOutput = {
     deleteDir

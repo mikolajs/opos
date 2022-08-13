@@ -29,7 +29,7 @@
     </style>
 
     </head_merge>
-    <div>
+    <div onclick="showProblemResults.closeEditor(this);">
             <div data-lift="edu.ShowProblemResultsSn.show">
                 <div  class="jumbotron alert alert-info"><h2>Rozwiązywania problemu</h2>
                     <h3>Tytuł: <span id="titleProblem"></span></h3>
@@ -46,10 +46,6 @@
                     </div>
             </div>
                     <hr/>
-        <div id="showCodeEditor" class="slide">
-            <pre id="codeSolveProblemShow">
-            </pre>
-        </div>
          <!-- <div data-lift="edu.ShowProblemResultsSn.showJson">
              <textarea id="jsonData"></textarea>
          </div> -->
@@ -69,14 +65,18 @@
                             <tr class="checkTr"><td class="col1"></td><td class="col2"></td>
                               <td class="col3"></td>
                                 <td class="col4">
-                                    <span class="code" style="display:none;"></span>
-                                    <button class="btn btn-success" onclick="showProblemResults.showCode(this);"
+                                    <textarea class="code" style="display:none;"></textarea>
+                                    <button class="btn btn-success" onclick="showProblemResults.showCode(this, event);"
                                     ><span class="glyphicon glyphicon-search"></span>Kod</button>
                                 </td>
                             </tr>
                         </table>
                     </div>
                 </div>
+            </div>
+            <div id="hintWindow" title="Wklej kod lub edytuj kod" style="display: none;">
+                      <pre type="text" class="code" id="codeSolveProblemShow">
+                      </pre>
             </div>
     </div>
 </div>

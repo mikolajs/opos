@@ -2,25 +2,29 @@ package eu.brosbit.opos.api
 
 import com.mongodb.gridfs.GridFS
 import com.mongodb.BasicDBObject
+import eu.brosbit.opos.api.JsonExportImport.{CourseImport, DocumentsImport, LessonImport, PresentationImport, ProblemImport, QuestionImport, VideoImport}
 
 import java.io.{ByteArrayInputStream, ByteArrayOutputStream}
 import eu.brosbit.opos.lib.Zipper
 import eu.brosbit.opos.model.User
-import eu.brosbit.opos.model.edu.{Document, LessonCourse, QuizQuestion, Slide, SlideContent, Video}
+import eu.brosbit.opos.model.edu.{Course, Document, LessonCourse, Presentation, QuizQuestion, Slide, SlideContent, Video}
+import eu.brosbit.opos.model.TestProblem
 import net.liftweb.json.JsonDSL._
 import net.liftweb.common.{Box, Full}
 import net.liftweb.http.{InMemoryResponse, LiftResponse, NotFoundResponse, StreamingResponse}
 import net.liftweb.mongodb.{DefaultMongoIdentifier, MongoDB}
 import org.bson.types.ObjectId
 
+import java.nio.file.{Files, Paths}
+
 
 object Exports {
 
   ///not used
-  def slides(what: String): Box[LiftResponse] = what match {
+ /* def slides(what: String): Box[LiftResponse] = what match {
     case "slides" => ImportExportSlides.zip()
     case _ => Full(NotFoundResponse("Not found"))
-  }
+  } */
 
   def export(): Box[LiftResponse] = {
     val mime = "zip"
@@ -41,14 +45,6 @@ object Exports {
     }
   }
 
-  def jsonExportString(user: User): String = {
-    val files = getImgsAndFiles(user)
-    val presentations = getPresentations(user)
-    s"""{"docs": ${getDocuments(user)}, "quests": ${getQuizQuestions(user)}, "slides": {${presentations}} },
-       | "videos": ${getVideos(user)}, "files": ${files}}""".stripMargin
-
-  }
-
   private val packager = new Zipper()
 
   object JsonFileNames extends Enumeration {
@@ -57,7 +53,8 @@ object Exports {
     val Questions:Value = Value("questions.json")
     val Videos:Value = Value("videos.json")
     val Lessons:Value  = Value("lessons.json")
-    val Files:Value = Value("files.json")
+    val Problems:Value = Value("problems.json")
+    val Courses:Value = Value("courses.json")
   }
 //TODO: implement files to zip
   private def createZip(user:User): Array[Byte] = {
@@ -73,23 +70,27 @@ object Exports {
       JsonFileNames.Presentations.toString -> (s""""${JsonFileNames.Presentations.toString.split('.').head}":${getPresentations(user)}"""),
       JsonFileNames.Questions.toString     -> (s""""${JsonFileNames.Questions.toString.split('.').head}":${getQuizQuestions(user)}"""),
       JsonFileNames.Videos.toString        -> (s""""${JsonFileNames.Videos.toString.split('.').head}":${getVideos(user)}"""),
-      JsonFileNames.Files.toString         -> (s""""${JsonFileNames.Files.toString.split('.').head}":${getImgsAndFiles(user)}"""),
-      JsonFileNames.Lessons.toString       -> (s""""${JsonFileNames.Lessons.toString.split('.').head}":${getLessonCourses(user)}""")
+      JsonFileNames.Lessons.toString       -> (s""""${JsonFileNames.Lessons.toString.split('.').head}":${getLessonCourses(user)}"""),
+      JsonFileNames.Problems.toString       -> (s""""${JsonFileNames.Problems.toString.split('.').head}":${getProblems(user)}"""),
+      JsonFileNames.Courses.toString       -> (s""""${JsonFileNames.Courses.toString.split('.').head}":${getCourses(user)}""")
     )
   }
 
   private def getDocuments(user: User) = {
-    val docs = Document.findAll("authorId" -> user.id.get).map(d => d.strJson)
-      .mkString(", ")
+    val docs = Document.findAll("authorId" -> user.id.get).map(d => {
+      DocumentsImport(d._id.toString, d.title, d.descript, d.subjectName, d.department, d.content, d.lev).toJson
+    }).mkString(", ")
     "[" + docs + "]"
   }
   private def getQuizQuestions(user: User) = {
-    val quizzes = QuizQuestion.findAll("authorId" -> user.id.get).map(q => q.strJson)
-      .mkString(", ")
+    val quizzes = QuizQuestion.findAll("authorId" -> user.id.get).map(q => {
+      QuestionImport(q._id.toString, q.dificult, q.lev, q.subjectName, q.info, q.question, q.department, q.answers, q.fake, q.hint).toJson
+    }).mkString(", ")
     "[" + quizzes + "]"
   }
 
-  private def getPresentations(user:User) = {
+  //TO delete after change to Presentation
+  private def getSlides(user:User) = {
     val slides = Slide.findAll("authorId" -> user.id.get)
     val slideContents = SlideContent.findAll("_id" -> {
       "$in" -> slides.map(_.slides.toString)
@@ -99,12 +100,23 @@ object Exports {
       "\"slidesContent\":[" + slideContents.map(s => s.strJson).mkString(", ") + "]}"
   }
 
+  private def getPresentations(user: User) = {
+    val presentations = Presentation.findAll("authorId"->user.id.get).map(p => {
+      PresentationImport(p._id.toString, p.title, p.descript, p.subjectName, p.department, p.slides, p.lev).toJson
+    }).mkString(", ")
+    "[" + presentations + "]"
+  }
+
   private def getVideos(user:User) = {
-    val videos = Video.findAll("authorId" -> user.id.get).map(v => v.strJson).mkString(",<br/>\n")
+    val videos = Video.findAll("authorId" -> user.id.get).map(v => {
+      VideoImport(v._id.toString, v.title, v.descript, v.subjectName, v.department, v.link, v.lev, v.onServer, v.mime, v.oldPath).toJson
+    }).mkString(", ")
     "[" + videos + "]"
   }
   private def getLessonCourses(user:User) = {
-    val lessons = LessonCourse.findAll("authorId"->user.id.get).map(l => {l.strJson}).mkString("\n")
+    val lessons = LessonCourse.findAll("authorId"->user.id.get).map(l => {
+      LessonImport(l._id.toString, l.title, l.descript, l.chapter, l.courseId.toString, l.contents, l.nr)
+    }).mkString(", ")
     "[" + lessons + "]"
   }
 
@@ -134,6 +146,27 @@ object Exports {
           byteArrayOutputStream.reset()
         }
     }
+    //testSaveFiles(filesMap)
     filesMap
   }
+
+  private def getProblems(user: User) = {
+    val userId = user.id.get
+    val problems = TestProblem.findAll("author"->userId).map(tp =>
+      {
+        ProblemImport(tp._id.toString, tp.title, tp.description, tp.info, tp.inputs, tp.expectedOutputs).toJson
+      }).mkString(", ")
+    "[" + problems + "]"
+  }
+
+  private def getCourses(user: User) = {
+    val userId = user.id.get
+    val courses = Course.findAll("authorId"->userId).map(c => {
+      CourseImport(c._id.toString, c.title, c.chapters, c.subjectName, c.descript, c.img).toJson
+    }).mkString(", ")
+    "[" + courses + "]"
+  }
+
+
+
 }

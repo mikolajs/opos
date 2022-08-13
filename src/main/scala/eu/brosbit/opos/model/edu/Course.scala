@@ -2,7 +2,9 @@ package eu.brosbit.opos.model.edu
 
 import _root_.net.liftweb.mongodb._
 import org.bson.types.ObjectId
+
 import java.util.Date
+import scala.util.parsing.json.JSONFormat.quoteString
 
 object EduLevels extends Enumeration(1) {
   type EduLevels = Value
@@ -30,5 +32,10 @@ case class Course(var _id: ObjectId, var title: String, var subjectId: Long,
   def meta = Course
 
   def getInfo = title + " - " + subjectName + ", grupy: " + groupsInfo
+
+  def toJsonStr =
+    s"""{"_id":"${_id.toString}", "title":"${quoteString(title)}", "descript":"${quoteString(descript)}",
+       |"descript":"$descript", "chapters": [${chapters.mkString(",")}], "img":"$img", "subjectName": $subjectName}
+       |""".stripMargin
 
 }

@@ -18,6 +18,18 @@ class ShowProblemResults {
     }
     this.user = 'all';
     this.good = false;
+    this.isOpen = false;
+    let self = this;
+    $('#hintWindow').dialog({
+      autoOpen : false,
+      height : 400,
+      width : 550,
+      modal : false,
+      close : function() {
+          self.isOpen = false;
+      }
+   });
+
   }
 
   onlyGood(elem){
@@ -52,10 +64,24 @@ class ShowProblemResults {
      window.location.assign(lok+"/"+c)
   }
 
-  showCode(elem){
-    let c = elem.parentElement.firstChild.innerHTML;
-    console.log(c);
-    let d = hljs.highlight(c, {language: 'cpp'}).value;
-    document.getElementById('codeSolveProblemShow').value = d;
+  showCode(elem, e){
+    if(!this.isOpen){
+      e.stopPropagation();
+      let c = elem.parentElement.firstChild;
+      if(c.nodeName.toLowerCase() != 'pre') c = c.nextSibling;
+      //console.log(c.innerHTML);
+      let d = hljs.highlight(c.value, {language: 'cpp'}).value;
+      //console.log(d);
+      document.getElementById('codeSolveProblemShow').innerHTML = d;
+      $('#hintWindow').dialog('open');
+      this.isOpen = true;
+    }
+  }
+
+  closeEditor(elem){
+    if(this.isOpen){
+        this.isOpen = false;
+        $('#hintWindow').dialog('close');
+    }
   }
 }

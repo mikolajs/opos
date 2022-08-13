@@ -20,13 +20,13 @@ class ShowProblemResultsSn {
   val groupsSelect = allGroups.map(g => (g._id.toString -> g.name))
   if(allGroups.length == 0) S.redirectTo("/educontent/groups")
   val group = if(groupId == "0") allGroups.head else allGroups.find(_._id.toString == groupId).getOrElse(allGroups.head)
-  println("GROUP: " + group.name)
+  //println("GROUP: " + group.name)
   val problem = if(problemId == "0") TestProblem.create else TestProblem.find(problemId).getOrElse(TestProblem.create)
   val allIdPupils = group.students.map(_.id)
-  println("STUDENTS: " + allIdPupils.mkString(", "))
+  //println("STUDENTS: " + allIdPupils.mkString(", "))
   val aTrays = TestProblemTry.findAll(("problem" -> problem._id.toString)~("checked"->true)~("author" -> ("$in" -> allIdPupils)) )
       .sortWith((t1, t2) => t1.aDate > t2.aDate)
-  println("TRAYS: " + aTrays.length)
+  //println("TRAYS: " + aTrays.length)
   def show:CssSel = {
     val titleP = problem.title
     //var infoP = problem.info
@@ -47,9 +47,9 @@ class ShowProblemResultsSn {
   private def mkTestJson = "[" + aTrays.map(_.jsonStr).mkString(",") + "]"
 
   def showLastTests: CssSel = {
-    println("START ShowLastTests!!!!!!!")
+    //println("START ShowLastTests!!!!!!!")
     ".checkTr *" #> aTrays.map(aTray => {
-      println("aTray: " + aTray.outputs)
+      //println("aTray: " + aTray.outputs)
       ".col1 [id]" #> ((if(aTray.good) "G" else "B") + aTray._id.toString) &
         ".col1 *" #> aTray.authorInfo &
         ".col2 *" #> Formater.formatTimeForSort(new Date(aTray.aDate)) &

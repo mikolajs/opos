@@ -5,6 +5,7 @@ import java.util.zip.{CRC32, Deflater, ZipEntry, ZipInputStream, ZipOutputStream
 import com.sun.xml.messaging.saaj.util.ByteOutputStream
 
 import java.io.{ByteArrayInputStream, ByteArrayOutputStream}
+import java.nio.file.{Files, Paths}
 
 class Zipper() {
   private val dir = "dane/"
@@ -52,14 +53,16 @@ class Zipper() {
   def toZipJsonAndBinary(jsonMap: Map[String, String], binMap: Map[String, Array[Byte]]): Array[Byte] = {
     val out = new ByteOutputStream()
     val zip = new ZipOutputStream(out)
+    //TODO: trying to compress stored
     zip.setMethod(ZipOutputStream.DEFLATED)
-    //zip.setLevel(Deflater.NO_COMPRESSION)
+    zip.setLevel(Deflater.DEFLATED)
     //val zipped = compressor.mkCompress(bytes)
     addTextFiles(jsonMap, zip)
     addBinFiles(binMap, zip)
-    val zipData = out.getBytes
+
     zip.flush()
-    zip.finish()
+    //zip.finish()
+    val zipData = out.getBytes
     zip.close()
     zipData
   }
@@ -76,13 +79,18 @@ class Zipper() {
   }
 
   private def addBinFiles(map: Map[String, Array[Byte]], zip: ZipOutputStream): Unit= {
+   // zip.setLevel(Deflater.NO_COMPRESSION)
+    //testSaveFiles(map)
     map.keys.map(key => {
       val bytes = map(key)
-      val entry = new ZipEntry(dir + "pliki/"+ key)
+      val entry = new ZipEntry(dir + "files/" + key)
+      entry.setSize(bytes.length)
       zip.putNextEntry(entry)
-      zip.write(bytes)
+      zip.write(bytes, 0, bytes.length)
       zip.flush()
+     // zip.finish()
       zip.closeEntry()
+
     })
   }
 
@@ -90,28 +98,20 @@ class Zipper() {
     val input = new ByteArrayInputStream(array)
     val zip = new ZipInputStream(input)
     var map = Map[String, Array[Byte]]()
-    var entry:ZipEntry = null
-    val buffer = new Array[Byte](array.length*10)
-    do {
-      entry = zip.getNextEntry
-      if(entry != null) {
-        val out = new ByteArrayOutputStream()
-        val key = entry.getName
-        var len = 0
-        do {
-          len = zip.read(buffer)
-          if(len > 0) {
-            out.write(buffer, 0, len)
-          }
-        }
-        while(len > 0)
-        val b = out.toByteArray
-        map = map + (key -> b )
-        out.close()
+    var entry:ZipEntry = zip.getNextEntry
+    while(entry != null) {
+      val key = entry.getName
+      println("READ ZIP : " + key)
+      if(entry != null && !entry.isDirectory) {
+        val d = zip.readAllBytes()
+        map = map + (key -> d)
       }
-    } while (entry != null)
+      zip.closeEntry()
+      entry = zip.getNextEntry
+    }
     input.close()
     zip.close()
+    testSaveFiles(map)
     map
   }
 
@@ -146,7 +146,15 @@ class Zipper() {
     map
   }
 
-
+  private def testSaveFiles(fMap: Map[String, Array[Byte]]) = {
+    val testDir = "/home/ms/Dokumenty/opostest/"
+    Files.createDirectory(Paths.get(testDir + "dane/"))
+    Files.createDirectory(Paths.get(testDir + "dane/files/"))
+    fMap.keys.foreach(k => {
+      val path = Paths.get(testDir + k)
+      Files.write(path, fMap(k))
+    })
+  }
 
   /*
   def createReport() = {
