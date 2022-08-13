@@ -46,18 +46,18 @@ class BaseShowCourseSn  {
     val listDocs = docum.map(d => d.id.drop(1))
 
     val vs = Video.findAll(("_id" -> ("$in" -> listVideos)))
-    val ps = Slide.findAll(("_id" -> ("$in" -> listHWid)))
+    val ps = Presentation.findAll(("_id" -> ("$in" -> listHWid)))
     val qts = QuizQuestion.findAll(("_id" -> ("$in" -> listQid)))
     val docs = Document.findAll(("_id" -> ("$in" -> listDocs)))
 
     val content = lesson.contents.map(item => item.what match {
       case "p" => {
         val slide = ps.find(i => i._id.toString == item.id.drop(1)).
-          getOrElse(Slide.create)
-        val slideCont = SlideContent.find(slide.slides).getOrElse(SlideContent.create)
+          getOrElse(Presentation.create)
         val link = "<div class=\"slideLink\"><a href=\"/showslide/" + slide._id.toString +
-          "\" target=\"_blank\"><img src=\"/images/fullscreen.png\" /> </a><div>"
-        "<section class=\"presentation\">" + link + slideCont.slides + "</section>"
+          "\" target=\"_blank\"><img src=" +
+          "\"/images/fullscreen.png\" /> </a><div>"
+        "<section class=\"presentation\">" + link + slide.slides + "</section>"
       }
       case "q" => {
         createQuest(qts.find(q => q._id.toString == item.id.drop(1)).

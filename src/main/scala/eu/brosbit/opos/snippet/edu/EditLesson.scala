@@ -133,7 +133,7 @@ class EditLesson extends BaseLesson {
           "[" + str + "]"
         }
         case "p" => {
-          val str = Slide.findAll(lookingQuest)
+          val str = Presentation.findAll(lookingQuest)
             .map(h => "[ '" + h._id.toString + "',  '" + h.title + "', '" + h.descript + "']")
             .mkString(",")
           "[" + str + "]"

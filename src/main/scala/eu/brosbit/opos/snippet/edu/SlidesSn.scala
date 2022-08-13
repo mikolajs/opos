@@ -29,7 +29,7 @@ class SlidesSn extends BaseResourceSn {
 
   def slidesList() = {
     val idUser = user.id.get
-    val slides = Slide.findAll(("authorId" -> idUser))
+    val slides = Presentation.findAll(("authorId" -> idUser))
     "tbody tr" #> slides.map(slide => {
       <tr>
         <td>

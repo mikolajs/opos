@@ -2,7 +2,7 @@ package eu.brosbit.opos.snippet.edu
 
 import _root_.net.liftweb._
 import util._
-import eu.brosbit.opos.model.edu.{Slide}
+import eu.brosbit.opos.model.edu.{Presentation, Slide}
 import json.JsonDSL._
 import Helpers._
 
@@ -11,7 +11,7 @@ class PresentationsSn extends BaseResourceSn {
 
   def slidesList() = {
 
-    val slides = Slide.findAll(query)
+    val slides = Presentation.findAll(query)
     "tbody tr" #> slides.map(slide => {
       <tr>
         <td>

@@ -7,7 +7,7 @@ import http.{S, SHtml}
 import common._
 import util._
 import eu.brosbit.opos.model._
-import eu.brosbit.opos.model.edu.{Slide, SlideContent, SubjectTeach}
+import eu.brosbit.opos.model.edu.{Presentation, SubjectTeach}
 import json.JsonDSL._
 import Helpers._
 
@@ -16,9 +16,8 @@ class EditPresentationSn {
   private val user = User.currentUser.openOrThrowException("Niezalogowany nauczyciel")
   private val id = S.param("id").openOr("0")
   private val subId = S.param("s").openOr("0")
-  private val slideHead = if (id == "0") Slide.create else Slide.find(id).getOrElse(Slide.create)
-  private val slideCont = SlideContent.find(slideHead.slides.toString).getOrElse(SlideContent.create)
-  private val subIdLong = if (slideHead.subjectId == 0L) subId.toLong else slideHead.subjectId
+  private val slide = if (id == "0") Presentation.create else Presentation.find(id).getOrElse(Presentation.create)
+  private val subIdLong = if (slide.subjectId == 0L) subId.toLong else slide.subjectId
   private val subjectNow = SubjectTeach.findAll(("id" -> subIdLong) ~ ("authorId" -> user.id.get)) match {
     case sub :: _ => sub
     case _ => S.redirectTo("/educontent/presentations")
@@ -35,26 +34,25 @@ class EditPresentationSn {
   //for showSlides - viewer
   def slidesData(): CssSel = {
     "#title" #> <span>
-      {slideHead.title}
+      {slide.title}
     </span> &
       "#subject" #> <span>
-        {slideHead.subjectName}
+        {slide.subjectName}
       </span>
     //"#headWordHTML" #>  Unparsed(headWordCont.sections.join(""))
   }
 
-
   //edit headWords
   def formEdit(): CssSel = {
 
-    var ID = slideHead._id.toString
-    var title = slideHead.title
+    var ID = slide._id.toString
+    var title = slide.title
     var subjectName = ""
-    var subjectLev = slideHead.lev.toString
-    var contentString = slideCont.slides
-    var department = if(slideHead.department.isEmpty)  departName
-                      else slideHead.department
-    var description = slideHead.descript
+    var subjectLev = slide.lev.toString
+    var contentString = slide.slides
+    var department = if(slide.department.isEmpty)  departName
+                      else slide.department
+    var description = slide.descript
     //println("------------headWords data -----------------\n" +headWordsData)
 
     val departments = subjectNow.departments.map(s => {
@@ -64,28 +62,25 @@ class EditPresentationSn {
 
     def saveData() {
       val userId = User.currentUser.openOrThrowException("NOT LOGGED USER").id.get
-      if (slideHead.authorId == 0L || slideHead.authorId == userId) {
+      if (slide.authorId == 0L || slide.authorId == userId) {
         //val contentHtml = Unparsed(contentString)
-        slideHead.title = title
-        slideHead.subjectId = subjectNow.id
-        slideHead.subjectName = subjectNow.name
-        slideHead.lev = subjectLev.toInt
-        slideHead.department = department
-        slideHead.authorId = userId
-        slideHead.descript = description
-        slideCont.slides = contentString
-        slideHead.slides = slideCont._id
-        slideHead.save
-        slideCont.save
+        slide.title = title
+        slide.subjectId = subjectNow.id
+        slide.subjectName = subjectNow.name
+        slide.lev = subjectLev.toInt
+        slide.department = department
+        slide.authorId = userId
+        slide.descript = description
+        slide.slides = contentString
+        slide.save
       }
-      S.redirectTo("/educontent/editpresentation/" + slideHead._id.toString) //!important must refresh page
+      S.redirectTo("/educontent/editpresentation/" + slide._id.toString) //!important must refresh page
     }
 
     def deleteData() {
       val userId = User.currentUser.openOrThrowException("NOT LOGGED USER").id.get
-      if (id != "0" && slideHead.authorId == userId){
-          slideHead.delete
-          slideCont.delete
+      if (id != "0" && slide.authorId == userId){
+          slide.delete
       }
       S.redirectTo("/educontent/presentations")
     }
@@ -93,7 +88,6 @@ class EditPresentationSn {
     def cancelAction() {
       S.redirectTo("/educontent/presentations")
     }
-
 
     "#id" #> SHtml.text(ID, ID = _, "type" -> "hidden") &
       "#title" #> SHtml.text(title, title = _, "class" -> "Name") &

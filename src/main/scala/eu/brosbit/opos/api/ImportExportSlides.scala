@@ -3,7 +3,7 @@ package eu.brosbit.opos.api
 import net.liftweb._
 import common._
 import http._
-import eu.brosbit.opos.model.edu.{Slide, SlideContent}
+import eu.brosbit.opos.model.edu.Presentation
 import java.util.zip.{ZipOutputStream, ZipEntry, ZipInputStream, CRC32}
 import java.io.{ ByteArrayInputStream, ByteArrayOutputStream}
 import com.mongodb.gridfs._
@@ -109,10 +109,9 @@ object ImportExportSlides {
     val zos = new ZipOutputStream(baos)
     val crc = new CRC32
     zos.setLevel(9)
-    val slides = Slide.findAll("authorId" -> user.id.get).map(sh => {
-      val sc = SlideContent.find(sh.slides).getOrElse(SlideContent.create)
+    val slides = Presentation.findAll("authorId" -> user.id.get).map(sh => {
       val reg = """ src=\"(.*)\"""".r
-      val srcs = reg.findAllIn(sc.slides)
+      val srcs = reg.findAllIn(sh.slides)
       var imgs:List[String] = Nil
       while(srcs.hasNext) {
         val ar = srcs.next.split('"')
@@ -143,7 +142,7 @@ object ImportExportSlides {
       })
       <slide>
         <title>{ sh.title }</title>
-        <content>{Unparsed(sc.slides.replaceAll("&.{2,4};", ""))}</content>
+        <content>{Unparsed(sh.slides.replaceAll("&.{2,4};", ""))}</content>
       </slide>
     })
 
@@ -254,13 +253,10 @@ object ImportExportSlides {
       val title = (slide \ "title").text
       println(title)
       val content =  ((slide \ "content") \ "section").mkString("\n")
-      val slideMod = Slide.create
+      val slideMod = Presentation.create
       slideMod.authorId = uId
       slideMod.title = title
-      val slideContMod = SlideContent.create
-      slideContMod.slides = content
-      slideContMod.save
-      slideMod.slides = slideContMod._id
+      slideMod.slides = content
       slideMod.save
     })
   }

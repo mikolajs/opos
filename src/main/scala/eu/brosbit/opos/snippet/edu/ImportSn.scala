@@ -42,6 +42,7 @@ class ImportSn {
           case k if k == Exports.JsonFileNames.Questions.toString => insertQuestions(mapFiles(k), eiz)
           case k if k == Exports.JsonFileNames.Lessons.toString => insertLessons(mapFiles(k), eiz)
           case k if k == Exports.JsonFileNames.Problems.toString => insertProblems(mapFiles(k), eiz)
+          case k if k == Exports.JsonFileNames.Courses.toString => insertCourses(mapFiles(k), eiz)
           case k => println("ERROR: Not found key: " + k)
         }
       }
@@ -148,6 +149,10 @@ class ImportSn {
   private def insertProblems(bytes: Array[Byte], zip: ElementsInZip) = {
     println(bytes)
 
+  }
+
+  private def insertCourses(bytes: Array[Byte], zip:ElementsInZip) = {
+    println(bytes)
   }
 
 

@@ -188,3 +188,20 @@ db.Works.update({}, {$set: {"groupName":""}}, true, true, true);
 db.Exams.update({}, {$set: {"groupId":""}}, true, true, true);
 db.Exams.update({}, {$set: {"groupName":""}}, true, true, true);
 
+#create presentation and insert data from slides and slidesContent
+var cursor = db.slides.find();
+while(cursor.hasNext()){
+  var slide = cursor.next();
+  var cont = db.slidesContent.find({"_id":slide.slides}).next();
+  db.presentation.insert({
+	"authorId" : slide.authorId,
+	"subjectId" : slide.subjectId,
+	"subjectName" : slide.subjectName,
+	"lev" : slide.lev,
+	"department" : slide.department,
+	"title" : slide.title,
+	"descript" : slide.descript,
+	"slides" : cont.slides
+  })
+}
+
