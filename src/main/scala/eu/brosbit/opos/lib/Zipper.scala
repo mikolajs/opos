@@ -111,7 +111,7 @@ class Zipper() {
     }
     input.close()
     zip.close()
-    testSaveFiles(map)
+    //testSaveFiles(map)
     map
   }
 

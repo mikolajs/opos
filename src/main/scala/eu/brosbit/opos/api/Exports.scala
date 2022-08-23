@@ -66,13 +66,13 @@ object Exports {
   }
   protected def jsonStringDataToMap(user: User):Map[String, String]= {
     Map(
-      JsonFileNames.Documents.toString     -> (s""""${JsonFileNames.Documents.toString.split('.').head}":${getDocuments(user)}"""),
-      JsonFileNames.Presentations.toString -> (s""""${JsonFileNames.Presentations.toString.split('.').head}":${getPresentations(user)}"""),
-      JsonFileNames.Questions.toString     -> (s""""${JsonFileNames.Questions.toString.split('.').head}":${getQuizQuestions(user)}"""),
-      JsonFileNames.Videos.toString        -> (s""""${JsonFileNames.Videos.toString.split('.').head}":${getVideos(user)}"""),
-      JsonFileNames.Lessons.toString       -> (s""""${JsonFileNames.Lessons.toString.split('.').head}":${getLessonCourses(user)}"""),
-      JsonFileNames.Problems.toString       -> (s""""${JsonFileNames.Problems.toString.split('.').head}":${getProblems(user)}"""),
-      JsonFileNames.Courses.toString       -> (s""""${JsonFileNames.Courses.toString.split('.').head}":${getCourses(user)}""")
+      JsonFileNames.Documents.toString     -> getDocuments(user),
+      JsonFileNames.Presentations.toString -> getPresentations(user),
+      JsonFileNames.Questions.toString     -> getQuizQuestions(user),
+      JsonFileNames.Videos.toString        -> getVideos(user),
+      JsonFileNames.Lessons.toString       -> getLessonCourses(user),
+      JsonFileNames.Problems.toString       -> getProblems(user),
+      JsonFileNames.Courses.toString       -> getCourses(user)
     )
   }
 
@@ -115,7 +115,7 @@ object Exports {
   }
   private def getLessonCourses(user:User) = {
     val lessons = LessonCourse.findAll("authorId"->user.id.get).map(l => {
-      LessonImport(l._id.toString, l.title, l.descript, l.chapter, l.courseId.toString, l.contents, l.nr)
+      LessonImport(l._id.toString, l.title, l.descript, l.chapter, l.courseId.toString, l.contents, l.nr).toJson
     }).mkString(", ")
     "[" + lessons + "]"
   }
