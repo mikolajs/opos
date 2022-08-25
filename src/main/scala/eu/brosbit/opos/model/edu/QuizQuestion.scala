@@ -22,7 +22,7 @@ object QuizQuestion extends MongoDocumentMeta[QuizQuestion] {
   def create = new QuizQuestion(ObjectId.get, 0L, 1, 1, 0L, 0, "", "", "", Nil, "", Nil, "")
 }
 
-case class QuizQuestion ( _id: ObjectId, var authorId: Long, var dificult: Int, var lev: Int,
+case class QuizQuestion (var _id: ObjectId, var authorId: Long, var dificult: Int, var lev: Int,
                         var subjectId: Long, var nr: Int, var subjectName: String, var info: String,
                         var question: String, var answers: List[String], var department: String,
                         var fake: List[String], var hint: String) extends MongoDocument[QuizQuestion] with ListToJsonString {

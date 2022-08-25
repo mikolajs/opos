@@ -101,7 +101,7 @@ class Zipper() {
     var entry:ZipEntry = zip.getNextEntry
     while(entry != null) {
       val key = entry.getName
-      println("READ ZIP : " + key)
+      //println("READ ZIP : " + key)
       if(entry != null && !entry.isDirectory) {
         val d = zip.readAllBytes()
         map = map + (key -> d)

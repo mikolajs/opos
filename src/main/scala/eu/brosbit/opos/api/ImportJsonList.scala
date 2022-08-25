@@ -74,7 +74,7 @@ object ImportJsonList {
           case k if k == Exports.JsonFileNames.Presentations.toString => getSubjectsPre(presentationList(jsonFile._2), eiz)
           case k if k == Exports.JsonFileNames.Videos.toString => getSubjectsVid(videoList(jsonFile._2), eiz)
           case k if k == Exports.JsonFileNames.Questions.toString => getSubjectsQuest(questList(jsonFile._2), eiz)
-          case k if k == Exports.JsonFileNames.Courses.toString => getSubjectsCourse(courseList(jsonFile._2))
+          case k if k == Exports.JsonFileNames.Courses.toString => getSubjectsCourse(courseList(jsonFile._2), eiz)
           case k if k == Exports.JsonFileNames.Problems.toString => {
             getProblemsSize(problemList(jsonFile._2), eiz)
             Nil
@@ -104,7 +104,10 @@ object ImportJsonList {
     eiz.questions = list.length
     list.map(_.subjectName)
   }
-  private def getSubjectsCourse(list:List[JsonExportImport.CourseImport]) = list.map(_.subjectName)
+  private def getSubjectsCourse(list:List[JsonExportImport.CourseImport], zip: ElementsInZip) = {
+    zip.courses = list.size
+    list.map(_.subjectName)
+  }
 
   private def getProblemsSize(imports: List[JsonExportImport.ProblemImport], zip: ElementsInZip) = zip.problems = imports.length
 
