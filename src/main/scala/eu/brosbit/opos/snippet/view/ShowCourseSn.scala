@@ -18,12 +18,12 @@ class ShowCourseSn extends BaseShowCourseSn {
 
   val user = User.currentUser match {
     case Full(user) => user
-    case _ => S.redirectTo("/login")
+    case _ => S.redirectTo("/login?r=/view/course/")
   }
   private val groupsIds = Groups.findAll.filter(gr => gr.students.exists(s => s.id == user.id.get)).map("_" + _._id)
 
   def show(): CssSel = {
-    if (!canView) S.redirectTo("/view/courses")
+    if (!canView) S.redirectTo("/view/courses/")
 
     if (course.title != "") {
       "#subjectListLinks a" #> createLessonList &

@@ -91,7 +91,10 @@ class Boot {
     }
 
     val loggedIn = If(() => User.loggedIn_? && User.currentUser.openOrThrowException("Not logged").validated.get,
-      () => RedirectResponse("/login?r=" + S.uri))
+      () => {
+        val params = S.queryString.getOrElse("")
+        RedirectResponse("/login?r=" + S.uri +(if(params.isEmpty)"" else "&"+params))
+      })
 
     val isAdmin = If(() => User.loggedIn_? && (User.currentUser.openOrThrowException("Not logged").role.get == "a"),
       () => RedirectResponse("/login?r=" + S.uri))
@@ -116,7 +119,10 @@ class Boot {
         }
         case _ => false
       }
-    }, () => RedirectResponse("/login?r=" + S.uri))
+    }, () => {
+      val params = S.queryString.getOrElse("")
+      RedirectResponse("/login?r=" + S.uri + (if (params.isEmpty) "" else "&" + params))
+    })
 
     // Build SiteMap::
     def sitemap() = SiteMap(

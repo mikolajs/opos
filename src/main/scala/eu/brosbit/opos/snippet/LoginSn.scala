@@ -20,8 +20,12 @@ object SubjectChoose extends SessionVar[Long](0L)
 object LevelChoose extends SessionVar[Int](1)
 
 class LoginSn {
-  val redirectUrl = S.param("r").getOrElse("/login")
+  val redirectUrl = S.queryString.map(s => {
+    val arr = s.drop(2).split('&')
+    arr.head + (if(arr.length > 1) "?" + arr.drop(1).mkString("&") else "")
+  }).getOrElse("/login")
   val userBox = User.currentUser
+  //println("RedirectTo: " + redirectUrl)
 
   def show() = {
     userBox match {
