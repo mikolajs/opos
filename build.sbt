@@ -1,4 +1,4 @@
-version := "0.10.9"
+version := "0.11.0"
 
 organization := "brosbit.eu"
 
@@ -15,6 +15,7 @@ Test / resourceDirectory := baseDirectory.value / "src/main/webapp"
 
 //seq(webSettings :_*)
 enablePlugins(JettyPlugin)
+
 
 scalacOptions ++= Seq("-deprecation", "-unchecked")
 

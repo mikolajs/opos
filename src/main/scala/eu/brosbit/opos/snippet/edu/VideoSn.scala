@@ -25,6 +25,7 @@ class VideoSn extends BaseResourceSn {
   def showVideos = {
    val pathVideo = S.hostAndPath.split('/').take(3).mkString("/").split(':').take(2).mkString(":") + "/osp/"
    //println("+++++++++++++++++ hostName Video: " + pathVideo)
+    //println(S.hostAndPath)
    val userId = user.id.get
 
    val videoList =  Video.findAll(query)
@@ -34,7 +35,7 @@ class VideoSn extends BaseResourceSn {
         <td>
           <a href={if (video.onServer)
             pathVideo + video._id.toString + "." + video.link.split('.').last
-          else "http://youtube.com/embed/" + video.link} target="_blank">
+          else "https://youtube.com/embed/" + video.link} target="_blank">
             {video.title}
           </a>
         </td>

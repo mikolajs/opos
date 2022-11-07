@@ -52,7 +52,7 @@ class ShowCourseSn extends BaseShowCourseSn {
     def save() {
       //println("SORTED: " + sorted );
       val chaps = sorted.split("\\|\\|").map(s => s.trim).filter(s => s.length > 2).toList
-      println("[AppInfo:::: sort " + chaps.length + " : " + chaps.mkString("||"))
+      //println("[AppInfo:::: sort " + chaps.length + " : " + chaps.mkString("||"))
       if (chaps.length == course.chapters.length) {
         course.chapters = chaps
         course.save

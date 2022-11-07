@@ -13,7 +13,9 @@ import Helpers._
 class BaseShowCourseSn  {
 
   val basePath = "/view/course/"
-  lazy val  pathMedia =  S.hostAndPath.split('/').take(3).mkString("/").split(':').take(2).mkString(":")  + "/osp/"
+  lazy val  pathMedia =  "https://" + S.hostName + "/osp/"
+  //+ S.hostAndPath.split('/').take(3).mkString("/").split(':').take(2).mkString(":")  + "/osp/"
+
 
 
   val courseId = S.param("id").openOr("0")

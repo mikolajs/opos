@@ -3,7 +3,7 @@ Jetty_host 0.0.0.0
 no_start 0
 jetty_port 8080
 
-/var/lib/jetty/webapps/ 
+/var/lib/jetty9/webapps/ 
 root.war as page_school
 and others with original name
 

@@ -77,7 +77,8 @@ var EditVideo = dejavu.Class.declare({
     	var self = this;
     	var $tr = $(elem).parent().parent();
     	document.getElementById('videoId').value = $tr.attr('id');
-    	document.getElementById('departmentsAdd').value = self.department;
+    	//document.getElementById('departmentsAdd').value = self.department;
+    	//console.log(self.department);
     	var link = "";
     	$tr.children('td').each(function(index){
     		switch(index){
@@ -102,6 +103,10 @@ var EditVideo = dejavu.Class.declare({
     			document.getElementById('descriptAdd').value = $(this).text().trim();
     			break;
     		case 3:
+    		    document.getElementById('departmentsAdd').value = $(this).text().trim();
+    		    //console.log("3 " + $(this).text().trim());
+    		    break;
+    		case 4:
     			self._setSelectOptionLevel(this.innerHTML);
     			break;
     		default: 

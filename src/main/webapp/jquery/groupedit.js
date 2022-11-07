@@ -77,8 +77,11 @@ class GroupEdit {
     }
 
     prepareData(){
-        let trs = $('#datatableleft tbody').children().toArray().map(function(tr){ return tr.id.substr(2) + ";" + tr.childNodes[3].innerHTML;});
-        document.getElementById('groupListIds').value = trs.join(',');
+        let arrTrs = $('#datatableleft tbody').children().toArray();
+           let trs = arrTrs.map(function(tr){
+            if(tr.childNodes.length < 3) return "";
+            else return tr.id.substr(2) + ";" + tr.childNodes[3].innerHTML;});
+           document.getElementById('groupListIds').value = trs.join(',');
         //console.log(document.getElementById('groupListIds').value);
         $('#saveGroup').click();
     }

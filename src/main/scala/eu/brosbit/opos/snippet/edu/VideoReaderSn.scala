@@ -29,6 +29,7 @@ class VideoReaderSn extends BaseResourceSn {
   val parentPath = "/home/"
   val parentDir = new File(parentPath)
   val userDirPath = parentPath + toASCIICharAndLower(user.firstName.get) + user.id.toString
+  //println(userDirPath)
   // parentDir.listFiles()
 
   def getUserNames() = parentDir.listFiles().filter(f => f.isDirectory()).map(f => f.getName())

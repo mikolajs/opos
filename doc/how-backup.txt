@@ -2,7 +2,7 @@
 
 1. Backup bazy danej mongo (sprawdzić nazwę bazy danych!)
  Używamy mongodump: 
-    mongodump  --db osp2 --out /sciezka/do/katalogu/wynikowego
+    mongodump  --db osp --out ./
     
 2. Kopia plików wideo z katalogu /home/osp
 
