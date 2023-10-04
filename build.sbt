@@ -1,4 +1,4 @@
-version := "0.11.0"
+version := "0.11.1"
 
 organization := "brosbit.eu"
 
@@ -28,7 +28,9 @@ libraryDependencies ++= {
     "net.liftmodules" % "lift-jquery-module_2.6_2.11" % "2.8",
      //"org.eclipse.jetty" % "jetty-webapp" % "9.1.0.v20131115" % "container",
    //"org.eclipse.jetty" % "jetty-plus"   % "9.1.0.v20131115" % "container",
-    "org.eclipse.jetty" % "jetty-webapp" % "9.2.30.v20200428" % "container",
+    // https://mvnrepository.com/artifact/de.jplag/language-api
+    //"de.jplag" % "language-api" % "4.3.0"
+  "org.eclipse.jetty" % "jetty-webapp" % "9.2.30.v20200428" % "container",
    "org.eclipse.jetty" % "jetty-plus"   % "9.2.30.v20200428" % "container",
     "org.eclipse.jetty" % "jetty-runner" % "9.2.30.v20200428" % "container" intransitive(),
     "ch.qos.logback" % "logback-classic" % "1.0.6",

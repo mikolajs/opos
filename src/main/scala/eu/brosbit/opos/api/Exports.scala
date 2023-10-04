@@ -15,8 +15,8 @@ import net.liftweb.http.{InMemoryResponse, LiftResponse, NotFoundResponse, Strea
 import net.liftweb.mongodb.{DefaultMongoIdentifier, MongoDB}
 import org.bson.types.ObjectId
 
-import java.nio.file.{Files, Paths}
-
+//import java.nio.file.{Files, Paths}
+/*It should be export only for Administrator!!!*/
 
 object Exports {
 
@@ -64,7 +64,7 @@ object Exports {
     packager.toZipJsonAndBinary(map, fileMap)
     //map("dane").getBytes("UTF-8")
   }
-  protected def jsonStringDataToMap(user: User):Map[String, String]= {
+  private def jsonStringDataToMap(user: User):Map[String, String]= {
     Map(
       JsonFileNames.Documents.toString     -> getDocuments(user),
       JsonFileNames.Presentations.toString -> getPresentations(user),

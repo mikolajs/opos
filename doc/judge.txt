@@ -1,0 +1,32 @@
+
+sudo snap install docker ///??docker-ls
+
+sudo addgroup --system docker
+sudo adduser $USER docker  ??? www-data
+//newgrp docker bez zmiany użytkownika
+sudo snap disable docker
+sudo snap enable docker
+sudo chown #USER  /var/run/docker.sock
+
+newgrp docker – za każdym razem gdy zaczynam pracę w konsoli?
+
+
+//Potrzebny Dockerfile w katalogu pracy
+utworzyć katalog: /home/judgeDir z prawem dla www-data (albo jetty9?)
+dodać do /etc/ops/config.cfg linijkę z judgeDir=/home/judgeDir
+Wstawić tam plik Dockerfile
+
+
+docker pull ubuntu:jammy
+//run in this directory that create new image
+docker build -t opos-ubuntu .
+//??????
+docker run opos-ubuntu
+
+
+POLECENIA:
+docker rmi <image> --- usuwanie image
+docker rm <nrKontenera>
+docker rm $(docker ps -a -q) -- remove all stopped images;
+docker stop $(docker ps -a -q) -- stop all runnig
+

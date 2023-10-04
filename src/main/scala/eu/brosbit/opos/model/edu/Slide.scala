@@ -5,6 +5,7 @@ import _root_.net.liftweb.mongodb._
 import org.bson.types.ObjectId
 import scala.util.parsing.json.JSONFormat._
 
+///TODO: DELETE??
 object Slide extends MongoDocumentMeta[Slide] {
   override def collectionName = "slides"
 

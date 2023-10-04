@@ -54,7 +54,8 @@ class Boot {
     //mongo32 have 32017 port insted of 27017
 //    val mongoClient = new MongoClient("127.0.0.1", 27017)
 //    MongoDB.defineDb(OtherConnectionIdentifier, mongoClient, CL.mongoDB)
- 
+
+
 
     // where to search snippet
     LiftRules.addToPackages("eu.brosbit.opos")

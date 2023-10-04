@@ -22,12 +22,12 @@ case class ElementsJson(var docs:String = "", var presentations: String = "", va
                         var lessons: String = "", var files: String = "", var problems: String = "")
 
 
-
+/* Not inserted Exams in json!!*/
 class ImportSn {
   val user = User.currentUser.getOrElse(S.redirectTo("/"))
-  val pathName = "/home/ms/export_user_" + user.id.get +".zip"
-  val elementsInZip = ElementsInZip()
-  var addDepartments:Map[Long, scala.collection.mutable.Set[String]] = Map[Long, scala.collection.mutable.Set[String]]()
+  private val pathName = "/home/ms/export_user_" + user.id.get + ".zip"
+  private val elementsInZip = ElementsInZip()
+  private var addDepartments:Map[Long, scala.collection.mutable.Set[String]] = Map[Long, scala.collection.mutable.Set[String]]()
 
   def importingSaved(): CssSel = {
     var subjectNamesActual = SubjectName.findAll().map(_.name.get).mkString(",")
@@ -100,12 +100,12 @@ class ImportSn {
   }
 
   ///change Path to /home/opos/...
-  def saveFileToDisk(bytes: Array[Byte]) = {
+  private def saveFileToDisk(bytes: Array[Byte]) = {
     val path = Paths.get(pathName)
     Files.write(path, bytes)
   }
 
-  def readFileFromDisk() = {
+  private def readFileFromDisk() = {
     val path = Paths.get(pathName)
     Files.readAllBytes(path)
   }

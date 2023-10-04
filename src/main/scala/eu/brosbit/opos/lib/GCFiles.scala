@@ -5,99 +5,156 @@ import eu.brosbit.opos.model.edu._
 import _root_.net.liftweb._
 import mongodb._
 import com.mongodb.gridfs._
-import com.mongodb.DBCursor
+import json.JsonDSL._
 import org.bson.types.ObjectId
-import eu.brosbit.opos.model.page.ArticleContent
+import eu.brosbit.opos.model.page.{ArticleContent, FlashTile, ImageSlides, LinkTilesMainPage, PageDepartment}
+
+import scala.collection.mutable.ArrayBuffer
 
 /* to CLear files not used:
  *  look all: lessons notes, articles, slides and exercises, exams answers with paths of anchor for /img or /file
  *  ?? forum, massages
  */
 
+case class FileToDelInfo(fileType:String, id:String)
+
 class GCFiles {
-  var pathImgList: List[String] = Nil
 
-
-  def calculateNotUsed() {
-    val imgResoures = ImagesResource.findAll
-
+  private def getOnlyToDeleteFiles(allInDB:List[FileToDelInfo], toStayId:List[String]) = {
+    ///TODO: filter to stay
+    //toStayId.foreach(println)
+    allInDB.filterNot(fi => toStayId.contains(fi.id))
   }
 
-  def deleteNotUsed() {
+  def getForExportTeacherFiles(userId:Long) = {
+    val sb = new ArrayBuffer[String]()
+    sb ++= findAllExists(Presentation.findAll("authorId"->userId).map(_.slides))
+    sb ++= findAllExists(Document.findAll("authorId"->userId).map(_.content))
+    sb ++= findAllExists(QuizQuestion.findAll("authorId"->userId).map(_.question))
+    sb ++= findAllExists(LessonCourse.findAll("author"->userId)
+      .map(_.contents.filter(_.what == "n").map(_.descript)).flatten)
+    //val teacherExams = Exam.findAll("authorId"->userId).map(_._id.toString)
+    //ExamAnswer.findAll("exam"->("$in"->teacherExams)).map(_.attach).map(_.split('/').last.split('.').head)
 
+    sb.toList
   }
 
-  private def filesNotUsed() {
-  }
-
-  private def getFileList = MongoDB.use(DefaultMongoIdentifier) {
+  private def getFileList = {
+    var pathList:List[FileToDelInfo] = Nil
+    MongoDB.use(DefaultMongoIdentifier) {
     db =>
       val fs = new GridFS(db)
-      val currsor = fs.getFileList()
-      while (currsor.hasNext) {
-        //val dbObject = currsor.next()
-        val gfsFile = fs.find(currsor.next()).get(0)
-        val mime = gfsFile.getContentType().toLowerCase
-        //println("MIME TYPE::::: " + mime)
-        //if(mime == ".jpg" || mime == ".png" || mime == ".gif") {
-          pathImgList = gfsFile.getId().asInstanceOf[ObjectId].toString()   :: pathImgList
-        //}
+      val cursor = fs.getFileList()
+      while (cursor.hasNext) {
+        //val dbObject = cursor.next()
+        val gfsFile = fs.find(cursor.next()).get(0)
+        val ft = gfsFile.getFilename.split('.').last
+        pathList = FileToDelInfo(ft, gfsFile.getId().asInstanceOf[ObjectId].toString())   :: pathList
       }
+    }
+    pathList
   }
 
-  private def getImagesAll = MongoDB.use(DefaultMongoIdentifier) {
-    db =>
-      val fs = new GridFS(db)
-      val currsor = fs.getFileList()
-      while (currsor.hasNext) {
-        //val dbObject = currsor.next()
-        val gfsFile = fs.find(currsor.next()).get(0)
-        val mime = gfsFile.getContentType().toLowerCase
-        //println("MIME TYPE::::: " + mime)
-        if(mime == "image/jpeg" || mime == "image/png" || mime == "image/gif") {
-        pathImgList = gfsFile.getId().asInstanceOf[ObjectId].toString()   :: pathImgList
-        }
-      }
+  private def getAllFilesInPresentations(): List[String] = {
+    val slidesStr = Presentation.findAll.map(_.slides)
+    findAllExists(slidesStr, "Presentations")
   }
 
-  private def getAllFilesInSlides(): List[String] = {
-    var imgSlides: List[String] = Nil
-    val set: Set[String] = Set()
-    val slidesStr = SlideContent.findAll.map(_.slides)
-    //use regex to find all images /img/\d{12}\.[a-z]{3,4}
-    slidesStr.foreach(str => {
-      imgSlides = imgSlides ++ extractIDFilse(str)
-    })
-    println("SLIDES FILE ID: " + imgSlides.mkString("\n"))
-    imgSlides
+  private def getAllFilesInDocuments() = {
+    val docStr = Document.findAll.map(_.content)
+    findAllExists(docStr, "Documents")
   }
 
-  private def getAllFilesInArticles() = {
+  private def getAllFilesInQuestions() = {
+    val docStr = QuizQuestion.findAll.map(_.question)
+    findAllExists(docStr, "Questions")
+  }
+
+  private def getAllFilesInSlidesImg() = {
+    val docStr = ImageSlides.findAll.map(_.src)
+    findAllExists(docStr, "Slides images")
+  }
+
+  private def getAllFilesInPSO() = {
+    val docStr = PSO.findAll.map(_.urlLink.trim)
+    findAllExists(docStr, "PSO")
+  }
+
+  private def getAllFilesInThemesPlan() = {
+    val docStr = ThemesPlan.findAll.map(_.urlLink.trim)
+    findAllExists(docStr, "Themes Plan")
+  }
+
+  private def getAllFilesInPages() = {
+    val docStr = ArticleContent.findAll.map(_.content)
+    findAllExists(docStr, "Main pages")
+  }
+
+  private def getAllFilesInLessons() = {
+    val docStr = LessonCourse.findAll.map(_.contents.filter(_.what == "n").map(_.descript)).flatten
+    findAllExists(docStr, "Notes in Lessons")
+  }
+
+  private def getAllFilesInAdminDep() = {
+    val docStr = PageDepartment.findAll.map(_.img)
+    findAllExists(docStr, "Page departments")
+  }
+
+  private def getAllFilesInAdminFlash() = {
+    val docStr = FlashTile.findAll.map(_.img)
+    findAllExists(docStr, "Flash on pages")
+  }
+
+  private def getAllFilesInAdminTiles() = {
+    val docStr = LinkTilesMainPage.findAll.map(_.img)
+    findAllExists(docStr, "Tiles on pages")
+  }
+
+  private def getAllFilesInTestProblems():List[String] = {
+    val docStr = TestProblem.findAll.map(_.description)
+    findAllExists(docStr, "Problems")
+  }
+
+  private def getAllFilesInAnswerExams():List[String] = {
+    ExamAnswer.findAll.map(_.attach).map(_.split('/').last.split('.').head)
+  }
+
+  private def findAllExists(docStr:List[String], info:String = "") = {
     var dataStr: List[String] = Nil
-    val slidesStr = ArticleContent.findAll.map(_.content)
-    //use regex to find all images /img/\d{12}\.[a-z]{3,4}
-    slidesStr.foreach(str => {
-      dataStr = dataStr ++ extractIDFilse(str)
+    docStr.foreach(str => {
+      dataStr = dataStr ++ extractIDFiles(str)
     })
-    println("SLIDES FILE ID: " + dataStr.mkString("\n"))
+    println(s"INFO IN GCFiles: Found in $info  ${dataStr.size} files")
     dataStr
   }
-
-  private def extractIDFilse(dataStr:String): List[String] ={
-    val reg = "/img/[a-z,0-9]{24}".r
+  private def extractIDFiles(dataStr:String): List[String] ={
+    val reg = "/(img|file)/[a-z,0-9]{24}".r
     reg.findAllIn(dataStr).toList.map(s => s.split('/')(2))
-
   }
 
+  private def getAllFilesExists() = {
+    getAllFilesInPresentations() ++
+    getAllFilesInDocuments() ++
+    getAllFilesInSlidesImg() ++
+      getAllFilesInPSO() ++
+      getAllFilesInThemesPlan() ++
+      getAllFilesInAdminTiles() ++
+      getAllFilesInAdminFlash() ++
+      getAllFilesInAdminDep() ++
+      getAllFilesInPages() ++
+      getAllFilesInTestProblems() ++
+      getAllFilesInAnswerExams() ++
+      getAllFilesInLessons() ++
+      getAllFilesInQuestions()
+  }
   //for test
-  def getAllInGridFS() = {
-   // getAllFilesInSlides()
-    //getAllFilesInArticles()
+  def getAllToDelete():List[FileToDelInfo] = {
     //notes
     //files in answer students
-    //wi
-    getImagesAll
-    pathImgList
+    val mustStay = getAllFilesExists()
+    val all = getFileList
+    println("getAllFiles in database size: " + all.size)
+    getOnlyToDeleteFiles(all, mustStay)
   }
 
 }

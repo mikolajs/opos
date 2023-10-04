@@ -41,7 +41,7 @@ class PSOSn extends BaseDoc {
 
         pso.classes = classesTeacher
         pso.subjectStr = subject
-        pso.urlLink = urlLink
+        pso.urlLink = urlLink.trim
         if(id == "") {
           pso.teacherId = user.id.get
           pso.teacherName = user.getFullName

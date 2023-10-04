@@ -43,7 +43,7 @@ class ThemesPlanSn extends BaseDoc {
 
         themesPlan.classes = classesTeacher
         themesPlan.subjectStr = subject
-        themesPlan.urlLink = urlLink
+        themesPlan.urlLink = urlLink.trim
         if (id == "") {
           themesPlan.teacherId = user.id.get
           themesPlan.teacherName = user.getFullName

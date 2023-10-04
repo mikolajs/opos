@@ -5,16 +5,12 @@
     <head_merge>
         <script>
             function ifDelete(){
-                return confirm("Czy na pewno usunąć obrazek?");
+                return confirm("Czy na pewno usunąć?");
             }
         </script>
         <style>
             .myImg {
                 max-width: 100%;
-            }
-            .delIcon {
-             position: absolute;
-             top: 20px; right: 20px;
             }
         .active a { color: white;}
         </style>
@@ -28,19 +24,19 @@
     <div class="row">
        <div class="col-lg-1"></div>
         <div class="col-lg-10" style="position:relative;">
-            <img src="">
-            <a onclick="return ifDelete()" class="btn btn-danger delIcon" href="/admin/gc?del=">
-               <span class="glyphicon glyphicon-remove"></span>
-            </a>
+            <div class="center">
+                <span class="toDeleteFile"></span>
+                <a onclick="return ifDelete()" class="btn btn-danger" href="/admin/gc?del=">
+                    <span class="glyphicon glyphicon-remove">Kasuj</span>
+                </a>
+            </div>
+
 
         </div>
         <div class="col-lg-1"></div>
     </div>
-        <hr />
-        <ul class="pagination">
-            <li></li>
-        </ul>
-        <hr />
+      <div> <a href="/admin/gc?del=all" class="btn btn-danger" onclick="return ifDelete();">
+          Kasuj wszystkie!</a></div>
     </div>
 </div>
 </body></html>

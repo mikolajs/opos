@@ -13,7 +13,7 @@ import Helpers._
 class BaseShowCourseSn  {
 
   val basePath = "/view/course/"
-  lazy val  pathMedia =  "https://" + S.hostName + "/osp/"
+  lazy val  pathMedia =  "https://" + S.hostName + "/opos/"
   //+ S.hostAndPath.split('/').take(3).mkString("/").split(':').take(2).mkString(":")  + "/osp/"
 
 
@@ -82,14 +82,15 @@ class BaseShowCourseSn  {
                 {Unparsed( """var _0x9b95="%s";
                       jwplayer("%s").setup({
                     		file: (_0x9b95 + "%s"),
-                    		width: 853,
-                    		height:  480,
+                        responsive: true,
+                    		width: "100%%",
+                        aspectratio: "16:9",
                         image: "/images/grafika_pod_video.png"
                     	});""".format(pathMedia.toList.map((x:Char) => "\\x" + Integer.toHexString(x.toInt)).mkString, vidId,
                   video._id.toString + "." + video.link.split('.').last))}
               </script>
             else
-              <iframe width="853" height="480" src={"//www.youtube.com/embed/" + video.link} frameborder="0" allowfullscreen=" "></iframe>}
+              <iframe width="100%" src={"//www.youtube.com/embed/" + video.link} frameborder="0" allowfullscreen=" "></iframe>}
             </section>
           }
           case _ => <h4>Błąd - nie ma takiego filmu</h4>

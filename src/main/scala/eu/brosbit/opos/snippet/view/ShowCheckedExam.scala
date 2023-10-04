@@ -59,7 +59,7 @@ class ShowCheckedExam extends BaseSnippet {
           </div>
           <div>{createAnswers(question.answers, question.fake)}</div>
           <div class="yourAns"><h4>Twoja odpowiedź:</h4>
-            <p>{Unparsed(ans.split(";#;;#;").mkString("<br/>"))}</p></div>
+            <p><pre>{Unparsed(ans.split(";#;;#;").mkString("<br/>"))}</pre></p></div>
         </div>
       </div>
     </section>
