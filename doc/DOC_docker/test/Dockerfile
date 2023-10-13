@@ -7,3 +7,8 @@ RUN apt-get install -y nodejs
 RUN apt-get install -y python3
 RUN apt-get clean
 
+COPY . .
+CMD ["echo", "hello world"]
+CMD ["g++", "-o", "./test", "test.cpp"]
+CMD ["timeout", "--signal=SIGKILL", "3", "./test"]
+ 

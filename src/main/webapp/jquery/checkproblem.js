@@ -69,4 +69,15 @@ class CheckProblem {
        $("#langCode").val(this.lang);
       $("#runCode").trigger('click');
     }
+
+    insertCode(elem){
+       let par = $(elem).parent();
+       console.log('Start insert code ');
+       let code = par.children('.code').text();
+       this.lang = par.parent().children('.col4').text();
+       document.getElementById('langChoice').value = this.lang;
+       let d = hljs.highlight(code, {language: this.lang}).value;
+       this.codeShow.html(d);
+       this.codeEditorJS.value = code;
+    }
 }

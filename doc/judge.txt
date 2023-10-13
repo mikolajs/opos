@@ -19,10 +19,9 @@ Wstawić tam plik Dockerfile
 
 docker pull ubuntu:jammy
 //run in this directory that create new image
-docker build -t opos-ubuntu .
-//??????
-docker run opos-ubuntu
-
+//Dla każdego testu osobny docker image z poleceniem build (dla cpp RUN kompiluje program)cd 
+/// kompilacja g++ możliwa tylko w RUN 
+// ubuntu:jammy nie chce pobrać python3 
 
 POLECENIA:
 docker rmi <image> --- usuwanie image
@@ -30,3 +29,7 @@ docker rm <nrKontenera>
 docker rm $(docker ps -a -q) -- remove all stopped images;
 docker stop $(docker ps -a -q) -- stop all runnig
 
+
+NEW: 
+docker build -m 128M -t opos-js-1:jammy .
+docker run --rm --name test -m 100M opos:ujammy 

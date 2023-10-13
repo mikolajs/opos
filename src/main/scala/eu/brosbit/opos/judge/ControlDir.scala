@@ -13,7 +13,7 @@ case class CodeOutput(code:Int, result:String)
 class ControlDir(id: String, source:String, extension:String, data:String){
 
   val mainDir = if(ConfigLoader.judgeDir.last == '/') ConfigLoader.judgeDir  else ConfigLoader.judgeDir + "/"
-  val dockerImageName = "opos-ubuntu-" + id
+  val dockerImageName = "opos-" + id
   val fullPath = mainDir + "test_" + id
   val timeTest = 3
 
@@ -39,7 +39,7 @@ class ControlDir(id: String, source:String, extension:String, data:String){
        println("COMPILE INFO: " + compileInfo)
       if(compileInfo._2 != 0) return CodeOutput(3, "Error: compilation error source file, " + compileInfo)
     }
-    val dockerFile = createDockerfile(1)
+    val dockerFile = createDockerfile()
     if(!dockerFile.exists()) return  CodeOutput(4, "Error: cannot create docker file")
     val imageInfo = runBuildDockerImage //Errors??
     if(!imageInfo.toLowerCase().contains("successfully")) return CodeOutput(4, "Error: cannot build docker image")
@@ -99,13 +99,17 @@ class ControlDir(id: String, source:String, extension:String, data:String){
   }
 
   //ONLY ONE DATA FILE?
-  private def createDockerfile(nr:Int) = {
-    var dockerfile = "FROM opos-ubuntu-jammy\n\n"
+  private def createDockerfile() = {
+    var dockerfile = "FROM "
+    dockerfile += (if (extension == "py") "python:3.10-alpine\n\n" else "ubuntu:latest\n\n")
+    if(extension != "py") dockerfile += "RUN apt-get update\n"
+    if(extension == "cpp") dockerfile += "RUN apt-get install -y libstdc++6\n"
+    else if(extension == "js") dockerfile += "RUN apt-get install -y nodejs\n"
+    if(extension != "py") dockerfile += "RUN apt-get clean\n\n"
     dockerfile += "COPY . . \n\n"
-    dockerfile += s"CMD timeout --signal=SIGKILL $timeTest "
-    if (extension == "cpp") dockerfile += "./test"
-    else if(extension == "py") dockerfile += "python3 test.py"
-    else if(extension == "js") dockerfile += "node test.js"
+    if(extension == "cpp") dockerfile += s"""CMD ["timeout", "--signal=SIGKILL",  "$timeTest",  "./test"]\n"""
+    else if(extension == "js") dockerfile += s"""CMD ["timeout", "--signal=SIGKILL",  "$timeTest",  "nodejs", "test.js"]\n"""
+    else dockerfile += s"""CMD ["timeout", "-s", "KILL", "-k", "9", "3", "python3", "test.py"]\n"""
     val p = mkFilePath("Dockerfile")
     val f = new File(p)
     f.createNewFile()
@@ -123,12 +127,12 @@ class ControlDir(id: String, source:String, extension:String, data:String){
   }
 
   private def runTestProgramInDocker = {
-    val exec = s"docker run --memory=100M $dockerImageName"
+    val exec = s"docker run --rm --name test-$id -m 100M $dockerImageName"
     execCommand(exec)
   }
 
   private def runDeleteDockerImage = {
-    val exec = s"docker image rm -f $dockerImageName"
+    val exec = s"docker rmi  -f $dockerImageName"
     execCommand(exec)
   }
 

@@ -1,6 +1,8 @@
 
-FROM opos-debian
+FROM opos-2:ujammy2:
 
-COPY . . 
-CMD [g++ -o test test.cpp]
-CMD [timeout --signal=SIGKILL  1 ./test < dane1.txt]
+COPY . .
+CMD ["echo", "hello world"]
+CMD ["g++", "-o", "test", "test.cpp"]
+CMD ["timeout", "--signal=SIGKILL", "3", "./test"]
+ 

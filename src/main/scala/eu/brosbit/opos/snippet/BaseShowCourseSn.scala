@@ -90,7 +90,7 @@ class BaseShowCourseSn  {
                   video._id.toString + "." + video.link.split('.').last))}
               </script>
             else
-              <iframe width="100%" src={"//www.youtube.com/embed/" + video.link} frameborder="0" allowfullscreen=" "></iframe>}
+              <iframe width="560" height="315" src={"//www.youtube.com/embed/" + video.link} frameborder="0" allowfullscreen=" " title="YouTube video player"></iframe>}
             </section>
           }
           case _ => <h4>Błąd - nie ma takiego filmu</h4>

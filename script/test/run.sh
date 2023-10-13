@@ -1,0 +1,1 @@
+scala -classpath gdata-core-1.0.jar:gdata-base-1.0.jar:gdata-client-1.0.jar:gdata-photos-2.0.jar:gdata-client-meta-1.0.jar:gdata-photos-meta-2.0.jar:gdata-media-1.0.jar:mail.jar:google-collect-1.0-rc1.jar webpicasatest.scala

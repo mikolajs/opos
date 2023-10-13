@@ -29,7 +29,7 @@ class CheckProblemSn {
     "#titleProblem *" #> titleP  &
       "#descriptionProblem *" #> Unparsed(descriptionP)
   }
-
+//not used!!
   def getLastCode:CssSel = {
     val t = S.param("t").getOrElse("0")
     val tpt = aTrays.find(_._id.toString == t).getOrElse(TestProblemTry.create)
@@ -63,7 +63,9 @@ class CheckProblemSn {
         ".col2 *" #>  (if(!aTray.checked) <p>W trakcie</p> else mkResultInfo(aTray)) &
         ".col3 *" #> (if(aTray.checked)  <span class="aDot aDotColorGreen"></span>
         else <span class="aDot aDotColorRed"></span>) &
-        ".col4 a [href]" #> (baseDir + "/checkproblem/" + problem._id.toString + "?t=" + aTray._id.toString)
+        ".col4 *" #> aTray.lang &
+        ".col5 button [onclick]" #> (s"""checkProblem.insertCode(this);""") &
+        ".col5 .code *" #> (aTray.code)
     ) &
       "#refreshProblemAnchor [href]" #> (baseDir + "/checkproblem/" + id)
   }
