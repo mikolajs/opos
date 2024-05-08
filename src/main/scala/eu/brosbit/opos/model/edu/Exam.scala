@@ -10,7 +10,7 @@ object Exam extends MongoDocumentMeta[Exam] {
 
   override def formats = super.formats + new ObjectIdSerializer + new DateSerializer
 
-  def create = new Exam(ObjectId.get, 0L, "", 0L, "", "", "",  Nil, Nil, 0L, 0L, false, false)
+  def create = new Exam(ObjectId.get, 0L, "", 0L, "", "", "",  Nil, Nil, 0L, 0L, true, false)
 }
 
 case class Exam(var _id: ObjectId, var authorId: Long,  var description: String,

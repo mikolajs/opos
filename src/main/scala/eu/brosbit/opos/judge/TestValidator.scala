@@ -16,6 +16,7 @@ object TestValidator {
     else {
       val r = result.split('\n').map(_.trim).filter(!_.isEmpty)
       val p = pattern.split('\n').map(_.trim).filter(!_.isEmpty)
+      println(s"VALIDATE TEST: ${r.length} ==? ${p.length}")
       if(r.length != p.length) false
       else r.zip(p).forall(x => x._1 == x._2)
     }

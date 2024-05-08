@@ -30,7 +30,7 @@ class EditProblem {
     }
 
     saveProblem(){
-      $('#descriptionProblem').val($('#descriptionProblemEdit').html());
+      $('#descriptionProblem').val(this.editor.getData());
       $("#saveProblem").trigger('click');
     }
     deleteProblem(){

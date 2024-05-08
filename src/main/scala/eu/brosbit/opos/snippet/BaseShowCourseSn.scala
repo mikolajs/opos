@@ -132,13 +132,14 @@ class BaseShowCourseSn  {
 
   protected def createQuest(quest: QuizQuestion) = {
 
-    if (quest.fake.length == 0) {
+    if (quest.fake.length == 0 && quest.answers.length <= 1) {
       if (quest.answers.length == 0) createPlainQuest(quest)
       else createInputQuest(quest)
     }
     else {
-      if (quest.answers.length == 1) createSingleAnswerQuest(quest)
-      else createMultiAnswerQuest(quest)
+      //if (quest.answers.length == 1) createSingleAnswerQuest(quest)
+      //else
+      createMultiAnswerQuest(quest)
     }
   }
 

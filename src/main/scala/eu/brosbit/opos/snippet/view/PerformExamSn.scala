@@ -121,12 +121,12 @@ class PerformExamSn extends BaseSnippet {
 
     val name = "quest_" + nr.toString
 
-    if(fake.isEmpty) {
+    if(fake.isEmpty && good.length <= 1) {
       if(good.nonEmpty)  <input type="text" class="form-control" value=""  name={name} />
       else  <textarea class="form-control" name={name} rows="10"></textarea>
     }
     else {
-      val aType = if(good.length > 1 || multi) "checkbox" else "radio"
+      val aType = if(multi) "checkbox" else "radio"
 
       val all = (fake ++ good).sortWith(_ < _) .map(s => <div class={aType}>
         <label><input type={aType} value={s} name={name}/>

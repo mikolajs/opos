@@ -26,6 +26,7 @@
         function getURLfromIFrame(elem){
 			var innerDoc = elem.contentDocument || elem.contentWindow.document;
 			var url  = innerDoc.getElementById('linkpath').innerHTML.trim();
+			showExam.setLoadFileSaveIsChanged(innerDoc);
 			console.log(url);
 			if(url.length > 0){
 			    $('#attachLink').val(url);
@@ -43,9 +44,10 @@
 
         <div class="well"><h3 id="descript"></h3>
             <h4>Zakończenie: <small id="endTime"></small></h4>
+
         </div>
         <div id="attachFrame" class="row">
-        <frameset class="attach" >
+        <div class="attach" >
             <legend>Dodawanie załącznika <small>(może być tyko jeden, dodanie nowego nadpisze starszy)</small></legend>
             <div class="col-lg-6">
                 <div class="input-group input-group-lg">
@@ -55,10 +57,10 @@
                 </div>
             </div>
             <div class="col-lg-6">
-              <iframe  frameborder="0" src="/filestorage"
+              <iframe id="addFileFrame" style="border:0px;" src="/filestorage"
                      width="600" height="80" onload="getURLfromIFrame(this)"></iframe>
             </div>
-        </frameset>
+        </div>
         </div>
         <form class="form-inline col-lg-offset-3 col-lg-9" class="row" method="POST">
             <h2>Wpisz otrzymany kod</h2>

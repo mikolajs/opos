@@ -23,7 +23,7 @@ class VideoSn extends BaseResourceSn {
 
 
   def showVideos = {
-   val pathVideo = S.hostAndPath.split('/').take(3).mkString("/").split(':').take(2).mkString(":") + "/osp/"
+   val pathVideo = S.hostAndPath.split('/').take(3).mkString("/").split(':').take(2).mkString(":") + "/opos/"
    //println("+++++++++++++++++ hostName Video: " + pathVideo)
     //println(S.hostAndPath)
    val userId = user.id.get

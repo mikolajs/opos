@@ -181,11 +181,11 @@ class Boot {
         Menu("Szablon") / "documents" / "createtemplate" / ** >> LocGroup("extra") >> isAdmin,
         Menu("Kolejność") / "documents" / "orderdoc" / ** >> LocGroup("extra") >> isAdmin,
         //Menu("Wiadomości") / "view" / "index" >> LocGroup("view") >> loggedIn,
-        Menu("Tematy") / "view" / "themes" / ** >> LocGroup("view") >> loggedIn,
+        //Menu("Tematy") / "view" / "themes" / ** >> LocGroup("view") >> loggedIn,
         Menu("Kursy") / "view" / "courses" >> LocGroup("view") >> loggedIn,
         Menu("Sprawdziany") / "view" / "exams" >> LocGroup("view") >> loggedIn,
-        Menu("Problemy") / "view" / "problems" >> LocGroup("view") >> loggedIn,
-        Menu("Uruchom test problemu") / "view" / "checkproblem" / ** >> LocGroup("extra") >> loggedIn,
+        //Menu("Problemy") / "view" / "problems" >> LocGroup("view") >> loggedIn,
+        //Menu("Uruchom test problemu") / "view" / "checkproblem" / ** >> LocGroup("extra") >> loggedIn,
         Menu("Zobacz lekcję") / "view" / "course" / ** >> LocGroup("extra") >> loggedIn,
         Menu("MassagesWork") / "view" / "showmessageswork" / ** >> LocGroup("extra") >> loggedIn,
         Menu("Quiz") / "view" / "showquiz" / ** >> LocGroup("extra") >> Hidden >> loggedIn,
@@ -193,14 +193,14 @@ class Boot {
         Menu("CheckedExam") / "view" / "showcheckedexam" / ** >> LocGroup("extra") >> Hidden >> loggedIn,
         Menu("CheckProblem") / "educontent" / "checkproblem" / ** >> LocGroup("extra") >> Hidden >> loggedIn,
         Menu("Kursy") / "educontent" / "index" >> LocGroup("edu") >> isTeacher,
-        Menu("Tematy") / "educontent" / "works" >> LocGroup("edu") >> isTeacher,
+        //Menu("Tematy") / "educontent" / "works" >> LocGroup("edu") >> isTeacher,
         Menu("Sprawdziany") / "educontent" / "exams" >> LocGroup("edu") >> isTeacher,
         //Menu("Sprawdziany") / "educontent" / "quizzes" >> LocGroup("edu") >> isTeacher,
         Menu("Zadania") / "educontent" / "questions" >> LocGroup("edu") >> isTeacher,
         Menu("Artykuły") / "educontent" / "documents" >> LocGroup("edu") >> isTeacher,
         Menu("Filmy") / "educontent" / "video" >> LocGroup("edu") >> isTeacher,
         Menu("Prezentacje") / "educontent" / "presentations" >> LocGroup("edu") >> isTeacher,
-        Menu("Problemy") / "educontent" / "problems" >> LocGroup("edu") >> isTeacher,
+        //Menu("Problemy") / "educontent" / "problems" >> LocGroup("edu") >> isTeacher,
         Menu("Grupy") / "educontent" / "groups" >> LocGroup("edu") >> isTeacher,
         Menu("Ustawienia") / "educontent" / "options" >> LocGroup("edu") >> isTeacher,
         Menu("Lekcje") / "educontent" / "course" / ** >> LocGroup("extra") >> isTeacher,
@@ -288,10 +288,10 @@ class Boot {
       ParsePath("galleryedit" :: galId :: Nil, _, _, _), _, _) =>
         RewriteResponse(
           "galleryedit" :: Nil, Map("id" -> galId))
-      case RewriteRequest(
-      ParsePath("view" :: "themes" :: subjectId :: Nil, _, _, _), _, _) =>
-        RewriteResponse(
-          "view" :: "themes" :: Nil, Map("idS" -> subjectId))
+      //case RewriteRequest(
+      //ParsePath("view" :: "themes" :: subjectId :: Nil, _, _, _), _, _) =>
+      //  RewriteResponse(
+      //    "view" :: "themes" :: Nil, Map("idS" -> subjectId))
       case RewriteRequest(
       ParsePath("educontent" :: "course" :: courseId :: Nil, _, _, _), _, _) =>
         RewriteResponse(
@@ -320,14 +320,14 @@ class Boot {
       ParsePath("showslide" :: slideId :: Nil, _, _, _), _, _) =>
         RewriteResponse(
           "showslide" :: Nil, Map("id" -> slideId))
-      case RewriteRequest(
+      /*case RewriteRequest(
       ParsePath("educontent" :: "checkproblem" :: problemId :: Nil, _, _, _), _, _) =>
         RewriteResponse(
           "educontent" :: "checkproblem" :: Nil, Map("id" -> problemId))
       case RewriteRequest(
       ParsePath("educontent" :: "showproblemresults" :: problemId :: groupId :: Nil, _, _, _), _, _) =>
         RewriteResponse(
-          "educontent" :: "showproblemresults" :: Nil, Map("problemId" -> problemId, "groupId" -> groupId))
+          "educontent" :: "showproblemresults" :: Nil, Map("problemId" -> problemId, "groupId" -> groupId)) */
       case RewriteRequest(
       ParsePath("educontent" :: "showlessonslides" :: lessonId :: Nil, _, _, _), _, _) =>
         RewriteResponse(
@@ -348,14 +348,14 @@ class Boot {
       ParsePath("educontent" :: "showexams" :: examId :: Nil, _, _, _), _, _) =>
         RewriteResponse(
           "educontent" :: "showexams" :: Nil, Map("id" -> examId))
-      case RewriteRequest(
+      /*case RewriteRequest(
       ParsePath("educontent" :: "showworks" :: workId  :: Nil, _, _, _), _, _) =>
         RewriteResponse(
           "educontent" :: "showworks" :: Nil, Map("id" -> workId))
       case RewriteRequest(
       ParsePath("educontent" :: "showmessageswork" :: workId  :: Nil, _, _, _), _, _) =>
         RewriteResponse(
-          "educontent" :: "showmessageswork" :: Nil, Map("id" -> workId))
+          "educontent" :: "showmessageswork" :: Nil, Map("id" -> workId)) */
       case RewriteRequest(
       ParsePath("educontent" :: "checkexam" :: examId :: Nil, _, _, _), _, _) =>
         RewriteResponse(
@@ -364,10 +364,10 @@ class Boot {
       ParsePath("educontent" :: "checkwork" :: workId :: Nil, _, _, _), _, _) =>
         RewriteResponse(
           "educontent" :: "checkwork" :: Nil, Map("id" -> workId))
-      case RewriteRequest(
-      ParsePath("educontent" :: "editproblem" :: id :: Nil, _, _, _), _, _) =>
-        RewriteResponse(
-          "educontent" :: "editproblem" :: Nil, Map("id" -> id))
+      //case RewriteRequest(
+      //ParsePath("educontent" :: "editproblem" :: id :: Nil, _, _, _), _, _) =>
+      //  RewriteResponse(
+      //    "educontent" :: "editproblem" :: Nil, Map("id" -> id))
       case RewriteRequest(
       ParsePath("view" :: "showquiz" :: quizId :: Nil, _, _, _), _, _) =>
         RewriteResponse(
@@ -384,10 +384,10 @@ class Boot {
       ParsePath("view" :: "course" :: lessonId :: Nil, _, _, _), _, _) =>
         RewriteResponse(
           "view" :: "course" :: Nil, Map("id" -> lessonId))
-      case RewriteRequest(
-      ParsePath("view" :: "checkproblem" :: problemId :: Nil, _, _, _), _, _) =>
-        RewriteResponse(
-          "view" :: "checkproblem" :: Nil, Map("id" -> problemId))
+      //case RewriteRequest(
+      //ParsePath("view" :: "checkproblem" :: problemId :: Nil, _, _, _), _, _) =>
+      //  RewriteResponse(
+      //    "view" :: "checkproblem" :: Nil, Map("id" -> problemId))
       case RewriteRequest(
       ParsePath("view" :: "showmessageswork" :: workId  :: Nil, _, _, _), _, _) =>
         RewriteResponse(
@@ -416,8 +416,8 @@ class Boot {
 
     //cron jobs for find zastepstwa
     //val cron = new CronActor()
-    val cronJudge = new JudgeCronActor()
-    TestProblemRunner.init(cronJudge)
+    //val cronJudge = new JudgeCronActor()
+    //TestProblemRunner.init(cronJudge)
 
     S.addAround(DB.buildLoanWrapper)
   }

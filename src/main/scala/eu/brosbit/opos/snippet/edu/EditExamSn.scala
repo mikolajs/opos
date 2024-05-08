@@ -124,7 +124,7 @@ class EditExamSn extends BaseResourceSn {
 
   private  def mkJsonStringQuest(quest: QuizQuestion, p:Int):String ={
     import net.liftweb.json._
-    val json = ("id" -> quest._id.toString) ~ ("nr" -> quest.nr) ~ ("depart" -> quest.department) ~("lev" -> getQuestLevelString(quest.lev)) ~
+    val json = ("id" -> quest._id.toString) ~ ("nr" -> Formater.mkLongExerciseNumber(quest.nr)) ~ ("depart" -> quest.department) ~("lev" -> getQuestLevelString(quest.lev)) ~
       ("dif" -> quest.dificult) ~ ("p" -> p) ~ ("q" -> quest.question) ~ ("info" -> quest.info)
     compact(render(json))
   }

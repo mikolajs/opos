@@ -167,11 +167,20 @@ class EditQuestSn extends BaseResourceSn {
     "form" #> ((in:NodeSeq) => form(in))
   }
 
-  private def lookingQuestUsing(nr:String): String = {
-    val s = LessonCourse.findAll.filter(k => k.contents.exists(w => w.id == nr)).map(k =>
+  private def lookingQuestUsing(id:String): String = {
+    val e = Exam.findAll("authorId" -> user.id.get).filter(e => {
+       e.quizzes.exists(qe => qe.exists(q => {
+         q.q.toString == id.drop(1)
+          }))
+      }).map(e => s" – ${e.description}  ").mkString("<br>")
+
+    val s = LessonCourse.findAll("authorId" -> user.id.get).filter(k => k.contents.exists(w => w.id == id)).map(k =>
         k.title + " - <i>" + k.chapter + "</i> <span>nr: " + k.nr  + "</span>").mkString("<br>")
    // println("LOOKING using questions/n " + s)
-    s
+    val str1 = if(e.nonEmpty) s"<div><h4>Sprawdziany:</h4>$e</div>" else ""
+    val str2 = if(s.nonEmpty) s"<div><h4>Lekcje:</h4>$s</div>" else ""
+    str1+str2
+//
   }
 
 

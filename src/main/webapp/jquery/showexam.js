@@ -114,6 +114,16 @@ var ShowExam =  dejavu.Class.declare({
             self.setUnsaved();
          });
          $('textarea').keyup(function(){self.setUnsaved();});
+
+	},
+
+	setLoadFileSaveIsChanged : function(innerDoc){
+	   var self = this;
+	   var sub = innerDoc.getElementById('submit');
+	   console.log('submit in files load ' + sub.value);
+	   sub.onclick = function(){
+	     self.setUnsaved();
+	   };
 	},
 
 	setUnsaved : function() {

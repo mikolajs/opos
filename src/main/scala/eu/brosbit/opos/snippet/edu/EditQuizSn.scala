@@ -88,7 +88,7 @@ class EditQuizSn extends BaseResourceSn {
     def getDataNew = {
       val lookingQuest =  ("authorId" -> userId) ~ ("subjectId" -> subjectId) ~ ("department" -> depart)
       val str = QuizQuestion.findAll(lookingQuest)
-        .map(q => "[ '" + q._id.toString + "',  '" + q.nr.toString + "', '" +
+        .map(q => "[ '" + q._id.toString + "',  '" + Formater.mkLongExerciseNumber(q.nr) + "', '" +
            q.question + "',  '" + q.info + "',  '" +
             q.lev + "',  '"  + q.dificult + "']")
         .mkString(",")
@@ -181,7 +181,7 @@ class EditQuizSn extends BaseResourceSn {
         {Unparsed(quest.question)}
       </div>
       <div class="questInfo">
-        <span class="nr">{quest.nr.toString} </span>  |
+        <span class="nr">{Formater.mkLongExerciseNumber(quest.nr)} </span>  |
         <span class="department">
           {quest.department}
         </span> |

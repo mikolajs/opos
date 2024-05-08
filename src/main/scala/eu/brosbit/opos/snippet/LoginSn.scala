@@ -137,7 +137,7 @@ class LoginSn {
       }
       else {
         if (user.role == "u" || user.role == "r") {
-          viewH = "/view/themes"
+          viewH = "/view/courses"
           viewC = "btn btn-info btn-lg"
         }
       }

@@ -27,6 +27,7 @@ class CheckProblemSn {
       problem.title = titleP
     }
     "#titleProblem *" #> titleP  &
+    "#returnToEdit [href]" #> s"/educontent/editproblem/$id"&
       "#descriptionProblem *" #> Unparsed(descriptionP)
   }
 //not used!!

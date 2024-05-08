@@ -227,8 +227,16 @@
         let v = $(elem).parent('tr').attr('id');
         document.getElementById('nrOfQuest').value = v;
         document.getElementById('usingQuestInfo').innerHTML = "";
+        const request = new XmlHttpRequest();
+        request.addEventListener('load', this.loadUsageQuestion);
+        request.open('GET', '/usingquestion?nr='+v);
+        req.send();
         $('#showUsing').dialog('open');
         $('#buttonQuest').trigger('click');
+    }
+
+    loadUsageQuestion(){
+       console.log(this.response);
     }
     
     _insertDataFromCKEditorToTextarea() {
