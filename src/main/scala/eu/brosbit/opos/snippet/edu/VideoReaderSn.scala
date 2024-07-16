@@ -28,7 +28,7 @@ class VideoReaderSn extends BaseResourceSn {
   println("start indexvideo")
   val parentPath = "/home/"
   val parentDir = new File(parentPath)
-  val userDirPath = parentPath + toASCIICharAndLower(user.firstName.get) + user.id.toString
+  val userDirPath = parentPath + user.userDirName
   //println(userDirPath)
   // parentDir.listFiles()
 
@@ -135,13 +135,4 @@ class VideoReaderSn extends BaseResourceSn {
     }
   }
 
-  private def toASCIICharAndLower(str: String) = {
-    println("toASCIICharLower")
-    val m = Map(('Ą', 'A'), ('Ć', 'C'), ('Ę', 'E'), ('Ł', 'L'), ('Ń', 'N'), ('Ó', 'O'), ('Ś', 'S'), ('Ź', 'Z'), ('Ż', 'Z'),
-      ('ą', 'a'), ('ć', 'c'), ('ę', 'e'), ('ł', 'l'), ('ń', 'n'), ('ó', 'o'), ('ś', 's'), ('ź', 'z'), ('ż', 'z'),
-      (' ', '-'))
-    str.toLowerCase.toCharArray().map(n =>
-      if (m.contains(n)) m(n) else n
-    ).mkString
-  }
 }

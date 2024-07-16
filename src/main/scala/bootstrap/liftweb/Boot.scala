@@ -78,8 +78,8 @@ class Boot {
     })
 
     LiftRules.dispatch.append({
-      case Req("export" ::  Nil, _, GetRequest) => () =>  Exports.export()
-      case Req("import" :: Nil, _, GetRequest) => () => Imports.importing()
+      //case Req("export" ::  Nil, _, GetRequest) => () =>  Exports.export()
+      //case Req("import" :: Nil, _, GetRequest) => () => Imports.importing()
 
     })
 
@@ -219,6 +219,7 @@ class Boot {
         Menu("Edytuj dokument") / "educontent" / "editdocument" / ** >> LocGroup("extra") >> Hidden >> isTeacher,
         Menu("Indeksuj wideo") / "educontent" / "indexvideo" / ** >> LocGroup("extra") >> Hidden >> isTeacher,
         Menu("Import") / "educontent" / "import" / ** >> LocGroup("extra") >> Hidden >> isTeacher,
+        Menu("Eksport") / "educontent" / "export" / ** >> LocGroup("extra") >> Hidden >> isTeacher,
         Menu("Slajdy") / "educontent" / "showlessonslides" / ** >> LocGroup("extra") >> Hidden >> isTeacher,
         Menu("Edycja problemów") / "educontent" / "editproblem" / ** >> LocGroup("extra") >> Hidden >> isTeacher,
         Menu("Otwarte kursy") / "public" / "index" >> LocGroup("pub"),

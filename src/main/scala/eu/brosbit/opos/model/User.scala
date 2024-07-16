@@ -91,4 +91,15 @@ class User extends MegaProtoUser[User] {
   def isTeacher_? = this.role.get == "n" || this.role.get == 's' || this.role.get == "d"
   def isSecretary_? = this.role.get == "s" || this.role.get == 'd'
   def isDirector_? = this.role.get == 'd'
+
+  def userDirName = toASCIICharAndLower(this.firstName.get)+this.id.get.toString
+  private def toASCIICharAndLower(str: String):String = {
+    println("toASCIICharLower")
+    val m = Map(('Ą', 'A'), ('Ć', 'C'), ('Ę', 'E'), ('Ł', 'L'), ('Ń', 'N'), ('Ó', 'O'), ('Ś', 'S'), ('Ź', 'Z'), ('Ż', 'Z'),
+      ('ą', 'a'), ('ć', 'c'), ('ę', 'e'), ('ł', 'l'), ('ń', 'n'), ('ó', 'o'), ('ś', 's'), ('ź', 'z'), ('ż', 'z'),
+      (' ', '-'))
+    str.toLowerCase.toCharArray().map(n =>
+      if (m.contains(n)) m(n) else n
+    ).mkString
+  }
 }

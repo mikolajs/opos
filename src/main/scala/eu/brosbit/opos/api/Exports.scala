@@ -26,6 +26,37 @@ object Exports {
     case _ => Full(NotFoundResponse("Not found"))
   } */
 
+
+  def saveExportedFiles(user:User):List[String] = {
+    val map =  jsonStringDataToMap(user)
+    val filesMap = getImgAndFiles(user)
+    val zipJsons = packager.toZipFilesFromBytes(map.map(m => (m._1, m._2.getBytes)))
+    val zipDirLink = s"/home/opos/${user.userDirName}/exports/"
+    val zipJsonLink = zipDirLink + "export_json.zip"
+    saveFile(zipJsonLink, zipJsons)
+    var filesList:List[String] = List(zipJsonLink)
+    var numberFile = 0
+    var sizeFiles = 0
+    var zipParts:scala.collection.mutable.Map[String, Array[Byte]] = scala.collection.mutable.Map()
+    for(fileMap <- filesMap){
+      sizeFiles += fileMap._2.length
+      zipParts += filesMap
+      if(sizeFiles > 64*1024*1024) {
+        val dataFile = zipDirLink + "export_files_" + numberFile.toString + ".zip"
+        val aZip = packager.toZipFilesFromBytes(zipParts.toMap)
+        saveFile(dataFile, aZip)
+        filesList = dataFile :: filesList
+        numberFile += 1
+        sizeFiles = 0
+        zipParts.clear()
+      }
+    }
+    filesList
+  }
+
+  private def saveFile(link:String, data:Array[Byte]) =
+      java.nio.file.Files.write(java.nio.file.Paths.get(link), data)
+
   def export(): Box[LiftResponse] = {
     val mime = "zip"
     val userBox = User.currentUser

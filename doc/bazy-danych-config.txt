@@ -1,0 +1,37 @@
+Baza danych Mongo: 
+instalacja mongo32, pracuje na porcie 32017
+
+Tworzenie bazy danych SQL:
+Zalogowanie: sudo su postgres
+Utworzenie bazy: createdb opos 
+Wejście do bazy danych: psql opos 
+Uruchomienie skryptów:
+Create user osp with encrypted password '123test456';
+GRANT ALL ON DATABASE opos TO opos;
+GRANT ALL ON SCHEMA public TO opos;
+
+Być może nie jest konieczna edycja?↓
+w katalogu /etc/postgresql/xxx/main 
+w pliku pg_ident.conf: 
+opos nazwa_uzytkownika_aplikacji_systemu opos
+(np: opos www-user opos)
+w pliku pg_hba.conf:
+local all opos peer ???
+
+
+w katalogu /etc/opos musi znajdować się plik do odczytu config.cfg z zawartością:
+
+sqlpassword=jakieśhasło
+sqldatabase=opos lub inna
+mongodatabase=opos lub inna
+mongoport=32017
+emailaddress=emailadres@g.pl
+emailpassword=jakieśhaslo
+emailsmpt=smtp.g.pl
+emailport=587
+judger=/sciezka/do/katalogu/testow
+
+
+Właściciela pliku można ustawić jako www-data i tylko temu użytkownikowi nadać prawa do odczytu. 
+
+Baza danych działać musi na porcie 5432, który jest standardowym portem w Ubuntu. 
