@@ -11,7 +11,7 @@ import eu.brosbit.opos.model.edu.{Course, Document, LessonCourse, Presentation, 
 import eu.brosbit.opos.model.TestProblem
 import net.liftweb.json.JsonDSL._
 import net.liftweb.common.{Box, Full}
-import net.liftweb.http.{InMemoryResponse, LiftResponse, NotFoundResponse, StreamingResponse}
+import net.liftweb.http.{InMemoryResponse, LiftResponse, NotFoundResponse, S, StreamingResponse}
 import net.liftweb.mongodb.{DefaultMongoIdentifier, MongoDB}
 import org.bson.types.ObjectId
 
@@ -20,27 +20,22 @@ import org.bson.types.ObjectId
 
 object Exports {
 
-  ///not used
- /* def slides(what: String): Box[LiftResponse] = what match {
-    case "slides" => ImportExportSlides.zip()
-    case _ => Full(NotFoundResponse("Not found"))
-  } */
-
-
   def saveExportedFiles(user:User):List[String] = {
     val map =  jsonStringDataToMap(user)
     val filesMap = getImgAndFiles(user)
     val zipJsons = packager.toZipFilesFromBytes(map.map(m => (m._1, m._2.getBytes)))
-    val zipDirLink = s"/home/opos/${user.userDirName}/exports/"
+    //println("DIR NAME::::: " + user.userDirName)
+    val zipDirLink = s"/home/${user.userDirName}/"
     val zipJsonLink = zipDirLink + "export_json.zip"
     saveFile(zipJsonLink, zipJsons)
     var filesList:List[String] = List(zipJsonLink)
     var numberFile = 0
     var sizeFiles = 0
-    var zipParts:scala.collection.mutable.Map[String, Array[Byte]] = scala.collection.mutable.Map()
+    val zipParts:scala.collection.mutable.Map[String, Array[Byte]] = scala.collection.mutable.Map()
+    //println(filesMap.size)
     for(fileMap <- filesMap){
       sizeFiles += fileMap._2.length
-      zipParts += filesMap
+      zipParts ++= filesMap
       if(sizeFiles > 64*1024*1024) {
         val dataFile = zipDirLink + "export_files_" + numberFile.toString + ".zip"
         val aZip = packager.toZipFilesFromBytes(zipParts.toMap)
@@ -51,12 +46,36 @@ object Exports {
         zipParts.clear()
       }
     }
+    if(sizeFiles > 0) {
+      val dataFile = zipDirLink + "export_files_" + numberFile.toString + ".zip"
+      val aZip = packager.toZipFilesFromBytes(zipParts.toMap)
+      saveFile(dataFile, aZip)
+      filesList = dataFile :: filesList
+    }
     filesList
+  }
+
+  def getFileFromDisk(userDirName:String, fileName:String): Full[LiftResponse] = {
+    val user: User = User.currentUser.getOrElse(S.redirectTo("/"))
+    //println(s"GET FILE FROM DISK userDirName: $userDirName is? ${user.userDirName}, fileName: $fileName")
+    if(user.userDirName != userDirName)
+      Full(NotFoundResponse("Not Yours file"))
+    else {
+      val fullPath = s"/home/$userDirName/$fileName"
+      if(java.nio.file.Files.exists(java.nio.file.Paths.get(fullPath))) {
+        val bytes = java.nio.file.Files.readAllBytes(java.nio.file.Paths.get(fullPath))
+        val inputStream = new ByteArrayInputStream(bytes)
+        val headerFile = ("Content-Disposition", "form-data; filename=\"" + fileName + "\"")
+        val headerMain = ("Content-Type", "file/zip")
+        val headers = if(fileName.isEmpty) headerMain :: Nil else headerMain :: headerFile :: Nil
+        Full(StreamingResponse(inputStream, () => (), inputStream.available().toLong, headers, Nil, 200))
+      } else  Full(NotFoundResponse("Wrong url"))
+    }
   }
 
   private def saveFile(link:String, data:Array[Byte]) =
       java.nio.file.Files.write(java.nio.file.Paths.get(link), data)
-
+/*
   def export(): Box[LiftResponse] = {
     val mime = "zip"
     val userBox = User.currentUser
@@ -76,6 +95,8 @@ object Exports {
     }
   }
 
+ */
+
   private val packager = new Zipper()
 
   object JsonFileNames extends Enumeration {
@@ -84,7 +105,7 @@ object Exports {
     val Questions:Value = Value("questions.json")
     val Videos:Value = Value("videos.json")
     val Lessons:Value  = Value("lessons.json")
-    val Problems:Value = Value("problems.json")
+    //val Problems:Value = Value("problems.json")
     val Courses:Value = Value("courses.json")
   }
 //TODO: implement files to zip
@@ -102,7 +123,7 @@ object Exports {
       JsonFileNames.Questions.toString     -> getQuizQuestions(user),
       JsonFileNames.Videos.toString        -> getVideos(user),
       JsonFileNames.Lessons.toString       -> getLessonCourses(user),
-      JsonFileNames.Problems.toString       -> getProblems(user),
+      //JsonFileNames.Problems.toString       -> getProblems(user),
       JsonFileNames.Courses.toString       -> getCourses(user)
     )
   }
@@ -118,17 +139,6 @@ object Exports {
       QuestionImport(q._id.toString, q.dificult, q.lev, q.subjectName, q.info, q.question, q.department, q.answers, q.fake, q.hint).toJson
     }).mkString(", ")
     "[" + quizzes + "]"
-  }
-
-  //TO delete after change to Presentation
-  private def getSlides(user:User) = {
-    val slides = Slide.findAll("authorId" -> user.id.get)
-    val slideContents = SlideContent.findAll("_id" -> {
-      "$in" -> slides.map(_.slides.toString)
-    })
-
-      "{\"slidesHead\":[" + slides.map(s => s.strJson).mkString(", ") + "], " +
-      "\"slidesContent\":[" + slideContents.map(s => s.strJson).mkString(", ") + "]}"
   }
 
   private def getPresentations(user: User) = {
@@ -180,7 +190,7 @@ object Exports {
     //testSaveFiles(filesMap)
     filesMap
   }
-
+ /*
   private def getProblems(user: User) = {
     val userId = user.id.get
     val problems = TestProblem.findAll("author"->userId).map(tp =>
@@ -189,7 +199,7 @@ object Exports {
       }).mkString(", ")
     "[" + problems + "]"
   }
-
+ */
   private def getCourses(user: User) = {
     val userId = user.id.get
     val courses = Course.findAll("authorId"->userId).map(c => {

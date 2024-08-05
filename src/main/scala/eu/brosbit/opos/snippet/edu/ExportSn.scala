@@ -10,8 +10,9 @@ class ExportSn {
   val user: User = User.currentUser.getOrElse(S.redirectTo("/"))
   def exportedFiles():CssSel = {
     val filesLinks = saveExportedFiles(user)
-    "filesExported *" #> filesLinks.map(link =>{
-       <div><a href="link">{link.split("/").last}</a></div>
+    ".filesExported *" #> filesLinks.map(link =>{
+       val url = "/exportdata/" + link.split("/").drop(2).mkString("/")
+       <div><a href={url}>{link.split("/").last}</a></div>
     })
   }
 }

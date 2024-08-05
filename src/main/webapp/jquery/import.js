@@ -2,43 +2,34 @@
 class ImportData {
 
 constructor() {
-  this.imported = document.getElementById('subjectNamesImported').value.split(',')
-  this.actual = document.getElementById('subjectNamesActual').value.split(',');
-  this.toSave = document.getElementById('subjectNamesToSave');
-  this.div = document.getElementById('subjectsConnect');
-  this.createConnect();
+  this.listDiv = document.getElementById('listOfSubjectsToChange');
+  this.actual = document.getElementById('subjectNamesActual').value.split(';');
+  this.toSave = document.getElementById('subjectNamesChange');
+  this.createListToChange();
 }
 
-createConnect(){
-    console.log(this.imported);
-    for(let i in this.imported){
-       let d = '<div><span>' + this.imported[i] + '</span>'
-       d += this.createSelect(i);
-       d += '</div>'
-        this.div.innerHTML += d;
+createListToChange(){
+    let nr = 0;
+    for(let i in this.actual){
+       if(this.actual[i].trim() == '') continue;
+       let d = '<label for="subject_' + i +  '">' + this.actual[i] + '</label>';
+       d += '<input id="subject_';
+       d += i.toString();
+       d += '" type="text" value=""><br>';
+       this.listDiv.innerHTML += d;
     }
-}
-
-createSelect(subject){
-  let s = '<select id="subject_' + subject +  '">';
-  for(let i in this.actual){
-   s += '<option value="' + this.actual[i].trim() + '"';
-   if(i == 0) s += ' selected';
-   s += '>' + this.actual[i] + '</option>';
-  }
-  s += '</select>'
-  return s;
+    //console.log(this.listDiv.innerHTML);
 }
 
 save(){
     let arr = [];
-    for(let i in this.imported){
+    for(let i in this.actual){
         let id = 'subject_'+i;
         let e = document.getElementById(id);
         let t = e.options[e.selectedIndex].text;
         arr.push(this.imported[i] + ":" + t);
     }
-    this.toSave.value = arr.join(',');
-    document.getElementById('saveLoadedHidden').click();
+    this.toSave.value = arr.join(';');
+    document.getElementById('saveHidden').click();
 }
 }

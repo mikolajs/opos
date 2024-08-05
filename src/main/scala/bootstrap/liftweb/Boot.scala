@@ -23,6 +23,8 @@ import _root_.net.liftweb.mongodb._
 import com.mongodb.MongoClient
 import eu.brosbit.opos.comet.{CronActor, JudgeCronActor}
 
+import scala.collection.immutable.::
+
 object DBVendor extends ConnectionManager {
   def newConnection(name: ConnectionIdentifier): Box[Connection] = {
     try {
@@ -80,6 +82,8 @@ class Boot {
     LiftRules.dispatch.append({
       //case Req("export" ::  Nil, _, GetRequest) => () =>  Exports.export()
       //case Req("import" :: Nil, _, GetRequest) => () => Imports.importing()
+      case Req("exportdata" :: userDir :: fileName :: Nil, extName, GetRequest) => () =>
+        Exports.getFileFromDisk(userDir, fileName + "." + extName)
 
     })
 

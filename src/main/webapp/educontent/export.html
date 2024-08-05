@@ -5,6 +5,9 @@
 <div class="lift:surround?with=educontent;at=content">
     <head_merge>
         <script src="/jquery/export.js"></script>
+        <style>
+            .filesExported { font-size: 1.5em}
+        </style>
     </head_merge>
 
     <div class="well">
@@ -14,8 +17,9 @@
     </div>
     <div class="row">
         <div class="col-lg-12">
+            <h3>Lista plików do pobrania:</h3>
             <div  data-lift="edu.ExportSn.exportedFiles" >
-                <div class="filesExported"></div>
+                <div class="filesExported"><div></div></div>
                 <div class="error" id="error"></div>
             </div>
         </div>

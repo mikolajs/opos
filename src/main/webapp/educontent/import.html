@@ -9,45 +9,52 @@
 
     <div class="well">
         <h2>Import</h2>
-        <p>Należy wczytać plik z wyeksportowanych danych</p>
+        <p>Należy wczytać pliki z wyeksportowanych danych. Każdy z plików oddzielnie. Zacznij od pliku, który nazywa się:
+            export_json.zip. Nazwy przedmiotów mogą się różnić w tej bazie danych w stosunku do importowanych.
+            Musisz przypisać starym nazwom przemiotów nowe, zgodne z obecnymi (patrz w zakładce Ustawienia).
+            Jeśli nie wpiszesz, a nazwy nie zgadzają się to wszystkie elementy nie mające nie mające prawidłowej nazwy przedmiotów
+            nie zostaną dodane. Popraw je i wczytaj jeszcze raz. Import nie doda już dodanych wcześniej danych.
+            </p>
         <span data-lift="Msg?id=importData"></span>
     </div>
     <div class="row">
         <div class="col-lg-12">
-        <form  data-lift="edu.ImportSn.importingFile" method="post" enctype="multipart/form-data">
-            <fieldset>
-                <label>Wczytaj plik:<input type="file" id="filezip" /></label>
-                <input type="submit" class="btn btn-lg btn-success" value="Wczytaj" id="save" />
-            </fieldset>
-            <div class="error" id="error"></div>
-        </form>
+               <p>Ostatnio wczytane pliki:</p>
+              <ul class="list-group"  data-lift="edu.ImportSn.lastImportedFiles">
+                  <li class="list-group-item importedFiles">
+                      <span class="fileName"></span>
+                      <ul class="list-group" style="width: 300px;" >
+                          <h3>Wczytano:</h3>
+                          <li class="list-group-item">Dokumentów: <span id="docs"></span></li>
+                          <li class="list-group-item">Prezentacji: <span id="presentations"></span></li>
+                          <li class="list-group-item">Filmów: <span id="videos"></span></li>
+                          <li class="list-group-item">Zadań: <span id="questions"></span></li>
+                          <li class="list-group-item">Lekcji: <span id="lessons"></span></li>
+                          <li class="list-group-item">Kursów: <span id="courses"></span></li>
+                          <li class="list-group-item">Plików: <span id="files"></span></li>
+                      </ul>
+                  </li>
+              </ul>
 
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-6">
-            <form  data-lift="edu.ImportSn.importingSaved" method="post">
-                <h3>Do wczytania:</h3>
-                <ul class="list-group" style="width: 300px;" >
-                    <li class="list-group-item">Dokumentów: <span id="docs"></span></li>
-                    <li class="list-group-item">Prezentacji: <span id="presentations"></span></li>
-                    <li class="list-group-item">Filmów (linków): <span id="videos"></span></li>
-                    <li class="list-group-item">Zadań: <span id="questions"></span></li>
-                    <li class="list-group-item">Lekcji: <span id="lessons"></span></li>
-                    <li class="list-group-item">Problemów: <span id="problems"></span></li>
-                    <li class="list-group-item">Kursów: <span id="courses"></span></li>
-                    <li class="list-group-item">Plików: <span id="files"></span></li>
-                </ul>
-                <input id="subjectNamesImported" style="display:none;">
-                <input id="subjectNamesActual" style="display:none;">
-                <input id="subjectNamesToSave" style="display:none;">
-                <div class="error" id="error2"></div>
-                <input id="saveLoadedHidden" style="display:none">
-                <span class="btn btn-lg btn-success" id="saveLoaded" onclick="imp.save()">Importuj!</span>
-            </form>
-        </div>
-        <div class="col-lg-6" id="subjectsConnect">
+        <div class="col-lg-12">
+            <div id="listOfSubjectsToChange">
 
+            </div>
+            <form  data-lift="edu.ImportSn.importingFile" method="post" enctype="multipart/form-data">
+                <label>Wczytaj plik:<input type="file" id="filezip" /></label>
+                <div>
+                    <h4>Błędne przedmioty:</h4>
+                    <p id="subjectNotAdded"></p>
+                </div>
+                <input id="subjectNamesActual" style="display:none;">
+                <input id="subjectNamesChange" style="display:none">
+                <span class="btn btn-lg btn-success" id="saveLoaded" onclick="imp.save()">Importuj!</span>
+                <input type="submit"  value="Wczytaj" id="saveHidden" />
+                <div class="error" id="error"></div>
+            </form>
         </div>
     </div>
 
