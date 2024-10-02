@@ -31,8 +31,7 @@ class GCFiles {
     sb ++= findAllExists(Presentation.findAll("authorId"->userId).map(_.slides))
     sb ++= findAllExists(Document.findAll("authorId"->userId).map(_.content))
     sb ++= findAllExists(QuizQuestion.findAll("authorId"->userId).map(_.question))
-    sb ++= findAllExists(LessonCourse.findAll("author"->userId)
-      .map(_.contents.filter(_.what == "n").map(_.descript)).flatten)
+    sb ++= findAllExists(LessonCourse.findAll("author" -> userId).flatMap(_.contents.filter(_.what == "n").map(_.descript)))
     //val teacherExams = Exam.findAll("authorId"->userId).map(_._id.toString)
     //ExamAnswer.findAll("exam"->("$in"->teacherExams)).map(_.attach).map(_.split('/').last.split('.').head)
 
@@ -49,73 +48,73 @@ class GCFiles {
         //val dbObject = cursor.next()
         val gfsFile = fs.find(cursor.next()).get(0)
         val ft = gfsFile.getFilename.split('.').last
-        pathList = FileToDelInfo(ft, gfsFile.getId().asInstanceOf[ObjectId].toString())   :: pathList
+        pathList = FileToDelInfo(ft, gfsFile.getId.asInstanceOf[ObjectId].toString)   :: pathList
       }
     }
     pathList
   }
 
-  private def getAllFilesInPresentations(): List[String] = {
+  private def getAllFilesInPresentations: List[String] = {
     val slidesStr = Presentation.findAll.map(_.slides)
     findAllExists(slidesStr, "Presentations")
   }
 
-  private def getAllFilesInDocuments() = {
+  private def getAllFilesInDocuments = {
     val docStr = Document.findAll.map(_.content)
     findAllExists(docStr, "Documents")
   }
 
-  private def getAllFilesInQuestions() = {
+  private def getAllFilesInQuestions = {
     val docStr = QuizQuestion.findAll.map(_.question)
     findAllExists(docStr, "Questions")
   }
 
-  private def getAllFilesInSlidesImg() = {
+  private def getAllFilesInSlidesImg = {
     val docStr = ImageSlides.findAll.map(_.src)
     findAllExists(docStr, "Slides images")
   }
 
-  private def getAllFilesInPSO() = {
+  private def getAllFilesInPSO = {
     val docStr = PSO.findAll.map(_.urlLink.trim)
     findAllExists(docStr, "PSO")
   }
 
-  private def getAllFilesInThemesPlan() = {
+  private def getAllFilesInThemesPlan = {
     val docStr = ThemesPlan.findAll.map(_.urlLink.trim)
     findAllExists(docStr, "Themes Plan")
   }
 
-  private def getAllFilesInPages() = {
+  private def getAllFilesInPages = {
     val docStr = ArticleContent.findAll.map(_.content)
     findAllExists(docStr, "Main pages")
   }
 
-  private def getAllFilesInLessons() = {
-    val docStr = LessonCourse.findAll.map(_.contents.filter(_.what == "n").map(_.descript)).flatten
+  private def getAllFilesInLessons = {
+    val docStr = LessonCourse.findAll.flatMap(_.contents.filter(_.what == "n").map(_.descript))
     findAllExists(docStr, "Notes in Lessons")
   }
 
-  private def getAllFilesInAdminDep() = {
+  private def getAllFilesInAdminDep = {
     val docStr = PageDepartment.findAll.map(_.img)
     findAllExists(docStr, "Page departments")
   }
 
-  private def getAllFilesInAdminFlash() = {
+  private def getAllFilesInAdminFlash = {
     val docStr = FlashTile.findAll.map(_.img)
     findAllExists(docStr, "Flash on pages")
   }
 
-  private def getAllFilesInAdminTiles() = {
+  private def getAllFilesInAdminTiles = {
     val docStr = LinkTilesMainPage.findAll.map(_.img)
     findAllExists(docStr, "Tiles on pages")
   }
 
-  private def getAllFilesInTestProblems():List[String] = {
+  private def getAllFilesInTestProblems:List[String] = {
     val docStr = TestProblem.findAll.map(_.description)
     findAllExists(docStr, "Problems")
   }
 
-  private def getAllFilesInAnswerExams():List[String] = {
+  private def getAllFilesInAnswerExams:List[String] = {
     ExamAnswer.findAll.map(_.attach).map(_.split('/').last.split('.').head)
   }
 
@@ -133,19 +132,19 @@ class GCFiles {
   }
 
   private def getAllFilesExists() = {
-    getAllFilesInPresentations() ++
-    getAllFilesInDocuments() ++
-    getAllFilesInSlidesImg() ++
-      getAllFilesInPSO() ++
-      getAllFilesInThemesPlan() ++
-      getAllFilesInAdminTiles() ++
-      getAllFilesInAdminFlash() ++
-      getAllFilesInAdminDep() ++
-      getAllFilesInPages() ++
-      getAllFilesInTestProblems() ++
-      getAllFilesInAnswerExams() ++
-      getAllFilesInLessons() ++
-      getAllFilesInQuestions()
+    getAllFilesInPresentations ++
+    getAllFilesInDocuments ++
+    getAllFilesInSlidesImg ++
+      getAllFilesInPSO ++
+      getAllFilesInThemesPlan ++
+      getAllFilesInAdminTiles ++
+      getAllFilesInAdminFlash ++
+      getAllFilesInAdminDep ++
+      getAllFilesInPages ++
+      getAllFilesInTestProblems ++
+      getAllFilesInAnswerExams ++
+      getAllFilesInLessons ++
+      getAllFilesInQuestions
   }
   //for test
   def getAllToDelete():List[FileToDelInfo] = {

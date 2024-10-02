@@ -1,4 +1,4 @@
-version := "0.11.2"
+version := "0.12.1"
 
 organization := "brosbit.eu"
 

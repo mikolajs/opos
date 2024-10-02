@@ -177,6 +177,7 @@ class Boot {
         Menu("Ogłoszenia") / "register" / "anounces" >> LocGroup("register") >> isTeacher,
         Menu("Uwagi") / "register" / "opinions" >> LocGroup("register") >> isTeacher,
         Menu("Plan") / "register" / "class_plan" >> LocGroup("register") >> isTeacher,
+        Menu("Hasła") / "register" / "passwords" >> LocGroup("extra") >> isTeacher,
         //Menu("Wiadomości") / "documents" / "index" >> LocGroup("documents") >> isTeacher,
         Menu("Kółka") / "documents" / "extralessons" >> LocGroup("documents") >> isTeacher,
         Menu("Rozkłady") / "documents" / "themesplan" >> LocGroup("documents") >> isTeacher,

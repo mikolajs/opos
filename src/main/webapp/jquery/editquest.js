@@ -227,7 +227,7 @@
         let v = $(elem).parent('tr').attr('id');
         document.getElementById('nrOfQuest').value = v;
         document.getElementById('usingQuestInfo').innerHTML = "";
-        const request = new XmlHttpRequest();
+        const request = new XMLHttpRequest();
         request.addEventListener('load', this.loadUsageQuestion);
         request.open('GET', '/usingquestion?nr='+v);
         req.send();

@@ -81,6 +81,8 @@ class User extends MegaProtoUser[User] {
 
   object mather extends MappedLongForeignKey(this, User)
 
+  object passwordGenerated extends MappedString(this, 30)
+
   def getFullName = firstName.get + " " + lastName.get
 
   def getFullNameReverse = lastName.get + " " + firstName.get
@@ -98,7 +100,7 @@ class User extends MegaProtoUser[User] {
     val m = Map(('Ą', 'A'), ('Ć', 'C'), ('Ę', 'E'), ('Ł', 'L'), ('Ń', 'N'), ('Ó', 'O'), ('Ś', 'S'), ('Ź', 'Z'), ('Ż', 'Z'),
       ('ą', 'a'), ('ć', 'c'), ('ę', 'e'), ('ł', 'l'), ('ń', 'n'), ('ó', 'o'), ('ś', 's'), ('ź', 'z'), ('ż', 'z'),
       (' ', '-'))
-    str.toLowerCase.toCharArray().map(n =>
+    str.toLowerCase.toCharArray.map(n =>
       if (m.contains(n)) m(n) else n
     ).mkString
   }

@@ -64,7 +64,7 @@ function DataTableOne(){
 	
 	 this.getTrNodeContainsId = function (id) {
 			var trNodes = self.dTable.fnGetNodes();
-			for (i in trNodes) {
+			for (let i in trNodes) {
 				var data = self.dTable.fnGetData(trNodes[i]);
 				if (data[0] == id)
 					return trNodes[i];

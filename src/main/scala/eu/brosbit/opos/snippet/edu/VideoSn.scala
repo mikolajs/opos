@@ -91,6 +91,7 @@ class VideoSn extends BaseResourceSn {
       video.descript = descript
       video.authorId = user.id.get
       video.save
+      S.redirectTo(s"/educontent/video?s=${subjectNow.id.toString}&d=$departNr")
     }
 
     def delete() {
@@ -130,11 +131,11 @@ class VideoSn extends BaseResourceSn {
   }
 
   def subjectChoice() = {
-    super.subjectChoice("/educontent/video")
+    super.subjectChoice(s"/educontent/video")
   }
 
   def subjectAndDepartmentChoice() = {
-    super.subjectAndDepartmentChoice("/educontent/video")
+    super.subjectAndDepartmentChoice(s"/educontent/video")
   }
 
   //override  def autocompliteScript(in:NodeSeq) = super.autocompliteScript(in)
