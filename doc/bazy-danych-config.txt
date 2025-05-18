@@ -6,7 +6,7 @@ Zalogowanie: sudo su postgres
 Utworzenie bazy: createdb opos 
 Wejście do bazy danych: psql opos 
 Uruchomienie skryptów:
-Create user opos with encrypted password '123test456';
+Create user opos with encrypted password '123test456'; // to samo co w pliku /etc/ope/config.cfg
 GRANT ALL ON DATABASE opos TO opos;
 GRANT ALL ON SCHEMA public TO opos;
 

@@ -1,0 +1,6 @@
+
+need directory for user that export or import file:
+firstnamesecondnameID
+np. mikolajsochacki2
+owner of directory must be jetty
+

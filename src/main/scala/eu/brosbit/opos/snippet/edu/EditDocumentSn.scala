@@ -18,8 +18,8 @@ class EditDocumentSn extends BaseResourceSn {
   val id = S.param("id").openOr("0")
   var document = if (id != "0") Document.find(id).getOrElse(Document.create) else Document.create
 
-  val isOwner =
-    document.authorId == 0L || document.authorId == userId
+  val isOwner = document.authorId == 0L || document.authorId == userId
+
 
   def editData() = {
     if(!isOwner) S.redirectTo("/educontent/documents")
@@ -72,6 +72,10 @@ class EditDocumentSn extends BaseResourceSn {
         ++ Text(" Zapisz"), save, "title" -> "Zapisz") &
       "#docDelete" #> SHtml.button(<span class="glyphicon glyphicon-trash"></span>
         ++ Text(" Usuń "), delete, "title" -> "Usuń")
+  }
+
+  def backData():CssSel = {
+    "a [href]" #> s"/educontent/documents?s=${subjectNow.id}&d=${departNr}"
   }
 
   private def findDepart(): Unit ={

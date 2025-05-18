@@ -100,11 +100,11 @@ class ZipFilePackagerImpl extends ZipFilePackager {
 
   private def testReadZip(): Unit ={
     val path = "/home/ms/Pobrane/export.zip"
-    val ss = scala.io.Source.fromFile(path, "ISO8859-1")
+    val ss = scala.io.Source.fromFile(path, "UTF_8")
     val data = ss.map(_.toByte).toArray
     println("Test Read ZIP: ")
     println(data.length)
-    println(new String(data, 0, data.length, StandardCharsets.ISO_8859_1))
+    println(new String(data, 0, data.length, StandardCharsets.UTF_8))
   }
 }
 

@@ -15,7 +15,7 @@ object ConfigLoader {
   var emailSMTP = ""
   var judgeDir = ""
   println("LOAD OPOS")
-  val f = new File("/etc/opos/config.cfg")
+  val f = new File("/etc/ope/config.cfg")
 
   val lines = Source.fromFile(f).getLines().toList
 
@@ -32,7 +32,7 @@ object ConfigLoader {
         case "emailport" => emailPort = opt.last
         case "emailsmtp" => emailSMTP  = opt.last
         case "judgeDir" => judgeDir = opt.last
-        case _ =>
+        case _ => ""
       }
     }
    //println(printInfo)
